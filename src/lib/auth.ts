@@ -1,9 +1,15 @@
-import { betterAuth } from 'better-auth'
-import { tanstackStartCookies } from 'better-auth/tanstack-start'
+import { betterAuth } from "better-auth";
+import { prismaAdapter } from "better-auth/adapters/prisma";
+import { tanstackStartCookies } from "better-auth/tanstack-start";
+
+const { prisma } = await import("../db");
 
 export const auth = betterAuth({
-  emailAndPassword: {
-    enabled: true,
-  },
-  plugins: [tanstackStartCookies()],
-})
+	database: prismaAdapter(prisma, {
+		provider: "postgresql",
+	}),
+	emailAndPassword: {
+		enabled: true,
+	},
+	plugins: [tanstackStartCookies()],
+});
