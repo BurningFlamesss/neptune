@@ -78,3 +78,35 @@ export const getIndividualPack = createServerFn()
 			},
 		});
 	});
+
+const getRecentTransactionParamSchema = z.object({
+	userId: z.string(),
+});
+
+export const getRecentTransaction = createServerFn()
+	.validator(getRecentTransactionParamSchema)
+	.handler(async ({ data }) => {
+		const { prisma } = await import("#/db");
+
+		return prisma.payment.findMany({
+			where: {
+				userId: data.userId,
+			},
+			take: 20,
+			skip: 0,
+			orderBy: {
+				createdAt: "desc",
+			},
+			select: {
+				id: true,
+				total: true,
+				discount: true,
+				status: true,
+				plan: true,
+				metadata: true,
+				currency: true,
+				provider: true,
+				paidAt: true,
+			},
+		});
+	});
