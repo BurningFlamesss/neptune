@@ -61,3 +61,43 @@ export type Account = Prisma.AccountModel
  * 
  */
 export type Verification = Prisma.VerificationModel
+/**
+ * Model Jwks
+ * 
+ */
+export type Jwks = Prisma.JwksModel
+/**
+ * Model OauthClient
+ * 
+ */
+export type OauthClient = Prisma.OauthClientModel
+/**
+ * Model OauthResource
+ * 
+ */
+export type OauthResource = Prisma.OauthResourceModel
+/**
+ * Model OauthClientResource
+ * 
+ */
+export type OauthClientResource = Prisma.OauthClientResourceModel
+/**
+ * Model OauthRefreshToken
+ * 
+ */
+export type OauthRefreshToken = Prisma.OauthRefreshTokenModel
+/**
+ * Model OauthAccessToken
+ * 
+ */
+export type OauthAccessToken = Prisma.OauthAccessTokenModel
+/**
+ * Model OauthConsent
+ * 
+ */
+export type OauthConsent = Prisma.OauthConsentModel
+/**
+ * Model OauthClientAssertion
+ * 
+ */
+export type OauthClientAssertion = Prisma.OauthClientAssertionModel
