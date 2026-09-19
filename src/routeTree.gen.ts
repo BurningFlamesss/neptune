@@ -15,6 +15,8 @@ import { Route as AuthConsentRouteImport } from './routes/_auth/consent'
 import { Route as AuthLoginRouteImport } from './routes/_auth/login'
 import { Route as AuthResetPasswordRouteImport } from './routes/_auth/reset-password'
 import { Route as AuthSignupRouteImport } from './routes/_auth/signup'
+import { Route as PaymentCheckoutRouteImport } from './routes/_payment/checkout'
+import { Route as PaymentPricingRouteImport } from './routes/_payment/pricing'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
 const IndexRoute = IndexRouteImport.update({
@@ -47,6 +49,16 @@ const AuthSignupRoute = AuthSignupRouteImport.update({
   path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PaymentCheckoutRoute = PaymentCheckoutRouteImport.update({
+  id: '/_payment/checkout',
+  path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PaymentPricingRoute = PaymentPricingRouteImport.update({
+  id: '/_payment/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
@@ -60,6 +72,8 @@ export interface FileRoutesByFullPath {
   '/login': typeof AuthLoginRoute
   '/reset-password': typeof AuthResetPasswordRoute
   '/signup': typeof AuthSignupRoute
+  '/checkout': typeof PaymentCheckoutRoute
+  '/pricing': typeof PaymentPricingRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesByTo {
@@ -69,6 +83,8 @@ export interface FileRoutesByTo {
   '/login': typeof AuthLoginRoute
   '/reset-password': typeof AuthResetPasswordRoute
   '/signup': typeof AuthSignupRoute
+  '/checkout': typeof PaymentCheckoutRoute
+  '/pricing': typeof PaymentPricingRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesById {
@@ -79,6 +95,8 @@ export interface FileRoutesById {
   '/_auth/login': typeof AuthLoginRoute
   '/_auth/reset-password': typeof AuthResetPasswordRoute
   '/_auth/signup': typeof AuthSignupRoute
+  '/_payment/checkout': typeof PaymentCheckoutRoute
+  '/_payment/pricing': typeof PaymentPricingRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRouteTypes {
@@ -90,6 +108,8 @@ export interface FileRouteTypes {
     | '/login'
     | '/reset-password'
     | '/signup'
+    | '/checkout'
+    | '/pricing'
     | '/api/auth/$'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -99,6 +119,8 @@ export interface FileRouteTypes {
     | '/login'
     | '/reset-password'
     | '/signup'
+    | '/checkout'
+    | '/pricing'
     | '/api/auth/$'
   id:
     | '__root__'
@@ -108,6 +130,8 @@ export interface FileRouteTypes {
     | '/_auth/login'
     | '/_auth/reset-password'
     | '/_auth/signup'
+    | '/_payment/checkout'
+    | '/_payment/pricing'
     | '/api/auth/$'
   fileRoutesById: FileRoutesById
 }
@@ -118,6 +142,8 @@ export interface RootRouteChildren {
   AuthLoginRoute: typeof AuthLoginRoute
   AuthResetPasswordRoute: typeof AuthResetPasswordRoute
   AuthSignupRoute: typeof AuthSignupRoute
+  PaymentCheckoutRoute: typeof PaymentCheckoutRoute
+  PaymentPricingRoute: typeof PaymentPricingRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
@@ -165,6 +191,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthSignupRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_payment/checkout': {
+      id: '/_payment/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof PaymentCheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_payment/pricing': {
+      id: '/_payment/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PaymentPricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/auth/$': {
       id: '/api/auth/$'
       path: '/api/auth/$'
@@ -182,6 +222,8 @@ const rootRouteChildren: RootRouteChildren = {
   AuthLoginRoute: AuthLoginRoute,
   AuthResetPasswordRoute: AuthResetPasswordRoute,
   AuthSignupRoute: AuthSignupRoute,
+  PaymentCheckoutRoute: PaymentCheckoutRoute,
+  PaymentPricingRoute: PaymentPricingRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport

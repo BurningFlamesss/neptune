@@ -204,6 +204,10 @@ export type UserWhereInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenListRelationFilter
   oauthaccesstokens?: Prisma.OauthAccessTokenListRelationFilter
   oauthconsents?: Prisma.OauthConsentListRelationFilter
+  payments?: Prisma.PaymentListRelationFilter
+  couponUsages?: Prisma.CouponUsageListRelationFilter
+  subscriptions?: Prisma.SubscriptionListRelationFilter
+  billingProfiles?: Prisma.BillingProfileListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -220,6 +224,10 @@ export type UserOrderByWithRelationInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenOrderByRelationAggregateInput
   oauthaccesstokens?: Prisma.OauthAccessTokenOrderByRelationAggregateInput
   oauthconsents?: Prisma.OauthConsentOrderByRelationAggregateInput
+  payments?: Prisma.PaymentOrderByRelationAggregateInput
+  couponUsages?: Prisma.CouponUsageOrderByRelationAggregateInput
+  subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
+  billingProfiles?: Prisma.BillingProfileOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -239,6 +247,10 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   oauthrefreshtokens?: Prisma.OauthRefreshTokenListRelationFilter
   oauthaccesstokens?: Prisma.OauthAccessTokenListRelationFilter
   oauthconsents?: Prisma.OauthConsentListRelationFilter
+  payments?: Prisma.PaymentListRelationFilter
+  couponUsages?: Prisma.CouponUsageListRelationFilter
+  subscriptions?: Prisma.SubscriptionListRelationFilter
+  billingProfiles?: Prisma.BillingProfileListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -281,6 +293,10 @@ export type UserCreateInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
   oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
   oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -297,6 +313,10 @@ export type UserUncheckedCreateInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
   oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -313,6 +333,10 @@ export type UserUpdateInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
   oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -329,6 +353,10 @@ export type UserUncheckedUpdateInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
   oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -507,6 +535,62 @@ export type UserUpdateOneWithoutOauthconsentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOauthconsentsInput, Prisma.UserUpdateWithoutOauthconsentsInput>, Prisma.UserUncheckedUpdateWithoutOauthconsentsInput>
 }
 
+export type UserCreateNestedOneWithoutBillingProfilesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBillingProfilesInput, Prisma.UserUncheckedCreateWithoutBillingProfilesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBillingProfilesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutBillingProfilesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBillingProfilesInput, Prisma.UserUncheckedCreateWithoutBillingProfilesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBillingProfilesInput
+  upsert?: Prisma.UserUpsertWithoutBillingProfilesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutBillingProfilesInput, Prisma.UserUpdateWithoutBillingProfilesInput>, Prisma.UserUncheckedUpdateWithoutBillingProfilesInput>
+}
+
+export type UserCreateNestedOneWithoutSubscriptionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionsInput, Prisma.UserUncheckedCreateWithoutSubscriptionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSubscriptionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutSubscriptionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionsInput, Prisma.UserUncheckedCreateWithoutSubscriptionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSubscriptionsInput
+  upsert?: Prisma.UserUpsertWithoutSubscriptionsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSubscriptionsInput, Prisma.UserUpdateWithoutSubscriptionsInput>, Prisma.UserUncheckedUpdateWithoutSubscriptionsInput>
+}
+
+export type UserCreateNestedOneWithoutPaymentsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPaymentsInput, Prisma.UserUncheckedCreateWithoutPaymentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPaymentsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutPaymentsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPaymentsInput, Prisma.UserUncheckedCreateWithoutPaymentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPaymentsInput
+  upsert?: Prisma.UserUpsertWithoutPaymentsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPaymentsInput, Prisma.UserUpdateWithoutPaymentsInput>, Prisma.UserUncheckedUpdateWithoutPaymentsInput>
+}
+
+export type UserCreateNestedOneWithoutCouponUsagesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCouponUsagesInput, Prisma.UserUncheckedCreateWithoutCouponUsagesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCouponUsagesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutCouponUsagesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCouponUsagesInput, Prisma.UserUncheckedCreateWithoutCouponUsagesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCouponUsagesInput
+  upsert?: Prisma.UserUpsertWithoutCouponUsagesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCouponUsagesInput, Prisma.UserUpdateWithoutCouponUsagesInput>, Prisma.UserUncheckedUpdateWithoutCouponUsagesInput>
+}
+
 export type UserCreateWithoutSessionsInput = {
   id: string
   name: string
@@ -520,6 +604,10 @@ export type UserCreateWithoutSessionsInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
   oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
   oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -535,6 +623,10 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
   oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -566,6 +658,10 @@ export type UserUpdateWithoutSessionsInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
   oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -581,6 +677,10 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
   oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAccountsInput = {
@@ -596,6 +696,10 @@ export type UserCreateWithoutAccountsInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
   oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
   oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
@@ -611,6 +715,10 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
   oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -642,6 +750,10 @@ export type UserUpdateWithoutAccountsInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
   oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -657,6 +769,10 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
   oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutOauthclientsInput = {
@@ -672,6 +788,10 @@ export type UserCreateWithoutOauthclientsInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
   oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
   oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutOauthclientsInput = {
@@ -687,6 +807,10 @@ export type UserUncheckedCreateWithoutOauthclientsInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
   oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutOauthclientsInput = {
@@ -718,6 +842,10 @@ export type UserUpdateWithoutOauthclientsInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
   oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOauthclientsInput = {
@@ -733,6 +861,10 @@ export type UserUncheckedUpdateWithoutOauthclientsInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
   oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutOauthrefreshtokensInput = {
@@ -748,6 +880,10 @@ export type UserCreateWithoutOauthrefreshtokensInput = {
   oauthclients?: Prisma.OauthClientCreateNestedManyWithoutUserInput
   oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
   oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutOauthrefreshtokensInput = {
@@ -763,6 +899,10 @@ export type UserUncheckedCreateWithoutOauthrefreshtokensInput = {
   oauthclients?: Prisma.OauthClientUncheckedCreateNestedManyWithoutUserInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
   oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutOauthrefreshtokensInput = {
@@ -794,6 +934,10 @@ export type UserUpdateWithoutOauthrefreshtokensInput = {
   oauthclients?: Prisma.OauthClientUpdateManyWithoutUserNestedInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
   oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOauthrefreshtokensInput = {
@@ -809,6 +953,10 @@ export type UserUncheckedUpdateWithoutOauthrefreshtokensInput = {
   oauthclients?: Prisma.OauthClientUncheckedUpdateManyWithoutUserNestedInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
   oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutOauthaccesstokensInput = {
@@ -824,6 +972,10 @@ export type UserCreateWithoutOauthaccesstokensInput = {
   oauthclients?: Prisma.OauthClientCreateNestedManyWithoutUserInput
   oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
   oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutOauthaccesstokensInput = {
@@ -839,6 +991,10 @@ export type UserUncheckedCreateWithoutOauthaccesstokensInput = {
   oauthclients?: Prisma.OauthClientUncheckedCreateNestedManyWithoutUserInput
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
   oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutOauthaccesstokensInput = {
@@ -870,6 +1026,10 @@ export type UserUpdateWithoutOauthaccesstokensInput = {
   oauthclients?: Prisma.OauthClientUpdateManyWithoutUserNestedInput
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
   oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOauthaccesstokensInput = {
@@ -885,6 +1045,10 @@ export type UserUncheckedUpdateWithoutOauthaccesstokensInput = {
   oauthclients?: Prisma.OauthClientUncheckedUpdateManyWithoutUserNestedInput
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutOauthconsentsInput = {
@@ -900,6 +1064,10 @@ export type UserCreateWithoutOauthconsentsInput = {
   oauthclients?: Prisma.OauthClientCreateNestedManyWithoutUserInput
   oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
   oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutOauthconsentsInput = {
@@ -915,6 +1083,10 @@ export type UserUncheckedCreateWithoutOauthconsentsInput = {
   oauthclients?: Prisma.OauthClientUncheckedCreateNestedManyWithoutUserInput
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutOauthconsentsInput = {
@@ -946,6 +1118,10 @@ export type UserUpdateWithoutOauthconsentsInput = {
   oauthclients?: Prisma.OauthClientUpdateManyWithoutUserNestedInput
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOauthconsentsInput = {
@@ -961,6 +1137,378 @@ export type UserUncheckedUpdateWithoutOauthconsentsInput = {
   oauthclients?: Prisma.OauthClientUncheckedUpdateManyWithoutUserNestedInput
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutBillingProfilesInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  oauthclients?: Prisma.OauthClientCreateNestedManyWithoutUserInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutBillingProfilesInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  oauthclients?: Prisma.OauthClientUncheckedCreateNestedManyWithoutUserInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutBillingProfilesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutBillingProfilesInput, Prisma.UserUncheckedCreateWithoutBillingProfilesInput>
+}
+
+export type UserUpsertWithoutBillingProfilesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutBillingProfilesInput, Prisma.UserUncheckedUpdateWithoutBillingProfilesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutBillingProfilesInput, Prisma.UserUncheckedCreateWithoutBillingProfilesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutBillingProfilesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutBillingProfilesInput, Prisma.UserUncheckedUpdateWithoutBillingProfilesInput>
+}
+
+export type UserUpdateWithoutBillingProfilesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  oauthclients?: Prisma.OauthClientUpdateManyWithoutUserNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutBillingProfilesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  oauthclients?: Prisma.OauthClientUncheckedUpdateManyWithoutUserNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutSubscriptionsInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  oauthclients?: Prisma.OauthClientCreateNestedManyWithoutUserInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutSubscriptionsInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  oauthclients?: Prisma.OauthClientUncheckedCreateNestedManyWithoutUserInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutSubscriptionsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionsInput, Prisma.UserUncheckedCreateWithoutSubscriptionsInput>
+}
+
+export type UserUpsertWithoutSubscriptionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSubscriptionsInput, Prisma.UserUncheckedUpdateWithoutSubscriptionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionsInput, Prisma.UserUncheckedCreateWithoutSubscriptionsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSubscriptionsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSubscriptionsInput, Prisma.UserUncheckedUpdateWithoutSubscriptionsInput>
+}
+
+export type UserUpdateWithoutSubscriptionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  oauthclients?: Prisma.OauthClientUpdateManyWithoutUserNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSubscriptionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  oauthclients?: Prisma.OauthClientUncheckedUpdateManyWithoutUserNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutPaymentsInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  oauthclients?: Prisma.OauthClientCreateNestedManyWithoutUserInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutPaymentsInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  oauthclients?: Prisma.OauthClientUncheckedCreateNestedManyWithoutUserInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutPaymentsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPaymentsInput, Prisma.UserUncheckedCreateWithoutPaymentsInput>
+}
+
+export type UserUpsertWithoutPaymentsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPaymentsInput, Prisma.UserUncheckedUpdateWithoutPaymentsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPaymentsInput, Prisma.UserUncheckedCreateWithoutPaymentsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPaymentsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPaymentsInput, Prisma.UserUncheckedUpdateWithoutPaymentsInput>
+}
+
+export type UserUpdateWithoutPaymentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  oauthclients?: Prisma.OauthClientUpdateManyWithoutUserNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPaymentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  oauthclients?: Prisma.OauthClientUncheckedUpdateManyWithoutUserNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutCouponUsagesInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  oauthclients?: Prisma.OauthClientCreateNestedManyWithoutUserInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutCouponUsagesInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  oauthclients?: Prisma.OauthClientUncheckedCreateNestedManyWithoutUserInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutCouponUsagesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCouponUsagesInput, Prisma.UserUncheckedCreateWithoutCouponUsagesInput>
+}
+
+export type UserUpsertWithoutCouponUsagesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCouponUsagesInput, Prisma.UserUncheckedUpdateWithoutCouponUsagesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCouponUsagesInput, Prisma.UserUncheckedCreateWithoutCouponUsagesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCouponUsagesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCouponUsagesInput, Prisma.UserUncheckedUpdateWithoutCouponUsagesInput>
+}
+
+export type UserUpdateWithoutCouponUsagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  oauthclients?: Prisma.OauthClientUpdateManyWithoutUserNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCouponUsagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  oauthclients?: Prisma.OauthClientUncheckedUpdateManyWithoutUserNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -975,6 +1523,10 @@ export type UserCountOutputType = {
   oauthrefreshtokens: number
   oauthaccesstokens: number
   oauthconsents: number
+  payments: number
+  couponUsages: number
+  subscriptions: number
+  billingProfiles: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -984,6 +1536,10 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   oauthrefreshtokens?: boolean | UserCountOutputTypeCountOauthrefreshtokensArgs
   oauthaccesstokens?: boolean | UserCountOutputTypeCountOauthaccesstokensArgs
   oauthconsents?: boolean | UserCountOutputTypeCountOauthconsentsArgs
+  payments?: boolean | UserCountOutputTypeCountPaymentsArgs
+  couponUsages?: boolean | UserCountOutputTypeCountCouponUsagesArgs
+  subscriptions?: boolean | UserCountOutputTypeCountSubscriptionsArgs
+  billingProfiles?: boolean | UserCountOutputTypeCountBillingProfilesArgs
 }
 
 /**
@@ -1038,6 +1594,34 @@ export type UserCountOutputTypeCountOauthconsentsArgs<ExtArgs extends runtime.Ty
   where?: Prisma.OauthConsentWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPaymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PaymentWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCouponUsagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CouponUsageWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSubscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubscriptionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountBillingProfilesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BillingProfileWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1053,6 +1637,10 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   oauthrefreshtokens?: boolean | Prisma.User$oauthrefreshtokensArgs<ExtArgs>
   oauthaccesstokens?: boolean | Prisma.User$oauthaccesstokensArgs<ExtArgs>
   oauthconsents?: boolean | Prisma.User$oauthconsentsArgs<ExtArgs>
+  payments?: boolean | Prisma.User$paymentsArgs<ExtArgs>
+  couponUsages?: boolean | Prisma.User$couponUsagesArgs<ExtArgs>
+  subscriptions?: boolean | Prisma.User$subscriptionsArgs<ExtArgs>
+  billingProfiles?: boolean | Prisma.User$billingProfilesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1094,6 +1682,10 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   oauthrefreshtokens?: boolean | Prisma.User$oauthrefreshtokensArgs<ExtArgs>
   oauthaccesstokens?: boolean | Prisma.User$oauthaccesstokensArgs<ExtArgs>
   oauthconsents?: boolean | Prisma.User$oauthconsentsArgs<ExtArgs>
+  payments?: boolean | Prisma.User$paymentsArgs<ExtArgs>
+  couponUsages?: boolean | Prisma.User$couponUsagesArgs<ExtArgs>
+  subscriptions?: boolean | Prisma.User$subscriptionsArgs<ExtArgs>
+  billingProfiles?: boolean | Prisma.User$billingProfilesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1108,6 +1700,10 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     oauthrefreshtokens: Prisma.$OauthRefreshTokenPayload<ExtArgs>[]
     oauthaccesstokens: Prisma.$OauthAccessTokenPayload<ExtArgs>[]
     oauthconsents: Prisma.$OauthConsentPayload<ExtArgs>[]
+    payments: Prisma.$PaymentPayload<ExtArgs>[]
+    couponUsages: Prisma.$CouponUsagePayload<ExtArgs>[]
+    subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
+    billingProfiles: Prisma.$BillingProfilePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1517,6 +2113,10 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   oauthrefreshtokens<T extends Prisma.User$oauthrefreshtokensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$oauthrefreshtokensArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OauthRefreshTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   oauthaccesstokens<T extends Prisma.User$oauthaccesstokensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$oauthaccesstokensArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OauthAccessTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   oauthconsents<T extends Prisma.User$oauthconsentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$oauthconsentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OauthConsentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  payments<T extends Prisma.User$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  couponUsages<T extends Prisma.User$couponUsagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$couponUsagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CouponUsagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  subscriptions<T extends Prisma.User$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  billingProfiles<T extends Prisma.User$billingProfilesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$billingProfilesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BillingProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2087,6 +2687,102 @@ export type User$oauthconsentsArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.OauthConsentScalarFieldEnum | Prisma.OauthConsentScalarFieldEnum[]
+}
+
+/**
+ * User.payments
+ */
+export type User$paymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Payment
+   */
+  select?: Prisma.PaymentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Payment
+   */
+  omit?: Prisma.PaymentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PaymentInclude<ExtArgs> | null
+  where?: Prisma.PaymentWhereInput
+  orderBy?: Prisma.PaymentOrderByWithRelationInput | Prisma.PaymentOrderByWithRelationInput[]
+  cursor?: Prisma.PaymentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PaymentScalarFieldEnum | Prisma.PaymentScalarFieldEnum[]
+}
+
+/**
+ * User.couponUsages
+ */
+export type User$couponUsagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CouponUsage
+   */
+  select?: Prisma.CouponUsageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CouponUsage
+   */
+  omit?: Prisma.CouponUsageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CouponUsageInclude<ExtArgs> | null
+  where?: Prisma.CouponUsageWhereInput
+  orderBy?: Prisma.CouponUsageOrderByWithRelationInput | Prisma.CouponUsageOrderByWithRelationInput[]
+  cursor?: Prisma.CouponUsageWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CouponUsageScalarFieldEnum | Prisma.CouponUsageScalarFieldEnum[]
+}
+
+/**
+ * User.subscriptions
+ */
+export type User$subscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Subscription
+   */
+  select?: Prisma.SubscriptionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Subscription
+   */
+  omit?: Prisma.SubscriptionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubscriptionInclude<ExtArgs> | null
+  where?: Prisma.SubscriptionWhereInput
+  orderBy?: Prisma.SubscriptionOrderByWithRelationInput | Prisma.SubscriptionOrderByWithRelationInput[]
+  cursor?: Prisma.SubscriptionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SubscriptionScalarFieldEnum | Prisma.SubscriptionScalarFieldEnum[]
+}
+
+/**
+ * User.billingProfiles
+ */
+export type User$billingProfilesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BillingProfile
+   */
+  select?: Prisma.BillingProfileSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BillingProfile
+   */
+  omit?: Prisma.BillingProfileOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BillingProfileInclude<ExtArgs> | null
+  where?: Prisma.BillingProfileWhereInput
+  orderBy?: Prisma.BillingProfileOrderByWithRelationInput | Prisma.BillingProfileOrderByWithRelationInput[]
+  cursor?: Prisma.BillingProfileWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BillingProfileScalarFieldEnum | Prisma.BillingProfileScalarFieldEnum[]
 }
 
 /**

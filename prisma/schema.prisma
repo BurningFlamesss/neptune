@@ -7,6 +7,61 @@ datasource db {
   provider = "postgresql"
 }
 
+enum CouponType {
+  PERCENTAGE_DISCOUNT
+  FIXED_DISCOUNT
+}
+
+enum CouponRedeemptionType {
+  DIRECT_REDEEM
+  CHECKOUT
+}
+
+enum CouponStatus {
+  ACTIVE
+  EXHAUSTED
+  EXPIRED
+  DISABLED
+}
+
+enum PaymentStatus {
+  CREATED
+  PENDING
+  REQUIRES_ACTION
+  SUCCEEDED
+  FAILED
+  CANCELLED
+  REFUNDED
+  PARTICALLY_REFUNDED
+}
+
+enum BillingInterval {
+  MONTHLY
+  ANNUALLY
+  LIFETIME
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  PAST_DUE
+  UNPAID
+  CANCELLED
+  TRIALING
+}
+
+enum Currency {
+  USD
+  NPR
+  EUR
+}
+
+enum PaymentProvider {
+  STRIPE
+  PAYPAL
+  ESEWA
+  MANUAL
+}
+
 model User {
   id                 String              @id
   name               String
@@ -21,6 +76,10 @@ model User {
   oauthrefreshtokens OauthRefreshToken[]
   oauthaccesstokens  OauthAccessToken[]
   oauthconsents      OauthConsent[]
+  payments           Payment[]
+  couponUsages       CouponUsage[]
+  subscriptions      Subscription[]
+  billingProfiles    BillingProfile[]
 
   @@unique([email])
   @@map("user")
@@ -258,4 +317,132 @@ model OauthClientAssertion {
   expiresAt DateTime
 
   @@map("oauthClientAssertion")
+}
+
+model BillingProfile {
+  id         String          @id @default(cuid())
+  userId     String
+  user       User            @relation(fields: [userId], references: [id])
+  provider   PaymentProvider
+  providerId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([provider, providerId])
+  @@unique([userId, provider])
+  @@map("billing_profiles")
+}
+
+model Plan {
+  id              String          @id @default(cuid())
+  name            String
+  price           Int
+  comparedAtPrice Int?
+  interval        BillingInterval @default(MONTHLY)
+  currency        Currency
+  isActive        Boolean         @default(true)
+  sortOrder       Int             @default(0)
+
+  // Access Layer
+  intelligenceStorage String?
+  sync                String?
+  recall              String?
+  versioning          String?
+  sharing             String?
+  features            Json?
+  notIncludedFeatures Json?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  payments          Payment[]
+  subscriptions     Subscription[]
+  applicableCoupons Coupon[]
+
+  @@index([isActive, sortOrder])
+  @@map("plans")
+}
+
+model Subscription {
+  id     String  @id @default(cuid())
+  userId String
+  user   User    @relation(fields: [userId], references: [id])
+  planId String?
+  plan   Plan?   @relation(fields: [planId], references: [id])
+
+  status     SubscriptionStatus @default(ACTIVE)
+  providerId String?            @unique
+  customerId String?
+
+  currentPeriodStart DateTime
+  currentPeriodEnd   DateTime
+  cancelAtPeriodEnd  Boolean  @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@map("subscriptions")
+}
+
+model Payment {
+  id                    String          @id @default(cuid())
+  userId                String
+  user                  User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  provider              PaymentProvider
+  status                PaymentStatus   @default(PENDING)
+  providerTransactionId String?
+  orderId               Int             @unique
+  currency              Currency
+  subTotal              Int
+  discount              Int             @default(0)
+  total                 Int
+  couponUsageId         String?         @unique
+  couponUsage           CouponUsage?    @relation(fields: [couponUsageId], references: [id])
+  metadata              Json?
+  paidAt                DateTime?
+  createdAt             DateTime        @default(now())
+  updatedAt             DateTime        @updatedAt
+  plan                  Plan?           @relation(fields: [planId], references: [id])
+  planId                String?
+
+  @@index([userId])
+  @@map("payments")
+}
+
+model Coupon {
+  id                 String                @id @default(cuid())
+  code               String                @unique
+  type               CouponType
+  redeemptionType    CouponRedeemptionType
+  status             CouponStatus          @default(ACTIVE)
+  percentageDiscount Int?
+  fixedDiscount      Int?
+  maxUses            Int?
+  usedCount          Int                   @default(0)
+  perUserLimit       Int                   @default(1)
+  applicablePlans    Plan[]
+  startsAt           DateTime?
+  expiresAt          DateTime?
+  metadata           String?
+  createdAt          DateTime              @default(now())
+  updatedAt          DateTime              @updatedAt
+  uses               CouponUsage[]
+
+  @@map("coupons")
+}
+
+model CouponUsage {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+  coupon          Coupon?  @relation(fields: [couponId], references: [id])
+  couponId        String?
+  payment         Payment?
+  discountApplied Int?
+  createdAt       DateTime @default(now())
+
+  @@index([couponId, userId])
+  @@map("coupon_usages")
 }
