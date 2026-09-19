@@ -28,12 +28,10 @@ export type AggregateCouponUsage = {
 
 export type CouponUsageAvgAggregateOutputType = {
   discountApplied: number | null
-  creditsGranted: number | null
 }
 
 export type CouponUsageSumAggregateOutputType = {
   discountApplied: number | null
-  creditsGranted: number | null
 }
 
 export type CouponUsageMinAggregateOutputType = {
@@ -41,7 +39,6 @@ export type CouponUsageMinAggregateOutputType = {
   userId: string | null
   couponId: string | null
   discountApplied: number | null
-  creditsGranted: number | null
   createdAt: Date | null
 }
 
@@ -50,7 +47,6 @@ export type CouponUsageMaxAggregateOutputType = {
   userId: string | null
   couponId: string | null
   discountApplied: number | null
-  creditsGranted: number | null
   createdAt: Date | null
 }
 
@@ -59,7 +55,6 @@ export type CouponUsageCountAggregateOutputType = {
   userId: number
   couponId: number
   discountApplied: number
-  creditsGranted: number
   createdAt: number
   _all: number
 }
@@ -67,12 +62,10 @@ export type CouponUsageCountAggregateOutputType = {
 
 export type CouponUsageAvgAggregateInputType = {
   discountApplied?: true
-  creditsGranted?: true
 }
 
 export type CouponUsageSumAggregateInputType = {
   discountApplied?: true
-  creditsGranted?: true
 }
 
 export type CouponUsageMinAggregateInputType = {
@@ -80,7 +73,6 @@ export type CouponUsageMinAggregateInputType = {
   userId?: true
   couponId?: true
   discountApplied?: true
-  creditsGranted?: true
   createdAt?: true
 }
 
@@ -89,7 +81,6 @@ export type CouponUsageMaxAggregateInputType = {
   userId?: true
   couponId?: true
   discountApplied?: true
-  creditsGranted?: true
   createdAt?: true
 }
 
@@ -98,7 +89,6 @@ export type CouponUsageCountAggregateInputType = {
   userId?: true
   couponId?: true
   discountApplied?: true
-  creditsGranted?: true
   createdAt?: true
   _all?: true
 }
@@ -194,7 +184,6 @@ export type CouponUsageGroupByOutputType = {
   userId: string
   couponId: string | null
   discountApplied: number | null
-  creditsGranted: number | null
   createdAt: Date
   _count: CouponUsageCountAggregateOutputType | null
   _avg: CouponUsageAvgAggregateOutputType | null
@@ -226,7 +215,6 @@ export type CouponUsageWhereInput = {
   userId?: Prisma.StringFilter<"CouponUsage"> | string
   couponId?: Prisma.StringNullableFilter<"CouponUsage"> | string | null
   discountApplied?: Prisma.IntNullableFilter<"CouponUsage"> | number | null
-  creditsGranted?: Prisma.IntNullableFilter<"CouponUsage"> | number | null
   createdAt?: Prisma.DateTimeFilter<"CouponUsage"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   coupon?: Prisma.XOR<Prisma.CouponNullableScalarRelationFilter, Prisma.CouponWhereInput> | null
@@ -238,7 +226,6 @@ export type CouponUsageOrderByWithRelationInput = {
   userId?: Prisma.SortOrder
   couponId?: Prisma.SortOrderInput | Prisma.SortOrder
   discountApplied?: Prisma.SortOrderInput | Prisma.SortOrder
-  creditsGranted?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   coupon?: Prisma.CouponOrderByWithRelationInput
@@ -253,7 +240,6 @@ export type CouponUsageWhereUniqueInput = Prisma.AtLeast<{
   userId?: Prisma.StringFilter<"CouponUsage"> | string
   couponId?: Prisma.StringNullableFilter<"CouponUsage"> | string | null
   discountApplied?: Prisma.IntNullableFilter<"CouponUsage"> | number | null
-  creditsGranted?: Prisma.IntNullableFilter<"CouponUsage"> | number | null
   createdAt?: Prisma.DateTimeFilter<"CouponUsage"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   coupon?: Prisma.XOR<Prisma.CouponNullableScalarRelationFilter, Prisma.CouponWhereInput> | null
@@ -265,7 +251,6 @@ export type CouponUsageOrderByWithAggregationInput = {
   userId?: Prisma.SortOrder
   couponId?: Prisma.SortOrderInput | Prisma.SortOrder
   discountApplied?: Prisma.SortOrderInput | Prisma.SortOrder
-  creditsGranted?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.CouponUsageCountOrderByAggregateInput
   _avg?: Prisma.CouponUsageAvgOrderByAggregateInput
@@ -282,14 +267,12 @@ export type CouponUsageScalarWhereWithAggregatesInput = {
   userId?: Prisma.StringWithAggregatesFilter<"CouponUsage"> | string
   couponId?: Prisma.StringNullableWithAggregatesFilter<"CouponUsage"> | string | null
   discountApplied?: Prisma.IntNullableWithAggregatesFilter<"CouponUsage"> | number | null
-  creditsGranted?: Prisma.IntNullableWithAggregatesFilter<"CouponUsage"> | number | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"CouponUsage"> | Date | string
 }
 
 export type CouponUsageCreateInput = {
   id?: string
   discountApplied?: number | null
-  creditsGranted?: number | null
   createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutCouponUsagesInput
   coupon?: Prisma.CouponCreateNestedOneWithoutUsesInput
@@ -301,7 +284,6 @@ export type CouponUsageUncheckedCreateInput = {
   userId: string
   couponId?: string | null
   discountApplied?: number | null
-  creditsGranted?: number | null
   createdAt?: Date | string
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutCouponUsageInput
 }
@@ -309,7 +291,6 @@ export type CouponUsageUncheckedCreateInput = {
 export type CouponUsageUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   discountApplied?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  creditsGranted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutCouponUsagesNestedInput
   coupon?: Prisma.CouponUpdateOneWithoutUsesNestedInput
@@ -321,7 +302,6 @@ export type CouponUsageUncheckedUpdateInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   couponId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   discountApplied?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  creditsGranted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutCouponUsageNestedInput
 }
@@ -331,14 +311,12 @@ export type CouponUsageCreateManyInput = {
   userId: string
   couponId?: string | null
   discountApplied?: number | null
-  creditsGranted?: number | null
   createdAt?: Date | string
 }
 
 export type CouponUsageUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   discountApplied?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  creditsGranted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -347,7 +325,6 @@ export type CouponUsageUncheckedUpdateManyInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   couponId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   discountApplied?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  creditsGranted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -371,13 +348,11 @@ export type CouponUsageCountOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   couponId?: Prisma.SortOrder
   discountApplied?: Prisma.SortOrder
-  creditsGranted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
 export type CouponUsageAvgOrderByAggregateInput = {
   discountApplied?: Prisma.SortOrder
-  creditsGranted?: Prisma.SortOrder
 }
 
 export type CouponUsageMaxOrderByAggregateInput = {
@@ -385,7 +360,6 @@ export type CouponUsageMaxOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   couponId?: Prisma.SortOrder
   discountApplied?: Prisma.SortOrder
-  creditsGranted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -394,13 +368,11 @@ export type CouponUsageMinOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   couponId?: Prisma.SortOrder
   discountApplied?: Prisma.SortOrder
-  creditsGranted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
 export type CouponUsageSumOrderByAggregateInput = {
   discountApplied?: Prisma.SortOrder
-  creditsGranted?: Prisma.SortOrder
 }
 
 export type CouponUsageCreateNestedManyWithoutUserInput = {
@@ -506,7 +478,6 @@ export type CouponUsageUncheckedUpdateManyWithoutCouponNestedInput = {
 export type CouponUsageCreateWithoutUserInput = {
   id?: string
   discountApplied?: number | null
-  creditsGranted?: number | null
   createdAt?: Date | string
   coupon?: Prisma.CouponCreateNestedOneWithoutUsesInput
   payment?: Prisma.PaymentCreateNestedOneWithoutCouponUsageInput
@@ -516,7 +487,6 @@ export type CouponUsageUncheckedCreateWithoutUserInput = {
   id?: string
   couponId?: string | null
   discountApplied?: number | null
-  creditsGranted?: number | null
   createdAt?: Date | string
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutCouponUsageInput
 }
@@ -555,14 +525,12 @@ export type CouponUsageScalarWhereInput = {
   userId?: Prisma.StringFilter<"CouponUsage"> | string
   couponId?: Prisma.StringNullableFilter<"CouponUsage"> | string | null
   discountApplied?: Prisma.IntNullableFilter<"CouponUsage"> | number | null
-  creditsGranted?: Prisma.IntNullableFilter<"CouponUsage"> | number | null
   createdAt?: Prisma.DateTimeFilter<"CouponUsage"> | Date | string
 }
 
 export type CouponUsageCreateWithoutPaymentInput = {
   id?: string
   discountApplied?: number | null
-  creditsGranted?: number | null
   createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutCouponUsagesInput
   coupon?: Prisma.CouponCreateNestedOneWithoutUsesInput
@@ -573,7 +541,6 @@ export type CouponUsageUncheckedCreateWithoutPaymentInput = {
   userId: string
   couponId?: string | null
   discountApplied?: number | null
-  creditsGranted?: number | null
   createdAt?: Date | string
 }
 
@@ -596,7 +563,6 @@ export type CouponUsageUpdateToOneWithWhereWithoutPaymentInput = {
 export type CouponUsageUpdateWithoutPaymentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   discountApplied?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  creditsGranted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutCouponUsagesNestedInput
   coupon?: Prisma.CouponUpdateOneWithoutUsesNestedInput
@@ -607,14 +573,12 @@ export type CouponUsageUncheckedUpdateWithoutPaymentInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   couponId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   discountApplied?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  creditsGranted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CouponUsageCreateWithoutCouponInput = {
   id?: string
   discountApplied?: number | null
-  creditsGranted?: number | null
   createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutCouponUsagesInput
   payment?: Prisma.PaymentCreateNestedOneWithoutCouponUsageInput
@@ -624,7 +588,6 @@ export type CouponUsageUncheckedCreateWithoutCouponInput = {
   id?: string
   userId: string
   discountApplied?: number | null
-  creditsGranted?: number | null
   createdAt?: Date | string
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutCouponUsageInput
 }
@@ -659,14 +622,12 @@ export type CouponUsageCreateManyUserInput = {
   id?: string
   couponId?: string | null
   discountApplied?: number | null
-  creditsGranted?: number | null
   createdAt?: Date | string
 }
 
 export type CouponUsageUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   discountApplied?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  creditsGranted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   coupon?: Prisma.CouponUpdateOneWithoutUsesNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutCouponUsageNestedInput
@@ -676,7 +637,6 @@ export type CouponUsageUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   couponId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   discountApplied?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  creditsGranted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutCouponUsageNestedInput
 }
@@ -685,7 +645,6 @@ export type CouponUsageUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   couponId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   discountApplied?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  creditsGranted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -693,14 +652,12 @@ export type CouponUsageCreateManyCouponInput = {
   id?: string
   userId: string
   discountApplied?: number | null
-  creditsGranted?: number | null
   createdAt?: Date | string
 }
 
 export type CouponUsageUpdateWithoutCouponInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   discountApplied?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  creditsGranted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutCouponUsagesNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutCouponUsageNestedInput
@@ -710,7 +667,6 @@ export type CouponUsageUncheckedUpdateWithoutCouponInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   discountApplied?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  creditsGranted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutCouponUsageNestedInput
 }
@@ -719,7 +675,6 @@ export type CouponUsageUncheckedUpdateManyWithoutCouponInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   discountApplied?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  creditsGranted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -730,7 +685,6 @@ export type CouponUsageSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   userId?: boolean
   couponId?: boolean
   discountApplied?: boolean
-  creditsGranted?: boolean
   createdAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   coupon?: boolean | Prisma.CouponUsage$couponArgs<ExtArgs>
@@ -742,7 +696,6 @@ export type CouponUsageSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   userId?: boolean
   couponId?: boolean
   discountApplied?: boolean
-  creditsGranted?: boolean
   createdAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   coupon?: boolean | Prisma.CouponUsage$couponArgs<ExtArgs>
@@ -753,7 +706,6 @@ export type CouponUsageSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   userId?: boolean
   couponId?: boolean
   discountApplied?: boolean
-  creditsGranted?: boolean
   createdAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   coupon?: boolean | Prisma.CouponUsage$couponArgs<ExtArgs>
@@ -764,11 +716,10 @@ export type CouponUsageSelectScalar = {
   userId?: boolean
   couponId?: boolean
   discountApplied?: boolean
-  creditsGranted?: boolean
   createdAt?: boolean
 }
 
-export type CouponUsageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "couponId" | "discountApplied" | "creditsGranted" | "createdAt", ExtArgs["result"]["couponUsage"]>
+export type CouponUsageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "couponId" | "discountApplied" | "createdAt", ExtArgs["result"]["couponUsage"]>
 export type CouponUsageInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   coupon?: boolean | Prisma.CouponUsage$couponArgs<ExtArgs>
@@ -795,7 +746,6 @@ export type $CouponUsagePayload<ExtArgs extends runtime.Types.Extensions.Interna
     userId: string
     couponId: string | null
     discountApplied: number | null
-    creditsGranted: number | null
     createdAt: Date
   }, ExtArgs["result"]["couponUsage"]>
   composites: {}
@@ -1227,7 +1177,6 @@ export interface CouponUsageFieldRefs {
   readonly userId: Prisma.FieldRef<"CouponUsage", 'String'>
   readonly couponId: Prisma.FieldRef<"CouponUsage", 'String'>
   readonly discountApplied: Prisma.FieldRef<"CouponUsage", 'Int'>
-  readonly creditsGranted: Prisma.FieldRef<"CouponUsage", 'Int'>
   readonly createdAt: Prisma.FieldRef<"CouponUsage", 'DateTime'>
 }
     

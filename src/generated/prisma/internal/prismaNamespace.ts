@@ -2103,7 +2103,6 @@ export const CouponScalarFieldEnum = {
   maxUses: 'maxUses',
   usedCount: 'usedCount',
   perUserLimit: 'perUserLimit',
-  minimumPurchaseAmount: 'minimumPurchaseAmount',
   startsAt: 'startsAt',
   expiresAt: 'expiresAt',
   metadata: 'metadata',
@@ -2119,7 +2118,6 @@ export const CouponUsageScalarFieldEnum = {
   userId: 'userId',
   couponId: 'couponId',
   discountApplied: 'discountApplied',
-  creditsGranted: 'creditsGranted',
   createdAt: 'createdAt'
 } as const
 

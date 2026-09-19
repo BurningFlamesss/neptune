@@ -356,8 +356,9 @@ model Plan {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  payments      Payment[]
-  subscriptions Subscription[]
+  payments          Payment[]
+  subscriptions     Subscription[]
+  applicableCoupons Coupon[]
 
   @@index([isActive, sortOrder])
   @@map("plans")
@@ -411,23 +412,23 @@ model Payment {
 }
 
 model Coupon {
-  id                    String                @id @default(cuid())
-  code                  String                @unique
-  type                  CouponType
-  redeemptionType       CouponRedeemptionType
-  status                CouponStatus          @default(ACTIVE)
-  percentageDiscount    Int?
-  fixedDiscount         Int?
-  maxUses               Int?
-  usedCount             Int                   @default(0)
-  perUserLimit          Int                   @default(1)
-  minimumPurchaseAmount Int?
-  startsAt              DateTime?
-  expiresAt             DateTime?
-  metadata              String?
-  createdAt             DateTime              @default(now())
-  updatedAt             DateTime              @updatedAt
-  uses                  CouponUsage[]
+  id                 String                @id @default(cuid())
+  code               String                @unique
+  type               CouponType
+  redeemptionType    CouponRedeemptionType
+  status             CouponStatus          @default(ACTIVE)
+  percentageDiscount Int?
+  fixedDiscount      Int?
+  maxUses            Int?
+  usedCount          Int                   @default(0)
+  perUserLimit       Int                   @default(1)
+  applicablePlans    Plan[]
+  startsAt           DateTime?
+  expiresAt          DateTime?
+  metadata           String?
+  createdAt          DateTime              @default(now())
+  updatedAt          DateTime              @updatedAt
+  uses               CouponUsage[]
 
   @@map("coupons")
 }

@@ -314,6 +314,7 @@ export type PlanWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
   payments?: Prisma.PaymentListRelationFilter
   subscriptions?: Prisma.SubscriptionListRelationFilter
+  applicableCoupons?: Prisma.CouponListRelationFilter
 }
 
 export type PlanOrderByWithRelationInput = {
@@ -336,6 +337,7 @@ export type PlanOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   payments?: Prisma.PaymentOrderByRelationAggregateInput
   subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
+  applicableCoupons?: Prisma.CouponOrderByRelationAggregateInput
 }
 
 export type PlanWhereUniqueInput = Prisma.AtLeast<{
@@ -361,6 +363,7 @@ export type PlanWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
   payments?: Prisma.PaymentListRelationFilter
   subscriptions?: Prisma.SubscriptionListRelationFilter
+  applicableCoupons?: Prisma.CouponListRelationFilter
 }, "id">
 
 export type PlanOrderByWithAggregationInput = {
@@ -431,6 +434,7 @@ export type PlanCreateInput = {
   updatedAt?: Date | string
   payments?: Prisma.PaymentCreateNestedManyWithoutPlanInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
+  applicableCoupons?: Prisma.CouponCreateNestedManyWithoutApplicablePlansInput
 }
 
 export type PlanUncheckedCreateInput = {
@@ -453,6 +457,7 @@ export type PlanUncheckedCreateInput = {
   updatedAt?: Date | string
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutPlanInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
+  applicableCoupons?: Prisma.CouponUncheckedCreateNestedManyWithoutApplicablePlansInput
 }
 
 export type PlanUpdateInput = {
@@ -475,6 +480,7 @@ export type PlanUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payments?: Prisma.PaymentUpdateManyWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
+  applicableCoupons?: Prisma.CouponUpdateManyWithoutApplicablePlansNestedInput
 }
 
 export type PlanUncheckedUpdateInput = {
@@ -497,6 +503,7 @@ export type PlanUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
+  applicableCoupons?: Prisma.CouponUncheckedUpdateManyWithoutApplicablePlansNestedInput
 }
 
 export type PlanCreateManyInput = {
@@ -632,6 +639,16 @@ export type PlanNullableScalarRelationFilter = {
   isNot?: Prisma.PlanWhereInput | null
 }
 
+export type PlanListRelationFilter = {
+  every?: Prisma.PlanWhereInput
+  some?: Prisma.PlanWhereInput
+  none?: Prisma.PlanWhereInput
+}
+
+export type PlanOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
 export type IntFieldUpdateOperationsInput = {
   set?: number
   increment?: number
@@ -680,6 +697,44 @@ export type PlanUpdateOneWithoutPaymentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PlanUpdateToOneWithWhereWithoutPaymentsInput, Prisma.PlanUpdateWithoutPaymentsInput>, Prisma.PlanUncheckedUpdateWithoutPaymentsInput>
 }
 
+export type PlanCreateNestedManyWithoutApplicableCouponsInput = {
+  create?: Prisma.XOR<Prisma.PlanCreateWithoutApplicableCouponsInput, Prisma.PlanUncheckedCreateWithoutApplicableCouponsInput> | Prisma.PlanCreateWithoutApplicableCouponsInput[] | Prisma.PlanUncheckedCreateWithoutApplicableCouponsInput[]
+  connectOrCreate?: Prisma.PlanCreateOrConnectWithoutApplicableCouponsInput | Prisma.PlanCreateOrConnectWithoutApplicableCouponsInput[]
+  connect?: Prisma.PlanWhereUniqueInput | Prisma.PlanWhereUniqueInput[]
+}
+
+export type PlanUncheckedCreateNestedManyWithoutApplicableCouponsInput = {
+  create?: Prisma.XOR<Prisma.PlanCreateWithoutApplicableCouponsInput, Prisma.PlanUncheckedCreateWithoutApplicableCouponsInput> | Prisma.PlanCreateWithoutApplicableCouponsInput[] | Prisma.PlanUncheckedCreateWithoutApplicableCouponsInput[]
+  connectOrCreate?: Prisma.PlanCreateOrConnectWithoutApplicableCouponsInput | Prisma.PlanCreateOrConnectWithoutApplicableCouponsInput[]
+  connect?: Prisma.PlanWhereUniqueInput | Prisma.PlanWhereUniqueInput[]
+}
+
+export type PlanUpdateManyWithoutApplicableCouponsNestedInput = {
+  create?: Prisma.XOR<Prisma.PlanCreateWithoutApplicableCouponsInput, Prisma.PlanUncheckedCreateWithoutApplicableCouponsInput> | Prisma.PlanCreateWithoutApplicableCouponsInput[] | Prisma.PlanUncheckedCreateWithoutApplicableCouponsInput[]
+  connectOrCreate?: Prisma.PlanCreateOrConnectWithoutApplicableCouponsInput | Prisma.PlanCreateOrConnectWithoutApplicableCouponsInput[]
+  upsert?: Prisma.PlanUpsertWithWhereUniqueWithoutApplicableCouponsInput | Prisma.PlanUpsertWithWhereUniqueWithoutApplicableCouponsInput[]
+  set?: Prisma.PlanWhereUniqueInput | Prisma.PlanWhereUniqueInput[]
+  disconnect?: Prisma.PlanWhereUniqueInput | Prisma.PlanWhereUniqueInput[]
+  delete?: Prisma.PlanWhereUniqueInput | Prisma.PlanWhereUniqueInput[]
+  connect?: Prisma.PlanWhereUniqueInput | Prisma.PlanWhereUniqueInput[]
+  update?: Prisma.PlanUpdateWithWhereUniqueWithoutApplicableCouponsInput | Prisma.PlanUpdateWithWhereUniqueWithoutApplicableCouponsInput[]
+  updateMany?: Prisma.PlanUpdateManyWithWhereWithoutApplicableCouponsInput | Prisma.PlanUpdateManyWithWhereWithoutApplicableCouponsInput[]
+  deleteMany?: Prisma.PlanScalarWhereInput | Prisma.PlanScalarWhereInput[]
+}
+
+export type PlanUncheckedUpdateManyWithoutApplicableCouponsNestedInput = {
+  create?: Prisma.XOR<Prisma.PlanCreateWithoutApplicableCouponsInput, Prisma.PlanUncheckedCreateWithoutApplicableCouponsInput> | Prisma.PlanCreateWithoutApplicableCouponsInput[] | Prisma.PlanUncheckedCreateWithoutApplicableCouponsInput[]
+  connectOrCreate?: Prisma.PlanCreateOrConnectWithoutApplicableCouponsInput | Prisma.PlanCreateOrConnectWithoutApplicableCouponsInput[]
+  upsert?: Prisma.PlanUpsertWithWhereUniqueWithoutApplicableCouponsInput | Prisma.PlanUpsertWithWhereUniqueWithoutApplicableCouponsInput[]
+  set?: Prisma.PlanWhereUniqueInput | Prisma.PlanWhereUniqueInput[]
+  disconnect?: Prisma.PlanWhereUniqueInput | Prisma.PlanWhereUniqueInput[]
+  delete?: Prisma.PlanWhereUniqueInput | Prisma.PlanWhereUniqueInput[]
+  connect?: Prisma.PlanWhereUniqueInput | Prisma.PlanWhereUniqueInput[]
+  update?: Prisma.PlanUpdateWithWhereUniqueWithoutApplicableCouponsInput | Prisma.PlanUpdateWithWhereUniqueWithoutApplicableCouponsInput[]
+  updateMany?: Prisma.PlanUpdateManyWithWhereWithoutApplicableCouponsInput | Prisma.PlanUpdateManyWithWhereWithoutApplicableCouponsInput[]
+  deleteMany?: Prisma.PlanScalarWhereInput | Prisma.PlanScalarWhereInput[]
+}
+
 export type PlanCreateWithoutSubscriptionsInput = {
   id?: string
   name: string
@@ -699,6 +754,7 @@ export type PlanCreateWithoutSubscriptionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   payments?: Prisma.PaymentCreateNestedManyWithoutPlanInput
+  applicableCoupons?: Prisma.CouponCreateNestedManyWithoutApplicablePlansInput
 }
 
 export type PlanUncheckedCreateWithoutSubscriptionsInput = {
@@ -720,6 +776,7 @@ export type PlanUncheckedCreateWithoutSubscriptionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutPlanInput
+  applicableCoupons?: Prisma.CouponUncheckedCreateNestedManyWithoutApplicablePlansInput
 }
 
 export type PlanCreateOrConnectWithoutSubscriptionsInput = {
@@ -757,6 +814,7 @@ export type PlanUpdateWithoutSubscriptionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payments?: Prisma.PaymentUpdateManyWithoutPlanNestedInput
+  applicableCoupons?: Prisma.CouponUpdateManyWithoutApplicablePlansNestedInput
 }
 
 export type PlanUncheckedUpdateWithoutSubscriptionsInput = {
@@ -778,6 +836,7 @@ export type PlanUncheckedUpdateWithoutSubscriptionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutPlanNestedInput
+  applicableCoupons?: Prisma.CouponUncheckedUpdateManyWithoutApplicablePlansNestedInput
 }
 
 export type PlanCreateWithoutPaymentsInput = {
@@ -799,6 +858,7 @@ export type PlanCreateWithoutPaymentsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
+  applicableCoupons?: Prisma.CouponCreateNestedManyWithoutApplicablePlansInput
 }
 
 export type PlanUncheckedCreateWithoutPaymentsInput = {
@@ -820,6 +880,7 @@ export type PlanUncheckedCreateWithoutPaymentsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
+  applicableCoupons?: Prisma.CouponUncheckedCreateNestedManyWithoutApplicablePlansInput
 }
 
 export type PlanCreateOrConnectWithoutPaymentsInput = {
@@ -857,6 +918,7 @@ export type PlanUpdateWithoutPaymentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
+  applicableCoupons?: Prisma.CouponUpdateManyWithoutApplicablePlansNestedInput
 }
 
 export type PlanUncheckedUpdateWithoutPaymentsInput = {
@@ -878,6 +940,159 @@ export type PlanUncheckedUpdateWithoutPaymentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
+  applicableCoupons?: Prisma.CouponUncheckedUpdateManyWithoutApplicablePlansNestedInput
+}
+
+export type PlanCreateWithoutApplicableCouponsInput = {
+  id?: string
+  name: string
+  price: number
+  comparedAtPrice?: number | null
+  interval?: $Enums.BillingInterval
+  currency: $Enums.Currency
+  isActive?: boolean
+  sortOrder?: number
+  intelligenceStorage?: string | null
+  sync?: string | null
+  recall?: string | null
+  versioning?: string | null
+  sharing?: string | null
+  features?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  notIncludedFeatures?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  payments?: Prisma.PaymentCreateNestedManyWithoutPlanInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
+}
+
+export type PlanUncheckedCreateWithoutApplicableCouponsInput = {
+  id?: string
+  name: string
+  price: number
+  comparedAtPrice?: number | null
+  interval?: $Enums.BillingInterval
+  currency: $Enums.Currency
+  isActive?: boolean
+  sortOrder?: number
+  intelligenceStorage?: string | null
+  sync?: string | null
+  recall?: string | null
+  versioning?: string | null
+  sharing?: string | null
+  features?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  notIncludedFeatures?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutPlanInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
+}
+
+export type PlanCreateOrConnectWithoutApplicableCouponsInput = {
+  where: Prisma.PlanWhereUniqueInput
+  create: Prisma.XOR<Prisma.PlanCreateWithoutApplicableCouponsInput, Prisma.PlanUncheckedCreateWithoutApplicableCouponsInput>
+}
+
+export type PlanUpsertWithWhereUniqueWithoutApplicableCouponsInput = {
+  where: Prisma.PlanWhereUniqueInput
+  update: Prisma.XOR<Prisma.PlanUpdateWithoutApplicableCouponsInput, Prisma.PlanUncheckedUpdateWithoutApplicableCouponsInput>
+  create: Prisma.XOR<Prisma.PlanCreateWithoutApplicableCouponsInput, Prisma.PlanUncheckedCreateWithoutApplicableCouponsInput>
+}
+
+export type PlanUpdateWithWhereUniqueWithoutApplicableCouponsInput = {
+  where: Prisma.PlanWhereUniqueInput
+  data: Prisma.XOR<Prisma.PlanUpdateWithoutApplicableCouponsInput, Prisma.PlanUncheckedUpdateWithoutApplicableCouponsInput>
+}
+
+export type PlanUpdateManyWithWhereWithoutApplicableCouponsInput = {
+  where: Prisma.PlanScalarWhereInput
+  data: Prisma.XOR<Prisma.PlanUpdateManyMutationInput, Prisma.PlanUncheckedUpdateManyWithoutApplicableCouponsInput>
+}
+
+export type PlanScalarWhereInput = {
+  AND?: Prisma.PlanScalarWhereInput | Prisma.PlanScalarWhereInput[]
+  OR?: Prisma.PlanScalarWhereInput[]
+  NOT?: Prisma.PlanScalarWhereInput | Prisma.PlanScalarWhereInput[]
+  id?: Prisma.StringFilter<"Plan"> | string
+  name?: Prisma.StringFilter<"Plan"> | string
+  price?: Prisma.IntFilter<"Plan"> | number
+  comparedAtPrice?: Prisma.IntNullableFilter<"Plan"> | number | null
+  interval?: Prisma.EnumBillingIntervalFilter<"Plan"> | $Enums.BillingInterval
+  currency?: Prisma.EnumCurrencyFilter<"Plan"> | $Enums.Currency
+  isActive?: Prisma.BoolFilter<"Plan"> | boolean
+  sortOrder?: Prisma.IntFilter<"Plan"> | number
+  intelligenceStorage?: Prisma.StringNullableFilter<"Plan"> | string | null
+  sync?: Prisma.StringNullableFilter<"Plan"> | string | null
+  recall?: Prisma.StringNullableFilter<"Plan"> | string | null
+  versioning?: Prisma.StringNullableFilter<"Plan"> | string | null
+  sharing?: Prisma.StringNullableFilter<"Plan"> | string | null
+  features?: Prisma.JsonNullableFilter<"Plan">
+  notIncludedFeatures?: Prisma.JsonNullableFilter<"Plan">
+  createdAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
+}
+
+export type PlanUpdateWithoutApplicableCouponsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.IntFieldUpdateOperationsInput | number
+  comparedAtPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  interval?: Prisma.EnumBillingIntervalFieldUpdateOperationsInput | $Enums.BillingInterval
+  currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  intelligenceStorage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sync?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recall?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  versioning?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sharing?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  features?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  notIncludedFeatures?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  payments?: Prisma.PaymentUpdateManyWithoutPlanNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
+}
+
+export type PlanUncheckedUpdateWithoutApplicableCouponsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.IntFieldUpdateOperationsInput | number
+  comparedAtPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  interval?: Prisma.EnumBillingIntervalFieldUpdateOperationsInput | $Enums.BillingInterval
+  currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  intelligenceStorage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sync?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recall?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  versioning?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sharing?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  features?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  notIncludedFeatures?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutPlanNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
+}
+
+export type PlanUncheckedUpdateManyWithoutApplicableCouponsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.IntFieldUpdateOperationsInput | number
+  comparedAtPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  interval?: Prisma.EnumBillingIntervalFieldUpdateOperationsInput | $Enums.BillingInterval
+  currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  intelligenceStorage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sync?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recall?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  versioning?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sharing?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  features?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  notIncludedFeatures?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -888,11 +1103,13 @@ export type PlanUncheckedUpdateWithoutPaymentsInput = {
 export type PlanCountOutputType = {
   payments: number
   subscriptions: number
+  applicableCoupons: number
 }
 
 export type PlanCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   payments?: boolean | PlanCountOutputTypeCountPaymentsArgs
   subscriptions?: boolean | PlanCountOutputTypeCountSubscriptionsArgs
+  applicableCoupons?: boolean | PlanCountOutputTypeCountApplicableCouponsArgs
 }
 
 /**
@@ -919,6 +1136,13 @@ export type PlanCountOutputTypeCountSubscriptionsArgs<ExtArgs extends runtime.Ty
   where?: Prisma.SubscriptionWhereInput
 }
 
+/**
+ * PlanCountOutputType without action
+ */
+export type PlanCountOutputTypeCountApplicableCouponsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CouponWhereInput
+}
+
 
 export type PlanSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -940,6 +1164,7 @@ export type PlanSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   updatedAt?: boolean
   payments?: boolean | Prisma.Plan$paymentsArgs<ExtArgs>
   subscriptions?: boolean | Prisma.Plan$subscriptionsArgs<ExtArgs>
+  applicableCoupons?: boolean | Prisma.Plan$applicableCouponsArgs<ExtArgs>
   _count?: boolean | Prisma.PlanCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["plan"]>
 
@@ -1007,6 +1232,7 @@ export type PlanOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = run
 export type PlanInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   payments?: boolean | Prisma.Plan$paymentsArgs<ExtArgs>
   subscriptions?: boolean | Prisma.Plan$subscriptionsArgs<ExtArgs>
+  applicableCoupons?: boolean | Prisma.Plan$applicableCouponsArgs<ExtArgs>
   _count?: boolean | Prisma.PlanCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PlanIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1017,6 +1243,7 @@ export type $PlanPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     payments: Prisma.$PaymentPayload<ExtArgs>[]
     subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
+    applicableCoupons: Prisma.$CouponPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1432,6 +1659,7 @@ export interface Prisma__PlanClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   payments<T extends Prisma.Plan$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   subscriptions<T extends Prisma.Plan$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  applicableCoupons<T extends Prisma.Plan$applicableCouponsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$applicableCouponsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CouponPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1916,6 +2144,30 @@ export type Plan$subscriptionsArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.SubscriptionScalarFieldEnum | Prisma.SubscriptionScalarFieldEnum[]
+}
+
+/**
+ * Plan.applicableCoupons
+ */
+export type Plan$applicableCouponsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Coupon
+   */
+  select?: Prisma.CouponSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Coupon
+   */
+  omit?: Prisma.CouponOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CouponInclude<ExtArgs> | null
+  where?: Prisma.CouponWhereInput
+  orderBy?: Prisma.CouponOrderByWithRelationInput | Prisma.CouponOrderByWithRelationInput[]
+  cursor?: Prisma.CouponWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CouponScalarFieldEnum | Prisma.CouponScalarFieldEnum[]
 }
 
 /**

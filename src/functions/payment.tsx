@@ -187,6 +187,12 @@ export const redeemCouponService = createServerFn()
 							throw new Error("Redeemption limit reached");
 						}
 
+						if (coupon.redeemptionType === "CHECKOUT") {
+							throw new Error(
+								"This coupon must be applied during checkout payment.",
+							);
+						}
+
 						await transaction.couponUsage.create({
 							data: {
 								userId,
@@ -225,4 +231,124 @@ export const redeemCouponService = createServerFn()
 				throw error;
 			}
 		}
+	});
+
+const inspectCouponServiceParamSchema = z.object({
+	code: z.string(),
+	planId: z.string().optional(),
+});
+
+export const inspectCouponService = createServerFn()
+	.middleware([sessionMiddleware])
+	.validator(inspectCouponServiceParamSchema)
+	.handler(async ({ data, context }) => {
+		const session = context.session;
+
+		if (!session) {
+			return {
+				valid: false,
+				redeemable: false,
+				reason: "Unauthorized",
+			};
+		}
+
+		const userId = session.user.id;
+
+		const { prisma } = await import("#/db");
+
+		const now = Date.now();
+
+		const coupon = await prisma.coupon.findUnique({
+			where: {
+				code: data.code,
+			},
+			select: {
+				id: true,
+				status: true,
+				redeemptionType: true,
+				maxUses: true,
+				usedCount: true,
+				perUserLimit: true,
+				startsAt: true,
+				expiresAt: true,
+				applicablePlans: true,
+				fixedDiscount: true,
+				percentageDiscount: true,
+				type: true
+			},
+		});
+
+		if (!coupon) {
+			return {
+				valid: false,
+				redeemable: false,
+				reason: "No coupon found",
+			};
+		}
+
+		const nowDate = new Date(now);
+
+		if (coupon.status !== "ACTIVE") {
+			return { valid: false, redeemable: false, reason: "Coupon inactive" };
+		}
+
+		if (coupon.startsAt && coupon.startsAt > nowDate) {
+			return { valid: false, redeemable: false, reason: "Coupon not started" };
+		}
+
+		if (coupon.expiresAt && coupon.expiresAt < nowDate) {
+			return { valid: false, redeemable: false, reason: "Coupon expired" };
+		}
+
+		if (coupon.maxUses !== null && coupon.usedCount >= coupon.maxUses) {
+			return { valid: false, redeemable: false, reason: "Coupon exhausted" };
+		}
+
+		if (coupon.applicablePlans.length > 0) {
+			if (!data.planId) {
+				return { valid: false, redeemable: false, reason: "Please select a plan first" };
+			}
+
+			const isPlanValid = coupon.applicablePlans.some(
+				(plan) => plan.id === data.planId,
+			);
+			if (!isPlanValid) {
+				return { valid: false, redeemable: false, reason: "Coupon is not valid for this plan" };
+			}
+		}
+
+		const redeemptionCount = await prisma.couponUsage.count({
+			where: {
+				couponId: coupon.id,
+				userId,
+			},
+		});
+
+		if (redeemptionCount >= coupon.perUserLimit) {
+			return {
+				valid: true,
+				redeemable: false,
+				reason: "Redeemption limit reached",
+			};
+		}
+
+		const remainingUses =
+			coupon.maxUses === null
+				? undefined
+				: Math.max(0, coupon.maxUses - coupon.usedCount);
+		const perUserRemaining = Math.max(
+			0,
+			coupon.perUserLimit - redeemptionCount,
+		);
+
+		return {
+			valid: true,
+			redeemable: true,
+			redeemptionType: coupon.redeemptionType,
+			perUserRemaining,
+			remainingUses,
+			type: coupon.type,
+			fixedDiscount: coupon.fixedDiscount,
+			percentageDiscount: coupon.percentageDiscount
+		};
 	});
