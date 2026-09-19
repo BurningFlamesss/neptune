@@ -3,13 +3,13 @@ import type React from "react";
 import { z } from "zod";
 import { authClient } from "#/lib/auth-client.ts";
 
-export const Route = createFileRoute("/_auth/login")({
-	component: RouteComponent,
-});
-
 const loginSchema = z.object({
 	email: z.email(),
 	password: z.string().min(8).max(50),
+});
+
+export const Route = createFileRoute("/_auth/login")({
+	component: RouteComponent,
 });
 
 function RouteComponent() {

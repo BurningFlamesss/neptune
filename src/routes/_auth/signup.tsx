@@ -2,14 +2,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { z } from "zod";
 import { authClient } from "#/lib/auth-client.ts";
 
-export const Route = createFileRoute("/_auth/signup")({
-	component: RouteComponent,
-});
-
 const signupSchema = z.object({
 	name: z.string().min(3),
 	email: z.email(),
 	password: z.string().min(8).max(50),
+});
+
+export const Route = createFileRoute("/_auth/signup")({
+	component: RouteComponent,
 });
 
 function RouteComponent() {
