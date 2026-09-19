@@ -7,6 +7,7 @@ import { nitro } from "nitro/vite";
 import { defineConfig } from "vite";
 
 const config = defineConfig({
+	envPrefix: ["VITE_", "CLIENT_"],
 	resolve: { tsconfigPaths: true },
 	plugins: [
 		devtools(),
