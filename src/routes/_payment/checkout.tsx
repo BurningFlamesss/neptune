@@ -8,6 +8,7 @@ import {
 	redeemCouponService,
 } from "#/functions/payment.tsx";
 import { formatPrice, normalizeCouponCode } from "#/lib/utils.ts";
+import { spawn } from "child_process";
 
 const checkoutSearchParamSchema = z.object({
 	plan: z.string(),
@@ -130,12 +131,35 @@ function RouteComponent() {
 			<h1>Billing</h1>
 
 			<h1>{plan.name}</h1>
-			<p>{formatPrice(plan.price, plan.currency)}</p>
+			<p className="line-through">
+				{isCouponValid && formatPrice(plan.price, plan.currency)}
+			</p>
+			<p>{formatPrice(finalPrice, plan.currency)}</p>
 
 			<form action="#" method="post">
-				<input type="text" name="coupon" placeholder="Enter coupon code" />
-				<button type="submit">Apply Coupon</button>
+				<label htmlFor="code">Have a coupon?</label>
+				<input
+					type="text"
+					name="code"
+					placeholder="eg NEPTUNE20"
+					autoComplete="off"
+					spellCheck={false}
+					disabled={redeemMutation.isPending}
+					onChange={(e) => setCode(e.target.value.toUpperCase())}
+				/>
 			</form>
+
+			<div>
+				{inspectQuery.isFetching && "Checking..."}
+
+				{!inspectQuery.isFetching && inspection && (
+					inspection.valid ? (
+						<span>
+							Coupon applied! {inspection.type === "PERCENTAGE_DISCOUNT" ? `${inspection.percentageDiscount}% off` : `${formatPrice(inspection.fixedDiscount || 0, plan.currency)} off`}
+						</span>
+					) : <span>{inspection.reason || "Invalid coupon"}</span>
+				)}
+			</div>
 
 			<section>
 				<button type="button">Pay with Stripe</button>
