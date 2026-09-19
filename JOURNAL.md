@@ -1,4 +1,4 @@
-# Faced Error
+# Error
 
 LOG /src/env/clientEnv.ts:13:3
  →  Invalid Environment Variable
@@ -11,4 +11,24 @@ LOG /src/env/clientEnv.ts:15:4
       at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
 
 
-resolved by AI (Opencode): 	envPrefix: ["VITE_", "CLIENT_"],
+### resolved by AI (Opencode): envPrefix: ["VITE_", "CLIENT_"],
+
+# Error
+
+npm run db:push
+
+> db:push
+> dotenv -e .env.local -- prisma db push
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+Datasource "db": PostgreSQL database "neptune", schema "public" at "localhost:5433"
+
+Error: P1001: Can't reach database server at `localhost:5433`
+
+Please make sure your database server is running at `localhost:5433`.
+
+### resolved by AI (Opencode): - "5433:5432"
+
+
