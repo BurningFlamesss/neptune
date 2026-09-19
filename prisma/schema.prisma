@@ -79,6 +79,7 @@ model User {
   payments           Payment[]
   couponUsages       CouponUsage[]
   subscriptions      Subscription[]
+  billingProfiles    BillingProfile[]
 
   @@unique([email])
   @@map("user")
@@ -318,6 +319,21 @@ model OauthClientAssertion {
   @@map("oauthClientAssertion")
 }
 
+model BillingProfile {
+  id         String          @id @default(cuid())
+  userId     String
+  user       User            @relation(fields: [userId], references: [id])
+  provider   PaymentProvider
+  providerId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([provider, providerId])
+  @@unique([userId, provider])
+  @@map("billing_profiles")
+}
+
 model Plan {
   id              String          @id @default(cuid())
   name            String
@@ -350,7 +366,7 @@ model Subscription {
   plan   Plan?   @relation(fields: [planId], references: [id])
 
   status     SubscriptionStatus @default(ACTIVE)
-  providerId String? @unique
+  providerId String?            @unique
   customerId String?
 
   currentPeriodStart DateTime
@@ -358,7 +374,7 @@ model Subscription {
   cancelAtPeriodEnd  Boolean  @default(false)
 
   createdAt DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  updatedAt DateTime @updatedAt
 
   @@index([userId])
   @@map("subscriptions")
