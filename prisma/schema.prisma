@@ -62,7 +62,7 @@ model User {
   oauthrefreshtokens OauthRefreshToken[]
   oauthaccesstokens  OauthAccessToken[]
   oauthconsents      OauthConsent[]
-  
+  payments           Payment[]
 
   @@unique([email])
   @@map("user")
@@ -300,4 +300,32 @@ model OauthClientAssertion {
   expiresAt DateTime
 
   @@map("oauthClientAssertion")
+}
+
+model Payment {
+  id                    String          @id @default(cuid())
+  userId                String
+  user                  User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  provider              PaymentProvider
+  status                PaymentStatus   @default(PENDING)
+  providerTransactionId String?
+  orderId               Int             @unique
+  currency              Currency
+  subTotal              Int
+  discount              Int             @default(0)
+  total                 Int
+  couponUsageId         String?         @unique
+  couponUsage           CouponUsage?    @relation(fields: [couponUsageId], references: [id])
+  metadata              Json?
+  paidAt                DateTime?
+  createdAt             DateTime        @default(now())
+  updatedAt             DateTime        @updatedAt
+
+  @@index([userId])
+  @@map("payments")
+}
+
+model CouponUsage {
+  id      String   @id @default(cuid())
+  payment Payment?
 }
