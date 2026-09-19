@@ -1,5 +1,7 @@
 import { useRef, useState } from "react"
+import { ArrowUpRight } from "lucide-react"
 import { FIELD_CENTERS } from "./maths"
+import { Link } from "@tanstack/react-router"
 
 const CONCEPTS = [
     {
@@ -53,14 +55,17 @@ export default function HeroField() {
             <div className="relative isolate w-full h-190 min-h-160 overflow-hidden" ref={stageRef}>
                 <canvas ref={canvasRef} aria-hidden />
 
-                <div className="flex items-center justify-between pt-5 relative z-4 wrap">
-                    <div className="relative text-center m-[38px_auto_0] z-2">
-                        <h1>Your Intelligence, <br /> <span> everywhere. </span></h1>
-                        <p>Everything you know. Everything that makes you, you. <br /> One Intelligence, connected to the applications you choose. </p>
+                <div className="flex items-center justify-between relative z-4 wrap">
+                    <div className="relative text-center mx-auto z-2">
+                        <h1 className="text-7xl font-medium mb-5">Your Intelligence, <br /> <span className="text-cyan-dark"> everywhere. </span></h1>
+                        <p className="text-sm py-6 text-[#65777c]">Everything you know. Everything that makes you, you. <br /> One Intelligence, connected to the applications you choose. </p>
 
-                        <div>
-                            <button>
-                                Explore the idea
+                        <div className="flex items-center justify-center gap-7 mt-6">
+                            <button className="min-h-12 text-xs px-5.5 gap-7">
+                                <Link className="flex flex-row w-full items-center justify-center gap-3 min-h-11 text-xs relative group" to="/">
+                                    <div className="absolute bottom-1.25 left-0 right-0 h-px bg-cyan-dark scale-0 group-hover:scale-100 origin-left transition-transform duration-300 ease-linear" />
+                                    Explore the idea <ArrowUpRight size={15} />
+                                </Link>
                             </button>
                         </div>
                     </div>
