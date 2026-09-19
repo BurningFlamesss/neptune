@@ -7,6 +7,47 @@ datasource db {
   provider = "postgresql"
 }
 
+enum CouponType {
+  PERCENTAGE_DISCOUNT
+  FIXED_DISCOUNT
+}
+
+enum CouponRedeemptionType {
+  DIRECT_REDEEM
+  CHECKOUT
+}
+
+enum CouponStatus {
+  ACTIVE
+  EXHAUSTED
+  EXPIRED
+  DISABLED
+}
+
+enum PaymentStatus {
+  CREATED
+  PENDING
+  REQUIRES_ACTION
+  SUCCEEDED
+  FAILED
+  CANCELLED
+  REFUNDED
+  PARTICALLY_REFUNDED
+}
+
+enum Currency {
+  USD
+  NPR
+  EUR
+}
+
+enum PaymentProvider {
+  STRIPE
+  PAYPAL
+  ESEWA
+  MANUAL
+}
+
 model User {
   id                 String              @id
   name               String
@@ -21,6 +62,7 @@ model User {
   oauthrefreshtokens OauthRefreshToken[]
   oauthaccesstokens  OauthAccessToken[]
   oauthconsents      OauthConsent[]
+  
 
   @@unique([email])
   @@map("user")
