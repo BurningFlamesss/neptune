@@ -59,7 +59,7 @@ function RouteComponent() {
 				<label htmlFor="email">Email</label>{" "}
 				<input type="email" name="email" id="email" required /> <br />
 				<label htmlFor="password">Password</label>{" "}
-				<input type="password" name="password" id="password" /> <br />
+				<input type="password" name="password" id="password" required /> <br />
 				<button type="submit">Signup</button>
 			</form>
 			Already have an account? <Link to="/login">Login</Link>
