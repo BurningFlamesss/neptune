@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { date, z } from "zod";
+import { delay } from "#/lib/utils.ts";
 import { sessionMiddleware } from "#/middleware/authentication.tsx";
 
 export const getPlans = createServerFn().handler(async () => {
@@ -111,70 +112,117 @@ export const getRecentTransaction = createServerFn()
 	});
 
 const redeemCouponServiceParamSchema = z.object({
-	code: z.string()
-})
+	code: z.string(),
+});
+
+const MAX_ATTEMPTS = 3;
 
 export const redeemCouponService = createServerFn()
 	.middleware([sessionMiddleware])
 	.validator(redeemCouponServiceParamSchema)
 	.handler(async ({ data, context }) => {
-		const session = context.session
+		const session = context.session;
 
 		if (!session) {
-			throw new Error("Unauthorized")
+			throw new Error("Unauthorized");
 		}
 
-		const now = new Date()
-		const userId = session.user.id
+		const now = new Date();
+		const userId = session.user.id;
 
-		const {prisma} = await import("#/db.ts")
-		let attempt = 0
+		const { prisma } = await import("#/db.ts");
+		let attempt = 0;
 
 		while (true) {
-			attempt++
+			attempt++;
 
 			try {
-				return await prisma.$transaction(async (transaction) => {
-					const coupon = await transaction.coupon.findUnique({
-						where: {
-							code: data.code
-						},
-						select: {
-							id: true,
-							code: true,
-							status: true,
-							redeemptionType: true,
-							maxUses: true,
-							usedCount: true,
-							perUserLimit: true,
-							startsAt: true,
-							expiresAt: true,
+				return await prisma.$transaction(
+					async (transaction) => {
+						const coupon = await transaction.coupon.findUnique({
+							where: {
+								code: data.code,
+							},
+							select: {
+								id: true,
+								code: true,
+								status: true,
+								redeemptionType: true,
+								maxUses: true,
+								usedCount: true,
+								perUserLimit: true,
+								startsAt: true,
+								expiresAt: true,
+							},
+						});
+
+						if (!coupon) {
+							throw new Error("Invalid coupon");
 						}
-					})
 
-					if (!coupon) {
-						throw new Error("Invalid coupon")
-					}
+						if (coupon.status !== "ACTIVE") {
+							throw new Error("Coupon inactive");
+						}
 
-					if (coupon.status !== "ACTIVE") {
-						throw new Error("Coupon inactive")
-					}
+						if (coupon.startsAt && coupon.startsAt > now) {
+							throw new Error("Coupon not started");
+						}
 
-					if (coupon.startsAt && coupon.startsAt > now) {
-						throw new Error("Coupon not started")
-					}
+						if (coupon.expiresAt && coupon.expiresAt < now) {
+							throw new Error("Coupon expired");
+						}
 
-					if (coupon.expiresAt && coupon.expiresAt < now) {
-						throw new Error("Coupon expired")
-					}
+						if (coupon.maxUses !== null && coupon.usedCount >= coupon.maxUses) {
+							throw new Error("Coupon exhausted");
+						}
 
-					if (coupon.maxUses !== null && coupon.usedCount >= coupon.maxUses) {
-						throw new Error("Coupon exhausted")
-					}
+						const redeemptionCount = await transaction.couponUsage.count({
+							where: {
+								couponId: coupon.id,
+								userId,
+							},
+						});
 
-				})
+						if (redeemptionCount >= coupon.perUserLimit) {
+							throw new Error("Redeemption limit reached");
+						}
+
+						await transaction.couponUsage.create({
+							data: {
+								userId,
+								couponId: coupon.id,
+							},
+						});
+
+						await transaction.coupon.update({
+							where: {
+								id: coupon.id,
+							},
+							data: {
+								usedCount: { increment: 1 },
+							},
+						});
+
+						return {
+							success: true,
+						};
+					},
+					{ isolationLevel: "ReadCommitted" },
+				);
 			} catch (error) {
-				
+				const message = String(error?.message || error);
+
+				if (
+					attempt < MAX_ATTEMPTS &&
+					/transaction|serialize|start as transaction|could not obtain lock/i.test(
+						message,
+					)
+				) {
+					await delay(50 * attempt);
+					continue;
+				}
+
+				throw error;
 			}
 		}
 	});
