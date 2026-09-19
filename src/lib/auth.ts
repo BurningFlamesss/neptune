@@ -1,5 +1,7 @@
+import { oauthProvider } from "@better-auth/oauth-provider";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
+import { jwt } from "better-auth/plugins";
 import { tanstackStartCookies } from "better-auth/tanstack-start";
 import { serverEnv } from "#/env/serverEnv.ts";
 
@@ -46,5 +48,19 @@ export const auth = betterAuth({
 	},
 
 	baseURL: serverEnv.SERVER_URL,
-	plugins: [tanstackStartCookies()],
+	plugins: [
+		tanstackStartCookies(),
+		jwt(),
+		oauthProvider({
+			loginPage: "/login",
+			consentPage: "/consent",
+			scopes: [
+				"openid",
+				"profile",
+				"email",
+				"containers:read",
+				"containers:write",
+			],
+		}),
+	],
 });
