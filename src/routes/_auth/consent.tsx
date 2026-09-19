@@ -1,6 +1,6 @@
 import type { OAuthConsent, Scope } from "@better-auth/oauth-provider";
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { z } from "zod";
 import { authClient } from "#/lib/auth-client.ts";
 
@@ -52,8 +52,50 @@ function RouteComponent() {
 		fetchConsentAndClientDetails();
 	}, [id]);
 
-	const handleAccept = () => {};
-	const handleReject = () => {};
+	const handleAccept = async (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+
+		try {
+			const oauthQuery = window.location.search;
+
+			const { data, error } = await authClient.oauth2.consent({
+				accept: true,
+				oauth_query: oauthQuery,
+			});
+
+			if (error) {
+				// TODO: UI Feedback
+			}
+
+			if (data?.redirect) {
+				window.location.href = data.url;
+			}
+		} catch (error) {
+			// TODO: UI Feedback
+		}
+	};
+	const handleReject = async (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+
+		try {
+			const oauthQuery = window.location.search;
+
+			const { data, error } = await authClient.oauth2.consent({
+				accept: false,
+				oauth_query: oauthQuery,
+			});
+
+			if (error) {
+				// TODO: UI Feedback
+			}
+
+			if (data?.redirect) {
+				window.location.href = data.url;
+			}
+		} catch (error) {
+			// TODO: UI Feedback
+		}
+	};
 
 	if (isLoading || !consentData) {
 		return "Loading...";
