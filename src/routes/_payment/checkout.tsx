@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
+import { getIndividualPack } from "#/functions/payment.tsx";
 
 const checkoutSearchParamSchema = z.object({
 	plan: z.string(),
@@ -8,10 +9,43 @@ const checkoutSearchParamSchema = z.object({
 
 export const Route = createFileRoute("/_payment/checkout")({
 	component: RouteComponent,
-	validateSearch: checkoutSearchParamSchema
+	validateSearch: checkoutSearchParamSchema,
+	loaderDeps({ search }) {
+		return {
+			plan: search.plan,
+			billing: search.billing,
+		};
+	},
+	async loader({ deps }) {
+		return getIndividualPack({
+			data: {
+				plan: deps.plan,
+			},
+		});
+	},
 });
 
 function RouteComponent() {
-	
-	return <div>Hello "/_payment/checkout"!</div>;
+	const plan = Route.useLoaderData()
+
+	if (!plan) {
+		return (
+			<div>
+				Plan not found
+			</div>
+		)
+	}
+
+	return (
+		<main>
+			<h1>Billing</h1>
+
+			<h1>{plan.name}</h1>
+			<p>{plan.price} {plan.currency}</p>
+
+			<form  action="#" method="post">
+				
+			</form>
+		</main>
+	)
 }

@@ -19,9 +19,9 @@ function RouteComponent() {
 			{plans.map((plan) => {
 				return (
 					<section key={plan.id}>
-						<h1>{plan.name}</h1>
+						<h1>{plan.name}, {plan._count.payments} users purchased it</h1>
 						<p>
-							{plan.price}, {plan.currency}
+							{plan.price} {plan.currency}
 						</p>
 						<ul>
 							<li>Collections {plan.maxCollections}</li>
