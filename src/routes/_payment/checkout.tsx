@@ -1,14 +1,13 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect } from "react";
-import { success, z } from "zod";
+import { useEffect, useState } from "react";
+import { z } from "zod";
 import {
 	getIndividualPack,
 	inspectCouponService,
 	redeemCouponService,
 } from "#/functions/payment.tsx";
 import { formatPrice, normalizeCouponCode } from "#/lib/utils.ts";
-import { spawn } from "child_process";
 
 const checkoutSearchParamSchema = z.object({
 	plan: z.string(),
@@ -152,17 +151,37 @@ function RouteComponent() {
 			<div>
 				{inspectQuery.isFetching && "Checking..."}
 
-				{!inspectQuery.isFetching && inspection && (
-					inspection.valid ? (
+				{!inspectQuery.isFetching &&
+					inspection &&
+					(inspection.valid ? (
 						<span>
-							Coupon applied! {inspection.type === "PERCENTAGE_DISCOUNT" ? `${inspection.percentageDiscount}% off` : `${formatPrice(inspection.fixedDiscount || 0, plan.currency)} off`}
+							Coupon applied!{" "}
+							{inspection.type === "PERCENTAGE_DISCOUNT"
+								? `${inspection.percentageDiscount}% off`
+								: `${formatPrice(inspection.fixedDiscount || 0, plan.currency)} off`}
 						</span>
-					) : <span>{inspection.reason || "Invalid coupon"}</span>
-				)}
+					) : (
+						<span>{inspection.reason || "Invalid coupon"}</span>
+					))}
 			</div>
 
 			<section>
-				<button type="button">Pay with Stripe</button>
+				{isCouponValid &&
+				(inspection.redeemptionType === "DIRECT_REDEEM" || finalPrice === 0) ? (
+					<button
+						type="button"
+						onClick={handleDirectRedeem}
+						disabled={redeemMutation.isPending}
+					>
+						{redeemMutation.isPending
+							? "Redeeming..."
+							: "Redeem & Activate Plan"}
+					</button>
+				) : (
+					<button type="button" onClick={handleCheckout}>
+						Pay {formatPrice(finalPrice, plan.currency)}
+					</button>
+				)}
 			</section>
 		</main>
 	);
