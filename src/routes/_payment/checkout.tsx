@@ -58,7 +58,7 @@ function RouteComponent() {
 					planId: plan?.id,
 				},
 			}),
-		enabled: normalizedCode.length > 0 && !plan?.id,
+		enabled: normalizedCode.length > 0 && !!plan?.id,
 		staleTime: 30_000,
 		retry: false,
 	});
@@ -135,18 +135,17 @@ function RouteComponent() {
 			</p>
 			<p>{formatPrice(finalPrice, plan.currency)}</p>
 
-			<form action="#" method="post">
-				<label htmlFor="code">Have a coupon?</label>
-				<input
-					type="text"
-					name="code"
-					placeholder="eg NEPTUNE20"
-					autoComplete="off"
-					spellCheck={false}
-					disabled={redeemMutation.isPending}
-					onChange={(e) => setCode(e.target.value.toUpperCase())}
-				/>
-			</form>
+			<label htmlFor="code">Have a coupon?</label>
+			<input
+				type="text"
+				name="code"
+				placeholder="eg NEPTUNE20"
+				autoComplete="off"
+				spellCheck={false}
+				disabled={redeemMutation.isPending}
+				value={code}
+				onChange={(e) => setCode(e.target.value.toUpperCase())}
+			/>
 
 			<div>
 				{inspectQuery.isFetching && "Checking..."}

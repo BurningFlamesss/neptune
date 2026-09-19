@@ -51,7 +51,40 @@ async function main() {
   ]
   })
 
-  console.log("Created ", plans.count, " plans")
+  const coupons = await prisma.coupon.createMany({
+    data: [
+      {
+        code: "VIP100", 
+        redeemptionType: "DIRECT_REDEEM",
+        type: "PERCENTAGE_DISCOUNT",
+        percentageDiscount: 100,
+        maxUses: 1,
+      },
+      {
+        code: "NEPTUNE20", 
+        redeemptionType: "CHECKOUT",
+        type: "PERCENTAGE_DISCOUNT",
+        percentageDiscount: 20,
+        perUserLimit: 1,
+      },
+      {
+        code: "RING2", 
+        redeemptionType: "CHECKOUT",
+        type: "FIXED_DISCOUNT",
+        fixedDiscount: 200,
+        perUserLimit: 1,
+      },
+      {
+        code: "REVIEW", 
+        redeemptionType: "DIRECT_REDEEM",
+        type: "FIXED_DISCOUNT",
+        fixedDiscount: 2900,
+        perUserLimit: 1,
+      },
+    ]
+  })
+
+  console.log("Created ", plans.count, " plans", " and ", coupons.count, " coupons")
 }
 
 main()
