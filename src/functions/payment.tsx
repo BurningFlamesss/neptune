@@ -113,6 +113,7 @@ export const getRecentTransaction = createServerFn()
 
 const redeemCouponServiceParamSchema = z.object({
 	code: z.string(),
+	planId: z.string().optional(),
 });
 
 const MAX_ATTEMPTS = 3;
@@ -176,6 +177,16 @@ export const redeemCouponService = createServerFn()
 							throw new Error("Coupon exhausted");
 						}
 
+						const plan = await transaction.plan.findUnique({
+							where: {
+								id: data.planId,
+							},
+						});
+
+						if (!plan) {
+							throw new Error("Plan not found");
+						}
+
 						const redeemptionCount = await transaction.couponUsage.count({
 							where: {
 								couponId: coupon.id,
@@ -193,7 +204,7 @@ export const redeemCouponService = createServerFn()
 							);
 						}
 
-						await transaction.couponUsage.create({
+						const usage = await transaction.couponUsage.create({
 							data: {
 								userId,
 								couponId: coupon.id,
@@ -208,6 +219,69 @@ export const redeemCouponService = createServerFn()
 								usedCount: { increment: 1 },
 							},
 						});
+
+						await transaction.payment.create({
+							data: {
+								userId,
+								provider: "MANUAL",
+								currency: plan.currency,
+								subTotal: plan.price,
+								discount: plan.price,
+								total: 0,
+								couponUsageId: usage.id,
+								planId: plan.id,
+								paidAt: now,
+								orderId: Math.floor(Math.random() * 1000000000),
+							},
+						});
+
+						const currentPeriodStart = new Date();
+						const currentPeriodEnd = new Date();
+
+						if (plan.interval === "MONTHLY") {
+							currentPeriodEnd.setMonth(currentPeriodEnd.getMonth() + 1);
+						} else if (plan.interval === "ANNUALLY") {
+							currentPeriodEnd.setFullYear(currentPeriodEnd.getFullYear() + 1);
+						} else {
+							currentPeriodEnd.setFullYear(
+								currentPeriodEnd.getFullYear() + 100,
+							);
+						}
+
+						const existingSubscriber = await transaction.subscription.findFirst(
+							{
+								where: {
+									userId,
+								},
+								orderBy: {
+									createdAt: "desc",
+								},
+							},
+						);
+
+						if (existingSubscriber) {
+							await transaction.subscription.update({
+								where: {
+									id: existingSubscriber.id,
+								},
+								data: {
+									planId: plan.id,
+									status: "ACTIVE",
+									currentPeriodStart,
+									currentPeriodEnd,
+								},
+							});
+						} else {
+							await transaction.subscription.create({
+								data: {
+									userId,
+									planId: plan.id,
+									status: "ACTIVE",
+									currentPeriodStart,
+									currentPeriodEnd,
+								},
+							});
+						}
 
 						return {
 							success: true,
@@ -274,7 +348,7 @@ export const inspectCouponService = createServerFn()
 				applicablePlans: true,
 				fixedDiscount: true,
 				percentageDiscount: true,
-				type: true
+				type: true,
 			},
 		});
 
@@ -306,14 +380,22 @@ export const inspectCouponService = createServerFn()
 
 		if (coupon.applicablePlans.length > 0) {
 			if (!data.planId) {
-				return { valid: false, redeemable: false, reason: "Please select a plan first" };
+				return {
+					valid: false,
+					redeemable: false,
+					reason: "Please select a plan first",
+				};
 			}
 
 			const isPlanValid = coupon.applicablePlans.some(
 				(plan) => plan.id === data.planId,
 			);
 			if (!isPlanValid) {
-				return { valid: false, redeemable: false, reason: "Coupon is not valid for this plan" };
+				return {
+					valid: false,
+					redeemable: false,
+					reason: "Coupon is not valid for this plan",
+				};
 			}
 		}
 
@@ -349,6 +431,6 @@ export const inspectCouponService = createServerFn()
 			remainingUses,
 			type: coupon.type,
 			fixedDiscount: coupon.fixedDiscount,
-			percentageDiscount: coupon.percentageDiscount
+			percentageDiscount: coupon.percentageDiscount,
 		};
 	});

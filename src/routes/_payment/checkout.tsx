@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import {
@@ -34,6 +34,7 @@ export const Route = createFileRoute("/_payment/checkout")({
 
 function RouteComponent() {
 	const plan = Route.useLoaderData();
+	const navigate = useNavigate()
 	const queryClient = useQueryClient();
 
 	const [code, setCode] = useState("");
@@ -64,9 +65,15 @@ function RouteComponent() {
 	});
 
 	const redeemMutation = useMutation({
-		mutationFn: async (inputCode: string) =>
+		mutationFn: async ({
+			inputCode,
+			planId,
+		}: {
+			inputCode: string;
+			planId: string;
+		}) =>
 			redeemCouponService({
-				data: { code: inputCode },
+				data: { code: inputCode, planId },
 			}),
 		onSuccess: ({ success }, redeemedCode) => {
 			if (!success) {
@@ -81,7 +88,7 @@ function RouteComponent() {
 			setCode("");
 			setDebouncedCode("");
 
-			// TODO: Redirect to dashboard or success page
+			navigate({ to: "/" })
 		},
 		onError: (error) => {
 			// TODO: UI Feedback to show that failed to redeem coupon
@@ -118,11 +125,14 @@ function RouteComponent() {
 	};
 
 	const handleDirectRedeem = async () => {
-		if (!normalizedCode) {
+		if (!normalizedCode || !plan?.id) {
 			return;
 		}
 
-		await redeemMutation.mutateAsync(normalizedCode);
+		await redeemMutation.mutateAsync({
+			inputCode: normalizedCode,
+			planId: plan.id,
+		});
 	};
 
 	return (
