@@ -26,14 +26,10 @@ export const Route = createFileRoute("/_payment/checkout")({
 });
 
 function RouteComponent() {
-	const plan = Route.useLoaderData()
+	const plan = Route.useLoaderData();
 
 	if (!plan) {
-		return (
-			<div>
-				Plan not found
-			</div>
-		)
+		return <div>Plan not found</div>;
 	}
 
 	return (
@@ -41,11 +37,18 @@ function RouteComponent() {
 			<h1>Billing</h1>
 
 			<h1>{plan.name}</h1>
-			<p>{plan.price} {plan.currency}</p>
+			<p>
+				{plan.price} {plan.currency}
+			</p>
 
-			<form  action="#" method="post">
-				
+			<form action="#" method="post">
+				<input type="text" name="coupon" placeholder="Enter coupon code" />
+				<button type="submit">Apply Coupon</button>
 			</form>
+
+			<section>
+				<button type="button">Pay with Stripe</button>
+			</section>
 		</main>
-	)
+	);
 }
