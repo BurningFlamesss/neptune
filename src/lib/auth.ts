@@ -4,6 +4,7 @@ import { prismaAdapter } from "better-auth/adapters/prisma";
 import { jwt } from "better-auth/plugins";
 import { tanstackStartCookies } from "better-auth/tanstack-start";
 import { serverEnv } from "#/env/serverEnv.ts";
+import { sendEmail } from "#/helper/email.tsx";
 
 const { prisma } = await import("../db");
 
@@ -19,7 +20,15 @@ export const auth = betterAuth({
 		async sendResetPassword({ user, url, token }, request) {
 			console.table({ user, url, token });
 
-			// TODO: Send verification Email
+			await sendEmail({
+				type: "reset",
+				receiver: {
+					name: user.name,
+					email: user.email,
+				},
+				token: url,
+				callToAction: "Reset your Password",
+			});
 		},
 
 		resetPasswordTokenExpiresIn: 15 * 60 * 1000, // 15 minutes
@@ -31,7 +40,13 @@ export const auth = betterAuth({
 					subject: "Sign up attempt with your email",
 				});
 
-				// TODO: Send Warning Email
+				await sendEmail({
+					type: "warning",
+					receiver: {
+						name: user.name,
+						email: user.email,
+					},
+				});
 			}
 		},
 	},
@@ -42,7 +57,15 @@ export const auth = betterAuth({
 		async sendVerificationEmail({ user, url, token }, request) {
 			console.table({ user, url, token });
 
-			// TODO: Send Verification Email
+			await sendEmail({
+				type: "verify",
+				receiver: {
+					name: user.name,
+					email: user.email,
+				},
+				token: url,
+				callToAction: "Verify your Email",
+			});
 		},
 		expiresIn: 15 * 60 * 1000, // 15 minutes
 	},
