@@ -18,28 +18,66 @@ function RouteComponent() {
 	const [consentData, setConsentData] = useState<OAuthConsent<Scope[]> | null>(
 		null,
 	);
+	const [clientName, setClientName] = useState<string>("an application");
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		const fetchConsent = async () => {
-			const { data, error } = await authClient.oauth2.getConsent({
-				query: { id },
-			});
+		const fetchConsentAndClientDetails = async () => {
+			const { data: consent, error: consentError } =
+				await authClient.oauth2.getConsent({
+					query: { id },
+				});
 
-			if (error) {
+			if (!consent || consentError) {
 				// TODO: UI Feedback
+				setIsLoading(false);
 				return;
 			}
 
-			setConsentData(data);
+			setConsentData(consent);
+
+			const { data: client, error: clientError } =
+				await authClient.oauth2.publicClient({
+					query: {
+						client_id: consent.clientId,
+					},
+				});
+
+			if (!clientError && client?.client_name) {
+				setClientName(client.client_name);
+			}
+
+			setIsLoading(false);
 		};
-		fetchConsent();
+		fetchConsentAndClientDetails();
 	}, [id]);
 
-    
+	const handleAccept = () => {};
+	const handleReject = () => {};
 
-	if (!consentData) {
+	if (isLoading || !consentData) {
 		return "Loading...";
 	}
 
-	return <div>Hello "/_auth/consent"!</div>;
+	return (
+		<main>
+			<h2>{clientName}</h2>
+
+			<p>This app would like to access:</p>
+			<ul>
+				{consentData.scopes.map((scope) => (
+					<li key={scope}>{scope}</li>
+				))}
+			</ul>
+
+			<div>
+				<form onSubmit={handleAccept} action="#" method="post">
+					<button type="submit">Allow Access</button>
+				</form>
+				<form onSubmit={handleReject} action="#" method="post">
+					<button type="submit">Deny</button>
+				</form>
+			</div>
+		</main>
+	);
 }
