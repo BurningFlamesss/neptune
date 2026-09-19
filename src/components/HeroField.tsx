@@ -52,7 +52,7 @@ export default function HeroField() {
     return (
         <section className="bg-paper relative">
 
-            <div className="relative isolate w-full h-190 min-h-160 overflow-hidden" ref={stageRef}>
+            <div className="relative isolate w-full h-full overflow-hidden" ref={stageRef}>
                 <canvas ref={canvasRef} aria-hidden />
 
                 <div className="flex items-center justify-between relative z-4 wrap">
@@ -61,10 +61,10 @@ export default function HeroField() {
                         <p className="text-sm py-6 text-[#65777c]">Everything you know. Everything that makes you, you. <br /> One Intelligence, connected to the applications you choose. </p>
 
                         <div className="flex items-center justify-center gap-7 mt-6">
-                            <button className="min-h-12 text-xs px-5.5 gap-7">
-                                <Link className="flex flex-row w-full items-center justify-center gap-3 min-h-11 text-xs relative group" to="/">
+                            <button className="min-h-12 text-xs px-5.5 gap-7 button primary cursor-pointer ring-offset-5 bg-ink border-ink text-white">
+                                <Link className="flex flex-row w-full items-center justify-center gap-3 min-h-11 text-xs relative group" to="/signup">
                                     <div className="absolute bottom-1.25 left-0 right-0 h-px bg-cyan-dark scale-0 group-hover:scale-100 origin-left transition-transform duration-300 ease-linear" />
-                                    Explore the idea <ArrowUpRight size={15} />
+                                    Unlock your 2nd Brain <ArrowUpRight className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" size={15} />
                                 </Link>
                             </button>
                         </div>
