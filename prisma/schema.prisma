@@ -63,6 +63,7 @@ model User {
   oauthaccesstokens  OauthAccessToken[]
   oauthconsents      OauthConsent[]
   payments           Payment[]
+  couponUsages       CouponUsage[]
 
   @@unique([email])
   @@map("user")
@@ -325,7 +326,33 @@ model Payment {
   @@map("payments")
 }
 
+model Coupon {
+  id                    String                @id @default(cuid())
+  code                  String                @unique
+  type                  CouponType
+  redeemptionType       CouponRedeemptionType
+  status                CouponStatus          @default(ACTIVE)
+  percentageDiscount    Int?
+  fixedDiscount         Int?
+  maxUses               Int?
+  usedCount             Int                   @default(0)
+  perUserLimit          Int                   @default(1)
+  minimumPurchaseAmount Int?
+  startsAt              DateTime?
+  expiresAt             DateTime?
+  metadata              String?
+  createdAt             DateTime              @default(now())
+  updatedAt             DateTime              @updatedAt
+  uses                  CouponUsage[]
+
+  @@map("coupons")
+}
+
 model CouponUsage {
-  id      String   @id @default(cuid())
-  payment Payment?
+  id       String   @id @default(cuid())
+  userId   String
+  user     User     @relation(fields: [userId], references: [id])
+  coupon   Coupon?  @relation(fields: [couponId], references: [id])
+  couponId String?
+  payment  Payment?
 }
