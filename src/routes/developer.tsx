@@ -1,8 +1,13 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import React, { useState } from "react";
 import { registerThirdPartyApp } from "#/functions/authentication.tsx";
 
 export const Route = createFileRoute("/developer")({
+	async beforeLoad({ context }) {
+		if (!context.session?.user.id) {
+			throw redirect({ to: "/login" })
+		}
+	},
 	component: RouteComponent,
 });
 

@@ -31,4 +31,10 @@ Please make sure your database server is running at `localhost:5433`.
 
 ### resolved by AI (Opencode): - "5433:5432"
 
+# Error
 
+Error: Unauthorized
+Error: Failed to register the app
+Error: Unauthorized - Missing Cookie
+
+### resolved by AI (Opencode): headers: getRequestHeaders(), 
