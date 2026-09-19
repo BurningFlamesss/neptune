@@ -18,7 +18,12 @@ export const getPlans = createServerFn().handler(async () => {
 			name: true,
 			id: true,
 			features: true,
-			maxCollections: true,
+			notIncludedFeatures: true,
+			intelligenceStorage: true,
+			recall: true,
+			sharing: true,
+			sync: true,
+			versioning: true,
 			_count: {
 				select: {
 					payments: {
@@ -55,7 +60,12 @@ export const getIndividualPack = createServerFn()
 				name: true,
 				id: true,
 				features: true,
-				maxCollections: true,
+				notIncludedFeatures: true,
+				intelligenceStorage: true,
+				recall: true,
+				sharing: true,
+				sync: true,
+				versioning: true,
 				_count: {
 					select: {
 						payments: {

@@ -345,8 +345,13 @@ model Plan {
   sortOrder       Int             @default(0)
 
   // Access Layer
-  maxCollections Int
-  features       Json?
+  intelligenceStorage String?
+  sync                String?
+  recall              String?
+  versioning          String?
+  sharing             String?
+  features            Json?
+  notIncludedFeatures Json?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

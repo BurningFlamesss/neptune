@@ -321,8 +321,13 @@ export const PlanScalarFieldEnum = {
   currency: 'currency',
   isActive: 'isActive',
   sortOrder: 'sortOrder',
-  maxCollections: 'maxCollections',
+  intelligenceStorage: 'intelligenceStorage',
+  sync: 'sync',
+  recall: 'recall',
+  versioning: 'versioning',
+  sharing: 'sharing',
   features: 'features',
+  notIncludedFeatures: 'notIncludedFeatures',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

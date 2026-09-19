@@ -15,16 +15,25 @@ function RouteComponent() {
 		return <div>No any packs available</div>;
 	}
 	return (
-		<main>
+		<main className="flex flex-row justify-between mx-8">
 			{plans.map((plan) => {
 				return (
 					<section key={plan.id}>
-						<h1>{plan.name}, {plan._count.payments} users purchased it</h1>
+						<h1>
+							{plan.name}, {plan._count.payments} users purchased it
+						</h1>
 						<p>
 							{plan.price} {plan.currency}
 						</p>
 						<ul>
-							<li>Collections {plan.maxCollections}</li>
+							<li>Unlimited Collections</li>
+							<li>Unlimited knowledge items</li>
+							<li>Unlimited application connections</li>
+							<li>Intelligence Storage: {plan.intelligenceStorage}</li>
+							<li>Sync: {plan.sync}</li>
+							<li>Recall: {plan.recall}</li>
+							<li>Versioning: {plan.versioning}</li>
+							<li>Sharing: {plan.sharing}</li>
 							{((plan.features as Array<string>) ?? [])?.map(
 								(feature, index) => (
 									<li key={`${index}-${feature}`}>{feature}</li>
