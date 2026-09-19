@@ -61,9 +61,9 @@ function RouteComponent() {
 				<input type="email" name="email" id="email" required /> <br />
 				<label htmlFor="password">Password</label>{" "}
 				<input type="password" name="password" id="password" /> <br />
+				Forgot Password? <Link to="/reset-password">Reset Password</Link> <br />
 				<button type="submit">Login</button>
 			</form>
-			Forgot Password? <Link to="/reset-password">Reset Password</Link>
 			New to the App? <Link to="/signup">Sign Up</Link>
 		</main>
 	);
