@@ -53,6 +53,17 @@ function RouteComponent() {
 
 	return (
 		<main>
+			<div>
+				<span>Unlock Your 2nd Brain</span>
+				<span>NEPTUNE / SIGNUP</span>
+			</div>
+			<div>
+				<div>
+					<h1>Let's Unleash You True Potential</h1>
+					<div></div>
+				</div>
+			</div>
+			
 			<form onSubmit={signup} action="#" method="post">
 				<label htmlFor="name">Name</label>{" "}
 				<input type="name" name="name" id="name" required /> <br />
