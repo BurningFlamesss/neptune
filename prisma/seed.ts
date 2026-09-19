@@ -20,11 +20,11 @@ async function main() {
       currency: "USD",
       price: 0,
       intelligenceStorage: "1 GB",
-      sync: "1 is automated, Other is Manual",
+      sync: "1 is automated, all other are Manual",
       recall: "Basic",
       versioning: "Basic",
       sharing: "Basic",
-      features: ["1 Workflow/Skills/Agent quota every month"]
+      features: ["1 Intelligence creations / month"]
     },
       {
       name: "Ring+",
@@ -34,8 +34,8 @@ async function main() {
       sync: "Automated with Scheduling",
       recall: "with sourcing & visual response",
       versioning: "with branching",
-      sharing: "with granular level control",
-      features: ["60 Workflow/Skills/Agent quota every month", "Developer Feature enabled <2 apps max>", "Sync with Frocus <Simplex>"]
+      sharing: "with granular level control + HyperNeuron",
+      features: ["60 Intelligence creations / month", "API enabled: 3 apps", "Sync with Frocus <Simplex>"]
     },
       {
       name: "Magic Ring",
@@ -45,8 +45,8 @@ async function main() {
       sync: "Continuously with Scheduling, Dependency",
       recall: "with sourcing, visual response & frontier model access",
       versioning: "with branching + fork + merge",
-      sharing: "with granular level control + access to the god view",
-      features: ["600 Workflow/Skills/Agent quota every month", "Developer Feature enabled <unlimited>", "Sync with Frocus <Duplex>", "1 Boost for your post", "Access to Ring Badge", "Access to beta features"]
+      sharing: "with granular level control + HyperNeuron Unlimited",
+      features: ["600 Intelligence creations / month", "Unlimited API enabled apps", "Sync with Frocus <Duplex>", "1 Boost for your post", "Access to Ring Badge", "Access to beta features"]
     },
   ]
   })
