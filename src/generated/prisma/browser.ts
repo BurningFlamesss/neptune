@@ -77,3 +77,33 @@ export type OauthConsent = Prisma.OauthConsentModel
  * 
  */
 export type OauthClientAssertion = Prisma.OauthClientAssertionModel
+/**
+ * Model BillingProfile
+ * 
+ */
+export type BillingProfile = Prisma.BillingProfileModel
+/**
+ * Model Plan
+ * 
+ */
+export type Plan = Prisma.PlanModel
+/**
+ * Model Subscription
+ * 
+ */
+export type Subscription = Prisma.SubscriptionModel
+/**
+ * Model Payment
+ * 
+ */
+export type Payment = Prisma.PaymentModel
+/**
+ * Model Coupon
+ * 
+ */
+export type Coupon = Prisma.CouponModel
+/**
+ * Model CouponUsage
+ * 
+ */
+export type CouponUsage = Prisma.CouponUsageModel
