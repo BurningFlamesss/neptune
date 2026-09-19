@@ -117,7 +117,7 @@ function RouteComponent() {
 				<form onSubmit={resetPassword} action="#" method="post">
 					<label htmlFor="newPassword">New Password</label>{" "}
 					<input
-						type="newPassword"
+						type="password"
 						name="newPassword"
 						id="newPassword"
 						required
@@ -125,7 +125,7 @@ function RouteComponent() {
 					<br />
 					<label htmlFor="confirmPassword">Confirm Password</label>{" "}
 					<input
-						type="confirmPassword"
+						type="password"
 						name="confirmPassword"
 						id="confirmPassword"
 						required
