@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 import { getIndividualPack } from "#/functions/payment.tsx";
+import { formatPrice } from "#/lib/utils.ts";
 
 const checkoutSearchParamSchema = z.object({
 	plan: z.string(),
@@ -38,7 +39,7 @@ function RouteComponent() {
 
 			<h1>{plan.name}</h1>
 			<p>
-				{plan.price} {plan.currency}
+				{formatPrice(plan.price, plan.currency)}
 			</p>
 
 			<form action="#" method="post">

@@ -1,10 +1,11 @@
 import { createServerFn } from "@tanstack/react-start";
-import { z } from "zod";
+import { date, z } from "zod";
+import { sessionMiddleware } from "#/middleware/authentication.tsx";
 
 export const getPlans = createServerFn().handler(async () => {
 	const { prisma } = await import("#/db.ts");
 
-	const plans = await prisma.plan.findMany({
+	return await prisma.plan.findMany({
 		where: {
 			isActive: true,
 		},
@@ -35,8 +36,6 @@ export const getPlans = createServerFn().handler(async () => {
 			},
 		},
 	});
-
-	return plans;
 });
 
 const getIndividualPackParamSchema = z.object({
@@ -109,4 +108,73 @@ export const getRecentTransaction = createServerFn()
 				paidAt: true,
 			},
 		});
+	});
+
+const redeemCouponServiceParamSchema = z.object({
+	code: z.string()
+})
+
+export const redeemCouponService = createServerFn()
+	.middleware([sessionMiddleware])
+	.validator(redeemCouponServiceParamSchema)
+	.handler(async ({ data, context }) => {
+		const session = context.session
+
+		if (!session) {
+			throw new Error("Unauthorized")
+		}
+
+		const now = new Date()
+		const userId = session.user.id
+
+		const {prisma} = await import("#/db.ts")
+		let attempt = 0
+
+		while (true) {
+			attempt++
+
+			try {
+				return await prisma.$transaction(async (transaction) => {
+					const coupon = await transaction.coupon.findUnique({
+						where: {
+							code: data.code
+						},
+						select: {
+							id: true,
+							code: true,
+							status: true,
+							redeemptionType: true,
+							maxUses: true,
+							usedCount: true,
+							perUserLimit: true,
+							startsAt: true,
+							expiresAt: true,
+						}
+					})
+
+					if (!coupon) {
+						throw new Error("Invalid coupon")
+					}
+
+					if (coupon.status !== "ACTIVE") {
+						throw new Error("Coupon inactive")
+					}
+
+					if (coupon.startsAt && coupon.startsAt > now) {
+						throw new Error("Coupon not started")
+					}
+
+					if (coupon.expiresAt && coupon.expiresAt < now) {
+						throw new Error("Coupon expired")
+					}
+
+					if (coupon.maxUses !== null && coupon.usedCount >= coupon.maxUses) {
+						throw new Error("Coupon exhausted")
+					}
+
+				})
+			} catch (error) {
+				
+			}
+		}
 	});

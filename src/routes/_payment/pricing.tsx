@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { getPlans } from "#/functions/payment.tsx";
+import { formatPrice } from "#/lib/utils.ts";
 
 export const Route = createFileRoute("/_payment/pricing")({
 	component: RouteComponent,
@@ -22,9 +23,7 @@ function RouteComponent() {
 						<h1>
 							{plan.name}, {plan._count.payments} users purchased it
 						</h1>
-						<p>
-							{plan.price} {plan.currency}
-						</p>
+						<p>{formatPrice(plan.price, plan.currency)}</p>
 						<ul>
 							<li>Unlimited Collections</li>
 							<li>Unlimited knowledge items</li>
