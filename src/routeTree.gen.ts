@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthConsentRouteImport } from './routes/_auth/consent'
 import { Route as AuthLoginRouteImport } from './routes/_auth/login'
 import { Route as AuthResetPasswordRouteImport } from './routes/_auth/reset-password'
 import { Route as AuthSignupRouteImport } from './routes/_auth/signup'
@@ -18,6 +19,11 @@ import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthConsentRoute = AuthConsentRouteImport.update({
+  id: '/_auth/consent',
+  path: '/consent',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthLoginRoute = AuthLoginRouteImport.update({
@@ -43,6 +49,7 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/consent': typeof AuthConsentRoute
   '/login': typeof AuthLoginRoute
   '/reset-password': typeof AuthResetPasswordRoute
   '/signup': typeof AuthSignupRoute
@@ -50,6 +57,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/consent': typeof AuthConsentRoute
   '/login': typeof AuthLoginRoute
   '/reset-password': typeof AuthResetPasswordRoute
   '/signup': typeof AuthSignupRoute
@@ -58,6 +66,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_auth/consent': typeof AuthConsentRoute
   '/_auth/login': typeof AuthLoginRoute
   '/_auth/reset-password': typeof AuthResetPasswordRoute
   '/_auth/signup': typeof AuthSignupRoute
@@ -65,12 +74,15 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/reset-password' | '/signup' | '/api/auth/$'
+  fullPaths:
+    '/' | '/consent' | '/login' | '/reset-password' | '/signup' | '/api/auth/$'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/reset-password' | '/signup' | '/api/auth/$'
+  to:
+    '/' | '/consent' | '/login' | '/reset-password' | '/signup' | '/api/auth/$'
   id:
     | '__root__'
     | '/'
+    | '/_auth/consent'
     | '/_auth/login'
     | '/_auth/reset-password'
     | '/_auth/signup'
@@ -79,6 +91,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthConsentRoute: typeof AuthConsentRoute
   AuthLoginRoute: typeof AuthLoginRoute
   AuthResetPasswordRoute: typeof AuthResetPasswordRoute
   AuthSignupRoute: typeof AuthSignupRoute
@@ -92,6 +105,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_auth/consent': {
+      id: '/_auth/consent'
+      path: '/consent'
+      fullPath: '/consent'
+      preLoaderRoute: typeof AuthConsentRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_auth/login': {
@@ -127,6 +147,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthConsentRoute: AuthConsentRoute,
   AuthLoginRoute: AuthLoginRoute,
   AuthResetPasswordRoute: AuthResetPasswordRoute,
   AuthSignupRoute: AuthSignupRoute,

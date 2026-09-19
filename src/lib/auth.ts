@@ -49,7 +49,6 @@ export const auth = betterAuth({
 
 	baseURL: serverEnv.SERVER_URL,
 	plugins: [
-		tanstackStartCookies(),
 		jwt(),
 		oauthProvider({
 			loginPage: "/login",
@@ -62,5 +61,6 @@ export const auth = betterAuth({
 				"containers:write",
 			],
 		}),
+		tanstackStartCookies(),
 	],
 });
