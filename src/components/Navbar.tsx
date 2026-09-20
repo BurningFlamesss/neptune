@@ -24,30 +24,38 @@ function Navbar() {
                     <Link to='/developer' className='cursor-pointer hover:border-b'>Dashboard</Link>
                 </ul>
             </nav>
-            <div className='flex flex-row items-center justify-center'>
+            <div className='flex flex-row items-center justify-center isolate relative'>
                 {isValidUser ? (
                     <>
                         <Drawer direction='right'>
-                            <DrawerTrigger className='app-button bg-cyan-dark! [clip-path:polygon(16px_0,100%_0,100%_100%,0_100%,0_16px)]!'>
-                                <button>Capture</button>
+                            <DrawerTrigger className='app-button bg-cyan-dark! [clip-path:polygon(16px_0,100%_0,100%_100%,0_100%,0_16px)]! cursor-pointer'>
+                                <button className='cursor-pointer'>Capture</button>
                             </DrawerTrigger>
                             <DrawerContent>
                                 <DrawerHeader>
-                                    <DrawerTitle></DrawerTitle>
-                                    <DrawerDescription></DrawerDescription>
+                                    <DrawerTitle>Capture a Knowledge</DrawerTitle>
+                                    <DrawerDescription>DEMO ONLY</DrawerDescription>
                                 </DrawerHeader>
                                 <section className='flex-1 scroll-fade overflow-y-auto p-4'>
+                                    <label htmlFor="title">Title</label>
+                                    <input type="text" name="title" id="title" /> <br />
+                                    <label htmlFor="content">Content</label>
+                                    <textarea name="content" id="content" ></textarea> <br />
+                                    <label htmlFor="type">Type</label>
+                                    <input type="text" name="type" id="type" /> <br />
 
+                                    <label htmlFor="collection">Collection</label>
+                                    <input type="text" name="collection" id="collection" />
                                 </section>
-                                <DrawerFooter>
-                                    <button>Capture</button>
+                                <DrawerFooter className='flex flex-row items-center justify-between'>
+                                    <button className='app-button bg-cyan-dark!'>Capture</button>
                                     <DrawerClose>
-                                        <button>Close</button>
+                                        <button className='app-button bg-destructive! [clip-path:polygon(16px_0,100%_0,100%_100%,0_100%,0_16px)]!'>Close</button>
                                     </DrawerClose>
                                 </DrawerFooter>
                             </DrawerContent>
                         </Drawer>
-                        
+
                         <DropdownMenu>
                             <DropdownMenuTrigger className='app-button cursor-pointer'>
                                 <button className='cursor-pointer'>Profile</button>
@@ -60,11 +68,11 @@ function Navbar() {
                                     <DropdownMenuItem>
                                         {user?.name} ({plan?.name})
                                     </DropdownMenuItem>
-                                    <DropdownMenuItem>
-                                        <Link to='/recall'>
+                                    <Link to='/recall' className='cursor-pointer'>
+                                        <DropdownMenuItem className='cursor-pointer'>
                                             Recall
-                                        </Link>
-                                    </DropdownMenuItem>
+                                        </DropdownMenuItem>
+                                    </Link>
                                 </DropdownMenuGroup>
                             </DropdownMenuContent>
                         </DropdownMenu>
