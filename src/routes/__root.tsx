@@ -1,28 +1,16 @@
-import { TanStackDevtools } from "@tanstack/react-devtools";
-import type { QueryClient } from "@tanstack/react-query";
 import {
 	createRootRouteWithContext,
 	HeadContent,
 	Link,
 	Scripts,
 } from "@tanstack/react-router";
-import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { getSessionFn } from "#/middleware/authentication.tsx";
 import type { MyRouterContext } from "#/types/router-context.ts";
-import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
 import appCss from "../styles.css?url";
 import Navbar from "#/components/Navbar";
-import { getUserPlan } from "#/functions/payment";
-import { userStore } from "#/store/user";
-import { useEffect } from "react";
-
-const devtoolsPlugins = [
-	{
-		name: "Tanstack Router",
-		render: <TanStackRouterDevtoolsPanel />,
-	},
-	TanStackQueryDevtools,
-]
+// import { getUserPlan } from "#/functions/payment";
+// import { userStore } from "#/store/user";
+// import { useEffect } from "react";
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
 	beforeLoad: async () => {
@@ -64,28 +52,28 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 			</main>
 		)
 	},
-	async loader({ context }) {
-		try {
-			return await getUserPlan({
-				data: {
-					userId: context.session?.user.id
-				}
-			})
-		} catch (error) {
-			return null
-		}
-	},
+	// async loader({ context }) {
+	// 	try {
+	// 		return await getUserPlan({
+	// 			data: {
+	// 				userId: context.session?.user.id
+	// 			}
+	// 		})
+	// 	} catch (error) {
+	// 		return null
+	// 	}
+	// },
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
-	const plan = Route.useLoaderData()
-	const update = userStore((state) => state.update)
+	// const plan = Route.useLoaderData()
+	// const update = userStore((state) => state.update)
 
-	useEffect(() => {
-		if (plan) {
-			update("plan", plan)
-		}
-	}, [plan, update])
+	// useEffect(() => {
+	// 	if (plan) {
+	// 		update("plan", plan)
+	// 	}
+	// }, [plan, update])
 
 	return (
 		<html lang="en">
@@ -95,12 +83,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			<body>
 				<Navbar />
 				{children}
-				<TanStackDevtools
-					config={{
-						position: "bottom-right",
-					}}
-					plugins={devtoolsPlugins}
-				/>
+				
 				<Scripts />
 			</body>
 		</html>

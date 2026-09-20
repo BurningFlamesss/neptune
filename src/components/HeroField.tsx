@@ -44,10 +44,10 @@ export default function HeroField() {
     const canvasRef = useRef(null)
     const stageRef = useRef(null)
 
-    const focusNode = (index, element) => {
-        const stage = stageRef.current.getBoundaryClientRect()
-        const rectangle = element.getBoundaryClientRect()
-    }
+    // const focusNode = (index, element) => {
+    //     const stage = stageRef.current.getBoundaryClientRect()
+    //     const rectangle = element.getBoundaryClientRect()
+    // }
 
     return (
         <section className="bg-paper relative">

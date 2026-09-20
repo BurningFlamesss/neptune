@@ -2,8 +2,6 @@ import { createServerFn } from "@tanstack/react-start";
 import { date, z } from "zod";
 import { delay } from "#/lib/utils.ts";
 import { sessionMiddleware } from "#/middleware/authentication.tsx";
-import type { BillingInterval, Currency } from "#/generated/prisma/enums";
-import type { JsonValue } from "@prisma/client/runtime/client";
 
 export const getPlans = createServerFn().handler(async () => {
 	const { prisma } = await import("#/db.ts");
@@ -441,25 +439,6 @@ const getUserPlanParamSchema = z.object({
 	userId: z.string().optional()
 })
 
-export type GetUserPlan = {
-        id: string;
-        name: string;
-        price: number;
-        comparedAtPrice: number | null;
-        interval: BillingInterval;
-        currency: Currency;
-        isActive: boolean;
-        sortOrder: number;
-        intelligenceStorage: string | null;
-        sync: string | null;
-        recall: string | null;
-        versioning: string | null;
-        sharing: string | null;
-        features: JsonValue | null;
-        notIncludedFeatures: JsonValue | null;
-        createdAt: Date;
-        updatedAt: Date;
-    } | null;
 
 
 export const getUserPlan = createServerFn()

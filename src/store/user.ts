@@ -1,4 +1,4 @@
-import type { GetUserPlan } from "#/functions/payment";
+import type { GetUserPlan } from "#/types/schematic";
 import { create } from "zustand"
 import { immer } from "zustand/middleware/immer"
 
