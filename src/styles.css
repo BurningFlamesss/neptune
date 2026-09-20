@@ -71,12 +71,34 @@ input, textarea {
 }
 
 input:focus, textarea:focus {
-  border-bottom-color: var(--cyan);
+  border: 0px;
   outline: 0px;
+
+  background-image: linear-gradient(to right, var(--cyan-dark) 50%, transparent 50%);
+  background-size: 30px 2px;
+  background-repeat: repeat-x;
+  background-position: 0 100%;
+
+  animation: march 1s linear infinite;
+}
+
+@keyframes march {
+  0% {
+    background-position: 0 100%;
+  }
+  100% {
+    background-position: 30px 100%;
+  }
 }
 
 input::placeholder, textarea::placeholder {
   color: #8a989c;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 88px;
+  max-height: 300px;
 }
 
 button[type="submit"] {
