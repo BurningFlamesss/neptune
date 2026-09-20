@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { z } from "zod";
 import { authClient } from "#/lib/auth-client.ts";
 import { ArrowUpRight } from "lucide-react";
+import { useState } from "react";
 
 const resetPasswordSearchParamSchema = z.object({
 	token: z.string().optional().default(""),
@@ -22,6 +23,13 @@ export const Route = createFileRoute("/_auth/reset-password")({
 
 function RouteComponent() {
 	const { token } = Route.useSearch();
+	const [error, setError] = useState({
+		email: "",
+		newPassword: "",
+		confirmPassword: "",
+		resetPasswordForm: "",
+		requestResetPasswordForm: ""
+	})
 
 	const requestResetPassword = async (
 		event: React.FormEvent<HTMLFormElement>,
@@ -33,12 +41,15 @@ function RouteComponent() {
 			email: formData.get("email") as string,
 		};
 
-		const { success, data, error } = requestResetPasswordSchema.safeParse(
+		const { success, data, error: zodError } = requestResetPasswordSchema.safeParse(
 			requestResetPasswordData,
 		);
 
 		if (!success) {
-			// TODO: UI Feedback
+			setError(prev => ({
+				...prev,
+				email: zodError.type.email
+			}))
 
 			return;
 		}
@@ -50,7 +61,10 @@ function RouteComponent() {
 				},
 				{
 					onError: (context) => {
-						// TODO: UI Feedback to show context.error.message
+						setError(prev => ({
+							...prev,
+							requestResetPasswordForm: context.error.message
+						}))
 					},
 					onSuccess: () => {
 						// TODO: UI Feedback to tell user, s/he request reset password is successfully initialized and they should check their email
@@ -58,7 +72,10 @@ function RouteComponent() {
 				},
 			);
 		} catch (error) {
-			// TODO: UI Feedback to show user Something Went Wrong
+			setError(prev => ({
+				...prev,
+				requestResetPasswordForm: "Something went wrong"
+			}))
 		}
 	};
 
@@ -73,11 +90,14 @@ function RouteComponent() {
 			newPassword,
 		};
 
-		const { success, data, error } =
+		const { success, data, error: zodError } =
 			resetPasswordSchema.safeParse(resetPasswordData);
 
 		if (!success) {
-			// TODO: UI Feedback
+			setError(prev => ({
+				...prev,
+				newPassword: zodError.type.password
+			}))
 
 			return;
 		}
@@ -91,7 +111,10 @@ function RouteComponent() {
 					},
 					{
 						onError: (context) => {
-							// TODO: UI Feedback to show context.error.message
+							setError(prev => ({
+								...prev,
+								resetPasswordForm: context.error.message
+							}))
 						},
 						onSuccess: () => {
 							// TODO: UI Feedback to tell user that their password has been successfully resetted
@@ -99,10 +122,16 @@ function RouteComponent() {
 					},
 				);
 			} catch (error) {
-				// TODO: UI Feedback to show user Something Went Wrong
+				setError(prev => ({
+					...prev,
+					resetPasswordForm: "Something went wrong"
+				}))
 			}
 		} else {
-			// TODO: UI Feedback to tell user that both of the passwords should be same
+			setError(prev => ({
+				...prev,
+				confirmPassword: "Both passwords should be same"
+			}))
 		}
 	};
 
@@ -110,7 +139,7 @@ function RouteComponent() {
 		<main className="reset-password-page wrap max-w-5xl mx-auto flex flex-col justify-center">
 			<div className='reset-password-layout grid grid-cols-2 gap-[15%] pt-18 pb-15'>
 				<div className='relative'>
-					<h1 className='text-7xl'>Unlock your <span className='text-cyan-dark'>2nd Brain.</span></h1>
+					<h1 className='text-7xl'>Secure your <span className='text-cyan-dark'>2nd Brain.</span></h1>
 
 					<div className='reset-password-prompts mt-8 text-[16px] leading-[1.8]'>
 						<p className="">having,</p>
@@ -121,7 +150,7 @@ function RouteComponent() {
 					</div>
 
 					<p className='reset-password-intro text-xs text-muted mt-5'>
-						We're so excited to <br /> have you onboard.
+						We're so excited to <br /> have you secured.
 					</p>
 
 					<div className='reset-password-ring'>
@@ -132,7 +161,7 @@ function RouteComponent() {
 				<div className='reset-password-form-column pt-1.5'>
 					<div className='form-topline flex items-center justify-between mb-8'>
 						<span className='mono text-[8px] text-[#7d9095]'>
-							Your Intelligence, Merging Brilliant
+							Your Intelligence, Emerging Brilliance
 						</span>
 						<ArrowUpRight className='text-cyan-dark' size={18} strokeWidth={1} />
 					</div>
@@ -141,7 +170,19 @@ function RouteComponent() {
 						<form onSubmit={requestResetPassword} action="#" method="post">
 							<label htmlFor="email">Email</label>{" "}
 							<input type="email" name="email" id="email" required /> <br />
+							{error.email ? (
+								<>
+									<p>{error.email}</p>
+									<br />
+								</>
+							) : null}
 							<button type="submit">Request Reset Password</button>
+							{error.requestResetPasswordForm ? (
+								<>
+									<p>{error.requestResetPasswordForm}</p>
+									<br />
+								</>
+							) : null}
 						</form>
 					) : (
 						<form onSubmit={resetPassword} action="#" method="post">
@@ -153,6 +194,12 @@ function RouteComponent() {
 								required
 							/>{" "}
 							<br />
+							{error.newPassword ? (
+								<>
+									<p>{error.newPassword}</p>
+									<br />
+								</>
+							) : null}
 							<label htmlFor="confirmPassword">Confirm Password</label>{" "}
 							<input
 								type="password"
@@ -161,7 +208,19 @@ function RouteComponent() {
 								required
 							/>{" "}
 							<br />
+							{error.confirmPassword ? (
+								<>
+									<p>{error.confirmPassword}</p>
+									<br />
+								</>
+							) : null}
 							<button type="submit">Reset Password</button>
+							{error.confirmPassword ? (
+								<>
+									<p>{error.confirmPassword}</p>
+									<br />
+								</>
+							) : null}
 						</form>
 					)}
 					New to the App? <Link to="/signup">Sign Up</Link>

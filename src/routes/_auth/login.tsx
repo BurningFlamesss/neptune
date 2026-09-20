@@ -101,7 +101,7 @@ function RouteComponent() {
 				<div className='login-form-column pt-1.5'>
 					<div className='form-topline flex items-center justify-between mb-8'>
 						<span className='mono text-[8px] text-[#7d9095]'>
-							Your Intelligence, Emerging Brilliant
+							Your Intelligence, Emerging Brilliance
 						</span>
 						<ArrowUpRight className='text-cyan-dark' size={18} strokeWidth={1} />
 					</div>
