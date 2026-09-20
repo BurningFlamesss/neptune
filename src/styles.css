@@ -52,6 +52,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+*::selection {
+  background: #cceef0;
+  color: #122b31;
+}
+
 label {
 
 }
