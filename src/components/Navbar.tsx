@@ -3,9 +3,9 @@ import { Link } from '@tanstack/react-router'
 function Navbar() {
     return (
         <header className='max-w-6xl mx-auto flex flex-row items-center justify-between'>
-            <div>
+            <Link to="/" className='cursor-pointer'>
                 NEPTUNE
-            </div>
+            </Link>
             <nav className='flex flex-row'>
                 <ul className='flex flex-row items-center justify-center gap-6'>
                     <Link to='/about' className='cursor-pointer hover:border-b'>About</Link>
