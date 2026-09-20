@@ -11,6 +11,13 @@ const consentSearchParamSchema = z.object({
 export const Route = createFileRoute("/_auth/consent")({
 	component: RouteComponent,
 	validateSearch: consentSearchParamSchema,
+	errorComponent: () => {
+		return (
+			<main>
+				Please, login through some other app using NepTune provider
+			</main>
+		)
+	}
 });
 
 function RouteComponent() {
