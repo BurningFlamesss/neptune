@@ -51,3 +51,82 @@ body {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
 }
+
+*::selection {
+  background: #cceef0;
+  color: #122b31;
+}
+
+label {
+
+}
+
+input, textarea {
+  display: block;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #cbd6d8;
+  background: var(--paper);
+  padding: 9px 0 13px;
+  border-radius: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink);
+  transition: border-color 0.2s;
+}
+
+input:focus, textarea:focus {
+  border: 0px;
+  outline: 0px;
+
+  background-image: linear-gradient(to right, var(--cyan-dark) 50%, transparent 50%);
+  background-size: 30px 2px;
+  background-repeat: repeat-x;
+  background-position: 0 100%;
+
+  animation: march 1s linear infinite;
+}
+
+@keyframes march {
+  0% {
+    background-position: 0 100%;
+  }
+  100% {
+    background-position: 30px 100%;
+  }
+}
+
+input::placeholder, textarea::placeholder {
+  color: #8a989c;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 88px;
+  max-height: 300px;
+}
+
+button[type="submit"], .app-button {
+  min-height: 48px;
+  width: fit-content;
+  font-size: 14px;
+  padding-inline: 22px;
+  cursor: pointer;
+  background-color: var(--ink);
+  border: var(--ink);
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  clip-path: polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%);
+}
+
+a {
+  color: var(--cyan-dark);
+}
+
+.form-error-message {
+  color: #7f0808;
+}
