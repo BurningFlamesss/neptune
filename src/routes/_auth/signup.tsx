@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { z } from "zod";
 import { authClient } from "#/lib/auth-client.ts";
 import { ArrowUpRight } from "lucide-react";
+import { useState } from "react";
 
 const signupSchema = z.object({
 	name: z.string().min(3),
@@ -14,6 +15,13 @@ export const Route = createFileRoute("/_auth/signup")({
 });
 
 function RouteComponent() {
+	const [error, setError] = useState({
+		name: "",
+		email: "",
+		password: "",
+		form: ""
+	})
+
 	const signup = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
@@ -24,10 +32,15 @@ function RouteComponent() {
 			password: formData.get("password") as string,
 		};
 
-		const { success, data, error } = signupSchema.safeParse(signupData);
+		const { success, data, error: zodError } = signupSchema.safeParse(signupData);
 
 		if (!success) {
-			// TODO: UI Feedback
+			setError(prev => ({
+				...prev,
+				name: zodError.type.name,
+				email: zodError.type.email,
+				password: zodError.type.password
+			}))
 
 			return;
 		}
@@ -40,7 +53,10 @@ function RouteComponent() {
 				},
 				{
 					onError: (context) => {
-						// TODO: UI Feedback to show context.error.message
+						setError(prev => ({
+							..prev,
+							form: context.error.message
+						}))
 					},
 					onSuccess: () => {
 						// TODO: UI Feedback to tell user, s/he is signed up and check the email
@@ -48,7 +64,10 @@ function RouteComponent() {
 				},
 			);
 		} catch (error) {
-			// TODO: UI Feedback to show user Something Went Wrong
+			setError(prev => ({
+				...prev,
+				form: "Something went wrong"
+			}))
 		}
 	};
 
@@ -86,14 +105,37 @@ function RouteComponent() {
 					<form onSubmit={signup} action="#" method="post">
 						<label htmlFor="name">Name</label>{" "}
 						<input type="name" name="name" id="name" required /> <br />
+						{error.name ? (
+							<>
+								<p>{error.name}</p>
+								<br />
+							</>
+						) : null}
 						<label htmlFor="email">Email</label>{" "}
 						<input type="email" name="email" id="email" required /> <br />
+						{error.email ? (
+							<>
+								<p>{error.email}</p>
+								<br />
+							</>
+						) : null}
 						<label htmlFor="password">Password</label>{" "}
 						<input type="password" name="password" id="password" required /> <br />
+						{error.password ? (
+							<>
+								<p>{error.password}</p>
+								<br />
+							</>
+						) : null}
 						<button type="submit">Signup</button>
+						{error.form ? (
+							<>
+								<p>{error.form}</p>
+								<br />
+							</>
+						) : null}
 					</form>
 					Already have an account? <Link to="/login">Login</Link>
-
 
 				</div>
 			</div>
