@@ -3,6 +3,7 @@ import type { QueryClient } from "@tanstack/react-query";
 import {
 	createRootRouteWithContext,
 	HeadContent,
+	Link,
 	Scripts,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
@@ -37,6 +38,20 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 		],
 	}),
 	shellComponent: RootDocument,
+	notFoundComponent: () => {
+		return (
+			<main>
+				Sorry, but this route doesnot exist. Please go back to the <Link to="/">main page</Link>
+			</main>
+		)
+	},
+	errorComponent: () => {
+		return (
+			<main>
+				Uh oh! Look's like something went wrong. Please try to go back to the <Link to="/">main page</Link>
+			</main>
+		)
+	}
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
