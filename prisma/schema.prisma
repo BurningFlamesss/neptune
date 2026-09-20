@@ -79,16 +79,16 @@ enum PaymentProvider {
 }
 
 model User {
-  id                 String              @id
+  id                 String                @id
   name               String
   email              String
-  emailVerified      Boolean             @default(false)
+  emailVerified      Boolean               @default(false)
   image              String?
-  createdAt          DateTime            @default(now())
-  updatedAt          DateTime            @updatedAt
+  createdAt          DateTime              @default(now())
+  updatedAt          DateTime              @updatedAt
   sessions           Session[]
   accounts           Account[]
-  oauthclients       OauthClient[]
+  developedApps      OauthClient[]         @relation("DeveloperApps")
   oauthrefreshtokens OauthRefreshToken[]
   oauthaccesstokens  OauthAccessToken[]
   oauthconsents      OauthConsent[]
@@ -97,7 +97,8 @@ model User {
   subscriptions      Subscription[]
   billingProfiles    BillingProfile[]
   collections        Collection[]
-  assets             Asset[]
+  assets             Asset[]               @relation("UserAssets")
+  grantAccess        AppCollectionAccess[]
 
   @@unique([email])
   @@map("user")
@@ -177,9 +178,7 @@ model OauthClient {
   scopes                           String[]
   clientCredentialsScopes          String[]              @default([])
   userId                           String?
-  user                             User?                 @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt                        DateTime?
-  updatedAt                        DateTime?
+  developer                        User?                 @relation("DeveloperApps", fields: [userId], references: [id], onDelete: SetNull)
   name                             String?
   uri                              String?
   icon                             String?
@@ -207,6 +206,10 @@ model OauthClient {
   oauthrefreshtokens               OauthRefreshToken[]
   oauthaccesstokens                OauthAccessToken[]
   oauthconsents                    OauthConsent[]
+  collectionAccess                 AppCollectionAccess[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@unique([clientId])
   @@index([userId])
@@ -347,9 +350,10 @@ model Collection {
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  assets    Asset[]
+  createdAt             DateTime              @default(now())
+  updatedAt             DateTime              @updatedAt
+  assets                Asset[]
+  appCollectionAccesses AppCollectionAccess[]
 
   @@index([userId])
   @@map("collection")
@@ -366,13 +370,34 @@ model Asset {
   collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
 
   userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  user      User     @relation("UserAssets", fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([collectionId])
   @@map("asset")
+}
+
+model AppCollectionAccess {
+  id String @id @default(cuid())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  clientId    String
+  oauthClient OauthClient @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  collectionId String
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+
+  canRead  Boolean @default(true)
+  canWrite Boolean @default(false)
+
+  grantedAt DateTime @default(now())
+
+  @@unique([userId, clientId, collectionId])
+  @@map("app_collection_access")
 }
 
 model BillingProfile {
