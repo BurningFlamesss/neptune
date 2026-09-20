@@ -62,7 +62,7 @@ export default function HeroField() {
 
                         <div className="flex items-center justify-center gap-7 mt-6">
                             <button className="min-h-12 text-xs px-5.5 gap-7 button primary cursor-pointer ring-offset-5 bg-ink border-ink text-white">
-                                <Link className="flex flex-row w-full items-center justify-center gap-3 min-h-11 text-xs relative group" to="/signup">
+                                <Link className="flex flex-row w-full items-center justify-center gap-3 min-h-11 text-xs relative group text-white!" to="/signup">
                                     <div className="absolute bottom-1.25 left-0 right-0 h-px bg-cyan-dark scale-0 group-hover:scale-100 origin-left transition-transform duration-300 ease-linear" />
                                     Unlock your 2nd Brain <ArrowUpRight className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" size={15} />
                                 </Link>

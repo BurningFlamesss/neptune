@@ -30,7 +30,7 @@ function RouteComponent() {
 
                 <div className='contact-form-column pt-1.5'>
                     <div className='form-topline flex items-center justify-between mb-8'>
-                        <span className='mono text-[8px] text-[#7d9095]'>
+                        <span className='mono text-[12px] text-[#7d9095]'>
                             Your words, a little space
                         </span>
                         <ArrowUpRight className='text-cyan-dark' size={18} strokeWidth={1} />
