@@ -46,9 +46,11 @@ function RouteComponent() {
 		);
 
 		if (!success) {
+			const fieldErrors = z.treeifyError(zodError)
+
 			setError(prev => ({
 				...prev,
-				email: zodError.type.email
+				email: fieldErrors.properties?.email?.errors?.[0] || ""
 			}))
 
 			return;
@@ -94,9 +96,11 @@ function RouteComponent() {
 			resetPasswordSchema.safeParse(resetPasswordData);
 
 		if (!success) {
+			const fieldErrors = z.treeifyError(zodError)
+
 			setError(prev => ({
 				...prev,
-				newPassword: zodError.type.password
+				newPassword: fieldErrors.properties?.password?.errors?.[0] || ""
 			}))
 
 			return;
@@ -172,7 +176,7 @@ function RouteComponent() {
 							<input type="email" name="email" id="email" required /> <br />
 							{error.email ? (
 								<>
-									<p>{error.email}</p>
+									<p className="form-error-message">{error.email}</p>
 									<br />
 								</>
 							) : null}
@@ -181,7 +185,7 @@ function RouteComponent() {
 							</button>
 							{error.requestResetPasswordForm ? (
 								<>
-									<p>{error.requestResetPasswordForm}</p>
+									<p className="form-error-message">{error.requestResetPasswordForm}</p>
 									<br />
 								</>
 							) : null}
@@ -198,7 +202,7 @@ function RouteComponent() {
 							<br />
 							{error.newPassword ? (
 								<>
-									<p>{error.newPassword}</p>
+									<p className="form-error-message">{error.newPassword}</p>
 									<br />
 								</>
 							) : null}
@@ -212,7 +216,7 @@ function RouteComponent() {
 							<br />
 							{error.confirmPassword ? (
 								<>
-									<p>{error.confirmPassword}</p>
+									<p className="form-error-message">{error.confirmPassword}</p>
 									<br />
 								</>
 							) : null}
@@ -221,7 +225,7 @@ function RouteComponent() {
 							</button>
 							{error.confirmPassword ? (
 								<>
-									<p>{error.confirmPassword}</p>
+									<p className="form-error-message">{error.confirmPassword}</p>
 									<br />
 								</>
 							) : null}

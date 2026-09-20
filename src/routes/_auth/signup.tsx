@@ -35,11 +35,13 @@ function RouteComponent() {
 		const { success, data, error: zodError } = signupSchema.safeParse(signupData);
 
 		if (!success) {
+			const fieldErrors = z.treeifyError(zodError)
+
 			setError(prev => ({
 				...prev,
-				name: zodError.type.name,
-				email: zodError.type.email,
-				password: zodError.type.password
+				name: fieldErrors.properties?.name?.errors?.[0] || "",
+				email: fieldErrors.properties?.email?.errors?.[0] || "",
+				password: fieldErrors.properties?.password?.errors?.[0] || ""
 			}))
 
 			return;
@@ -107,7 +109,7 @@ function RouteComponent() {
 						<input type="name" name="name" id="name" required /> <br />
 						{error.name ? (
 							<>
-								<p>{error.name}</p>
+								<p className="form-error-message">{error.name}</p>
 								<br />
 							</>
 						) : null}
@@ -115,7 +117,7 @@ function RouteComponent() {
 						<input type="email" name="email" id="email" required /> <br />
 						{error.email ? (
 							<>
-								<p>{error.email}</p>
+								<p className="form-error-message">{error.email}</p>
 								<br />
 							</>
 						) : null}
@@ -123,7 +125,7 @@ function RouteComponent() {
 						<input type="password" name="password" id="password" required /> <br />
 						{error.password ? (
 							<>
-								<p>{error.password}</p>
+								<p className="form-error-message">{error.password}</p>
 								<br />
 							</>
 						) : null}
@@ -132,7 +134,7 @@ function RouteComponent() {
 						</button>
 						{error.form ? (
 							<>
-								<p>{error.form}</p>
+								<p className="form-error-message">{error.form}</p>
 								<br />
 							</>
 						) : null}

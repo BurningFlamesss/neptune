@@ -121,3 +121,7 @@ button[type="submit"], .app-button {
 a {
   color: var(--cyan-dark);
 }
+
+.form-error-message {
+  color: #7f0808;
+}
