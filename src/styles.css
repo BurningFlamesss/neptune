@@ -56,12 +56,27 @@ label {
 
 }
 
-input {
-
+input, textarea {
+  display: block;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #cbd6d8;
+  background: var(--paper);
+  padding: 9px 0 13px;
+  border-radius: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink);
+  transition: border-color 0.2s;
 }
 
-textarea {
+input:focus, textarea:focus {
+  border-bottom-color: var(--cyan);
+  outline: 0px;
+}
 
+input::placeholder, textarea::placeholder {
+  color: #8a989c;
 }
 
 button[type="submit"] {
