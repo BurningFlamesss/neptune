@@ -1,0 +1,25 @@
+import { Link } from '@tanstack/react-router'
+
+function Navbar() {
+    return (
+        <header className='max-w-6xl mx-auto flex flex-row items-center justify-between'>
+            <div>
+                NEPTUNE
+            </div>
+            <nav className='flex flex-row'>
+                <ul className='flex flex-row items-center justify-center gap-6'>
+                    <Link to='/about' className='cursor-pointer hover:border-b'>About</Link>
+                    <Link to='/pricing' className='cursor-pointer hover:border-b'>Pricing</Link>
+                    <Link to='/contact' className='cursor-pointer hover:border-b'>Contact</Link>
+                    <Link to='/developer' className='cursor-pointer hover:border-b'>Developer</Link>
+                </ul>
+            </nav>
+            <div className='flex flex-row items-center justify-center'>
+                <Link to='/signup' className='app-button bg-cyan-dark! [clip-path:polygon(16px_0,100%_0,100%_100%,0_100%,0_16px)]!'>SignUp</Link>
+                <Link to='/login' className='app-button'>Login</Link>
+            </div>
+        </header>
+    )
+}
+
+export default Navbar

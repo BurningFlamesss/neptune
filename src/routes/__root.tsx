@@ -11,6 +11,7 @@ import { getSessionFn } from "#/middleware/authentication.tsx";
 import type { MyRouterContext } from "#/types/router-context.ts";
 import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
 import appCss from "../styles.css?url";
+import Navbar from "#/components/Navbar";
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
 	beforeLoad: async () => {
@@ -61,6 +62,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				<HeadContent />
 			</head>
 			<body>
+				<Navbar />
 				{children}
 				<TanStackDevtools
 					config={{
