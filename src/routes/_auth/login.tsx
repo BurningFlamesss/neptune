@@ -124,7 +124,7 @@ function RouteComponent() {
 							</>
 						) : null}
 						Forgot Password? <Link to="/reset-password">Reset Password</Link> <br />
-						<button type="submit" className="group">
+						<button type="submit" className="group my-4">
 							Login <ArrowUpRight className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" size={15} />
 						</button>
 						{error.form ? (
