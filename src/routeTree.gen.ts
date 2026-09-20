@@ -19,6 +19,7 @@ import { Route as AuthResetPasswordRouteImport } from './routes/_auth/reset-pass
 import { Route as AuthSignupRouteImport } from './routes/_auth/signup'
 import { Route as PaymentCheckoutRouteImport } from './routes/_payment/checkout'
 import { Route as PaymentPricingRouteImport } from './routes/_payment/pricing'
+import { Route as PublicDashboardRouteImport } from './routes/_public/dashboard'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
 const IndexRoute = IndexRouteImport.update({
@@ -71,6 +72,11 @@ const PaymentPricingRoute = PaymentPricingRouteImport.update({
   path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PublicDashboardRoute = PublicDashboardRouteImport.update({
+  id: '/_public/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
@@ -88,6 +94,7 @@ export interface FileRoutesByFullPath {
   '/signup': typeof AuthSignupRoute
   '/checkout': typeof PaymentCheckoutRoute
   '/pricing': typeof PaymentPricingRoute
+  '/dashboard': typeof PublicDashboardRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesByTo {
@@ -101,6 +108,7 @@ export interface FileRoutesByTo {
   '/signup': typeof AuthSignupRoute
   '/checkout': typeof PaymentCheckoutRoute
   '/pricing': typeof PaymentPricingRoute
+  '/dashboard': typeof PublicDashboardRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesById {
@@ -115,6 +123,7 @@ export interface FileRoutesById {
   '/_auth/signup': typeof AuthSignupRoute
   '/_payment/checkout': typeof PaymentCheckoutRoute
   '/_payment/pricing': typeof PaymentPricingRoute
+  '/_public/dashboard': typeof PublicDashboardRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRouteTypes {
@@ -130,6 +139,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/checkout'
     | '/pricing'
+    | '/dashboard'
     | '/api/auth/$'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -143,6 +153,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/checkout'
     | '/pricing'
+    | '/dashboard'
     | '/api/auth/$'
   id:
     | '__root__'
@@ -156,6 +167,7 @@ export interface FileRouteTypes {
     | '/_auth/signup'
     | '/_payment/checkout'
     | '/_payment/pricing'
+    | '/_public/dashboard'
     | '/api/auth/$'
   fileRoutesById: FileRoutesById
 }
@@ -170,6 +182,7 @@ export interface RootRouteChildren {
   AuthSignupRoute: typeof AuthSignupRoute
   PaymentCheckoutRoute: typeof PaymentCheckoutRoute
   PaymentPricingRoute: typeof PaymentPricingRoute
+  PublicDashboardRoute: typeof PublicDashboardRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
@@ -245,6 +258,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PaymentPricingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_public/dashboard': {
+      id: '/_public/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof PublicDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/auth/$': {
       id: '/api/auth/$'
       path: '/api/auth/$'
@@ -266,6 +286,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthSignupRoute: AuthSignupRoute,
   PaymentCheckoutRoute: PaymentCheckoutRoute,
   PaymentPricingRoute: PaymentPricingRoute,
+  PublicDashboardRoute: PublicDashboardRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport
