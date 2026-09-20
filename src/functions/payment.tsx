@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { date, z } from "zod";
+import { z } from "zod";
 import { delay } from "#/lib/utils.ts";
 import { sessionMiddleware } from "#/middleware/authentication.tsx";
 
