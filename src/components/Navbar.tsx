@@ -21,7 +21,7 @@ function Navbar() {
                     <Link to='/pricing' className='cursor-pointer hover:border-b'>Pricing</Link>
                     <Link to='/contact' className='cursor-pointer hover:border-b'>Contact</Link>
                     <Link to='/developer' className='cursor-pointer hover:border-b'>Developer</Link>
-                    <Link to='/developer' className='cursor-pointer hover:border-b'>Dashboard</Link>
+                    <Link to='/dashboard' className='cursor-pointer hover:border-b'>Dashboard</Link>
                 </ul>
             </nav>
             <div className='flex flex-row items-center justify-center isolate relative'>
