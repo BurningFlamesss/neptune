@@ -1,13 +1,11 @@
 import { authClient } from '#/lib/auth-client'
 import { Link } from '@tanstack/react-router'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from './ui/dropdown-menu'
-import { userStore } from '#/store/user'
 
 function Navbar() {
     const { data } = authClient.useSession()
     const isValidUser = data?.user.id
     const user = data?.user
-    const plan_name = userStore(state => state.plan_name)
 
     return (
         <header className='max-w-6xl mx-auto flex flex-row items-center justify-between'>
@@ -36,7 +34,7 @@ function Navbar() {
                                         Profile
                                     </DropdownMenuLabel>
                                     <DropdownMenuItem>
-                                        {user?.name} {plan_name}
+                                        {user?.name}
                                     </DropdownMenuItem>
                                 </DropdownMenuGroup>
                             </DropdownMenuContent>

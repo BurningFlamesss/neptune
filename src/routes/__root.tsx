@@ -12,6 +12,17 @@ import type { MyRouterContext } from "#/types/router-context.ts";
 import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
 import appCss from "../styles.css?url";
 import Navbar from "#/components/Navbar";
+import { getUserPlan } from "#/functions/payment";
+import { userStore } from "#/store/user";
+import { useEffect } from "react";
+
+const devtoolsPlugins = [
+	{
+		name: "Tanstack Router",
+		render: <TanStackRouterDevtoolsPanel />,
+	},
+	TanStackQueryDevtools,
+]
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
 	beforeLoad: async () => {
@@ -52,10 +63,30 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 				Uh oh! Look's like something went wrong. Please try to go back to the <Link to="/">main page</Link>
 			</main>
 		)
-	}
+	},
+	async loader({ context }) {
+		try {
+			return await getUserPlan({
+				data: {
+					userId: context.session?.user.id
+				}
+			})
+		} catch (error) {
+			return null
+		}
+	},
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+	const plan = Route.useLoaderData()
+	const update = userStore((state) => state.update)
+
+	useEffect(() => {
+		if (plan) {
+			update("plan", plan)
+		}
+	}, [plan, update])
+
 	return (
 		<html lang="en">
 			<head>
@@ -68,13 +99,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 					config={{
 						position: "bottom-right",
 					}}
-					plugins={[
-						{
-							name: "Tanstack Router",
-							render: <TanStackRouterDevtoolsPanel />,
-						},
-						TanStackQueryDevtools,
-					]}
+					plugins={devtoolsPlugins}
 				/>
 				<Scripts />
 			</body>

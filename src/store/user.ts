@@ -1,14 +1,15 @@
+import type { GetUserPlan } from "#/functions/payment";
 import { create } from "zustand"
 import { immer } from "zustand/middleware/immer"
 
 interface User {
-    plan_name: string;
-    update: (entry: "plan_name", data: string) => void;
+    plan: GetUserPlan;
+    update: (entry: "plan", data: any) => void;
 }
 
 export const userStore = create<User>()(
     immer(set => ({
-        plan_name: "",
+        plan: null,
         update(entry, data) {
             set((state) => {
                 state[entry] = data

@@ -38,3 +38,7 @@ Error: Failed to register the app
 Error: Unauthorized - Missing Cookie
 
 ### resolved by AI (Opencode): headers: getRequestHeaders(), 
+
+# Error
+
+Rendered fewer hooks than expected. This may be caused by an accidental early return statement.
