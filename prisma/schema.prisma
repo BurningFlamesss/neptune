@@ -7,6 +7,22 @@ datasource db {
   provider = "postgresql"
 }
 
+enum Visibility {
+  PRIVATE
+  PUBLIC
+  PERMISSIONED
+  UNLISTED
+}
+
+enum AssetType {
+  KNOWLEDGE
+  SKILL
+  AGENT
+  RESEARCH
+  PREFERENCE
+  WORKFLOW
+}
+
 enum CouponType {
   PERCENTAGE_DISCOUNT
   FIXED_DISCOUNT
