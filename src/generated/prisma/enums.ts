@@ -9,6 +9,28 @@
 * 🟢 You can import this file directly.
 */
 
+export const Visibility = {
+  PRIVATE: 'PRIVATE',
+  PUBLIC: 'PUBLIC',
+  PERMISSIONED: 'PERMISSIONED',
+  UNLISTED: 'UNLISTED'
+} as const
+
+export type Visibility = (typeof Visibility)[keyof typeof Visibility]
+
+
+export const AssetType = {
+  KNOWLEDGE: 'KNOWLEDGE',
+  SKILL: 'SKILL',
+  AGENT: 'AGENT',
+  RESEARCH: 'RESEARCH',
+  PREFERENCE: 'PREFERENCE',
+  WORKFLOW: 'WORKFLOW'
+} as const
+
+export type AssetType = (typeof AssetType)[keyof typeof AssetType]
+
+
 export const CouponType = {
   PERCENTAGE_DISCOUNT: 'PERCENTAGE_DISCOUNT',
   FIXED_DISCOUNT: 'FIXED_DISCOUNT'

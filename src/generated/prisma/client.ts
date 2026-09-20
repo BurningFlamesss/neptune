@@ -102,6 +102,21 @@ export type OauthConsent = Prisma.OauthConsentModel
  */
 export type OauthClientAssertion = Prisma.OauthClientAssertionModel
 /**
+ * Model Collection
+ * 
+ */
+export type Collection = Prisma.CollectionModel
+/**
+ * Model Asset
+ * 
+ */
+export type Asset = Prisma.AssetModel
+/**
+ * Model AppCollectionAccess
+ * 
+ */
+export type AppCollectionAccess = Prisma.AppCollectionAccessModel
+/**
  * Model BillingProfile
  * 
  */

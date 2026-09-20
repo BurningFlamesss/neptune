@@ -63,6 +63,9 @@ export const ModelName = {
   OauthAccessToken: 'OauthAccessToken',
   OauthConsent: 'OauthConsent',
   OauthClientAssertion: 'OauthClientAssertion',
+  Collection: 'Collection',
+  Asset: 'Asset',
+  AppCollectionAccess: 'AppCollectionAccess',
   BillingProfile: 'BillingProfile',
   Plan: 'Plan',
   Subscription: 'Subscription',
@@ -170,8 +173,6 @@ export const OauthClientScalarFieldEnum = {
   scopes: 'scopes',
   clientCredentialsScopes: 'clientCredentialsScopes',
   userId: 'userId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
   name: 'name',
   uri: 'uri',
   icon: 'icon',
@@ -194,7 +195,9 @@ export const OauthClientScalarFieldEnum = {
   requirePKCE: 'requirePKCE',
   dpopBoundAccessTokens: 'dpopBoundAccessTokens',
   referenceId: 'referenceId',
-  metadata: 'metadata'
+  metadata: 'metadata',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type OauthClientScalarFieldEnum = (typeof OauthClientScalarFieldEnum)[keyof typeof OauthClientScalarFieldEnum]
@@ -298,6 +301,48 @@ export const OauthClientAssertionScalarFieldEnum = {
 } as const
 
 export type OauthClientAssertionScalarFieldEnum = (typeof OauthClientAssertionScalarFieldEnum)[keyof typeof OauthClientAssertionScalarFieldEnum]
+
+
+export const CollectionScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  visibility: 'visibility',
+  version: 'version',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CollectionScalarFieldEnum = (typeof CollectionScalarFieldEnum)[keyof typeof CollectionScalarFieldEnum]
+
+
+export const AssetScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  content: 'content',
+  type: 'type',
+  version: 'version',
+  collectionId: 'collectionId',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AssetScalarFieldEnum = (typeof AssetScalarFieldEnum)[keyof typeof AssetScalarFieldEnum]
+
+
+export const AppCollectionAccessScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  clientId: 'clientId',
+  collectionId: 'collectionId',
+  canRead: 'canRead',
+  canWrite: 'canWrite',
+  grantedAt: 'grantedAt'
+} as const
+
+export type AppCollectionAccessScalarFieldEnum = (typeof AppCollectionAccessScalarFieldEnum)[keyof typeof AppCollectionAccessScalarFieldEnum]
 
 
 export const BillingProfileScalarFieldEnum = {
