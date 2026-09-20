@@ -19,8 +19,26 @@ function RouteComponent() {
 
 
     return (
-        <main className='max-w-5xl mx-auto flex flex-col justify-center'>
+        <main className='max-w-5xl mx-auto flex flex-col justify-center my-4'>
             Hello, {context.session?.user.name}!!! You have {plan?.name} plan <br />
+
+            <h1 className='text-2xl mt-4'>Collections: </h1>
+            {collections?.map((collection, index) => {
+
+                return (
+                    <section key={collection.id}>
+                        {index + 1}. {collection.name} v{collection.version} <br />
+                        <ul>
+                            {collection.assets.map(asset => {
+
+                                return (
+                                    <li key={asset.id}>{index + 1}. {asset.title} v{asset.version}</li>
+                                )
+                            })}
+                        </ul>
+                    </section>
+                )
+            })}
         </main>
     )
 }
