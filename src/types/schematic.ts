@@ -1,5 +1,5 @@
 import type { BillingInterval, Currency } from "#/generated/prisma/enums";
-import type { JsonValue } from "#/generated/prisma/internal/prismaNamespace";
+import type { JsonValue } from "@prisma/client/runtime/client";
 
 export type GetUserPlan = {
         id: string;

@@ -1,11 +1,38 @@
 import { authClient } from '#/lib/auth-client'
-import { Link } from '@tanstack/react-router'
+import { Link, useLoaderData } from '@tanstack/react-router'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from './ui/dropdown-menu'
+// import { userStore } from '#/store/user'
+// import { useQuery } from '@tanstack/react-query'
+// import { getUserPlan } from '#/functions/payment'
+// import { useEffect } from 'react'
 
 function Navbar() {
     const { data } = authClient.useSession()
     const isValidUser = data?.user.id
     const user = data?.user
+
+
+    const { plan } = useLoaderData({ from: "__root__" })
+
+    // const plan = userStore((state) => state.plan)
+    // const update = userStore((state) => state.update)
+
+    // const { data: fetchedPlan } = useQuery({
+    //     queryKey: ["user-plan", user?.id],
+    //     queryFn: () => getUserPlan({
+    //         data: {
+    //             userId: user?.id
+    //         }
+    //     }),
+    //     enabled: !!user?.id,
+    //     staleTime: 5 * 60 * 1000
+    // })
+
+    // useEffect(() => {
+    //     if (fetchedPlan) {
+    //         update("plan", fetchedPlan)
+    //     }
+    // }, [fetchedPlan?.id, update])
 
     return (
         <header className='max-w-6xl mx-auto flex flex-row items-center justify-between'>
@@ -34,7 +61,7 @@ function Navbar() {
                                         Profile
                                     </DropdownMenuLabel>
                                     <DropdownMenuItem>
-                                        {user?.name}
+                                        {user?.name} ({plan?.name})
                                     </DropdownMenuItem>
                                 </DropdownMenuGroup>
                             </DropdownMenuContent>
