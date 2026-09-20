@@ -36,17 +36,17 @@ function RouteComponent() {
                         <ArrowUpRight className='text-cyan-dark' size={18} strokeWidth={1} />
                     </div>
 
-                    {/* TODO: Add Form */}
-
+                    <form action="#" method='post'>
+                        <label htmlFor="name">Name</label>
+                        <input type="text" name="name" id="name" /> <br />
+                        <label htmlFor="email">email</label>
+                        <input type="email" name="email" id="email" /> <br />
+                        <label htmlFor="message">message</label>
+                        <textarea name="message" id="message" /> <br />
+                        <button type='submit'>Submit</button>
+                    </form>
 
                 </div>
-            </div>
-
-            <div className='contact-bottom flex justify-between items-center gap-7.5 pt-7.5 pb-9 border-t border-t-line'>
-                <span className='mono text-[8px] text-[#7d9095]'>
-                    Good questions are a good beginning.
-                </span>
-                <Link className='text-button text-xs flex justify-center items-center' to="/">First, a little about us <ArrowUpRight size={18} /></Link>
             </div>
         </main>
     )
