@@ -101,6 +101,19 @@ textarea {
   max-height: 300px;
 }
 
-button[type="submit"] {
-  
+button[type="submit"], .app-button {
+  min-height: 48px;
+  width: fit-content;
+  font-size: 14px;
+  padding-inline: 22px;
+  cursor: pointer;
+  background-color: var(--ink);
+  border: var(--ink);
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  clip-path: polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%);
 }

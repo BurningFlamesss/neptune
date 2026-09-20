@@ -127,7 +127,9 @@ function RouteComponent() {
 								<br />
 							</>
 						) : null}
-						<button type="submit">Signup</button>
+						<button type="submit" className="group">
+							Signup <ArrowUpRight className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" size={15} />
+						</button>
 						{error.form ? (
 							<>
 								<p>{error.form}</p>

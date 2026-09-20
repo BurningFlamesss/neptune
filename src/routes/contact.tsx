@@ -39,11 +39,13 @@ function RouteComponent() {
                     <form action="#" method='post'>
                         <label htmlFor="name">Name</label>
                         <input type="text" name="name" id="name" /> <br />
-                        <label htmlFor="email">email</label>
+                        <label htmlFor="email">Email</label>
                         <input type="email" name="email" id="email" /> <br />
-                        <label htmlFor="message">message</label>
+                        <label htmlFor="message">Message</label>
                         <textarea name="message" id="message" /> <br />
-                        <button type='submit'>Submit</button>
+                        <button type="submit" className="group">
+                            Submit <ArrowUpRight className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" size={15} />
+                        </button>
                     </form>
 
                 </div>

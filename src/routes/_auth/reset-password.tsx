@@ -176,7 +176,9 @@ function RouteComponent() {
 									<br />
 								</>
 							) : null}
-							<button type="submit">Request Reset Password</button>
+							<button type="submit" className="group">
+								Request Reset Password <ArrowUpRight className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" size={15} />
+							</button>
 							{error.requestResetPasswordForm ? (
 								<>
 									<p>{error.requestResetPasswordForm}</p>
@@ -214,7 +216,9 @@ function RouteComponent() {
 									<br />
 								</>
 							) : null}
-							<button type="submit">Reset Password</button>
+							<button type="submit" className="group">
+								Reset Password <ArrowUpRight className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" size={15} />
+							</button>
 							{error.confirmPassword ? (
 								<>
 									<p>{error.confirmPassword}</p>
