@@ -97,6 +97,7 @@ model User {
   subscriptions      Subscription[]
   billingProfiles    BillingProfile[]
   collections        Collection[]
+  assets             Asset[]
 
   @@unique([email])
   @@map("user")
@@ -348,9 +349,30 @@ model Collection {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  assets    Asset[]
 
   @@index([userId])
   @@map("collection")
+}
+
+model Asset {
+  id      String    @id @default(cuid())
+  title   String
+  content String    @db.Text
+  type    AssetType
+  version Int       @default(1)
+
+  collectionId String
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([collectionId])
+  @@map("asset")
 }
 
 model BillingProfile {
