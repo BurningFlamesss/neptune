@@ -73,6 +73,11 @@ function Navbar() {
                                             Recall
                                         </DropdownMenuItem>
                                     </Link>
+                                    <DropdownMenuItem onClick={async () => {
+                                        await authClient.signOut()
+                                    }}>
+                                        Logout
+                                    </DropdownMenuItem>
                                 </DropdownMenuGroup>
                             </DropdownMenuContent>
                         </DropdownMenu>

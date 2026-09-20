@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { z } from "zod";
 import { authClient } from "#/lib/auth-client.ts";
 import { ArrowUpRight } from "lucide-react";
@@ -11,6 +11,11 @@ const signupSchema = z.object({
 });
 
 export const Route = createFileRoute("/_auth/signup")({
+	async beforeLoad(ctx) {
+		if (ctx.context.session) {
+			throw redirect({ to: "/dashboard" })
+		}
+	},
 	component: RouteComponent,
 });
 

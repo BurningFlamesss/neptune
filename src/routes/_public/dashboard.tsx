@@ -1,7 +1,12 @@
 import { getCollectionsOfUser } from '#/functions/knowledge'
-import { createFileRoute, useLoaderData } from '@tanstack/react-router'
+import { createFileRoute, redirect, useLoaderData } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_public/dashboard')({
+    beforeLoad(ctx) {
+        if (!ctx.context.session) {
+            throw redirect({ to: "/signup" })
+        }
+    },
     component: RouteComponent,
     async loader({ context }) {
         return await getCollectionsOfUser({

@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import type React from "react";
 import { z } from "zod";
 import { authClient } from "#/lib/auth-client.ts";
@@ -11,6 +11,11 @@ const loginSchema = z.object({
 });
 
 export const Route = createFileRoute("/_auth/login")({
+	async beforeLoad(ctx) {
+		if (ctx.context.session) {
+			throw redirect({ to: "/dashboard" })
+		}
+	},
 	component: RouteComponent,
 });
 
