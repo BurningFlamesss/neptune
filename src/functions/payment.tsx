@@ -434,3 +434,53 @@ export const inspectCouponService = createServerFn()
 			percentageDiscount: coupon.percentageDiscount,
 		};
 	});
+
+const getUserPlanParamSchema = z.object({
+	userId: z.string().optional()
+})
+
+export const getUserPlan = createServerFn()
+	.middleware([sessionMiddleware])
+	.validator(getUserPlanParamSchema)
+	.handler(async ({ data, context }) => {
+		const { prisma } = await import("#/db.ts")
+
+		if (!data.userId || !context.session?.user.id) {
+			throw new Error("Unauthorized")
+		}
+
+		const userId = data.userId || context.session.user.id
+
+		const activeSubscription = await prisma.subscription.findFirst({
+			where: {
+				userId,
+				status: "ACTIVE",
+				currentPeriodEnd: {
+					gt: new Date()
+				}
+			},
+			include: {
+				plan: true
+			},
+			orderBy: {
+				currentPeriodEnd: "desc"
+			}
+		})
+
+		if (activeSubscription?.plan) {
+			return activeSubscription.plan
+		}
+
+		const freePlan = await prisma.plan.findFirst({
+			where: {
+				price: 0,
+				isActive: true
+			}
+		})
+
+		if (!freePlan) {
+			throw new Error("Critical Error: No free plan configured in the database")
+		}
+
+		return freePlan
+	})
