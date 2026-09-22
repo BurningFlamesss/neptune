@@ -2,6 +2,7 @@ import { authClient } from '#/lib/auth-client'
 import { Link, useLoaderData } from '@tanstack/react-router'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from './ui/dropdown-menu'
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from './ui/drawer'
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger } from './ui/select';
 
 function Navbar() {
     const { data } = authClient.useSession()
@@ -10,6 +11,8 @@ function Navbar() {
 
     const serverData = useLoaderData({ from: "__root__" })
     const plan = serverData?.plan
+
+    const collections = serverData?.collections
 
     return (
         <header className='max-w-6xl mx-auto flex flex-row items-center justify-between'>
@@ -43,7 +46,21 @@ function Navbar() {
                                     <label htmlFor="content">Content</label>
                                     <textarea name="content" id="content" ></textarea> <br />
                                     <label htmlFor="type">Type</label>
-                                    <input type="text" name="type" id="type" /> <br />
+                                    <Select>
+                                        <SelectTrigger className="w-full">
+                                            Types
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectGroup>
+                                                <SelectItem value="KNOWLEDGE">KNOWLEDGE</SelectItem>
+                                                <SelectItem value="SKILL">SKILL</SelectItem>
+                                                <SelectItem value="AGENT">AGENT</SelectItem>
+                                                <SelectItem value="RESEARCH">RESEARCH</SelectItem>
+                                                <SelectItem value="PREFERENCE">PREFERENCE</SelectItem>
+                                                <SelectItem value="WORKFLOW">WORKFLOW</SelectItem>
+                                            </SelectGroup>
+                                        </SelectContent>
+                                    </Select>
 
                                     <label htmlFor="collection">Collection</label>
                                     <input type="text" name="collection" id="collection" />
