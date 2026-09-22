@@ -40,8 +40,11 @@
 ### Steps
 
 Step 1: `git clone https://github.com/BurningFlamesss/neptune`
+
 Step 2: `npm i`
+
 Step 3: create .env.local, copy .env.sample and add appropriate variables
+
 Step 4: `npm run db:generate && npm run db:push && npm run dev`
 
 ### Rules
