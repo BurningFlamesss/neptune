@@ -42,3 +42,9 @@ Error: Unauthorized - Missing Cookie
 # Error
 
 Rendered fewer hooks than expected. This may be caused by an accidental early return statement.
+
+# Error
+
+The position of select menu being misorientated
+
+### resolved by AI (Opencode):  position = "popper",
