@@ -8,7 +8,8 @@ function Navbar() {
     const isValidUser = data?.user.id
     const user = data?.user
 
-    const { plan } = useLoaderData({ from: "__root__" })
+    const serverData = useLoaderData({ from: "__root__" })
+    const plan = serverData?.plan
 
     return (
         <header className='max-w-6xl mx-auto flex flex-row items-center justify-between'>
