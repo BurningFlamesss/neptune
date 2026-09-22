@@ -88,7 +88,7 @@ function RouteComponent() {
 			setCode("");
 			setDebouncedCode("");
 
-			navigate({ to: "/" })
+			navigate({ to: "/dashboard" })
 		},
 		onError: (error) => {
 			// TODO: UI Feedback to show that failed to redeem coupon

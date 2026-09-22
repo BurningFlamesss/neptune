@@ -1,9 +1,10 @@
-import { createFileRoute, Link, redirect } from "@tanstack/react-router";
+import { createFileRoute, Link, redirect, useNavigate } from "@tanstack/react-router";
 import type React from "react";
 import { z } from "zod";
 import { authClient } from "#/lib/auth-client.ts";
 import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const loginSchema = z.object({
 	email: z.email(),
@@ -20,6 +21,7 @@ export const Route = createFileRoute("/_auth/login")({
 });
 
 function RouteComponent() {
+	const navigate = useNavigate()
 	const [error, setError] = useState({
 		email: "",
 		password: "",
@@ -69,7 +71,8 @@ function RouteComponent() {
 						}
 					},
 					onSuccess: () => {
-						// TODO: UI Feedback to tell user, s/he is logged in
+						toast.success("Congratulations!!! You're logged in. Redirecting to dashboard...")
+						navigate({ to: "/dashboard" })
 					},
 				},
 			);

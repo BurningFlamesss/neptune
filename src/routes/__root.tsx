@@ -9,6 +9,7 @@ import type { MyRouterContext } from "#/types/router-context.ts";
 import appCss from "../styles.css?url";
 import Navbar from "#/components/Navbar";
 import { getUserPlan } from "#/functions/payment";
+import { Toaster } from "#/components/ui/sonner.tsx";
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
 	beforeLoad: async () => {
@@ -75,6 +76,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				<HeadContent />
 			</head>
 			<body>
+				<Toaster />
 				<Navbar />
 				{children}
 

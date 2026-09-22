@@ -3,6 +3,7 @@ import { z } from "zod";
 import { authClient } from "#/lib/auth-client.ts";
 import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner"
 
 const signupSchema = z.object({
 	name: z.string().min(3),
@@ -66,7 +67,7 @@ function RouteComponent() {
 						}))
 					},
 					onSuccess: () => {
-						// TODO: UI Feedback to tell user, s/he is signed up and check the email
+						toast.success("Congratulations!!! You're signed up. Check your email.")
 					},
 				},
 			);

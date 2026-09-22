@@ -3,6 +3,7 @@ import { z } from "zod";
 import { authClient } from "#/lib/auth-client.ts";
 import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const resetPasswordSearchParamSchema = z.object({
 	token: z.string().optional().default(""),
@@ -74,7 +75,7 @@ function RouteComponent() {
 						}))
 					},
 					onSuccess: () => {
-						// TODO: UI Feedback to tell user, s/he request reset password is successfully initialized and they should check their email
+						toast.success("Congratulations!!! You'd successfully initialized password reset. Please, check you email for future steps.'")
 					},
 				},
 			);
@@ -126,7 +127,7 @@ function RouteComponent() {
 							}))
 						},
 						onSuccess: () => {
-							// TODO: UI Feedback to tell user that their password has been successfully resetted
+							toast.success("Congratulations!!! Your password has been resetted. Redirecting to Login page")
 						},
 					},
 				);
