@@ -1,9 +1,10 @@
 # NepTune
 
-NepTune is a distributed memory for Human and AI
+![Status Version](https://img.shields.io/badge/Status-Beta-blue.svg)
+![Status Version](https://img.shields.io/badge/Type-AI_Memory-087f8d)
 
-## Demo & Images
 
+**A distributed memory for Human and AI**
 
 ## Features
 
