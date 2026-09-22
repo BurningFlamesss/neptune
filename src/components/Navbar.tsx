@@ -3,6 +3,9 @@ import { Link, useLoaderData } from '@tanstack/react-router'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from './ui/dropdown-menu'
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from './ui/drawer'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger } from './ui/select';
+import { RadioGroup, RadioGroupItem } from './ui/radio-group';
+import { Label } from './ui/label';
+import { Activity } from 'react';
 
 function Navbar() {
     const { data } = authClient.useSession()
@@ -63,6 +66,34 @@ function Navbar() {
                                     </Select>
 
                                     <label htmlFor="collection">Collection</label>
+                                    <RadioGroup>
+                                        <div className="flex flex-row items-center gap-2">
+                                            <RadioGroupItem value="Create your own" id="create-your-own" />
+                                            <Label htmlFor="create-your-own">
+                                                Create your own
+                                                <Activity>
+                                                    <input type="text" name="name" id="name" placeholder="Name" />
+                                                </Activity>
+                                            </Label>
+                                        </div>
+                                        <div className="flex flex-row items-center gap-2">
+                                            <RadioGroupItem value="Choose existing" id="choose-existing" />
+                                            <Label htmlFor="choose-existing">
+                                                Choose Existing
+
+                                                <Activity>
+                                                    {collections?.map((collection, index) => {
+
+                                                        return (
+                                                            <div key={collection.id}>
+                                                                {collection.name}
+                                                            </div>
+                                                        )
+                                                    })}
+                                                </Activity>
+                                            </Label>
+                                        </div>
+                                    </RadioGroup>
                                     <input type="text" name="collection" id="collection" />
                                 </section>
                                 <DrawerFooter className='flex flex-row items-center justify-between'>
