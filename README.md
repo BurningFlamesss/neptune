@@ -20,6 +20,22 @@
 - Navbar, Basic design for dashboard (collection fetching logic implemented, but collections cannot be created as of now), recall, and drawer (capture the knowledge)
 - About page
 
+### Glimpse of certain features
+
+Some attached GIFS may take long time to load. And some video length was large so they were uploaded to cdn and link is provided below:
+
+[Coupon](https://user-cdn.hackclub-assets.com/01a0c9cc-fc39-77c3-85d2-153851668696/coupon.mp4)
+
+<img width="1898" height="900" alt="20260922-1538-02 4693962" src="https://github.com/user-attachments/assets/6467a47e-a7db-4ba3-9594-fd346ea8cfdc" />
+
+<img width="1898" height="900" alt="20260922-1536-00 0430903" src="https://github.com/user-attachments/assets/6c14769a-dac2-40b9-9ef2-a36b7b0a2d16" />
+
+<img width="1900" height="898" alt="20260922-1543-41 8272278" src="https://github.com/user-attachments/assets/783e63b7-a684-4936-8ee3-2e243fa65442" />
+
+
+
+
+
 
 ## Tech Stack
 
