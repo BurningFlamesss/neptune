@@ -44,12 +44,15 @@ function Navbar() {
                                     <DrawerTitle>Capture a Knowledge</DrawerTitle>
                                     <DrawerDescription>DEMO ONLY</DrawerDescription>
                                 </DrawerHeader>
-                                <section className='flex-1 scroll-fade overflow-y-auto p-4'>
-                                    <label htmlFor="title">Title</label>
+                                <main className='flex-1 scroll-fade overflow-y-auto p-4'>
+
+                                    <Label htmlFor="title">Title</Label>
                                     <input type="text" name="title" id="title" /> <br />
-                                    <label htmlFor="content">Content</label>
+
+                                    <Label htmlFor="content">Content</Label>
                                     <textarea name="content" id="content" ></textarea> <br />
-                                    <label htmlFor="type">Type</label>
+
+                                    <Label className="mb-4" htmlFor="type">Type</Label>
                                     <Select>
                                         <SelectTrigger className="w-full">
                                             Types
@@ -66,37 +69,40 @@ function Navbar() {
                                         </SelectContent>
                                     </Select>
 
-                                    <Label htmlFor="collection">Collection</Label>
+                                    <Label className="mt-6 mb-4" htmlFor="collection">Collection</Label>
                                     <RadioGroup value={collectionOptions} onValueChange={setCollectionOptions} >
-                                        <Label htmlFor="create-your-own" className="flex flex-row items-center gap-2">
-                                            <RadioGroupItem value="create-your-own" id="create-your-own" />
-                                            <div className="flex flex-col items-start justify-start">
-                                                Create your own
-
-                                                <Activity mode={collectionOptions === "create-your-own" ? "visible" : "hidden"} >
-                                                    <input type="text" name="name" id="name" placeholder="Name" />
-                                                </Activity>
+                                        <section className="flex flex-col items-start gap-2 mb-4">
+                                            <div className="flex flex-row items-center gap-2">
+                                                <RadioGroupItem className="cursor-pointer" value="create-your-own" id="create-your-own" />
+                                                <Label className="cursor-pointer" htmlFor="create-your-own">Create your own</Label>
                                             </div>
-                                        </Label>
-                                        <Label htmlFor="choose-existing" className="flex flex-row items-center gap-2">
-                                            <RadioGroupItem value="choose-existing" id="choose-existing" />
-                                            <div>
-                                                Choose Existing
-
-                                                <Activity mode={collectionOptions === "choose-existing" ? "visible" : "hidden"}>
+                                            <Activity mode={collectionOptions === "create-your-own" ? "visible" : "hidden"} >
+                                                <div className="ml-6">
+                                                    <input type="text" name="name" id="name" placeholder="Name" />
+                                                </div>
+                                            </Activity>
+                                        </section>
+                                        <section className="flex flex-col items-start gap-2 mb-4">
+                                            <div className="flex flex-row items-center gap-2">
+                                                <RadioGroupItem className="cursor-pointer" value="choose-existing" id="choose-existing" />
+                                                <Label className="cursor-pointer" htmlFor="choose-existing">
+                                                    Choose Existing
+                                                </Label>
+                                            </div>
+                                            <Activity mode={collectionOptions === "choose-existing" ? "visible" : "hidden"}>
+                                                <div className="ml-6">
                                                     {collections?.map((collection, index) => {
-
                                                         return (
                                                             <div key={collection.id}>
                                                                 {collection.name}
                                                             </div>
                                                         )
                                                     })}
-                                                </Activity>
-                                            </div>
-                                        </Label>
+                                                </div>
+                                            </Activity>
+                                        </section>
                                     </RadioGroup>
-                                </section>
+                                </main>
                                 <DrawerFooter className='flex flex-row items-center justify-between'>
                                     <button className='app-button bg-cyan-dark!'>Capture</button>
                                     <DrawerClose>
