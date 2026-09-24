@@ -5,10 +5,11 @@ import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, Dr
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger } from './ui/select';
 import { RadioGroup, RadioGroupItem } from './ui/radio-group';
 import { Label } from './ui/label';
-import { Activity } from 'react';
+import { Activity, useState } from 'react';
 
 function Navbar() {
     const { data } = authClient.useSession()
+    const [collectionOptions, setCollectionOptions] = useState<string>("")
     const isValidUser = data?.user.id
     const user = data?.user
 
@@ -65,23 +66,24 @@ function Navbar() {
                                         </SelectContent>
                                     </Select>
 
-                                    <label htmlFor="collection">Collection</label>
-                                    <RadioGroup>
-                                        <div className="flex flex-row items-center gap-2">
-                                            <RadioGroupItem value="Create your own" id="create-your-own" />
-                                            <Label htmlFor="create-your-own">
+                                    <Label htmlFor="collection">Collection</Label>
+                                    <RadioGroup value={collectionOptions} onValueChange={setCollectionOptions} >
+                                        <Label htmlFor="create-your-own" className="flex flex-row items-center gap-2">
+                                            <RadioGroupItem value="create-your-own" id="create-your-own" />
+                                            <div className="flex flex-col items-start justify-start">
                                                 Create your own
-                                                <Activity>
+
+                                                <Activity mode={collectionOptions === "create-your-own" ? "visible" : "hidden"} >
                                                     <input type="text" name="name" id="name" placeholder="Name" />
                                                 </Activity>
-                                            </Label>
-                                        </div>
-                                        <div className="flex flex-row items-center gap-2">
-                                            <RadioGroupItem value="Choose existing" id="choose-existing" />
-                                            <Label htmlFor="choose-existing">
+                                            </div>
+                                        </Label>
+                                        <Label htmlFor="choose-existing" className="flex flex-row items-center gap-2">
+                                            <RadioGroupItem value="choose-existing" id="choose-existing" />
+                                            <div>
                                                 Choose Existing
 
-                                                <Activity>
+                                                <Activity mode={collectionOptions === "choose-existing" ? "visible" : "hidden"}>
                                                     {collections?.map((collection, index) => {
 
                                                         return (
@@ -91,10 +93,9 @@ function Navbar() {
                                                         )
                                                     })}
                                                 </Activity>
-                                            </Label>
-                                        </div>
+                                            </div>
+                                        </Label>
                                     </RadioGroup>
-                                    <input type="text" name="collection" id="collection" />
                                 </section>
                                 <DrawerFooter className='flex flex-row items-center justify-between'>
                                     <button className='app-button bg-cyan-dark!'>Capture</button>
