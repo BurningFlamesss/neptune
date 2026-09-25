@@ -36,6 +36,7 @@ interface ChatCapsule {
     id: string;
     title: string;
     messages: Message[];
+    globalContext: Attachment[];
     createdAt: number;
     updatedAt: number;
 }
@@ -45,11 +46,27 @@ interface UserStoreState {
     activeChatId: string | null;
 }
 
-type UserStore = UserStoreState
+interface UserStoreAction {
+    createChat: (context?: Attachment[]) => string;
+    setActiveChat: (id: string) => void;
+    addUserMessage: (chatId: string, content: string, attachments?: Attachment[]) => void;
+    addAIMessage: (chatId: string, payload: Omit<AIMessage, "id" | "role" | "timestamp">) => void;
+
+}
+
+type UserStore = UserStoreState & UserStoreAction
 
 export const useUserStore = create<UserStore>()(
     immer(set => ({
         chats: [],
-        activeChatId: null
+        activeChatId: null,
+
+        createChat: () => {
+
+            return ""
+        },
+        setActiveChat: () => { },
+        addUserMessage: () => { },
+        addAIMessage: () => { }
     }))
 )
