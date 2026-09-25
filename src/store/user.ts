@@ -22,15 +22,15 @@ interface UserMessage extends BaseMessage {
     attachments: Attachment[];
 }
 
-interface AIMessage extends BaseMessage {
-    role: "ai";
+interface AssistantMessage extends BaseMessage {
+    role: "assistant";
     headline: string;
     details: string;
 
     resolutionStatus: "resolved" | "partly_resolved" | "unresolved"
 }
 
-type Message = UserMessage | AIMessage
+type Message = UserMessage | AssistantMessage
 
 interface ChatCapsule {
     id: string;
@@ -50,7 +50,7 @@ interface UserStoreAction {
     createChat: (context?: Attachment[]) => string;
     setActiveChat: (id: string) => void;
     addUserMessage: (chatId: string, content: string, attachments?: Attachment[]) => void;
-    addAIMessage: (chatId: string, payload: Omit<AIMessage, "id" | "role" | "timestamp">) => void;
+    addAssistantMessage: (chatId: string, payload: Omit<AssistantMessage, "id" | "role" | "timestamp">) => void;
 
 }
 
@@ -67,6 +67,6 @@ export const useUserStore = create<UserStore>()(
         },
         setActiveChat: () => { },
         addUserMessage: () => { },
-        addAIMessage: () => { }
+        addAssistantMessage: () => { }
     }))
 )
