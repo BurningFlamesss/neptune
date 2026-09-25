@@ -1,19 +1,36 @@
-import type { GetUserPlan } from "#/types/schematic";
 import { create } from "zustand"
 import { immer } from "zustand/middleware/immer"
 
-interface User {
-    plan: GetUserPlan;
-    update: (entry: "plan", data: any) => void;
+interface BaseMessage {
+    id: string;
+    timestamp: number;
 }
 
-export const userStore = create<User>()(
+interface UserMessage extends BaseMessage {
+    role: "user";
+    content: string;
+}
+
+type Message = UserMessage
+
+interface ChatCapsule {
+    id: string;
+    title: string;
+    messages: Message[];
+    createdAt: number;
+    updatedAt: number;
+}
+
+interface UserStoreState {
+    chats: ChatCapsule[];
+    activeChatId: string | null;
+}
+
+type UserStore = UserStoreState
+
+export const useUserStore = create<UserStore>()(
     immer(set => ({
-        plan: null,
-        update(entry, data) {
-            set((state) => {
-                state[entry] = data
-            })
-        }
+        chats: [],
+        activeChatId: null
     }))
 )
