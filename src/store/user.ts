@@ -1,6 +1,16 @@
 import { create } from "zustand"
 import { immer } from "zustand/middleware/immer"
 
+type AttachmentType = "image" | "file" | "document" | "collection"
+
+interface Attachment {
+    id: string;
+    type: AttachmentType;
+    name: string;
+    url?: string;
+    mimeType?: string;
+}
+
 interface BaseMessage {
     id: string;
     timestamp: number;
@@ -9,9 +19,18 @@ interface BaseMessage {
 interface UserMessage extends BaseMessage {
     role: "user";
     content: string;
+    attachments: Attachment[];
 }
 
-type Message = UserMessage
+interface AIMessage extends BaseMessage {
+    role: "ai";
+    headline: string;
+    details: string;
+
+    resolutionStatus: "resolved" | "partly_resolved" | "unresolved"
+}
+
+type Message = UserMessage | AIMessage
 
 interface ChatCapsule {
     id: string;
