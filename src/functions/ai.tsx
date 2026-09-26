@@ -5,16 +5,31 @@ import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { getCollectionsOfUser } from "./knowledge";
 
+const attachmentSchema = z.object({
+    id: z.string(),
+    type: z.enum(["image", "file", "document", "collection"]),
+    name: z.string(),
+    url: z.string().optional(),
+    mimeType: z.string().optional()
+})
+
 const processRecallConversationParamSchema = z.object({
-    userId: z.string(),
+    globalContext: z.array(attachmentSchema).optional().default([]),
     messages: z.array(z.object({
         role: z.enum(["user", "assistant"]),
-        content: z.string()
-    }))
+        content: z.string(),
+        attachments: z.array(attachmentSchema).optional().default([])
+    })),
+})
+
+const assistantResponseSchema = z.object({
+    headline: z.string().catch("Recall Result"),
+    details: z.string(),
+    resolutionStatus: z.enum(["resolved", "partly_resolved", "unresolved"]).catch("partly_resolved")
 })
 
 
-export const processRecallConversation = createServerFn()
+export const processRecallConversation = createServerFn({ method: "POST" })
     .middleware([sessionMiddleware])
     .validator(processRecallConversationParamSchema)
     .handler(async ({ data, context }) => {
