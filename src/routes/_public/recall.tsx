@@ -9,21 +9,34 @@ export const Route = createFileRoute('/_public/recall')({
 })
 
 function RouteComponent() {
-  const context = Route.useRouteContext()
-  const { activeChatId, chats, createChat, addAssistantMessage, addUserMessage } = useUserStore()
-  const activeChat = chats.find(chat => chat.id === activeChatId)
+  const hasHydrated = useUserStore((state) => state._hasHydrated)
+  const setHasHydrated = useUserStore((state) => state.setHasHydrated)
+  const activeChat = useUserStore((state) => state.chats.find((chat) => chat.id === state.activeChatId))
+  const { createChat, addAssistantMessage, addUserMessage } = useUserStore()
 
   const [input, setInput] = useState<string>("")
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const scrollContainerRef = useRef<HTMLElement | null>(null)
 
+  useEffect(() => {
+    if (!hasHydrated) {
+      setHasHydrated(true)
+    }
+  }, [hasHydrated])
+
+  useEffect(() => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTop = scrollContainerRef.current.scrollHeight
+    }
+  }, [activeChat?.messages.length, isLoading])
+
   const submit = async (event: React.FormEvent) => {
     event.preventDefault()
 
     const promptText = input.trim()
 
-    if (!promptText || isLoading) {
+    if (!promptText || isLoading || !hasHydrated) {
       return
     }
 
@@ -69,7 +82,9 @@ function RouteComponent() {
   return (
     <main className='max-w-5xl mx-auto flex flex-col justify-center'>
       <section ref={scrollContainerRef} className='relative flex flex-col h-[80vh] overflow-y-auto gap-4 p-4'>
-        {
+        {!hasHydrated ? (
+          <span className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>Loading recall session...</span>
+        ) :
           !activeChat || activeChat.messages.length === 0 ? (
             <span className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>Start your recall session</span>
           ) : (
