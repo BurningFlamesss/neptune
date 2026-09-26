@@ -1,8 +1,7 @@
 import { processRecallConversation } from '#/functions/ai.tsx';
 import { useUserStore } from '#/store/user.ts';
-import { fetchServerSentEvents, useChat } from '@tanstack/ai-react';
 import { createFileRoute } from '@tanstack/react-router'
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 export const Route = createFileRoute('/_public/recall')({
   component: RouteComponent,
@@ -11,37 +10,59 @@ export const Route = createFileRoute('/_public/recall')({
 function RouteComponent() {
   const context = Route.useRouteContext()
   const { activeChatId, chats, createChat, addAssistantMessage, addUserMessage } = useUserStore()
-  // const { messages, sendMessage, isLoading, stop } = useChat({
-  //   connection: fetchServerSentEvents("/api/chat")
-  // })
-
   const activeChat = chats.find(chat => chat.id === activeChatId)
 
   const [input, setInput] = useState<string>("")
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+
+  const scrollContainerRef = useRef<HTMLElement | null>(null)
 
   const submit = async (event: React.FormEvent) => {
     event.preventDefault()
 
-    if (!input.trim()) {
+    const promptText = input.trim()
+
+    if (!promptText || isLoading) {
       return
     }
 
-    let currentId = activeChatId
+    setInput("")
+    setIsLoading(true)
+
+    let currentId = useUserStore.getState().activeChatId
 
     if (!currentId) {
       currentId = createChat()
     }
 
-    addUserMessage(currentId, input)
+    addUserMessage(currentId, promptText)
 
-    processRecallConversation({
-      data: {
-        userId: context.session?.user.id ?? "",
-        messages
-      }
-    })
+    const updatedChat = useUserStore.getState().chats.find(chat => chat.id === currentId)
 
-    setInput("")
+    const formattedMessages = (updatedChat?.messages ?? []).map((message) => ({
+      role: message.role,
+      content: message.role === "user" ? message.content : `${message.headline} \n ${message.details}`,
+      attachments: message.role === "user" ? message.attachments : []
+    }))
+
+    try {
+      const payload = await processRecallConversation({
+        data: {
+          globalContext: updatedChat?.globalContext ?? [],
+          messages: formattedMessages
+        }
+      })
+
+      addAssistantMessage(currentId, payload)
+    } catch (error) {
+      addAssistantMessage(currentId, {
+        headline: "Recall Failed",
+        details: error instanceof Error ? error.message : "Something went wrong while contacting the AI Model.",
+        resolutionStatus: "unresolved"
+      })
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
