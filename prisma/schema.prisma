@@ -182,8 +182,10 @@ model User {
   subscriptions      Subscription[]
   billingProfiles    BillingProfile[]
   collections        Collection[]
-  entries             Entry[]               @relation("UserEntries")
+  entries            Entry[]               @relation("UserEntries")
   grantAccess        AppCollectionAccess[]
+  areas              Area[]
+  appMemories        AppMemory[]
 
   @@unique([email])
   @@map("user")
@@ -447,24 +449,25 @@ model Collection {
   visibility  Visibility @default(PRIVATE)
   version     Int        @default(1)
 
-  userId String
-  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  areaId String?
-  area   Area?   @relation(fields: [areaId], references: [id], onDelete: Cascade)
+  userId   String
+  user     User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  areaId   String?
+  area     Area?        @relation(fields: [areaId], references: [id], onDelete: Cascade)
   parentId String?
-  parent Collection? @relation("CollectionTree", fields: [parentId], references: [id], onDelete: Cascade)
+  parent   Collection?  @relation("CollectionTree", fields: [parentId], references: [id], onDelete: Cascade)
   children Collection[] @relation("CollectionTree")
 
-  syncMode SyncMode @default(MANUAL)
+  syncMode               SyncMode     @default(MANUAL)
   copiedFromCollectionId String?
-  copiedFrom Collection? @relation("CollectionCopies", fields: [copiedFromCollectionId], references: [id], onDelete: SetNull)
-  copies Collection[] @relation("CollectionCopies")
-  sourceReleaseId String?
-  
+  copiedFrom             Collection?  @relation("CollectionCopies", fields: [copiedFromCollectionId], references: [id], onDelete: SetNull)
+  copies                 Collection[] @relation("CollectionCopies")
+  sourceReleaseId        String?
+
   entries Entry[]
 
   createdAt             DateTime              @default(now())
   updatedAt             DateTime              @updatedAt
+  appCollectionAccesses AppCollectionAccess[]
 
   @@index([userId])
   @@map("collection")
@@ -477,29 +480,29 @@ model Entry {
   type    EntryType
   version Int       @default(1)
 
-  tags String[] @default([])
-  state EntryState @default(SUGGESTED)
-  recallPolicy RecallPolicy @default(WHEN_RELEVANT)
-  origin EntryOrigin @default(USER)
-  confidenceScore Float @default(1.0)
+  tags            String[]     @default([])
+  state           EntryState   @default(SUGGESTED)
+  recallPolicy    RecallPolicy @default(WHEN_RELEVANT)
+  origin          EntryOrigin  @default(USER)
+  confidenceScore Float        @default(1.0)
 
-  expiresAt DateTime?
+  expiresAt  DateTime?
   archivedAt DateTime?
-  metadata Json?
+  metadata   Json?
 
   embedding Unsupported("vector")?
 
   collectionId String
   collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
-  appMemoryId String?
-  
+  appMemoryId  String?
 
   userId String
-  user      User     @relation("UserEntries", fields: [userId], references: [id], onDelete: Cascade)
+  user   User   @relation("UserEntries", fields: [userId], references: [id], onDelete: Cascade)
 
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  entryRelationships EntryRelationship[]
+  entryRelationships EntryRelationship[]
 
   @@index([collectionId])
   @@map("entries")
@@ -509,13 +512,13 @@ model EntryRelationship {
   id String @id @default(cuid())
 
   sourceEntryId String
-  sourceEntry Entry @relation("SourceRelationship", fields: [sourceEntryId], references: [id], onDelete: Cascade)
+  sourceEntry   Entry  @relation("SourceRelationship", fields: [sourceEntryId], references: [id], onDelete: Cascade)
 
   targetEntryId String
-  targetEntry Entry @relation("TargetRelationship", fields: [targetEntryId], references: [id], onDelete: Cascade)
+  targetEntry   Entry  @relation("TargetRelationship", fields: [targetEntryId], references: [id], onDelete: Cascade)
 
-  predicate String
-  confidence Float @default(1.0)
+  predicate  String
+  confidence Float  @default(1.0)
 
   createdAt DateTime @default(now())
 
@@ -523,16 +526,53 @@ model EntryRelationship {
 }
 
 model EntryTombstone {
-  id String @id @default(cuid())
-  originalEntryId String @unique
+  id              String  @id @default(cuid())
+  originalEntryId String  @unique
   deletedByUserId String
-  reason String?
-  cascaded Boolean @default(false)
+  reason          String?
+  cascaded        Boolean @default(false)
 
   createdAt DateTime @default(now())
 
   @@map("entry_tombstones")
 }
+
+model AppMemory {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation("UserAppMemories", fields: [userId], references: [id], onDelete: Cascade)
+
+  clientId    String
+  oauthClient OauthClient @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  entries Entry[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("app_memories")
+}
+
+model AppMemoryLink {
+  id String @id @default(cuid())
+
+  appEntryId  String
+  tuneEntryId String
+  syncMode    SyncMode @default(REVIEW)
+  active      Boolean  @default(true)
+
+  lastAppRevision  Int?
+  lastTuneRevision Int?
+
+  appEntry Entry @relation("AppMemoryEntry", fields: [appEntryId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  lastSyncedAt DateTime?
+
+  @@map("app_memory_links")
+}
+
 
 model AppCollectionAccess {
   id String @id @default(cuid())
