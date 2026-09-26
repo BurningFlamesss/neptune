@@ -733,10 +733,64 @@ model Revision {
   createdAt DateTime @default(now())
 
   @@map("revisions")
-}  
+}
 
 model RevisionChange {
-  
+  id String @id @default(cuid())
+
+  revisionId String
+
+  revision Revision @relation(fields: [revisionId], references: [id], onDelete: Cascade)
+
+  entryId String?
+  entry   Entry?  @relation(fields: [entryId], references: [id], onDelete: SetNull)
+
+  operation RevisionOperation
+  before    Json?
+  after     Json?
+
+  createdAt DateTime @default(now())
+
+  @@map("revision_changes")
+}
+
+model Combine {
+  id String @id @default(cuid())
+
+  targetPathId     String
+  sourcePathId     String
+  targetRevisionId String
+  targetRevision   Revision           @relation("CombineTargetRevision", fields: [targetRevisionId], references: [id], onDelete: Cascade)
+  sourceRevisionId String
+  sourceRevision   Revision           @relation("CombineSourceRevision", fields: [sourceRevisionId], references: [id], onDelete: Cascade)
+  baseRevisionId   String?
+  baseRevision     Revision?          @relation("CombineBaseRevision", fields: [baseRevisionId], references: [id], onDelete: SetNull)
+  status           CombineStatus      @default(PENDING)
+  conflicts        CombineConflicts[]
+  resultRevisionId String?
+  resultRevision   Revision?          @relation("CombineResultRevision", fields: [resultRevisionId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime?
+
+  @@map("combines")
+}
+
+model CombineConflict {
+  id        String  @id @default(cuid())
+  combineId String
+  combine   Combine @relation(fields: [combineId], references: [id], onDelete: Cascade)
+
+  entryId     String?
+  baseValue   Json?
+  targetValue Json?
+  sourceValue Json?
+
+  resolution ConflictResolution @default(UNRESOLVED)
+
+  resolvedValue Json?
+  resolvedAt    DateTime?
+
+  @@map("combine_conflicts")
 }
 
 model AppCollectionAccess {
