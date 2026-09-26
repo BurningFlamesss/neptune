@@ -14,6 +14,20 @@ enum Visibility {
   UNLISTED
 }
 
+enum PackAccessMode {
+  OPEN
+  PROTECTED
+}
+
+enum PackMonetizationType {
+  FREE 
+  DONATION 
+  ONE_TIME_PURCHASE
+  METERED_ROYALTIES
+  SPONSORED
+  BOUNTY
+}
+
 enum CouponType {
   PERCENTAGE_DISCOUNT
   FIXED_DISCOUNT
@@ -42,6 +56,15 @@ enum PaymentStatus {
   PARTICALLY_REFUNDED
 }
 
+enum PaymentPurpose {
+  SUBSCRIPTION 
+  PREPAID_WALLET_TOPUP
+  PACK_PURCHASE 
+  PACK_DONATION
+  SPONSORSHIP_DEPOSIT
+  BOUNTY_ESCROW
+}
+
 enum BillingInterval {
   MONTHLY
   ANNUALLY
@@ -67,6 +90,52 @@ enum PaymentProvider {
   PAYPAL
   ESEWA
   MANUAL
+  MARKETPLACE_CREDITS
+}
+
+enum OrgRole {
+  OWNER 
+  ADMIN 
+  BILLING 
+  DEVELOPER
+}
+
+enum PayoutSourceType {
+  CITATION_ROYALTY
+  MAINTAINER_SHARE
+  PACK_SALE
+  DONATION 
+  BOUNTY_REWARD
+}
+
+enum PayoutStatus {
+  PENDING 
+  PROCESSING 
+  PAID 
+  FAILED
+}
+
+enum BountyStatus {
+  DRAFT 
+  OPEN 
+  IN_REVIEW
+  COMPLETED 
+  CANCELLED
+}
+
+enum BountySubmissionStatus {
+  PENDING 
+  ACCEPTED 
+  REJECTED
+  CHANGES_REQUIRED
+}
+
+enum AppMemoryOperation {
+  READ 
+  WRITE 
+  SEARCH
+  UPDATE
+  DELETE
 }
 
 enum AreaKind {
@@ -127,11 +196,25 @@ enum AccessPermission {
   WRITE
 }
 
+enum AccessEffect {
+  ALLOW 
+  DENY
+}
+
 enum AccessResourceType {
   AREA
   COLLECTION
   ENTRY
   APP_MEMORY
+  PACK
+}
+
+enum AccessRequestStatus {
+  PENDING 
+  APPROVED
+  DENIED 
+  EXPIRED 
+  CANCELLED
 }
 
 enum ContextRequestStatus {
@@ -164,16 +247,16 @@ enum ConflictResolution {
 }
 
 model User {
-  id                 String                @id
+  id                 String              @id
   name               String
   email              String
-  emailVerified      Boolean               @default(false)
+  emailVerified      Boolean             @default(false)
   image              String?
-  createdAt          DateTime              @default(now())
-  updatedAt          DateTime              @updatedAt
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
   sessions           Session[]
   accounts           Account[]
-  developedApps      OauthClient[]         @relation("DeveloperApps")
+  developedApps      OauthClient[]       @relation("DeveloperApps")
   oauthrefreshtokens OauthRefreshToken[]
   oauthaccesstokens  OauthAccessToken[]
   oauthconsents      OauthConsent[]
@@ -182,8 +265,7 @@ model User {
   subscriptions      Subscription[]
   billingProfiles    BillingProfile[]
   collections        Collection[]
-  entries            Entry[]               @relation("UserEntries")
-  grantAccess        AppCollectionAccess[]
+  entries            Entry[]             @relation("UserEntries")
   areas              Area[]
   appMemories        AppMemory[]
 
@@ -293,7 +375,6 @@ model OauthClient {
   oauthrefreshtokens               OauthRefreshToken[]
   oauthaccesstokens                OauthAccessToken[]
   oauthconsents                    OauthConsent[]
-  collectionAccess                 AppCollectionAccess[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -465,9 +546,8 @@ model Collection {
 
   entries Entry[]
 
-  createdAt             DateTime              @default(now())
-  updatedAt             DateTime              @updatedAt
-  appCollectionAccesses AppCollectionAccess[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([userId])
   @@map("collection")
@@ -760,15 +840,15 @@ model Combine {
   targetPathId     String
   sourcePathId     String
   targetRevisionId String
-  targetRevision   Revision           @relation("CombineTargetRevision", fields: [targetRevisionId], references: [id], onDelete: Cascade)
+  targetRevision   Revision          @relation("CombineTargetRevision", fields: [targetRevisionId], references: [id], onDelete: Cascade)
   sourceRevisionId String
-  sourceRevision   Revision           @relation("CombineSourceRevision", fields: [sourceRevisionId], references: [id], onDelete: Cascade)
+  sourceRevision   Revision          @relation("CombineSourceRevision", fields: [sourceRevisionId], references: [id], onDelete: Cascade)
   baseRevisionId   String?
-  baseRevision     Revision?          @relation("CombineBaseRevision", fields: [baseRevisionId], references: [id], onDelete: SetNull)
-  status           CombineStatus      @default(PENDING)
-  conflicts        CombineConflicts[]
+  baseRevision     Revision?         @relation("CombineBaseRevision", fields: [baseRevisionId], references: [id], onDelete: SetNull)
+  status           CombineStatus     @default(PENDING)
+  conflicts        CombineConflict[]
   resultRevisionId String?
-  resultRevision   Revision?          @relation("CombineResultRevision", fields: [resultRevisionId], references: [id], onDelete: SetNull)
+  resultRevision   Revision?         @relation("CombineResultRevision", fields: [resultRevisionId], references: [id], onDelete: SetNull)
 
   createdAt DateTime?
 
@@ -797,15 +877,15 @@ model Pack {
   id String @id @default(cuid())
 
   ownerId String
-  owner User @relation("UserPacks", fields: [ownerId], references: [id], onDelete: Cascade)
+  owner   User   @relation("UserPacks", fields: [ownerId], references: [id], onDelete: Cascade)
 
-  name String
-  slug String @unique
+  name        String
+  slug        String  @unique
   description String?
 
-  visibility Visibility @default(PRIVATE)
-  releases Release[]
-  imports PackImport[]
+  visibility Visibility   @default(PRIVATE)
+  releases   Release[]
+  imports    PackImport[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -814,35 +894,35 @@ model Pack {
 }
 
 model Release {
-  id String @id @default(cuid())
+  id     String @id @default(cuid())
   packId String
-  pack Pack @relation(fields: [packId], references: [id], onDelete: Cascade)
+  pack   Pack   @relation(fields: [packId], references: [id], onDelete: Cascade)
 
-  version String
+  version          String
   sourceRevisionId String?
 
   sourceRevision Revision? @relation(fields: [sourceRevisionId], references: [id], onDelete: SetNull)
 
-
-  notes String? @db.Text
-  manifest Json 
+  notes        String?      @db.Text
+  manifest     Json
   importedInto Collection[]
-  imports PackImport[]
+  imports      PackImport[]
 
   publishedAt DateTime @default(now())
+
   @@map("releases")
 }
 
 model PackImport {
-  id String @id @default(cuid())
+  id     String @id @default(cuid())
   packId String
-  pack Pack @relation(fields: [packId], references: [id], onDelete: Cascade)
+  pack   Pack   @relation(fields: [packId], references: [id], onDelete: Cascade)
 
-  releaseId String
+  releaseId        String
   installedRelease Release @relation(fields: [releaseId], references: [id], onDelete: Cascade)
 
   targetCollectionId String
-  targetCollection Collection @relation(fields: [targetCollectionId], references: [id], onDelete: Cascade)
+  targetCollection   Collection @relation(fields: [targetCollectionId], references: [id], onDelete: Cascade)
 
   syncMode SyncMode @default(REVIEW)
 
@@ -856,15 +936,15 @@ model TuneApp {
   id String @id @default(cuid())
 
   publisherId String
-  publisher User @relation("UserTuneApps", fields: [publisherId], references: [id], onDelete: Cascade)
+  publisher   User   @relation("UserTuneApps", fields: [publisherId], references: [id], onDelete: Cascade)
 
-  name String
-  slug String @unique
-  description String? @db.Text
-  manifesr Json
-  codeRef String
+  name          String
+  slug          String                @unique
+  description   String?               @db.Text
+  manifesr      Json
+  codeRef       String
   installations TuneAppInstallation[]
-  publishedAt DateTime?
+  publishedAt   DateTime?
 
   createdAt DateTime @default(now())
 
@@ -874,31 +954,31 @@ model TuneApp {
 }
 
 model TuneAppInstallation {
-  id String @id @default(cuid())
+  id     String @id @default(cuid())
   userId String
-  user User @relation("UserTuneAppInstalls", fields: [userId], references: [id], onDelete: Cascade)
+  user   User   @relation("UserTuneAppInstalls", fields: [userId], references: [id], onDelete: Cascade)
 
   tuneAppId String
-  tuneApp TuneApp @relation(fields: [tuneAppId], references: [id], onDelete: Cascade)
+  tuneApp   TuneApp @relation(fields: [tuneAppId], references: [id], onDelete: Cascade)
 
   permissionsGranted Json?
-  installedAt DateTime @default(now())
+  installedAt        DateTime @default(now())
 
   @@map("tune_app_installations")
 }
 
 model RecallBlock {
-  id String @id @default(cuid())
+  id          String @id @default(cuid())
   publisherId String
-  publisher User @relation("UserRecallBlocks", fields: [publisherId], references: [id], onDelete: Cascade)
+  publisher   User   @relation("UserRecallBlocks", fields: [publisherId], references: [id], onDelete: Cascade)
 
-  name String
-  slug String
-  version String
-  description String? @db.Text
-  manifest Json
-  codeRef String
-  reviewedAt DateTime?
+  name        String
+  slug        String
+  version     String
+  description String?   @db.Text
+  manifest    Json
+  codeRef     String
+  reviewedAt  DateTime?
   publishedAt DateTime?
 
   createdAt DateTime @default(now())
