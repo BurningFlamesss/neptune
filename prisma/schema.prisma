@@ -505,6 +505,35 @@ model Entry {
   @@map("entries")
 }
 
+model EntryRelationship {
+  id String @id @default(cuid())
+
+  sourceEntryId String
+  sourceEntry Entry @relation("SourceRelationship", fields: [sourceEntryId], references: [id], onDelete: Cascade)
+
+  targetEntryId String
+  targetEntry Entry @relation("TargetRelationship", fields: [targetEntryId], references: [id], onDelete: Cascade)
+
+  predicate String
+  confidence Float @default(1.0)
+
+  createdAt DateTime @default(now())
+
+  @@map("entry_relationships")
+}
+
+model EntryTombstone {
+  id String @id @default(cuid())
+  originalEntryId String @unique
+  deletedByUserId String
+  reason String?
+  cascaded Boolean @default(false)
+
+  createdAt DateTime @default(now())
+
+  @@map("entry_tombstones")
+}
+
 model AppCollectionAccess {
   id String @id @default(cuid())
 
