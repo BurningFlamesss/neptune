@@ -581,45 +581,44 @@ model AccessGrant {
   oauthClient OauthClient @relation("GrantedToApp", fields: [clientId], references: [id], onDelete: Cascade)
 
   resourceType AccessResourceType
-  resourceKey String 
+  resourceKey  String
 
   permissions AccessPermission[]
 
   inherits Boolean @default(true)
 
   areaId String?
-  area Area? @relation(fields: [areaId], references: [id], onDelete: Cascade)
+  area   Area?   @relation(fields: [areaId], references: [id], onDelete: Cascade)
 
   collectionId String?
-  collection Collection? @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  collection   Collection? @relation(fields: [collectionId], references: [id], onDelete: Cascade)
 
   entryId String?
-  entry Entry? @relation(fields: [entryId], references: [id], onDelete: Cascade)
+  entry   Entry?  @relation(fields: [entryId], references: [id], onDelete: Cascade)
 
   appMemoryId String?
-  appMemory AppMemory? @relation(fields: [appMemoryId], references: [id], onDelete: Cascade)
+  appMemory   AppMemory? @relation(fields: [appMemoryId], references: [id], onDelete: Cascade)
 
   expiresAt DateTime?
-  grantedAt DateTime @default(now())
+  grantedAt DateTime  @default(now())
 
   @@map("access_grants")
 }
 
 model ContextRequest {
-  id String @id @default(cuid())
+  id       String @id @default(cuid())
   clientId String
 
   oauthClient OauthClient @relation("AppRequestsContext", fields: [clientId], references: [id], onDelete: Cascade)
 
   purpose String
-  query String @db.Text
+  query   String @db.Text
 
   status ContextRequestStatus @default(PENDING)
 
   receipt ContextReceipt?
-  
 
-  requestedAt DateTime @default(now())
+  requestedAt DateTime  @default(now())
   completedAt DateTime?
 
   @@map("context_requests")
@@ -629,18 +628,67 @@ model ContextReceipt {
   id String @id @default(cuid())
 
   contextRequestId String @unique
-  itemCount Int @default(0)
+  itemCount        Int    @default(0)
 
   contextRequest ContextRequest @relation(fields: [contextRequestId], references: [id], onDelete: Cascade)
-  
-
 
   createdAt DateTime @default(now())
 
   @@map("context_receipts")
 }
 
+model ContextReceiptItem {
+  id        String @id @default(cuid())
+  receiptId String
 
+  receipt ContextReceipt @relation(fields: [receiptId], references: [id], onDelete: Cascade)
+  entryId String?
+  entry   Entry?         @relation(fields: [entryId], references: [id], onDelete: Cascade)
+
+  resourceKey String?
+  excerpt     String? @db.Text
+
+  createdAt DateTime @default(now())
+
+  @@map("context_receipt_items")
+}
+
+model ApiUsageLedger {
+  id String @id @default(cuid())
+
+  clientId String
+
+  oauthClient OauthClient @relation("AppUsageLedger", fields: [clientId], references: [id])
+
+  contextRequestedId String? @unique
+
+  contextRequest ContextRequest? @relation(fields: [contextRequestedId], references: [id])
+
+  tokensUsed Int @default(0)
+
+  costInCents Float
+  billedAt    DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@map("api_usage_ledgers")
+}
+
+model UserRoyalty {
+  id String @id @default(cuid())
+
+  userId         String
+  user           User      @relation("UserRoyalties", fields: [userId], references: [id])
+  entryId        String?
+  entry          Entry?    @relation(fields: [entryId], references: [id])
+  amountInCents  Float
+  sourceClientId String
+  paidOutAt      DateTime?
+
+  created DateTime @default(now())
+
+  @@map("user_royalties")
+}
 
 model AppCollectionAccess {
   id String @id @default(cuid())
