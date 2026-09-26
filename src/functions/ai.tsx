@@ -35,57 +35,69 @@ export const processRecallConversation = createServerFn({ method: "POST" })
     .handler(async ({ data, context }) => {
         const { prisma } = await import("#/db.ts")
 
-        if (!data.userId || !context.session?.user.id) {
-            throw new Error("Unauthorized")
-        }
-
-        const userId = data.userId || context.session.user.id
-
-        const collections = await getCollectionsOfUser({
-            data: {
-                userId
-            }
-        })
-
-        const prompt = `
-        Please, use these context and give response according to this:
-
-        ${JSON.stringify(collections ?? [])}
-        `
-
-        return await processPrompt({
-            data: {
-                messages: data.messages,
-                systemPrompts: [prompt]
-            }
-        })
-    })
-
-
-const processPromptParamSchema = z.object({
-    messages: z.array(z.object({
-        role: z.enum(["user", "assistant"]),
-        content: z.string()
-    })),
-    systemPrompts: z.array(z.string()).optional()
-})
-
-export const processPrompt = createServerFn()
-    .middleware([sessionMiddleware])
-    .validator(processPromptParamSchema)
-    .handler(async ({ data, context }) => {
-        const { prisma } = await import("#/db")
-
         if (!context.session?.user.id) {
             throw new Error("Unauthorized")
         }
 
         const userId = context.session.user.id
 
+        const allCollections = await getCollectionsOfUser({
+            data: {
+                userId
+            }
+        })
+
+        const leanCollections = allCollections.map((item) => {
+            const { id, version, visibility, assets, ...rest } = item
+
+            const necessaryAsset = assets.map(asset => {
+                const { collectionId, createdAt, updatedAt, userId, version, id, ...rest } = asset
+
+                return rest
+            })
+
+            return {
+                ...rest,
+                assets: necessaryAsset
+            }
+        })
+
+        const systemPrompt = `
+        Please, use these context and give response according to this:
+
+        ${JSON.stringify(leanCollections)}
+
+        Respond only with valid raw JSON object (no md formatting, no code blocks, no extra text) matching the exact structure:
+
+        {
+            "headline": "",
+            "details": "",
+            resolutionStatus: "resolved" | "partly_resolved" | "unresolved"
+        }
+        `.trim()
+
+        const formattedMessages = data.messages.map(message => {
+            if (message.role === "user" && message.attachments && message.attachments.length > 0) {
+                const attachmentNote = message.attachments
+                    .map(attachment => `[Attached ${attachment.type}: ${attachment.name}${attachment.url ? ` (${attachment.url})` : ""}]`)
+                    .join(" ")
+
+                return {
+                    role: message.role,
+                    content: `${message.content} \n\n ${attachmentNote}`
+                }
+            }
+
+            return {
+                role: message.role,
+                content: message.content
+            }
+        })
+
         const stream = chat({
             adapter: openRouterText("qwen/qwen3.8-27b:free"),
-            messages: data.messages,
-            systemPrompts: data.systemPrompts ? [...data.systemPrompts] : [],
+            messages: formattedMessages,
+            systemPrompts: [systemPrompt],
             modelOptions: {
                 provider: {
                     dataCollection: "deny",
@@ -94,5 +106,13 @@ export const processPrompt = createServerFn()
             }
         })
 
-        return stream
+        let rawText = ""
+
+        for await (const chunk of stream) {
+            if (chunk.type === "CUSTOM") {
+                rawText += chunk.value
+            }
+        }
+
+        return rawText
     })
