@@ -14,15 +14,6 @@ enum Visibility {
   UNLISTED
 }
 
-enum AssetType {
-  KNOWLEDGE
-  SKILL
-  AGENT
-  RESEARCH
-  PREFERENCE
-  WORKFLOW
-}
-
 enum CouponType {
   PERCENTAGE_DISCOUNT
   FIXED_DISCOUNT
@@ -76,6 +67,100 @@ enum PaymentProvider {
   PAYPAL
   ESEWA
   MANUAL
+}
+
+enum AreaKind {
+  PERSONAL
+  PROJECTS
+  SKILLS
+  RESEARCH
+  LIBRARY
+  CUSTOM
+}
+
+enum EntryType {
+  MEMORY
+  NOTE
+  REFERENCE
+  CODE
+  DOCUMENT
+  SKILL
+  WORKFLOW
+  DECISION
+  PROMPT
+  CUSTOM
+}
+
+enum EntryState {
+  SUGGESTED
+  CONFIRMED
+  REJECTED
+  ARCHIVED // decay
+}
+
+enum RecallPolicy {
+  AUTOMATIC
+  WHEN_RELEVANT
+  MANUAL
+  EXCLUDED
+}
+
+enum EntryOrigin {
+  USER
+  APP
+  COMMUNITY
+  IMPORTED
+  CONNECTED_SOURCE
+  RECALL
+}
+
+enum SyncMode {
+  MANUAL
+  REVIEW
+  SCHEDULED
+  CONTINUOUS
+}
+
+enum AccessPermission {
+  READ
+  SUGGEST 
+  WRITE
+}
+
+enum AccessResourceType {
+  AREA
+  COLLECTION 
+  ENTRY 
+  APP_MEMORY
+}
+
+enum ContextRequestStatus {
+  PENDING 
+  PROCESSING 
+  COMPLETED
+  DENIED 
+  FAILED
+}
+
+enum RevisionOperation {
+  CREATE 
+  UPDATE 
+  DELETE 
+  MOVE
+}
+
+enum CombineStatus {
+  PENDING 
+  COMBINED 
+  CONFLICTED 
+  ABORTED
+}
+
+enum ConflictResolution {
+  KEEP_TARGET 
+  USE_SOURCE  
+  CUSTOM 
+  UNRESOLVED
 }
 
 model User {
