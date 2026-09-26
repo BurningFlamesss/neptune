@@ -1,4 +1,5 @@
 import { processRecallConversation } from '#/functions/ai.tsx';
+import { cn } from '#/lib/utils.ts';
 import { useUserStore } from '#/store/user.ts';
 import { createFileRoute } from '@tanstack/react-router'
 import React, { useEffect, useRef, useState } from 'react';
@@ -67,8 +68,36 @@ function RouteComponent() {
 
   return (
     <main className='max-w-5xl mx-auto flex flex-col justify-center'>
-      <section className='relative flex flex-col h-[80vh] overflow-y-auto'>
-        <span className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>Start your recall session</span>
+      <section ref={scrollContainerRef} className='relative flex flex-col h-[80vh] overflow-y-auto gap-4 p-4'>
+        {
+          !activeChat || activeChat.messages.length === 0 ? (
+            <span className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>Start your recall session</span>
+          ) : (
+            activeChat.messages.map(message => (
+              <div key={message.id} className={cn("max-w-xl p-4 rounded-lg", message.role === "user" ? "self-end" : "self-start")}>
+                {message.role === "user" ? (
+                  <div className="flex flex-col gap-1">
+                    <p>{message.content}</p>
+
+                    {message.attachments.length > 0 && <div className="flex flex-wrap gap-1 text-xs opacity-70">
+                      {message.attachments.map(attachment => <span key={attachment.id}>[{attachment.name}]</span>)}
+                    </div>}
+                  </div>
+                ) : (
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-center justify-between gap-3">
+                      <strong>{message.headline}</strong>
+
+                      <span className="text-xs uppercase opacity-70">{message.resolutionStatus.replace("_", " ")}</span>
+                    </div>
+
+                    <p className="whitespace-pre-wrap">{message.details}</p>
+                  </div>
+                )}
+              </div>
+            ))
+          )
+        }
       </section>
       <section className='flex flex-row items-center justify-center'>
         <form onSubmit={submit} action="#" method="post">
