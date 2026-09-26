@@ -48,3 +48,28 @@ Rendered fewer hooks than expected. This may be caused by an accidental early re
 The position of select menu being misorientated
 
 ### resolved by AI (Opencode):  position = "popper",
+
+# Error
+
+Recall Result
+partly resolved
+No details returned by the model.
+
+### resolved by AI: if (c.type === "RUN_ERROR" || c.type === "error") {
+    const upstreamDetail = c.error?.metadata?.raw || c.error?.message || c.message;
+    const providerName = c.error?.metadata?.provider_name;
+    throw new Error(
+      `OpenRouter Error${providerName ? ` (${providerName})` : ""}: ${
+        upstreamDetail || JSON.stringify(c.error || c)
+      }`
+    );
+  }
+
+  type OpenRouterModelId = Parameters<typeof createOpenRouterText>[0];
+
+const FREE_MODEL_FALLBACKS: OpenRouterModelId[] = [
+    "qwen/qwen3.8-27b:free" as OpenRouterModelId,
+    "nvidia/nemotron-3-super-120b-a12b:free" as OpenRouterModelId,
+    "deepseek/deepseek-v4-flash-0731:free" as OpenRouterModelId,
+    "openrouter/free" as OpenRouterModelId,
+];

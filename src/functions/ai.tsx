@@ -6,6 +6,17 @@ import { z } from "zod";
 import { getCollectionsOfUser } from "./knowledge";
 import { serverEnv } from "#/env/serverEnv.ts";
 
+type OpenRouterModelId = Parameters<typeof createOpenRouterText>[0];
+
+const FREE_MODEL_FALLBACKS: OpenRouterModelId[] = [
+    "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free" as OpenRouterModelId,
+    "dots-studio/dots-3-note-preview:free" as OpenRouterModelId,
+    "respan/span-01-lite:free" as OpenRouterModelId,
+    "poolside/laguna-xs-2.1:free" as OpenRouterModelId,
+    "liquid/lfm-2.5-embedding-350m:free" as OpenRouterModelId,
+
+];
+
 const attachmentSchema = z.object({
     id: z.string(),
     type: z.enum(["image", "file", "document", "collection"]),
@@ -57,6 +68,15 @@ export const extractChunkText = (chunk: unknown) => {
     }
 
     const c = chunk as Record<string, unknown>
+
+    if (c.type === "RUN_ERROR" || c.type === "error") {
+        const upstreamDetail = c.error?.metadata?.raw || c.error?.message || c.message;
+        const providerName = c.error?.metadata?.provider_name;
+        throw new Error(
+            `Recall Error${providerName ? ` (${providerName})` : ""}: ${upstreamDetail || JSON.stringify(c.error || c)
+            }`
+        );
+    }
 
     if (c.type === "TEXT_MESSAGE_CONTENT" && typeof c.delta === "string") {
         return c.delta
@@ -152,24 +172,28 @@ export const processRecallConversation = createServerFn({ method: "POST" })
             }
         })
 
-        const stream = chat({
-            adapter: createOpenRouterText("qwen/qwen3.8-27b:free", serverEnv.LLM_API_KEY),
-            messages: formattedMessages,
-            systemPrompts: [systemPrompt],
-            modelOptions: {
-                provider: {
-                    dataCollection: "deny",
-                    sort: "throughput",
-                },
+        let lastError: unknown = null
 
+        for (const modelId of FREE_MODEL_FALLBACKS) {
+            try {
+                const stream = chat({
+                    adapter: createOpenRouterText(modelId, serverEnv.LLM_API_KEY),
+                    messages: formattedMessages,
+                    systemPrompts: [systemPrompt]
+                })
+
+                let rawText = ""
+
+                for await (const chunk of stream) {
+                    rawText += extractChunkText(chunk)
+                }
+
+                return parseModelJson(rawText)
+            } catch (error) {
+                console.warn(`Model ${modelId} failed, trying next fallback...`, error)
+                lastError = error
             }
-        })
-
-        let rawText = ""
-
-        for await (const chunk of stream) {
-            rawText += extractChunkText(chunk)
         }
 
-        return parseModelJson(rawText)
+        throw lastError instanceof Error ? lastError : new Error("All free models are currently busy")
     })
