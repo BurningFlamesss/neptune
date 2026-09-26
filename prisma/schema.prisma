@@ -20,8 +20,8 @@ enum PackAccessMode {
 }
 
 enum PackMonetizationType {
-  FREE 
-  DONATION 
+  FREE
+  DONATION
   ONE_TIME_PURCHASE
   METERED_ROYALTIES
   SPONSORED
@@ -57,9 +57,9 @@ enum PaymentStatus {
 }
 
 enum PaymentPurpose {
-  SUBSCRIPTION 
+  SUBSCRIPTION
   PREPAID_WALLET_TOPUP
-  PACK_PURCHASE 
+  PACK_PURCHASE
   PACK_DONATION
   SPONSORSHIP_DEPOSIT
   BOUNTY_ESCROW
@@ -94,9 +94,9 @@ enum PaymentProvider {
 }
 
 enum OrgRole {
-  OWNER 
-  ADMIN 
-  BILLING 
+  OWNER
+  ADMIN
+  BILLING
   DEVELOPER
 }
 
@@ -104,35 +104,35 @@ enum PayoutSourceType {
   CITATION_ROYALTY
   MAINTAINER_SHARE
   PACK_SALE
-  DONATION 
+  DONATION
   BOUNTY_REWARD
 }
 
 enum PayoutStatus {
-  PENDING 
-  PROCESSING 
-  PAID 
+  PENDING
+  PROCESSING
+  PAID
   FAILED
 }
 
 enum BountyStatus {
-  DRAFT 
-  OPEN 
+  DRAFT
+  OPEN
   IN_REVIEW
-  COMPLETED 
+  COMPLETED
   CANCELLED
 }
 
 enum BountySubmissionStatus {
-  PENDING 
-  ACCEPTED 
+  PENDING
+  ACCEPTED
   REJECTED
   CHANGES_REQUIRED
 }
 
 enum AppMemoryOperation {
-  READ 
-  WRITE 
+  READ
+  WRITE
   SEARCH
   UPDATE
   DELETE
@@ -197,7 +197,7 @@ enum AccessPermission {
 }
 
 enum AccessEffect {
-  ALLOW 
+  ALLOW
   DENY
 }
 
@@ -210,10 +210,10 @@ enum AccessResourceType {
 }
 
 enum AccessRequestStatus {
-  PENDING 
+  PENDING
   APPROVED
-  DENIED 
-  EXPIRED 
+  DENIED
+  EXPIRED
   CANCELLED
 }
 
@@ -247,30 +247,70 @@ enum ConflictResolution {
 }
 
 model User {
-  id                 String              @id
-  name               String
-  email              String
-  emailVerified      Boolean             @default(false)
-  image              String?
-  createdAt          DateTime            @default(now())
-  updatedAt          DateTime            @updatedAt
-  sessions           Session[]
-  accounts           Account[]
-  developedApps      OauthClient[]       @relation("DeveloperApps")
-  oauthrefreshtokens OauthRefreshToken[]
-  oauthaccesstokens  OauthAccessToken[]
-  oauthconsents      OauthConsent[]
-  payments           Payment[]
-  couponUsages       CouponUsage[]
-  subscriptions      Subscription[]
-  billingProfiles    BillingProfile[]
-  collections        Collection[]
-  entries            Entry[]             @relation("UserEntries")
-  areas              Area[]
-  appMemories        AppMemory[]
+  id                            String              @id
+  name                          String
+  username                      String?             @unique
+  bio                           String?             @db.Text
+  email                         String
+  emailVerified                 Boolean             @default(false)
+  image                         String?
+  stripeConnectId               String?             @unique
+  computeQuotaBalanceCents      Float               @default(600.0) // Ring: 600, Ring+: 2500, Magic Ring: 4500
+  marketplaceCreditBalanceCents Float               @default(0.0) // Ring: 0.0, Ring+: 300, Magic Ring: 1000
+  prepaidWalletBalanceCents     Float               @default(0.0)
+  currentMonthSpendCents        Float               @default(0.0) // P = max(1, currentMonthSpendCents / 100)
+  currentBillingCycleStart      DateTime            @default(now())
+  createdAt                     DateTime            @default(now())
+  updatedAt                     DateTime            @updatedAt
+  sessions                      Session[]
+  accounts                      Account[]
+  developedApps                 OauthClient[]       @relation("DeveloperApps")
+  oauthrefreshtokens            OauthRefreshToken[]
+  oauthaccesstokens             OauthAccessToken[]
+  oauthconsents                 OauthConsent[]
+  payments                      Payment[]
+  couponUsages                  CouponUsage[]
+  subscriptions                 Subscription[]
+  billingProfiles               BillingProfile[]
+  collections                   Collection[]
+  entries                       Entry[]             @relation("UserEntries")
+  areas                         Area[]
+  appMemories                   AppMemory[]
 
   @@unique([email])
   @@map("user")
+}
+
+model Organization {
+  id                         String               @id @default(cuid())
+  name                       String
+  slug                       String               @unique
+  billingEmail               String?
+  computeQuotaBalanceCents   Float                @default(600.0) // Ring: 600, Ring+: 2500, Magic Ring: 4500
+  prepaidWalletBalanceCents  Float                @default(0.0)
+  currentMonthSpendCents     Float                @default(0.0) // P = max(1, currentMonthSpendCents / 100)
+  currentBillingCycleStart   DateTime             @default(now())
+  autoRechargeEnabled        Boolean              @default(false)
+  autoRechargeThresholdCents Float                @default(1000.0)
+  autoRechargeAmountCents    Float                @default(5000.0)
+  members                    OrganizationMember[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("organizations")
+}
+
+model OrganizationMember {
+  id             String       @id @default(cuid())
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  userId         String
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role           OrgRole      @default(DEVELOPER)
+  joinedAt       DateTime     @default(now())
+
+  @@map("organization_members")
 }
 
 model Session {
