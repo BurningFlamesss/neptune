@@ -98,11 +98,24 @@ function RouteComponent() {
             ))
           )
         }
+        {
+          isLoading && <div className="self-start p-4 opacity-60 animate-pulse">Recalling from your collections...</div>
+        }
       </section>
+
       <section className='flex flex-row items-center justify-center'>
-        <form onSubmit={submit} action="#" method="post">
-          <input value={input} onChange={e => setInput(e.target.value)} type="text" name="prompt" id="prompt" className='text-lg!' />
-          <button type="submit" className='app-button'>Recall</button>
+        <form onSubmit={submit} action="#" method="post" className="flex flex-row items-center gap-2 w-full">
+          <input
+            value={input}
+            onChange={e => setInput(e.target.value)}
+            disabled={isLoading}
+            type="text"
+            name="prompt"
+            id="prompt"
+            className='text-lg!'
+            placeholder="Ask your Knowledge"
+          />
+          <button type="submit" disabled={isLoading} className='app-button'>Recall</button>
         </form>
       </section>
     </main>
