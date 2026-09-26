@@ -123,43 +123,43 @@ enum SyncMode {
 
 enum AccessPermission {
   READ
-  SUGGEST 
+  SUGGEST
   WRITE
 }
 
 enum AccessResourceType {
   AREA
-  COLLECTION 
-  ENTRY 
+  COLLECTION
+  ENTRY
   APP_MEMORY
 }
 
 enum ContextRequestStatus {
-  PENDING 
-  PROCESSING 
+  PENDING
+  PROCESSING
   COMPLETED
-  DENIED 
+  DENIED
   FAILED
 }
 
 enum RevisionOperation {
-  CREATE 
-  UPDATE 
-  DELETE 
+  CREATE
+  UPDATE
+  DELETE
   MOVE
 }
 
 enum CombineStatus {
-  PENDING 
-  COMBINED 
-  CONFLICTED 
+  PENDING
+  COMBINED
+  CONFLICTED
   ABORTED
 }
 
 enum ConflictResolution {
-  KEEP_TARGET 
-  USE_SOURCE  
-  CUSTOM 
+  KEEP_TARGET
+  USE_SOURCE
+  CUSTOM
   UNRESOLVED
 }
 
@@ -182,7 +182,7 @@ model User {
   subscriptions      Subscription[]
   billingProfiles    BillingProfile[]
   collections        Collection[]
-  assets             Asset[]               @relation("UserAssets")
+  entries             Entry[]               @relation("UserEntries")
   grantAccess        AppCollectionAccess[]
 
   @@unique([email])
@@ -425,6 +425,21 @@ model OauthClientAssertion {
   @@map("oauthClientAssertion")
 }
 
+model Area {
+  id          String       @id @default(cuid())
+  userId      String
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name        String
+  kind        AreaKind
+  position    Int          @default(0)
+  collections Collection[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("areas")
+}
+
 model Collection {
   id          String     @id @default(cuid())
   name        String
@@ -433,35 +448,61 @@ model Collection {
   version     Int        @default(1)
 
   userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  areaId String?
+  area   Area?   @relation(fields: [areaId], references: [id], onDelete: Cascade)
+  parentId String?
+  parent Collection? @relation("CollectionTree", fields: [parentId], references: [id], onDelete: Cascade)
+  children Collection[] @relation("CollectionTree")
+
+  syncMode SyncMode @default(MANUAL)
+  copiedFromCollectionId String?
+  copiedFrom Collection? @relation("CollectionCopies", fields: [copiedFromCollectionId], references: [id], onDelete: SetNull)
+  copies Collection[] @relation("CollectionCopies")
+  sourceReleaseId String?
+  
+  entries Entry[]
 
   createdAt             DateTime              @default(now())
   updatedAt             DateTime              @updatedAt
-  assets                Asset[]
-  appCollectionAccesses AppCollectionAccess[]
 
   @@index([userId])
   @@map("collection")
 }
 
-model Asset {
+model Entry {
   id      String    @id @default(cuid())
   title   String
   content String    @db.Text
-  type    AssetType
+  type    EntryType
   version Int       @default(1)
+
+  tags String[] @default([])
+  state EntryState @default(SUGGESTED)
+  recallPolicy RecallPolicy @default(WHEN_RELEVANT)
+  origin EntryOrigin @default(USER)
+  confidenceScore Float @default(1.0)
+
+  expiresAt DateTime?
+  archivedAt DateTime?
+  metadata Json?
+
+  embedding Unsupported("vector")?
 
   collectionId String
   collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  appMemoryId String?
+  
 
   userId String
+  user      User     @relation("UserEntries", fields: [userId], references: [id], onDelete: Cascade)
+
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  user      User     @relation("UserAssets", fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([collectionId])
-  @@map("asset")
+  @@map("entries")
 }
 
 model AppCollectionAccess {
