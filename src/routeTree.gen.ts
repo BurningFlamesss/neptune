@@ -21,6 +21,7 @@ import { Route as PaymentCheckoutRouteImport } from './routes/_payment/checkout'
 import { Route as PaymentPricingRouteImport } from './routes/_payment/pricing'
 import { Route as PublicDashboardRouteImport } from './routes/_public/dashboard'
 import { Route as PublicRecallRouteImport } from './routes/_public/recall'
+import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
 const IndexRoute = IndexRouteImport.update({
@@ -83,6 +84,11 @@ const PublicRecallRoute = PublicRecallRouteImport.update({
   path: '/recall',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiChatRoute = ApiChatRouteImport.update({
+  id: '/api/chat',
+  path: '/api/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
@@ -102,6 +108,7 @@ export interface FileRoutesByFullPath {
   '/pricing': typeof PaymentPricingRoute
   '/dashboard': typeof PublicDashboardRoute
   '/recall': typeof PublicRecallRoute
+  '/api/chat': typeof ApiChatRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesByTo {
@@ -117,6 +124,7 @@ export interface FileRoutesByTo {
   '/pricing': typeof PaymentPricingRoute
   '/dashboard': typeof PublicDashboardRoute
   '/recall': typeof PublicRecallRoute
+  '/api/chat': typeof ApiChatRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesById {
@@ -133,6 +141,7 @@ export interface FileRoutesById {
   '/_payment/pricing': typeof PaymentPricingRoute
   '/_public/dashboard': typeof PublicDashboardRoute
   '/_public/recall': typeof PublicRecallRoute
+  '/api/chat': typeof ApiChatRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRouteTypes {
@@ -150,6 +159,7 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/dashboard'
     | '/recall'
+    | '/api/chat'
     | '/api/auth/$'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -165,6 +175,7 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/dashboard'
     | '/recall'
+    | '/api/chat'
     | '/api/auth/$'
   id:
     | '__root__'
@@ -180,6 +191,7 @@ export interface FileRouteTypes {
     | '/_payment/pricing'
     | '/_public/dashboard'
     | '/_public/recall'
+    | '/api/chat'
     | '/api/auth/$'
   fileRoutesById: FileRoutesById
 }
@@ -196,6 +208,7 @@ export interface RootRouteChildren {
   PaymentPricingRoute: typeof PaymentPricingRoute
   PublicDashboardRoute: typeof PublicDashboardRoute
   PublicRecallRoute: typeof PublicRecallRoute
+  ApiChatRoute: typeof ApiChatRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
@@ -285,6 +298,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicRecallRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/chat': {
+      id: '/api/chat'
+      path: '/api/chat'
+      fullPath: '/api/chat'
+      preLoaderRoute: typeof ApiChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/auth/$': {
       id: '/api/auth/$'
       path: '/api/auth/$'
@@ -308,6 +328,7 @@ const rootRouteChildren: RootRouteChildren = {
   PaymentPricingRoute: PaymentPricingRoute,
   PublicDashboardRoute: PublicDashboardRoute,
   PublicRecallRoute: PublicRecallRoute,
+  ApiChatRoute: ApiChatRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport

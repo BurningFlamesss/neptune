@@ -19,7 +19,31 @@
   --mono: 'IBM Plex Mono', monospace;
   --font: 'Inter Variable', 'Inter', sans-serif;
 
+  --ink-950: 222 55% 8%;
+  --ink-900: 222 50% 10%;
+  --ink-800: 222 42% 14%;
+  --ink-700: 222 34% 20%;
+  --ink-600: 222 22% 30%;
+  --ink-500: 222 16% 42%;
+  --ink-400: 222 14% 56%;
+  --ink-300: 222 16% 72%;
+  --ink-200: 222 18% 84%;
+  --ink-100: 222 22% 92%;
 
+  --neptune-600: 190 92% 32%;
+  --neptune-500: 190 92% 38%;
+  --neptune-400: 190 88% 46%;
+  --neptune-300: 190 78% 58%;
+  --neptune-200: 190 62% 72%;
+  --neptune-100: 190 52% 86%;
+
+  --border-hairline: 214 22% 92%;
+  --border-strong: 214 18% 86%;
+
+  --shadow-1: 0 1px 0 hsl(var(--foreground) / 0.04),
+    0 1px 2px hsl(var(--foreground) / 0.06);
+  --shadow-2: 0 8px 24px hsl(var(--foreground) / 0.1);
+  
   --background: oklch(1 0 0);
   --foreground: oklch(0.148 0.004 228.8);
   --card: oklch(1 0 0);
@@ -30,13 +54,12 @@
   --primary-foreground: oklch(0.984 0.019 200.873);
   --secondary: oklch(0.967 0.001 286.375);
   --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.963 0.002 197.1);
   --muted-foreground: oklch(0.56 0.021 213.5);
   --accent: oklch(0.963 0.002 197.1);
   --accent-foreground: oklch(0.218 0.008 223.9);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.925 0.005 214.3);
-  --input: oklch(0.925 0.005 214.3);
+  --input: #159cad;
   --ring: oklch(0.723 0.014 214.4);
   --chart-1: oklch(0.872 0.007 219.6);
   --chart-2: oklch(0.56 0.021 213.5);
@@ -67,6 +90,31 @@
   --color-cyan-dark: var(--cyan-dark);
   --color-wash: var(--wash);
 
+  --color-ink-950: 222 55% 8%;
+  --color-ink-900: 222 50% 10%;
+  --color-ink-800: 222 42% 14%;
+  --color-ink-700: 222 34% 20%;
+  --color-ink-600: 222 22% 30%;
+  --color-ink-500: 222 16% 42%;
+  --color-ink-400: 222 14% 56%;
+  --color-ink-300: 222 16% 72%;
+  --color-ink-200: 222 18% 84%;
+  --color-ink-100: 222 22% 92%;
+
+  --color-neptune-600: 190 92% 32%;
+  --color-neptune-500: 190 92% 38%;
+  --color-neptune-400: 190 88% 46%;
+  --color-neptune-300: 190 78% 58%;
+  --color-neptune-200: 190 62% 72%;
+  --color-neptune-100: 190 52% 86%;
+
+  --color-border-hairline: 214 22% 92%;
+  --color-border-strong: 214 18% 86%;
+
+  --color-shadow-1: 0 1px 0 hsl(var(--foreground) / 0.04),
+    0 1px 2px hsl(var(--color-foreground) / 0.06);
+  --color-shadow-2: 0 8px 24px hsl(var(--foreground) / 0.1);
+
   --color-background: var(--background);
   --color-card: var(--card);
   --color-popover: var(--popover);
@@ -74,7 +122,6 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);

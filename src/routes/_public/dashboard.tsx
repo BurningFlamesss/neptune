@@ -37,7 +37,7 @@ function RouteComponent() {
                             {collection.assets.map(asset => {
 
                                 return (
-                                    <li key={asset.id}>{index + 1}. {asset.title} v{asset.version}</li>
+                                    <li key={asset.id} className="ml-4">- {asset.title} v{asset.version}</li>
                                 )
                             })}
                         </ul>

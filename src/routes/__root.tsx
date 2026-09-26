@@ -10,6 +10,7 @@ import appCss from "../styles.css?url";
 import Navbar from "#/components/Navbar";
 import { getUserPlan } from "#/functions/payment";
 import { Toaster } from "#/components/ui/sonner.tsx";
+import { getCollectionsOfUser } from "#/functions/knowledge.tsx";
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
 	beforeLoad: async () => {
@@ -55,6 +56,11 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 		try {
 			return {
 				plan: await getUserPlan({
+					data: {
+						userId: context.session?.user.id
+					}
+				}),
+				collections: await getCollectionsOfUser({
 					data: {
 						userId: context.session?.user.id
 					}
