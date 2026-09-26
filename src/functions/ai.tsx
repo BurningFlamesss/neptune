@@ -28,6 +28,28 @@ const assistantResponseSchema = z.object({
     resolutionStatus: z.enum(["resolved", "partly_resolved", "unresolved"]).catch("partly_resolved")
 })
 
+function parseModelJson(rawText: string): z.infer<typeof assistantResponseSchema> {
+    const withoutThink = rawText.replace(/<think>[\s\S]*?<\/think>/gi, "").trim();
+    const jsonMatch = withoutThink.match(/\{[\s\S]*\}/);
+
+
+    if (jsonMatch) {
+        try {
+            const parsed = JSON.parse(jsonMatch[0])
+
+            return assistantResponseSchema.parse(parsed)
+        } catch (error) {
+
+        }
+    }
+
+    return {
+        headline: "Recall Result",
+        details: withoutThink || "No details returned by the model.",
+        resolutionStatus: "partly_resolved"
+    }
+}
+
 
 export const processRecallConversation = createServerFn({ method: "POST" })
     .middleware([sessionMiddleware])
@@ -114,5 +136,5 @@ export const processRecallConversation = createServerFn({ method: "POST" })
             }
         }
 
-        return rawText
+        return parseModelJson(rawText)
     })
