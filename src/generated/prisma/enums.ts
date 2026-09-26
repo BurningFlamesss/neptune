@@ -9,7 +9,102 @@
 * 🟢 You can import this file directly.
 */
 
+export const Visibility = {
+  PRIVATE: 'PRIVATE',
+  PUBLIC: 'PUBLIC',
+  PERMISSIONED: 'PERMISSIONED',
+  UNLISTED: 'UNLISTED'
+} as const
+
+export type Visibility = (typeof Visibility)[keyof typeof Visibility]
 
 
-// This file is empty because there are no enums in the schema.
-export {}
+export const AssetType = {
+  KNOWLEDGE: 'KNOWLEDGE',
+  SKILL: 'SKILL',
+  AGENT: 'AGENT',
+  RESEARCH: 'RESEARCH',
+  PREFERENCE: 'PREFERENCE',
+  WORKFLOW: 'WORKFLOW'
+} as const
+
+export type AssetType = (typeof AssetType)[keyof typeof AssetType]
+
+
+export const CouponType = {
+  PERCENTAGE_DISCOUNT: 'PERCENTAGE_DISCOUNT',
+  FIXED_DISCOUNT: 'FIXED_DISCOUNT'
+} as const
+
+export type CouponType = (typeof CouponType)[keyof typeof CouponType]
+
+
+export const CouponRedeemptionType = {
+  DIRECT_REDEEM: 'DIRECT_REDEEM',
+  CHECKOUT: 'CHECKOUT'
+} as const
+
+export type CouponRedeemptionType = (typeof CouponRedeemptionType)[keyof typeof CouponRedeemptionType]
+
+
+export const CouponStatus = {
+  ACTIVE: 'ACTIVE',
+  EXHAUSTED: 'EXHAUSTED',
+  EXPIRED: 'EXPIRED',
+  DISABLED: 'DISABLED'
+} as const
+
+export type CouponStatus = (typeof CouponStatus)[keyof typeof CouponStatus]
+
+
+export const PaymentStatus = {
+  CREATED: 'CREATED',
+  PENDING: 'PENDING',
+  REQUIRES_ACTION: 'REQUIRES_ACTION',
+  SUCCEEDED: 'SUCCEEDED',
+  FAILED: 'FAILED',
+  CANCELLED: 'CANCELLED',
+  REFUNDED: 'REFUNDED',
+  PARTICALLY_REFUNDED: 'PARTICALLY_REFUNDED'
+} as const
+
+export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]
+
+
+export const BillingInterval = {
+  MONTHLY: 'MONTHLY',
+  ANNUALLY: 'ANNUALLY',
+  LIFETIME: 'LIFETIME'
+} as const
+
+export type BillingInterval = (typeof BillingInterval)[keyof typeof BillingInterval]
+
+
+export const SubscriptionStatus = {
+  ACTIVE: 'ACTIVE',
+  PAST_DUE: 'PAST_DUE',
+  UNPAID: 'UNPAID',
+  CANCELLED: 'CANCELLED',
+  TRIALING: 'TRIALING'
+} as const
+
+export type SubscriptionStatus = (typeof SubscriptionStatus)[keyof typeof SubscriptionStatus]
+
+
+export const Currency = {
+  USD: 'USD',
+  NPR: 'NPR',
+  EUR: 'EUR'
+} as const
+
+export type Currency = (typeof Currency)[keyof typeof Currency]
+
+
+export const PaymentProvider = {
+  STRIPE: 'STRIPE',
+  PAYPAL: 'PAYPAL',
+  ESEWA: 'ESEWA',
+  MANUAL: 'MANUAL'
+} as const
+
+export type PaymentProvider = (typeof PaymentProvider)[keyof typeof PaymentProvider]

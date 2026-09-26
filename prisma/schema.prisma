@@ -7,32 +7,115 @@ datasource db {
   provider = "postgresql"
 }
 
+enum Visibility {
+  PRIVATE
+  PUBLIC
+  PERMISSIONED
+  UNLISTED
+}
+
+enum AssetType {
+  KNOWLEDGE
+  SKILL
+  AGENT
+  RESEARCH
+  PREFERENCE
+  WORKFLOW
+}
+
+enum CouponType {
+  PERCENTAGE_DISCOUNT
+  FIXED_DISCOUNT
+}
+
+enum CouponRedeemptionType {
+  DIRECT_REDEEM
+  CHECKOUT
+}
+
+enum CouponStatus {
+  ACTIVE
+  EXHAUSTED
+  EXPIRED
+  DISABLED
+}
+
+enum PaymentStatus {
+  CREATED
+  PENDING
+  REQUIRES_ACTION
+  SUCCEEDED
+  FAILED
+  CANCELLED
+  REFUNDED
+  PARTICALLY_REFUNDED
+}
+
+enum BillingInterval {
+  MONTHLY
+  ANNUALLY
+  LIFETIME
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  PAST_DUE
+  UNPAID
+  CANCELLED
+  TRIALING
+}
+
+enum Currency {
+  USD
+  NPR
+  EUR
+}
+
+enum PaymentProvider {
+  STRIPE
+  PAYPAL
+  ESEWA
+  MANUAL
+}
 
 model User {
-  id            String    @id
-  name          String
-  email         String
-  emailVerified Boolean   @default(false)
-  image         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  sessions      Session[]
-  accounts      Account[]
+  id                 String                @id
+  name               String
+  email              String
+  emailVerified      Boolean               @default(false)
+  image              String?
+  createdAt          DateTime              @default(now())
+  updatedAt          DateTime              @updatedAt
+  sessions           Session[]
+  accounts           Account[]
+  developedApps      OauthClient[]         @relation("DeveloperApps")
+  oauthrefreshtokens OauthRefreshToken[]
+  oauthaccesstokens  OauthAccessToken[]
+  oauthconsents      OauthConsent[]
+  payments           Payment[]
+  couponUsages       CouponUsage[]
+  subscriptions      Subscription[]
+  billingProfiles    BillingProfile[]
+  collections        Collection[]
+  assets             Asset[]               @relation("UserAssets")
+  grantAccess        AppCollectionAccess[]
 
   @@unique([email])
   @@map("user")
 }
 
 model Session {
-  id        String   @id
-  expiresAt DateTime
-  token     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  ipAddress String?
-  userAgent String?
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                 String              @id
+  expiresAt          DateTime
+  token              String
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  ipAddress          String?
+  userAgent          String?
+  userId             String
+  user               User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  oauthrefreshtokens OauthRefreshToken[]
+  oauthaccesstokens  OauthAccessToken[]
 
   @@unique([token])
   @@index([userId])
@@ -69,4 +152,378 @@ model Verification {
 
   @@index([identifier])
   @@map("verification")
+}
+
+model Jwks {
+  id         String    @id
+  publicKey  String
+  privateKey String
+  createdAt  DateTime
+  expiresAt  DateTime?
+  alg        String?
+  crv        String?
+
+  @@map("jwks")
+}
+
+model OauthClient {
+  id                               String                @id
+  clientId                         String
+  clientSecret                     String?
+  clientDiscoveryId                String?
+  disabled                         Boolean?              @default(false)
+  skipConsent                      Boolean?
+  enableEndSession                 Boolean?
+  subjectType                      String?
+  scopes                           String[]
+  clientCredentialsScopes          String[]              @default([])
+  userId                           String?
+  developer                        User?                 @relation("DeveloperApps", fields: [userId], references: [id], onDelete: SetNull)
+  name                             String?
+  uri                              String?
+  icon                             String?
+  contacts                         String[]
+  tos                              String?
+  policy                           String?
+  softwareId                       String?
+  softwareVersion                  String?
+  softwareStatement                String?
+  redirectUris                     String[]
+  postLogoutRedirectUris           String[]
+  backchannelLogoutUri             String?
+  backchannelLogoutSessionRequired Boolean?
+  tokenEndpointAuthMethod          String?
+  applicationType                  String?
+  jwks                             String?
+  jwksUri                          String?
+  grantTypes                       String[]
+  responseTypes                    String[]
+  requirePKCE                      Boolean?
+  dpopBoundAccessTokens            Boolean?              @default(false)
+  referenceId                      String?
+  metadata                         Json?
+  oauthclientresources             OauthClientResource[]
+  oauthrefreshtokens               OauthRefreshToken[]
+  oauthaccesstokens                OauthAccessToken[]
+  oauthconsents                    OauthConsent[]
+  collectionAccess                 AppCollectionAccess[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([clientId])
+  @@index([userId])
+  @@map("oauthClient")
+}
+
+model OauthResource {
+  id                            String                @id
+  identifier                    String
+  name                          String
+  accessTokenTtl                Int?
+  refreshTokenTtl               Int?
+  signingAlgorithm              String?
+  signingKeyId                  String?
+  allowedScopes                 String[]
+  customClaims                  Json?
+  dpopBoundAccessTokensRequired Boolean?              @default(false)
+  disabled                      Boolean?              @default(false)
+  createdAt                     DateTime?
+  updatedAt                     DateTime?
+  policyVersion                 Int?                  @default(1)
+  metadata                      Json?
+  oauthclientresources          OauthClientResource[]
+
+  @@unique([identifier])
+  @@map("oauthResource")
+}
+
+model OauthClientResource {
+  id            String        @id
+  clientId      String
+  oauthclient   OauthClient   @relation(fields: [clientId], references: [clientId], onDelete: Cascade)
+  resourceId    String
+  oauthresource OauthResource @relation(fields: [resourceId], references: [identifier], onDelete: Cascade)
+  metadata      Json?
+  createdAt     DateTime?
+
+  @@unique([clientId, resourceId], map: "oauthClientResource_clientId_resourceId_uidx")
+  @@index([clientId])
+  @@index([resourceId])
+  @@map("oauthClientResource")
+}
+
+model OauthRefreshToken {
+  id                      String             @id
+  token                   String
+  clientId                String
+  oauthclient             OauthClient        @relation(fields: [clientId], references: [clientId], onDelete: Cascade)
+  sessionId               String?
+  session                 Session?           @relation(fields: [sessionId], references: [id], onDelete: SetNull)
+  userId                  String
+  user                    User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  referenceId             String?
+  authorizationCodeId     String?
+  resources               String[]
+  requestedUserInfoClaims String[]
+  expiresAt               DateTime
+  createdAt               DateTime
+  revoked                 DateTime?
+  rotatedAt               DateTime?
+  rotationReplayResponse  String?
+  rotationReplayExpiresAt DateTime?
+  authTime                DateTime?
+  confirmation            Json?
+  scopes                  String[]
+  oauthaccesstokens       OauthAccessToken[]
+
+  @@unique([token])
+  @@index([clientId])
+  @@index([sessionId])
+  @@index([userId])
+  @@index([authorizationCodeId])
+  @@map("oauthRefreshToken")
+}
+
+model OauthAccessToken {
+  id                      String             @id
+  token                   String
+  clientId                String
+  oauthclient             OauthClient        @relation(fields: [clientId], references: [clientId], onDelete: Cascade)
+  sessionId               String?
+  session                 Session?           @relation(fields: [sessionId], references: [id], onDelete: SetNull)
+  userId                  String?
+  user                    User?              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  referenceId             String?
+  authorizationCodeId     String?
+  resources               String[]
+  requestedUserInfoClaims String[]
+  refreshId               String?
+  oauthrefreshtoken       OauthRefreshToken? @relation(fields: [refreshId], references: [id], onDelete: Cascade)
+  expiresAt               DateTime
+  createdAt               DateTime
+  revoked                 DateTime?
+  confirmation            Json?
+  scopes                  String[]
+
+  @@unique([token])
+  @@index([clientId])
+  @@index([sessionId])
+  @@index([userId])
+  @@index([authorizationCodeId])
+  @@index([refreshId])
+  @@map("oauthAccessToken")
+}
+
+model OauthConsent {
+  id                      String      @id
+  clientId                String
+  oauthclient             OauthClient @relation(fields: [clientId], references: [clientId], onDelete: Cascade)
+  userId                  String?
+  user                    User?       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  referenceId             String?
+  resources               String[]
+  requestedUserInfoClaims String[]
+  scopes                  String[]
+  createdAt               DateTime
+  updatedAt               DateTime
+
+  @@index([clientId])
+  @@index([userId])
+  @@map("oauthConsent")
+}
+
+model OauthClientAssertion {
+  id        String   @id
+  expiresAt DateTime
+
+  @@map("oauthClientAssertion")
+}
+
+model Collection {
+  id          String     @id @default(cuid())
+  name        String
+  description String?
+  visibility  Visibility @default(PRIVATE)
+  version     Int        @default(1)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt             DateTime              @default(now())
+  updatedAt             DateTime              @updatedAt
+  assets                Asset[]
+  appCollectionAccesses AppCollectionAccess[]
+
+  @@index([userId])
+  @@map("collection")
+}
+
+model Asset {
+  id      String    @id @default(cuid())
+  title   String
+  content String    @db.Text
+  type    AssetType
+  version Int       @default(1)
+
+  collectionId String
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+
+  userId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation("UserAssets", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([collectionId])
+  @@map("asset")
+}
+
+model AppCollectionAccess {
+  id String @id @default(cuid())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  clientId    String
+  oauthClient OauthClient @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  collectionId String
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+
+  canRead  Boolean @default(true)
+  canWrite Boolean @default(false)
+
+  grantedAt DateTime @default(now())
+
+  @@unique([userId, clientId, collectionId])
+  @@map("app_collection_access")
+}
+
+model BillingProfile {
+  id         String          @id @default(cuid())
+  userId     String
+  user       User            @relation(fields: [userId], references: [id])
+  provider   PaymentProvider
+  providerId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([provider, providerId])
+  @@unique([userId, provider])
+  @@map("billing_profiles")
+}
+
+model Plan {
+  id              String          @id @default(cuid())
+  name            String
+  price           Int
+  comparedAtPrice Int?
+  interval        BillingInterval @default(MONTHLY)
+  currency        Currency
+  isActive        Boolean         @default(true)
+  sortOrder       Int             @default(0)
+
+  // Access Layer
+  intelligenceStorage String?
+  sync                String?
+  recall              String?
+  versioning          String?
+  sharing             String?
+  features            Json?
+  notIncludedFeatures Json?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  payments          Payment[]
+  subscriptions     Subscription[]
+  applicableCoupons Coupon[]
+
+  @@index([isActive, sortOrder])
+  @@map("plans")
+}
+
+model Subscription {
+  id     String  @id @default(cuid())
+  userId String
+  user   User    @relation(fields: [userId], references: [id])
+  planId String?
+  plan   Plan?   @relation(fields: [planId], references: [id])
+
+  status     SubscriptionStatus @default(ACTIVE)
+  providerId String?            @unique
+  customerId String?
+
+  currentPeriodStart DateTime
+  currentPeriodEnd   DateTime
+  cancelAtPeriodEnd  Boolean  @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@map("subscriptions")
+}
+
+model Payment {
+  id                    String          @id @default(cuid())
+  userId                String
+  user                  User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  provider              PaymentProvider
+  status                PaymentStatus   @default(PENDING)
+  providerTransactionId String?
+  orderId               Int             @unique
+  currency              Currency
+  subTotal              Int
+  discount              Int             @default(0)
+  total                 Int
+  couponUsageId         String?         @unique
+  couponUsage           CouponUsage?    @relation(fields: [couponUsageId], references: [id])
+  metadata              Json?
+  paidAt                DateTime?
+  createdAt             DateTime        @default(now())
+  updatedAt             DateTime        @updatedAt
+  plan                  Plan?           @relation(fields: [planId], references: [id])
+  planId                String?
+
+  @@index([userId])
+  @@map("payments")
+}
+
+model Coupon {
+  id                 String                @id @default(cuid())
+  code               String                @unique
+  type               CouponType
+  redeemptionType    CouponRedeemptionType
+  status             CouponStatus          @default(ACTIVE)
+  percentageDiscount Int?
+  fixedDiscount      Int?
+  maxUses            Int?
+  usedCount          Int                   @default(0)
+  perUserLimit       Int                   @default(1)
+  applicablePlans    Plan[]
+  startsAt           DateTime?
+  expiresAt          DateTime?
+  metadata           String?
+  createdAt          DateTime              @default(now())
+  updatedAt          DateTime              @updatedAt
+  uses               CouponUsage[]
+
+  @@map("coupons")
+}
+
+model CouponUsage {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+  coupon          Coupon?  @relation(fields: [couponId], references: [id])
+  couponId        String?
+  payment         Payment?
+  discountApplied Int?
+  createdAt       DateTime @default(now())
+
+  @@index([couponId, userId])
+  @@map("coupon_usages")
 }

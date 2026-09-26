@@ -1,7 +1,12 @@
 import { createEnv } from "@t3-oss/env-core";
+import { z } from "zod";
 
 export const serverEnv = createEnv({
-	server: {},
+	server: {
+		SERVER_URL: z.string(),
+		APP_USER: z.string(),
+		APP_PASSWORD: z.string()
+	},
 	runtimeEnv: process.env,
 	emptyStringAsUndefined: true,
 

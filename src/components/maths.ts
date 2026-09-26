@@ -1,0 +1,1 @@
+export const FIELD_CENTERS = [-0.73, -0.25, 0.26, 0.74]
