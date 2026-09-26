@@ -852,25 +852,59 @@ model PackImport {
   @@map("pack_imports")
 }
 
-model AppCollectionAccess {
+model TuneApp {
   id String @id @default(cuid())
 
+  publisherId String
+  publisher User @relation("UserTuneApps", fields: [publisherId], references: [id], onDelete: Cascade)
+
+  name String
+  slug String @unique
+  description String? @db.Text
+  manifesr Json
+  codeRef String
+  installations TuneAppInstallation[]
+  publishedAt DateTime?
+
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime @updatedAt
+
+  @@map("tune_apps")
+}
+
+model TuneAppInstallation {
+  id String @id @default(cuid())
   userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation("UserTuneAppInstalls", fields: [userId], references: [id], onDelete: Cascade)
 
-  clientId    String
-  oauthClient OauthClient @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  tuneAppId String
+  tuneApp TuneApp @relation(fields: [tuneAppId], references: [id], onDelete: Cascade)
 
-  collectionId String
-  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  permissionsGranted Json?
+  installedAt DateTime @default(now())
 
-  canRead  Boolean @default(true)
-  canWrite Boolean @default(false)
+  @@map("tune_app_installations")
+}
 
-  grantedAt DateTime @default(now())
+model RecallBlock {
+  id String @id @default(cuid())
+  publisherId String
+  publisher User @relation("UserRecallBlocks", fields: [publisherId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, clientId, collectionId])
-  @@map("app_collection_access")
+  name String
+  slug String
+  version String
+  description String? @db.Text
+  manifest Json
+  codeRef String
+  reviewedAt DateTime?
+  publishedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("recall_blocks")
 }
 
 model BillingProfile {
