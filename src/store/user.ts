@@ -61,6 +61,32 @@ interface UserStoreAction {
 
 type UserStore = UserStoreState & UserStoreAction
 
+
+
+const ssrSafeStorage: StateStorage = {
+    getItem: (name) => {
+        if (typeof window === "undefined") {
+            return null
+        }
+
+        return window.localStorage.getItem(name)
+    },
+    setItem: (name, value) => {
+        if (typeof window === "undefined") {
+            return
+        }
+
+        window.localStorage.setItem(name, value)
+    },
+    removeItem: (name) => {
+        if (typeof window === "undefined") {
+            return
+        }
+
+        window.localStorage.removeItem(name)
+    }
+}
+
 export const useUserStore = create<UserStore>()(
     persist(
         immer(set => ({
@@ -87,7 +113,11 @@ export const useUserStore = create<UserStore>()(
                         createdAt: now,
                         updatedAt: now
                     })
+
+                    state.activeChatId = newId
                 })
+
+
                 return newId
             },
             setActiveChat: (id) => {
@@ -110,7 +140,7 @@ export const useUserStore = create<UserStore>()(
                     state.chats = state.chats.filter((chat) => chat.id !== id)
 
                     if (state.activeChatId === id) {
-                        state.activeChatId = state.chats?.[0].id ?? null
+                        state.activeChatId = state.chats[0].id ?? null
                     }
                 })
             },
@@ -175,27 +205,3 @@ export const useUserStore = create<UserStore>()(
         }
     )
 )
-
-const ssrSafeStorage: StateStorage = {
-    getItem: (name) => {
-        if (typeof window === "undefined") {
-            return null
-        }
-
-        return window.localStorage.getItem(name)
-    },
-    setItem: (name, value) => {
-        if (typeof window === "undefined") {
-            return
-        }
-
-        window.localStorage.setItem(name, value)
-    },
-    removeItem: (name) => {
-        if (typeof window === "undefined") {
-            return
-        }
-
-        window.localStorage.removeItem(name)
-    }
-}

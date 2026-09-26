@@ -1,9 +1,10 @@
 import { sessionMiddleware } from "#/middleware/authentication.tsx";
 import { chat } from "@tanstack/ai";
-import { openRouterText } from "@tanstack/ai-openrouter";
+import { createOpenRouterText, openRouterText } from "@tanstack/ai-openrouter";
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { getCollectionsOfUser } from "./knowledge";
+import { serverEnv } from "#/env/serverEnv.ts";
 
 const attachmentSchema = z.object({
     id: z.string(),
@@ -50,6 +51,29 @@ function parseModelJson(rawText: string): z.infer<typeof assistantResponseSchema
     }
 }
 
+export const extractChunkText = (chunk: unknown) => {
+    if (!chunk || typeof chunk !== "object") {
+        return ""
+    }
+
+    const c = chunk as Record<string, unknown>
+
+    if (c.type === "TEXT_MESSAGE_CONTENT" && typeof c.delta === "string") {
+        return c.delta
+    }
+
+    if (c.type === "content" || c.type === "text") {
+        if (typeof c.delta === "string") {
+            return c.delta
+        }
+        if (typeof c.content === "string") {
+            return c.content
+        }
+    }
+
+    return ""
+}
+
 
 export const processRecallConversation = createServerFn({ method: "POST" })
     .middleware([sessionMiddleware])
@@ -69,13 +93,21 @@ export const processRecallConversation = createServerFn({ method: "POST" })
             }
         })
 
-        const leanCollections = allCollections.map((item) => {
+        const pinnedCollectionIds = new Set(
+            [...data.globalContext, ...data.messages.flatMap(message => message.attachments ?? [])]
+                .filter((attribute) => attribute.type === "collection")
+                .map((attribute) => attribute.id)
+        )
+
+        const targetCollections = pinnedCollectionIds.size > 0 ? allCollections.filter((collection) => pinnedCollectionIds.has(collection.id)) : allCollections
+
+        const leanCollections = targetCollections.map((item) => {
             const { id, version, visibility, assets, ...rest } = item
 
             const necessaryAsset = assets.map(asset => {
-                const { collectionId, createdAt, updatedAt, userId, version, id, ...rest } = asset
+                const { collectionId, createdAt, updatedAt, userId, version, id, ...assetRest } = asset
 
-                return rest
+                return assetRest
             })
 
             return {
@@ -84,17 +116,21 @@ export const processRecallConversation = createServerFn({ method: "POST" })
             }
         })
 
+        const noneCollectionGlobalAttachments = data.globalContext.filter((attachment) => attachment.type !== "collection")
+
         const systemPrompt = `
-        Please, use these context and give response according to this:
+        Please, use the following knowledge context and respond accordingly: 
 
         ${JSON.stringify(leanCollections)}
+
+        ${noneCollectionGlobalAttachments.length > 0 ? `Additional Global Context Attachments: \n ${JSON.stringify(noneCollectionGlobalAttachments)}` : ""}
 
         Respond only with valid raw JSON object (no md formatting, no code blocks, no extra text) matching the exact structure:
 
         {
-            "headline": "",
-            "details": "",
-            resolutionStatus: "resolved" | "partly_resolved" | "unresolved"
+            "headline": "Short summmary title",
+            "details": "Detailed answer based on context",
+            "resolutionStatus": "resolved" | "partly_resolved" | "unresolved"
         }
         `.trim()
 
@@ -117,23 +153,22 @@ export const processRecallConversation = createServerFn({ method: "POST" })
         })
 
         const stream = chat({
-            adapter: openRouterText("qwen/qwen3.8-27b:free"),
+            adapter: createOpenRouterText("qwen/qwen3.8-27b:free", serverEnv.LLM_API_KEY),
             messages: formattedMessages,
             systemPrompts: [systemPrompt],
             modelOptions: {
                 provider: {
                     dataCollection: "deny",
-                    sort: "throughput"
-                }
+                    sort: "throughput",
+                },
+
             }
         })
 
         let rawText = ""
 
         for await (const chunk of stream) {
-            if (chunk.type === "CUSTOM") {
-                rawText += chunk.value
-            }
+            rawText += extractChunkText(chunk)
         }
 
         return parseModelJson(rawText)

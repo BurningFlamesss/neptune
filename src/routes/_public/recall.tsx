@@ -12,7 +12,9 @@ function RouteComponent() {
   const hasHydrated = useUserStore((state) => state._hasHydrated)
   const setHasHydrated = useUserStore((state) => state.setHasHydrated)
   const activeChat = useUserStore((state) => state.chats.find((chat) => chat.id === state.activeChatId))
-  const { createChat, addAssistantMessage, addUserMessage } = useUserStore()
+  const createChat = useUserStore((state) => state.createChat)
+  const addAssistantMessage = useUserStore((state) => state.addAssistantMessage)
+  const addUserMessage = useUserStore((state) => state.addUserMessage)
 
   const [input, setInput] = useState<string>("")
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -20,7 +22,7 @@ function RouteComponent() {
   const scrollContainerRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
-    if (!hasHydrated) {
+    if (!hasHydrated && useUserStore.persist.hasHydrated()) {
       setHasHydrated(true)
     }
   }, [hasHydrated])
