@@ -118,9 +118,42 @@ export const useUserStore = create<UserStore>()(
                 state.activeChatId = null
             })
         },
-        addUserMessage: () => {
+        addUserMessage: (chatId, content, attachments = []) => {
+            set((state) => {
+                const chat = state.chats.find((chat) => chat.id === chatId)
 
+                if (chat) {
+                    chat.messages.push({
+                        id: crypto.randomUUID(),
+                        timestamp: Date.now(),
+                        role: "user",
+                        content,
+                        attachments
+                    })
+
+                    if (chat.messages.length === 1) {
+                        chat.title = content.slice(0, 40)
+                    }
+
+                    chat.updatedAt = Date.now()
+                }
+            })
         },
-        addAssistantMessage: () => { }
+        addAssistantMessage: (chatId, payload) => {
+            set((state) => {
+                const chat = state.chats.find((chat) => chat.id === chatId)
+
+                if (chat) {
+                    chat.messages.push({
+                        id: crypto.randomUUID(),
+                        timestamp: Date.now(),
+                        role: "assistant",
+                        ...payload
+                    })
+
+                    chat.updatedAt = Date.now()
+                }
+            })
+        }
     }))
 )
