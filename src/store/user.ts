@@ -51,6 +51,7 @@ interface UserStoreAction {
     createChat: (context?: Attachment[]) => string;
     setActiveChat: (id: string) => void;
     setGlobalContext: (chatId: string, context: Attachment[]) => void;
+    deleteChat: (id: string) => void;
     clearAllChats: () => void;
     addUserMessage: (chatId: string, content: string, attachments?: Attachment[]) => void;
     addAssistantMessage: (chatId: string, payload: Omit<AssistantMessage, "id" | "role" | "timestamp">) => void;
@@ -92,9 +93,34 @@ export const useUserStore = create<UserStore>()(
                 state.activeChatId = id
             })
         },
-        setGlobalContext: () => { },
-        clearAllChats: () => { },
-        addUserMessage: () => { },
+        setGlobalContext: (chatId, context) => {
+            set((state) => {
+                const chat = state.chats.find(chat => chat.id === chatId)
+
+                if (chat) {
+                    chat.globalContext = context
+                    chat.updatedAt = Date.now()
+                }
+            })
+        },
+        deleteChat: (id) => {
+            set((state) => {
+                state.chats = state.chats.filter((chat) => chat.id !== id)
+
+                if (state.activeChatId === id) {
+                    state.activeChatId = state.chats?.[0].id ?? null
+                }
+            })
+        },
+        clearAllChats: () => {
+            set((state) => {
+                state.chats = []
+                state.activeChatId = null
+            })
+        },
+        addUserMessage: () => {
+
+        },
         addAssistantMessage: () => { }
     }))
 )
