@@ -793,6 +793,65 @@ model CombineConflict {
   @@map("combine_conflicts")
 }
 
+model Pack {
+  id String @id @default(cuid())
+
+  ownerId String
+  owner User @relation("UserPacks", fields: [ownerId], references: [id], onDelete: Cascade)
+
+  name String
+  slug String @unique
+  description String?
+
+  visibility Visibility @default(PRIVATE)
+  releases Release[]
+  imports PackImport[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("packs")
+}
+
+model Release {
+  id String @id @default(cuid())
+  packId String
+  pack Pack @relation(fields: [packId], references: [id], onDelete: Cascade)
+
+  version String
+  sourceRevisionId String?
+
+  sourceRevision Revision? @relation(fields: [sourceRevisionId], references: [id], onDelete: SetNull)
+
+
+  notes String? @db.Text
+  manifest Json 
+  importedInto Collection[]
+  imports PackImport[]
+
+  publishedAt DateTime @default(now())
+  @@map("releases")
+}
+
+model PackImport {
+  id String @id @default(cuid())
+  packId String
+  pack Pack @relation(fields: [packId], references: [id], onDelete: Cascade)
+
+  releaseId String
+  installedRelease Release @relation(fields: [releaseId], references: [id], onDelete: Cascade)
+
+  targetCollectionId String
+  targetCollection Collection @relation(fields: [targetCollectionId], references: [id], onDelete: Cascade)
+
+  syncMode SyncMode @default(REVIEW)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("pack_imports")
+}
+
 model AppCollectionAccess {
   id String @id @default(cuid())
 
