@@ -573,6 +573,74 @@ model AppMemoryLink {
   @@map("app_memory_links")
 }
 
+model AccessGrant {
+  id String @id @default(cuid())
+
+  clientId String
+
+  oauthClient OauthClient @relation("GrantedToApp", fields: [clientId], references: [id], onDelete: Cascade)
+
+  resourceType AccessResourceType
+  resourceKey String 
+
+  permissions AccessPermission[]
+
+  inherits Boolean @default(true)
+
+  areaId String?
+  area Area? @relation(fields: [areaId], references: [id], onDelete: Cascade)
+
+  collectionId String?
+  collection Collection? @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+
+  entryId String?
+  entry Entry? @relation(fields: [entryId], references: [id], onDelete: Cascade)
+
+  appMemoryId String?
+  appMemory AppMemory? @relation(fields: [appMemoryId], references: [id], onDelete: Cascade)
+
+  expiresAt DateTime?
+  grantedAt DateTime @default(now())
+
+  @@map("access_grants")
+}
+
+model ContextRequest {
+  id String @id @default(cuid())
+  clientId String
+
+  oauthClient OauthClient @relation("AppRequestsContext", fields: [clientId], references: [id], onDelete: Cascade)
+
+  purpose String
+  query String @db.Text
+
+  status ContextRequestStatus @default(PENDING)
+
+  receipt ContextReceipt?
+  
+
+  requestedAt DateTime @default(now())
+  completedAt DateTime?
+
+  @@map("context_requests")
+}
+
+model ContextReceipt {
+  id String @id @default(cuid())
+
+  contextRequestId String @unique
+  itemCount Int @default(0)
+
+  contextRequest ContextRequest @relation(fields: [contextRequestId], references: [id], onDelete: Cascade)
+  
+
+
+  createdAt DateTime @default(now())
+
+  @@map("context_receipts")
+}
+
+
 
 model AppCollectionAccess {
   id String @id @default(cuid())
