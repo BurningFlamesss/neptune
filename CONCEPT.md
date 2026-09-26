@@ -37,3 +37,39 @@ To me, software is about values
     - Recall Blocks (Dynamic Chat Widgets)
 
 ## Glossary of Terms
+
+1. Structural Noun
+    - Tune
+    - Area
+    - Collection
+    - Entry
+    - Tag
+    - App Memory
+
+2. State & Intelligence
+    - Recall
+    - Suggested State
+    - Confirmed State
+    - Archived State
+    - Recall Policy
+
+3. Access and Proxy
+    - Context Proxy
+    - Context Request
+    - Context Receipt
+    - Access Grant
+    - Access Request
+    - Inheritance
+
+4. Version Control and Community
+    - Path
+    - Revision
+    - Combine
+    - Pack
+    - Release
+    - Copy
+
+5. App and Extensibility
+    - Tune App
+    - Recall Block
+    - Review Center
