@@ -690,6 +690,55 @@ model UserRoyalty {
   @@map("user_royalties")
 }
 
+model Path {
+  id String @id @default(cuid())
+
+  collectionId String
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+
+  name                 String
+  isDefault            Boolean   @default(false)
+  forkedFromRevisionId String?
+  forkedFromRevision   Revision? @relation("PathFork", fields: [forkedFromRevisionId], references: [id], onDelete: SetNull)
+
+  forkedPaths    Path[]     @relation("PathFork")
+  revisions      Revision[] @relation("PathRevisions")
+  headRevisionId String?
+  headRevision   Revision?  @relation("PathHead", fields: [headRevisionId], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("paths")
+}
+
+model Revision {
+  id String @id @default(cuid())
+
+  pathId String
+  path   Path   @relation("PathRevisions", fields: [pathId], references: [id], onDelete: Cascade)
+
+  number           Int
+  message          String
+  parentRevisionId String?
+  parentRevision   Revision?  @relation("RevisionParent", fields: [parentRevisionId], references: [id], onDelete: SetNull)
+  childRevisions   Revision[] @relation("RevisionParent")
+
+  forkedPaths Path[] @relation("PathFork")
+
+  headOfPaths Path[] @relation("PathHead")
+
+  changes RevisionChange[]
+
+  createdAt DateTime @default(now())
+
+  @@map("revisions")
+}  
+
+model RevisionChange {
+  
+}
+
 model AppCollectionAccess {
   id String @id @default(cuid())
 
