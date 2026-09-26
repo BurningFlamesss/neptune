@@ -1,20 +1,12 @@
 import { sessionMiddleware } from "#/middleware/authentication.tsx";
-import { chat } from "@tanstack/ai";
-import { createOpenRouterText, openRouterText } from "@tanstack/ai-openrouter";
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { getCollectionsOfUser } from "./knowledge";
 import { serverEnv } from "#/env/serverEnv.ts";
 
-type OpenRouterModelId = Parameters<typeof createOpenRouterText>[0];
-
-const FREE_MODEL_FALLBACKS: OpenRouterModelId[] = [
-    "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free" as OpenRouterModelId,
-    "dots-studio/dots-3-note-preview:free" as OpenRouterModelId,
-    "respan/span-01-lite:free" as OpenRouterModelId,
-    "poolside/laguna-xs-2.1:free" as OpenRouterModelId,
-    "liquid/lfm-2.5-embedding-350m:free" as OpenRouterModelId,
-
+const FREE_MODEL_FALLBACKS: string[] = [
+    "space-bunny-free",
+    "deepseek-v4-flash-free",
 ];
 
 const attachmentSchema = z.object({
@@ -22,35 +14,41 @@ const attachmentSchema = z.object({
     type: z.enum(["image", "file", "document", "collection"]),
     name: z.string(),
     url: z.string().optional(),
-    mimeType: z.string().optional()
-})
+    mimeType: z.string().optional(),
+});
 
 const processRecallConversationParamSchema = z.object({
     globalContext: z.array(attachmentSchema).optional().default([]),
-    messages: z.array(z.object({
-        role: z.enum(["user", "assistant"]),
-        content: z.string(),
-        attachments: z.array(attachmentSchema).optional().default([])
-    })),
-})
+    messages: z.array(
+        z.object({
+            role: z.enum(["user", "assistant"]),
+            content: z.string(),
+            attachments: z.array(attachmentSchema).optional().default([]),
+        })
+    ),
+});
 
 const assistantResponseSchema = z.object({
     headline: z.string().catch("Recall Result"),
     details: z.string(),
-    resolutionStatus: z.enum(["resolved", "partly_resolved", "unresolved"]).catch("partly_resolved")
-})
+    resolutionStatus: z
+        .enum(["resolved", "partly_resolved", "unresolved"])
+        .catch("partly_resolved"),
+});
 
-function parseModelJson(rawText: string): z.infer<typeof assistantResponseSchema> {
+function parseModelJson(
+    rawText: string
+): z.infer<typeof assistantResponseSchema> {
+
     const withoutThink = rawText.replace(/<think>[\s\S]*?<\/think>/gi, "").trim();
     const jsonMatch = withoutThink.match(/\{[\s\S]*\}/);
 
-
     if (jsonMatch) {
         try {
-            const parsed = JSON.parse(jsonMatch[0])
+            const parsed = JSON.parse(jsonMatch[0]);
 
-            return assistantResponseSchema.parse(parsed)
-        } catch (error) {
+            return assistantResponseSchema.parse(parsed);
+        } catch {
 
         }
     }
@@ -58,142 +56,204 @@ function parseModelJson(rawText: string): z.infer<typeof assistantResponseSchema
     return {
         headline: "Recall Result",
         details: withoutThink || "No details returned by the model.",
-        resolutionStatus: "partly_resolved"
-    }
+        resolutionStatus: "partly_resolved",
+    };
 }
 
-export const extractChunkText = (chunk: unknown) => {
-    if (!chunk || typeof chunk !== "object") {
-        return ""
-    }
+function sanitizeMessages(
+    messages: Array<{
+        role: "user" | "assistant";
+        content: string;
+        attachments?: z.infer<typeof attachmentSchema>[];
+    }>,
+    systemInstruction: string
+): Array<{ role: "user" | "assistant"; content: string }> {
 
-    const c = chunk as Record<string, unknown>
+    const validMessages = messages.filter(
+        (message) => !(message.role === "assistant" && (message.content.startsWith("Recall Failed") || message.content.includes("No details returned by the model.")))
+    );
 
-    if (c.type === "RUN_ERROR" || c.type === "error") {
-        const upstreamDetail = c.error?.metadata?.raw || c.error?.message || c.message;
-        const providerName = c.error?.metadata?.provider_name;
-        throw new Error(
-            `Recall Error${providerName ? ` (${providerName})` : ""}: ${upstreamDetail || JSON.stringify(c.error || c)
-            }`
-        );
-    }
+    const merged: Array<{ role: "user" | "assistant"; content: string }> = [];
 
-    if (c.type === "TEXT_MESSAGE_CONTENT" && typeof c.delta === "string") {
-        return c.delta
-    }
+    for (const message of validMessages) {
+        let content = message.content.trim();
 
-    if (c.type === "content" || c.type === "text") {
-        if (typeof c.delta === "string") {
-            return c.delta
+        if (message.role === "user" && message.attachments && message.attachments.length > 0) {
+            const attachmentNote = message.attachments
+                .map((attachment) => `[Attached ${attachment.type}: ${attachment.name}${attachment.url ? ` (${attachment.url})` : ""}]`)
+                .join(" ");
+
+            content = `${content}\n\n${attachmentNote}`;
         }
-        if (typeof c.content === "string") {
-            return c.content
+
+        if (!content) continue;
+
+        const previous = merged[merged.length - 1];
+
+        if (previous && previous.role === message.role) {
+            previous.content = `${previous.content}\n\n${content}`;
+        } else {
+            merged.push({ role: message.role, content });
         }
     }
 
-    return ""
+    if (merged.length === 0) {
+        return [{ role: "user", content: systemInstruction }];
+    }
+
+    if (merged[0].role === "assistant") {
+        merged.shift();
+    }
+
+    if (merged.length > 0) {
+        merged[0] = {
+            role: "user",
+            content: `${systemInstruction}\n\n---\nUser Prompt:\n${merged[0].content}`,
+        };
+    }
+
+    return merged;
 }
 
+
+async function requestCompletion(params: {
+    baseUrl?: string;
+    apiKey: string;
+    model: string;
+    messages: Array<{ role: "user" | "assistant"; content: string }>;
+}): Promise<string> {
+    const endpoint = params.baseUrl ?? "https://openrouter.ai/api/v1/chat/completions";
+
+    const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${params.apiKey}`,
+        },
+        body: JSON.stringify({
+            model: params.model,
+            messages: params.messages,
+            stream: false,
+        }),
+    });
+
+    const rawBody = await response.text();
+    let json: any;
+
+    try {
+        json = JSON.parse(rawBody);
+    } catch {
+        throw new Error(`HTTP ${response.status} from ${endpoint}: ${rawBody.slice(0, 200)}`);
+    }
+
+    if (!response.ok || json?.error) {
+        const errMsg =
+            json?.error?.metadata?.raw ||
+            json?.error?.message ||
+            json?.message ||
+            rawBody.slice(0, 200);
+
+        throw new Error(`HTTP ${response.status} (${params.model}): ${errMsg}`);
+    }
+
+    const content = json?.choices?.[0]?.message?.content;
+
+    if (typeof content !== "string" || !content.trim()) {
+        throw new Error(`Empty response content from model ${params.model}`);
+    }
+
+    return content;
+}
 
 export const processRecallConversation = createServerFn({ method: "POST" })
     .middleware([sessionMiddleware])
     .validator(processRecallConversationParamSchema)
     .handler(async ({ data, context }) => {
-        const { prisma } = await import("#/db.ts")
-
         if (!context.session?.user.id) {
-            throw new Error("Unauthorized")
+            throw new Error("Unauthorized");
         }
 
-        const userId = context.session.user.id
+        const userId = context.session.user.id;
 
         const allCollections = await getCollectionsOfUser({
             data: {
-                userId
-            }
-        })
+                userId,
+            },
+        });
 
         const pinnedCollectionIds = new Set(
-            [...data.globalContext, ...data.messages.flatMap(message => message.attachments ?? [])]
+            [...data.globalContext, ...data.messages.flatMap((message) => message.attachments ?? [])]
                 .filter((attribute) => attribute.type === "collection")
                 .map((attribute) => attribute.id)
-        )
+        );
 
-        const targetCollections = pinnedCollectionIds.size > 0 ? allCollections.filter((collection) => pinnedCollectionIds.has(collection.id)) : allCollections
+        const targetCollections = pinnedCollectionIds.size > 0
+            ? allCollections.filter((collection) => pinnedCollectionIds.has(collection.id))
+            : allCollections;
 
         const leanCollections = targetCollections.map((item) => {
-            const { id, version, visibility, assets, ...rest } = item
+            const { id, version, visibility, assets, ...rest } = item;
 
-            const necessaryAsset = assets.map(asset => {
-                const { collectionId, createdAt, updatedAt, userId, version, id, ...assetRest } = asset
+            const necessaryAsset = assets.map((asset) => {
+                const {
+                    collectionId,
+                    createdAt,
+                    updatedAt,
+                    userId: _userId,
+                    version: _version,
+                    id: _id,
+                    ...assetRest
+                } = asset;
 
-                return assetRest
-            })
+                return assetRest;
+            });
 
             return {
                 ...rest,
-                assets: necessaryAsset
-            }
-        })
+                assets: necessaryAsset,
+            };
+        });
 
-        const noneCollectionGlobalAttachments = data.globalContext.filter((attachment) => attachment.type !== "collection")
+        const noneCollectionGlobalAttachments = data.globalContext.filter((attachment) => attachment.type !== "collection");
 
         const systemPrompt = `
-        Please, use the following knowledge context and respond accordingly: 
+        Please, use the following knowledge context and respond accordingly:
 
         ${JSON.stringify(leanCollections)}
 
-        ${noneCollectionGlobalAttachments.length > 0 ? `Additional Global Context Attachments: \n ${JSON.stringify(noneCollectionGlobalAttachments)}` : ""}
+        ${noneCollectionGlobalAttachments.length > 0
+                ? `Additional Global Context Attachments:\n${JSON.stringify(noneCollectionGlobalAttachments)}`
+                : ""
+            }
 
-        Respond only with valid raw JSON object (no md formatting, no code blocks, no extra text) matching the exact structure:
-
+        Respond ONLY with a valid raw JSON object (no markdown formatting, no code blocks, no extra text) matching the exact structure:
         {
-            "headline": "Short summmary title",
+            "headline": "Short summary title",
             "details": "Detailed answer based on context",
             "resolutionStatus": "resolved" | "partly_resolved" | "unresolved"
         }
-        `.trim()
+        `.trim();
 
-        const formattedMessages = data.messages.map(message => {
-            if (message.role === "user" && message.attachments && message.attachments.length > 0) {
-                const attachmentNote = message.attachments
-                    .map(attachment => `[Attached ${attachment.type}: ${attachment.name}${attachment.url ? ` (${attachment.url})` : ""}]`)
-                    .join(" ")
-
-                return {
-                    role: message.role,
-                    content: `${message.content} \n\n ${attachmentNote}`
-                }
-            }
-
-            return {
-                role: message.role,
-                content: message.content
-            }
-        })
-
-        let lastError: unknown = null
+        const safeMessages = sanitizeMessages(data.messages, systemPrompt);
+        let lastError: unknown = null;
 
         for (const modelId of FREE_MODEL_FALLBACKS) {
             try {
-                const stream = chat({
-                    adapter: createOpenRouterText(modelId, serverEnv.LLM_API_KEY),
-                    messages: formattedMessages,
-                    systemPrompts: [systemPrompt]
-                })
+                const rawText = await requestCompletion({
+                    baseUrl: serverEnv.LLM_BASE_URL,
+                    apiKey: serverEnv.LLM_API_KEY,
+                    model: modelId,
+                    messages: safeMessages,
+                });
 
-                let rawText = ""
-
-                for await (const chunk of stream) {
-                    rawText += extractChunkText(chunk)
-                }
-
-                return parseModelJson(rawText)
+                return parseModelJson(rawText);
             } catch (error) {
-                console.warn(`Model ${modelId} failed, trying next fallback...`, error)
-                lastError = error
+                console.warn(`Model ${modelId} failed, trying next fallback...`, error);
+                lastError = error;
             }
         }
 
-        throw lastError instanceof Error ? lastError : new Error("All free models are currently busy")
-    })
+        throw lastError instanceof Error
+            ? lastError
+            : new Error("All configured models failed to respond.");
+    });

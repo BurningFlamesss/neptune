@@ -6,7 +6,8 @@ export const serverEnv = createEnv({
 		SERVER_URL: z.string(),
 		APP_USER: z.string(),
 		APP_PASSWORD: z.string(),
-		LLM_API_KEY: z.string()
+		LLM_API_KEY: z.string(),
+		LLM_BASE_URL: z.string()
 	},
 	runtimeEnv: process.env,
 	emptyStringAsUndefined: true,
