@@ -1,4 +1,5 @@
 import { create } from "zustand"
+import { createJSONStorage, persist, type StateStorage } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer"
 
 type AttachmentType = "image" | "file" | "document" | "collection"
@@ -61,99 +62,140 @@ interface UserStoreAction {
 type UserStore = UserStoreState & UserStoreAction
 
 export const useUserStore = create<UserStore>()(
-    immer(set => ({
-        chats: [],
-        activeChatId: null,
-        _hasHydrated: false,
+    persist(
+        immer(set => ({
+            chats: [],
+            activeChatId: null,
+            _hasHydrated: false,
 
-        setHasHydrated: (state) => {
-            set((draft) => {
-                draft._hasHydrated = state
-            })
-        },
-
-        createChat: (context = []) => {
-            const newId = crypto.randomUUID()
-            const now = Date.now()
-
-            set((state) => {
-                state.chats.push({
-                    id: newId,
-                    title: "New Recall Session",
-                    messages: [],
-                    globalContext: context,
-                    createdAt: now,
-                    updatedAt: now
+            setHasHydrated: (state) => {
+                set((draft) => {
+                    draft._hasHydrated = state
                 })
-            })
-            return newId
-        },
-        setActiveChat: (id) => {
-            set((state) => {
-                state.activeChatId = id
-            })
-        },
-        setGlobalContext: (chatId, context) => {
-            set((state) => {
-                const chat = state.chats.find(chat => chat.id === chatId)
+            },
 
-                if (chat) {
-                    chat.globalContext = context
-                    chat.updatedAt = Date.now()
-                }
-            })
-        },
-        deleteChat: (id) => {
-            set((state) => {
-                state.chats = state.chats.filter((chat) => chat.id !== id)
+            createChat: (context = []) => {
+                const newId = crypto.randomUUID()
+                const now = Date.now()
 
-                if (state.activeChatId === id) {
-                    state.activeChatId = state.chats?.[0].id ?? null
-                }
-            })
-        },
-        clearAllChats: () => {
-            set((state) => {
-                state.chats = []
-                state.activeChatId = null
-            })
-        },
-        addUserMessage: (chatId, content, attachments = []) => {
-            set((state) => {
-                const chat = state.chats.find((chat) => chat.id === chatId)
-
-                if (chat) {
-                    chat.messages.push({
-                        id: crypto.randomUUID(),
-                        timestamp: Date.now(),
-                        role: "user",
-                        content,
-                        attachments
+                set((state) => {
+                    state.chats.push({
+                        id: newId,
+                        title: "New Recall Session",
+                        messages: [],
+                        globalContext: context,
+                        createdAt: now,
+                        updatedAt: now
                     })
+                })
+                return newId
+            },
+            setActiveChat: (id) => {
+                set((state) => {
+                    state.activeChatId = id
+                })
+            },
+            setGlobalContext: (chatId, context) => {
+                set((state) => {
+                    const chat = state.chats.find(chat => chat.id === chatId)
 
-                    if (chat.messages.length === 1) {
-                        chat.title = content.slice(0, 40)
+                    if (chat) {
+                        chat.globalContext = context
+                        chat.updatedAt = Date.now()
                     }
+                })
+            },
+            deleteChat: (id) => {
+                set((state) => {
+                    state.chats = state.chats.filter((chat) => chat.id !== id)
 
-                    chat.updatedAt = Date.now()
+                    if (state.activeChatId === id) {
+                        state.activeChatId = state.chats?.[0].id ?? null
+                    }
+                })
+            },
+            clearAllChats: () => {
+                set((state) => {
+                    state.chats = []
+                    state.activeChatId = null
+                })
+            },
+            addUserMessage: (chatId, content, attachments = []) => {
+                set((state) => {
+                    const chat = state.chats.find((chat) => chat.id === chatId)
+
+                    if (chat) {
+                        chat.messages.push({
+                            id: crypto.randomUUID(),
+                            timestamp: Date.now(),
+                            role: "user",
+                            content,
+                            attachments
+                        })
+
+                        if (chat.messages.length === 1) {
+                            chat.title = content.slice(0, 40)
+                        }
+
+                        chat.updatedAt = Date.now()
+                    }
+                })
+            },
+            addAssistantMessage: (chatId, payload) => {
+                set((state) => {
+                    const chat = state.chats.find((chat) => chat.id === chatId)
+
+                    if (chat) {
+                        chat.messages.push({
+                            id: crypto.randomUUID(),
+                            timestamp: Date.now(),
+                            role: "assistant",
+                            ...payload
+                        })
+
+                        chat.updatedAt = Date.now()
+                    }
+                })
+            }
+        }))
+        , {
+            name: "recall-chat-storage",
+            storage: createJSONStorage(() => ssrSafeStorage),
+            partialize: (state) => ({
+                chats: state.chats,
+                activeChatId: state.activeChatId
+            }),
+            onRehydrateStorage: () => (state, error) => {
+                if (error) {
+                    console.error("Failed to rehydrate recall store: ", error)
                 }
-            })
-        },
-        addAssistantMessage: (chatId, payload) => {
-            set((state) => {
-                const chat = state.chats.find((chat) => chat.id === chatId)
 
-                if (chat) {
-                    chat.messages.push({
-                        id: crypto.randomUUID(),
-                        timestamp: Date.now(),
-                        role: "assistant",
-                        ...payload
-                    })
-
-                    chat.updatedAt = Date.now()
-                }
-            })
+                state?.setHasHydrated(true)
+            }
         }
-    }))
+    )
 )
+
+const ssrSafeStorage: StateStorage = {
+    getItem: (name) => {
+        if (typeof window === "undefined") {
+            return null
+        }
+
+        return window.localStorage.getItem(name)
+    },
+    setItem: (name, value) => {
+        if (typeof window === "undefined") {
+            return
+        }
+
+        window.localStorage.setItem(name, value)
+    },
+    removeItem: (name) => {
+        if (typeof window === "undefined") {
+            return
+        }
+
+        window.localStorage.removeItem(name)
+    }
+}
