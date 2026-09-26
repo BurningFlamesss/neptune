@@ -1,26 +1,28 @@
+import { processRecallConversation } from '#/functions/ai.tsx';
 import { useUserStore } from '#/store/user.ts';
 import { fetchServerSentEvents, useChat } from '@tanstack/ai-react';
 import { createFileRoute } from '@tanstack/react-router'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export const Route = createFileRoute('/_public/recall')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
+  const context = Route.useRouteContext()
   const { activeChatId, chats, createChat, addAssistantMessage, addUserMessage } = useUserStore()
-  const { messages, sendMessage, isLoading, stop } = useChat({
-    connection: fetchServerSentEvents("/api/chat")
-  })
+  // const { messages, sendMessage, isLoading, stop } = useChat({
+  //   connection: fetchServerSentEvents("/api/chat")
+  // })
 
   const activeChat = chats.find(chat => chat.id === activeChatId)
 
   const [input, setInput] = useState<string>("")
 
-  const submit = (event: React.FormEvent) => {
+  const submit = async (event: React.FormEvent) => {
     event.preventDefault()
 
-    if (!input.trim() || isLoading) {
+    if (!input.trim()) {
       return
     }
 
@@ -32,7 +34,12 @@ function RouteComponent() {
 
     addUserMessage(currentId, input)
 
-    sendMessage(input)
+    processRecallConversation({
+      data: {
+        userId: context.session?.user.id ?? "",
+        messages
+      }
+    })
 
     setInput("")
   }
