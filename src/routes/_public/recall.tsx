@@ -83,7 +83,7 @@ function RouteComponent() {
 
   return (
     <main className='max-w-5xl mx-auto flex flex-col justify-center'>
-      <section ref={scrollContainerRef} className='relative flex flex-col h-[80vh] overflow-y-auto gap-4 p-4'>
+      <section ref={scrollContainerRef} className='relative flex flex-col h-[80vh] overflow-y-auto gap-4 my-2'>
         {!hasHydrated ? (
           <span className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>Loading recall session...</span>
         ) :
