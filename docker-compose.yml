@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: postgres:17
+    image: pgvector/pgvector:pg17
     container_name: neptune-postgres
 
     restart: unless-stopped
@@ -16,5 +16,18 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  laya:
+    image: brainfunctioncollapse/laya:latest
+    container_name: neptune-laya
+    restart: unless-stopped
+    ports:
+      - "8787:8787"
+    environment:
+      - PORT=8787
+      - THREADS=2
+    volumes:
+      - laya_models:/models
+
 volumes:
   postgres_data:
+  laya_models:
