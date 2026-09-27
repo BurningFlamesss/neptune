@@ -73,3 +73,28 @@ const FREE_MODEL_FALLBACKS: OpenRouterModelId[] = [
     "deepseek/deepseek-v4-flash-0731:free" as OpenRouterModelId,
     "openrouter/free" as OpenRouterModelId,
 ];
+
+# Error
+
+npm run db:generate
+
+> db:generate
+> dotenv -e .env.local -- prisma generate
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+Error: Prisma schema validation - (get-dmmf wasm)
+Error code: P1012
+error: Error validating model "Path": Ambiguous self relation detected. The fields `path` and `paths` in model `Path` both refer to `Path`. If they are part of the same relation add the same relation name for them with `@relation(<name>)`.
+  -->  prisma\schema.prisma:1092
+   | 
+1091 |   updatedAt DateTime @updatedAt
+1092 |   path      Path?    @relation(fields: [pathId], references: [id])
+1093 |   pathId    String?
+   | 
+
+Validation Error Count: 1
+[Context: getDmmf]
+
+Prisma CLI Version : 7.10.0

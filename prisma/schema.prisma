@@ -299,7 +299,7 @@ model User {
   tuneApps             TuneApp[]             @relation("UserTuneApps")
   tuneAppInstallations TuneAppInstallation[] @relation("UserTuneAppInstalls")
   recallBlocks         RecallBlock[]         @relation("UserRecallBlocks")
-  developerApiKeys     DeveloperApiKey[]
+  developerApiKeys     DeveloperApiKey[]     @relation("UserApiKeys")
 
   @@unique([email])
   @@map("user")
@@ -321,13 +321,13 @@ model Organization {
 
   createdAt             DateTime               @default(now())
   updatedAt             DateTime               @updatedAt
-  appMemoryUsageLedgers AppMemoryUsageLedger[]
-  apiUsageLedgers       ApiUsageLedger[]
-  packPurchases         PackPurchase[]
-  packSponsorships      PackSponsorship[]
-  knowledgeBounties     KnowledgeBounty[]
-  payments              Payment[]
-  developerApiKeys      DeveloperApiKey[]
+  appMemoryUsageLedgers AppMemoryUsageLedger[] @relation("OrgAppMemoryLedger")
+  apiUsageLedgers       ApiUsageLedger[]       @relation("OrgUsageLedger")
+  packPurchases         PackPurchase[]         @relation("OrgPackPurchases")
+  packSponsorships      PackSponsorship[]      @relation("OrgSponsorships")
+  knowledgeBounties     KnowledgeBounty[]      @relation("OrgBounties")
+  payments              Payment[]              @relation("OrgPayments")
+  developerApiKeys      DeveloperApiKey[]      @relation("OrgApiKeys")
 
   @@map("organizations")
 }
@@ -453,10 +453,10 @@ model OauthClient {
   updatedAt             DateTime               @updatedAt
   appMemories           AppMemory[]
   accessGrants          AccessGrant[]          @relation("GrantedToApp")
-  appMemoryUsageLedgers AppMemoryUsageLedger[]
+  appMemoryUsageLedgers AppMemoryUsageLedger[] @relation("ClientAppMemoryLedger")
   accessRequests        AccessRequest[]        @relation("AppRequestsAccess")
   contextRequests       ContextRequest[]       @relation("AppRequestsContext")
-  apiUsageLedgers       ApiUsageLedger[]       @relation("ClientAppMemoryLedger")
+  apiUsageLedgers       ApiUsageLedger[]       @relation("AppUsageLedger")
 
   @@unique([clientId])
   @@index([userId])
@@ -683,9 +683,6 @@ model Collection {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  release   Release? @relation(fields: [releaseId], references: [id])
-  releaseId String?
-  packs     Pack[]
 
   @@index([userId, slug])
   @@index([userId])
@@ -1078,7 +1075,6 @@ model Path {
   forkedFromRevisionId String?
   forkedFromRevision   Revision? @relation("PathFork", fields: [forkedFromRevisionId], references: [id], onDelete: SetNull)
 
-  forkedPaths    Path[]     @relation("PathFork")
   revisions      Revision[] @relation("PathRevisions")
   headRevisionId String?
   headRevision   Revision?  @relation("PathHead", fields: [headRevisionId], onDelete: SetNull, references: [id])
@@ -1089,10 +1085,9 @@ model Path {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  path      Path?    @relation(fields: [pathId], references: [id])
+  path      Path?    @relation("PathChildren", fields: [pathId], references: [id])
   pathId    String?
-  // path      Path?    @relation(fields: [pathId], references: [id])
-  paths     Path[]
+  paths     Path[]   @relation("PathChildren")
 
   @@unique([collectionId, name])
   @@map("paths")
@@ -1236,11 +1231,10 @@ model Pack {
   royalties       UserRoyalty[]
   stars           Star[]
 
-  createdAt         DateTime          @default(now())
-  updatedAt         DateTime          @updatedAt
-  collection        Collection?       @relation(fields: [collectionId], references: [id])
-  collectionId      String?
-  knowledgeBounties KnowledgeBounty[]
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  collection   Collection? @relation("PackSourceCollection", fields: [collectionId], references: [id])
+  collectionId String?
 
   @@index([ownerId, visibility])
   @@index([monetizationType, accessMode])
@@ -1262,8 +1256,7 @@ model Release {
   importedInto Collection[] @relation("ReleaseImportedCollections")
   imports      PackImport[]
 
-  publishedAt DateTime     @default(now())
-  collections Collection[]
+  publishedAt DateTime @default(now())
 
   @@unique([packId, version])
   @@map("releases")
@@ -1301,7 +1294,7 @@ model PackPurchase {
   platformFeeCents    Int // 15%
   creatorNetCents     Int // 80% // Remaining 5% goes to charity/donations/well-fare programmes like afforestation
   paidViaCreditsCents Float         @default(0.0)
-  paymentId           String?
+  paymentId           String?       @unique
   payment             Payment?      @relation(fields: [paymentId], references: [id], onDelete: SetNull)
   purchasedComputeM   Float         @default(1.2)
   purchasedAt         DateTime      @default(now())
@@ -1346,9 +1339,7 @@ model PackSponsorship {
   endsAt    DateTime?
   createdAt DateTime  @default(now())
 
-  usageLedgers   ApiUsageLedger[]
-  organization   Organization?    @relation(fields: [organizationId], references: [id])
-  organizationId String?
+  usageLedgers ApiUsageLedger[]
 
   @@index([packId, isActive])
   @@map("pack_sponsorships")
@@ -1380,12 +1371,10 @@ model KnowledgeBounty {
   submissions BountySubmission[]
   royalties   UserRoyalty[]
 
-  expiresAt      DateTime?
-  completedAt    DateTime?
-  createdAt      DateTime      @default(now())
-  updatedAt      DateTime      @updatedAt
-  organization   Organization? @relation(fields: [organizationId], references: [id])
-  organizationId String?
+  expiresAt   DateTime?
+  completedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 
   @@index([status, targetPackId])
   @@map("knowledge_bounties")
@@ -1580,8 +1569,8 @@ model Payment {
   packDonation          PackDonation?
   knowledgeBounty       KnowledgeBounty?
 
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([userId, status])
   @@index([organizationId, status])
