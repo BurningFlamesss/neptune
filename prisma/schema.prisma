@@ -805,23 +805,63 @@ model AccessGrant {
   @@map("access_grants")
 }
 
+model AccessRequest {
+  id          String      @id @default(cuid())
+  userId      String
+  user        User        @relation("UserAccessRequests", fields: [userId], references: [id], onDelete: Cascade)
+  clientId    String
+  oauthClient OauthClient @relation("AppRequestsAccess", fields: [clientId], references: [id], onDelete: Cascade)
+
+  purpose String
+  status  AccessRequestStatus @default(PENDING)
+  items   AccessRequestItem[]
+
+  createdAt DateTime  @default(now())
+  decidedAt DateTime?
+  expiresAt DateTime?
+
+  @@index([userId, status])
+  @@map("access_requests")
+}
+
+model AccessRequestItem {
+  id            String             @id @default(cuid())
+  requestId     String
+  accessRequest AccessRequest      @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  resourceType  AccessResourceType
+  resourceKey   String
+  permissions   AccessPermission[]
+  reason        String?
+
+  @@map("access_request_items")
+}
+
 model ContextRequest {
-  id       String @id @default(cuid())
+  id     String  @id @default(cuid())
+  userId String?
+  user   User?   @relation("UserContextRequests", fields: [userId], references: [id], onDelete: Cascade)
+
   clientId String
 
   oauthClient OauthClient @relation("AppRequestsContext", fields: [clientId], references: [id], onDelete: Cascade)
-
-  purpose String
-  query   String @db.Text
+  apiKeyId    String?
+  // apiKey      DeveloperApiKey? @relation(fields: [apiKeyId], references: [id], onDelete: SetNull)
+  packId      String?
+  pack        Pack?       @relation(fields: [packId], references: [id], onDelete: SetNull)
+  purpose     String
+  query       String      @db.Text
 
   status ContextRequestStatus @default(PENDING)
 
-  receipt ContextReceipt?
+  receipt     ContextReceipt?
+  ledgerEntry ApiUsageLedger?
 
-  requestedAt    DateTime        @default(now())
-  completedAt    DateTime?
-  apiUsageLedger ApiUsageLedger?
+  requestedAt DateTime  @default(now())
+  completedAt DateTime?
 
+  @@index([clientId, status, requestedAt])
+  @@index([userId, requestedAt])
+  @@index([apiKeyId, requestedAt])
   @@map("context_requests")
 }
 
@@ -831,27 +871,29 @@ model ContextReceipt {
   contextRequestId String @unique
   itemCount        Int    @default(0)
 
-  contextRequest ContextRequest @relation(fields: [contextRequestId], references: [id], onDelete: Cascade)
+  contextRequest ContextRequest       @relation(fields: [contextRequestId], references: [id], onDelete: Cascade)
+  items          ContextReceiptItem[]
 
-  createdAt           DateTime             @default(now())
-  contextReceiptItems ContextReceiptItem[]
+  createdAt DateTime @default(now())
 
   @@map("context_receipts")
 }
 
 model ContextReceiptItem {
-  id        String @id @default(cuid())
+  id        String         @id @default(cuid())
   receiptId String
+  receipt   ContextReceipt @relation(fields: [receiptId], references: [id], onDelete: Cascade)
+  entryId   String?
+  entry     Entry?         @relation(fields: [entryId], references: [id], onDelete: Cascade)
 
-  receipt ContextReceipt @relation(fields: [receiptId], references: [id], onDelete: Cascade)
-  entryId String?
-  entry   Entry?         @relation(fields: [entryId], references: [id], onDelete: Cascade)
-
-  resourceKey String?
-  excerpt     String? @db.Text
+  resourceKey    String?
+  excerpt        String? @db.Text
+  citationWeight Float   @default(1.0)
 
   createdAt DateTime @default(now())
 
+  @@index([receiptId])
+  @@index([entryId])
   @@map("context_receipt_items")
 }
 
