@@ -7,25 +7,9 @@ import {
 	inspectCouponService,
 	redeemCouponService,
 } from "#/functions/payment.tsx";
-import { formatPrice, normalizeCouponCode } from "#/lib/utils.ts";
+import { formatPrice, formatStorageBytes, normalizeCouponCode } from "#/lib/utils.ts";
 import { CheckCheck, X } from "lucide-react";
 
-function formatStorageBytes(bytes: number | null | undefined): string {
-	if (bytes === null || bytes === undefined) {
-		return "Unlimited"
-	}
-	if (bytes >= 1_000_000_000) {
-		return `${(bytes / 1_000_000_000).toFixed(0)} GB`
-	}
-	if (bytes >= 1_000_000) {
-		return `${(bytes / 1_000_000).toFixed(0)} MB`
-	}
-	if (bytes >= 1_000) {
-		return `${(bytes / 1_000).toFixed(0)} KB`
-	}
-
-	return `${bytes} Bytes`
-}
 
 const checkoutSearchParamSchema = z.object({
 	plan: z.string(),
