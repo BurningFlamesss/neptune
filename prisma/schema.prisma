@@ -299,6 +299,7 @@ model User {
   tuneApps             TuneApp[]             @relation("UserTuneApps")
   tuneAppInstallations TuneAppInstallation[] @relation("UserTuneAppInstalls")
   recallBlocks         RecallBlock[]         @relation("UserRecallBlocks")
+  developerApiKeys     DeveloperApiKey[]
 
   @@unique([email])
   @@map("user")
@@ -326,6 +327,7 @@ model Organization {
   packSponsorships      PackSponsorship[]
   knowledgeBounties     KnowledgeBounty[]
   payments              Payment[]
+  developerApiKeys      DeveloperApiKey[]
 
   @@map("organizations")
 }
@@ -683,6 +685,7 @@ model Collection {
   updatedAt DateTime @updatedAt
   release   Release? @relation(fields: [releaseId], references: [id])
   releaseId String?
+  packs     Pack[]
 
   @@index([userId, slug])
   @@index([userId])
@@ -830,6 +833,7 @@ model AppMemoryUsageLedger {
   costInCents    Float              @default(0.0)
   billedAt       DateTime?
   createdAt      DateTime           @default(now())
+  oauthClientId  String?
 
   @@index([clientId, createdAt])
   @@index([organizationId, billedAt])
@@ -869,7 +873,7 @@ model AccessGrant {
   pack   Pack?   @relation(fields: [packId], references: [id], onDelete: Cascade)
 
   expiresAt     DateTime?
-  grantedAt     DateTime     @default(now())
+  grantedAt     DateTime  @default(now())
   oauthClientId String?
 
   @@unique([userId, clientId, resourceKey])
@@ -915,20 +919,20 @@ model ContextRequest {
 
   clientId String
 
-  oauthClient OauthClient @relation("AppRequestsContext", fields: [clientId], references: [id], onDelete: Cascade)
+  oauthClient OauthClient      @relation("AppRequestsContext", fields: [clientId], references: [id], onDelete: Cascade)
   apiKeyId    String?
   apiKey      DeveloperApiKey? @relation(fields: [apiKeyId], references: [id], onDelete: SetNull)
   packId      String?
-  pack        Pack?       @relation(fields: [packId], references: [id], onDelete: SetNull)
+  pack        Pack?            @relation(fields: [packId], references: [id], onDelete: SetNull)
   purpose     String
-  query       String      @db.Text
+  query       String           @db.Text
 
   status ContextRequestStatus @default(PENDING)
 
   receipt     ContextReceipt?
   ledgerEntry ApiUsageLedger?
 
-  requestedAt   DateTime     @default(now())
+  requestedAt   DateTime  @default(now())
   completedAt   DateTime?
   oauthClientId String?
 
@@ -1007,7 +1011,7 @@ model ApiUsageLedger {
   royaltiesDistributed UserRoyalty[]
 
   billedAt      DateTime?
-  createdAt     DateTime     @default(now())
+  createdAt     DateTime  @default(now())
   oauthClientId String?
 
   @@index([userId, createdAt])
@@ -1079,14 +1083,16 @@ model Path {
   headRevisionId String?
   headRevision   Revision?  @relation("PathHead", fields: [headRevisionId], onDelete: SetNull, references: [id])
 
-  targetCombines Combine[] @relation("CombineTargetPath")
-  sourceCombines Combine[] @relation("CombineSourcePath")
+  targetCombines    Combine[]          @relation("CombineTargetPath")
+  sourceCombines    Combine[]          @relation("CombineSourcePath")
   bountySubmissions BountySubmission[]
 
-  createdAt         DateTime           @default(now())
-  updatedAt         DateTime           @updatedAt
-  path              Path?              @relation(fields: [pathId], references: [id])
-  pathId            String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  path      Path?    @relation(fields: [pathId], references: [id])
+  pathId    String?
+  // path      Path?    @relation(fields: [pathId], references: [id])
+  paths     Path[]
 
   @@unique([collectionId, name])
   @@map("paths")
@@ -1109,14 +1115,14 @@ model Revision {
   headOfPaths Path[]           @relation("PathHead")
   changes     RevisionChange[]
 
-  combineTarget Combine[] @relation("CombineTargetRevision")
-  combineSource Combine[] @relation("CombineSourceRevision")
-  combineBase   Combine[] @relation("CombineBaseRevision")
-  combineResult Combine[] @relation("CombineResultRevision")
-  releases      Release[]
+  combineTarget     Combine[]          @relation("CombineTargetRevision")
+  combineSource     Combine[]          @relation("CombineSourceRevision")
+  combineBase       Combine[]          @relation("CombineBaseRevision")
+  combineResult     Combine[]          @relation("CombineResultRevision")
+  releases          Release[]
   bountySubmissions BountySubmission[]
 
-  createdAt         DateTime           @default(now())
+  createdAt DateTime @default(now())
 
   @@unique([pathId, number])
   @@index([pathId, createdAt])
@@ -1150,24 +1156,24 @@ model Combine {
   authorId    String?
   author      User?   @relation("CombineAuthor", fields: [authorId], references: [id], onDelete: SetNull)
 
-  targetPathId     String
-  targetPath       Path              @relation("CombineTargetPath", fields: [targetPathId], references: [id], onDelete: Cascade)
-  sourcePathId     String
-  sourcePath       Path              @relation("CombineSourcePath", fields: [sourcePathId], references: [id], onDelete: Cascade)
-  targetRevisionId String
-  targetRevision   Revision          @relation("CombineTargetRevision", fields: [targetRevisionId], references: [id], onDelete: Cascade)
-  sourceRevisionId String
-  sourceRevision   Revision          @relation("CombineSourceRevision", fields: [sourceRevisionId], references: [id], onDelete: Cascade)
-  baseRevisionId   String?
-  baseRevision     Revision?         @relation("CombineBaseRevision", fields: [baseRevisionId], references: [id], onDelete: SetNull)
-  status           CombineStatus     @default(PENDING)
-  conflicts        CombineConflict[]
-  resultRevisionId String?
-  resultRevision   Revision?         @relation("CombineResultRevision", fields: [resultRevisionId], references: [id], onDelete: SetNull)
+  targetPathId      String
+  targetPath        Path               @relation("CombineTargetPath", fields: [targetPathId], references: [id], onDelete: Cascade)
+  sourcePathId      String
+  sourcePath        Path               @relation("CombineSourcePath", fields: [sourcePathId], references: [id], onDelete: Cascade)
+  targetRevisionId  String
+  targetRevision    Revision           @relation("CombineTargetRevision", fields: [targetRevisionId], references: [id], onDelete: Cascade)
+  sourceRevisionId  String
+  sourceRevision    Revision           @relation("CombineSourceRevision", fields: [sourceRevisionId], references: [id], onDelete: Cascade)
+  baseRevisionId    String?
+  baseRevision      Revision?          @relation("CombineBaseRevision", fields: [baseRevisionId], references: [id], onDelete: SetNull)
+  status            CombineStatus      @default(PENDING)
+  conflicts         CombineConflict[]
+  resultRevisionId  String?
+  resultRevision    Revision?          @relation("CombineResultRevision", fields: [resultRevisionId], references: [id], onDelete: SetNull)
   bountySubmissions BountySubmission[]
 
-  createdAt         DateTime?          @default(now())
-  completedAt       DateTime?
+  createdAt   DateTime? @default(now())
+  completedAt DateTime?
 
   @@index([targetPathId, status])
   @@index([sourcePathId])
@@ -1218,17 +1224,17 @@ model Pack {
 
   releases        Release[]
   imports         PackImport[]
-  entries         Entry[]          @relation("PackEntries")
-  purchases PackPurchase[]
-  donations PackDonation[]
-  sponsorships PackSponsorship[]
-  bounties KnowledgeBounty[]
-  apiKeyScopes ApiKeyPackScope[]
+  entries         Entry[]           @relation("PackEntries")
+  purchases       PackPurchase[]
+  donations       PackDonation[]
+  sponsorships    PackSponsorship[]
+  bounties        KnowledgeBounty[]
+  apiKeyScopes    ApiKeyPackScope[]
   accessGrants    AccessGrant[]
   contextRequests ContextRequest[]
   usageLedgers    ApiUsageLedger[]
   royalties       UserRoyalty[]
-  stars Star[]
+  stars           Star[]
 
   createdAt         DateTime          @default(now())
   updatedAt         DateTime          @updatedAt
@@ -1340,7 +1346,9 @@ model PackSponsorship {
   endsAt    DateTime?
   createdAt DateTime  @default(now())
 
-  usageLedgers ApiUsageLedger[]
+  usageLedgers   ApiUsageLedger[]
+  organization   Organization?    @relation(fields: [organizationId], references: [id])
+  organizationId String?
 
   @@index([packId, isActive])
   @@map("pack_sponsorships")
@@ -1370,12 +1378,14 @@ model KnowledgeBounty {
   payment   Payment?     @relation(fields: [paymentId], references: [id], onDelete: SetNull)
 
   submissions BountySubmission[]
-  royalties UserRoyalty[]
+  royalties   UserRoyalty[]
 
-  expiresAt         DateTime?
-  completedAt       DateTime?
-  createdAt         DateTime           @default(now())
-  updatedAt         DateTime           @updatedAt
+  expiresAt      DateTime?
+  completedAt    DateTime?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  organization   Organization? @relation(fields: [organizationId], references: [id])
+  organizationId String?
 
   @@index([status, targetPackId])
   @@map("knowledge_bounties")
@@ -1570,8 +1580,8 @@ model Payment {
   packDonation          PackDonation?
   knowledgeBounty       KnowledgeBounty?
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
 
   @@index([userId, status])
   @@index([organizationId, status])
