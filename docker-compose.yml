@@ -17,14 +17,21 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   laya:
-    image: brainfunctioncollapse/laya:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.laya
     container_name: neptune-laya
     restart: unless-stopped
     ports:
       - "8787:8787"
     environment:
-      - PORT=8787
-      - THREADS=2
+      - PYTHONUNBUFFERED=1
+      - LAYA_HOST=0.0.0.0
+      - LAYA_PORT=8787
+      - LAYA_THREADS=4
+      - LAYA_MODELS=english,typed-decisions
+      - LAYA_AUTO_TASK=1
+      - HF_HOME=/models
     volumes:
       - laya_models:/models
 

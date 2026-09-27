@@ -1,0 +1,15 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu \
+    && pip install --no-cache-dir "laya[serve]"
+
+ENV HF_HOME=/models
+ENV PYTHONUNBUFFERED=1
+ENV LAYA_HOST=0.0.0.0
+ENV LAYA_PORT=8787
+
+EXPOSE 8787
+
+CMD ["laya-serve"]
