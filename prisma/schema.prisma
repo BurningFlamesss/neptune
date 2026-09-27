@@ -247,24 +247,24 @@ enum ConflictResolution {
 }
 
 model User {
-  id                            String              @id
+  id                            String                @id
   name                          String
-  username                      String?             @unique
-  bio                           String?             @db.Text
+  username                      String?               @unique
+  bio                           String?               @db.Text
   email                         String
-  emailVerified                 Boolean             @default(false)
+  emailVerified                 Boolean               @default(false)
   image                         String?
-  stripeConnectId               String?             @unique
-  computeQuotaBalanceCents      Float               @default(600.0) // Ring: 600, Ring+: 2500, Magic Ring: 4500
-  marketplaceCreditBalanceCents Float               @default(0.0) // Ring: 0.0, Ring+: 300, Magic Ring: 1000
-  prepaidWalletBalanceCents     Float               @default(0.0)
-  currentMonthSpendCents        Float               @default(0.0) // P = max(1, currentMonthSpendCents / 100)
-  currentBillingCycleStart      DateTime            @default(now())
-  createdAt                     DateTime            @default(now())
-  updatedAt                     DateTime            @updatedAt
+  stripeConnectId               String?               @unique
+  computeQuotaBalanceCents      Float                 @default(600.0) // Ring: 600, Ring+: 2500, Magic Ring: 4500
+  marketplaceCreditBalanceCents Float                 @default(0.0) // Ring: 0.0, Ring+: 300, Magic Ring: 1000
+  prepaidWalletBalanceCents     Float                 @default(0.0)
+  currentMonthSpendCents        Float                 @default(0.0) // P = max(1, currentMonthSpendCents / 100)
+  currentBillingCycleStart      DateTime              @default(now())
+  createdAt                     DateTime              @default(now())
+  updatedAt                     DateTime              @updatedAt
   sessions                      Session[]
   accounts                      Account[]
-  developedApps                 OauthClient[]       @relation("DeveloperApps")
+  developedApps                 OauthClient[]         @relation("DeveloperApps")
   oauthrefreshtokens            OauthRefreshToken[]
   oauthaccesstokens             OauthAccessToken[]
   oauthconsents                 OauthConsent[]
@@ -273,9 +273,17 @@ model User {
   subscriptions                 Subscription[]
   billingProfiles               BillingProfile[]
   collections                   Collection[]
-  entries                       Entry[]             @relation("UserEntries")
+  entries                       Entry[]               @relation("UserEntries")
   areas                         Area[]
   appMemories                   AppMemory[]
+  organizationMembers           OrganizationMember[]
+  entries                       Entry[]
+  appMemories                   AppMemory[]
+  userRoyalties                 UserRoyalty[]
+  packs                         Pack[]
+  tuneApps                      TuneApp[]
+  tuneAppInstallations          TuneAppInstallation[]
+  recallBlocks                  RecallBlock[]
 
   @@unique([email])
   @@map("user")
@@ -416,8 +424,12 @@ model OauthClient {
   oauthaccesstokens                OauthAccessToken[]
   oauthconsents                    OauthConsent[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  appMemories     AppMemory[]
+  accessGrants    AccessGrant[]
+  contextRequests ContextRequest[]
+  apiUsageLedgers ApiUsageLedger[]
 
   @@unique([clientId])
   @@index([userId])
@@ -598,6 +610,8 @@ model Collection {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  release   Release? @relation(fields: [releaseId], references: [id])
+  releaseId String?
 
   @@index([userId, slug])
   @@index([userId])
@@ -608,6 +622,7 @@ model Collection {
 model Entry {
   id      String    @id @default(cuid())
   title   String
+  slug    String?
   content String    @db.Text
   type    EntryType
   version Int       @default(1)
@@ -618,7 +633,7 @@ model Entry {
   origin          EntryOrigin  @default(USER)
   confidenceScore Float        @default(1.0)
 
-  expiresAt  DateTime?
+  expiresAt  DateTime? // Temporal obsolescence
   archivedAt DateTime?
   metadata   Json?
 
@@ -627,16 +642,36 @@ model Entry {
   collectionId String
   collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
   appMemoryId  String?
+  appMemory    AppMemory? @relation(fields: [appMemoryId], references: [id], onDelete: Cascade)
 
-  userId String
-  user   User   @relation("UserEntries", fields: [userId], references: [id], onDelete: Cascade)
+  userId   String
+  user     User   @relation("UserEntries", fields: [userId], references: [id], onDelete: Cascade)
+  authorId String
+  author   User   @relation("AuthoredEntries", fields: [authorId], references: [id], onDelete: Cascade)
 
-  createdAt          DateTime            @default(now())
-  updatedAt          DateTime            @updatedAt
-  entryRelationships EntryRelationship[]
-  entryRelationships EntryRelationship[]
+  sourcePackId    String?
+  sourcePack      Pack?   @relation("PackEntries", fields: [sourcePackId], references: [id], onDelete: SetNull)
+  upstreamEntryId String?
+  citationCount   Int     @default(0)
 
-  @@index([collectionId])
+  sourceRelationships EntryRelationship[]  @relation("SourceRelationship")
+  targetRelationships EntryRelationship[]  @relation("TargetRelationship")
+  revisionChanges     RevisionChange[]
+  tuneMemoryLinks     AppMemoryLink[]      @relation("TuneMemoryEntry")
+  appMemoryLinks      AppMemoryLink[]      @relation("AppMemoryEntry")
+  accessGrants        AccessGrant[]
+  receiptItems        ContextReceiptItem[]
+  royaltiesGenerated  UserRoyalty[]
+  // stars               Star[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([collectionId, type, state])
+  @@index([appMemoryId, type, state])
+  @@index([authorId, sourcePackId])
+  @@index([tags])
+  @@index([expiresAt])
   @@map("entries")
 }
 
@@ -654,6 +689,7 @@ model EntryRelationship {
 
   createdAt DateTime @default(now())
 
+  @@unique([sourceEntryId, targetEntryId, predicate])
   @@map("entry_relationships")
 }
 
@@ -679,8 +715,10 @@ model AppMemory {
 
   entries Entry[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  user         User          @relation(fields: [userId], references: [id])
+  accessGrants AccessGrant[]
 
   @@map("app_memories")
 }
@@ -701,6 +739,8 @@ model AppMemoryLink {
   createdAt DateTime @default(now())
 
   lastSyncedAt DateTime?
+  entry        Entry?    @relation(fields: [entryId], references: [id])
+  entryId      String?
 
   @@map("app_memory_links")
 }
@@ -750,8 +790,9 @@ model ContextRequest {
 
   receipt ContextReceipt?
 
-  requestedAt DateTime  @default(now())
-  completedAt DateTime?
+  requestedAt    DateTime        @default(now())
+  completedAt    DateTime?
+  apiUsageLedger ApiUsageLedger?
 
   @@map("context_requests")
 }
@@ -764,7 +805,8 @@ model ContextReceipt {
 
   contextRequest ContextRequest @relation(fields: [contextRequestId], references: [id], onDelete: Cascade)
 
-  createdAt DateTime @default(now())
+  createdAt           DateTime             @default(now())
+  contextReceiptItems ContextReceiptItem[]
 
   @@map("context_receipts")
 }
@@ -836,10 +878,12 @@ model Path {
   forkedPaths    Path[]     @relation("PathFork")
   revisions      Revision[] @relation("PathRevisions")
   headRevisionId String?
-  headRevision   Revision?  @relation("PathHead", fields: [headRevisionId], onDelete: SetNull)
+  headRevision   Revision?  @relation("PathHead", fields: [headRevisionId], onDelete: SetNull, references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  path      Path?    @relation(fields: [pathId], references: [id])
+  pathId    String?
 
   @@map("paths")
 }
@@ -862,7 +906,12 @@ model Revision {
 
   changes RevisionChange[]
 
-  createdAt DateTime @default(now())
+  createdAt DateTime  @default(now())
+  combines  Combine[]
+  combines  Combine[]
+  combines  Combine[]
+  combines  Combine[]
+  releases  Release[]
 
   @@map("revisions")
 }
@@ -939,8 +988,11 @@ model Pack {
   releases   Release[]
   imports    PackImport[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  collection   Collection? @relation(fields: [collectionId], references: [id])
+  collectionId String?
+  entries      Entry[]
 
   @@map("packs")
 }
@@ -960,7 +1012,8 @@ model Release {
   importedInto Collection[]
   imports      PackImport[]
 
-  publishedAt DateTime @default(now())
+  publishedAt DateTime     @default(now())
+  collections Collection[]
 
   @@map("releases")
 }
