@@ -2,7 +2,7 @@ import { create } from "zustand"
 import { createJSONStorage, persist, type StateStorage } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer"
 
-type AttachmentType = "image" | "file" | "document" | "collection"
+type AttachmentType = "image" | "file" | "document" | "area" | "collection" | "entry" | "pack"
 
 interface Attachment {
     id: string;
@@ -140,7 +140,7 @@ export const useUserStore = create<UserStore>()(
                     state.chats = state.chats.filter((chat) => chat.id !== id)
 
                     if (state.activeChatId === id) {
-                        state.activeChatId = state.chats[0].id ?? null
+                        state.activeChatId = state.chats[0]?.id ?? null
                     }
                 })
             },
