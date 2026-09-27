@@ -86,13 +86,21 @@ const createUserEntriesParamSchema = z.object({
     userId: z.string().optional(),
     payload: z.object({
         title: z.string(),
+        slug: z.string().optional(),
         content: z.string(),
         type: z.enum(["MEMORY", "NOTE", "REFERENCE", "CODE", "DOCUMENT", "SKILL", "WORKFLOW", "DECISION", "PROMPT", "CUSTOM"]),
+        tags: z.array(z.string()).optional().default([]),
+        state: z.enum(["SUGGESTED", "CONFIRMED", "REJECTED", "ARCHIVED"]).optional(),
+        recall_policy: z.enum(["AUTOMATIC", "WHEN_RELEVANT", "MANUAL", "EXCLUDED"]).optional(),
+        origin: z.enum(["USER", "APP", "COMMUNITY", "IMPORTED", "CONNECTED_SOURCE", "RECALL"]).optional().default("USER"),
+        appMemoryId: z.string().optional()
     }),
     collection: z.object({
         create: z.boolean().default(true),
         collectionName: z.string().optional(),
-        collectionId: z.string().optional()
+        collectionSlug: z.string().optional(),
+        collectionId: z.string().optional(),
+        areaId: z.string().optional()
     })
 })
 
