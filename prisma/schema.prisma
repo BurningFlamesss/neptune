@@ -713,13 +713,14 @@ model AppMemory {
   clientId    String
   oauthClient OauthClient @relation(fields: [clientId], references: [id], onDelete: Cascade)
 
-  entries Entry[]
-
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
-  user         User          @relation(fields: [userId], references: [id])
+  entries      Entry[]
   accessGrants AccessGrant[]
+  usageLedgers AppMemoryUsageLedger[]
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, clientId])
   @@map("app_memories")
 }
 
@@ -734,19 +735,40 @@ model AppMemoryLink {
   lastAppRevision  Int?
   lastTuneRevision Int?
 
-  appEntry Entry @relation("AppMemoryEntry", fields: [appEntryId], references: [id], onDelete: Cascade)
+  appEntry  Entry @relation("AppMemoryEntry", fields: [appEntryId], references: [id], onDelete: Cascade)
+  tuneEntry Entry @relation("TuneMemoryEntry", fields: [tuneEntryId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
 
   lastSyncedAt DateTime?
-  entry        Entry?    @relation(fields: [entryId], references: [id])
-  entryId      String?
 
+  @@unique([appEntryId, tuneEntryId])
   @@map("app_memory_links")
 }
 
+model AppMemoryUsageLedger {
+  id             String             @id @default(cuid())
+  appMemoryId    String
+  appMemory      AppMemory          @relation(fields: [appMemoryId], references: [id], onDelete: Cascade)
+  clientId       String
+  oauthClient    OauthClient        @relation("ClientAppMemoryLedger", fields: [clientId], references: [id], onDelete: Cascade)
+  organizationId String?
+  organization   Organization?      @relation("OrgAppMemoryLedger", fields: [organizationId], references: [id], onDelete: SetNull)
+  operation      AppMemoryOperation
+  unitsProcessed Int                @default(1)
+  costInCents    Float              @default(0.0)
+  billedAt       DateTime?
+  createdAt      DateTime           @default(now())
+
+  @@index([clientId, createdAt])
+  @@index([organizationId, billedAt])
+  @@map("app_memory_usage_ledgers")
+}
+
 model AccessGrant {
-  id String @id @default(cuid())
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation("UserAccessGrants", fields: [userId], references: [id], onDelete: Cascade)
 
   clientId String
 
@@ -755,6 +777,7 @@ model AccessGrant {
   resourceType AccessResourceType
   resourceKey  String
 
+  effect      AccessEffect       @default(ALLOW)
   permissions AccessPermission[]
 
   inherits Boolean @default(true)
@@ -771,9 +794,14 @@ model AccessGrant {
   appMemoryId String?
   appMemory   AppMemory? @relation(fields: [appMemoryId], references: [id], onDelete: Cascade)
 
+  packId String?
+  pack   Pack?   @relation(fields: [packId], references: [id], onDelete: Cascade)
+
   expiresAt DateTime?
   grantedAt DateTime  @default(now())
 
+  @@unique([userId, clientId, resourceKey])
+  @@index([userId, clientId, resourceType])
   @@map("access_grants")
 }
 
