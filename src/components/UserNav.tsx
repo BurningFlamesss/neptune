@@ -4,46 +4,92 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectVa
 import { RadioGroup, RadioGroupItem } from './ui/radio-group';
 import { Label } from './ui/label';
 import React, { Activity, useState } from 'react';
-import { createUserAsset } from '#/functions/knowledge.tsx';
-import { Link, useLoaderData } from '@tanstack/react-router';
+import { createUserEntries } from '#/functions/knowledge.tsx';
+import { Link, useLoaderData, useRouteContext, useRouter } from '@tanstack/react-router';
 import { toast } from 'sonner';
 import { authClient } from '#/lib/auth-client.ts';
+import { router } from 'better-auth/api';
 
-function UserNav({ user }: {
-    user: {
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
-        email: string;
-        emailVerified: boolean;
-        name: string;
-        image?: string | null | undefined;
-    }
-}) {
+type EntryTypeOption =
+    "MEMORY" |
+    "NOTE" |
+    "REFERENCE" |
+    "CODE" |
+    "DOCUMENT" |
+    "SKILL" |
+    "WORKFLOW" |
+    "DECISION" |
+    "PROMPT" |
+    "CUSTOM"
+
+
+type RecallPolicyOption =
+    "AUTOMATIC" |
+    "WHEN_RELEVANT" |
+    "MANUAL" |
+    "EXCLUDED"
+
+const ENTRY_TYPES: EntryTypeOption[] = ["MEMORY", "NOTE", "REFERENCE", "CODE", "DOCUMENT", "SKILL", "WORKFLOW", "DECISION", "PROMPT", "CUSTOM"]
+const RECALL_POLICY: RecallPolicyOption[] = ["AUTOMATIC", "WHEN_RELEVANT", "MANUAL", "EXCLUDED"]
+
+
+function UserNav() {
+    const router = useRouter()
+    const context = useRouteContext({ from: "__root__" })
+    const user = context.session?.user
     const serverData = useLoaderData({ from: "__root__" })
     const plan = serverData?.plan
 
     const collections = serverData?.collections
 
-    const [collectionOptions, setCollectionOptions] = useState<string>("")
-    const [type, setType] = useState<string>("")
+    const [collectionOptions, setCollectionOptions] = useState<string>("create-your-own")
+    const [type, setType] = useState<EntryTypeOption>("MEMORY")
+    const [recallPolicy, setRecallPolicy] = useState<RecallPolicyOption>("WHEN_RELEVANT")
     const [existingCollectionId, setExistingCollectionId] = useState<string>("")
+    const [isSubmitting, setIsSubmitting] = useState(false)
+
+    if (!user) {
+        return "No user data"
+    }
 
     const capture = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
-        const formData = new FormData(event.currentTarget)
+        const form = event.currentTarget
+        const formData = new FormData(form)
 
-        const payload = {
-            title: formData.get("title") as string,
-            content: formData.get("content") as string,
-            type: formData.get("type") as "AGENT" | "KNOWLEDGE" | "PREFERENCE" | "RESEARCH" | "SKILL" | "WORKFLOW",
+        const title = (formData.get("title") as string)?.trim()
+        const content = (formData.get("content") as string)?.trim()
+        const rawTags = formData.get("tags") as string ?? ""
+
+        if (!title || !content) {
+            toast.error("Title and content are required")
+            return
         }
 
+        const tags = rawTags.split(",").map(tag => tag.trim()).filter(Boolean)
+
+        const payload = {
+            title,
+            content,
+            type: (type || formData.get("type") as EntryTypeOption) ?? "",
+            tags,
+            recallPolicy,
+            state: "CONFIRMED" as const,
+            origin: "USER" as const
+        }
+
+        const isCreatingCollection = collectionOptions === "create-your-own"
+
         const collectionPayload = {
-            create: collectionOptions === "create-your-own",
-            collectionId: collectionOptions === "create-your-own" ? undefined : formData.get("exisitingCollectionId") as string,
-            collectionName: collectionOptions === "create-your-own" ? formData.get("newCollectionName") as string : undefined
+            create: isCreatingCollection,
+            collectionId: isCreatingCollection ? undefined : (existingCollectionId || (formData.get("exisitingCollectionId") as string)),
+            collectionName: isCreatingCollection ? ((formData.get("newCollectionName") as string).trim() || "Untitled Collection") : undefined
+        }
+
+        if (!isCreatingCollection && !collectionPayload.collectionId) {
+            toast.error("Please select an existing collection")
+            return
         }
 
         console.log("Sending to the server.... ", {
@@ -57,7 +103,9 @@ function UserNav({ user }: {
         })
 
         try {
-            await createUserAsset({
+            setIsSubmitting(true)
+
+            await createUserEntries({
                 data: {
                     userId: user.id,
                     collection: {
@@ -69,9 +117,13 @@ function UserNav({ user }: {
                 }
             })
 
-            toast.success("Sent successfully!!!")
+            toast.success("Entry capture successfully!!!")
+            form.reset()
+            await router.invalidate()
         } catch (error) {
             toast.error("Error")
+        } finally {
+            setIsSubmitting(false)
         }
     }
 
@@ -95,19 +147,39 @@ function UserNav({ user }: {
                             <Label htmlFor="content">Content</Label>
                             <textarea name="content" id="content" ></textarea> <br />
 
+                            <Label htmlFor="tags">Tags (comma separated)</Label>
+                            <input
+                                type="text"
+                                name="tags"
+                                id="tags"
+                                placeholder="e.g. preference, journal#number"
+                            />
+                            <br />
+
                             <Label className="mb-4" htmlFor="type">Type</Label>
-                            <Select name="type" value={type} onValueChange={setType}>
+                            <Select name="type" value={type} onValueChange={value => setType(value as EntryTypeOption)}>
                                 <SelectTrigger className="w-full">
                                     <SelectValue placeholder="Types" />
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectGroup>
-                                        <SelectItem value="KNOWLEDGE">KNOWLEDGE</SelectItem>
-                                        <SelectItem value="SKILL">SKILL</SelectItem>
-                                        <SelectItem value="AGENT">AGENT</SelectItem>
-                                        <SelectItem value="RESEARCH">RESEARCH</SelectItem>
-                                        <SelectItem value="PREFERENCE">PREFERENCE</SelectItem>
-                                        <SelectItem value="WORKFLOW">WORKFLOW</SelectItem>
+                                        {
+                                            ENTRY_TYPES.map(entry_type => <SelectItem key={`select-entry-${entry_type}`} value={entry_type}>{entry_type}</SelectItem>)
+                                        }
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
+
+                            <Label className="mb-4" htmlFor="recallPolicy">Recall Policy</Label>
+                            <Select name="recallPolicy" value={recallPolicy} onValueChange={value => setRecallPolicy(value as RecallPolicyOption)}>
+                                <SelectTrigger className="w-full">
+                                    <SelectValue placeholder="recall policy" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                        {
+                                            RECALL_POLICY.map(recall_policy => <SelectItem key={`select-policy-${recall_policy}`} value={recall_policy}>{recall_policy}</SelectItem>)
+                                        }
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>
@@ -154,7 +226,9 @@ function UserNav({ user }: {
                             </RadioGroup>
                         </main>
                         <DrawerFooter className='flex flex-row items-center justify-between'>
-                            <button className='app-button bg-cyan-dark!'>Capture</button>
+                            <button type='submit' disabled={isSubmitting} className='app-button bg-cyan-dark!'>
+                                {isSubmitting ? "Capturing..." : "Capture"}
+                            </button>
                             <DrawerClose>
                                 <button className='app-button bg-destructive! [clip-path:polygon(16px_0,100%_0,100%_100%,0_100%,0_16px)]!'>Close</button>
                             </DrawerClose>

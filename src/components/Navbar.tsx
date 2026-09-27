@@ -23,7 +23,7 @@ function Navbar() {
             </nav>
             <div className='flex flex-row items-center justify-center isolate relative'>
                 {user ? (
-                    <UserNav user={user} />
+                    <UserNav />
                 ) : (
                     <>
                         <Link to='/signup' className='app-button bg-cyan-dark! [clip-path:polygon(16px_0,100%_0,100%_100%,0_100%,0_16px)]!'>SignUp</Link>
