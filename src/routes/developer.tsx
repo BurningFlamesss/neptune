@@ -13,8 +13,10 @@ export const Route = createFileRoute("/developer")({
 
 function RouteComponent() {
 	const [credentials, setCredentials] = useState<{
+		id: string;
 		clientId: string;
 		clientSecret: string | undefined;
+		appMemoryId: string;
 	} | null>(null);
 
 	const [error, setError] = useState<string | null>(null);
@@ -70,8 +72,10 @@ function RouteComponent() {
 								</p>
 
 								<br />
+								<p>Id: {credentials.id}</p>
 								<p>ClientID: {credentials.clientId}</p>
 								<p>ClientSecret: {credentials.clientSecret}</p>
+								<p>AppMemoryId: {credentials.appMemoryId}</p>
 
 								<br />
 								<button className="app-button" type="button" onClick={() => setCredentials(null)}>

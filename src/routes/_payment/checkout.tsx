@@ -9,6 +9,7 @@ import {
 } from "#/functions/payment.tsx";
 import { formatPrice, formatStorageBytes, normalizeCouponCode } from "#/lib/utils.ts";
 import { CheckCheck, X } from "lucide-react";
+import { toast } from "sonner";
 
 
 const checkoutSearchParamSchema = z.object({
@@ -80,7 +81,7 @@ function RouteComponent() {
 			}),
 		onSuccess: ({ success }, { inputCode, planId }) => {
 			if (!success) {
-				// TODO: UI Feedback to show that failed to redeem coupon
+				toast.error("Failed to redeem coupon")
 				return;
 			}
 
@@ -94,7 +95,7 @@ function RouteComponent() {
 			navigate({ to: "/dashboard" })
 		},
 		onError: (error) => {
-			// TODO: UI Feedback to show that failed to redeem coupon
+			toast.error("Failed to redeem coupon")
 		},
 	});
 
@@ -124,7 +125,7 @@ function RouteComponent() {
 	const finalPrice = Math.max(0, plan.price - discountAmount);
 
 	const handleCheckout = () => {
-		// TODO: Handle the checkout
+		toast.info("Checkout is currently not supported! Please try again after a month")
 	};
 
 	const handleDirectRedeem = async () => {

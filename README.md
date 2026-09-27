@@ -13,12 +13,18 @@
 
 ## Features
 
+### Week 1
 - Login, Signup, Reset Password, Contact (No Backend in contact), Purposeful Email
 - IDP
 - Consent Screen, Developer API (ClientId, and ClientSecret Issue)
 - Payment System with coupon codes, plans, subscription model, pricing, and checkout
 - Navbar, Basic design for dashboard (collection fetching logic implemented, but collections cannot be created as of now), recall, and drawer (capture the knowledge)
 - About page
+
+### Week 2
+- Full-fledge database schema for implementing all the permutations of features tried to offered by NepTune
+- Working prototype of collections creation and entry writes
+- Working prototype of Recalling the entries
 
 ### Glimpse of certain features
 
@@ -75,5 +81,10 @@ Now, You can make changes to almost anything and contribute to the NepTune Ecosy
 
 ## Contributors
 
+### Week 1
 - Ankit Dhakal - Mainly Backend
 - Sambhav Aryal - Mainly Frontend
+
+### Week 2
+- Ankit Dhakal - Mainly Backend
+- Sambhav Aryal - Database schema and frontend backend adaptation to new schema
