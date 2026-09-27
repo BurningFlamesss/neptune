@@ -11,7 +11,7 @@ const FREE_MODEL_FALLBACKS: string[] = [
 
 const attachmentSchema = z.object({
     id: z.string(),
-    type: z.enum(["image", "file", "document", "collection"]),
+    type: z.enum(["image", "file", "document", "area", "collection", "entry", "pack"]),
     name: z.string(),
     url: z.string().optional(),
     mimeType: z.string().optional(),
@@ -192,25 +192,33 @@ export const processRecallConversation = createServerFn({ method: "POST" })
             : allCollections;
 
         const leanCollections = targetCollections.map((item) => {
-            const { id, version, visibility, assets, ...rest } = item;
+            const { id, version, visibility, entries, ...rest } = item;
 
-            const necessaryAsset = assets.map((asset) => {
-                const {
-                    collectionId,
-                    createdAt,
-                    updatedAt,
-                    userId: _userId,
-                    version: _version,
-                    id: _id,
-                    ...assetRest
-                } = asset;
+            const necessaryEntry = (entries ?? [])
+                .filter((entry) => entry.state !== "REJECTED" && entry.state !== "ARCHIVED" && entry.recallPolicy !== "EXCLUDED" && (!entry.expiresAt || new Date(entry.expiresAt) > new Date()))
+                .map((entry) => {
+                    const {
+                        collectionId,
+                        appMemoryId,
+                        sourcePackId,
+                        upstreamEntryId,
+                        createdAt,
+                        updatedAt,
+                        archivedAt,
+                        expiresAt,
+                        userId: _userId,
+                        authorId: _authorId,
+                        version: _version,
+                        id: _id,
+                        ...entryRest
+                    } = entry;
 
-                return assetRest;
-            });
+                    return entryRest;
+                });
 
             return {
                 ...rest,
-                assets: necessaryAsset,
+                entrys: necessaryEntry,
             };
         });
 
