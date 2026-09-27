@@ -1506,7 +1506,7 @@ model Plan {
   monthlyMarketplaceCreditsCents Int     @default(0) // Ring: 0, Ring+: 300, Magic Ring: 1000
   rateLimitPerMinute             Int     @default(10) // Ring: 10, Ring+: 120, Magic Ring: 600
   maxConnectedApps               Int?    @default(10) // Ring: 10, Ring+: 500, Magic Ring: null
-  storageLimitBytes              BigInt? @default(10) // Ring: 10MB, 1GB, 15GB
+  storageLimitBytes              BigInt? @default(10000000) // Ring: 10MB, 1GB, 15GB
 
   displayFeaturesIncluded    Json?
   displayFeaturesNotIncluded Json?
