@@ -1059,6 +1059,7 @@ model CombineConflict {
   resolvedValue Json?
   resolvedAt    DateTime?
 
+  @@index([combineId])
   @@map("combine_conflicts")
 }
 
@@ -1069,19 +1070,41 @@ model Pack {
   owner   User   @relation("UserPacks", fields: [ownerId], references: [id], onDelete: Cascade)
 
   name        String
-  slug        String  @unique
+  slug        String     @unique
   description String?
+  visibility  Visibility @default(PRIVATE)
 
-  visibility Visibility   @default(PRIVATE)
-  releases   Release[]
-  imports    PackImport[]
+  accessMode       PackAccessMode       @default(OPEN)
+  monetizationType PackMonetizationType @default(FREE)
 
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @updatedAt
-  collection   Collection? @relation(fields: [collectionId], references: [id])
-  collectionId String?
-  entries      Entry[]
+  // Formula: (Neff(N) / (10 * P)) * $1 * M / 1000 request
+  entryCount        Int   @default(0) // N
+  mFactor           Float @default(1.0) // M in [0, infinity)
+  oneTimePriceCents Int?
 
+  platformFeePercent     Float @default(15.0)
+  maintainerFeePercent   Float @default(20.0)
+  contributorPoolPercent Float @default(60.0) // if platform (15%) + maintainer (20%) + contributor (60%) != 100%, leftover (5%) goes to donation/well-fare programmes like afforestation
+
+  releases        Release[]
+  imports         PackImport[]
+  entries         Entry[]          @relation("PackEntries")
+  // purchases PackPurchase[]
+  // donations PackDonation[]
+  // sponsorships PackSponsorship[]
+  // bounties KnowledgeBounty[]
+  // apiKeyScopes ApiKeyPackScope[]
+  accessGrants    AccessGrant[]
+  contextRequests ContextRequest[]
+  usageLedgers    ApiUsageLedger[]
+  royalties       UserRoyalty[]
+  // stars Star[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([ownerId, visibility])
+  @@index([monetizationType, accessMode])
   @@map("packs")
 }
 
