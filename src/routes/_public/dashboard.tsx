@@ -1,5 +1,5 @@
 import { getCollectionsOfUser } from '#/functions/knowledge'
-import { createFileRoute, redirect, useLoaderData } from '@tanstack/react-router'
+import { createFileRoute, Link, redirect, useLoaderData } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_public/dashboard')({
     beforeLoad(ctx) {
@@ -32,12 +32,12 @@ function RouteComponent() {
 
                 return (
                     <section key={collection.id}>
-                        {index + 1}. {collection.name} v{collection.version} <br />
+                        {index + 1}. {collection.name} (<Link to="/">{collection.slug}</Link>) v{collection.version} ({collection.area ? ` [${collection.area?.name}]` : ""}) <br />
                         <ul>
-                            {collection.assets.map(asset => {
+                            {collection.entries.map(entry => {
 
                                 return (
-                                    <li key={asset.id} className="ml-4">- {asset.title} v{asset.version}</li>
+                                    <li key={entry.id} className="ml-4">- {entry.title} v{entry.version} ({entry.type} - {entry.state})</li>
                                 )
                             })}
                         </ul>

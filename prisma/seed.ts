@@ -28,7 +28,8 @@ async function main() {
         storageLimitBytes: 10 * 1000 * 1000,
         displayFeaturesIncluded: [
           "Free Forever",
-          "Community works",
+          "Community access",
+          "Unlimited Collections & Entries",
           "Monetizable Datasets - 25% platform cutoff",
           "Participate in Bounty Programmes - 25% platform cutoff"
         ],

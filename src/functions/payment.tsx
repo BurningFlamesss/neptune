@@ -3,10 +3,10 @@ import { z } from "zod";
 import { delay } from "#/lib/utils.ts";
 import { sessionMiddleware } from "#/middleware/authentication.tsx";
 
-function serializePlan<T extends { storageLimitBYtes?: bigint | null }>(plan: T) {
+function serializePlan<T extends { storageLimitBytes?: bigint | null }>(plan: T) {
 	return {
 		...plan,
-		storageLimitBytes: plan.storageLimitBYtes !== null && plan.storageLimitBYtes !== undefined ? Number(plan.storageLimitBYtes) : null
+		storageLimitBytes: plan.storageLimitBytes !== null && plan.storageLimitBytes !== undefined ? Number(plan.storageLimitBytes) : null
 	}
 }
 

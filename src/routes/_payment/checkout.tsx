@@ -8,6 +8,24 @@ import {
 	redeemCouponService,
 } from "#/functions/payment.tsx";
 import { formatPrice, normalizeCouponCode } from "#/lib/utils.ts";
+import { CheckCheck, X } from "lucide-react";
+
+function formatStorageBytes(bytes: number | null | undefined): string {
+	if (bytes === null || bytes === undefined) {
+		return "Unlimited"
+	}
+	if (bytes >= 1_000_000_000) {
+		return `${(bytes / 1_000_000_000).toFixed(0)} GB`
+	}
+	if (bytes >= 1_000_000) {
+		return `${(bytes / 1_000_000).toFixed(0)} MB`
+	}
+	if (bytes >= 1_000) {
+		return `${(bytes / 1_000).toFixed(0)} KB`
+	}
+
+	return `${bytes} Bytes`
+}
 
 const checkoutSearchParamSchema = z.object({
 	plan: z.string(),
@@ -27,6 +45,7 @@ export const Route = createFileRoute("/_payment/checkout")({
 		return getIndividualPack({
 			data: {
 				plan: deps.plan,
+				billing: deps.billing
 			},
 		});
 	},
@@ -75,14 +94,14 @@ function RouteComponent() {
 			redeemCouponService({
 				data: { code: inputCode, planId },
 			}),
-		onSuccess: ({ success }, redeemedCode) => {
+		onSuccess: ({ success }, { inputCode, planId }) => {
 			if (!success) {
 				// TODO: UI Feedback to show that failed to redeem coupon
 				return;
 			}
 
 			queryClient.removeQueries({
-				queryKey: ["coupon-inspect", redeemedCode],
+				queryKey: ["coupon-inspect", inputCode, planId],
 			});
 
 			setCode("");
@@ -144,22 +163,25 @@ function RouteComponent() {
 					</h1>
 					<p className="text-lg flex flex-row gap-1">
 						<span className="line-through">
-							{isCouponValid && formatPrice(plan.price, plan.currency)}
+							{isCouponValid ? formatPrice(plan.comparedAtPrice ?? plan.price, plan.currency) : plan.comparedAtPrice && plan.comparedAtPrice > plan.price ? formatPrice(plan.comparedAtPrice, plan.currency) : null}
 						</span>
 						<span>{formatPrice(finalPrice, plan.currency)}</span>
 					</p>
+
 					<ul className="flex flex-col items-start justify-center mt-4">
-						<li>Unlimited Collections</li>
-						<li>Unlimited knowledge items</li>
-						<li>Unlimited application connections</li>
-						<li>Intelligence Storage: <span className="text-ink-deep font-semibold">{plan.intelligenceStorage}</span></li>
-						<li>Sync: <span className="text-ink-deep font-semibold">{plan.sync}</span></li>
-						<li>Recall: <span className="text-ink-deep font-semibold">{plan.recall}</span></li>
-						<li>Versioning: <span className="text-ink-deep font-semibold">{plan.versioning}</span></li>
-						<li>Sharing: <span className="text-ink-deep font-semibold">{plan.sharing}</span></li>
-						{((plan.features as Array<string>) ?? [])?.map(
+						{((plan.displayFeaturesIncluded as Array<string>) ?? [])?.map(
 							(feature, index) => (
-								<li key={`${index}-${feature}`}>{feature}</li>
+								<li key={`${index}-${feature}`}><CheckCheck className="text-cyan" />{feature}</li>
+							),
+						)}
+						<li>Monthly Compute Quota: <span className="text-ink-deep font-semibold">{formatPrice(plan.monthlyComputeQuotaCents, plan.currency)}</span></li>
+						<li>Monthly Marketplace Credits: <span className="text-ink-deep font-semibold">{formatPrice(plan.monthlyMarketplaceCreditsCents, plan.currency)}</span></li>
+						<li>Rate Limts: <span className="text-ink-deep font-semibold">{plan.rateLimitPerMinute} requests / minute</span></li>
+						<li>Max Connections: <span className="text-ink-deep font-semibold">{plan.maxConnectedApps} apps</span></li>
+						<li>Storage: <span className="text-ink-deep font-semibold">{formatStorageBytes(plan.storageLimitBytes)}</span></li>
+						{((plan.displayFeaturesNotIncluded as Array<string>) ?? [])?.map(
+							(feature, index) => (
+								<li key={`${index}-${feature}`}><X className="text-destructive" />{feature}</li>
 							),
 						)}
 					</ul>
