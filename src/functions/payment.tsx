@@ -525,11 +525,12 @@ export const getUserPlan = createServerFn()
 	.handler(async ({ data, context }) => {
 		const { prisma } = await import("#/db.ts")
 
-		if (!data.userId || !context.session?.user.id) {
+		const userId = data?.userId || context.session?.user.id
+
+		if (!userId) {
 			throw new Error("Unauthorized")
 		}
 
-		const userId = data.userId || context.session.user.id
 
 		const activeSubscription = await prisma.subscription.findFirst({
 			where: {
@@ -548,7 +549,7 @@ export const getUserPlan = createServerFn()
 		})
 
 		if (activeSubscription?.plan) {
-			return activeSubscription.plan
+			return serializePlan(activeSubscription.plan)
 		}
 
 		const freePlan = await prisma.plan.findFirst({
@@ -562,5 +563,5 @@ export const getUserPlan = createServerFn()
 			throw new Error("Critical Error: No free plan configured in the database")
 		}
 
-		return freePlan
+		return serializePlan(freePlan)
 	})
