@@ -1,6 +1,7 @@
 import { sessionMiddleware } from "#/middleware/authentication";
 import { createServerFn } from "@tanstack/react-start";
 import z from "zod";
+import slugify from "slugify"
 
 const getCollectionsOfUserParamSchema = z.object({
     userId: z.string().optional(),
@@ -110,36 +111,66 @@ export const createUserEntries = createServerFn()
     .handler(async ({ data, context }) => {
         const { prisma } = await import("#/db")
 
-        if (!data.userId || !context.session?.user.id) {
+        const userId = data?.userId || context.session?.user.id
+
+        if (!userId) {
             throw new Error("Unauthorized")
         }
 
-        const userId = data.userId || context.session.user.id
+        return await prisma.$transaction(async (transaction) => {
 
-        let collectionId = ""
+            let collectionId = ""
 
-        if (data.collection.create) {
-            const collection = await prisma.collection.create({
+            if (data.collection.create) {
+                const name = data.collection.collectionName?.trim() ?? "Untitled Collection"
+                const slug = data.collection.collectionSlug?.trim() ?? slugify(name)
+
+                const collection = await prisma.collection.create({
+                    data: {
+                        name,
+                        slug,
+                        userId,
+                        areaId: data.collection.areaId,
+                        entryCount: 1
+                    }
+                })
+                collectionId = collection.id
+            } else {
+                if (!data.collection.collectionId) {
+                    throw new Error("collectionId is required when collection.create is false")
+                }
+
+                collectionId = data.collection.collectionId
+
+                await transaction.collection.update({
+                    where: {
+                        id: collectionId
+                    },
+                    data: {
+                        entryCount: {
+                            increment: 1
+                        }
+                    }
+                })
+            }
+
+
+            return await prisma.entry.create({
                 data: {
-                    name: data.collection.collectionName ?? "",
                     userId,
-                    slug: data.collection.collectionName ?? ""
+                    authorId: userId,
+                    collectionId,
+                    appMemoryId: data.payload.appMemoryId,
+                    title: data.payload.title,
+                    slug: data.payload.slug ?? slugify(data.payload.title),
+                    content: data.payload.content,
+                    type: data.payload.type,
+                    tags: data.payload.tags,
+                    state: data.payload.state,
+                    recallPolicy: data.payload.recall_policy,
+                    origin: data.payload.origin
                 }
             })
 
-            collectionId = collection.id
-        } else {
-            collectionId = data.collection.collectionId ?? ""
-        }
-
-        return await prisma.entry.create({
-            data: {
-                userId,
-                title: data.payload.title,
-                content: data.payload.content,
-                type: data.payload.type,
-                collectionId,
-                authorId: userId,
-            }
         })
     })
