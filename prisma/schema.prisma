@@ -942,6 +942,7 @@ model Path {
 
   name                 String
   isDefault            Boolean   @default(false)
+  isBlindContribution  Boolean   @default(false) // true for protected pack
   forkedFromRevisionId String?
   forkedFromRevision   Revision? @relation("PathFork", fields: [forkedFromRevisionId], references: [id], onDelete: SetNull)
 
@@ -950,39 +951,45 @@ model Path {
   headRevisionId String?
   headRevision   Revision?  @relation("PathHead", fields: [headRevisionId], onDelete: SetNull, references: [id])
 
+  targetCombines Combine[] @relation("CombineTargetPath")
+  sourceCombines Combine[] @relation("CombineSourcePath")
+  // bountySubmissions BountySubmission[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  path      Path?    @relation(fields: [pathId], references: [id])
-  pathId    String?
 
+  @@unique([collectionId, name])
   @@map("paths")
 }
 
 model Revision {
   id String @id @default(cuid())
 
-  pathId String
-  path   Path   @relation("PathRevisions", fields: [pathId], references: [id], onDelete: Cascade)
-
+  pathId           String
+  path             Path       @relation("PathRevisions", fields: [pathId], references: [id], onDelete: Cascade)
+  authorId         String?
+  author           User?      @relation("RevisionAuthor", fields: [authorId], references: [id], onDelete: SetNull)
   number           Int
   message          String
   parentRevisionId String?
   parentRevision   Revision?  @relation("RevisionParent", fields: [parentRevisionId], references: [id], onDelete: SetNull)
   childRevisions   Revision[] @relation("RevisionParent")
 
-  forkedPaths Path[] @relation("PathFork")
+  forkedPaths Path[]           @relation("PathFork")
+  headOfPaths Path[]           @relation("PathHead")
+  changes     RevisionChange[]
 
-  headOfPaths Path[] @relation("PathHead")
+  combineTarget Combine[] @relation("CombineTargetRevision")
+  combineSource Combine[] @relation("CombineSourceRevision")
+  combineBase   Combine[] @relation("CombineBaseRevision")
+  combineResult Combine[] @relation("CombineResultRevision")
+  releases      Release[]
+  // bountySubmissions BountySubmission[]
 
-  changes RevisionChange[]
+  createdAt DateTime @default(now())
 
-  createdAt DateTime  @default(now())
-  combines  Combine[]
-  combines  Combine[]
-  combines  Combine[]
-  combines  Combine[]
-  releases  Release[]
-
+  @@unique([pathId, number])
+  @@index([pathId, createdAt])
   @@map("revisions")
 }
 
@@ -990,8 +997,7 @@ model RevisionChange {
   id String @id @default(cuid())
 
   revisionId String
-
-  revision Revision @relation(fields: [revisionId], references: [id], onDelete: Cascade)
+  revision   Revision @relation(fields: [revisionId], references: [id], onDelete: Cascade)
 
   entryId String?
   entry   Entry?  @relation(fields: [entryId], references: [id], onDelete: SetNull)
@@ -1002,14 +1008,22 @@ model RevisionChange {
 
   createdAt DateTime @default(now())
 
+  @@index([revisionId])
+  @@index([entryId])
   @@map("revision_changes")
 }
 
 model Combine {
-  id String @id @default(cuid())
+  id          String  @id @default(cuid())
+  title       String
+  description String? @db.Text
+  authorId    String?
+  author      User?   @relation("CombineAuthor", fields: [authorId], references: [id], onDelete: SetNull)
 
   targetPathId     String
+  targetPath       Path              @relation("CombineTargetPath", fields: [targetPathId], references: [id], onDelete: Cascade)
   sourcePathId     String
+  sourcePath       Path              @relation("CombineSourcePath", fields: [sourcePathId], references: [id], onDelete: Cascade)
   targetRevisionId String
   targetRevision   Revision          @relation("CombineTargetRevision", fields: [targetRevisionId], references: [id], onDelete: Cascade)
   sourceRevisionId String
@@ -1020,9 +1034,13 @@ model Combine {
   conflicts        CombineConflict[]
   resultRevisionId String?
   resultRevision   Revision?         @relation("CombineResultRevision", fields: [resultRevisionId], references: [id], onDelete: SetNull)
+  // bountySubmissions BountySubmission[]
 
-  createdAt DateTime?
+  createdAt   DateTime? @default(now())
+  completedAt DateTime?
 
+  @@index([targetPathId, status])
+  @@index([sourcePathId])
   @@map("combines")
 }
 
