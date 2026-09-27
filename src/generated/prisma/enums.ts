@@ -19,16 +19,24 @@ export const Visibility = {
 export type Visibility = (typeof Visibility)[keyof typeof Visibility]
 
 
-export const AssetType = {
-  KNOWLEDGE: 'KNOWLEDGE',
-  SKILL: 'SKILL',
-  AGENT: 'AGENT',
-  RESEARCH: 'RESEARCH',
-  PREFERENCE: 'PREFERENCE',
-  WORKFLOW: 'WORKFLOW'
+export const PackAccessMode = {
+  OPEN: 'OPEN',
+  PROTECTED: 'PROTECTED'
 } as const
 
-export type AssetType = (typeof AssetType)[keyof typeof AssetType]
+export type PackAccessMode = (typeof PackAccessMode)[keyof typeof PackAccessMode]
+
+
+export const PackMonetizationType = {
+  FREE: 'FREE',
+  DONATION: 'DONATION',
+  ONE_TIME_PURCHASE: 'ONE_TIME_PURCHASE',
+  METERED_ROYALTIES: 'METERED_ROYALTIES',
+  SPONSORED: 'SPONSORED',
+  BOUNTY: 'BOUNTY'
+} as const
+
+export type PackMonetizationType = (typeof PackMonetizationType)[keyof typeof PackMonetizationType]
 
 
 export const CouponType = {
@@ -71,6 +79,18 @@ export const PaymentStatus = {
 export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]
 
 
+export const PaymentPurpose = {
+  SUBSCRIPTION: 'SUBSCRIPTION',
+  PREPAID_WALLET_TOPUP: 'PREPAID_WALLET_TOPUP',
+  PACK_PURCHASE: 'PACK_PURCHASE',
+  PACK_DONATION: 'PACK_DONATION',
+  SPONSORSHIP_DEPOSIT: 'SPONSORSHIP_DEPOSIT',
+  BOUNTY_ESCROW: 'BOUNTY_ESCROW'
+} as const
+
+export type PaymentPurpose = (typeof PaymentPurpose)[keyof typeof PaymentPurpose]
+
+
 export const BillingInterval = {
   MONTHLY: 'MONTHLY',
   ANNUALLY: 'ANNUALLY',
@@ -104,7 +124,221 @@ export const PaymentProvider = {
   STRIPE: 'STRIPE',
   PAYPAL: 'PAYPAL',
   ESEWA: 'ESEWA',
-  MANUAL: 'MANUAL'
+  MANUAL: 'MANUAL',
+  MARKETPLACE_CREDITS: 'MARKETPLACE_CREDITS'
 } as const
 
 export type PaymentProvider = (typeof PaymentProvider)[keyof typeof PaymentProvider]
+
+
+export const OrgRole = {
+  OWNER: 'OWNER',
+  ADMIN: 'ADMIN',
+  BILLING: 'BILLING',
+  DEVELOPER: 'DEVELOPER'
+} as const
+
+export type OrgRole = (typeof OrgRole)[keyof typeof OrgRole]
+
+
+export const PayoutSourceType = {
+  CITATION_ROYALTY: 'CITATION_ROYALTY',
+  MAINTAINER_SHARE: 'MAINTAINER_SHARE',
+  PACK_SALE: 'PACK_SALE',
+  DONATION: 'DONATION',
+  BOUNTY_REWARD: 'BOUNTY_REWARD'
+} as const
+
+export type PayoutSourceType = (typeof PayoutSourceType)[keyof typeof PayoutSourceType]
+
+
+export const PayoutStatus = {
+  PENDING: 'PENDING',
+  PROCESSING: 'PROCESSING',
+  PAID: 'PAID',
+  FAILED: 'FAILED'
+} as const
+
+export type PayoutStatus = (typeof PayoutStatus)[keyof typeof PayoutStatus]
+
+
+export const BountyStatus = {
+  DRAFT: 'DRAFT',
+  OPEN: 'OPEN',
+  IN_REVIEW: 'IN_REVIEW',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type BountyStatus = (typeof BountyStatus)[keyof typeof BountyStatus]
+
+
+export const BountySubmissionStatus = {
+  PENDING: 'PENDING',
+  ACCEPTED: 'ACCEPTED',
+  REJECTED: 'REJECTED',
+  CHANGES_REQUIRED: 'CHANGES_REQUIRED'
+} as const
+
+export type BountySubmissionStatus = (typeof BountySubmissionStatus)[keyof typeof BountySubmissionStatus]
+
+
+export const AppMemoryOperation = {
+  READ: 'READ',
+  WRITE: 'WRITE',
+  SEARCH: 'SEARCH',
+  UPDATE: 'UPDATE',
+  DELETE: 'DELETE'
+} as const
+
+export type AppMemoryOperation = (typeof AppMemoryOperation)[keyof typeof AppMemoryOperation]
+
+
+export const AreaKind = {
+  PERSONAL: 'PERSONAL',
+  PROJECTS: 'PROJECTS',
+  SKILLS: 'SKILLS',
+  RESEARCH: 'RESEARCH',
+  LIBRARY: 'LIBRARY',
+  CUSTOM: 'CUSTOM'
+} as const
+
+export type AreaKind = (typeof AreaKind)[keyof typeof AreaKind]
+
+
+export const EntryType = {
+  MEMORY: 'MEMORY',
+  NOTE: 'NOTE',
+  REFERENCE: 'REFERENCE',
+  CODE: 'CODE',
+  DOCUMENT: 'DOCUMENT',
+  SKILL: 'SKILL',
+  WORKFLOW: 'WORKFLOW',
+  DECISION: 'DECISION',
+  PROMPT: 'PROMPT',
+  CUSTOM: 'CUSTOM'
+} as const
+
+export type EntryType = (typeof EntryType)[keyof typeof EntryType]
+
+
+export const EntryState = {
+  SUGGESTED: 'SUGGESTED',
+  CONFIRMED: 'CONFIRMED',
+  REJECTED: 'REJECTED',
+  ARCHIVED: 'ARCHIVED'
+} as const
+
+export type EntryState = (typeof EntryState)[keyof typeof EntryState]
+
+
+export const RecallPolicy = {
+  AUTOMATIC: 'AUTOMATIC',
+  WHEN_RELEVANT: 'WHEN_RELEVANT',
+  MANUAL: 'MANUAL',
+  EXCLUDED: 'EXCLUDED'
+} as const
+
+export type RecallPolicy = (typeof RecallPolicy)[keyof typeof RecallPolicy]
+
+
+export const EntryOrigin = {
+  USER: 'USER',
+  APP: 'APP',
+  COMMUNITY: 'COMMUNITY',
+  IMPORTED: 'IMPORTED',
+  CONNECTED_SOURCE: 'CONNECTED_SOURCE',
+  RECALL: 'RECALL'
+} as const
+
+export type EntryOrigin = (typeof EntryOrigin)[keyof typeof EntryOrigin]
+
+
+export const SyncMode = {
+  MANUAL: 'MANUAL',
+  REVIEW: 'REVIEW',
+  SCHEDULED: 'SCHEDULED',
+  CONTINUOUS: 'CONTINUOUS'
+} as const
+
+export type SyncMode = (typeof SyncMode)[keyof typeof SyncMode]
+
+
+export const AccessPermission = {
+  READ: 'READ',
+  SUGGEST: 'SUGGEST',
+  WRITE: 'WRITE'
+} as const
+
+export type AccessPermission = (typeof AccessPermission)[keyof typeof AccessPermission]
+
+
+export const AccessEffect = {
+  ALLOW: 'ALLOW',
+  DENY: 'DENY'
+} as const
+
+export type AccessEffect = (typeof AccessEffect)[keyof typeof AccessEffect]
+
+
+export const AccessResourceType = {
+  AREA: 'AREA',
+  COLLECTION: 'COLLECTION',
+  ENTRY: 'ENTRY',
+  APP_MEMORY: 'APP_MEMORY',
+  PACK: 'PACK'
+} as const
+
+export type AccessResourceType = (typeof AccessResourceType)[keyof typeof AccessResourceType]
+
+
+export const AccessRequestStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  DENIED: 'DENIED',
+  EXPIRED: 'EXPIRED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type AccessRequestStatus = (typeof AccessRequestStatus)[keyof typeof AccessRequestStatus]
+
+
+export const ContextRequestStatus = {
+  PENDING: 'PENDING',
+  PROCESSING: 'PROCESSING',
+  COMPLETED: 'COMPLETED',
+  DENIED: 'DENIED',
+  FAILED: 'FAILED'
+} as const
+
+export type ContextRequestStatus = (typeof ContextRequestStatus)[keyof typeof ContextRequestStatus]
+
+
+export const RevisionOperation = {
+  CREATE: 'CREATE',
+  UPDATE: 'UPDATE',
+  DELETE: 'DELETE',
+  MOVE: 'MOVE'
+} as const
+
+export type RevisionOperation = (typeof RevisionOperation)[keyof typeof RevisionOperation]
+
+
+export const CombineStatus = {
+  PENDING: 'PENDING',
+  COMBINED: 'COMBINED',
+  CONFLICTED: 'CONFLICTED',
+  ABORTED: 'ABORTED'
+} as const
+
+export type CombineStatus = (typeof CombineStatus)[keyof typeof CombineStatus]
+
+
+export const ConflictResolution = {
+  KEEP_TARGET: 'KEEP_TARGET',
+  USE_SOURCE: 'USE_SOURCE',
+  CUSTOM: 'CUSTOM',
+  UNRESOLVED: 'UNRESOLVED'
+} as const
+
+export type ConflictResolution = (typeof ConflictResolution)[keyof typeof ConflictResolution]

@@ -30,12 +30,24 @@ export type PlanAvgAggregateOutputType = {
   price: number | null
   comparedAtPrice: number | null
   sortOrder: number | null
+  basePFactor: number | null
+  monthlyComputeQuotaCents: number | null
+  monthlyMarketplaceCreditsCents: number | null
+  rateLimitPerMinute: number | null
+  maxConnectedApps: number | null
+  storageLimitBytes: number | null
 }
 
 export type PlanSumAggregateOutputType = {
   price: number | null
   comparedAtPrice: number | null
   sortOrder: number | null
+  basePFactor: number | null
+  monthlyComputeQuotaCents: number | null
+  monthlyMarketplaceCreditsCents: number | null
+  rateLimitPerMinute: number | null
+  maxConnectedApps: number | null
+  storageLimitBytes: bigint | null
 }
 
 export type PlanMinAggregateOutputType = {
@@ -47,11 +59,12 @@ export type PlanMinAggregateOutputType = {
   currency: $Enums.Currency | null
   isActive: boolean | null
   sortOrder: number | null
-  intelligenceStorage: string | null
-  sync: string | null
-  recall: string | null
-  versioning: string | null
-  sharing: string | null
+  basePFactor: number | null
+  monthlyComputeQuotaCents: number | null
+  monthlyMarketplaceCreditsCents: number | null
+  rateLimitPerMinute: number | null
+  maxConnectedApps: number | null
+  storageLimitBytes: bigint | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -65,11 +78,12 @@ export type PlanMaxAggregateOutputType = {
   currency: $Enums.Currency | null
   isActive: boolean | null
   sortOrder: number | null
-  intelligenceStorage: string | null
-  sync: string | null
-  recall: string | null
-  versioning: string | null
-  sharing: string | null
+  basePFactor: number | null
+  monthlyComputeQuotaCents: number | null
+  monthlyMarketplaceCreditsCents: number | null
+  rateLimitPerMinute: number | null
+  maxConnectedApps: number | null
+  storageLimitBytes: bigint | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -83,13 +97,14 @@ export type PlanCountAggregateOutputType = {
   currency: number
   isActive: number
   sortOrder: number
-  intelligenceStorage: number
-  sync: number
-  recall: number
-  versioning: number
-  sharing: number
-  features: number
-  notIncludedFeatures: number
+  basePFactor: number
+  monthlyComputeQuotaCents: number
+  monthlyMarketplaceCreditsCents: number
+  rateLimitPerMinute: number
+  maxConnectedApps: number
+  storageLimitBytes: number
+  displayFeaturesIncluded: number
+  displayFeaturesNotIncluded: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -100,12 +115,24 @@ export type PlanAvgAggregateInputType = {
   price?: true
   comparedAtPrice?: true
   sortOrder?: true
+  basePFactor?: true
+  monthlyComputeQuotaCents?: true
+  monthlyMarketplaceCreditsCents?: true
+  rateLimitPerMinute?: true
+  maxConnectedApps?: true
+  storageLimitBytes?: true
 }
 
 export type PlanSumAggregateInputType = {
   price?: true
   comparedAtPrice?: true
   sortOrder?: true
+  basePFactor?: true
+  monthlyComputeQuotaCents?: true
+  monthlyMarketplaceCreditsCents?: true
+  rateLimitPerMinute?: true
+  maxConnectedApps?: true
+  storageLimitBytes?: true
 }
 
 export type PlanMinAggregateInputType = {
@@ -117,11 +144,12 @@ export type PlanMinAggregateInputType = {
   currency?: true
   isActive?: true
   sortOrder?: true
-  intelligenceStorage?: true
-  sync?: true
-  recall?: true
-  versioning?: true
-  sharing?: true
+  basePFactor?: true
+  monthlyComputeQuotaCents?: true
+  monthlyMarketplaceCreditsCents?: true
+  rateLimitPerMinute?: true
+  maxConnectedApps?: true
+  storageLimitBytes?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -135,11 +163,12 @@ export type PlanMaxAggregateInputType = {
   currency?: true
   isActive?: true
   sortOrder?: true
-  intelligenceStorage?: true
-  sync?: true
-  recall?: true
-  versioning?: true
-  sharing?: true
+  basePFactor?: true
+  monthlyComputeQuotaCents?: true
+  monthlyMarketplaceCreditsCents?: true
+  rateLimitPerMinute?: true
+  maxConnectedApps?: true
+  storageLimitBytes?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -153,13 +182,14 @@ export type PlanCountAggregateInputType = {
   currency?: true
   isActive?: true
   sortOrder?: true
-  intelligenceStorage?: true
-  sync?: true
-  recall?: true
-  versioning?: true
-  sharing?: true
-  features?: true
-  notIncludedFeatures?: true
+  basePFactor?: true
+  monthlyComputeQuotaCents?: true
+  monthlyMarketplaceCreditsCents?: true
+  rateLimitPerMinute?: true
+  maxConnectedApps?: true
+  storageLimitBytes?: true
+  displayFeaturesIncluded?: true
+  displayFeaturesNotIncluded?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -260,13 +290,14 @@ export type PlanGroupByOutputType = {
   currency: $Enums.Currency
   isActive: boolean
   sortOrder: number
-  intelligenceStorage: string | null
-  sync: string | null
-  recall: string | null
-  versioning: string | null
-  sharing: string | null
-  features: runtime.JsonValue | null
-  notIncludedFeatures: runtime.JsonValue | null
+  basePFactor: number
+  monthlyComputeQuotaCents: number
+  monthlyMarketplaceCreditsCents: number
+  rateLimitPerMinute: number
+  maxConnectedApps: number | null
+  storageLimitBytes: bigint | null
+  displayFeaturesIncluded: runtime.JsonValue | null
+  displayFeaturesNotIncluded: runtime.JsonValue | null
   createdAt: Date
   updatedAt: Date
   _count: PlanCountAggregateOutputType | null
@@ -303,13 +334,14 @@ export type PlanWhereInput = {
   currency?: Prisma.EnumCurrencyFilter<"Plan"> | $Enums.Currency
   isActive?: Prisma.BoolFilter<"Plan"> | boolean
   sortOrder?: Prisma.IntFilter<"Plan"> | number
-  intelligenceStorage?: Prisma.StringNullableFilter<"Plan"> | string | null
-  sync?: Prisma.StringNullableFilter<"Plan"> | string | null
-  recall?: Prisma.StringNullableFilter<"Plan"> | string | null
-  versioning?: Prisma.StringNullableFilter<"Plan"> | string | null
-  sharing?: Prisma.StringNullableFilter<"Plan"> | string | null
-  features?: Prisma.JsonNullableFilter<"Plan">
-  notIncludedFeatures?: Prisma.JsonNullableFilter<"Plan">
+  basePFactor?: Prisma.FloatFilter<"Plan"> | number
+  monthlyComputeQuotaCents?: Prisma.IntFilter<"Plan"> | number
+  monthlyMarketplaceCreditsCents?: Prisma.IntFilter<"Plan"> | number
+  rateLimitPerMinute?: Prisma.IntFilter<"Plan"> | number
+  maxConnectedApps?: Prisma.IntNullableFilter<"Plan"> | number | null
+  storageLimitBytes?: Prisma.BigIntNullableFilter<"Plan"> | bigint | number | null
+  displayFeaturesIncluded?: Prisma.JsonNullableFilter<"Plan">
+  displayFeaturesNotIncluded?: Prisma.JsonNullableFilter<"Plan">
   createdAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
   payments?: Prisma.PaymentListRelationFilter
@@ -326,13 +358,14 @@ export type PlanOrderByWithRelationInput = {
   currency?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
-  intelligenceStorage?: Prisma.SortOrderInput | Prisma.SortOrder
-  sync?: Prisma.SortOrderInput | Prisma.SortOrder
-  recall?: Prisma.SortOrderInput | Prisma.SortOrder
-  versioning?: Prisma.SortOrderInput | Prisma.SortOrder
-  sharing?: Prisma.SortOrderInput | Prisma.SortOrder
-  features?: Prisma.SortOrderInput | Prisma.SortOrder
-  notIncludedFeatures?: Prisma.SortOrderInput | Prisma.SortOrder
+  basePFactor?: Prisma.SortOrder
+  monthlyComputeQuotaCents?: Prisma.SortOrder
+  monthlyMarketplaceCreditsCents?: Prisma.SortOrder
+  rateLimitPerMinute?: Prisma.SortOrder
+  maxConnectedApps?: Prisma.SortOrderInput | Prisma.SortOrder
+  storageLimitBytes?: Prisma.SortOrderInput | Prisma.SortOrder
+  displayFeaturesIncluded?: Prisma.SortOrderInput | Prisma.SortOrder
+  displayFeaturesNotIncluded?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   payments?: Prisma.PaymentOrderByRelationAggregateInput
@@ -352,13 +385,14 @@ export type PlanWhereUniqueInput = Prisma.AtLeast<{
   currency?: Prisma.EnumCurrencyFilter<"Plan"> | $Enums.Currency
   isActive?: Prisma.BoolFilter<"Plan"> | boolean
   sortOrder?: Prisma.IntFilter<"Plan"> | number
-  intelligenceStorage?: Prisma.StringNullableFilter<"Plan"> | string | null
-  sync?: Prisma.StringNullableFilter<"Plan"> | string | null
-  recall?: Prisma.StringNullableFilter<"Plan"> | string | null
-  versioning?: Prisma.StringNullableFilter<"Plan"> | string | null
-  sharing?: Prisma.StringNullableFilter<"Plan"> | string | null
-  features?: Prisma.JsonNullableFilter<"Plan">
-  notIncludedFeatures?: Prisma.JsonNullableFilter<"Plan">
+  basePFactor?: Prisma.FloatFilter<"Plan"> | number
+  monthlyComputeQuotaCents?: Prisma.IntFilter<"Plan"> | number
+  monthlyMarketplaceCreditsCents?: Prisma.IntFilter<"Plan"> | number
+  rateLimitPerMinute?: Prisma.IntFilter<"Plan"> | number
+  maxConnectedApps?: Prisma.IntNullableFilter<"Plan"> | number | null
+  storageLimitBytes?: Prisma.BigIntNullableFilter<"Plan"> | bigint | number | null
+  displayFeaturesIncluded?: Prisma.JsonNullableFilter<"Plan">
+  displayFeaturesNotIncluded?: Prisma.JsonNullableFilter<"Plan">
   createdAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
   payments?: Prisma.PaymentListRelationFilter
@@ -375,13 +409,14 @@ export type PlanOrderByWithAggregationInput = {
   currency?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
-  intelligenceStorage?: Prisma.SortOrderInput | Prisma.SortOrder
-  sync?: Prisma.SortOrderInput | Prisma.SortOrder
-  recall?: Prisma.SortOrderInput | Prisma.SortOrder
-  versioning?: Prisma.SortOrderInput | Prisma.SortOrder
-  sharing?: Prisma.SortOrderInput | Prisma.SortOrder
-  features?: Prisma.SortOrderInput | Prisma.SortOrder
-  notIncludedFeatures?: Prisma.SortOrderInput | Prisma.SortOrder
+  basePFactor?: Prisma.SortOrder
+  monthlyComputeQuotaCents?: Prisma.SortOrder
+  monthlyMarketplaceCreditsCents?: Prisma.SortOrder
+  rateLimitPerMinute?: Prisma.SortOrder
+  maxConnectedApps?: Prisma.SortOrderInput | Prisma.SortOrder
+  storageLimitBytes?: Prisma.SortOrderInput | Prisma.SortOrder
+  displayFeaturesIncluded?: Prisma.SortOrderInput | Prisma.SortOrder
+  displayFeaturesNotIncluded?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.PlanCountOrderByAggregateInput
@@ -403,13 +438,14 @@ export type PlanScalarWhereWithAggregatesInput = {
   currency?: Prisma.EnumCurrencyWithAggregatesFilter<"Plan"> | $Enums.Currency
   isActive?: Prisma.BoolWithAggregatesFilter<"Plan"> | boolean
   sortOrder?: Prisma.IntWithAggregatesFilter<"Plan"> | number
-  intelligenceStorage?: Prisma.StringNullableWithAggregatesFilter<"Plan"> | string | null
-  sync?: Prisma.StringNullableWithAggregatesFilter<"Plan"> | string | null
-  recall?: Prisma.StringNullableWithAggregatesFilter<"Plan"> | string | null
-  versioning?: Prisma.StringNullableWithAggregatesFilter<"Plan"> | string | null
-  sharing?: Prisma.StringNullableWithAggregatesFilter<"Plan"> | string | null
-  features?: Prisma.JsonNullableWithAggregatesFilter<"Plan">
-  notIncludedFeatures?: Prisma.JsonNullableWithAggregatesFilter<"Plan">
+  basePFactor?: Prisma.FloatWithAggregatesFilter<"Plan"> | number
+  monthlyComputeQuotaCents?: Prisma.IntWithAggregatesFilter<"Plan"> | number
+  monthlyMarketplaceCreditsCents?: Prisma.IntWithAggregatesFilter<"Plan"> | number
+  rateLimitPerMinute?: Prisma.IntWithAggregatesFilter<"Plan"> | number
+  maxConnectedApps?: Prisma.IntNullableWithAggregatesFilter<"Plan"> | number | null
+  storageLimitBytes?: Prisma.BigIntNullableWithAggregatesFilter<"Plan"> | bigint | number | null
+  displayFeaturesIncluded?: Prisma.JsonNullableWithAggregatesFilter<"Plan">
+  displayFeaturesNotIncluded?: Prisma.JsonNullableWithAggregatesFilter<"Plan">
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Plan"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Plan"> | Date | string
 }
@@ -423,13 +459,14 @@ export type PlanCreateInput = {
   currency: $Enums.Currency
   isActive?: boolean
   sortOrder?: number
-  intelligenceStorage?: string | null
-  sync?: string | null
-  recall?: string | null
-  versioning?: string | null
-  sharing?: string | null
-  features?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  notIncludedFeatures?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  basePFactor?: number
+  monthlyComputeQuotaCents?: number
+  monthlyMarketplaceCreditsCents?: number
+  rateLimitPerMinute?: number
+  maxConnectedApps?: number | null
+  storageLimitBytes?: bigint | number | null
+  displayFeaturesIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  displayFeaturesNotIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   payments?: Prisma.PaymentCreateNestedManyWithoutPlanInput
@@ -446,13 +483,14 @@ export type PlanUncheckedCreateInput = {
   currency: $Enums.Currency
   isActive?: boolean
   sortOrder?: number
-  intelligenceStorage?: string | null
-  sync?: string | null
-  recall?: string | null
-  versioning?: string | null
-  sharing?: string | null
-  features?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  notIncludedFeatures?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  basePFactor?: number
+  monthlyComputeQuotaCents?: number
+  monthlyMarketplaceCreditsCents?: number
+  rateLimitPerMinute?: number
+  maxConnectedApps?: number | null
+  storageLimitBytes?: bigint | number | null
+  displayFeaturesIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  displayFeaturesNotIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutPlanInput
@@ -469,13 +507,14 @@ export type PlanUpdateInput = {
   currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
-  intelligenceStorage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sync?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  recall?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  versioning?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sharing?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  features?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  notIncludedFeatures?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  basePFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  monthlyComputeQuotaCents?: Prisma.IntFieldUpdateOperationsInput | number
+  monthlyMarketplaceCreditsCents?: Prisma.IntFieldUpdateOperationsInput | number
+  rateLimitPerMinute?: Prisma.IntFieldUpdateOperationsInput | number
+  maxConnectedApps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  storageLimitBytes?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  displayFeaturesIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  displayFeaturesNotIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payments?: Prisma.PaymentUpdateManyWithoutPlanNestedInput
@@ -492,13 +531,14 @@ export type PlanUncheckedUpdateInput = {
   currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
-  intelligenceStorage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sync?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  recall?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  versioning?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sharing?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  features?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  notIncludedFeatures?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  basePFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  monthlyComputeQuotaCents?: Prisma.IntFieldUpdateOperationsInput | number
+  monthlyMarketplaceCreditsCents?: Prisma.IntFieldUpdateOperationsInput | number
+  rateLimitPerMinute?: Prisma.IntFieldUpdateOperationsInput | number
+  maxConnectedApps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  storageLimitBytes?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  displayFeaturesIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  displayFeaturesNotIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutPlanNestedInput
@@ -515,13 +555,14 @@ export type PlanCreateManyInput = {
   currency: $Enums.Currency
   isActive?: boolean
   sortOrder?: number
-  intelligenceStorage?: string | null
-  sync?: string | null
-  recall?: string | null
-  versioning?: string | null
-  sharing?: string | null
-  features?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  notIncludedFeatures?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  basePFactor?: number
+  monthlyComputeQuotaCents?: number
+  monthlyMarketplaceCreditsCents?: number
+  rateLimitPerMinute?: number
+  maxConnectedApps?: number | null
+  storageLimitBytes?: bigint | number | null
+  displayFeaturesIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  displayFeaturesNotIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -535,13 +576,14 @@ export type PlanUpdateManyMutationInput = {
   currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
-  intelligenceStorage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sync?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  recall?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  versioning?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sharing?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  features?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  notIncludedFeatures?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  basePFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  monthlyComputeQuotaCents?: Prisma.IntFieldUpdateOperationsInput | number
+  monthlyMarketplaceCreditsCents?: Prisma.IntFieldUpdateOperationsInput | number
+  rateLimitPerMinute?: Prisma.IntFieldUpdateOperationsInput | number
+  maxConnectedApps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  storageLimitBytes?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  displayFeaturesIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  displayFeaturesNotIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -555,13 +597,14 @@ export type PlanUncheckedUpdateManyInput = {
   currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
-  intelligenceStorage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sync?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  recall?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  versioning?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sharing?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  features?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  notIncludedFeatures?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  basePFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  monthlyComputeQuotaCents?: Prisma.IntFieldUpdateOperationsInput | number
+  monthlyMarketplaceCreditsCents?: Prisma.IntFieldUpdateOperationsInput | number
+  rateLimitPerMinute?: Prisma.IntFieldUpdateOperationsInput | number
+  maxConnectedApps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  storageLimitBytes?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  displayFeaturesIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  displayFeaturesNotIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -575,13 +618,14 @@ export type PlanCountOrderByAggregateInput = {
   currency?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
-  intelligenceStorage?: Prisma.SortOrder
-  sync?: Prisma.SortOrder
-  recall?: Prisma.SortOrder
-  versioning?: Prisma.SortOrder
-  sharing?: Prisma.SortOrder
-  features?: Prisma.SortOrder
-  notIncludedFeatures?: Prisma.SortOrder
+  basePFactor?: Prisma.SortOrder
+  monthlyComputeQuotaCents?: Prisma.SortOrder
+  monthlyMarketplaceCreditsCents?: Prisma.SortOrder
+  rateLimitPerMinute?: Prisma.SortOrder
+  maxConnectedApps?: Prisma.SortOrder
+  storageLimitBytes?: Prisma.SortOrder
+  displayFeaturesIncluded?: Prisma.SortOrder
+  displayFeaturesNotIncluded?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -590,6 +634,12 @@ export type PlanAvgOrderByAggregateInput = {
   price?: Prisma.SortOrder
   comparedAtPrice?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
+  basePFactor?: Prisma.SortOrder
+  monthlyComputeQuotaCents?: Prisma.SortOrder
+  monthlyMarketplaceCreditsCents?: Prisma.SortOrder
+  rateLimitPerMinute?: Prisma.SortOrder
+  maxConnectedApps?: Prisma.SortOrder
+  storageLimitBytes?: Prisma.SortOrder
 }
 
 export type PlanMaxOrderByAggregateInput = {
@@ -601,11 +651,12 @@ export type PlanMaxOrderByAggregateInput = {
   currency?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
-  intelligenceStorage?: Prisma.SortOrder
-  sync?: Prisma.SortOrder
-  recall?: Prisma.SortOrder
-  versioning?: Prisma.SortOrder
-  sharing?: Prisma.SortOrder
+  basePFactor?: Prisma.SortOrder
+  monthlyComputeQuotaCents?: Prisma.SortOrder
+  monthlyMarketplaceCreditsCents?: Prisma.SortOrder
+  rateLimitPerMinute?: Prisma.SortOrder
+  maxConnectedApps?: Prisma.SortOrder
+  storageLimitBytes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -619,11 +670,12 @@ export type PlanMinOrderByAggregateInput = {
   currency?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
-  intelligenceStorage?: Prisma.SortOrder
-  sync?: Prisma.SortOrder
-  recall?: Prisma.SortOrder
-  versioning?: Prisma.SortOrder
-  sharing?: Prisma.SortOrder
+  basePFactor?: Prisma.SortOrder
+  monthlyComputeQuotaCents?: Prisma.SortOrder
+  monthlyMarketplaceCreditsCents?: Prisma.SortOrder
+  rateLimitPerMinute?: Prisma.SortOrder
+  maxConnectedApps?: Prisma.SortOrder
+  storageLimitBytes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -632,6 +684,12 @@ export type PlanSumOrderByAggregateInput = {
   price?: Prisma.SortOrder
   comparedAtPrice?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
+  basePFactor?: Prisma.SortOrder
+  monthlyComputeQuotaCents?: Prisma.SortOrder
+  monthlyMarketplaceCreditsCents?: Prisma.SortOrder
+  rateLimitPerMinute?: Prisma.SortOrder
+  maxConnectedApps?: Prisma.SortOrder
+  storageLimitBytes?: Prisma.SortOrder
 }
 
 export type PlanNullableScalarRelationFilter = {
@@ -653,8 +711,12 @@ export type EnumBillingIntervalFieldUpdateOperationsInput = {
   set?: $Enums.BillingInterval
 }
 
-export type EnumCurrencyFieldUpdateOperationsInput = {
-  set?: $Enums.Currency
+export type NullableBigIntFieldUpdateOperationsInput = {
+  set?: bigint | number | null
+  increment?: bigint | number
+  decrement?: bigint | number
+  multiply?: bigint | number
+  divide?: bigint | number
 }
 
 export type PlanCreateNestedOneWithoutSubscriptionsInput = {
@@ -736,13 +798,14 @@ export type PlanCreateWithoutSubscriptionsInput = {
   currency: $Enums.Currency
   isActive?: boolean
   sortOrder?: number
-  intelligenceStorage?: string | null
-  sync?: string | null
-  recall?: string | null
-  versioning?: string | null
-  sharing?: string | null
-  features?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  notIncludedFeatures?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  basePFactor?: number
+  monthlyComputeQuotaCents?: number
+  monthlyMarketplaceCreditsCents?: number
+  rateLimitPerMinute?: number
+  maxConnectedApps?: number | null
+  storageLimitBytes?: bigint | number | null
+  displayFeaturesIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  displayFeaturesNotIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   payments?: Prisma.PaymentCreateNestedManyWithoutPlanInput
@@ -758,13 +821,14 @@ export type PlanUncheckedCreateWithoutSubscriptionsInput = {
   currency: $Enums.Currency
   isActive?: boolean
   sortOrder?: number
-  intelligenceStorage?: string | null
-  sync?: string | null
-  recall?: string | null
-  versioning?: string | null
-  sharing?: string | null
-  features?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  notIncludedFeatures?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  basePFactor?: number
+  monthlyComputeQuotaCents?: number
+  monthlyMarketplaceCreditsCents?: number
+  rateLimitPerMinute?: number
+  maxConnectedApps?: number | null
+  storageLimitBytes?: bigint | number | null
+  displayFeaturesIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  displayFeaturesNotIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutPlanInput
@@ -796,13 +860,14 @@ export type PlanUpdateWithoutSubscriptionsInput = {
   currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
-  intelligenceStorage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sync?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  recall?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  versioning?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sharing?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  features?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  notIncludedFeatures?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  basePFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  monthlyComputeQuotaCents?: Prisma.IntFieldUpdateOperationsInput | number
+  monthlyMarketplaceCreditsCents?: Prisma.IntFieldUpdateOperationsInput | number
+  rateLimitPerMinute?: Prisma.IntFieldUpdateOperationsInput | number
+  maxConnectedApps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  storageLimitBytes?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  displayFeaturesIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  displayFeaturesNotIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payments?: Prisma.PaymentUpdateManyWithoutPlanNestedInput
@@ -818,13 +883,14 @@ export type PlanUncheckedUpdateWithoutSubscriptionsInput = {
   currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
-  intelligenceStorage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sync?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  recall?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  versioning?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sharing?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  features?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  notIncludedFeatures?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  basePFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  monthlyComputeQuotaCents?: Prisma.IntFieldUpdateOperationsInput | number
+  monthlyMarketplaceCreditsCents?: Prisma.IntFieldUpdateOperationsInput | number
+  rateLimitPerMinute?: Prisma.IntFieldUpdateOperationsInput | number
+  maxConnectedApps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  storageLimitBytes?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  displayFeaturesIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  displayFeaturesNotIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutPlanNestedInput
@@ -840,13 +906,14 @@ export type PlanCreateWithoutPaymentsInput = {
   currency: $Enums.Currency
   isActive?: boolean
   sortOrder?: number
-  intelligenceStorage?: string | null
-  sync?: string | null
-  recall?: string | null
-  versioning?: string | null
-  sharing?: string | null
-  features?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  notIncludedFeatures?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  basePFactor?: number
+  monthlyComputeQuotaCents?: number
+  monthlyMarketplaceCreditsCents?: number
+  rateLimitPerMinute?: number
+  maxConnectedApps?: number | null
+  storageLimitBytes?: bigint | number | null
+  displayFeaturesIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  displayFeaturesNotIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
@@ -862,13 +929,14 @@ export type PlanUncheckedCreateWithoutPaymentsInput = {
   currency: $Enums.Currency
   isActive?: boolean
   sortOrder?: number
-  intelligenceStorage?: string | null
-  sync?: string | null
-  recall?: string | null
-  versioning?: string | null
-  sharing?: string | null
-  features?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  notIncludedFeatures?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  basePFactor?: number
+  monthlyComputeQuotaCents?: number
+  monthlyMarketplaceCreditsCents?: number
+  rateLimitPerMinute?: number
+  maxConnectedApps?: number | null
+  storageLimitBytes?: bigint | number | null
+  displayFeaturesIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  displayFeaturesNotIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
@@ -900,13 +968,14 @@ export type PlanUpdateWithoutPaymentsInput = {
   currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
-  intelligenceStorage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sync?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  recall?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  versioning?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sharing?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  features?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  notIncludedFeatures?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  basePFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  monthlyComputeQuotaCents?: Prisma.IntFieldUpdateOperationsInput | number
+  monthlyMarketplaceCreditsCents?: Prisma.IntFieldUpdateOperationsInput | number
+  rateLimitPerMinute?: Prisma.IntFieldUpdateOperationsInput | number
+  maxConnectedApps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  storageLimitBytes?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  displayFeaturesIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  displayFeaturesNotIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
@@ -922,13 +991,14 @@ export type PlanUncheckedUpdateWithoutPaymentsInput = {
   currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
-  intelligenceStorage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sync?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  recall?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  versioning?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sharing?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  features?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  notIncludedFeatures?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  basePFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  monthlyComputeQuotaCents?: Prisma.IntFieldUpdateOperationsInput | number
+  monthlyMarketplaceCreditsCents?: Prisma.IntFieldUpdateOperationsInput | number
+  rateLimitPerMinute?: Prisma.IntFieldUpdateOperationsInput | number
+  maxConnectedApps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  storageLimitBytes?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  displayFeaturesIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  displayFeaturesNotIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
@@ -944,13 +1014,14 @@ export type PlanCreateWithoutApplicableCouponsInput = {
   currency: $Enums.Currency
   isActive?: boolean
   sortOrder?: number
-  intelligenceStorage?: string | null
-  sync?: string | null
-  recall?: string | null
-  versioning?: string | null
-  sharing?: string | null
-  features?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  notIncludedFeatures?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  basePFactor?: number
+  monthlyComputeQuotaCents?: number
+  monthlyMarketplaceCreditsCents?: number
+  rateLimitPerMinute?: number
+  maxConnectedApps?: number | null
+  storageLimitBytes?: bigint | number | null
+  displayFeaturesIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  displayFeaturesNotIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   payments?: Prisma.PaymentCreateNestedManyWithoutPlanInput
@@ -966,13 +1037,14 @@ export type PlanUncheckedCreateWithoutApplicableCouponsInput = {
   currency: $Enums.Currency
   isActive?: boolean
   sortOrder?: number
-  intelligenceStorage?: string | null
-  sync?: string | null
-  recall?: string | null
-  versioning?: string | null
-  sharing?: string | null
-  features?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  notIncludedFeatures?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  basePFactor?: number
+  monthlyComputeQuotaCents?: number
+  monthlyMarketplaceCreditsCents?: number
+  rateLimitPerMinute?: number
+  maxConnectedApps?: number | null
+  storageLimitBytes?: bigint | number | null
+  displayFeaturesIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  displayFeaturesNotIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutPlanInput
@@ -1012,13 +1084,14 @@ export type PlanScalarWhereInput = {
   currency?: Prisma.EnumCurrencyFilter<"Plan"> | $Enums.Currency
   isActive?: Prisma.BoolFilter<"Plan"> | boolean
   sortOrder?: Prisma.IntFilter<"Plan"> | number
-  intelligenceStorage?: Prisma.StringNullableFilter<"Plan"> | string | null
-  sync?: Prisma.StringNullableFilter<"Plan"> | string | null
-  recall?: Prisma.StringNullableFilter<"Plan"> | string | null
-  versioning?: Prisma.StringNullableFilter<"Plan"> | string | null
-  sharing?: Prisma.StringNullableFilter<"Plan"> | string | null
-  features?: Prisma.JsonNullableFilter<"Plan">
-  notIncludedFeatures?: Prisma.JsonNullableFilter<"Plan">
+  basePFactor?: Prisma.FloatFilter<"Plan"> | number
+  monthlyComputeQuotaCents?: Prisma.IntFilter<"Plan"> | number
+  monthlyMarketplaceCreditsCents?: Prisma.IntFilter<"Plan"> | number
+  rateLimitPerMinute?: Prisma.IntFilter<"Plan"> | number
+  maxConnectedApps?: Prisma.IntNullableFilter<"Plan"> | number | null
+  storageLimitBytes?: Prisma.BigIntNullableFilter<"Plan"> | bigint | number | null
+  displayFeaturesIncluded?: Prisma.JsonNullableFilter<"Plan">
+  displayFeaturesNotIncluded?: Prisma.JsonNullableFilter<"Plan">
   createdAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
 }
@@ -1032,13 +1105,14 @@ export type PlanUpdateWithoutApplicableCouponsInput = {
   currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
-  intelligenceStorage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sync?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  recall?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  versioning?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sharing?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  features?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  notIncludedFeatures?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  basePFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  monthlyComputeQuotaCents?: Prisma.IntFieldUpdateOperationsInput | number
+  monthlyMarketplaceCreditsCents?: Prisma.IntFieldUpdateOperationsInput | number
+  rateLimitPerMinute?: Prisma.IntFieldUpdateOperationsInput | number
+  maxConnectedApps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  storageLimitBytes?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  displayFeaturesIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  displayFeaturesNotIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payments?: Prisma.PaymentUpdateManyWithoutPlanNestedInput
@@ -1054,13 +1128,14 @@ export type PlanUncheckedUpdateWithoutApplicableCouponsInput = {
   currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
-  intelligenceStorage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sync?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  recall?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  versioning?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sharing?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  features?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  notIncludedFeatures?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  basePFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  monthlyComputeQuotaCents?: Prisma.IntFieldUpdateOperationsInput | number
+  monthlyMarketplaceCreditsCents?: Prisma.IntFieldUpdateOperationsInput | number
+  rateLimitPerMinute?: Prisma.IntFieldUpdateOperationsInput | number
+  maxConnectedApps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  storageLimitBytes?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  displayFeaturesIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  displayFeaturesNotIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutPlanNestedInput
@@ -1076,13 +1151,14 @@ export type PlanUncheckedUpdateManyWithoutApplicableCouponsInput = {
   currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
-  intelligenceStorage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sync?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  recall?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  versioning?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sharing?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  features?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  notIncludedFeatures?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  basePFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  monthlyComputeQuotaCents?: Prisma.IntFieldUpdateOperationsInput | number
+  monthlyMarketplaceCreditsCents?: Prisma.IntFieldUpdateOperationsInput | number
+  rateLimitPerMinute?: Prisma.IntFieldUpdateOperationsInput | number
+  maxConnectedApps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  storageLimitBytes?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  displayFeaturesIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  displayFeaturesNotIncluded?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1145,13 +1221,14 @@ export type PlanSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   currency?: boolean
   isActive?: boolean
   sortOrder?: boolean
-  intelligenceStorage?: boolean
-  sync?: boolean
-  recall?: boolean
-  versioning?: boolean
-  sharing?: boolean
-  features?: boolean
-  notIncludedFeatures?: boolean
+  basePFactor?: boolean
+  monthlyComputeQuotaCents?: boolean
+  monthlyMarketplaceCreditsCents?: boolean
+  rateLimitPerMinute?: boolean
+  maxConnectedApps?: boolean
+  storageLimitBytes?: boolean
+  displayFeaturesIncluded?: boolean
+  displayFeaturesNotIncluded?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   payments?: boolean | Prisma.Plan$paymentsArgs<ExtArgs>
@@ -1169,13 +1246,14 @@ export type PlanSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   currency?: boolean
   isActive?: boolean
   sortOrder?: boolean
-  intelligenceStorage?: boolean
-  sync?: boolean
-  recall?: boolean
-  versioning?: boolean
-  sharing?: boolean
-  features?: boolean
-  notIncludedFeatures?: boolean
+  basePFactor?: boolean
+  monthlyComputeQuotaCents?: boolean
+  monthlyMarketplaceCreditsCents?: boolean
+  rateLimitPerMinute?: boolean
+  maxConnectedApps?: boolean
+  storageLimitBytes?: boolean
+  displayFeaturesIncluded?: boolean
+  displayFeaturesNotIncluded?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["plan"]>
@@ -1189,13 +1267,14 @@ export type PlanSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   currency?: boolean
   isActive?: boolean
   sortOrder?: boolean
-  intelligenceStorage?: boolean
-  sync?: boolean
-  recall?: boolean
-  versioning?: boolean
-  sharing?: boolean
-  features?: boolean
-  notIncludedFeatures?: boolean
+  basePFactor?: boolean
+  monthlyComputeQuotaCents?: boolean
+  monthlyMarketplaceCreditsCents?: boolean
+  rateLimitPerMinute?: boolean
+  maxConnectedApps?: boolean
+  storageLimitBytes?: boolean
+  displayFeaturesIncluded?: boolean
+  displayFeaturesNotIncluded?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["plan"]>
@@ -1209,18 +1288,19 @@ export type PlanSelectScalar = {
   currency?: boolean
   isActive?: boolean
   sortOrder?: boolean
-  intelligenceStorage?: boolean
-  sync?: boolean
-  recall?: boolean
-  versioning?: boolean
-  sharing?: boolean
-  features?: boolean
-  notIncludedFeatures?: boolean
+  basePFactor?: boolean
+  monthlyComputeQuotaCents?: boolean
+  monthlyMarketplaceCreditsCents?: boolean
+  rateLimitPerMinute?: boolean
+  maxConnectedApps?: boolean
+  storageLimitBytes?: boolean
+  displayFeaturesIncluded?: boolean
+  displayFeaturesNotIncluded?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type PlanOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "price" | "comparedAtPrice" | "interval" | "currency" | "isActive" | "sortOrder" | "intelligenceStorage" | "sync" | "recall" | "versioning" | "sharing" | "features" | "notIncludedFeatures" | "createdAt" | "updatedAt", ExtArgs["result"]["plan"]>
+export type PlanOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "price" | "comparedAtPrice" | "interval" | "currency" | "isActive" | "sortOrder" | "basePFactor" | "monthlyComputeQuotaCents" | "monthlyMarketplaceCreditsCents" | "rateLimitPerMinute" | "maxConnectedApps" | "storageLimitBytes" | "displayFeaturesIncluded" | "displayFeaturesNotIncluded" | "createdAt" | "updatedAt", ExtArgs["result"]["plan"]>
 export type PlanInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   payments?: boolean | Prisma.Plan$paymentsArgs<ExtArgs>
   subscriptions?: boolean | Prisma.Plan$subscriptionsArgs<ExtArgs>
@@ -1246,13 +1326,14 @@ export type $PlanPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     currency: $Enums.Currency
     isActive: boolean
     sortOrder: number
-    intelligenceStorage: string | null
-    sync: string | null
-    recall: string | null
-    versioning: string | null
-    sharing: string | null
-    features: runtime.JsonValue | null
-    notIncludedFeatures: runtime.JsonValue | null
+    basePFactor: number
+    monthlyComputeQuotaCents: number
+    monthlyMarketplaceCreditsCents: number
+    rateLimitPerMinute: number
+    maxConnectedApps: number | null
+    storageLimitBytes: bigint | null
+    displayFeaturesIncluded: runtime.JsonValue | null
+    displayFeaturesNotIncluded: runtime.JsonValue | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["plan"]>
@@ -1689,13 +1770,14 @@ export interface PlanFieldRefs {
   readonly currency: Prisma.FieldRef<"Plan", 'Currency'>
   readonly isActive: Prisma.FieldRef<"Plan", 'Boolean'>
   readonly sortOrder: Prisma.FieldRef<"Plan", 'Int'>
-  readonly intelligenceStorage: Prisma.FieldRef<"Plan", 'String'>
-  readonly sync: Prisma.FieldRef<"Plan", 'String'>
-  readonly recall: Prisma.FieldRef<"Plan", 'String'>
-  readonly versioning: Prisma.FieldRef<"Plan", 'String'>
-  readonly sharing: Prisma.FieldRef<"Plan", 'String'>
-  readonly features: Prisma.FieldRef<"Plan", 'Json'>
-  readonly notIncludedFeatures: Prisma.FieldRef<"Plan", 'Json'>
+  readonly basePFactor: Prisma.FieldRef<"Plan", 'Float'>
+  readonly monthlyComputeQuotaCents: Prisma.FieldRef<"Plan", 'Int'>
+  readonly monthlyMarketplaceCreditsCents: Prisma.FieldRef<"Plan", 'Int'>
+  readonly rateLimitPerMinute: Prisma.FieldRef<"Plan", 'Int'>
+  readonly maxConnectedApps: Prisma.FieldRef<"Plan", 'Int'>
+  readonly storageLimitBytes: Prisma.FieldRef<"Plan", 'BigInt'>
+  readonly displayFeaturesIncluded: Prisma.FieldRef<"Plan", 'Json'>
+  readonly displayFeaturesNotIncluded: Prisma.FieldRef<"Plan", 'Json'>
   readonly createdAt: Prisma.FieldRef<"Plan", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Plan", 'DateTime'>
 }

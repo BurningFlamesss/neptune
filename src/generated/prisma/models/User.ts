@@ -20,16 +20,40 @@ export type UserModel = runtime.Types.Result.DefaultSelection<Prisma.$UserPayloa
 
 export type AggregateUser = {
   _count: UserCountAggregateOutputType | null
+  _avg: UserAvgAggregateOutputType | null
+  _sum: UserSumAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
+}
+
+export type UserAvgAggregateOutputType = {
+  computeQuotaBalanceCents: number | null
+  marketplaceCreditBalanceCents: number | null
+  prepaidWalletBalanceCents: number | null
+  currentMonthSpendCents: number | null
+}
+
+export type UserSumAggregateOutputType = {
+  computeQuotaBalanceCents: number | null
+  marketplaceCreditBalanceCents: number | null
+  prepaidWalletBalanceCents: number | null
+  currentMonthSpendCents: number | null
 }
 
 export type UserMinAggregateOutputType = {
   id: string | null
   name: string | null
+  username: string | null
+  bio: string | null
   email: string | null
   emailVerified: boolean | null
   image: string | null
+  stripeConnectId: string | null
+  computeQuotaBalanceCents: number | null
+  marketplaceCreditBalanceCents: number | null
+  prepaidWalletBalanceCents: number | null
+  currentMonthSpendCents: number | null
+  currentBillingCycleStart: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -37,9 +61,17 @@ export type UserMinAggregateOutputType = {
 export type UserMaxAggregateOutputType = {
   id: string | null
   name: string | null
+  username: string | null
+  bio: string | null
   email: string | null
   emailVerified: boolean | null
   image: string | null
+  stripeConnectId: string | null
+  computeQuotaBalanceCents: number | null
+  marketplaceCreditBalanceCents: number | null
+  prepaidWalletBalanceCents: number | null
+  currentMonthSpendCents: number | null
+  currentBillingCycleStart: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -47,21 +79,51 @@ export type UserMaxAggregateOutputType = {
 export type UserCountAggregateOutputType = {
   id: number
   name: number
+  username: number
+  bio: number
   email: number
   emailVerified: number
   image: number
+  stripeConnectId: number
+  computeQuotaBalanceCents: number
+  marketplaceCreditBalanceCents: number
+  prepaidWalletBalanceCents: number
+  currentMonthSpendCents: number
+  currentBillingCycleStart: number
   createdAt: number
   updatedAt: number
   _all: number
 }
 
 
+export type UserAvgAggregateInputType = {
+  computeQuotaBalanceCents?: true
+  marketplaceCreditBalanceCents?: true
+  prepaidWalletBalanceCents?: true
+  currentMonthSpendCents?: true
+}
+
+export type UserSumAggregateInputType = {
+  computeQuotaBalanceCents?: true
+  marketplaceCreditBalanceCents?: true
+  prepaidWalletBalanceCents?: true
+  currentMonthSpendCents?: true
+}
+
 export type UserMinAggregateInputType = {
   id?: true
   name?: true
+  username?: true
+  bio?: true
   email?: true
   emailVerified?: true
   image?: true
+  stripeConnectId?: true
+  computeQuotaBalanceCents?: true
+  marketplaceCreditBalanceCents?: true
+  prepaidWalletBalanceCents?: true
+  currentMonthSpendCents?: true
+  currentBillingCycleStart?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -69,9 +131,17 @@ export type UserMinAggregateInputType = {
 export type UserMaxAggregateInputType = {
   id?: true
   name?: true
+  username?: true
+  bio?: true
   email?: true
   emailVerified?: true
   image?: true
+  stripeConnectId?: true
+  computeQuotaBalanceCents?: true
+  marketplaceCreditBalanceCents?: true
+  prepaidWalletBalanceCents?: true
+  currentMonthSpendCents?: true
+  currentBillingCycleStart?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -79,9 +149,17 @@ export type UserMaxAggregateInputType = {
 export type UserCountAggregateInputType = {
   id?: true
   name?: true
+  username?: true
+  bio?: true
   email?: true
   emailVerified?: true
   image?: true
+  stripeConnectId?: true
+  computeQuotaBalanceCents?: true
+  marketplaceCreditBalanceCents?: true
+  prepaidWalletBalanceCents?: true
+  currentMonthSpendCents?: true
+  currentBillingCycleStart?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -125,6 +203,18 @@ export type UserAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: UserAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: UserSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: UserMinAggregateInputType
@@ -155,6 +245,8 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   _count?: UserCountAggregateInputType | true
+  _avg?: UserAvgAggregateInputType
+  _sum?: UserSumAggregateInputType
   _min?: UserMinAggregateInputType
   _max?: UserMaxAggregateInputType
 }
@@ -162,12 +254,22 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type UserGroupByOutputType = {
   id: string
   name: string
+  username: string | null
+  bio: string | null
   email: string
   emailVerified: boolean
   image: string | null
+  stripeConnectId: string | null
+  computeQuotaBalanceCents: number
+  marketplaceCreditBalanceCents: number
+  prepaidWalletBalanceCents: number
+  currentMonthSpendCents: number
+  currentBillingCycleStart: Date
   createdAt: Date
   updatedAt: Date
   _count: UserCountAggregateOutputType | null
+  _avg: UserAvgAggregateOutputType | null
+  _sum: UserSumAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
 }
@@ -193,9 +295,17 @@ export type UserWhereInput = {
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   id?: Prisma.StringFilter<"User"> | string
   name?: Prisma.StringFilter<"User"> | string
+  username?: Prisma.StringNullableFilter<"User"> | string | null
+  bio?: Prisma.StringNullableFilter<"User"> | string | null
   email?: Prisma.StringFilter<"User"> | string
   emailVerified?: Prisma.BoolFilter<"User"> | boolean
   image?: Prisma.StringNullableFilter<"User"> | string | null
+  stripeConnectId?: Prisma.StringNullableFilter<"User"> | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFilter<"User"> | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFilter<"User"> | number
+  prepaidWalletBalanceCents?: Prisma.FloatFilter<"User"> | number
+  currentMonthSpendCents?: Prisma.FloatFilter<"User"> | number
+  currentBillingCycleStart?: Prisma.DateTimeFilter<"User"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   sessions?: Prisma.SessionListRelationFilter
@@ -208,17 +318,47 @@ export type UserWhereInput = {
   couponUsages?: Prisma.CouponUsageListRelationFilter
   subscriptions?: Prisma.SubscriptionListRelationFilter
   billingProfiles?: Prisma.BillingProfileListRelationFilter
+  orgMemberships?: Prisma.OrganizationMemberListRelationFilter
+  areas?: Prisma.AreaListRelationFilter
   collections?: Prisma.CollectionListRelationFilter
-  assets?: Prisma.AssetListRelationFilter
-  grantAccess?: Prisma.AppCollectionAccessListRelationFilter
+  entries?: Prisma.EntryListRelationFilter
+  authoredEntries?: Prisma.EntryListRelationFilter
+  appMemories?: Prisma.AppMemoryListRelationFilter
+  accessGrants?: Prisma.AccessGrantListRelationFilter
+  accessRequests?: Prisma.AccessRequestListRelationFilter
+  contextRequests?: Prisma.ContextRequestListRelationFilter
+  usageLedgers?: Prisma.ApiUsageLedgerListRelationFilter
+  authoredRevisions?: Prisma.RevisionListRelationFilter
+  authoredCombines?: Prisma.CombineListRelationFilter
+  royalties?: Prisma.UserRoyaltyListRelationFilter
+  packs?: Prisma.PackListRelationFilter
+  packPurchases?: Prisma.PackPurchaseListRelationFilter
+  donationsSent?: Prisma.PackDonationListRelationFilter
+  sponsorshipsFunded?: Prisma.PackSponsorshipListRelationFilter
+  bountiesCreated?: Prisma.KnowledgeBountyListRelationFilter
+  bountySubmissions?: Prisma.BountySubmissionListRelationFilter
+  payouts?: Prisma.CreatorPayoutListRelationFilter
+  stars?: Prisma.StarListRelationFilter
+  tuneApps?: Prisma.TuneAppListRelationFilter
+  tuneAppInstallations?: Prisma.TuneAppInstallationListRelationFilter
+  recallBlocks?: Prisma.RecallBlockListRelationFilter
+  developerApiKeys?: Prisma.DeveloperApiKeyListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  username?: Prisma.SortOrderInput | Prisma.SortOrder
+  bio?: Prisma.SortOrderInput | Prisma.SortOrder
   email?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   image?: Prisma.SortOrderInput | Prisma.SortOrder
+  stripeConnectId?: Prisma.SortOrderInput | Prisma.SortOrder
+  computeQuotaBalanceCents?: Prisma.SortOrder
+  marketplaceCreditBalanceCents?: Prisma.SortOrder
+  prepaidWalletBalanceCents?: Prisma.SortOrder
+  currentMonthSpendCents?: Prisma.SortOrder
+  currentBillingCycleStart?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   sessions?: Prisma.SessionOrderByRelationAggregateInput
@@ -231,20 +371,50 @@ export type UserOrderByWithRelationInput = {
   couponUsages?: Prisma.CouponUsageOrderByRelationAggregateInput
   subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
   billingProfiles?: Prisma.BillingProfileOrderByRelationAggregateInput
+  orgMemberships?: Prisma.OrganizationMemberOrderByRelationAggregateInput
+  areas?: Prisma.AreaOrderByRelationAggregateInput
   collections?: Prisma.CollectionOrderByRelationAggregateInput
-  assets?: Prisma.AssetOrderByRelationAggregateInput
-  grantAccess?: Prisma.AppCollectionAccessOrderByRelationAggregateInput
+  entries?: Prisma.EntryOrderByRelationAggregateInput
+  authoredEntries?: Prisma.EntryOrderByRelationAggregateInput
+  appMemories?: Prisma.AppMemoryOrderByRelationAggregateInput
+  accessGrants?: Prisma.AccessGrantOrderByRelationAggregateInput
+  accessRequests?: Prisma.AccessRequestOrderByRelationAggregateInput
+  contextRequests?: Prisma.ContextRequestOrderByRelationAggregateInput
+  usageLedgers?: Prisma.ApiUsageLedgerOrderByRelationAggregateInput
+  authoredRevisions?: Prisma.RevisionOrderByRelationAggregateInput
+  authoredCombines?: Prisma.CombineOrderByRelationAggregateInput
+  royalties?: Prisma.UserRoyaltyOrderByRelationAggregateInput
+  packs?: Prisma.PackOrderByRelationAggregateInput
+  packPurchases?: Prisma.PackPurchaseOrderByRelationAggregateInput
+  donationsSent?: Prisma.PackDonationOrderByRelationAggregateInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipOrderByRelationAggregateInput
+  bountiesCreated?: Prisma.KnowledgeBountyOrderByRelationAggregateInput
+  bountySubmissions?: Prisma.BountySubmissionOrderByRelationAggregateInput
+  payouts?: Prisma.CreatorPayoutOrderByRelationAggregateInput
+  stars?: Prisma.StarOrderByRelationAggregateInput
+  tuneApps?: Prisma.TuneAppOrderByRelationAggregateInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationOrderByRelationAggregateInput
+  recallBlocks?: Prisma.RecallBlockOrderByRelationAggregateInput
+  developerApiKeys?: Prisma.DeveloperApiKeyOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  username?: string
   email?: string
+  stripeConnectId?: string
   AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   name?: Prisma.StringFilter<"User"> | string
+  bio?: Prisma.StringNullableFilter<"User"> | string | null
   emailVerified?: Prisma.BoolFilter<"User"> | boolean
   image?: Prisma.StringNullableFilter<"User"> | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFilter<"User"> | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFilter<"User"> | number
+  prepaidWalletBalanceCents?: Prisma.FloatFilter<"User"> | number
+  currentMonthSpendCents?: Prisma.FloatFilter<"User"> | number
+  currentBillingCycleStart?: Prisma.DateTimeFilter<"User"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   sessions?: Prisma.SessionListRelationFilter
@@ -257,22 +427,54 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   couponUsages?: Prisma.CouponUsageListRelationFilter
   subscriptions?: Prisma.SubscriptionListRelationFilter
   billingProfiles?: Prisma.BillingProfileListRelationFilter
+  orgMemberships?: Prisma.OrganizationMemberListRelationFilter
+  areas?: Prisma.AreaListRelationFilter
   collections?: Prisma.CollectionListRelationFilter
-  assets?: Prisma.AssetListRelationFilter
-  grantAccess?: Prisma.AppCollectionAccessListRelationFilter
-}, "id" | "email">
+  entries?: Prisma.EntryListRelationFilter
+  authoredEntries?: Prisma.EntryListRelationFilter
+  appMemories?: Prisma.AppMemoryListRelationFilter
+  accessGrants?: Prisma.AccessGrantListRelationFilter
+  accessRequests?: Prisma.AccessRequestListRelationFilter
+  contextRequests?: Prisma.ContextRequestListRelationFilter
+  usageLedgers?: Prisma.ApiUsageLedgerListRelationFilter
+  authoredRevisions?: Prisma.RevisionListRelationFilter
+  authoredCombines?: Prisma.CombineListRelationFilter
+  royalties?: Prisma.UserRoyaltyListRelationFilter
+  packs?: Prisma.PackListRelationFilter
+  packPurchases?: Prisma.PackPurchaseListRelationFilter
+  donationsSent?: Prisma.PackDonationListRelationFilter
+  sponsorshipsFunded?: Prisma.PackSponsorshipListRelationFilter
+  bountiesCreated?: Prisma.KnowledgeBountyListRelationFilter
+  bountySubmissions?: Prisma.BountySubmissionListRelationFilter
+  payouts?: Prisma.CreatorPayoutListRelationFilter
+  stars?: Prisma.StarListRelationFilter
+  tuneApps?: Prisma.TuneAppListRelationFilter
+  tuneAppInstallations?: Prisma.TuneAppInstallationListRelationFilter
+  recallBlocks?: Prisma.RecallBlockListRelationFilter
+  developerApiKeys?: Prisma.DeveloperApiKeyListRelationFilter
+}, "id" | "username" | "stripeConnectId" | "email">
 
 export type UserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  username?: Prisma.SortOrderInput | Prisma.SortOrder
+  bio?: Prisma.SortOrderInput | Prisma.SortOrder
   email?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   image?: Prisma.SortOrderInput | Prisma.SortOrder
+  stripeConnectId?: Prisma.SortOrderInput | Prisma.SortOrder
+  computeQuotaBalanceCents?: Prisma.SortOrder
+  marketplaceCreditBalanceCents?: Prisma.SortOrder
+  prepaidWalletBalanceCents?: Prisma.SortOrder
+  currentMonthSpendCents?: Prisma.SortOrder
+  currentBillingCycleStart?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
+  _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
+  _sum?: Prisma.UserSumOrderByAggregateInput
 }
 
 export type UserScalarWhereWithAggregatesInput = {
@@ -281,9 +483,17 @@ export type UserScalarWhereWithAggregatesInput = {
   NOT?: Prisma.UserScalarWhereWithAggregatesInput | Prisma.UserScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"User"> | string
   name?: Prisma.StringWithAggregatesFilter<"User"> | string
+  username?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  bio?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
   emailVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   image?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  stripeConnectId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  computeQuotaBalanceCents?: Prisma.FloatWithAggregatesFilter<"User"> | number
+  marketplaceCreditBalanceCents?: Prisma.FloatWithAggregatesFilter<"User"> | number
+  prepaidWalletBalanceCents?: Prisma.FloatWithAggregatesFilter<"User"> | number
+  currentMonthSpendCents?: Prisma.FloatWithAggregatesFilter<"User"> | number
+  currentBillingCycleStart?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
 }
@@ -291,9 +501,17 @@ export type UserScalarWhereWithAggregatesInput = {
 export type UserCreateInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
@@ -306,17 +524,47 @@ export type UserCreateInput = {
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
   billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
   collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
-  assets?: Prisma.AssetCreateNestedManyWithoutUserInput
-  grantAccess?: Prisma.AppCollectionAccessCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
@@ -329,17 +577,47 @@ export type UserUncheckedCreateInput = {
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
   billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
   collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
-  assets?: Prisma.AssetUncheckedCreateNestedManyWithoutUserInput
-  grantAccess?: Prisma.AppCollectionAccessUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
@@ -352,17 +630,47 @@ export type UserUpdateInput = {
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
   billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
   collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
-  assets?: Prisma.AssetUpdateManyWithoutUserNestedInput
-  grantAccess?: Prisma.AppCollectionAccessUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -375,17 +683,47 @@ export type UserUncheckedUpdateInput = {
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
   billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
   collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
-  assets?: Prisma.AssetUncheckedUpdateManyWithoutUserNestedInput
-  grantAccess?: Prisma.AppCollectionAccessUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -393,9 +731,17 @@ export type UserCreateManyInput = {
 export type UserUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -403,9 +749,17 @@ export type UserUpdateManyMutationInput = {
 export type UserUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -413,19 +767,42 @@ export type UserUncheckedUpdateManyInput = {
 export type UserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  username?: Prisma.SortOrder
+  bio?: Prisma.SortOrder
   email?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   image?: Prisma.SortOrder
+  stripeConnectId?: Prisma.SortOrder
+  computeQuotaBalanceCents?: Prisma.SortOrder
+  marketplaceCreditBalanceCents?: Prisma.SortOrder
+  prepaidWalletBalanceCents?: Prisma.SortOrder
+  currentMonthSpendCents?: Prisma.SortOrder
+  currentBillingCycleStart?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type UserAvgOrderByAggregateInput = {
+  computeQuotaBalanceCents?: Prisma.SortOrder
+  marketplaceCreditBalanceCents?: Prisma.SortOrder
+  prepaidWalletBalanceCents?: Prisma.SortOrder
+  currentMonthSpendCents?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  username?: Prisma.SortOrder
+  bio?: Prisma.SortOrder
   email?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   image?: Prisma.SortOrder
+  stripeConnectId?: Prisma.SortOrder
+  computeQuotaBalanceCents?: Prisma.SortOrder
+  marketplaceCreditBalanceCents?: Prisma.SortOrder
+  prepaidWalletBalanceCents?: Prisma.SortOrder
+  currentMonthSpendCents?: Prisma.SortOrder
+  currentBillingCycleStart?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -433,11 +810,26 @@ export type UserMaxOrderByAggregateInput = {
 export type UserMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  username?: Prisma.SortOrder
+  bio?: Prisma.SortOrder
   email?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   image?: Prisma.SortOrder
+  stripeConnectId?: Prisma.SortOrder
+  computeQuotaBalanceCents?: Prisma.SortOrder
+  marketplaceCreditBalanceCents?: Prisma.SortOrder
+  prepaidWalletBalanceCents?: Prisma.SortOrder
+  currentMonthSpendCents?: Prisma.SortOrder
+  currentBillingCycleStart?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type UserSumOrderByAggregateInput = {
+  computeQuotaBalanceCents?: Prisma.SortOrder
+  marketplaceCreditBalanceCents?: Prisma.SortOrder
+  prepaidWalletBalanceCents?: Prisma.SortOrder
+  currentMonthSpendCents?: Prisma.SortOrder
 }
 
 export type UserScalarRelationFilter = {
@@ -454,16 +846,38 @@ export type StringFieldUpdateOperationsInput = {
   set?: string
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
 
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
+}
+
+export type FloatFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
+}
+
+export type UserCreateNestedOneWithoutOrgMembershipsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOrgMembershipsInput, Prisma.UserUncheckedCreateWithoutOrgMembershipsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOrgMembershipsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutOrgMembershipsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOrgMembershipsInput, Prisma.UserUncheckedCreateWithoutOrgMembershipsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOrgMembershipsInput
+  upsert?: Prisma.UserUpsertWithoutOrgMembershipsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOrgMembershipsInput, Prisma.UserUpdateWithoutOrgMembershipsInput>, Prisma.UserUncheckedUpdateWithoutOrgMembershipsInput>
 }
 
 export type UserCreateNestedOneWithoutSessionsInput = {
@@ -508,6 +922,22 @@ export type UserUpdateOneWithoutDevelopedAppsNestedInput = {
   delete?: Prisma.UserWhereInput | boolean
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutDevelopedAppsInput, Prisma.UserUpdateWithoutDevelopedAppsInput>, Prisma.UserUncheckedUpdateWithoutDevelopedAppsInput>
+}
+
+export type UserCreateNestedOneWithoutDeveloperApiKeysInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDeveloperApiKeysInput, Prisma.UserUncheckedCreateWithoutDeveloperApiKeysInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDeveloperApiKeysInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutDeveloperApiKeysNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDeveloperApiKeysInput, Prisma.UserUncheckedCreateWithoutDeveloperApiKeysInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDeveloperApiKeysInput
+  upsert?: Prisma.UserUpsertWithoutDeveloperApiKeysInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutDeveloperApiKeysInput, Prisma.UserUpdateWithoutDeveloperApiKeysInput>, Prisma.UserUncheckedUpdateWithoutDeveloperApiKeysInput>
 }
 
 export type UserCreateNestedOneWithoutOauthrefreshtokensInput = {
@@ -556,6 +986,20 @@ export type UserUpdateOneWithoutOauthconsentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOauthconsentsInput, Prisma.UserUpdateWithoutOauthconsentsInput>, Prisma.UserUncheckedUpdateWithoutOauthconsentsInput>
 }
 
+export type UserCreateNestedOneWithoutAreasInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAreasInput, Prisma.UserUncheckedCreateWithoutAreasInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAreasInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutAreasNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAreasInput, Prisma.UserUncheckedCreateWithoutAreasInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAreasInput
+  upsert?: Prisma.UserUpsertWithoutAreasInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAreasInput, Prisma.UserUpdateWithoutAreasInput>, Prisma.UserUncheckedUpdateWithoutAreasInput>
+}
+
 export type UserCreateNestedOneWithoutCollectionsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutCollectionsInput, Prisma.UserUncheckedCreateWithoutCollectionsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutCollectionsInput
@@ -570,32 +1014,314 @@ export type UserUpdateOneRequiredWithoutCollectionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCollectionsInput, Prisma.UserUpdateWithoutCollectionsInput>, Prisma.UserUncheckedUpdateWithoutCollectionsInput>
 }
 
-export type UserCreateNestedOneWithoutAssetsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutAssetsInput, Prisma.UserUncheckedCreateWithoutAssetsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAssetsInput
+export type UserCreateNestedOneWithoutEntriesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutEntriesInput, Prisma.UserUncheckedCreateWithoutEntriesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutEntriesInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutAssetsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutAssetsInput, Prisma.UserUncheckedCreateWithoutAssetsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAssetsInput
-  upsert?: Prisma.UserUpsertWithoutAssetsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAssetsInput, Prisma.UserUpdateWithoutAssetsInput>, Prisma.UserUncheckedUpdateWithoutAssetsInput>
-}
-
-export type UserCreateNestedOneWithoutGrantAccessInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutGrantAccessInput, Prisma.UserUncheckedCreateWithoutGrantAccessInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutGrantAccessInput
+export type UserCreateNestedOneWithoutAuthoredEntriesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAuthoredEntriesInput, Prisma.UserUncheckedCreateWithoutAuthoredEntriesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAuthoredEntriesInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutGrantAccessNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutGrantAccessInput, Prisma.UserUncheckedCreateWithoutGrantAccessInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutGrantAccessInput
-  upsert?: Prisma.UserUpsertWithoutGrantAccessInput
+export type UserUpdateOneRequiredWithoutEntriesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutEntriesInput, Prisma.UserUncheckedCreateWithoutEntriesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutEntriesInput
+  upsert?: Prisma.UserUpsertWithoutEntriesInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutGrantAccessInput, Prisma.UserUpdateWithoutGrantAccessInput>, Prisma.UserUncheckedUpdateWithoutGrantAccessInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutEntriesInput, Prisma.UserUpdateWithoutEntriesInput>, Prisma.UserUncheckedUpdateWithoutEntriesInput>
+}
+
+export type UserUpdateOneRequiredWithoutAuthoredEntriesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAuthoredEntriesInput, Prisma.UserUncheckedCreateWithoutAuthoredEntriesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAuthoredEntriesInput
+  upsert?: Prisma.UserUpsertWithoutAuthoredEntriesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAuthoredEntriesInput, Prisma.UserUpdateWithoutAuthoredEntriesInput>, Prisma.UserUncheckedUpdateWithoutAuthoredEntriesInput>
+}
+
+export type UserCreateNestedOneWithoutAppMemoriesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAppMemoriesInput, Prisma.UserUncheckedCreateWithoutAppMemoriesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAppMemoriesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutAppMemoriesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAppMemoriesInput, Prisma.UserUncheckedCreateWithoutAppMemoriesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAppMemoriesInput
+  upsert?: Prisma.UserUpsertWithoutAppMemoriesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAppMemoriesInput, Prisma.UserUpdateWithoutAppMemoriesInput>, Prisma.UserUncheckedUpdateWithoutAppMemoriesInput>
+}
+
+export type UserCreateNestedOneWithoutAccessGrantsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAccessGrantsInput, Prisma.UserUncheckedCreateWithoutAccessGrantsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAccessGrantsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutAccessGrantsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAccessGrantsInput, Prisma.UserUncheckedCreateWithoutAccessGrantsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAccessGrantsInput
+  upsert?: Prisma.UserUpsertWithoutAccessGrantsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAccessGrantsInput, Prisma.UserUpdateWithoutAccessGrantsInput>, Prisma.UserUncheckedUpdateWithoutAccessGrantsInput>
+}
+
+export type UserCreateNestedOneWithoutAccessRequestsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAccessRequestsInput, Prisma.UserUncheckedCreateWithoutAccessRequestsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAccessRequestsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutAccessRequestsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAccessRequestsInput, Prisma.UserUncheckedCreateWithoutAccessRequestsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAccessRequestsInput
+  upsert?: Prisma.UserUpsertWithoutAccessRequestsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAccessRequestsInput, Prisma.UserUpdateWithoutAccessRequestsInput>, Prisma.UserUncheckedUpdateWithoutAccessRequestsInput>
+}
+
+export type UserCreateNestedOneWithoutContextRequestsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutContextRequestsInput, Prisma.UserUncheckedCreateWithoutContextRequestsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutContextRequestsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutContextRequestsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutContextRequestsInput, Prisma.UserUncheckedCreateWithoutContextRequestsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutContextRequestsInput
+  upsert?: Prisma.UserUpsertWithoutContextRequestsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutContextRequestsInput, Prisma.UserUpdateWithoutContextRequestsInput>, Prisma.UserUncheckedUpdateWithoutContextRequestsInput>
+}
+
+export type UserCreateNestedOneWithoutUsageLedgersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUsageLedgersInput, Prisma.UserUncheckedCreateWithoutUsageLedgersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUsageLedgersInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutUsageLedgersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUsageLedgersInput, Prisma.UserUncheckedCreateWithoutUsageLedgersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUsageLedgersInput
+  upsert?: Prisma.UserUpsertWithoutUsageLedgersInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutUsageLedgersInput, Prisma.UserUpdateWithoutUsageLedgersInput>, Prisma.UserUncheckedUpdateWithoutUsageLedgersInput>
+}
+
+export type UserCreateNestedOneWithoutRoyaltiesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRoyaltiesInput, Prisma.UserUncheckedCreateWithoutRoyaltiesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoyaltiesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutRoyaltiesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRoyaltiesInput, Prisma.UserUncheckedCreateWithoutRoyaltiesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoyaltiesInput
+  upsert?: Prisma.UserUpsertWithoutRoyaltiesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRoyaltiesInput, Prisma.UserUpdateWithoutRoyaltiesInput>, Prisma.UserUncheckedUpdateWithoutRoyaltiesInput>
+}
+
+export type UserCreateNestedOneWithoutPayoutsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPayoutsInput, Prisma.UserUncheckedCreateWithoutPayoutsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPayoutsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutPayoutsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPayoutsInput, Prisma.UserUncheckedCreateWithoutPayoutsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPayoutsInput
+  upsert?: Prisma.UserUpsertWithoutPayoutsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPayoutsInput, Prisma.UserUpdateWithoutPayoutsInput>, Prisma.UserUncheckedUpdateWithoutPayoutsInput>
+}
+
+export type UserCreateNestedOneWithoutAuthoredRevisionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAuthoredRevisionsInput, Prisma.UserUncheckedCreateWithoutAuthoredRevisionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAuthoredRevisionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutAuthoredRevisionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAuthoredRevisionsInput, Prisma.UserUncheckedCreateWithoutAuthoredRevisionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAuthoredRevisionsInput
+  upsert?: Prisma.UserUpsertWithoutAuthoredRevisionsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAuthoredRevisionsInput, Prisma.UserUpdateWithoutAuthoredRevisionsInput>, Prisma.UserUncheckedUpdateWithoutAuthoredRevisionsInput>
+}
+
+export type UserCreateNestedOneWithoutAuthoredCombinesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAuthoredCombinesInput, Prisma.UserUncheckedCreateWithoutAuthoredCombinesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAuthoredCombinesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutAuthoredCombinesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAuthoredCombinesInput, Prisma.UserUncheckedCreateWithoutAuthoredCombinesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAuthoredCombinesInput
+  upsert?: Prisma.UserUpsertWithoutAuthoredCombinesInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAuthoredCombinesInput, Prisma.UserUpdateWithoutAuthoredCombinesInput>, Prisma.UserUncheckedUpdateWithoutAuthoredCombinesInput>
+}
+
+export type UserCreateNestedOneWithoutPacksInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPacksInput, Prisma.UserUncheckedCreateWithoutPacksInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPacksInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutPacksNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPacksInput, Prisma.UserUncheckedCreateWithoutPacksInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPacksInput
+  upsert?: Prisma.UserUpsertWithoutPacksInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPacksInput, Prisma.UserUpdateWithoutPacksInput>, Prisma.UserUncheckedUpdateWithoutPacksInput>
+}
+
+export type UserCreateNestedOneWithoutPackPurchasesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPackPurchasesInput, Prisma.UserUncheckedCreateWithoutPackPurchasesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPackPurchasesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutPackPurchasesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPackPurchasesInput, Prisma.UserUncheckedCreateWithoutPackPurchasesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPackPurchasesInput
+  upsert?: Prisma.UserUpsertWithoutPackPurchasesInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPackPurchasesInput, Prisma.UserUpdateWithoutPackPurchasesInput>, Prisma.UserUncheckedUpdateWithoutPackPurchasesInput>
+}
+
+export type UserCreateNestedOneWithoutDonationsSentInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDonationsSentInput, Prisma.UserUncheckedCreateWithoutDonationsSentInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDonationsSentInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutDonationsSentNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDonationsSentInput, Prisma.UserUncheckedCreateWithoutDonationsSentInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDonationsSentInput
+  upsert?: Prisma.UserUpsertWithoutDonationsSentInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutDonationsSentInput, Prisma.UserUpdateWithoutDonationsSentInput>, Prisma.UserUncheckedUpdateWithoutDonationsSentInput>
+}
+
+export type UserCreateNestedOneWithoutSponsorshipsFundedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSponsorshipsFundedInput, Prisma.UserUncheckedCreateWithoutSponsorshipsFundedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSponsorshipsFundedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutSponsorshipsFundedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSponsorshipsFundedInput, Prisma.UserUncheckedCreateWithoutSponsorshipsFundedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSponsorshipsFundedInput
+  upsert?: Prisma.UserUpsertWithoutSponsorshipsFundedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSponsorshipsFundedInput, Prisma.UserUpdateWithoutSponsorshipsFundedInput>, Prisma.UserUncheckedUpdateWithoutSponsorshipsFundedInput>
+}
+
+export type UserCreateNestedOneWithoutBountiesCreatedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBountiesCreatedInput, Prisma.UserUncheckedCreateWithoutBountiesCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBountiesCreatedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutBountiesCreatedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBountiesCreatedInput, Prisma.UserUncheckedCreateWithoutBountiesCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBountiesCreatedInput
+  upsert?: Prisma.UserUpsertWithoutBountiesCreatedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutBountiesCreatedInput, Prisma.UserUpdateWithoutBountiesCreatedInput>, Prisma.UserUncheckedUpdateWithoutBountiesCreatedInput>
+}
+
+export type UserCreateNestedOneWithoutBountySubmissionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBountySubmissionsInput, Prisma.UserUncheckedCreateWithoutBountySubmissionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBountySubmissionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutBountySubmissionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBountySubmissionsInput, Prisma.UserUncheckedCreateWithoutBountySubmissionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBountySubmissionsInput
+  upsert?: Prisma.UserUpsertWithoutBountySubmissionsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutBountySubmissionsInput, Prisma.UserUpdateWithoutBountySubmissionsInput>, Prisma.UserUncheckedUpdateWithoutBountySubmissionsInput>
+}
+
+export type UserCreateNestedOneWithoutStarsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutStarsInput, Prisma.UserUncheckedCreateWithoutStarsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutStarsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutStarsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutStarsInput, Prisma.UserUncheckedCreateWithoutStarsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutStarsInput
+  upsert?: Prisma.UserUpsertWithoutStarsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutStarsInput, Prisma.UserUpdateWithoutStarsInput>, Prisma.UserUncheckedUpdateWithoutStarsInput>
+}
+
+export type UserCreateNestedOneWithoutTuneAppsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTuneAppsInput, Prisma.UserUncheckedCreateWithoutTuneAppsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTuneAppsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutTuneAppsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTuneAppsInput, Prisma.UserUncheckedCreateWithoutTuneAppsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTuneAppsInput
+  upsert?: Prisma.UserUpsertWithoutTuneAppsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTuneAppsInput, Prisma.UserUpdateWithoutTuneAppsInput>, Prisma.UserUncheckedUpdateWithoutTuneAppsInput>
+}
+
+export type UserCreateNestedOneWithoutTuneAppInstallationsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTuneAppInstallationsInput, Prisma.UserUncheckedCreateWithoutTuneAppInstallationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTuneAppInstallationsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutTuneAppInstallationsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTuneAppInstallationsInput, Prisma.UserUncheckedCreateWithoutTuneAppInstallationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTuneAppInstallationsInput
+  upsert?: Prisma.UserUpsertWithoutTuneAppInstallationsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTuneAppInstallationsInput, Prisma.UserUpdateWithoutTuneAppInstallationsInput>, Prisma.UserUncheckedUpdateWithoutTuneAppInstallationsInput>
+}
+
+export type UserCreateNestedOneWithoutRecallBlocksInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRecallBlocksInput, Prisma.UserUncheckedCreateWithoutRecallBlocksInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRecallBlocksInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutRecallBlocksNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRecallBlocksInput, Prisma.UserUncheckedCreateWithoutRecallBlocksInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRecallBlocksInput
+  upsert?: Prisma.UserUpsertWithoutRecallBlocksInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRecallBlocksInput, Prisma.UserUpdateWithoutRecallBlocksInput>, Prisma.UserUncheckedUpdateWithoutRecallBlocksInput>
 }
 
 export type UserCreateNestedOneWithoutBillingProfilesInput = {
@@ -654,12 +1380,244 @@ export type UserUpdateOneRequiredWithoutCouponUsagesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCouponUsagesInput, Prisma.UserUpdateWithoutCouponUsagesInput>, Prisma.UserUncheckedUpdateWithoutCouponUsagesInput>
 }
 
-export type UserCreateWithoutSessionsInput = {
+export type UserCreateWithoutOrgMembershipsInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutOrgMembershipsInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientUncheckedCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutOrgMembershipsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutOrgMembershipsInput, Prisma.UserUncheckedCreateWithoutOrgMembershipsInput>
+}
+
+export type UserUpsertWithoutOrgMembershipsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutOrgMembershipsInput, Prisma.UserUncheckedUpdateWithoutOrgMembershipsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutOrgMembershipsInput, Prisma.UserUncheckedCreateWithoutOrgMembershipsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutOrgMembershipsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutOrgMembershipsInput, Prisma.UserUncheckedUpdateWithoutOrgMembershipsInput>
+}
+
+export type UserUpdateWithoutOrgMembershipsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutOrgMembershipsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUncheckedUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutSessionsInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
@@ -671,17 +1629,47 @@ export type UserCreateWithoutSessionsInput = {
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
   billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
   collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
-  assets?: Prisma.AssetCreateNestedManyWithoutUserInput
-  grantAccess?: Prisma.AppCollectionAccessCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
@@ -693,9 +1681,31 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
   billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
   collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
-  assets?: Prisma.AssetUncheckedCreateNestedManyWithoutUserInput
-  grantAccess?: Prisma.AppCollectionAccessUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -717,9 +1727,17 @@ export type UserUpdateToOneWithWhereWithoutSessionsInput = {
 export type UserUpdateWithoutSessionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
@@ -731,17 +1749,47 @@ export type UserUpdateWithoutSessionsInput = {
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
   billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
   collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
-  assets?: Prisma.AssetUpdateManyWithoutUserNestedInput
-  grantAccess?: Prisma.AppCollectionAccessUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -753,17 +1801,47 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
   billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
   collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
-  assets?: Prisma.AssetUncheckedUpdateManyWithoutUserNestedInput
-  grantAccess?: Prisma.AppCollectionAccessUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAccountsInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
@@ -775,17 +1853,47 @@ export type UserCreateWithoutAccountsInput = {
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
   billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
   collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
-  assets?: Prisma.AssetCreateNestedManyWithoutUserInput
-  grantAccess?: Prisma.AppCollectionAccessCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
@@ -797,9 +1905,31 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
   billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
   collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
-  assets?: Prisma.AssetUncheckedCreateNestedManyWithoutUserInput
-  grantAccess?: Prisma.AppCollectionAccessUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -821,9 +1951,17 @@ export type UserUpdateToOneWithWhereWithoutAccountsInput = {
 export type UserUpdateWithoutAccountsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
@@ -835,17 +1973,47 @@ export type UserUpdateWithoutAccountsInput = {
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
   billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
   collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
-  assets?: Prisma.AssetUpdateManyWithoutUserNestedInput
-  grantAccess?: Prisma.AppCollectionAccessUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -857,17 +2025,47 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
   billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
   collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
-  assets?: Prisma.AssetUncheckedUpdateManyWithoutUserNestedInput
-  grantAccess?: Prisma.AppCollectionAccessUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutDevelopedAppsInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
@@ -879,17 +2077,47 @@ export type UserCreateWithoutDevelopedAppsInput = {
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
   billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
   collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
-  assets?: Prisma.AssetCreateNestedManyWithoutUserInput
-  grantAccess?: Prisma.AppCollectionAccessCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutDevelopedAppsInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
@@ -901,9 +2129,31 @@ export type UserUncheckedCreateWithoutDevelopedAppsInput = {
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
   billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
   collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
-  assets?: Prisma.AssetUncheckedCreateNestedManyWithoutUserInput
-  grantAccess?: Prisma.AppCollectionAccessUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutDevelopedAppsInput = {
@@ -925,9 +2175,17 @@ export type UserUpdateToOneWithWhereWithoutDevelopedAppsInput = {
 export type UserUpdateWithoutDevelopedAppsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
@@ -939,17 +2197,47 @@ export type UserUpdateWithoutDevelopedAppsInput = {
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
   billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
   collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
-  assets?: Prisma.AssetUpdateManyWithoutUserNestedInput
-  grantAccess?: Prisma.AppCollectionAccessUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDevelopedAppsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -961,17 +2249,271 @@ export type UserUncheckedUpdateWithoutDevelopedAppsInput = {
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
   billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
   collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
-  assets?: Prisma.AssetUncheckedUpdateManyWithoutUserNestedInput
-  grantAccess?: Prisma.AppCollectionAccessUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutDeveloperApiKeysInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+}
+
+export type UserUncheckedCreateWithoutDeveloperApiKeysInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientUncheckedCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+}
+
+export type UserCreateOrConnectWithoutDeveloperApiKeysInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutDeveloperApiKeysInput, Prisma.UserUncheckedCreateWithoutDeveloperApiKeysInput>
+}
+
+export type UserUpsertWithoutDeveloperApiKeysInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutDeveloperApiKeysInput, Prisma.UserUncheckedUpdateWithoutDeveloperApiKeysInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutDeveloperApiKeysInput, Prisma.UserUncheckedCreateWithoutDeveloperApiKeysInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutDeveloperApiKeysInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutDeveloperApiKeysInput, Prisma.UserUncheckedUpdateWithoutDeveloperApiKeysInput>
+}
+
+export type UserUpdateWithoutDeveloperApiKeysInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+}
+
+export type UserUncheckedUpdateWithoutDeveloperApiKeysInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUncheckedUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
 }
 
 export type UserCreateWithoutOauthrefreshtokensInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
@@ -983,17 +2525,47 @@ export type UserCreateWithoutOauthrefreshtokensInput = {
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
   billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
   collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
-  assets?: Prisma.AssetCreateNestedManyWithoutUserInput
-  grantAccess?: Prisma.AppCollectionAccessCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutOauthrefreshtokensInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
@@ -1005,9 +2577,31 @@ export type UserUncheckedCreateWithoutOauthrefreshtokensInput = {
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
   billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
   collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
-  assets?: Prisma.AssetUncheckedCreateNestedManyWithoutUserInput
-  grantAccess?: Prisma.AppCollectionAccessUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutOauthrefreshtokensInput = {
@@ -1029,9 +2623,17 @@ export type UserUpdateToOneWithWhereWithoutOauthrefreshtokensInput = {
 export type UserUpdateWithoutOauthrefreshtokensInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
@@ -1043,17 +2645,47 @@ export type UserUpdateWithoutOauthrefreshtokensInput = {
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
   billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
   collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
-  assets?: Prisma.AssetUpdateManyWithoutUserNestedInput
-  grantAccess?: Prisma.AppCollectionAccessUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOauthrefreshtokensInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -1065,17 +2697,47 @@ export type UserUncheckedUpdateWithoutOauthrefreshtokensInput = {
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
   billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
   collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
-  assets?: Prisma.AssetUncheckedUpdateManyWithoutUserNestedInput
-  grantAccess?: Prisma.AppCollectionAccessUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutOauthaccesstokensInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
@@ -1087,17 +2749,47 @@ export type UserCreateWithoutOauthaccesstokensInput = {
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
   billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
   collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
-  assets?: Prisma.AssetCreateNestedManyWithoutUserInput
-  grantAccess?: Prisma.AppCollectionAccessCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutOauthaccesstokensInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
@@ -1109,9 +2801,31 @@ export type UserUncheckedCreateWithoutOauthaccesstokensInput = {
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
   billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
   collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
-  assets?: Prisma.AssetUncheckedCreateNestedManyWithoutUserInput
-  grantAccess?: Prisma.AppCollectionAccessUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutOauthaccesstokensInput = {
@@ -1133,9 +2847,17 @@ export type UserUpdateToOneWithWhereWithoutOauthaccesstokensInput = {
 export type UserUpdateWithoutOauthaccesstokensInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
@@ -1147,17 +2869,47 @@ export type UserUpdateWithoutOauthaccesstokensInput = {
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
   billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
   collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
-  assets?: Prisma.AssetUpdateManyWithoutUserNestedInput
-  grantAccess?: Prisma.AppCollectionAccessUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOauthaccesstokensInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -1169,17 +2921,47 @@ export type UserUncheckedUpdateWithoutOauthaccesstokensInput = {
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
   billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
   collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
-  assets?: Prisma.AssetUncheckedUpdateManyWithoutUserNestedInput
-  grantAccess?: Prisma.AppCollectionAccessUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutOauthconsentsInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
@@ -1191,17 +2973,47 @@ export type UserCreateWithoutOauthconsentsInput = {
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
   billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
   collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
-  assets?: Prisma.AssetCreateNestedManyWithoutUserInput
-  grantAccess?: Prisma.AppCollectionAccessCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutOauthconsentsInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
@@ -1213,9 +3025,31 @@ export type UserUncheckedCreateWithoutOauthconsentsInput = {
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
   billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
   collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
-  assets?: Prisma.AssetUncheckedCreateNestedManyWithoutUserInput
-  grantAccess?: Prisma.AppCollectionAccessUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutOauthconsentsInput = {
@@ -1237,9 +3071,17 @@ export type UserUpdateToOneWithWhereWithoutOauthconsentsInput = {
 export type UserUpdateWithoutOauthconsentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
@@ -1251,17 +3093,47 @@ export type UserUpdateWithoutOauthconsentsInput = {
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
   billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
   collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
-  assets?: Prisma.AssetUpdateManyWithoutUserNestedInput
-  grantAccess?: Prisma.AppCollectionAccessUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOauthconsentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -1273,17 +3145,47 @@ export type UserUncheckedUpdateWithoutOauthconsentsInput = {
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
   billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
   collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
-  assets?: Prisma.AssetUncheckedUpdateManyWithoutUserNestedInput
-  grantAccess?: Prisma.AppCollectionAccessUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
 }
 
-export type UserCreateWithoutCollectionsInput = {
+export type UserCreateWithoutAreasInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
@@ -1296,16 +3198,46 @@ export type UserCreateWithoutCollectionsInput = {
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
   billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
-  assets?: Prisma.AssetCreateNestedManyWithoutUserInput
-  grantAccess?: Prisma.AppCollectionAccessCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutCollectionsInput = {
+export type UserUncheckedCreateWithoutAreasInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
@@ -1318,8 +3250,254 @@ export type UserUncheckedCreateWithoutCollectionsInput = {
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
   billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
-  assets?: Prisma.AssetUncheckedCreateNestedManyWithoutUserInput
-  grantAccess?: Prisma.AppCollectionAccessUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutAreasInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAreasInput, Prisma.UserUncheckedCreateWithoutAreasInput>
+}
+
+export type UserUpsertWithoutAreasInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAreasInput, Prisma.UserUncheckedUpdateWithoutAreasInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAreasInput, Prisma.UserUncheckedCreateWithoutAreasInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAreasInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAreasInput, Prisma.UserUncheckedUpdateWithoutAreasInput>
+}
+
+export type UserUpdateWithoutAreasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAreasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUncheckedUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutCollectionsInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutCollectionsInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientUncheckedCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCollectionsInput = {
@@ -1341,9 +3519,17 @@ export type UserUpdateToOneWithWhereWithoutCollectionsInput = {
 export type UserUpdateWithoutCollectionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
@@ -1356,16 +3542,46 @@ export type UserUpdateWithoutCollectionsInput = {
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
   billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
-  assets?: Prisma.AssetUpdateManyWithoutUserNestedInput
-  grantAccess?: Prisma.AppCollectionAccessUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCollectionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -1378,16 +3594,46 @@ export type UserUncheckedUpdateWithoutCollectionsInput = {
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
   billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
-  assets?: Prisma.AssetUncheckedUpdateManyWithoutUserNestedInput
-  grantAccess?: Prisma.AppCollectionAccessUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
 }
 
-export type UserCreateWithoutAssetsInput = {
+export type UserCreateWithoutEntriesInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
@@ -1400,16 +3646,46 @@ export type UserCreateWithoutAssetsInput = {
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
   billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
   collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
-  grantAccess?: Prisma.AppCollectionAccessCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutAssetsInput = {
+export type UserUncheckedCreateWithoutEntriesInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
@@ -1422,76 +3698,51 @@ export type UserUncheckedCreateWithoutAssetsInput = {
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
   billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
   collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
-  grantAccess?: Prisma.AppCollectionAccessUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutAssetsInput = {
+export type UserCreateOrConnectWithoutEntriesInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutAssetsInput, Prisma.UserUncheckedCreateWithoutAssetsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutEntriesInput, Prisma.UserUncheckedCreateWithoutEntriesInput>
 }
 
-export type UserUpsertWithoutAssetsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutAssetsInput, Prisma.UserUncheckedUpdateWithoutAssetsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutAssetsInput, Prisma.UserUncheckedCreateWithoutAssetsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutAssetsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutAssetsInput, Prisma.UserUncheckedUpdateWithoutAssetsInput>
-}
-
-export type UserUpdateWithoutAssetsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  developedApps?: Prisma.OauthClientUpdateManyWithoutDeveloperNestedInput
-  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
-  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
-  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
-  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
-  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
-  collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
-  grantAccess?: Prisma.AppCollectionAccessUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutAssetsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  developedApps?: Prisma.OauthClientUncheckedUpdateManyWithoutDeveloperNestedInput
-  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
-  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
-  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
-  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
-  collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
-  grantAccess?: Prisma.AppCollectionAccessUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutGrantAccessInput = {
+export type UserCreateWithoutAuthoredEntriesInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
@@ -1504,16 +3755,46 @@ export type UserCreateWithoutGrantAccessInput = {
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
   billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
   collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
-  assets?: Prisma.AssetCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutGrantAccessInput = {
+export type UserUncheckedCreateWithoutAuthoredEntriesInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
@@ -1526,32 +3807,62 @@ export type UserUncheckedCreateWithoutGrantAccessInput = {
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
   billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
   collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
-  assets?: Prisma.AssetUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutGrantAccessInput = {
+export type UserCreateOrConnectWithoutAuthoredEntriesInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutGrantAccessInput, Prisma.UserUncheckedCreateWithoutGrantAccessInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAuthoredEntriesInput, Prisma.UserUncheckedCreateWithoutAuthoredEntriesInput>
 }
 
-export type UserUpsertWithoutGrantAccessInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutGrantAccessInput, Prisma.UserUncheckedUpdateWithoutGrantAccessInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutGrantAccessInput, Prisma.UserUncheckedCreateWithoutGrantAccessInput>
+export type UserUpsertWithoutEntriesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutEntriesInput, Prisma.UserUncheckedUpdateWithoutEntriesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutEntriesInput, Prisma.UserUncheckedCreateWithoutEntriesInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutGrantAccessInput = {
+export type UserUpdateToOneWithWhereWithoutEntriesInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutGrantAccessInput, Prisma.UserUncheckedUpdateWithoutGrantAccessInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutEntriesInput, Prisma.UserUncheckedUpdateWithoutEntriesInput>
 }
 
-export type UserUpdateWithoutGrantAccessInput = {
+export type UserUpdateWithoutEntriesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
@@ -1564,16 +3875,46 @@ export type UserUpdateWithoutGrantAccessInput = {
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
   billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
   collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
-  assets?: Prisma.AssetUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutGrantAccessInput = {
+export type UserUncheckedUpdateWithoutEntriesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -1586,16 +3927,4417 @@ export type UserUncheckedUpdateWithoutGrantAccessInput = {
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
   billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
   collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
-  assets?: Prisma.AssetUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserUpsertWithoutAuthoredEntriesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAuthoredEntriesInput, Prisma.UserUncheckedUpdateWithoutAuthoredEntriesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAuthoredEntriesInput, Prisma.UserUncheckedCreateWithoutAuthoredEntriesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAuthoredEntriesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAuthoredEntriesInput, Prisma.UserUncheckedUpdateWithoutAuthoredEntriesInput>
+}
+
+export type UserUpdateWithoutAuthoredEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAuthoredEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUncheckedUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutAppMemoriesInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutAppMemoriesInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientUncheckedCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutAppMemoriesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAppMemoriesInput, Prisma.UserUncheckedCreateWithoutAppMemoriesInput>
+}
+
+export type UserUpsertWithoutAppMemoriesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAppMemoriesInput, Prisma.UserUncheckedUpdateWithoutAppMemoriesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAppMemoriesInput, Prisma.UserUncheckedCreateWithoutAppMemoriesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAppMemoriesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAppMemoriesInput, Prisma.UserUncheckedUpdateWithoutAppMemoriesInput>
+}
+
+export type UserUpdateWithoutAppMemoriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAppMemoriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUncheckedUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutAccessGrantsInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutAccessGrantsInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientUncheckedCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutAccessGrantsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAccessGrantsInput, Prisma.UserUncheckedCreateWithoutAccessGrantsInput>
+}
+
+export type UserUpsertWithoutAccessGrantsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAccessGrantsInput, Prisma.UserUncheckedUpdateWithoutAccessGrantsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAccessGrantsInput, Prisma.UserUncheckedCreateWithoutAccessGrantsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAccessGrantsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAccessGrantsInput, Prisma.UserUncheckedUpdateWithoutAccessGrantsInput>
+}
+
+export type UserUpdateWithoutAccessGrantsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAccessGrantsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUncheckedUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutAccessRequestsInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutAccessRequestsInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientUncheckedCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutAccessRequestsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAccessRequestsInput, Prisma.UserUncheckedCreateWithoutAccessRequestsInput>
+}
+
+export type UserUpsertWithoutAccessRequestsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAccessRequestsInput, Prisma.UserUncheckedUpdateWithoutAccessRequestsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAccessRequestsInput, Prisma.UserUncheckedCreateWithoutAccessRequestsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAccessRequestsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAccessRequestsInput, Prisma.UserUncheckedUpdateWithoutAccessRequestsInput>
+}
+
+export type UserUpdateWithoutAccessRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAccessRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUncheckedUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutContextRequestsInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutContextRequestsInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientUncheckedCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutContextRequestsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutContextRequestsInput, Prisma.UserUncheckedCreateWithoutContextRequestsInput>
+}
+
+export type UserUpsertWithoutContextRequestsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutContextRequestsInput, Prisma.UserUncheckedUpdateWithoutContextRequestsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutContextRequestsInput, Prisma.UserUncheckedCreateWithoutContextRequestsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutContextRequestsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutContextRequestsInput, Prisma.UserUncheckedUpdateWithoutContextRequestsInput>
+}
+
+export type UserUpdateWithoutContextRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutContextRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUncheckedUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutUsageLedgersInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutUsageLedgersInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientUncheckedCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutUsageLedgersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutUsageLedgersInput, Prisma.UserUncheckedCreateWithoutUsageLedgersInput>
+}
+
+export type UserUpsertWithoutUsageLedgersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutUsageLedgersInput, Prisma.UserUncheckedUpdateWithoutUsageLedgersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutUsageLedgersInput, Prisma.UserUncheckedCreateWithoutUsageLedgersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutUsageLedgersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutUsageLedgersInput, Prisma.UserUncheckedUpdateWithoutUsageLedgersInput>
+}
+
+export type UserUpdateWithoutUsageLedgersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutUsageLedgersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUncheckedUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutRoyaltiesInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutRoyaltiesInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientUncheckedCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutRoyaltiesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutRoyaltiesInput, Prisma.UserUncheckedCreateWithoutRoyaltiesInput>
+}
+
+export type UserUpsertWithoutRoyaltiesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutRoyaltiesInput, Prisma.UserUncheckedUpdateWithoutRoyaltiesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutRoyaltiesInput, Prisma.UserUncheckedCreateWithoutRoyaltiesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutRoyaltiesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutRoyaltiesInput, Prisma.UserUncheckedUpdateWithoutRoyaltiesInput>
+}
+
+export type UserUpdateWithoutRoyaltiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutRoyaltiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUncheckedUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutPayoutsInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutPayoutsInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientUncheckedCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutPayoutsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPayoutsInput, Prisma.UserUncheckedCreateWithoutPayoutsInput>
+}
+
+export type UserUpsertWithoutPayoutsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPayoutsInput, Prisma.UserUncheckedUpdateWithoutPayoutsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPayoutsInput, Prisma.UserUncheckedCreateWithoutPayoutsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPayoutsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPayoutsInput, Prisma.UserUncheckedUpdateWithoutPayoutsInput>
+}
+
+export type UserUpdateWithoutPayoutsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPayoutsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUncheckedUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutAuthoredRevisionsInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutAuthoredRevisionsInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientUncheckedCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutAuthoredRevisionsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAuthoredRevisionsInput, Prisma.UserUncheckedCreateWithoutAuthoredRevisionsInput>
+}
+
+export type UserUpsertWithoutAuthoredRevisionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAuthoredRevisionsInput, Prisma.UserUncheckedUpdateWithoutAuthoredRevisionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAuthoredRevisionsInput, Prisma.UserUncheckedCreateWithoutAuthoredRevisionsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAuthoredRevisionsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAuthoredRevisionsInput, Prisma.UserUncheckedUpdateWithoutAuthoredRevisionsInput>
+}
+
+export type UserUpdateWithoutAuthoredRevisionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAuthoredRevisionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUncheckedUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutAuthoredCombinesInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutAuthoredCombinesInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientUncheckedCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutAuthoredCombinesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAuthoredCombinesInput, Prisma.UserUncheckedCreateWithoutAuthoredCombinesInput>
+}
+
+export type UserUpsertWithoutAuthoredCombinesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAuthoredCombinesInput, Prisma.UserUncheckedUpdateWithoutAuthoredCombinesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAuthoredCombinesInput, Prisma.UserUncheckedCreateWithoutAuthoredCombinesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAuthoredCombinesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAuthoredCombinesInput, Prisma.UserUncheckedUpdateWithoutAuthoredCombinesInput>
+}
+
+export type UserUpdateWithoutAuthoredCombinesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAuthoredCombinesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUncheckedUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutPacksInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutPacksInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientUncheckedCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutPacksInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPacksInput, Prisma.UserUncheckedCreateWithoutPacksInput>
+}
+
+export type UserUpsertWithoutPacksInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPacksInput, Prisma.UserUncheckedUpdateWithoutPacksInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPacksInput, Prisma.UserUncheckedCreateWithoutPacksInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPacksInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPacksInput, Prisma.UserUncheckedUpdateWithoutPacksInput>
+}
+
+export type UserUpdateWithoutPacksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPacksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUncheckedUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutPackPurchasesInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutPackPurchasesInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientUncheckedCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutPackPurchasesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPackPurchasesInput, Prisma.UserUncheckedCreateWithoutPackPurchasesInput>
+}
+
+export type UserUpsertWithoutPackPurchasesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPackPurchasesInput, Prisma.UserUncheckedUpdateWithoutPackPurchasesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPackPurchasesInput, Prisma.UserUncheckedCreateWithoutPackPurchasesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPackPurchasesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPackPurchasesInput, Prisma.UserUncheckedUpdateWithoutPackPurchasesInput>
+}
+
+export type UserUpdateWithoutPackPurchasesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPackPurchasesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUncheckedUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutDonationsSentInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutDonationsSentInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientUncheckedCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutDonationsSentInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutDonationsSentInput, Prisma.UserUncheckedCreateWithoutDonationsSentInput>
+}
+
+export type UserUpsertWithoutDonationsSentInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutDonationsSentInput, Prisma.UserUncheckedUpdateWithoutDonationsSentInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutDonationsSentInput, Prisma.UserUncheckedCreateWithoutDonationsSentInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutDonationsSentInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutDonationsSentInput, Prisma.UserUncheckedUpdateWithoutDonationsSentInput>
+}
+
+export type UserUpdateWithoutDonationsSentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutDonationsSentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUncheckedUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutSponsorshipsFundedInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutSponsorshipsFundedInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientUncheckedCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutSponsorshipsFundedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSponsorshipsFundedInput, Prisma.UserUncheckedCreateWithoutSponsorshipsFundedInput>
+}
+
+export type UserUpsertWithoutSponsorshipsFundedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSponsorshipsFundedInput, Prisma.UserUncheckedUpdateWithoutSponsorshipsFundedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSponsorshipsFundedInput, Prisma.UserUncheckedCreateWithoutSponsorshipsFundedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSponsorshipsFundedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSponsorshipsFundedInput, Prisma.UserUncheckedUpdateWithoutSponsorshipsFundedInput>
+}
+
+export type UserUpdateWithoutSponsorshipsFundedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSponsorshipsFundedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUncheckedUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutBountiesCreatedInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutBountiesCreatedInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientUncheckedCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutBountiesCreatedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutBountiesCreatedInput, Prisma.UserUncheckedCreateWithoutBountiesCreatedInput>
+}
+
+export type UserUpsertWithoutBountiesCreatedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutBountiesCreatedInput, Prisma.UserUncheckedUpdateWithoutBountiesCreatedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutBountiesCreatedInput, Prisma.UserUncheckedCreateWithoutBountiesCreatedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutBountiesCreatedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutBountiesCreatedInput, Prisma.UserUncheckedUpdateWithoutBountiesCreatedInput>
+}
+
+export type UserUpdateWithoutBountiesCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutBountiesCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUncheckedUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutBountySubmissionsInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutBountySubmissionsInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientUncheckedCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutBountySubmissionsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutBountySubmissionsInput, Prisma.UserUncheckedCreateWithoutBountySubmissionsInput>
+}
+
+export type UserUpsertWithoutBountySubmissionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutBountySubmissionsInput, Prisma.UserUncheckedUpdateWithoutBountySubmissionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutBountySubmissionsInput, Prisma.UserUncheckedCreateWithoutBountySubmissionsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutBountySubmissionsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutBountySubmissionsInput, Prisma.UserUncheckedUpdateWithoutBountySubmissionsInput>
+}
+
+export type UserUpdateWithoutBountySubmissionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutBountySubmissionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUncheckedUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutStarsInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutStarsInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientUncheckedCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutStarsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutStarsInput, Prisma.UserUncheckedCreateWithoutStarsInput>
+}
+
+export type UserUpsertWithoutStarsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutStarsInput, Prisma.UserUncheckedUpdateWithoutStarsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutStarsInput, Prisma.UserUncheckedCreateWithoutStarsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutStarsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutStarsInput, Prisma.UserUncheckedUpdateWithoutStarsInput>
+}
+
+export type UserUpdateWithoutStarsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutStarsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUncheckedUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutTuneAppsInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutTuneAppsInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientUncheckedCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutTuneAppsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTuneAppsInput, Prisma.UserUncheckedCreateWithoutTuneAppsInput>
+}
+
+export type UserUpsertWithoutTuneAppsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTuneAppsInput, Prisma.UserUncheckedUpdateWithoutTuneAppsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTuneAppsInput, Prisma.UserUncheckedCreateWithoutTuneAppsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTuneAppsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTuneAppsInput, Prisma.UserUncheckedUpdateWithoutTuneAppsInput>
+}
+
+export type UserUpdateWithoutTuneAppsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTuneAppsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUncheckedUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutTuneAppInstallationsInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutTuneAppInstallationsInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientUncheckedCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutTuneAppInstallationsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTuneAppInstallationsInput, Prisma.UserUncheckedCreateWithoutTuneAppInstallationsInput>
+}
+
+export type UserUpsertWithoutTuneAppInstallationsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTuneAppInstallationsInput, Prisma.UserUncheckedUpdateWithoutTuneAppInstallationsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTuneAppInstallationsInput, Prisma.UserUncheckedCreateWithoutTuneAppInstallationsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTuneAppInstallationsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTuneAppInstallationsInput, Prisma.UserUncheckedUpdateWithoutTuneAppInstallationsInput>
+}
+
+export type UserUpdateWithoutTuneAppInstallationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTuneAppInstallationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUncheckedUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutRecallBlocksInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutRecallBlocksInput = {
+  id: string
+  name: string
+  username?: string | null
+  bio?: string | null
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  developedApps?: Prisma.OauthClientUncheckedCreateNestedManyWithoutDeveloperInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutRecallBlocksInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutRecallBlocksInput, Prisma.UserUncheckedCreateWithoutRecallBlocksInput>
+}
+
+export type UserUpsertWithoutRecallBlocksInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutRecallBlocksInput, Prisma.UserUncheckedUpdateWithoutRecallBlocksInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutRecallBlocksInput, Prisma.UserUncheckedCreateWithoutRecallBlocksInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutRecallBlocksInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutRecallBlocksInput, Prisma.UserUncheckedUpdateWithoutRecallBlocksInput>
+}
+
+export type UserUpdateWithoutRecallBlocksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutRecallBlocksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  developedApps?: Prisma.OauthClientUncheckedUpdateManyWithoutDeveloperNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutBillingProfilesInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
@@ -1607,17 +8349,47 @@ export type UserCreateWithoutBillingProfilesInput = {
   payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
   collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
-  assets?: Prisma.AssetCreateNestedManyWithoutUserInput
-  grantAccess?: Prisma.AppCollectionAccessCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutBillingProfilesInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
@@ -1629,9 +8401,31 @@ export type UserUncheckedCreateWithoutBillingProfilesInput = {
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
   collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
-  assets?: Prisma.AssetUncheckedCreateNestedManyWithoutUserInput
-  grantAccess?: Prisma.AppCollectionAccessUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutBillingProfilesInput = {
@@ -1653,9 +8447,17 @@ export type UserUpdateToOneWithWhereWithoutBillingProfilesInput = {
 export type UserUpdateWithoutBillingProfilesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
@@ -1667,17 +8469,47 @@ export type UserUpdateWithoutBillingProfilesInput = {
   payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
   collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
-  assets?: Prisma.AssetUpdateManyWithoutUserNestedInput
-  grantAccess?: Prisma.AppCollectionAccessUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutBillingProfilesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -1689,17 +8521,47 @@ export type UserUncheckedUpdateWithoutBillingProfilesInput = {
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
   collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
-  assets?: Prisma.AssetUncheckedUpdateManyWithoutUserNestedInput
-  grantAccess?: Prisma.AppCollectionAccessUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSubscriptionsInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
@@ -1711,17 +8573,47 @@ export type UserCreateWithoutSubscriptionsInput = {
   payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
   billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
   collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
-  assets?: Prisma.AssetCreateNestedManyWithoutUserInput
-  grantAccess?: Prisma.AppCollectionAccessCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSubscriptionsInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
@@ -1733,9 +8625,31 @@ export type UserUncheckedCreateWithoutSubscriptionsInput = {
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
   billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
   collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
-  assets?: Prisma.AssetUncheckedCreateNestedManyWithoutUserInput
-  grantAccess?: Prisma.AppCollectionAccessUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSubscriptionsInput = {
@@ -1757,9 +8671,17 @@ export type UserUpdateToOneWithWhereWithoutSubscriptionsInput = {
 export type UserUpdateWithoutSubscriptionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
@@ -1771,17 +8693,47 @@ export type UserUpdateWithoutSubscriptionsInput = {
   payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
   billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
   collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
-  assets?: Prisma.AssetUpdateManyWithoutUserNestedInput
-  grantAccess?: Prisma.AppCollectionAccessUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSubscriptionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -1793,17 +8745,47 @@ export type UserUncheckedUpdateWithoutSubscriptionsInput = {
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
   billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
   collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
-  assets?: Prisma.AssetUncheckedUpdateManyWithoutUserNestedInput
-  grantAccess?: Prisma.AppCollectionAccessUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutPaymentsInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
@@ -1815,17 +8797,47 @@ export type UserCreateWithoutPaymentsInput = {
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
   billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
   collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
-  assets?: Prisma.AssetCreateNestedManyWithoutUserInput
-  grantAccess?: Prisma.AppCollectionAccessCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPaymentsInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
@@ -1837,9 +8849,31 @@ export type UserUncheckedCreateWithoutPaymentsInput = {
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
   billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
   collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
-  assets?: Prisma.AssetUncheckedCreateNestedManyWithoutUserInput
-  grantAccess?: Prisma.AppCollectionAccessUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPaymentsInput = {
@@ -1861,9 +8895,17 @@ export type UserUpdateToOneWithWhereWithoutPaymentsInput = {
 export type UserUpdateWithoutPaymentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
@@ -1875,17 +8917,47 @@ export type UserUpdateWithoutPaymentsInput = {
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
   billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
   collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
-  assets?: Prisma.AssetUpdateManyWithoutUserNestedInput
-  grantAccess?: Prisma.AppCollectionAccessUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPaymentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -1897,17 +8969,47 @@ export type UserUncheckedUpdateWithoutPaymentsInput = {
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
   billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
   collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
-  assets?: Prisma.AssetUncheckedUpdateManyWithoutUserNestedInput
-  grantAccess?: Prisma.AppCollectionAccessUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCouponUsagesInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
@@ -1919,17 +9021,47 @@ export type UserCreateWithoutCouponUsagesInput = {
   payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
   billingProfiles?: Prisma.BillingProfileCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaCreateNestedManyWithoutUserInput
   collections?: Prisma.CollectionCreateNestedManyWithoutUserInput
-  assets?: Prisma.AssetCreateNestedManyWithoutUserInput
-  grantAccess?: Prisma.AppCollectionAccessCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCouponUsagesInput = {
   id: string
   name: string
+  username?: string | null
+  bio?: string | null
   email: string
   emailVerified?: boolean
   image?: string | null
+  stripeConnectId?: string | null
+  computeQuotaBalanceCents?: number
+  marketplaceCreditBalanceCents?: number
+  prepaidWalletBalanceCents?: number
+  currentMonthSpendCents?: number
+  currentBillingCycleStart?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
@@ -1941,9 +9073,31 @@ export type UserUncheckedCreateWithoutCouponUsagesInput = {
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
   billingProfiles?: Prisma.BillingProfileUncheckedCreateNestedManyWithoutUserInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  areas?: Prisma.AreaUncheckedCreateNestedManyWithoutUserInput
   collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUserInput
-  assets?: Prisma.AssetUncheckedCreateNestedManyWithoutUserInput
-  grantAccess?: Prisma.AppCollectionAccessUncheckedCreateNestedManyWithoutUserInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutUserInput
+  authoredEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutAuthorInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutUserInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutUserInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutUserInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutUserInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutUserInput
+  authoredRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutAuthorInput
+  authoredCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutAuthorInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutUserInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutOwnerInput
+  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutUserInput
+  donationsSent?: Prisma.PackDonationUncheckedCreateNestedManyWithoutDonorUserInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorUserInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorUserInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutContributorInput
+  payouts?: Prisma.CreatorPayoutUncheckedCreateNestedManyWithoutUserInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutUserInput
+  tuneApps?: Prisma.TuneAppUncheckedCreateNestedManyWithoutPublisherInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedCreateNestedManyWithoutUserInput
+  recallBlocks?: Prisma.RecallBlockUncheckedCreateNestedManyWithoutPublisherInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCouponUsagesInput = {
@@ -1965,9 +9119,17 @@ export type UserUpdateToOneWithWhereWithoutCouponUsagesInput = {
 export type UserUpdateWithoutCouponUsagesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
@@ -1979,17 +9141,47 @@ export type UserUpdateWithoutCouponUsagesInput = {
   payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
   billingProfiles?: Prisma.BillingProfileUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUpdateManyWithoutUserNestedInput
   collections?: Prisma.CollectionUpdateManyWithoutUserNestedInput
-  assets?: Prisma.AssetUpdateManyWithoutUserNestedInput
-  grantAccess?: Prisma.AppCollectionAccessUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCouponUsagesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeConnectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  marketplaceCreditBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -2001,9 +9193,31 @@ export type UserUncheckedUpdateWithoutCouponUsagesInput = {
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
   billingProfiles?: Prisma.BillingProfileUncheckedUpdateManyWithoutUserNestedInput
+  orgMemberships?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  areas?: Prisma.AreaUncheckedUpdateManyWithoutUserNestedInput
   collections?: Prisma.CollectionUncheckedUpdateManyWithoutUserNestedInput
-  assets?: Prisma.AssetUncheckedUpdateManyWithoutUserNestedInput
-  grantAccess?: Prisma.AppCollectionAccessUncheckedUpdateManyWithoutUserNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutUserNestedInput
+  authoredEntries?: Prisma.EntryUncheckedUpdateManyWithoutAuthorNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutUserNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutUserNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutUserNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutUserNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutUserNestedInput
+  authoredRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutAuthorNestedInput
+  authoredCombines?: Prisma.CombineUncheckedUpdateManyWithoutAuthorNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutOwnerNestedInput
+  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  donationsSent?: Prisma.PackDonationUncheckedUpdateManyWithoutDonorUserNestedInput
+  sponsorshipsFunded?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorUserNestedInput
+  bountiesCreated?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserNestedInput
+  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutContributorNestedInput
+  payouts?: Prisma.CreatorPayoutUncheckedUpdateManyWithoutUserNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutUserNestedInput
+  tuneApps?: Prisma.TuneAppUncheckedUpdateManyWithoutPublisherNestedInput
+  tuneAppInstallations?: Prisma.TuneAppInstallationUncheckedUpdateManyWithoutUserNestedInput
+  recallBlocks?: Prisma.RecallBlockUncheckedUpdateManyWithoutPublisherNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -2022,9 +9236,31 @@ export type UserCountOutputType = {
   couponUsages: number
   subscriptions: number
   billingProfiles: number
+  orgMemberships: number
+  areas: number
   collections: number
-  assets: number
-  grantAccess: number
+  entries: number
+  authoredEntries: number
+  appMemories: number
+  accessGrants: number
+  accessRequests: number
+  contextRequests: number
+  usageLedgers: number
+  authoredRevisions: number
+  authoredCombines: number
+  royalties: number
+  packs: number
+  packPurchases: number
+  donationsSent: number
+  sponsorshipsFunded: number
+  bountiesCreated: number
+  bountySubmissions: number
+  payouts: number
+  stars: number
+  tuneApps: number
+  tuneAppInstallations: number
+  recallBlocks: number
+  developerApiKeys: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2038,9 +9274,31 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   couponUsages?: boolean | UserCountOutputTypeCountCouponUsagesArgs
   subscriptions?: boolean | UserCountOutputTypeCountSubscriptionsArgs
   billingProfiles?: boolean | UserCountOutputTypeCountBillingProfilesArgs
+  orgMemberships?: boolean | UserCountOutputTypeCountOrgMembershipsArgs
+  areas?: boolean | UserCountOutputTypeCountAreasArgs
   collections?: boolean | UserCountOutputTypeCountCollectionsArgs
-  assets?: boolean | UserCountOutputTypeCountAssetsArgs
-  grantAccess?: boolean | UserCountOutputTypeCountGrantAccessArgs
+  entries?: boolean | UserCountOutputTypeCountEntriesArgs
+  authoredEntries?: boolean | UserCountOutputTypeCountAuthoredEntriesArgs
+  appMemories?: boolean | UserCountOutputTypeCountAppMemoriesArgs
+  accessGrants?: boolean | UserCountOutputTypeCountAccessGrantsArgs
+  accessRequests?: boolean | UserCountOutputTypeCountAccessRequestsArgs
+  contextRequests?: boolean | UserCountOutputTypeCountContextRequestsArgs
+  usageLedgers?: boolean | UserCountOutputTypeCountUsageLedgersArgs
+  authoredRevisions?: boolean | UserCountOutputTypeCountAuthoredRevisionsArgs
+  authoredCombines?: boolean | UserCountOutputTypeCountAuthoredCombinesArgs
+  royalties?: boolean | UserCountOutputTypeCountRoyaltiesArgs
+  packs?: boolean | UserCountOutputTypeCountPacksArgs
+  packPurchases?: boolean | UserCountOutputTypeCountPackPurchasesArgs
+  donationsSent?: boolean | UserCountOutputTypeCountDonationsSentArgs
+  sponsorshipsFunded?: boolean | UserCountOutputTypeCountSponsorshipsFundedArgs
+  bountiesCreated?: boolean | UserCountOutputTypeCountBountiesCreatedArgs
+  bountySubmissions?: boolean | UserCountOutputTypeCountBountySubmissionsArgs
+  payouts?: boolean | UserCountOutputTypeCountPayoutsArgs
+  stars?: boolean | UserCountOutputTypeCountStarsArgs
+  tuneApps?: boolean | UserCountOutputTypeCountTuneAppsArgs
+  tuneAppInstallations?: boolean | UserCountOutputTypeCountTuneAppInstallationsArgs
+  recallBlocks?: boolean | UserCountOutputTypeCountRecallBlocksArgs
+  developerApiKeys?: boolean | UserCountOutputTypeCountDeveloperApiKeysArgs
 }
 
 /**
@@ -2126,6 +9384,20 @@ export type UserCountOutputTypeCountBillingProfilesArgs<ExtArgs extends runtime.
 /**
  * UserCountOutputType without action
  */
+export type UserCountOutputTypeCountOrgMembershipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OrganizationMemberWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAreasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AreaWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
 export type UserCountOutputTypeCountCollectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.CollectionWhereInput
 }
@@ -2133,24 +9405,172 @@ export type UserCountOutputTypeCountCollectionsArgs<ExtArgs extends runtime.Type
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountAssetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AssetWhereInput
+export type UserCountOutputTypeCountEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EntryWhereInput
 }
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountGrantAccessArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AppCollectionAccessWhereInput
+export type UserCountOutputTypeCountAuthoredEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EntryWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAppMemoriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AppMemoryWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAccessGrantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AccessGrantWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAccessRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AccessRequestWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountContextRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ContextRequestWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountUsageLedgersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ApiUsageLedgerWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAuthoredRevisionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RevisionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAuthoredCombinesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CombineWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountRoyaltiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserRoyaltyWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPacksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PackWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPackPurchasesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PackPurchaseWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountDonationsSentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PackDonationWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSponsorshipsFundedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PackSponsorshipWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountBountiesCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.KnowledgeBountyWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountBountySubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BountySubmissionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPayoutsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CreatorPayoutWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountStarsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.StarWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountTuneAppsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TuneAppWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountTuneAppInstallationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TuneAppInstallationWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountRecallBlocksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RecallBlockWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountDeveloperApiKeysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DeveloperApiKeyWhereInput
 }
 
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  username?: boolean
+  bio?: boolean
   email?: boolean
   emailVerified?: boolean
   image?: boolean
+  stripeConnectId?: boolean
+  computeQuotaBalanceCents?: boolean
+  marketplaceCreditBalanceCents?: boolean
+  prepaidWalletBalanceCents?: boolean
+  currentMonthSpendCents?: boolean
+  currentBillingCycleStart?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
@@ -2163,18 +9583,48 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   couponUsages?: boolean | Prisma.User$couponUsagesArgs<ExtArgs>
   subscriptions?: boolean | Prisma.User$subscriptionsArgs<ExtArgs>
   billingProfiles?: boolean | Prisma.User$billingProfilesArgs<ExtArgs>
+  orgMemberships?: boolean | Prisma.User$orgMembershipsArgs<ExtArgs>
+  areas?: boolean | Prisma.User$areasArgs<ExtArgs>
   collections?: boolean | Prisma.User$collectionsArgs<ExtArgs>
-  assets?: boolean | Prisma.User$assetsArgs<ExtArgs>
-  grantAccess?: boolean | Prisma.User$grantAccessArgs<ExtArgs>
+  entries?: boolean | Prisma.User$entriesArgs<ExtArgs>
+  authoredEntries?: boolean | Prisma.User$authoredEntriesArgs<ExtArgs>
+  appMemories?: boolean | Prisma.User$appMemoriesArgs<ExtArgs>
+  accessGrants?: boolean | Prisma.User$accessGrantsArgs<ExtArgs>
+  accessRequests?: boolean | Prisma.User$accessRequestsArgs<ExtArgs>
+  contextRequests?: boolean | Prisma.User$contextRequestsArgs<ExtArgs>
+  usageLedgers?: boolean | Prisma.User$usageLedgersArgs<ExtArgs>
+  authoredRevisions?: boolean | Prisma.User$authoredRevisionsArgs<ExtArgs>
+  authoredCombines?: boolean | Prisma.User$authoredCombinesArgs<ExtArgs>
+  royalties?: boolean | Prisma.User$royaltiesArgs<ExtArgs>
+  packs?: boolean | Prisma.User$packsArgs<ExtArgs>
+  packPurchases?: boolean | Prisma.User$packPurchasesArgs<ExtArgs>
+  donationsSent?: boolean | Prisma.User$donationsSentArgs<ExtArgs>
+  sponsorshipsFunded?: boolean | Prisma.User$sponsorshipsFundedArgs<ExtArgs>
+  bountiesCreated?: boolean | Prisma.User$bountiesCreatedArgs<ExtArgs>
+  bountySubmissions?: boolean | Prisma.User$bountySubmissionsArgs<ExtArgs>
+  payouts?: boolean | Prisma.User$payoutsArgs<ExtArgs>
+  stars?: boolean | Prisma.User$starsArgs<ExtArgs>
+  tuneApps?: boolean | Prisma.User$tuneAppsArgs<ExtArgs>
+  tuneAppInstallations?: boolean | Prisma.User$tuneAppInstallationsArgs<ExtArgs>
+  recallBlocks?: boolean | Prisma.User$recallBlocksArgs<ExtArgs>
+  developerApiKeys?: boolean | Prisma.User$developerApiKeysArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  username?: boolean
+  bio?: boolean
   email?: boolean
   emailVerified?: boolean
   image?: boolean
+  stripeConnectId?: boolean
+  computeQuotaBalanceCents?: boolean
+  marketplaceCreditBalanceCents?: boolean
+  prepaidWalletBalanceCents?: boolean
+  currentMonthSpendCents?: boolean
+  currentBillingCycleStart?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["user"]>
@@ -2182,9 +9632,17 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  username?: boolean
+  bio?: boolean
   email?: boolean
   emailVerified?: boolean
   image?: boolean
+  stripeConnectId?: boolean
+  computeQuotaBalanceCents?: boolean
+  marketplaceCreditBalanceCents?: boolean
+  prepaidWalletBalanceCents?: boolean
+  currentMonthSpendCents?: boolean
+  currentBillingCycleStart?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["user"]>
@@ -2192,14 +9650,22 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 export type UserSelectScalar = {
   id?: boolean
   name?: boolean
+  username?: boolean
+  bio?: boolean
   email?: boolean
   emailVerified?: boolean
   image?: boolean
+  stripeConnectId?: boolean
+  computeQuotaBalanceCents?: boolean
+  marketplaceCreditBalanceCents?: boolean
+  prepaidWalletBalanceCents?: boolean
+  currentMonthSpendCents?: boolean
+  currentBillingCycleStart?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "username" | "bio" | "email" | "emailVerified" | "image" | "stripeConnectId" | "computeQuotaBalanceCents" | "marketplaceCreditBalanceCents" | "prepaidWalletBalanceCents" | "currentMonthSpendCents" | "currentBillingCycleStart" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
@@ -2211,9 +9677,31 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   couponUsages?: boolean | Prisma.User$couponUsagesArgs<ExtArgs>
   subscriptions?: boolean | Prisma.User$subscriptionsArgs<ExtArgs>
   billingProfiles?: boolean | Prisma.User$billingProfilesArgs<ExtArgs>
+  orgMemberships?: boolean | Prisma.User$orgMembershipsArgs<ExtArgs>
+  areas?: boolean | Prisma.User$areasArgs<ExtArgs>
   collections?: boolean | Prisma.User$collectionsArgs<ExtArgs>
-  assets?: boolean | Prisma.User$assetsArgs<ExtArgs>
-  grantAccess?: boolean | Prisma.User$grantAccessArgs<ExtArgs>
+  entries?: boolean | Prisma.User$entriesArgs<ExtArgs>
+  authoredEntries?: boolean | Prisma.User$authoredEntriesArgs<ExtArgs>
+  appMemories?: boolean | Prisma.User$appMemoriesArgs<ExtArgs>
+  accessGrants?: boolean | Prisma.User$accessGrantsArgs<ExtArgs>
+  accessRequests?: boolean | Prisma.User$accessRequestsArgs<ExtArgs>
+  contextRequests?: boolean | Prisma.User$contextRequestsArgs<ExtArgs>
+  usageLedgers?: boolean | Prisma.User$usageLedgersArgs<ExtArgs>
+  authoredRevisions?: boolean | Prisma.User$authoredRevisionsArgs<ExtArgs>
+  authoredCombines?: boolean | Prisma.User$authoredCombinesArgs<ExtArgs>
+  royalties?: boolean | Prisma.User$royaltiesArgs<ExtArgs>
+  packs?: boolean | Prisma.User$packsArgs<ExtArgs>
+  packPurchases?: boolean | Prisma.User$packPurchasesArgs<ExtArgs>
+  donationsSent?: boolean | Prisma.User$donationsSentArgs<ExtArgs>
+  sponsorshipsFunded?: boolean | Prisma.User$sponsorshipsFundedArgs<ExtArgs>
+  bountiesCreated?: boolean | Prisma.User$bountiesCreatedArgs<ExtArgs>
+  bountySubmissions?: boolean | Prisma.User$bountySubmissionsArgs<ExtArgs>
+  payouts?: boolean | Prisma.User$payoutsArgs<ExtArgs>
+  stars?: boolean | Prisma.User$starsArgs<ExtArgs>
+  tuneApps?: boolean | Prisma.User$tuneAppsArgs<ExtArgs>
+  tuneAppInstallations?: boolean | Prisma.User$tuneAppInstallationsArgs<ExtArgs>
+  recallBlocks?: boolean | Prisma.User$recallBlocksArgs<ExtArgs>
+  developerApiKeys?: boolean | Prisma.User$developerApiKeysArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -2232,16 +9720,46 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     couponUsages: Prisma.$CouponUsagePayload<ExtArgs>[]
     subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
     billingProfiles: Prisma.$BillingProfilePayload<ExtArgs>[]
+    orgMemberships: Prisma.$OrganizationMemberPayload<ExtArgs>[]
+    areas: Prisma.$AreaPayload<ExtArgs>[]
     collections: Prisma.$CollectionPayload<ExtArgs>[]
-    assets: Prisma.$AssetPayload<ExtArgs>[]
-    grantAccess: Prisma.$AppCollectionAccessPayload<ExtArgs>[]
+    entries: Prisma.$EntryPayload<ExtArgs>[]
+    authoredEntries: Prisma.$EntryPayload<ExtArgs>[]
+    appMemories: Prisma.$AppMemoryPayload<ExtArgs>[]
+    accessGrants: Prisma.$AccessGrantPayload<ExtArgs>[]
+    accessRequests: Prisma.$AccessRequestPayload<ExtArgs>[]
+    contextRequests: Prisma.$ContextRequestPayload<ExtArgs>[]
+    usageLedgers: Prisma.$ApiUsageLedgerPayload<ExtArgs>[]
+    authoredRevisions: Prisma.$RevisionPayload<ExtArgs>[]
+    authoredCombines: Prisma.$CombinePayload<ExtArgs>[]
+    royalties: Prisma.$UserRoyaltyPayload<ExtArgs>[]
+    packs: Prisma.$PackPayload<ExtArgs>[]
+    packPurchases: Prisma.$PackPurchasePayload<ExtArgs>[]
+    donationsSent: Prisma.$PackDonationPayload<ExtArgs>[]
+    sponsorshipsFunded: Prisma.$PackSponsorshipPayload<ExtArgs>[]
+    bountiesCreated: Prisma.$KnowledgeBountyPayload<ExtArgs>[]
+    bountySubmissions: Prisma.$BountySubmissionPayload<ExtArgs>[]
+    payouts: Prisma.$CreatorPayoutPayload<ExtArgs>[]
+    stars: Prisma.$StarPayload<ExtArgs>[]
+    tuneApps: Prisma.$TuneAppPayload<ExtArgs>[]
+    tuneAppInstallations: Prisma.$TuneAppInstallationPayload<ExtArgs>[]
+    recallBlocks: Prisma.$RecallBlockPayload<ExtArgs>[]
+    developerApiKeys: Prisma.$DeveloperApiKeyPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
+    username: string | null
+    bio: string | null
     email: string
     emailVerified: boolean
     image: string | null
+    stripeConnectId: string | null
+    computeQuotaBalanceCents: number
+    marketplaceCreditBalanceCents: number
+    prepaidWalletBalanceCents: number
+    currentMonthSpendCents: number
+    currentBillingCycleStart: Date
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["user"]>
@@ -2648,9 +10166,31 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   couponUsages<T extends Prisma.User$couponUsagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$couponUsagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CouponUsagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   subscriptions<T extends Prisma.User$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   billingProfiles<T extends Prisma.User$billingProfilesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$billingProfilesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BillingProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  orgMemberships<T extends Prisma.User$orgMembershipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$orgMembershipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrganizationMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  areas<T extends Prisma.User$areasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$areasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AreaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   collections<T extends Prisma.User$collectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$collectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  assets<T extends Prisma.User$assetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$assetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  grantAccess<T extends Prisma.User$grantAccessArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$grantAccessArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppCollectionAccessPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  entries<T extends Prisma.User$entriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$entriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  authoredEntries<T extends Prisma.User$authoredEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$authoredEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  appMemories<T extends Prisma.User$appMemoriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$appMemoriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppMemoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  accessGrants<T extends Prisma.User$accessGrantsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$accessGrantsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccessGrantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  accessRequests<T extends Prisma.User$accessRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$accessRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  contextRequests<T extends Prisma.User$contextRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$contextRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContextRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  usageLedgers<T extends Prisma.User$usageLedgersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$usageLedgersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApiUsageLedgerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  authoredRevisions<T extends Prisma.User$authoredRevisionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$authoredRevisionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RevisionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  authoredCombines<T extends Prisma.User$authoredCombinesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$authoredCombinesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CombinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  royalties<T extends Prisma.User$royaltiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$royaltiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserRoyaltyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  packs<T extends Prisma.User$packsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$packsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  packPurchases<T extends Prisma.User$packPurchasesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$packPurchasesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PackPurchasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  donationsSent<T extends Prisma.User$donationsSentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$donationsSentArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PackDonationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sponsorshipsFunded<T extends Prisma.User$sponsorshipsFundedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sponsorshipsFundedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PackSponsorshipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  bountiesCreated<T extends Prisma.User$bountiesCreatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$bountiesCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$KnowledgeBountyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  bountySubmissions<T extends Prisma.User$bountySubmissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$bountySubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BountySubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  payouts<T extends Prisma.User$payoutsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$payoutsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CreatorPayoutPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  stars<T extends Prisma.User$starsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$starsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StarPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  tuneApps<T extends Prisma.User$tuneAppsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$tuneAppsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TuneAppPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  tuneAppInstallations<T extends Prisma.User$tuneAppInstallationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$tuneAppInstallationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TuneAppInstallationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  recallBlocks<T extends Prisma.User$recallBlocksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$recallBlocksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RecallBlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  developerApiKeys<T extends Prisma.User$developerApiKeysArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$developerApiKeysArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DeveloperApiKeyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2682,9 +10222,17 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
 export interface UserFieldRefs {
   readonly id: Prisma.FieldRef<"User", 'String'>
   readonly name: Prisma.FieldRef<"User", 'String'>
+  readonly username: Prisma.FieldRef<"User", 'String'>
+  readonly bio: Prisma.FieldRef<"User", 'String'>
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly emailVerified: Prisma.FieldRef<"User", 'Boolean'>
   readonly image: Prisma.FieldRef<"User", 'String'>
+  readonly stripeConnectId: Prisma.FieldRef<"User", 'String'>
+  readonly computeQuotaBalanceCents: Prisma.FieldRef<"User", 'Float'>
+  readonly marketplaceCreditBalanceCents: Prisma.FieldRef<"User", 'Float'>
+  readonly prepaidWalletBalanceCents: Prisma.FieldRef<"User", 'Float'>
+  readonly currentMonthSpendCents: Prisma.FieldRef<"User", 'Float'>
+  readonly currentBillingCycleStart: Prisma.FieldRef<"User", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
 }
@@ -3320,6 +10868,54 @@ export type User$billingProfilesArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
+ * User.orgMemberships
+ */
+export type User$orgMembershipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OrganizationMember
+   */
+  select?: Prisma.OrganizationMemberSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OrganizationMember
+   */
+  omit?: Prisma.OrganizationMemberOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrganizationMemberInclude<ExtArgs> | null
+  where?: Prisma.OrganizationMemberWhereInput
+  orderBy?: Prisma.OrganizationMemberOrderByWithRelationInput | Prisma.OrganizationMemberOrderByWithRelationInput[]
+  cursor?: Prisma.OrganizationMemberWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OrganizationMemberScalarFieldEnum | Prisma.OrganizationMemberScalarFieldEnum[]
+}
+
+/**
+ * User.areas
+ */
+export type User$areasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Area
+   */
+  select?: Prisma.AreaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Area
+   */
+  omit?: Prisma.AreaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AreaInclude<ExtArgs> | null
+  where?: Prisma.AreaWhereInput
+  orderBy?: Prisma.AreaOrderByWithRelationInput | Prisma.AreaOrderByWithRelationInput[]
+  cursor?: Prisma.AreaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AreaScalarFieldEnum | Prisma.AreaScalarFieldEnum[]
+}
+
+/**
  * User.collections
  */
 export type User$collectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3344,51 +10940,531 @@ export type User$collectionsArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
- * User.assets
+ * User.entries
  */
-export type User$assetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$entriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Asset
+   * Select specific fields to fetch from the Entry
    */
-  select?: Prisma.AssetSelect<ExtArgs> | null
+  select?: Prisma.EntrySelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Asset
+   * Omit specific fields from the Entry
    */
-  omit?: Prisma.AssetOmit<ExtArgs> | null
+  omit?: Prisma.EntryOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AssetInclude<ExtArgs> | null
-  where?: Prisma.AssetWhereInput
-  orderBy?: Prisma.AssetOrderByWithRelationInput | Prisma.AssetOrderByWithRelationInput[]
-  cursor?: Prisma.AssetWhereUniqueInput
+  include?: Prisma.EntryInclude<ExtArgs> | null
+  where?: Prisma.EntryWhereInput
+  orderBy?: Prisma.EntryOrderByWithRelationInput | Prisma.EntryOrderByWithRelationInput[]
+  cursor?: Prisma.EntryWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.AssetScalarFieldEnum | Prisma.AssetScalarFieldEnum[]
+  distinct?: Prisma.EntryScalarFieldEnum | Prisma.EntryScalarFieldEnum[]
 }
 
 /**
- * User.grantAccess
+ * User.authoredEntries
  */
-export type User$grantAccessArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$authoredEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the AppCollectionAccess
+   * Select specific fields to fetch from the Entry
    */
-  select?: Prisma.AppCollectionAccessSelect<ExtArgs> | null
+  select?: Prisma.EntrySelect<ExtArgs> | null
   /**
-   * Omit specific fields from the AppCollectionAccess
+   * Omit specific fields from the Entry
    */
-  omit?: Prisma.AppCollectionAccessOmit<ExtArgs> | null
+  omit?: Prisma.EntryOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AppCollectionAccessInclude<ExtArgs> | null
-  where?: Prisma.AppCollectionAccessWhereInput
-  orderBy?: Prisma.AppCollectionAccessOrderByWithRelationInput | Prisma.AppCollectionAccessOrderByWithRelationInput[]
-  cursor?: Prisma.AppCollectionAccessWhereUniqueInput
+  include?: Prisma.EntryInclude<ExtArgs> | null
+  where?: Prisma.EntryWhereInput
+  orderBy?: Prisma.EntryOrderByWithRelationInput | Prisma.EntryOrderByWithRelationInput[]
+  cursor?: Prisma.EntryWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.AppCollectionAccessScalarFieldEnum | Prisma.AppCollectionAccessScalarFieldEnum[]
+  distinct?: Prisma.EntryScalarFieldEnum | Prisma.EntryScalarFieldEnum[]
+}
+
+/**
+ * User.appMemories
+ */
+export type User$appMemoriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AppMemory
+   */
+  select?: Prisma.AppMemorySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AppMemory
+   */
+  omit?: Prisma.AppMemoryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AppMemoryInclude<ExtArgs> | null
+  where?: Prisma.AppMemoryWhereInput
+  orderBy?: Prisma.AppMemoryOrderByWithRelationInput | Prisma.AppMemoryOrderByWithRelationInput[]
+  cursor?: Prisma.AppMemoryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AppMemoryScalarFieldEnum | Prisma.AppMemoryScalarFieldEnum[]
+}
+
+/**
+ * User.accessGrants
+ */
+export type User$accessGrantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AccessGrant
+   */
+  select?: Prisma.AccessGrantSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AccessGrant
+   */
+  omit?: Prisma.AccessGrantOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AccessGrantInclude<ExtArgs> | null
+  where?: Prisma.AccessGrantWhereInput
+  orderBy?: Prisma.AccessGrantOrderByWithRelationInput | Prisma.AccessGrantOrderByWithRelationInput[]
+  cursor?: Prisma.AccessGrantWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AccessGrantScalarFieldEnum | Prisma.AccessGrantScalarFieldEnum[]
+}
+
+/**
+ * User.accessRequests
+ */
+export type User$accessRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AccessRequest
+   */
+  select?: Prisma.AccessRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AccessRequest
+   */
+  omit?: Prisma.AccessRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AccessRequestInclude<ExtArgs> | null
+  where?: Prisma.AccessRequestWhereInput
+  orderBy?: Prisma.AccessRequestOrderByWithRelationInput | Prisma.AccessRequestOrderByWithRelationInput[]
+  cursor?: Prisma.AccessRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AccessRequestScalarFieldEnum | Prisma.AccessRequestScalarFieldEnum[]
+}
+
+/**
+ * User.contextRequests
+ */
+export type User$contextRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ContextRequest
+   */
+  select?: Prisma.ContextRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ContextRequest
+   */
+  omit?: Prisma.ContextRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ContextRequestInclude<ExtArgs> | null
+  where?: Prisma.ContextRequestWhereInput
+  orderBy?: Prisma.ContextRequestOrderByWithRelationInput | Prisma.ContextRequestOrderByWithRelationInput[]
+  cursor?: Prisma.ContextRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ContextRequestScalarFieldEnum | Prisma.ContextRequestScalarFieldEnum[]
+}
+
+/**
+ * User.usageLedgers
+ */
+export type User$usageLedgersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ApiUsageLedger
+   */
+  select?: Prisma.ApiUsageLedgerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ApiUsageLedger
+   */
+  omit?: Prisma.ApiUsageLedgerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApiUsageLedgerInclude<ExtArgs> | null
+  where?: Prisma.ApiUsageLedgerWhereInput
+  orderBy?: Prisma.ApiUsageLedgerOrderByWithRelationInput | Prisma.ApiUsageLedgerOrderByWithRelationInput[]
+  cursor?: Prisma.ApiUsageLedgerWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ApiUsageLedgerScalarFieldEnum | Prisma.ApiUsageLedgerScalarFieldEnum[]
+}
+
+/**
+ * User.authoredRevisions
+ */
+export type User$authoredRevisionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Revision
+   */
+  select?: Prisma.RevisionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Revision
+   */
+  omit?: Prisma.RevisionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RevisionInclude<ExtArgs> | null
+  where?: Prisma.RevisionWhereInput
+  orderBy?: Prisma.RevisionOrderByWithRelationInput | Prisma.RevisionOrderByWithRelationInput[]
+  cursor?: Prisma.RevisionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RevisionScalarFieldEnum | Prisma.RevisionScalarFieldEnum[]
+}
+
+/**
+ * User.authoredCombines
+ */
+export type User$authoredCombinesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Combine
+   */
+  select?: Prisma.CombineSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Combine
+   */
+  omit?: Prisma.CombineOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CombineInclude<ExtArgs> | null
+  where?: Prisma.CombineWhereInput
+  orderBy?: Prisma.CombineOrderByWithRelationInput | Prisma.CombineOrderByWithRelationInput[]
+  cursor?: Prisma.CombineWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CombineScalarFieldEnum | Prisma.CombineScalarFieldEnum[]
+}
+
+/**
+ * User.royalties
+ */
+export type User$royaltiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserRoyalty
+   */
+  select?: Prisma.UserRoyaltySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserRoyalty
+   */
+  omit?: Prisma.UserRoyaltyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserRoyaltyInclude<ExtArgs> | null
+  where?: Prisma.UserRoyaltyWhereInput
+  orderBy?: Prisma.UserRoyaltyOrderByWithRelationInput | Prisma.UserRoyaltyOrderByWithRelationInput[]
+  cursor?: Prisma.UserRoyaltyWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserRoyaltyScalarFieldEnum | Prisma.UserRoyaltyScalarFieldEnum[]
+}
+
+/**
+ * User.packs
+ */
+export type User$packsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Pack
+   */
+  select?: Prisma.PackSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Pack
+   */
+  omit?: Prisma.PackOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PackInclude<ExtArgs> | null
+  where?: Prisma.PackWhereInput
+  orderBy?: Prisma.PackOrderByWithRelationInput | Prisma.PackOrderByWithRelationInput[]
+  cursor?: Prisma.PackWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PackScalarFieldEnum | Prisma.PackScalarFieldEnum[]
+}
+
+/**
+ * User.packPurchases
+ */
+export type User$packPurchasesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PackPurchase
+   */
+  select?: Prisma.PackPurchaseSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PackPurchase
+   */
+  omit?: Prisma.PackPurchaseOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PackPurchaseInclude<ExtArgs> | null
+  where?: Prisma.PackPurchaseWhereInput
+  orderBy?: Prisma.PackPurchaseOrderByWithRelationInput | Prisma.PackPurchaseOrderByWithRelationInput[]
+  cursor?: Prisma.PackPurchaseWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PackPurchaseScalarFieldEnum | Prisma.PackPurchaseScalarFieldEnum[]
+}
+
+/**
+ * User.donationsSent
+ */
+export type User$donationsSentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PackDonation
+   */
+  select?: Prisma.PackDonationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PackDonation
+   */
+  omit?: Prisma.PackDonationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PackDonationInclude<ExtArgs> | null
+  where?: Prisma.PackDonationWhereInput
+  orderBy?: Prisma.PackDonationOrderByWithRelationInput | Prisma.PackDonationOrderByWithRelationInput[]
+  cursor?: Prisma.PackDonationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PackDonationScalarFieldEnum | Prisma.PackDonationScalarFieldEnum[]
+}
+
+/**
+ * User.sponsorshipsFunded
+ */
+export type User$sponsorshipsFundedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PackSponsorship
+   */
+  select?: Prisma.PackSponsorshipSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PackSponsorship
+   */
+  omit?: Prisma.PackSponsorshipOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PackSponsorshipInclude<ExtArgs> | null
+  where?: Prisma.PackSponsorshipWhereInput
+  orderBy?: Prisma.PackSponsorshipOrderByWithRelationInput | Prisma.PackSponsorshipOrderByWithRelationInput[]
+  cursor?: Prisma.PackSponsorshipWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PackSponsorshipScalarFieldEnum | Prisma.PackSponsorshipScalarFieldEnum[]
+}
+
+/**
+ * User.bountiesCreated
+ */
+export type User$bountiesCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the KnowledgeBounty
+   */
+  select?: Prisma.KnowledgeBountySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the KnowledgeBounty
+   */
+  omit?: Prisma.KnowledgeBountyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.KnowledgeBountyInclude<ExtArgs> | null
+  where?: Prisma.KnowledgeBountyWhereInput
+  orderBy?: Prisma.KnowledgeBountyOrderByWithRelationInput | Prisma.KnowledgeBountyOrderByWithRelationInput[]
+  cursor?: Prisma.KnowledgeBountyWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.KnowledgeBountyScalarFieldEnum | Prisma.KnowledgeBountyScalarFieldEnum[]
+}
+
+/**
+ * User.bountySubmissions
+ */
+export type User$bountySubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BountySubmission
+   */
+  select?: Prisma.BountySubmissionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BountySubmission
+   */
+  omit?: Prisma.BountySubmissionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BountySubmissionInclude<ExtArgs> | null
+  where?: Prisma.BountySubmissionWhereInput
+  orderBy?: Prisma.BountySubmissionOrderByWithRelationInput | Prisma.BountySubmissionOrderByWithRelationInput[]
+  cursor?: Prisma.BountySubmissionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BountySubmissionScalarFieldEnum | Prisma.BountySubmissionScalarFieldEnum[]
+}
+
+/**
+ * User.payouts
+ */
+export type User$payoutsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CreatorPayout
+   */
+  select?: Prisma.CreatorPayoutSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CreatorPayout
+   */
+  omit?: Prisma.CreatorPayoutOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CreatorPayoutInclude<ExtArgs> | null
+  where?: Prisma.CreatorPayoutWhereInput
+  orderBy?: Prisma.CreatorPayoutOrderByWithRelationInput | Prisma.CreatorPayoutOrderByWithRelationInput[]
+  cursor?: Prisma.CreatorPayoutWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CreatorPayoutScalarFieldEnum | Prisma.CreatorPayoutScalarFieldEnum[]
+}
+
+/**
+ * User.stars
+ */
+export type User$starsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Star
+   */
+  select?: Prisma.StarSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Star
+   */
+  omit?: Prisma.StarOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.StarInclude<ExtArgs> | null
+  where?: Prisma.StarWhereInput
+  orderBy?: Prisma.StarOrderByWithRelationInput | Prisma.StarOrderByWithRelationInput[]
+  cursor?: Prisma.StarWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.StarScalarFieldEnum | Prisma.StarScalarFieldEnum[]
+}
+
+/**
+ * User.tuneApps
+ */
+export type User$tuneAppsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TuneApp
+   */
+  select?: Prisma.TuneAppSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TuneApp
+   */
+  omit?: Prisma.TuneAppOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TuneAppInclude<ExtArgs> | null
+  where?: Prisma.TuneAppWhereInput
+  orderBy?: Prisma.TuneAppOrderByWithRelationInput | Prisma.TuneAppOrderByWithRelationInput[]
+  cursor?: Prisma.TuneAppWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TuneAppScalarFieldEnum | Prisma.TuneAppScalarFieldEnum[]
+}
+
+/**
+ * User.tuneAppInstallations
+ */
+export type User$tuneAppInstallationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TuneAppInstallation
+   */
+  select?: Prisma.TuneAppInstallationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TuneAppInstallation
+   */
+  omit?: Prisma.TuneAppInstallationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TuneAppInstallationInclude<ExtArgs> | null
+  where?: Prisma.TuneAppInstallationWhereInput
+  orderBy?: Prisma.TuneAppInstallationOrderByWithRelationInput | Prisma.TuneAppInstallationOrderByWithRelationInput[]
+  cursor?: Prisma.TuneAppInstallationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TuneAppInstallationScalarFieldEnum | Prisma.TuneAppInstallationScalarFieldEnum[]
+}
+
+/**
+ * User.recallBlocks
+ */
+export type User$recallBlocksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RecallBlock
+   */
+  select?: Prisma.RecallBlockSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RecallBlock
+   */
+  omit?: Prisma.RecallBlockOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RecallBlockInclude<ExtArgs> | null
+  where?: Prisma.RecallBlockWhereInput
+  orderBy?: Prisma.RecallBlockOrderByWithRelationInput | Prisma.RecallBlockOrderByWithRelationInput[]
+  cursor?: Prisma.RecallBlockWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RecallBlockScalarFieldEnum | Prisma.RecallBlockScalarFieldEnum[]
+}
+
+/**
+ * User.developerApiKeys
+ */
+export type User$developerApiKeysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DeveloperApiKey
+   */
+  select?: Prisma.DeveloperApiKeySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DeveloperApiKey
+   */
+  omit?: Prisma.DeveloperApiKeyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DeveloperApiKeyInclude<ExtArgs> | null
+  where?: Prisma.DeveloperApiKeyWhereInput
+  orderBy?: Prisma.DeveloperApiKeyOrderByWithRelationInput | Prisma.DeveloperApiKeyOrderByWithRelationInput[]
+  cursor?: Prisma.DeveloperApiKeyWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DeveloperApiKeyScalarFieldEnum | Prisma.DeveloperApiKeyScalarFieldEnum[]
 }
 
 /**
