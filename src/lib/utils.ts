@@ -22,3 +22,20 @@ export const formatError = (error: unknown) =>
 export function normalizeCouponCode(value: string) {
 	return value.trim().toUpperCase();
 }
+
+export function formatStorageBytes(bytes: number | null | undefined): string {
+	if (bytes === null || bytes === undefined) {
+		return "Unlimited"
+	}
+	if (bytes >= 1_000_000_000) {
+		return `${(bytes / 1_000_000_000).toFixed(0)} GB`
+	}
+	if (bytes >= 1_000_000) {
+		return `${(bytes / 1_000_000).toFixed(0)} MB`
+	}
+	if (bytes >= 1_000) {
+		return `${(bytes / 1_000).toFixed(0)} KB`
+	}
+
+	return `${bytes} Bytes`
+}

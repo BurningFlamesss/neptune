@@ -28,19 +28,29 @@ export type AggregateCollection = {
 
 export type CollectionAvgAggregateOutputType = {
   version: number | null
+  entryCount: number | null
 }
 
 export type CollectionSumAggregateOutputType = {
   version: number | null
+  entryCount: number | null
 }
 
 export type CollectionMinAggregateOutputType = {
   id: string | null
   name: string | null
+  slug: string | null
   description: string | null
   visibility: $Enums.Visibility | null
   version: number | null
+  entryCount: number | null
   userId: string | null
+  areaId: string | null
+  parentId: string | null
+  isVirtualMount: boolean | null
+  syncMode: $Enums.SyncMode | null
+  copiedFromCollectionId: string | null
+  sourceReleaseId: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -48,10 +58,18 @@ export type CollectionMinAggregateOutputType = {
 export type CollectionMaxAggregateOutputType = {
   id: string | null
   name: string | null
+  slug: string | null
   description: string | null
   visibility: $Enums.Visibility | null
   version: number | null
+  entryCount: number | null
   userId: string | null
+  areaId: string | null
+  parentId: string | null
+  isVirtualMount: boolean | null
+  syncMode: $Enums.SyncMode | null
+  copiedFromCollectionId: string | null
+  sourceReleaseId: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -59,10 +77,18 @@ export type CollectionMaxAggregateOutputType = {
 export type CollectionCountAggregateOutputType = {
   id: number
   name: number
+  slug: number
   description: number
   visibility: number
   version: number
+  entryCount: number
   userId: number
+  areaId: number
+  parentId: number
+  isVirtualMount: number
+  syncMode: number
+  copiedFromCollectionId: number
+  sourceReleaseId: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -71,19 +97,29 @@ export type CollectionCountAggregateOutputType = {
 
 export type CollectionAvgAggregateInputType = {
   version?: true
+  entryCount?: true
 }
 
 export type CollectionSumAggregateInputType = {
   version?: true
+  entryCount?: true
 }
 
 export type CollectionMinAggregateInputType = {
   id?: true
   name?: true
+  slug?: true
   description?: true
   visibility?: true
   version?: true
+  entryCount?: true
   userId?: true
+  areaId?: true
+  parentId?: true
+  isVirtualMount?: true
+  syncMode?: true
+  copiedFromCollectionId?: true
+  sourceReleaseId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -91,10 +127,18 @@ export type CollectionMinAggregateInputType = {
 export type CollectionMaxAggregateInputType = {
   id?: true
   name?: true
+  slug?: true
   description?: true
   visibility?: true
   version?: true
+  entryCount?: true
   userId?: true
+  areaId?: true
+  parentId?: true
+  isVirtualMount?: true
+  syncMode?: true
+  copiedFromCollectionId?: true
+  sourceReleaseId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -102,10 +146,18 @@ export type CollectionMaxAggregateInputType = {
 export type CollectionCountAggregateInputType = {
   id?: true
   name?: true
+  slug?: true
   description?: true
   visibility?: true
   version?: true
+  entryCount?: true
   userId?: true
+  areaId?: true
+  parentId?: true
+  isVirtualMount?: true
+  syncMode?: true
+  copiedFromCollectionId?: true
+  sourceReleaseId?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -200,10 +252,18 @@ export type CollectionGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 export type CollectionGroupByOutputType = {
   id: string
   name: string
+  slug: string
   description: string | null
   visibility: $Enums.Visibility
   version: number
+  entryCount: number
   userId: string
+  areaId: string | null
+  parentId: string | null
+  isVirtualMount: boolean
+  syncMode: $Enums.SyncMode
+  copiedFromCollectionId: string | null
+  sourceReleaseId: string | null
   createdAt: Date
   updatedAt: Date
   _count: CollectionCountAggregateOutputType | null
@@ -234,29 +294,63 @@ export type CollectionWhereInput = {
   NOT?: Prisma.CollectionWhereInput | Prisma.CollectionWhereInput[]
   id?: Prisma.StringFilter<"Collection"> | string
   name?: Prisma.StringFilter<"Collection"> | string
+  slug?: Prisma.StringFilter<"Collection"> | string
   description?: Prisma.StringNullableFilter<"Collection"> | string | null
   visibility?: Prisma.EnumVisibilityFilter<"Collection"> | $Enums.Visibility
   version?: Prisma.IntFilter<"Collection"> | number
+  entryCount?: Prisma.IntFilter<"Collection"> | number
   userId?: Prisma.StringFilter<"Collection"> | string
+  areaId?: Prisma.StringNullableFilter<"Collection"> | string | null
+  parentId?: Prisma.StringNullableFilter<"Collection"> | string | null
+  isVirtualMount?: Prisma.BoolFilter<"Collection"> | boolean
+  syncMode?: Prisma.EnumSyncModeFilter<"Collection"> | $Enums.SyncMode
+  copiedFromCollectionId?: Prisma.StringNullableFilter<"Collection"> | string | null
+  sourceReleaseId?: Prisma.StringNullableFilter<"Collection"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Collection"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Collection"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  assets?: Prisma.AssetListRelationFilter
-  appCollectionAccesses?: Prisma.AppCollectionAccessListRelationFilter
+  area?: Prisma.XOR<Prisma.AreaNullableScalarRelationFilter, Prisma.AreaWhereInput> | null
+  parent?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
+  children?: Prisma.CollectionListRelationFilter
+  copiedFrom?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
+  copies?: Prisma.CollectionListRelationFilter
+  sourceRelease?: Prisma.XOR<Prisma.ReleaseNullableScalarRelationFilter, Prisma.ReleaseWhereInput> | null
+  entries?: Prisma.EntryListRelationFilter
+  paths?: Prisma.PathListRelationFilter
+  accessGrants?: Prisma.AccessGrantListRelationFilter
+  packImports?: Prisma.PackImportListRelationFilter
+  publishedPacks?: Prisma.PackListRelationFilter
 }
 
 export type CollectionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  slug?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   visibility?: Prisma.SortOrder
   version?: Prisma.SortOrder
+  entryCount?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  areaId?: Prisma.SortOrderInput | Prisma.SortOrder
+  parentId?: Prisma.SortOrderInput | Prisma.SortOrder
+  isVirtualMount?: Prisma.SortOrder
+  syncMode?: Prisma.SortOrder
+  copiedFromCollectionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  sourceReleaseId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
-  assets?: Prisma.AssetOrderByRelationAggregateInput
-  appCollectionAccesses?: Prisma.AppCollectionAccessOrderByRelationAggregateInput
+  area?: Prisma.AreaOrderByWithRelationInput
+  parent?: Prisma.CollectionOrderByWithRelationInput
+  children?: Prisma.CollectionOrderByRelationAggregateInput
+  copiedFrom?: Prisma.CollectionOrderByWithRelationInput
+  copies?: Prisma.CollectionOrderByRelationAggregateInput
+  sourceRelease?: Prisma.ReleaseOrderByWithRelationInput
+  entries?: Prisma.EntryOrderByRelationAggregateInput
+  paths?: Prisma.PathOrderByRelationAggregateInput
+  accessGrants?: Prisma.AccessGrantOrderByRelationAggregateInput
+  packImports?: Prisma.PackImportOrderByRelationAggregateInput
+  publishedPacks?: Prisma.PackOrderByRelationAggregateInput
 }
 
 export type CollectionWhereUniqueInput = Prisma.AtLeast<{
@@ -265,24 +359,49 @@ export type CollectionWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.CollectionWhereInput[]
   NOT?: Prisma.CollectionWhereInput | Prisma.CollectionWhereInput[]
   name?: Prisma.StringFilter<"Collection"> | string
+  slug?: Prisma.StringFilter<"Collection"> | string
   description?: Prisma.StringNullableFilter<"Collection"> | string | null
   visibility?: Prisma.EnumVisibilityFilter<"Collection"> | $Enums.Visibility
   version?: Prisma.IntFilter<"Collection"> | number
+  entryCount?: Prisma.IntFilter<"Collection"> | number
   userId?: Prisma.StringFilter<"Collection"> | string
+  areaId?: Prisma.StringNullableFilter<"Collection"> | string | null
+  parentId?: Prisma.StringNullableFilter<"Collection"> | string | null
+  isVirtualMount?: Prisma.BoolFilter<"Collection"> | boolean
+  syncMode?: Prisma.EnumSyncModeFilter<"Collection"> | $Enums.SyncMode
+  copiedFromCollectionId?: Prisma.StringNullableFilter<"Collection"> | string | null
+  sourceReleaseId?: Prisma.StringNullableFilter<"Collection"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Collection"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Collection"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  assets?: Prisma.AssetListRelationFilter
-  appCollectionAccesses?: Prisma.AppCollectionAccessListRelationFilter
+  area?: Prisma.XOR<Prisma.AreaNullableScalarRelationFilter, Prisma.AreaWhereInput> | null
+  parent?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
+  children?: Prisma.CollectionListRelationFilter
+  copiedFrom?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
+  copies?: Prisma.CollectionListRelationFilter
+  sourceRelease?: Prisma.XOR<Prisma.ReleaseNullableScalarRelationFilter, Prisma.ReleaseWhereInput> | null
+  entries?: Prisma.EntryListRelationFilter
+  paths?: Prisma.PathListRelationFilter
+  accessGrants?: Prisma.AccessGrantListRelationFilter
+  packImports?: Prisma.PackImportListRelationFilter
+  publishedPacks?: Prisma.PackListRelationFilter
 }, "id">
 
 export type CollectionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  slug?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   visibility?: Prisma.SortOrder
   version?: Prisma.SortOrder
+  entryCount?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  areaId?: Prisma.SortOrderInput | Prisma.SortOrder
+  parentId?: Prisma.SortOrderInput | Prisma.SortOrder
+  isVirtualMount?: Prisma.SortOrder
+  syncMode?: Prisma.SortOrder
+  copiedFromCollectionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  sourceReleaseId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.CollectionCountOrderByAggregateInput
@@ -298,10 +417,18 @@ export type CollectionScalarWhereWithAggregatesInput = {
   NOT?: Prisma.CollectionScalarWhereWithAggregatesInput | Prisma.CollectionScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Collection"> | string
   name?: Prisma.StringWithAggregatesFilter<"Collection"> | string
+  slug?: Prisma.StringWithAggregatesFilter<"Collection"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Collection"> | string | null
   visibility?: Prisma.EnumVisibilityWithAggregatesFilter<"Collection"> | $Enums.Visibility
   version?: Prisma.IntWithAggregatesFilter<"Collection"> | number
+  entryCount?: Prisma.IntWithAggregatesFilter<"Collection"> | number
   userId?: Prisma.StringWithAggregatesFilter<"Collection"> | string
+  areaId?: Prisma.StringNullableWithAggregatesFilter<"Collection"> | string | null
+  parentId?: Prisma.StringNullableWithAggregatesFilter<"Collection"> | string | null
+  isVirtualMount?: Prisma.BoolWithAggregatesFilter<"Collection"> | boolean
+  syncMode?: Prisma.EnumSyncModeWithAggregatesFilter<"Collection"> | $Enums.SyncMode
+  copiedFromCollectionId?: Prisma.StringNullableWithAggregatesFilter<"Collection"> | string | null
+  sourceReleaseId?: Prisma.StringNullableWithAggregatesFilter<"Collection"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Collection"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Collection"> | Date | string
 }
@@ -309,62 +436,122 @@ export type CollectionScalarWhereWithAggregatesInput = {
 export type CollectionCreateInput = {
   id?: string
   name: string
+  slug: string
   description?: string | null
   visibility?: $Enums.Visibility
   version?: number
+  entryCount?: number
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutCollectionsInput
-  assets?: Prisma.AssetCreateNestedManyWithoutCollectionInput
-  appCollectionAccesses?: Prisma.AppCollectionAccessCreateNestedManyWithoutCollectionInput
+  area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
+  parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
+  children?: Prisma.CollectionCreateNestedManyWithoutParentInput
+  copiedFrom?: Prisma.CollectionCreateNestedOneWithoutCopiesInput
+  copies?: Prisma.CollectionCreateNestedManyWithoutCopiedFromInput
+  sourceRelease?: Prisma.ReleaseCreateNestedOneWithoutImportedIntoInput
+  entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
+  packImports?: Prisma.PackImportCreateNestedManyWithoutTargetCollectionInput
+  publishedPacks?: Prisma.PackCreateNestedManyWithoutCollectionInput
 }
 
 export type CollectionUncheckedCreateInput = {
   id?: string
   name: string
+  slug: string
   description?: string | null
   visibility?: $Enums.Visibility
   version?: number
+  entryCount?: number
   userId: string
+  areaId?: string | null
+  parentId?: string | null
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  copiedFromCollectionId?: string | null
+  sourceReleaseId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  assets?: Prisma.AssetUncheckedCreateNestedManyWithoutCollectionInput
-  appCollectionAccesses?: Prisma.AppCollectionAccessUncheckedCreateNestedManyWithoutCollectionInput
+  children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
+  copies?: Prisma.CollectionUncheckedCreateNestedManyWithoutCopiedFromInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
+  packImports?: Prisma.PackImportUncheckedCreateNestedManyWithoutTargetCollectionInput
+  publishedPacks?: Prisma.PackUncheckedCreateNestedManyWithoutCollectionInput
 }
 
 export type CollectionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
-  assets?: Prisma.AssetUpdateManyWithoutCollectionNestedInput
-  appCollectionAccesses?: Prisma.AppCollectionAccessUpdateManyWithoutCollectionNestedInput
+  area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
+  parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
+  copiedFrom?: Prisma.CollectionUpdateOneWithoutCopiesNestedInput
+  copies?: Prisma.CollectionUpdateManyWithoutCopiedFromNestedInput
+  sourceRelease?: Prisma.ReleaseUpdateOneWithoutImportedIntoNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
+  packImports?: Prisma.PackImportUpdateManyWithoutTargetCollectionNestedInput
+  publishedPacks?: Prisma.PackUpdateManyWithoutCollectionNestedInput
 }
 
 export type CollectionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  assets?: Prisma.AssetUncheckedUpdateManyWithoutCollectionNestedInput
-  appCollectionAccesses?: Prisma.AppCollectionAccessUncheckedUpdateManyWithoutCollectionNestedInput
+  children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
+  copies?: Prisma.CollectionUncheckedUpdateManyWithoutCopiedFromNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
+  packImports?: Prisma.PackImportUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  publishedPacks?: Prisma.PackUncheckedUpdateManyWithoutCollectionNestedInput
 }
 
 export type CollectionCreateManyInput = {
   id?: string
   name: string
+  slug: string
   description?: string | null
   visibility?: $Enums.Visibility
   version?: number
+  entryCount?: number
   userId: string
+  areaId?: string | null
+  parentId?: string | null
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  copiedFromCollectionId?: string | null
+  sourceReleaseId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -372,9 +559,13 @@ export type CollectionCreateManyInput = {
 export type CollectionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -382,10 +573,18 @@ export type CollectionUpdateManyMutationInput = {
 export type CollectionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -400,28 +599,50 @@ export type CollectionOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type CollectionNullableScalarRelationFilter = {
+  is?: Prisma.CollectionWhereInput | null
+  isNot?: Prisma.CollectionWhereInput | null
+}
+
 export type CollectionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  slug?: Prisma.SortOrder
   description?: Prisma.SortOrder
   visibility?: Prisma.SortOrder
   version?: Prisma.SortOrder
+  entryCount?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  areaId?: Prisma.SortOrder
+  parentId?: Prisma.SortOrder
+  isVirtualMount?: Prisma.SortOrder
+  syncMode?: Prisma.SortOrder
+  copiedFromCollectionId?: Prisma.SortOrder
+  sourceReleaseId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type CollectionAvgOrderByAggregateInput = {
   version?: Prisma.SortOrder
+  entryCount?: Prisma.SortOrder
 }
 
 export type CollectionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  slug?: Prisma.SortOrder
   description?: Prisma.SortOrder
   visibility?: Prisma.SortOrder
   version?: Prisma.SortOrder
+  entryCount?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  areaId?: Prisma.SortOrder
+  parentId?: Prisma.SortOrder
+  isVirtualMount?: Prisma.SortOrder
+  syncMode?: Prisma.SortOrder
+  copiedFromCollectionId?: Prisma.SortOrder
+  sourceReleaseId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -429,16 +650,25 @@ export type CollectionMaxOrderByAggregateInput = {
 export type CollectionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  slug?: Prisma.SortOrder
   description?: Prisma.SortOrder
   visibility?: Prisma.SortOrder
   version?: Prisma.SortOrder
+  entryCount?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  areaId?: Prisma.SortOrder
+  parentId?: Prisma.SortOrder
+  isVirtualMount?: Prisma.SortOrder
+  syncMode?: Prisma.SortOrder
+  copiedFromCollectionId?: Prisma.SortOrder
+  sourceReleaseId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type CollectionSumOrderByAggregateInput = {
   version?: Prisma.SortOrder
+  entryCount?: Prisma.SortOrder
 }
 
 export type CollectionScalarRelationFilter = {
@@ -488,68 +718,336 @@ export type CollectionUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.CollectionScalarWhereInput | Prisma.CollectionScalarWhereInput[]
 }
 
+export type CollectionCreateNestedManyWithoutAreaInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutAreaInput, Prisma.CollectionUncheckedCreateWithoutAreaInput> | Prisma.CollectionCreateWithoutAreaInput[] | Prisma.CollectionUncheckedCreateWithoutAreaInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutAreaInput | Prisma.CollectionCreateOrConnectWithoutAreaInput[]
+  createMany?: Prisma.CollectionCreateManyAreaInputEnvelope
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+}
+
+export type CollectionUncheckedCreateNestedManyWithoutAreaInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutAreaInput, Prisma.CollectionUncheckedCreateWithoutAreaInput> | Prisma.CollectionCreateWithoutAreaInput[] | Prisma.CollectionUncheckedCreateWithoutAreaInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutAreaInput | Prisma.CollectionCreateOrConnectWithoutAreaInput[]
+  createMany?: Prisma.CollectionCreateManyAreaInputEnvelope
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+}
+
+export type CollectionUpdateManyWithoutAreaNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutAreaInput, Prisma.CollectionUncheckedCreateWithoutAreaInput> | Prisma.CollectionCreateWithoutAreaInput[] | Prisma.CollectionUncheckedCreateWithoutAreaInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutAreaInput | Prisma.CollectionCreateOrConnectWithoutAreaInput[]
+  upsert?: Prisma.CollectionUpsertWithWhereUniqueWithoutAreaInput | Prisma.CollectionUpsertWithWhereUniqueWithoutAreaInput[]
+  createMany?: Prisma.CollectionCreateManyAreaInputEnvelope
+  set?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  disconnect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  delete?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  update?: Prisma.CollectionUpdateWithWhereUniqueWithoutAreaInput | Prisma.CollectionUpdateWithWhereUniqueWithoutAreaInput[]
+  updateMany?: Prisma.CollectionUpdateManyWithWhereWithoutAreaInput | Prisma.CollectionUpdateManyWithWhereWithoutAreaInput[]
+  deleteMany?: Prisma.CollectionScalarWhereInput | Prisma.CollectionScalarWhereInput[]
+}
+
+export type CollectionUncheckedUpdateManyWithoutAreaNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutAreaInput, Prisma.CollectionUncheckedCreateWithoutAreaInput> | Prisma.CollectionCreateWithoutAreaInput[] | Prisma.CollectionUncheckedCreateWithoutAreaInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutAreaInput | Prisma.CollectionCreateOrConnectWithoutAreaInput[]
+  upsert?: Prisma.CollectionUpsertWithWhereUniqueWithoutAreaInput | Prisma.CollectionUpsertWithWhereUniqueWithoutAreaInput[]
+  createMany?: Prisma.CollectionCreateManyAreaInputEnvelope
+  set?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  disconnect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  delete?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  update?: Prisma.CollectionUpdateWithWhereUniqueWithoutAreaInput | Prisma.CollectionUpdateWithWhereUniqueWithoutAreaInput[]
+  updateMany?: Prisma.CollectionUpdateManyWithWhereWithoutAreaInput | Prisma.CollectionUpdateManyWithWhereWithoutAreaInput[]
+  deleteMany?: Prisma.CollectionScalarWhereInput | Prisma.CollectionScalarWhereInput[]
+}
+
+export type CollectionCreateNestedOneWithoutChildrenInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutChildrenInput, Prisma.CollectionUncheckedCreateWithoutChildrenInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutChildrenInput
+  connect?: Prisma.CollectionWhereUniqueInput
+}
+
+export type CollectionCreateNestedManyWithoutParentInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutParentInput, Prisma.CollectionUncheckedCreateWithoutParentInput> | Prisma.CollectionCreateWithoutParentInput[] | Prisma.CollectionUncheckedCreateWithoutParentInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutParentInput | Prisma.CollectionCreateOrConnectWithoutParentInput[]
+  createMany?: Prisma.CollectionCreateManyParentInputEnvelope
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+}
+
+export type CollectionCreateNestedOneWithoutCopiesInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutCopiesInput, Prisma.CollectionUncheckedCreateWithoutCopiesInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutCopiesInput
+  connect?: Prisma.CollectionWhereUniqueInput
+}
+
+export type CollectionCreateNestedManyWithoutCopiedFromInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutCopiedFromInput, Prisma.CollectionUncheckedCreateWithoutCopiedFromInput> | Prisma.CollectionCreateWithoutCopiedFromInput[] | Prisma.CollectionUncheckedCreateWithoutCopiedFromInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutCopiedFromInput | Prisma.CollectionCreateOrConnectWithoutCopiedFromInput[]
+  createMany?: Prisma.CollectionCreateManyCopiedFromInputEnvelope
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+}
+
+export type CollectionUncheckedCreateNestedManyWithoutParentInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutParentInput, Prisma.CollectionUncheckedCreateWithoutParentInput> | Prisma.CollectionCreateWithoutParentInput[] | Prisma.CollectionUncheckedCreateWithoutParentInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutParentInput | Prisma.CollectionCreateOrConnectWithoutParentInput[]
+  createMany?: Prisma.CollectionCreateManyParentInputEnvelope
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+}
+
+export type CollectionUncheckedCreateNestedManyWithoutCopiedFromInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutCopiedFromInput, Prisma.CollectionUncheckedCreateWithoutCopiedFromInput> | Prisma.CollectionCreateWithoutCopiedFromInput[] | Prisma.CollectionUncheckedCreateWithoutCopiedFromInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutCopiedFromInput | Prisma.CollectionCreateOrConnectWithoutCopiedFromInput[]
+  createMany?: Prisma.CollectionCreateManyCopiedFromInputEnvelope
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+}
+
 export type EnumVisibilityFieldUpdateOperationsInput = {
   set?: $Enums.Visibility
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
+export type EnumSyncModeFieldUpdateOperationsInput = {
+  set?: $Enums.SyncMode
 }
 
-export type CollectionCreateNestedOneWithoutAssetsInput = {
-  create?: Prisma.XOR<Prisma.CollectionCreateWithoutAssetsInput, Prisma.CollectionUncheckedCreateWithoutAssetsInput>
-  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutAssetsInput
+export type CollectionUpdateOneWithoutChildrenNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutChildrenInput, Prisma.CollectionUncheckedCreateWithoutChildrenInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutChildrenInput
+  upsert?: Prisma.CollectionUpsertWithoutChildrenInput
+  disconnect?: Prisma.CollectionWhereInput | boolean
+  delete?: Prisma.CollectionWhereInput | boolean
+  connect?: Prisma.CollectionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CollectionUpdateToOneWithWhereWithoutChildrenInput, Prisma.CollectionUpdateWithoutChildrenInput>, Prisma.CollectionUncheckedUpdateWithoutChildrenInput>
+}
+
+export type CollectionUpdateManyWithoutParentNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutParentInput, Prisma.CollectionUncheckedCreateWithoutParentInput> | Prisma.CollectionCreateWithoutParentInput[] | Prisma.CollectionUncheckedCreateWithoutParentInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutParentInput | Prisma.CollectionCreateOrConnectWithoutParentInput[]
+  upsert?: Prisma.CollectionUpsertWithWhereUniqueWithoutParentInput | Prisma.CollectionUpsertWithWhereUniqueWithoutParentInput[]
+  createMany?: Prisma.CollectionCreateManyParentInputEnvelope
+  set?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  disconnect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  delete?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  update?: Prisma.CollectionUpdateWithWhereUniqueWithoutParentInput | Prisma.CollectionUpdateWithWhereUniqueWithoutParentInput[]
+  updateMany?: Prisma.CollectionUpdateManyWithWhereWithoutParentInput | Prisma.CollectionUpdateManyWithWhereWithoutParentInput[]
+  deleteMany?: Prisma.CollectionScalarWhereInput | Prisma.CollectionScalarWhereInput[]
+}
+
+export type CollectionUpdateOneWithoutCopiesNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutCopiesInput, Prisma.CollectionUncheckedCreateWithoutCopiesInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutCopiesInput
+  upsert?: Prisma.CollectionUpsertWithoutCopiesInput
+  disconnect?: Prisma.CollectionWhereInput | boolean
+  delete?: Prisma.CollectionWhereInput | boolean
+  connect?: Prisma.CollectionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CollectionUpdateToOneWithWhereWithoutCopiesInput, Prisma.CollectionUpdateWithoutCopiesInput>, Prisma.CollectionUncheckedUpdateWithoutCopiesInput>
+}
+
+export type CollectionUpdateManyWithoutCopiedFromNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutCopiedFromInput, Prisma.CollectionUncheckedCreateWithoutCopiedFromInput> | Prisma.CollectionCreateWithoutCopiedFromInput[] | Prisma.CollectionUncheckedCreateWithoutCopiedFromInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutCopiedFromInput | Prisma.CollectionCreateOrConnectWithoutCopiedFromInput[]
+  upsert?: Prisma.CollectionUpsertWithWhereUniqueWithoutCopiedFromInput | Prisma.CollectionUpsertWithWhereUniqueWithoutCopiedFromInput[]
+  createMany?: Prisma.CollectionCreateManyCopiedFromInputEnvelope
+  set?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  disconnect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  delete?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  update?: Prisma.CollectionUpdateWithWhereUniqueWithoutCopiedFromInput | Prisma.CollectionUpdateWithWhereUniqueWithoutCopiedFromInput[]
+  updateMany?: Prisma.CollectionUpdateManyWithWhereWithoutCopiedFromInput | Prisma.CollectionUpdateManyWithWhereWithoutCopiedFromInput[]
+  deleteMany?: Prisma.CollectionScalarWhereInput | Prisma.CollectionScalarWhereInput[]
+}
+
+export type CollectionUncheckedUpdateManyWithoutParentNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutParentInput, Prisma.CollectionUncheckedCreateWithoutParentInput> | Prisma.CollectionCreateWithoutParentInput[] | Prisma.CollectionUncheckedCreateWithoutParentInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutParentInput | Prisma.CollectionCreateOrConnectWithoutParentInput[]
+  upsert?: Prisma.CollectionUpsertWithWhereUniqueWithoutParentInput | Prisma.CollectionUpsertWithWhereUniqueWithoutParentInput[]
+  createMany?: Prisma.CollectionCreateManyParentInputEnvelope
+  set?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  disconnect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  delete?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  update?: Prisma.CollectionUpdateWithWhereUniqueWithoutParentInput | Prisma.CollectionUpdateWithWhereUniqueWithoutParentInput[]
+  updateMany?: Prisma.CollectionUpdateManyWithWhereWithoutParentInput | Prisma.CollectionUpdateManyWithWhereWithoutParentInput[]
+  deleteMany?: Prisma.CollectionScalarWhereInput | Prisma.CollectionScalarWhereInput[]
+}
+
+export type CollectionUncheckedUpdateManyWithoutCopiedFromNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutCopiedFromInput, Prisma.CollectionUncheckedCreateWithoutCopiedFromInput> | Prisma.CollectionCreateWithoutCopiedFromInput[] | Prisma.CollectionUncheckedCreateWithoutCopiedFromInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutCopiedFromInput | Prisma.CollectionCreateOrConnectWithoutCopiedFromInput[]
+  upsert?: Prisma.CollectionUpsertWithWhereUniqueWithoutCopiedFromInput | Prisma.CollectionUpsertWithWhereUniqueWithoutCopiedFromInput[]
+  createMany?: Prisma.CollectionCreateManyCopiedFromInputEnvelope
+  set?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  disconnect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  delete?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  update?: Prisma.CollectionUpdateWithWhereUniqueWithoutCopiedFromInput | Prisma.CollectionUpdateWithWhereUniqueWithoutCopiedFromInput[]
+  updateMany?: Prisma.CollectionUpdateManyWithWhereWithoutCopiedFromInput | Prisma.CollectionUpdateManyWithWhereWithoutCopiedFromInput[]
+  deleteMany?: Prisma.CollectionScalarWhereInput | Prisma.CollectionScalarWhereInput[]
+}
+
+export type CollectionCreateNestedOneWithoutEntriesInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutEntriesInput, Prisma.CollectionUncheckedCreateWithoutEntriesInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutEntriesInput
   connect?: Prisma.CollectionWhereUniqueInput
 }
 
-export type CollectionUpdateOneRequiredWithoutAssetsNestedInput = {
-  create?: Prisma.XOR<Prisma.CollectionCreateWithoutAssetsInput, Prisma.CollectionUncheckedCreateWithoutAssetsInput>
-  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutAssetsInput
-  upsert?: Prisma.CollectionUpsertWithoutAssetsInput
+export type CollectionUpdateOneRequiredWithoutEntriesNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutEntriesInput, Prisma.CollectionUncheckedCreateWithoutEntriesInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutEntriesInput
+  upsert?: Prisma.CollectionUpsertWithoutEntriesInput
   connect?: Prisma.CollectionWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CollectionUpdateToOneWithWhereWithoutAssetsInput, Prisma.CollectionUpdateWithoutAssetsInput>, Prisma.CollectionUncheckedUpdateWithoutAssetsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CollectionUpdateToOneWithWhereWithoutEntriesInput, Prisma.CollectionUpdateWithoutEntriesInput>, Prisma.CollectionUncheckedUpdateWithoutEntriesInput>
 }
 
-export type CollectionCreateNestedOneWithoutAppCollectionAccessesInput = {
-  create?: Prisma.XOR<Prisma.CollectionCreateWithoutAppCollectionAccessesInput, Prisma.CollectionUncheckedCreateWithoutAppCollectionAccessesInput>
-  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutAppCollectionAccessesInput
+export type CollectionCreateNestedOneWithoutAccessGrantsInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutAccessGrantsInput, Prisma.CollectionUncheckedCreateWithoutAccessGrantsInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutAccessGrantsInput
   connect?: Prisma.CollectionWhereUniqueInput
 }
 
-export type CollectionUpdateOneRequiredWithoutAppCollectionAccessesNestedInput = {
-  create?: Prisma.XOR<Prisma.CollectionCreateWithoutAppCollectionAccessesInput, Prisma.CollectionUncheckedCreateWithoutAppCollectionAccessesInput>
-  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutAppCollectionAccessesInput
-  upsert?: Prisma.CollectionUpsertWithoutAppCollectionAccessesInput
+export type CollectionUpdateOneWithoutAccessGrantsNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutAccessGrantsInput, Prisma.CollectionUncheckedCreateWithoutAccessGrantsInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutAccessGrantsInput
+  upsert?: Prisma.CollectionUpsertWithoutAccessGrantsInput
+  disconnect?: Prisma.CollectionWhereInput | boolean
+  delete?: Prisma.CollectionWhereInput | boolean
   connect?: Prisma.CollectionWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CollectionUpdateToOneWithWhereWithoutAppCollectionAccessesInput, Prisma.CollectionUpdateWithoutAppCollectionAccessesInput>, Prisma.CollectionUncheckedUpdateWithoutAppCollectionAccessesInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CollectionUpdateToOneWithWhereWithoutAccessGrantsInput, Prisma.CollectionUpdateWithoutAccessGrantsInput>, Prisma.CollectionUncheckedUpdateWithoutAccessGrantsInput>
+}
+
+export type CollectionCreateNestedOneWithoutPathsInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutPathsInput, Prisma.CollectionUncheckedCreateWithoutPathsInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutPathsInput
+  connect?: Prisma.CollectionWhereUniqueInput
+}
+
+export type CollectionUpdateOneRequiredWithoutPathsNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutPathsInput, Prisma.CollectionUncheckedCreateWithoutPathsInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutPathsInput
+  upsert?: Prisma.CollectionUpsertWithoutPathsInput
+  connect?: Prisma.CollectionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CollectionUpdateToOneWithWhereWithoutPathsInput, Prisma.CollectionUpdateWithoutPathsInput>, Prisma.CollectionUncheckedUpdateWithoutPathsInput>
+}
+
+export type CollectionCreateNestedOneWithoutPublishedPacksInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutPublishedPacksInput, Prisma.CollectionUncheckedCreateWithoutPublishedPacksInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutPublishedPacksInput
+  connect?: Prisma.CollectionWhereUniqueInput
+}
+
+export type CollectionUpdateOneWithoutPublishedPacksNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutPublishedPacksInput, Prisma.CollectionUncheckedCreateWithoutPublishedPacksInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutPublishedPacksInput
+  upsert?: Prisma.CollectionUpsertWithoutPublishedPacksInput
+  disconnect?: Prisma.CollectionWhereInput | boolean
+  delete?: Prisma.CollectionWhereInput | boolean
+  connect?: Prisma.CollectionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CollectionUpdateToOneWithWhereWithoutPublishedPacksInput, Prisma.CollectionUpdateWithoutPublishedPacksInput>, Prisma.CollectionUncheckedUpdateWithoutPublishedPacksInput>
+}
+
+export type CollectionCreateNestedManyWithoutSourceReleaseInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutSourceReleaseInput, Prisma.CollectionUncheckedCreateWithoutSourceReleaseInput> | Prisma.CollectionCreateWithoutSourceReleaseInput[] | Prisma.CollectionUncheckedCreateWithoutSourceReleaseInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutSourceReleaseInput | Prisma.CollectionCreateOrConnectWithoutSourceReleaseInput[]
+  createMany?: Prisma.CollectionCreateManySourceReleaseInputEnvelope
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+}
+
+export type CollectionUncheckedCreateNestedManyWithoutSourceReleaseInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutSourceReleaseInput, Prisma.CollectionUncheckedCreateWithoutSourceReleaseInput> | Prisma.CollectionCreateWithoutSourceReleaseInput[] | Prisma.CollectionUncheckedCreateWithoutSourceReleaseInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutSourceReleaseInput | Prisma.CollectionCreateOrConnectWithoutSourceReleaseInput[]
+  createMany?: Prisma.CollectionCreateManySourceReleaseInputEnvelope
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+}
+
+export type CollectionUpdateManyWithoutSourceReleaseNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutSourceReleaseInput, Prisma.CollectionUncheckedCreateWithoutSourceReleaseInput> | Prisma.CollectionCreateWithoutSourceReleaseInput[] | Prisma.CollectionUncheckedCreateWithoutSourceReleaseInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutSourceReleaseInput | Prisma.CollectionCreateOrConnectWithoutSourceReleaseInput[]
+  upsert?: Prisma.CollectionUpsertWithWhereUniqueWithoutSourceReleaseInput | Prisma.CollectionUpsertWithWhereUniqueWithoutSourceReleaseInput[]
+  createMany?: Prisma.CollectionCreateManySourceReleaseInputEnvelope
+  set?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  disconnect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  delete?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  update?: Prisma.CollectionUpdateWithWhereUniqueWithoutSourceReleaseInput | Prisma.CollectionUpdateWithWhereUniqueWithoutSourceReleaseInput[]
+  updateMany?: Prisma.CollectionUpdateManyWithWhereWithoutSourceReleaseInput | Prisma.CollectionUpdateManyWithWhereWithoutSourceReleaseInput[]
+  deleteMany?: Prisma.CollectionScalarWhereInput | Prisma.CollectionScalarWhereInput[]
+}
+
+export type CollectionUncheckedUpdateManyWithoutSourceReleaseNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutSourceReleaseInput, Prisma.CollectionUncheckedCreateWithoutSourceReleaseInput> | Prisma.CollectionCreateWithoutSourceReleaseInput[] | Prisma.CollectionUncheckedCreateWithoutSourceReleaseInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutSourceReleaseInput | Prisma.CollectionCreateOrConnectWithoutSourceReleaseInput[]
+  upsert?: Prisma.CollectionUpsertWithWhereUniqueWithoutSourceReleaseInput | Prisma.CollectionUpsertWithWhereUniqueWithoutSourceReleaseInput[]
+  createMany?: Prisma.CollectionCreateManySourceReleaseInputEnvelope
+  set?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  disconnect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  delete?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  update?: Prisma.CollectionUpdateWithWhereUniqueWithoutSourceReleaseInput | Prisma.CollectionUpdateWithWhereUniqueWithoutSourceReleaseInput[]
+  updateMany?: Prisma.CollectionUpdateManyWithWhereWithoutSourceReleaseInput | Prisma.CollectionUpdateManyWithWhereWithoutSourceReleaseInput[]
+  deleteMany?: Prisma.CollectionScalarWhereInput | Prisma.CollectionScalarWhereInput[]
+}
+
+export type CollectionCreateNestedOneWithoutPackImportsInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutPackImportsInput, Prisma.CollectionUncheckedCreateWithoutPackImportsInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutPackImportsInput
+  connect?: Prisma.CollectionWhereUniqueInput
+}
+
+export type CollectionUpdateOneRequiredWithoutPackImportsNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutPackImportsInput, Prisma.CollectionUncheckedCreateWithoutPackImportsInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutPackImportsInput
+  upsert?: Prisma.CollectionUpsertWithoutPackImportsInput
+  connect?: Prisma.CollectionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CollectionUpdateToOneWithWhereWithoutPackImportsInput, Prisma.CollectionUpdateWithoutPackImportsInput>, Prisma.CollectionUncheckedUpdateWithoutPackImportsInput>
 }
 
 export type CollectionCreateWithoutUserInput = {
   id?: string
   name: string
+  slug: string
   description?: string | null
   visibility?: $Enums.Visibility
   version?: number
+  entryCount?: number
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
   createdAt?: Date | string
   updatedAt?: Date | string
-  assets?: Prisma.AssetCreateNestedManyWithoutCollectionInput
-  appCollectionAccesses?: Prisma.AppCollectionAccessCreateNestedManyWithoutCollectionInput
+  area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
+  parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
+  children?: Prisma.CollectionCreateNestedManyWithoutParentInput
+  copiedFrom?: Prisma.CollectionCreateNestedOneWithoutCopiesInput
+  copies?: Prisma.CollectionCreateNestedManyWithoutCopiedFromInput
+  sourceRelease?: Prisma.ReleaseCreateNestedOneWithoutImportedIntoInput
+  entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
+  packImports?: Prisma.PackImportCreateNestedManyWithoutTargetCollectionInput
+  publishedPacks?: Prisma.PackCreateNestedManyWithoutCollectionInput
 }
 
 export type CollectionUncheckedCreateWithoutUserInput = {
   id?: string
   name: string
+  slug: string
   description?: string | null
   visibility?: $Enums.Visibility
   version?: number
+  entryCount?: number
+  areaId?: string | null
+  parentId?: string | null
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  copiedFromCollectionId?: string | null
+  sourceReleaseId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  assets?: Prisma.AssetUncheckedCreateNestedManyWithoutCollectionInput
-  appCollectionAccesses?: Prisma.AppCollectionAccessUncheckedCreateNestedManyWithoutCollectionInput
+  children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
+  copies?: Prisma.CollectionUncheckedCreateNestedManyWithoutCopiedFromInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
+  packImports?: Prisma.PackImportUncheckedCreateNestedManyWithoutTargetCollectionInput
+  publishedPacks?: Prisma.PackUncheckedCreateNestedManyWithoutCollectionInput
 }
 
 export type CollectionCreateOrConnectWithoutUserInput = {
@@ -584,148 +1082,1152 @@ export type CollectionScalarWhereInput = {
   NOT?: Prisma.CollectionScalarWhereInput | Prisma.CollectionScalarWhereInput[]
   id?: Prisma.StringFilter<"Collection"> | string
   name?: Prisma.StringFilter<"Collection"> | string
+  slug?: Prisma.StringFilter<"Collection"> | string
   description?: Prisma.StringNullableFilter<"Collection"> | string | null
   visibility?: Prisma.EnumVisibilityFilter<"Collection"> | $Enums.Visibility
   version?: Prisma.IntFilter<"Collection"> | number
+  entryCount?: Prisma.IntFilter<"Collection"> | number
   userId?: Prisma.StringFilter<"Collection"> | string
+  areaId?: Prisma.StringNullableFilter<"Collection"> | string | null
+  parentId?: Prisma.StringNullableFilter<"Collection"> | string | null
+  isVirtualMount?: Prisma.BoolFilter<"Collection"> | boolean
+  syncMode?: Prisma.EnumSyncModeFilter<"Collection"> | $Enums.SyncMode
+  copiedFromCollectionId?: Prisma.StringNullableFilter<"Collection"> | string | null
+  sourceReleaseId?: Prisma.StringNullableFilter<"Collection"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Collection"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Collection"> | Date | string
 }
 
-export type CollectionCreateWithoutAssetsInput = {
+export type CollectionCreateWithoutAreaInput = {
   id?: string
   name: string
+  slug: string
   description?: string | null
   visibility?: $Enums.Visibility
   version?: number
+  entryCount?: number
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutCollectionsInput
-  appCollectionAccesses?: Prisma.AppCollectionAccessCreateNestedManyWithoutCollectionInput
+  parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
+  children?: Prisma.CollectionCreateNestedManyWithoutParentInput
+  copiedFrom?: Prisma.CollectionCreateNestedOneWithoutCopiesInput
+  copies?: Prisma.CollectionCreateNestedManyWithoutCopiedFromInput
+  sourceRelease?: Prisma.ReleaseCreateNestedOneWithoutImportedIntoInput
+  entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
+  packImports?: Prisma.PackImportCreateNestedManyWithoutTargetCollectionInput
+  publishedPacks?: Prisma.PackCreateNestedManyWithoutCollectionInput
 }
 
-export type CollectionUncheckedCreateWithoutAssetsInput = {
+export type CollectionUncheckedCreateWithoutAreaInput = {
   id?: string
   name: string
+  slug: string
   description?: string | null
   visibility?: $Enums.Visibility
   version?: number
+  entryCount?: number
   userId: string
+  parentId?: string | null
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  copiedFromCollectionId?: string | null
+  sourceReleaseId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  appCollectionAccesses?: Prisma.AppCollectionAccessUncheckedCreateNestedManyWithoutCollectionInput
+  children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
+  copies?: Prisma.CollectionUncheckedCreateNestedManyWithoutCopiedFromInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
+  packImports?: Prisma.PackImportUncheckedCreateNestedManyWithoutTargetCollectionInput
+  publishedPacks?: Prisma.PackUncheckedCreateNestedManyWithoutCollectionInput
 }
 
-export type CollectionCreateOrConnectWithoutAssetsInput = {
+export type CollectionCreateOrConnectWithoutAreaInput = {
   where: Prisma.CollectionWhereUniqueInput
-  create: Prisma.XOR<Prisma.CollectionCreateWithoutAssetsInput, Prisma.CollectionUncheckedCreateWithoutAssetsInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutAreaInput, Prisma.CollectionUncheckedCreateWithoutAreaInput>
 }
 
-export type CollectionUpsertWithoutAssetsInput = {
-  update: Prisma.XOR<Prisma.CollectionUpdateWithoutAssetsInput, Prisma.CollectionUncheckedUpdateWithoutAssetsInput>
-  create: Prisma.XOR<Prisma.CollectionCreateWithoutAssetsInput, Prisma.CollectionUncheckedCreateWithoutAssetsInput>
-  where?: Prisma.CollectionWhereInput
+export type CollectionCreateManyAreaInputEnvelope = {
+  data: Prisma.CollectionCreateManyAreaInput | Prisma.CollectionCreateManyAreaInput[]
+  skipDuplicates?: boolean
 }
 
-export type CollectionUpdateToOneWithWhereWithoutAssetsInput = {
-  where?: Prisma.CollectionWhereInput
-  data: Prisma.XOR<Prisma.CollectionUpdateWithoutAssetsInput, Prisma.CollectionUncheckedUpdateWithoutAssetsInput>
+export type CollectionUpsertWithWhereUniqueWithoutAreaInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  update: Prisma.XOR<Prisma.CollectionUpdateWithoutAreaInput, Prisma.CollectionUncheckedUpdateWithoutAreaInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutAreaInput, Prisma.CollectionUncheckedCreateWithoutAreaInput>
 }
 
-export type CollectionUpdateWithoutAssetsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
-  version?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
-  appCollectionAccesses?: Prisma.AppCollectionAccessUpdateManyWithoutCollectionNestedInput
+export type CollectionUpdateWithWhereUniqueWithoutAreaInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  data: Prisma.XOR<Prisma.CollectionUpdateWithoutAreaInput, Prisma.CollectionUncheckedUpdateWithoutAreaInput>
 }
 
-export type CollectionUncheckedUpdateWithoutAssetsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
-  version?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  appCollectionAccesses?: Prisma.AppCollectionAccessUncheckedUpdateManyWithoutCollectionNestedInput
+export type CollectionUpdateManyWithWhereWithoutAreaInput = {
+  where: Prisma.CollectionScalarWhereInput
+  data: Prisma.XOR<Prisma.CollectionUpdateManyMutationInput, Prisma.CollectionUncheckedUpdateManyWithoutAreaInput>
 }
 
-export type CollectionCreateWithoutAppCollectionAccessesInput = {
+export type CollectionCreateWithoutChildrenInput = {
   id?: string
   name: string
+  slug: string
   description?: string | null
   visibility?: $Enums.Visibility
   version?: number
+  entryCount?: number
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutCollectionsInput
-  assets?: Prisma.AssetCreateNestedManyWithoutCollectionInput
+  area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
+  parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
+  copiedFrom?: Prisma.CollectionCreateNestedOneWithoutCopiesInput
+  copies?: Prisma.CollectionCreateNestedManyWithoutCopiedFromInput
+  sourceRelease?: Prisma.ReleaseCreateNestedOneWithoutImportedIntoInput
+  entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
+  packImports?: Prisma.PackImportCreateNestedManyWithoutTargetCollectionInput
+  publishedPacks?: Prisma.PackCreateNestedManyWithoutCollectionInput
 }
 
-export type CollectionUncheckedCreateWithoutAppCollectionAccessesInput = {
+export type CollectionUncheckedCreateWithoutChildrenInput = {
   id?: string
   name: string
+  slug: string
   description?: string | null
   visibility?: $Enums.Visibility
   version?: number
+  entryCount?: number
   userId: string
+  areaId?: string | null
+  parentId?: string | null
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  copiedFromCollectionId?: string | null
+  sourceReleaseId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  assets?: Prisma.AssetUncheckedCreateNestedManyWithoutCollectionInput
+  copies?: Prisma.CollectionUncheckedCreateNestedManyWithoutCopiedFromInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
+  packImports?: Prisma.PackImportUncheckedCreateNestedManyWithoutTargetCollectionInput
+  publishedPacks?: Prisma.PackUncheckedCreateNestedManyWithoutCollectionInput
 }
 
-export type CollectionCreateOrConnectWithoutAppCollectionAccessesInput = {
+export type CollectionCreateOrConnectWithoutChildrenInput = {
   where: Prisma.CollectionWhereUniqueInput
-  create: Prisma.XOR<Prisma.CollectionCreateWithoutAppCollectionAccessesInput, Prisma.CollectionUncheckedCreateWithoutAppCollectionAccessesInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutChildrenInput, Prisma.CollectionUncheckedCreateWithoutChildrenInput>
 }
 
-export type CollectionUpsertWithoutAppCollectionAccessesInput = {
-  update: Prisma.XOR<Prisma.CollectionUpdateWithoutAppCollectionAccessesInput, Prisma.CollectionUncheckedUpdateWithoutAppCollectionAccessesInput>
-  create: Prisma.XOR<Prisma.CollectionCreateWithoutAppCollectionAccessesInput, Prisma.CollectionUncheckedCreateWithoutAppCollectionAccessesInput>
+export type CollectionCreateWithoutParentInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
+  children?: Prisma.CollectionCreateNestedManyWithoutParentInput
+  copiedFrom?: Prisma.CollectionCreateNestedOneWithoutCopiesInput
+  copies?: Prisma.CollectionCreateNestedManyWithoutCopiedFromInput
+  sourceRelease?: Prisma.ReleaseCreateNestedOneWithoutImportedIntoInput
+  entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
+  packImports?: Prisma.PackImportCreateNestedManyWithoutTargetCollectionInput
+  publishedPacks?: Prisma.PackCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionUncheckedCreateWithoutParentInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  userId: string
+  areaId?: string | null
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  copiedFromCollectionId?: string | null
+  sourceReleaseId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
+  copies?: Prisma.CollectionUncheckedCreateNestedManyWithoutCopiedFromInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
+  packImports?: Prisma.PackImportUncheckedCreateNestedManyWithoutTargetCollectionInput
+  publishedPacks?: Prisma.PackUncheckedCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionCreateOrConnectWithoutParentInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutParentInput, Prisma.CollectionUncheckedCreateWithoutParentInput>
+}
+
+export type CollectionCreateManyParentInputEnvelope = {
+  data: Prisma.CollectionCreateManyParentInput | Prisma.CollectionCreateManyParentInput[]
+  skipDuplicates?: boolean
+}
+
+export type CollectionCreateWithoutCopiesInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
+  parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
+  children?: Prisma.CollectionCreateNestedManyWithoutParentInput
+  copiedFrom?: Prisma.CollectionCreateNestedOneWithoutCopiesInput
+  sourceRelease?: Prisma.ReleaseCreateNestedOneWithoutImportedIntoInput
+  entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
+  packImports?: Prisma.PackImportCreateNestedManyWithoutTargetCollectionInput
+  publishedPacks?: Prisma.PackCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionUncheckedCreateWithoutCopiesInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  userId: string
+  areaId?: string | null
+  parentId?: string | null
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  copiedFromCollectionId?: string | null
+  sourceReleaseId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
+  packImports?: Prisma.PackImportUncheckedCreateNestedManyWithoutTargetCollectionInput
+  publishedPacks?: Prisma.PackUncheckedCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionCreateOrConnectWithoutCopiesInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutCopiesInput, Prisma.CollectionUncheckedCreateWithoutCopiesInput>
+}
+
+export type CollectionCreateWithoutCopiedFromInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
+  parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
+  children?: Prisma.CollectionCreateNestedManyWithoutParentInput
+  copies?: Prisma.CollectionCreateNestedManyWithoutCopiedFromInput
+  sourceRelease?: Prisma.ReleaseCreateNestedOneWithoutImportedIntoInput
+  entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
+  packImports?: Prisma.PackImportCreateNestedManyWithoutTargetCollectionInput
+  publishedPacks?: Prisma.PackCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionUncheckedCreateWithoutCopiedFromInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  userId: string
+  areaId?: string | null
+  parentId?: string | null
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  sourceReleaseId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
+  copies?: Prisma.CollectionUncheckedCreateNestedManyWithoutCopiedFromInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
+  packImports?: Prisma.PackImportUncheckedCreateNestedManyWithoutTargetCollectionInput
+  publishedPacks?: Prisma.PackUncheckedCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionCreateOrConnectWithoutCopiedFromInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutCopiedFromInput, Prisma.CollectionUncheckedCreateWithoutCopiedFromInput>
+}
+
+export type CollectionCreateManyCopiedFromInputEnvelope = {
+  data: Prisma.CollectionCreateManyCopiedFromInput | Prisma.CollectionCreateManyCopiedFromInput[]
+  skipDuplicates?: boolean
+}
+
+export type CollectionUpsertWithoutChildrenInput = {
+  update: Prisma.XOR<Prisma.CollectionUpdateWithoutChildrenInput, Prisma.CollectionUncheckedUpdateWithoutChildrenInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutChildrenInput, Prisma.CollectionUncheckedCreateWithoutChildrenInput>
   where?: Prisma.CollectionWhereInput
 }
 
-export type CollectionUpdateToOneWithWhereWithoutAppCollectionAccessesInput = {
+export type CollectionUpdateToOneWithWhereWithoutChildrenInput = {
   where?: Prisma.CollectionWhereInput
-  data: Prisma.XOR<Prisma.CollectionUpdateWithoutAppCollectionAccessesInput, Prisma.CollectionUncheckedUpdateWithoutAppCollectionAccessesInput>
+  data: Prisma.XOR<Prisma.CollectionUpdateWithoutChildrenInput, Prisma.CollectionUncheckedUpdateWithoutChildrenInput>
 }
 
-export type CollectionUpdateWithoutAppCollectionAccessesInput = {
+export type CollectionUpdateWithoutChildrenInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
-  assets?: Prisma.AssetUpdateManyWithoutCollectionNestedInput
+  area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
+  parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
+  copiedFrom?: Prisma.CollectionUpdateOneWithoutCopiesNestedInput
+  copies?: Prisma.CollectionUpdateManyWithoutCopiedFromNestedInput
+  sourceRelease?: Prisma.ReleaseUpdateOneWithoutImportedIntoNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
+  packImports?: Prisma.PackImportUpdateManyWithoutTargetCollectionNestedInput
+  publishedPacks?: Prisma.PackUpdateManyWithoutCollectionNestedInput
 }
 
-export type CollectionUncheckedUpdateWithoutAppCollectionAccessesInput = {
+export type CollectionUncheckedUpdateWithoutChildrenInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  assets?: Prisma.AssetUncheckedUpdateManyWithoutCollectionNestedInput
+  copies?: Prisma.CollectionUncheckedUpdateManyWithoutCopiedFromNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
+  packImports?: Prisma.PackImportUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  publishedPacks?: Prisma.PackUncheckedUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUpsertWithWhereUniqueWithoutParentInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  update: Prisma.XOR<Prisma.CollectionUpdateWithoutParentInput, Prisma.CollectionUncheckedUpdateWithoutParentInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutParentInput, Prisma.CollectionUncheckedCreateWithoutParentInput>
+}
+
+export type CollectionUpdateWithWhereUniqueWithoutParentInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  data: Prisma.XOR<Prisma.CollectionUpdateWithoutParentInput, Prisma.CollectionUncheckedUpdateWithoutParentInput>
+}
+
+export type CollectionUpdateManyWithWhereWithoutParentInput = {
+  where: Prisma.CollectionScalarWhereInput
+  data: Prisma.XOR<Prisma.CollectionUpdateManyMutationInput, Prisma.CollectionUncheckedUpdateManyWithoutParentInput>
+}
+
+export type CollectionUpsertWithoutCopiesInput = {
+  update: Prisma.XOR<Prisma.CollectionUpdateWithoutCopiesInput, Prisma.CollectionUncheckedUpdateWithoutCopiesInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutCopiesInput, Prisma.CollectionUncheckedCreateWithoutCopiesInput>
+  where?: Prisma.CollectionWhereInput
+}
+
+export type CollectionUpdateToOneWithWhereWithoutCopiesInput = {
+  where?: Prisma.CollectionWhereInput
+  data: Prisma.XOR<Prisma.CollectionUpdateWithoutCopiesInput, Prisma.CollectionUncheckedUpdateWithoutCopiesInput>
+}
+
+export type CollectionUpdateWithoutCopiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
+  parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
+  copiedFrom?: Prisma.CollectionUpdateOneWithoutCopiesNestedInput
+  sourceRelease?: Prisma.ReleaseUpdateOneWithoutImportedIntoNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
+  packImports?: Prisma.PackImportUpdateManyWithoutTargetCollectionNestedInput
+  publishedPacks?: Prisma.PackUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUncheckedUpdateWithoutCopiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
+  packImports?: Prisma.PackImportUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  publishedPacks?: Prisma.PackUncheckedUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUpsertWithWhereUniqueWithoutCopiedFromInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  update: Prisma.XOR<Prisma.CollectionUpdateWithoutCopiedFromInput, Prisma.CollectionUncheckedUpdateWithoutCopiedFromInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutCopiedFromInput, Prisma.CollectionUncheckedCreateWithoutCopiedFromInput>
+}
+
+export type CollectionUpdateWithWhereUniqueWithoutCopiedFromInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  data: Prisma.XOR<Prisma.CollectionUpdateWithoutCopiedFromInput, Prisma.CollectionUncheckedUpdateWithoutCopiedFromInput>
+}
+
+export type CollectionUpdateManyWithWhereWithoutCopiedFromInput = {
+  where: Prisma.CollectionScalarWhereInput
+  data: Prisma.XOR<Prisma.CollectionUpdateManyMutationInput, Prisma.CollectionUncheckedUpdateManyWithoutCopiedFromInput>
+}
+
+export type CollectionCreateWithoutEntriesInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
+  parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
+  children?: Prisma.CollectionCreateNestedManyWithoutParentInput
+  copiedFrom?: Prisma.CollectionCreateNestedOneWithoutCopiesInput
+  copies?: Prisma.CollectionCreateNestedManyWithoutCopiedFromInput
+  sourceRelease?: Prisma.ReleaseCreateNestedOneWithoutImportedIntoInput
+  paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
+  packImports?: Prisma.PackImportCreateNestedManyWithoutTargetCollectionInput
+  publishedPacks?: Prisma.PackCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionUncheckedCreateWithoutEntriesInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  userId: string
+  areaId?: string | null
+  parentId?: string | null
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  copiedFromCollectionId?: string | null
+  sourceReleaseId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
+  copies?: Prisma.CollectionUncheckedCreateNestedManyWithoutCopiedFromInput
+  paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
+  packImports?: Prisma.PackImportUncheckedCreateNestedManyWithoutTargetCollectionInput
+  publishedPacks?: Prisma.PackUncheckedCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionCreateOrConnectWithoutEntriesInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutEntriesInput, Prisma.CollectionUncheckedCreateWithoutEntriesInput>
+}
+
+export type CollectionUpsertWithoutEntriesInput = {
+  update: Prisma.XOR<Prisma.CollectionUpdateWithoutEntriesInput, Prisma.CollectionUncheckedUpdateWithoutEntriesInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutEntriesInput, Prisma.CollectionUncheckedCreateWithoutEntriesInput>
+  where?: Prisma.CollectionWhereInput
+}
+
+export type CollectionUpdateToOneWithWhereWithoutEntriesInput = {
+  where?: Prisma.CollectionWhereInput
+  data: Prisma.XOR<Prisma.CollectionUpdateWithoutEntriesInput, Prisma.CollectionUncheckedUpdateWithoutEntriesInput>
+}
+
+export type CollectionUpdateWithoutEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
+  parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
+  copiedFrom?: Prisma.CollectionUpdateOneWithoutCopiesNestedInput
+  copies?: Prisma.CollectionUpdateManyWithoutCopiedFromNestedInput
+  sourceRelease?: Prisma.ReleaseUpdateOneWithoutImportedIntoNestedInput
+  paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
+  packImports?: Prisma.PackImportUpdateManyWithoutTargetCollectionNestedInput
+  publishedPacks?: Prisma.PackUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUncheckedUpdateWithoutEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
+  copies?: Prisma.CollectionUncheckedUpdateManyWithoutCopiedFromNestedInput
+  paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
+  packImports?: Prisma.PackImportUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  publishedPacks?: Prisma.PackUncheckedUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionCreateWithoutAccessGrantsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
+  parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
+  children?: Prisma.CollectionCreateNestedManyWithoutParentInput
+  copiedFrom?: Prisma.CollectionCreateNestedOneWithoutCopiesInput
+  copies?: Prisma.CollectionCreateNestedManyWithoutCopiedFromInput
+  sourceRelease?: Prisma.ReleaseCreateNestedOneWithoutImportedIntoInput
+  entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
+  packImports?: Prisma.PackImportCreateNestedManyWithoutTargetCollectionInput
+  publishedPacks?: Prisma.PackCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionUncheckedCreateWithoutAccessGrantsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  userId: string
+  areaId?: string | null
+  parentId?: string | null
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  copiedFromCollectionId?: string | null
+  sourceReleaseId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
+  copies?: Prisma.CollectionUncheckedCreateNestedManyWithoutCopiedFromInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
+  packImports?: Prisma.PackImportUncheckedCreateNestedManyWithoutTargetCollectionInput
+  publishedPacks?: Prisma.PackUncheckedCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionCreateOrConnectWithoutAccessGrantsInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutAccessGrantsInput, Prisma.CollectionUncheckedCreateWithoutAccessGrantsInput>
+}
+
+export type CollectionUpsertWithoutAccessGrantsInput = {
+  update: Prisma.XOR<Prisma.CollectionUpdateWithoutAccessGrantsInput, Prisma.CollectionUncheckedUpdateWithoutAccessGrantsInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutAccessGrantsInput, Prisma.CollectionUncheckedCreateWithoutAccessGrantsInput>
+  where?: Prisma.CollectionWhereInput
+}
+
+export type CollectionUpdateToOneWithWhereWithoutAccessGrantsInput = {
+  where?: Prisma.CollectionWhereInput
+  data: Prisma.XOR<Prisma.CollectionUpdateWithoutAccessGrantsInput, Prisma.CollectionUncheckedUpdateWithoutAccessGrantsInput>
+}
+
+export type CollectionUpdateWithoutAccessGrantsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
+  parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
+  copiedFrom?: Prisma.CollectionUpdateOneWithoutCopiesNestedInput
+  copies?: Prisma.CollectionUpdateManyWithoutCopiedFromNestedInput
+  sourceRelease?: Prisma.ReleaseUpdateOneWithoutImportedIntoNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
+  packImports?: Prisma.PackImportUpdateManyWithoutTargetCollectionNestedInput
+  publishedPacks?: Prisma.PackUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUncheckedUpdateWithoutAccessGrantsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
+  copies?: Prisma.CollectionUncheckedUpdateManyWithoutCopiedFromNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
+  packImports?: Prisma.PackImportUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  publishedPacks?: Prisma.PackUncheckedUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionCreateWithoutPathsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
+  parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
+  children?: Prisma.CollectionCreateNestedManyWithoutParentInput
+  copiedFrom?: Prisma.CollectionCreateNestedOneWithoutCopiesInput
+  copies?: Prisma.CollectionCreateNestedManyWithoutCopiedFromInput
+  sourceRelease?: Prisma.ReleaseCreateNestedOneWithoutImportedIntoInput
+  entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
+  packImports?: Prisma.PackImportCreateNestedManyWithoutTargetCollectionInput
+  publishedPacks?: Prisma.PackCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionUncheckedCreateWithoutPathsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  userId: string
+  areaId?: string | null
+  parentId?: string | null
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  copiedFromCollectionId?: string | null
+  sourceReleaseId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
+  copies?: Prisma.CollectionUncheckedCreateNestedManyWithoutCopiedFromInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
+  packImports?: Prisma.PackImportUncheckedCreateNestedManyWithoutTargetCollectionInput
+  publishedPacks?: Prisma.PackUncheckedCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionCreateOrConnectWithoutPathsInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutPathsInput, Prisma.CollectionUncheckedCreateWithoutPathsInput>
+}
+
+export type CollectionUpsertWithoutPathsInput = {
+  update: Prisma.XOR<Prisma.CollectionUpdateWithoutPathsInput, Prisma.CollectionUncheckedUpdateWithoutPathsInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutPathsInput, Prisma.CollectionUncheckedCreateWithoutPathsInput>
+  where?: Prisma.CollectionWhereInput
+}
+
+export type CollectionUpdateToOneWithWhereWithoutPathsInput = {
+  where?: Prisma.CollectionWhereInput
+  data: Prisma.XOR<Prisma.CollectionUpdateWithoutPathsInput, Prisma.CollectionUncheckedUpdateWithoutPathsInput>
+}
+
+export type CollectionUpdateWithoutPathsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
+  parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
+  copiedFrom?: Prisma.CollectionUpdateOneWithoutCopiesNestedInput
+  copies?: Prisma.CollectionUpdateManyWithoutCopiedFromNestedInput
+  sourceRelease?: Prisma.ReleaseUpdateOneWithoutImportedIntoNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
+  packImports?: Prisma.PackImportUpdateManyWithoutTargetCollectionNestedInput
+  publishedPacks?: Prisma.PackUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUncheckedUpdateWithoutPathsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
+  copies?: Prisma.CollectionUncheckedUpdateManyWithoutCopiedFromNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
+  packImports?: Prisma.PackImportUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  publishedPacks?: Prisma.PackUncheckedUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionCreateWithoutPublishedPacksInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
+  parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
+  children?: Prisma.CollectionCreateNestedManyWithoutParentInput
+  copiedFrom?: Prisma.CollectionCreateNestedOneWithoutCopiesInput
+  copies?: Prisma.CollectionCreateNestedManyWithoutCopiedFromInput
+  sourceRelease?: Prisma.ReleaseCreateNestedOneWithoutImportedIntoInput
+  entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
+  packImports?: Prisma.PackImportCreateNestedManyWithoutTargetCollectionInput
+}
+
+export type CollectionUncheckedCreateWithoutPublishedPacksInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  userId: string
+  areaId?: string | null
+  parentId?: string | null
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  copiedFromCollectionId?: string | null
+  sourceReleaseId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
+  copies?: Prisma.CollectionUncheckedCreateNestedManyWithoutCopiedFromInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
+  packImports?: Prisma.PackImportUncheckedCreateNestedManyWithoutTargetCollectionInput
+}
+
+export type CollectionCreateOrConnectWithoutPublishedPacksInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutPublishedPacksInput, Prisma.CollectionUncheckedCreateWithoutPublishedPacksInput>
+}
+
+export type CollectionUpsertWithoutPublishedPacksInput = {
+  update: Prisma.XOR<Prisma.CollectionUpdateWithoutPublishedPacksInput, Prisma.CollectionUncheckedUpdateWithoutPublishedPacksInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutPublishedPacksInput, Prisma.CollectionUncheckedCreateWithoutPublishedPacksInput>
+  where?: Prisma.CollectionWhereInput
+}
+
+export type CollectionUpdateToOneWithWhereWithoutPublishedPacksInput = {
+  where?: Prisma.CollectionWhereInput
+  data: Prisma.XOR<Prisma.CollectionUpdateWithoutPublishedPacksInput, Prisma.CollectionUncheckedUpdateWithoutPublishedPacksInput>
+}
+
+export type CollectionUpdateWithoutPublishedPacksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
+  parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
+  copiedFrom?: Prisma.CollectionUpdateOneWithoutCopiesNestedInput
+  copies?: Prisma.CollectionUpdateManyWithoutCopiedFromNestedInput
+  sourceRelease?: Prisma.ReleaseUpdateOneWithoutImportedIntoNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
+  packImports?: Prisma.PackImportUpdateManyWithoutTargetCollectionNestedInput
+}
+
+export type CollectionUncheckedUpdateWithoutPublishedPacksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
+  copies?: Prisma.CollectionUncheckedUpdateManyWithoutCopiedFromNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
+  packImports?: Prisma.PackImportUncheckedUpdateManyWithoutTargetCollectionNestedInput
+}
+
+export type CollectionCreateWithoutSourceReleaseInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
+  parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
+  children?: Prisma.CollectionCreateNestedManyWithoutParentInput
+  copiedFrom?: Prisma.CollectionCreateNestedOneWithoutCopiesInput
+  copies?: Prisma.CollectionCreateNestedManyWithoutCopiedFromInput
+  entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
+  packImports?: Prisma.PackImportCreateNestedManyWithoutTargetCollectionInput
+  publishedPacks?: Prisma.PackCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionUncheckedCreateWithoutSourceReleaseInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  userId: string
+  areaId?: string | null
+  parentId?: string | null
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  copiedFromCollectionId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
+  copies?: Prisma.CollectionUncheckedCreateNestedManyWithoutCopiedFromInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
+  packImports?: Prisma.PackImportUncheckedCreateNestedManyWithoutTargetCollectionInput
+  publishedPacks?: Prisma.PackUncheckedCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionCreateOrConnectWithoutSourceReleaseInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutSourceReleaseInput, Prisma.CollectionUncheckedCreateWithoutSourceReleaseInput>
+}
+
+export type CollectionCreateManySourceReleaseInputEnvelope = {
+  data: Prisma.CollectionCreateManySourceReleaseInput | Prisma.CollectionCreateManySourceReleaseInput[]
+  skipDuplicates?: boolean
+}
+
+export type CollectionUpsertWithWhereUniqueWithoutSourceReleaseInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  update: Prisma.XOR<Prisma.CollectionUpdateWithoutSourceReleaseInput, Prisma.CollectionUncheckedUpdateWithoutSourceReleaseInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutSourceReleaseInput, Prisma.CollectionUncheckedCreateWithoutSourceReleaseInput>
+}
+
+export type CollectionUpdateWithWhereUniqueWithoutSourceReleaseInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  data: Prisma.XOR<Prisma.CollectionUpdateWithoutSourceReleaseInput, Prisma.CollectionUncheckedUpdateWithoutSourceReleaseInput>
+}
+
+export type CollectionUpdateManyWithWhereWithoutSourceReleaseInput = {
+  where: Prisma.CollectionScalarWhereInput
+  data: Prisma.XOR<Prisma.CollectionUpdateManyMutationInput, Prisma.CollectionUncheckedUpdateManyWithoutSourceReleaseInput>
+}
+
+export type CollectionCreateWithoutPackImportsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
+  parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
+  children?: Prisma.CollectionCreateNestedManyWithoutParentInput
+  copiedFrom?: Prisma.CollectionCreateNestedOneWithoutCopiesInput
+  copies?: Prisma.CollectionCreateNestedManyWithoutCopiedFromInput
+  sourceRelease?: Prisma.ReleaseCreateNestedOneWithoutImportedIntoInput
+  entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
+  publishedPacks?: Prisma.PackCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionUncheckedCreateWithoutPackImportsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  userId: string
+  areaId?: string | null
+  parentId?: string | null
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  copiedFromCollectionId?: string | null
+  sourceReleaseId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
+  copies?: Prisma.CollectionUncheckedCreateNestedManyWithoutCopiedFromInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
+  publishedPacks?: Prisma.PackUncheckedCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionCreateOrConnectWithoutPackImportsInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutPackImportsInput, Prisma.CollectionUncheckedCreateWithoutPackImportsInput>
+}
+
+export type CollectionUpsertWithoutPackImportsInput = {
+  update: Prisma.XOR<Prisma.CollectionUpdateWithoutPackImportsInput, Prisma.CollectionUncheckedUpdateWithoutPackImportsInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutPackImportsInput, Prisma.CollectionUncheckedCreateWithoutPackImportsInput>
+  where?: Prisma.CollectionWhereInput
+}
+
+export type CollectionUpdateToOneWithWhereWithoutPackImportsInput = {
+  where?: Prisma.CollectionWhereInput
+  data: Prisma.XOR<Prisma.CollectionUpdateWithoutPackImportsInput, Prisma.CollectionUncheckedUpdateWithoutPackImportsInput>
+}
+
+export type CollectionUpdateWithoutPackImportsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
+  parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
+  copiedFrom?: Prisma.CollectionUpdateOneWithoutCopiesNestedInput
+  copies?: Prisma.CollectionUpdateManyWithoutCopiedFromNestedInput
+  sourceRelease?: Prisma.ReleaseUpdateOneWithoutImportedIntoNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
+  publishedPacks?: Prisma.PackUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUncheckedUpdateWithoutPackImportsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
+  copies?: Prisma.CollectionUncheckedUpdateManyWithoutCopiedFromNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
+  publishedPacks?: Prisma.PackUncheckedUpdateManyWithoutCollectionNestedInput
 }
 
 export type CollectionCreateManyUserInput = {
   id?: string
   name: string
+  slug: string
   description?: string | null
   visibility?: $Enums.Visibility
   version?: number
+  entryCount?: number
+  areaId?: string | null
+  parentId?: string | null
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  copiedFromCollectionId?: string | null
+  sourceReleaseId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -733,33 +2235,411 @@ export type CollectionCreateManyUserInput = {
 export type CollectionUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  assets?: Prisma.AssetUpdateManyWithoutCollectionNestedInput
-  appCollectionAccesses?: Prisma.AppCollectionAccessUpdateManyWithoutCollectionNestedInput
+  area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
+  parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
+  copiedFrom?: Prisma.CollectionUpdateOneWithoutCopiesNestedInput
+  copies?: Prisma.CollectionUpdateManyWithoutCopiedFromNestedInput
+  sourceRelease?: Prisma.ReleaseUpdateOneWithoutImportedIntoNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
+  packImports?: Prisma.PackImportUpdateManyWithoutTargetCollectionNestedInput
+  publishedPacks?: Prisma.PackUpdateManyWithoutCollectionNestedInput
 }
 
 export type CollectionUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  assets?: Prisma.AssetUncheckedUpdateManyWithoutCollectionNestedInput
-  appCollectionAccesses?: Prisma.AppCollectionAccessUncheckedUpdateManyWithoutCollectionNestedInput
+  children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
+  copies?: Prisma.CollectionUncheckedUpdateManyWithoutCopiedFromNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
+  packImports?: Prisma.PackImportUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  publishedPacks?: Prisma.PackUncheckedUpdateManyWithoutCollectionNestedInput
 }
 
 export type CollectionUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type CollectionCreateManyAreaInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  userId: string
+  parentId?: string | null
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  copiedFromCollectionId?: string | null
+  sourceReleaseId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type CollectionUpdateWithoutAreaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
+  copiedFrom?: Prisma.CollectionUpdateOneWithoutCopiesNestedInput
+  copies?: Prisma.CollectionUpdateManyWithoutCopiedFromNestedInput
+  sourceRelease?: Prisma.ReleaseUpdateOneWithoutImportedIntoNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
+  packImports?: Prisma.PackImportUpdateManyWithoutTargetCollectionNestedInput
+  publishedPacks?: Prisma.PackUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUncheckedUpdateWithoutAreaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
+  copies?: Prisma.CollectionUncheckedUpdateManyWithoutCopiedFromNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
+  packImports?: Prisma.PackImportUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  publishedPacks?: Prisma.PackUncheckedUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUncheckedUpdateManyWithoutAreaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type CollectionCreateManyParentInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  userId: string
+  areaId?: string | null
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  copiedFromCollectionId?: string | null
+  sourceReleaseId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type CollectionCreateManyCopiedFromInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  userId: string
+  areaId?: string | null
+  parentId?: string | null
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  sourceReleaseId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type CollectionUpdateWithoutParentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
+  children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
+  copiedFrom?: Prisma.CollectionUpdateOneWithoutCopiesNestedInput
+  copies?: Prisma.CollectionUpdateManyWithoutCopiedFromNestedInput
+  sourceRelease?: Prisma.ReleaseUpdateOneWithoutImportedIntoNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
+  packImports?: Prisma.PackImportUpdateManyWithoutTargetCollectionNestedInput
+  publishedPacks?: Prisma.PackUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUncheckedUpdateWithoutParentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
+  copies?: Prisma.CollectionUncheckedUpdateManyWithoutCopiedFromNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
+  packImports?: Prisma.PackImportUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  publishedPacks?: Prisma.PackUncheckedUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUncheckedUpdateManyWithoutParentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type CollectionUpdateWithoutCopiedFromInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
+  parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
+  copies?: Prisma.CollectionUpdateManyWithoutCopiedFromNestedInput
+  sourceRelease?: Prisma.ReleaseUpdateOneWithoutImportedIntoNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
+  packImports?: Prisma.PackImportUpdateManyWithoutTargetCollectionNestedInput
+  publishedPacks?: Prisma.PackUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUncheckedUpdateWithoutCopiedFromInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
+  copies?: Prisma.CollectionUncheckedUpdateManyWithoutCopiedFromNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
+  packImports?: Prisma.PackImportUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  publishedPacks?: Prisma.PackUncheckedUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUncheckedUpdateManyWithoutCopiedFromInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type CollectionCreateManySourceReleaseInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  userId: string
+  areaId?: string | null
+  parentId?: string | null
+  isVirtualMount?: boolean
+  syncMode?: $Enums.SyncMode
+  copiedFromCollectionId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type CollectionUpdateWithoutSourceReleaseInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
+  parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
+  copiedFrom?: Prisma.CollectionUpdateOneWithoutCopiesNestedInput
+  copies?: Prisma.CollectionUpdateManyWithoutCopiedFromNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
+  packImports?: Prisma.PackImportUpdateManyWithoutTargetCollectionNestedInput
+  publishedPacks?: Prisma.PackUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUncheckedUpdateWithoutSourceReleaseInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
+  copies?: Prisma.CollectionUncheckedUpdateManyWithoutCopiedFromNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
+  packImports?: Prisma.PackImportUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  publishedPacks?: Prisma.PackUncheckedUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUncheckedUpdateManyWithoutSourceReleaseInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -770,13 +2650,23 @@ export type CollectionUncheckedUpdateManyWithoutUserInput = {
  */
 
 export type CollectionCountOutputType = {
-  assets: number
-  appCollectionAccesses: number
+  children: number
+  copies: number
+  entries: number
+  paths: number
+  accessGrants: number
+  packImports: number
+  publishedPacks: number
 }
 
 export type CollectionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  assets?: boolean | CollectionCountOutputTypeCountAssetsArgs
-  appCollectionAccesses?: boolean | CollectionCountOutputTypeCountAppCollectionAccessesArgs
+  children?: boolean | CollectionCountOutputTypeCountChildrenArgs
+  copies?: boolean | CollectionCountOutputTypeCountCopiesArgs
+  entries?: boolean | CollectionCountOutputTypeCountEntriesArgs
+  paths?: boolean | CollectionCountOutputTypeCountPathsArgs
+  accessGrants?: boolean | CollectionCountOutputTypeCountAccessGrantsArgs
+  packImports?: boolean | CollectionCountOutputTypeCountPackImportsArgs
+  publishedPacks?: boolean | CollectionCountOutputTypeCountPublishedPacksArgs
 }
 
 /**
@@ -792,96 +2682,214 @@ export type CollectionCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.E
 /**
  * CollectionCountOutputType without action
  */
-export type CollectionCountOutputTypeCountAssetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AssetWhereInput
+export type CollectionCountOutputTypeCountChildrenArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CollectionWhereInput
 }
 
 /**
  * CollectionCountOutputType without action
  */
-export type CollectionCountOutputTypeCountAppCollectionAccessesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AppCollectionAccessWhereInput
+export type CollectionCountOutputTypeCountCopiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CollectionWhereInput
+}
+
+/**
+ * CollectionCountOutputType without action
+ */
+export type CollectionCountOutputTypeCountEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EntryWhereInput
+}
+
+/**
+ * CollectionCountOutputType without action
+ */
+export type CollectionCountOutputTypeCountPathsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PathWhereInput
+}
+
+/**
+ * CollectionCountOutputType without action
+ */
+export type CollectionCountOutputTypeCountAccessGrantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AccessGrantWhereInput
+}
+
+/**
+ * CollectionCountOutputType without action
+ */
+export type CollectionCountOutputTypeCountPackImportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PackImportWhereInput
+}
+
+/**
+ * CollectionCountOutputType without action
+ */
+export type CollectionCountOutputTypeCountPublishedPacksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PackWhereInput
 }
 
 
 export type CollectionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  slug?: boolean
   description?: boolean
   visibility?: boolean
   version?: boolean
+  entryCount?: boolean
   userId?: boolean
+  areaId?: boolean
+  parentId?: boolean
+  isVirtualMount?: boolean
+  syncMode?: boolean
+  copiedFromCollectionId?: boolean
+  sourceReleaseId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  assets?: boolean | Prisma.Collection$assetsArgs<ExtArgs>
-  appCollectionAccesses?: boolean | Prisma.Collection$appCollectionAccessesArgs<ExtArgs>
+  area?: boolean | Prisma.Collection$areaArgs<ExtArgs>
+  parent?: boolean | Prisma.Collection$parentArgs<ExtArgs>
+  children?: boolean | Prisma.Collection$childrenArgs<ExtArgs>
+  copiedFrom?: boolean | Prisma.Collection$copiedFromArgs<ExtArgs>
+  copies?: boolean | Prisma.Collection$copiesArgs<ExtArgs>
+  sourceRelease?: boolean | Prisma.Collection$sourceReleaseArgs<ExtArgs>
+  entries?: boolean | Prisma.Collection$entriesArgs<ExtArgs>
+  paths?: boolean | Prisma.Collection$pathsArgs<ExtArgs>
+  accessGrants?: boolean | Prisma.Collection$accessGrantsArgs<ExtArgs>
+  packImports?: boolean | Prisma.Collection$packImportsArgs<ExtArgs>
+  publishedPacks?: boolean | Prisma.Collection$publishedPacksArgs<ExtArgs>
   _count?: boolean | Prisma.CollectionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["collection"]>
 
 export type CollectionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  slug?: boolean
   description?: boolean
   visibility?: boolean
   version?: boolean
+  entryCount?: boolean
   userId?: boolean
+  areaId?: boolean
+  parentId?: boolean
+  isVirtualMount?: boolean
+  syncMode?: boolean
+  copiedFromCollectionId?: boolean
+  sourceReleaseId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  area?: boolean | Prisma.Collection$areaArgs<ExtArgs>
+  parent?: boolean | Prisma.Collection$parentArgs<ExtArgs>
+  copiedFrom?: boolean | Prisma.Collection$copiedFromArgs<ExtArgs>
+  sourceRelease?: boolean | Prisma.Collection$sourceReleaseArgs<ExtArgs>
 }, ExtArgs["result"]["collection"]>
 
 export type CollectionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  slug?: boolean
   description?: boolean
   visibility?: boolean
   version?: boolean
+  entryCount?: boolean
   userId?: boolean
+  areaId?: boolean
+  parentId?: boolean
+  isVirtualMount?: boolean
+  syncMode?: boolean
+  copiedFromCollectionId?: boolean
+  sourceReleaseId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  area?: boolean | Prisma.Collection$areaArgs<ExtArgs>
+  parent?: boolean | Prisma.Collection$parentArgs<ExtArgs>
+  copiedFrom?: boolean | Prisma.Collection$copiedFromArgs<ExtArgs>
+  sourceRelease?: boolean | Prisma.Collection$sourceReleaseArgs<ExtArgs>
 }, ExtArgs["result"]["collection"]>
 
 export type CollectionSelectScalar = {
   id?: boolean
   name?: boolean
+  slug?: boolean
   description?: boolean
   visibility?: boolean
   version?: boolean
+  entryCount?: boolean
   userId?: boolean
+  areaId?: boolean
+  parentId?: boolean
+  isVirtualMount?: boolean
+  syncMode?: boolean
+  copiedFromCollectionId?: boolean
+  sourceReleaseId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type CollectionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "visibility" | "version" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["collection"]>
+export type CollectionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "description" | "visibility" | "version" | "entryCount" | "userId" | "areaId" | "parentId" | "isVirtualMount" | "syncMode" | "copiedFromCollectionId" | "sourceReleaseId" | "createdAt" | "updatedAt", ExtArgs["result"]["collection"]>
 export type CollectionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  assets?: boolean | Prisma.Collection$assetsArgs<ExtArgs>
-  appCollectionAccesses?: boolean | Prisma.Collection$appCollectionAccessesArgs<ExtArgs>
+  area?: boolean | Prisma.Collection$areaArgs<ExtArgs>
+  parent?: boolean | Prisma.Collection$parentArgs<ExtArgs>
+  children?: boolean | Prisma.Collection$childrenArgs<ExtArgs>
+  copiedFrom?: boolean | Prisma.Collection$copiedFromArgs<ExtArgs>
+  copies?: boolean | Prisma.Collection$copiesArgs<ExtArgs>
+  sourceRelease?: boolean | Prisma.Collection$sourceReleaseArgs<ExtArgs>
+  entries?: boolean | Prisma.Collection$entriesArgs<ExtArgs>
+  paths?: boolean | Prisma.Collection$pathsArgs<ExtArgs>
+  accessGrants?: boolean | Prisma.Collection$accessGrantsArgs<ExtArgs>
+  packImports?: boolean | Prisma.Collection$packImportsArgs<ExtArgs>
+  publishedPacks?: boolean | Prisma.Collection$publishedPacksArgs<ExtArgs>
   _count?: boolean | Prisma.CollectionCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CollectionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  area?: boolean | Prisma.Collection$areaArgs<ExtArgs>
+  parent?: boolean | Prisma.Collection$parentArgs<ExtArgs>
+  copiedFrom?: boolean | Prisma.Collection$copiedFromArgs<ExtArgs>
+  sourceRelease?: boolean | Prisma.Collection$sourceReleaseArgs<ExtArgs>
 }
 export type CollectionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  area?: boolean | Prisma.Collection$areaArgs<ExtArgs>
+  parent?: boolean | Prisma.Collection$parentArgs<ExtArgs>
+  copiedFrom?: boolean | Prisma.Collection$copiedFromArgs<ExtArgs>
+  sourceRelease?: boolean | Prisma.Collection$sourceReleaseArgs<ExtArgs>
 }
 
 export type $CollectionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Collection"
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
-    assets: Prisma.$AssetPayload<ExtArgs>[]
-    appCollectionAccesses: Prisma.$AppCollectionAccessPayload<ExtArgs>[]
+    area: Prisma.$AreaPayload<ExtArgs> | null
+    parent: Prisma.$CollectionPayload<ExtArgs> | null
+    children: Prisma.$CollectionPayload<ExtArgs>[]
+    copiedFrom: Prisma.$CollectionPayload<ExtArgs> | null
+    copies: Prisma.$CollectionPayload<ExtArgs>[]
+    sourceRelease: Prisma.$ReleasePayload<ExtArgs> | null
+    entries: Prisma.$EntryPayload<ExtArgs>[]
+    paths: Prisma.$PathPayload<ExtArgs>[]
+    accessGrants: Prisma.$AccessGrantPayload<ExtArgs>[]
+    packImports: Prisma.$PackImportPayload<ExtArgs>[]
+    publishedPacks: Prisma.$PackPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
+    slug: string
     description: string | null
     visibility: $Enums.Visibility
     version: number
+    entryCount: number
     userId: string
+    areaId: string | null
+    parentId: string | null
+    isVirtualMount: boolean
+    syncMode: $Enums.SyncMode
+    copiedFromCollectionId: string | null
+    sourceReleaseId: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["collection"]>
@@ -1279,8 +3287,17 @@ readonly fields: CollectionFieldRefs;
 export interface Prisma__CollectionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  assets<T extends Prisma.Collection$assetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$assetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  appCollectionAccesses<T extends Prisma.Collection$appCollectionAccessesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$appCollectionAccessesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppCollectionAccessPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  area<T extends Prisma.Collection$areaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$areaArgs<ExtArgs>>): Prisma.Prisma__AreaClient<runtime.Types.Result.GetResult<Prisma.$AreaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  parent<T extends Prisma.Collection$parentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$parentArgs<ExtArgs>>): Prisma.Prisma__CollectionClient<runtime.Types.Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  children<T extends Prisma.Collection$childrenArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$childrenArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  copiedFrom<T extends Prisma.Collection$copiedFromArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$copiedFromArgs<ExtArgs>>): Prisma.Prisma__CollectionClient<runtime.Types.Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  copies<T extends Prisma.Collection$copiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$copiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sourceRelease<T extends Prisma.Collection$sourceReleaseArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$sourceReleaseArgs<ExtArgs>>): Prisma.Prisma__ReleaseClient<runtime.Types.Result.GetResult<Prisma.$ReleasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  entries<T extends Prisma.Collection$entriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$entriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  paths<T extends Prisma.Collection$pathsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$pathsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PathPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  accessGrants<T extends Prisma.Collection$accessGrantsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$accessGrantsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccessGrantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  packImports<T extends Prisma.Collection$packImportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$packImportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PackImportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  publishedPacks<T extends Prisma.Collection$publishedPacksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$publishedPacksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1312,10 +3329,18 @@ export interface Prisma__CollectionClient<T, Null = never, ExtArgs extends runti
 export interface CollectionFieldRefs {
   readonly id: Prisma.FieldRef<"Collection", 'String'>
   readonly name: Prisma.FieldRef<"Collection", 'String'>
+  readonly slug: Prisma.FieldRef<"Collection", 'String'>
   readonly description: Prisma.FieldRef<"Collection", 'String'>
   readonly visibility: Prisma.FieldRef<"Collection", 'Visibility'>
   readonly version: Prisma.FieldRef<"Collection", 'Int'>
+  readonly entryCount: Prisma.FieldRef<"Collection", 'Int'>
   readonly userId: Prisma.FieldRef<"Collection", 'String'>
+  readonly areaId: Prisma.FieldRef<"Collection", 'String'>
+  readonly parentId: Prisma.FieldRef<"Collection", 'String'>
+  readonly isVirtualMount: Prisma.FieldRef<"Collection", 'Boolean'>
+  readonly syncMode: Prisma.FieldRef<"Collection", 'SyncMode'>
+  readonly copiedFromCollectionId: Prisma.FieldRef<"Collection", 'String'>
+  readonly sourceReleaseId: Prisma.FieldRef<"Collection", 'String'>
   readonly createdAt: Prisma.FieldRef<"Collection", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Collection", 'DateTime'>
 }
@@ -1719,51 +3744,247 @@ export type CollectionDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
- * Collection.assets
+ * Collection.area
  */
-export type Collection$assetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Collection$areaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Asset
+   * Select specific fields to fetch from the Area
    */
-  select?: Prisma.AssetSelect<ExtArgs> | null
+  select?: Prisma.AreaSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Asset
+   * Omit specific fields from the Area
    */
-  omit?: Prisma.AssetOmit<ExtArgs> | null
+  omit?: Prisma.AreaOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AssetInclude<ExtArgs> | null
-  where?: Prisma.AssetWhereInput
-  orderBy?: Prisma.AssetOrderByWithRelationInput | Prisma.AssetOrderByWithRelationInput[]
-  cursor?: Prisma.AssetWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.AssetScalarFieldEnum | Prisma.AssetScalarFieldEnum[]
+  include?: Prisma.AreaInclude<ExtArgs> | null
+  where?: Prisma.AreaWhereInput
 }
 
 /**
- * Collection.appCollectionAccesses
+ * Collection.parent
  */
-export type Collection$appCollectionAccessesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Collection$parentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the AppCollectionAccess
+   * Select specific fields to fetch from the Collection
    */
-  select?: Prisma.AppCollectionAccessSelect<ExtArgs> | null
+  select?: Prisma.CollectionSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the AppCollectionAccess
+   * Omit specific fields from the Collection
    */
-  omit?: Prisma.AppCollectionAccessOmit<ExtArgs> | null
+  omit?: Prisma.CollectionOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AppCollectionAccessInclude<ExtArgs> | null
-  where?: Prisma.AppCollectionAccessWhereInput
-  orderBy?: Prisma.AppCollectionAccessOrderByWithRelationInput | Prisma.AppCollectionAccessOrderByWithRelationInput[]
-  cursor?: Prisma.AppCollectionAccessWhereUniqueInput
+  include?: Prisma.CollectionInclude<ExtArgs> | null
+  where?: Prisma.CollectionWhereInput
+}
+
+/**
+ * Collection.children
+ */
+export type Collection$childrenArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Collection
+   */
+  select?: Prisma.CollectionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Collection
+   */
+  omit?: Prisma.CollectionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CollectionInclude<ExtArgs> | null
+  where?: Prisma.CollectionWhereInput
+  orderBy?: Prisma.CollectionOrderByWithRelationInput | Prisma.CollectionOrderByWithRelationInput[]
+  cursor?: Prisma.CollectionWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.AppCollectionAccessScalarFieldEnum | Prisma.AppCollectionAccessScalarFieldEnum[]
+  distinct?: Prisma.CollectionScalarFieldEnum | Prisma.CollectionScalarFieldEnum[]
+}
+
+/**
+ * Collection.copiedFrom
+ */
+export type Collection$copiedFromArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Collection
+   */
+  select?: Prisma.CollectionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Collection
+   */
+  omit?: Prisma.CollectionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CollectionInclude<ExtArgs> | null
+  where?: Prisma.CollectionWhereInput
+}
+
+/**
+ * Collection.copies
+ */
+export type Collection$copiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Collection
+   */
+  select?: Prisma.CollectionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Collection
+   */
+  omit?: Prisma.CollectionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CollectionInclude<ExtArgs> | null
+  where?: Prisma.CollectionWhereInput
+  orderBy?: Prisma.CollectionOrderByWithRelationInput | Prisma.CollectionOrderByWithRelationInput[]
+  cursor?: Prisma.CollectionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CollectionScalarFieldEnum | Prisma.CollectionScalarFieldEnum[]
+}
+
+/**
+ * Collection.sourceRelease
+ */
+export type Collection$sourceReleaseArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Release
+   */
+  select?: Prisma.ReleaseSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Release
+   */
+  omit?: Prisma.ReleaseOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReleaseInclude<ExtArgs> | null
+  where?: Prisma.ReleaseWhereInput
+}
+
+/**
+ * Collection.entries
+ */
+export type Collection$entriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Entry
+   */
+  select?: Prisma.EntrySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Entry
+   */
+  omit?: Prisma.EntryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EntryInclude<ExtArgs> | null
+  where?: Prisma.EntryWhereInput
+  orderBy?: Prisma.EntryOrderByWithRelationInput | Prisma.EntryOrderByWithRelationInput[]
+  cursor?: Prisma.EntryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EntryScalarFieldEnum | Prisma.EntryScalarFieldEnum[]
+}
+
+/**
+ * Collection.paths
+ */
+export type Collection$pathsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Path
+   */
+  select?: Prisma.PathSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Path
+   */
+  omit?: Prisma.PathOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PathInclude<ExtArgs> | null
+  where?: Prisma.PathWhereInput
+  orderBy?: Prisma.PathOrderByWithRelationInput | Prisma.PathOrderByWithRelationInput[]
+  cursor?: Prisma.PathWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PathScalarFieldEnum | Prisma.PathScalarFieldEnum[]
+}
+
+/**
+ * Collection.accessGrants
+ */
+export type Collection$accessGrantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AccessGrant
+   */
+  select?: Prisma.AccessGrantSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AccessGrant
+   */
+  omit?: Prisma.AccessGrantOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AccessGrantInclude<ExtArgs> | null
+  where?: Prisma.AccessGrantWhereInput
+  orderBy?: Prisma.AccessGrantOrderByWithRelationInput | Prisma.AccessGrantOrderByWithRelationInput[]
+  cursor?: Prisma.AccessGrantWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AccessGrantScalarFieldEnum | Prisma.AccessGrantScalarFieldEnum[]
+}
+
+/**
+ * Collection.packImports
+ */
+export type Collection$packImportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PackImport
+   */
+  select?: Prisma.PackImportSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PackImport
+   */
+  omit?: Prisma.PackImportOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PackImportInclude<ExtArgs> | null
+  where?: Prisma.PackImportWhereInput
+  orderBy?: Prisma.PackImportOrderByWithRelationInput | Prisma.PackImportOrderByWithRelationInput[]
+  cursor?: Prisma.PackImportWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PackImportScalarFieldEnum | Prisma.PackImportScalarFieldEnum[]
+}
+
+/**
+ * Collection.publishedPacks
+ */
+export type Collection$publishedPacksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Pack
+   */
+  select?: Prisma.PackSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Pack
+   */
+  omit?: Prisma.PackOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PackInclude<ExtArgs> | null
+  where?: Prisma.PackWhereInput
+  orderBy?: Prisma.PackOrderByWithRelationInput | Prisma.PackOrderByWithRelationInput[]
+  cursor?: Prisma.PackWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PackScalarFieldEnum | Prisma.PackScalarFieldEnum[]
 }
 
 /**

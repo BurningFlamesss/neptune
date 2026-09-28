@@ -14,14 +14,17 @@ export const registerThirdPartyApp = createServerFn()
 	.validator(registerThirdPartyAppSchema)
 	.handler(async ({ data, context }) => {
 		try {
-			if (!context.session) {
+			const userId = context.session?.user?.id
+
+			if (!userId) {
 				throw new Error("Unauthorized: Cannot complete registration without session");
 			}
 
+			const { prisma } = await import("#/db.ts")
 			const rawHeadersObject = getRequestHeaders();
 
 			const isLoopback = data.redirectUri.startsWith("http://localhost") || data.redirectUri.startsWith("http://127.0.0.1") || data.redirectUri.startsWith("http://[::1]");
-			
+
 			const client = await auth.api.createOAuthClient({
 				headers: rawHeadersObject as any,
 				body: {
@@ -34,9 +37,54 @@ export const registerThirdPartyApp = createServerFn()
 				},
 			});
 
+			const oauthClientRecord = await prisma.oauthClient.update({
+				where: {
+					clientId: client.client_id
+				},
+				data: {
+					userId
+				}
+			})
+
+			const appMemory = await prisma.appMemory.upsert({
+				where: {
+					userId_clientId: {
+						userId,
+						clientId: oauthClientRecord.id
+					}
+				},
+				update: {},
+				create: {
+					userId,
+					clientId: oauthClientRecord.id
+				}
+			})
+
+			await prisma.accessGrant.upsert({
+				where: {
+					userId_clientId_resourceKey: {
+						userId,
+						clientId: oauthClientRecord.id,
+						resourceKey: `app_memory:${appMemory.id}`
+					}
+				},
+				update: {},
+				create: {
+					userId,
+					clientId: oauthClientRecord.id,
+					resourceType: "APP_MEMORY",
+					resourceKey: `app_memory:${appMemory.id}`,
+					effect: "ALLOW",
+					permissions: ["READ", "SUGGEST", "WRITE"],
+					appMemoryId: appMemory.id
+				}
+			})
+
 			return {
+				id: oauthClientRecord.id,
 				clientId: client.client_id,
 				clientSecret: client.client_secret,
+				appMemoryId: appMemory.id
 			};
 		} catch (error: any) {
 			console.error("registerThirdPartyApp error:", error);

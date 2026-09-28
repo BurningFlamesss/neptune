@@ -403,7 +403,13 @@ export type OauthClientWhereInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenListRelationFilter
   oauthaccesstokens?: Prisma.OauthAccessTokenListRelationFilter
   oauthconsents?: Prisma.OauthConsentListRelationFilter
-  collectionAccess?: Prisma.AppCollectionAccessListRelationFilter
+  developerApiKeys?: Prisma.DeveloperApiKeyListRelationFilter
+  appMemories?: Prisma.AppMemoryListRelationFilter
+  accessGrants?: Prisma.AccessGrantListRelationFilter
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerListRelationFilter
+  accessRequests?: Prisma.AccessRequestListRelationFilter
+  contextRequests?: Prisma.ContextRequestListRelationFilter
+  apiUsageLedgers?: Prisma.ApiUsageLedgerListRelationFilter
 }
 
 export type OauthClientOrderByWithRelationInput = {
@@ -448,7 +454,13 @@ export type OauthClientOrderByWithRelationInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenOrderByRelationAggregateInput
   oauthaccesstokens?: Prisma.OauthAccessTokenOrderByRelationAggregateInput
   oauthconsents?: Prisma.OauthConsentOrderByRelationAggregateInput
-  collectionAccess?: Prisma.AppCollectionAccessOrderByRelationAggregateInput
+  developerApiKeys?: Prisma.DeveloperApiKeyOrderByRelationAggregateInput
+  appMemories?: Prisma.AppMemoryOrderByRelationAggregateInput
+  accessGrants?: Prisma.AccessGrantOrderByRelationAggregateInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerOrderByRelationAggregateInput
+  accessRequests?: Prisma.AccessRequestOrderByRelationAggregateInput
+  contextRequests?: Prisma.ContextRequestOrderByRelationAggregateInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerOrderByRelationAggregateInput
 }
 
 export type OauthClientWhereUniqueInput = Prisma.AtLeast<{
@@ -496,7 +508,13 @@ export type OauthClientWhereUniqueInput = Prisma.AtLeast<{
   oauthrefreshtokens?: Prisma.OauthRefreshTokenListRelationFilter
   oauthaccesstokens?: Prisma.OauthAccessTokenListRelationFilter
   oauthconsents?: Prisma.OauthConsentListRelationFilter
-  collectionAccess?: Prisma.AppCollectionAccessListRelationFilter
+  developerApiKeys?: Prisma.DeveloperApiKeyListRelationFilter
+  appMemories?: Prisma.AppMemoryListRelationFilter
+  accessGrants?: Prisma.AccessGrantListRelationFilter
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerListRelationFilter
+  accessRequests?: Prisma.AccessRequestListRelationFilter
+  contextRequests?: Prisma.ContextRequestListRelationFilter
+  apiUsageLedgers?: Prisma.ApiUsageLedgerListRelationFilter
 }, "id" | "clientId">
 
 export type OauthClientOrderByWithAggregationInput = {
@@ -624,7 +642,13 @@ export type OauthClientCreateInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutOauthclientInput
   oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutOauthclientInput
   oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutOauthclientInput
-  collectionAccess?: Prisma.AppCollectionAccessCreateNestedManyWithoutOauthClientInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutOauthClientInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutOauthClientInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutOauthClientInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerCreateNestedManyWithoutOauthClientInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOauthClientInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutOauthClientInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutOauthClientInput
 }
 
 export type OauthClientUncheckedCreateInput = {
@@ -668,7 +692,13 @@ export type OauthClientUncheckedCreateInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutOauthclientInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutOauthclientInput
   oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutOauthclientInput
-  collectionAccess?: Prisma.AppCollectionAccessUncheckedCreateNestedManyWithoutOauthClientInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutOauthClientInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutOauthClientInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutOauthClientInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedCreateNestedManyWithoutOauthClientInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOauthClientInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutOauthClientInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutOauthClientInput
 }
 
 export type OauthClientUpdateInput = {
@@ -712,7 +742,13 @@ export type OauthClientUpdateInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutOauthclientNestedInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutOauthclientNestedInput
   oauthconsents?: Prisma.OauthConsentUpdateManyWithoutOauthclientNestedInput
-  collectionAccess?: Prisma.AppCollectionAccessUpdateManyWithoutOauthClientNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutOauthClientNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutOauthClientNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutOauthClientNestedInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUpdateManyWithoutOauthClientNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutOauthClientNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutOauthClientNestedInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutOauthClientNestedInput
 }
 
 export type OauthClientUncheckedUpdateInput = {
@@ -756,7 +792,13 @@ export type OauthClientUncheckedUpdateInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutOauthclientNestedInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutOauthclientNestedInput
   oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutOauthclientNestedInput
-  collectionAccess?: Prisma.AppCollectionAccessUncheckedUpdateManyWithoutOauthClientNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutOauthClientNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutOauthClientNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutOauthClientNestedInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedUpdateManyWithoutOauthClientNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOauthClientNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutOauthClientNestedInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutOauthClientNestedInput
 }
 
 export type OauthClientCreateManyInput = {
@@ -994,6 +1036,11 @@ export type OauthClientMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
+export type OauthClientNullableScalarRelationFilter = {
+  is?: Prisma.OauthClientWhereInput | null
+  isNot?: Prisma.OauthClientWhereInput | null
+}
+
 export type OauthClientScalarRelationFilter = {
   is?: Prisma.OauthClientWhereInput
   isNot?: Prisma.OauthClientWhereInput
@@ -1108,6 +1155,22 @@ export type OauthClientUpdateresponseTypesInput = {
   push?: string | string[]
 }
 
+export type OauthClientCreateNestedOneWithoutDeveloperApiKeysInput = {
+  create?: Prisma.XOR<Prisma.OauthClientCreateWithoutDeveloperApiKeysInput, Prisma.OauthClientUncheckedCreateWithoutDeveloperApiKeysInput>
+  connectOrCreate?: Prisma.OauthClientCreateOrConnectWithoutDeveloperApiKeysInput
+  connect?: Prisma.OauthClientWhereUniqueInput
+}
+
+export type OauthClientUpdateOneWithoutDeveloperApiKeysNestedInput = {
+  create?: Prisma.XOR<Prisma.OauthClientCreateWithoutDeveloperApiKeysInput, Prisma.OauthClientUncheckedCreateWithoutDeveloperApiKeysInput>
+  connectOrCreate?: Prisma.OauthClientCreateOrConnectWithoutDeveloperApiKeysInput
+  upsert?: Prisma.OauthClientUpsertWithoutDeveloperApiKeysInput
+  disconnect?: Prisma.OauthClientWhereInput | boolean
+  delete?: Prisma.OauthClientWhereInput | boolean
+  connect?: Prisma.OauthClientWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OauthClientUpdateToOneWithWhereWithoutDeveloperApiKeysInput, Prisma.OauthClientUpdateWithoutDeveloperApiKeysInput>, Prisma.OauthClientUncheckedUpdateWithoutDeveloperApiKeysInput>
+}
+
 export type OauthClientCreateNestedOneWithoutOauthclientresourcesInput = {
   create?: Prisma.XOR<Prisma.OauthClientCreateWithoutOauthclientresourcesInput, Prisma.OauthClientUncheckedCreateWithoutOauthclientresourcesInput>
   connectOrCreate?: Prisma.OauthClientCreateOrConnectWithoutOauthclientresourcesInput
@@ -1164,18 +1227,90 @@ export type OauthClientUpdateOneRequiredWithoutOauthconsentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OauthClientUpdateToOneWithWhereWithoutOauthconsentsInput, Prisma.OauthClientUpdateWithoutOauthconsentsInput>, Prisma.OauthClientUncheckedUpdateWithoutOauthconsentsInput>
 }
 
-export type OauthClientCreateNestedOneWithoutCollectionAccessInput = {
-  create?: Prisma.XOR<Prisma.OauthClientCreateWithoutCollectionAccessInput, Prisma.OauthClientUncheckedCreateWithoutCollectionAccessInput>
-  connectOrCreate?: Prisma.OauthClientCreateOrConnectWithoutCollectionAccessInput
+export type OauthClientCreateNestedOneWithoutAppMemoriesInput = {
+  create?: Prisma.XOR<Prisma.OauthClientCreateWithoutAppMemoriesInput, Prisma.OauthClientUncheckedCreateWithoutAppMemoriesInput>
+  connectOrCreate?: Prisma.OauthClientCreateOrConnectWithoutAppMemoriesInput
   connect?: Prisma.OauthClientWhereUniqueInput
 }
 
-export type OauthClientUpdateOneRequiredWithoutCollectionAccessNestedInput = {
-  create?: Prisma.XOR<Prisma.OauthClientCreateWithoutCollectionAccessInput, Prisma.OauthClientUncheckedCreateWithoutCollectionAccessInput>
-  connectOrCreate?: Prisma.OauthClientCreateOrConnectWithoutCollectionAccessInput
-  upsert?: Prisma.OauthClientUpsertWithoutCollectionAccessInput
+export type OauthClientUpdateOneRequiredWithoutAppMemoriesNestedInput = {
+  create?: Prisma.XOR<Prisma.OauthClientCreateWithoutAppMemoriesInput, Prisma.OauthClientUncheckedCreateWithoutAppMemoriesInput>
+  connectOrCreate?: Prisma.OauthClientCreateOrConnectWithoutAppMemoriesInput
+  upsert?: Prisma.OauthClientUpsertWithoutAppMemoriesInput
   connect?: Prisma.OauthClientWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.OauthClientUpdateToOneWithWhereWithoutCollectionAccessInput, Prisma.OauthClientUpdateWithoutCollectionAccessInput>, Prisma.OauthClientUncheckedUpdateWithoutCollectionAccessInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OauthClientUpdateToOneWithWhereWithoutAppMemoriesInput, Prisma.OauthClientUpdateWithoutAppMemoriesInput>, Prisma.OauthClientUncheckedUpdateWithoutAppMemoriesInput>
+}
+
+export type OauthClientCreateNestedOneWithoutAppMemoryUsageLedgersInput = {
+  create?: Prisma.XOR<Prisma.OauthClientCreateWithoutAppMemoryUsageLedgersInput, Prisma.OauthClientUncheckedCreateWithoutAppMemoryUsageLedgersInput>
+  connectOrCreate?: Prisma.OauthClientCreateOrConnectWithoutAppMemoryUsageLedgersInput
+  connect?: Prisma.OauthClientWhereUniqueInput
+}
+
+export type OauthClientUpdateOneRequiredWithoutAppMemoryUsageLedgersNestedInput = {
+  create?: Prisma.XOR<Prisma.OauthClientCreateWithoutAppMemoryUsageLedgersInput, Prisma.OauthClientUncheckedCreateWithoutAppMemoryUsageLedgersInput>
+  connectOrCreate?: Prisma.OauthClientCreateOrConnectWithoutAppMemoryUsageLedgersInput
+  upsert?: Prisma.OauthClientUpsertWithoutAppMemoryUsageLedgersInput
+  connect?: Prisma.OauthClientWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OauthClientUpdateToOneWithWhereWithoutAppMemoryUsageLedgersInput, Prisma.OauthClientUpdateWithoutAppMemoryUsageLedgersInput>, Prisma.OauthClientUncheckedUpdateWithoutAppMemoryUsageLedgersInput>
+}
+
+export type OauthClientCreateNestedOneWithoutAccessGrantsInput = {
+  create?: Prisma.XOR<Prisma.OauthClientCreateWithoutAccessGrantsInput, Prisma.OauthClientUncheckedCreateWithoutAccessGrantsInput>
+  connectOrCreate?: Prisma.OauthClientCreateOrConnectWithoutAccessGrantsInput
+  connect?: Prisma.OauthClientWhereUniqueInput
+}
+
+export type OauthClientUpdateOneRequiredWithoutAccessGrantsNestedInput = {
+  create?: Prisma.XOR<Prisma.OauthClientCreateWithoutAccessGrantsInput, Prisma.OauthClientUncheckedCreateWithoutAccessGrantsInput>
+  connectOrCreate?: Prisma.OauthClientCreateOrConnectWithoutAccessGrantsInput
+  upsert?: Prisma.OauthClientUpsertWithoutAccessGrantsInput
+  connect?: Prisma.OauthClientWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OauthClientUpdateToOneWithWhereWithoutAccessGrantsInput, Prisma.OauthClientUpdateWithoutAccessGrantsInput>, Prisma.OauthClientUncheckedUpdateWithoutAccessGrantsInput>
+}
+
+export type OauthClientCreateNestedOneWithoutAccessRequestsInput = {
+  create?: Prisma.XOR<Prisma.OauthClientCreateWithoutAccessRequestsInput, Prisma.OauthClientUncheckedCreateWithoutAccessRequestsInput>
+  connectOrCreate?: Prisma.OauthClientCreateOrConnectWithoutAccessRequestsInput
+  connect?: Prisma.OauthClientWhereUniqueInput
+}
+
+export type OauthClientUpdateOneRequiredWithoutAccessRequestsNestedInput = {
+  create?: Prisma.XOR<Prisma.OauthClientCreateWithoutAccessRequestsInput, Prisma.OauthClientUncheckedCreateWithoutAccessRequestsInput>
+  connectOrCreate?: Prisma.OauthClientCreateOrConnectWithoutAccessRequestsInput
+  upsert?: Prisma.OauthClientUpsertWithoutAccessRequestsInput
+  connect?: Prisma.OauthClientWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OauthClientUpdateToOneWithWhereWithoutAccessRequestsInput, Prisma.OauthClientUpdateWithoutAccessRequestsInput>, Prisma.OauthClientUncheckedUpdateWithoutAccessRequestsInput>
+}
+
+export type OauthClientCreateNestedOneWithoutContextRequestsInput = {
+  create?: Prisma.XOR<Prisma.OauthClientCreateWithoutContextRequestsInput, Prisma.OauthClientUncheckedCreateWithoutContextRequestsInput>
+  connectOrCreate?: Prisma.OauthClientCreateOrConnectWithoutContextRequestsInput
+  connect?: Prisma.OauthClientWhereUniqueInput
+}
+
+export type OauthClientUpdateOneRequiredWithoutContextRequestsNestedInput = {
+  create?: Prisma.XOR<Prisma.OauthClientCreateWithoutContextRequestsInput, Prisma.OauthClientUncheckedCreateWithoutContextRequestsInput>
+  connectOrCreate?: Prisma.OauthClientCreateOrConnectWithoutContextRequestsInput
+  upsert?: Prisma.OauthClientUpsertWithoutContextRequestsInput
+  connect?: Prisma.OauthClientWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OauthClientUpdateToOneWithWhereWithoutContextRequestsInput, Prisma.OauthClientUpdateWithoutContextRequestsInput>, Prisma.OauthClientUncheckedUpdateWithoutContextRequestsInput>
+}
+
+export type OauthClientCreateNestedOneWithoutApiUsageLedgersInput = {
+  create?: Prisma.XOR<Prisma.OauthClientCreateWithoutApiUsageLedgersInput, Prisma.OauthClientUncheckedCreateWithoutApiUsageLedgersInput>
+  connectOrCreate?: Prisma.OauthClientCreateOrConnectWithoutApiUsageLedgersInput
+  connect?: Prisma.OauthClientWhereUniqueInput
+}
+
+export type OauthClientUpdateOneWithoutApiUsageLedgersNestedInput = {
+  create?: Prisma.XOR<Prisma.OauthClientCreateWithoutApiUsageLedgersInput, Prisma.OauthClientUncheckedCreateWithoutApiUsageLedgersInput>
+  connectOrCreate?: Prisma.OauthClientCreateOrConnectWithoutApiUsageLedgersInput
+  upsert?: Prisma.OauthClientUpsertWithoutApiUsageLedgersInput
+  disconnect?: Prisma.OauthClientWhereInput | boolean
+  delete?: Prisma.OauthClientWhereInput | boolean
+  connect?: Prisma.OauthClientWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OauthClientUpdateToOneWithWhereWithoutApiUsageLedgersInput, Prisma.OauthClientUpdateWithoutApiUsageLedgersInput>, Prisma.OauthClientUncheckedUpdateWithoutApiUsageLedgersInput>
 }
 
 export type OauthClientCreateWithoutDeveloperInput = {
@@ -1218,7 +1353,13 @@ export type OauthClientCreateWithoutDeveloperInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutOauthclientInput
   oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutOauthclientInput
   oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutOauthclientInput
-  collectionAccess?: Prisma.AppCollectionAccessCreateNestedManyWithoutOauthClientInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutOauthClientInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutOauthClientInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutOauthClientInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerCreateNestedManyWithoutOauthClientInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOauthClientInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutOauthClientInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutOauthClientInput
 }
 
 export type OauthClientUncheckedCreateWithoutDeveloperInput = {
@@ -1261,7 +1402,13 @@ export type OauthClientUncheckedCreateWithoutDeveloperInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutOauthclientInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutOauthclientInput
   oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutOauthclientInput
-  collectionAccess?: Prisma.AppCollectionAccessUncheckedCreateNestedManyWithoutOauthClientInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutOauthClientInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutOauthClientInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutOauthClientInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedCreateNestedManyWithoutOauthClientInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOauthClientInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutOauthClientInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutOauthClientInput
 }
 
 export type OauthClientCreateOrConnectWithoutDeveloperInput = {
@@ -1332,6 +1479,218 @@ export type OauthClientScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"OauthClient"> | Date | string
 }
 
+export type OauthClientCreateWithoutDeveloperApiKeysInput = {
+  id: string
+  clientId: string
+  clientSecret?: string | null
+  clientDiscoveryId?: string | null
+  disabled?: boolean | null
+  skipConsent?: boolean | null
+  enableEndSession?: boolean | null
+  subjectType?: string | null
+  scopes?: Prisma.OauthClientCreatescopesInput | string[]
+  clientCredentialsScopes?: Prisma.OauthClientCreateclientCredentialsScopesInput | string[]
+  name?: string | null
+  uri?: string | null
+  icon?: string | null
+  contacts?: Prisma.OauthClientCreatecontactsInput | string[]
+  tos?: string | null
+  policy?: string | null
+  softwareId?: string | null
+  softwareVersion?: string | null
+  softwareStatement?: string | null
+  redirectUris?: Prisma.OauthClientCreateredirectUrisInput | string[]
+  postLogoutRedirectUris?: Prisma.OauthClientCreatepostLogoutRedirectUrisInput | string[]
+  backchannelLogoutUri?: string | null
+  backchannelLogoutSessionRequired?: boolean | null
+  tokenEndpointAuthMethod?: string | null
+  applicationType?: string | null
+  jwks?: string | null
+  jwksUri?: string | null
+  grantTypes?: Prisma.OauthClientCreategrantTypesInput | string[]
+  responseTypes?: Prisma.OauthClientCreateresponseTypesInput | string[]
+  requirePKCE?: boolean | null
+  dpopBoundAccessTokens?: boolean | null
+  referenceId?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  developer?: Prisma.UserCreateNestedOneWithoutDevelopedAppsInput
+  oauthclientresources?: Prisma.OauthClientResourceCreateNestedManyWithoutOauthclientInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutOauthclientInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutOauthclientInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutOauthclientInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutOauthClientInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutOauthClientInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerCreateNestedManyWithoutOauthClientInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOauthClientInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutOauthClientInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutOauthClientInput
+}
+
+export type OauthClientUncheckedCreateWithoutDeveloperApiKeysInput = {
+  id: string
+  clientId: string
+  clientSecret?: string | null
+  clientDiscoveryId?: string | null
+  disabled?: boolean | null
+  skipConsent?: boolean | null
+  enableEndSession?: boolean | null
+  subjectType?: string | null
+  scopes?: Prisma.OauthClientCreatescopesInput | string[]
+  clientCredentialsScopes?: Prisma.OauthClientCreateclientCredentialsScopesInput | string[]
+  userId?: string | null
+  name?: string | null
+  uri?: string | null
+  icon?: string | null
+  contacts?: Prisma.OauthClientCreatecontactsInput | string[]
+  tos?: string | null
+  policy?: string | null
+  softwareId?: string | null
+  softwareVersion?: string | null
+  softwareStatement?: string | null
+  redirectUris?: Prisma.OauthClientCreateredirectUrisInput | string[]
+  postLogoutRedirectUris?: Prisma.OauthClientCreatepostLogoutRedirectUrisInput | string[]
+  backchannelLogoutUri?: string | null
+  backchannelLogoutSessionRequired?: boolean | null
+  tokenEndpointAuthMethod?: string | null
+  applicationType?: string | null
+  jwks?: string | null
+  jwksUri?: string | null
+  grantTypes?: Prisma.OauthClientCreategrantTypesInput | string[]
+  responseTypes?: Prisma.OauthClientCreateresponseTypesInput | string[]
+  requirePKCE?: boolean | null
+  dpopBoundAccessTokens?: boolean | null
+  referenceId?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  oauthclientresources?: Prisma.OauthClientResourceUncheckedCreateNestedManyWithoutOauthclientInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutOauthclientInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutOauthclientInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutOauthclientInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutOauthClientInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutOauthClientInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedCreateNestedManyWithoutOauthClientInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOauthClientInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutOauthClientInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutOauthClientInput
+}
+
+export type OauthClientCreateOrConnectWithoutDeveloperApiKeysInput = {
+  where: Prisma.OauthClientWhereUniqueInput
+  create: Prisma.XOR<Prisma.OauthClientCreateWithoutDeveloperApiKeysInput, Prisma.OauthClientUncheckedCreateWithoutDeveloperApiKeysInput>
+}
+
+export type OauthClientUpsertWithoutDeveloperApiKeysInput = {
+  update: Prisma.XOR<Prisma.OauthClientUpdateWithoutDeveloperApiKeysInput, Prisma.OauthClientUncheckedUpdateWithoutDeveloperApiKeysInput>
+  create: Prisma.XOR<Prisma.OauthClientCreateWithoutDeveloperApiKeysInput, Prisma.OauthClientUncheckedCreateWithoutDeveloperApiKeysInput>
+  where?: Prisma.OauthClientWhereInput
+}
+
+export type OauthClientUpdateToOneWithWhereWithoutDeveloperApiKeysInput = {
+  where?: Prisma.OauthClientWhereInput
+  data: Prisma.XOR<Prisma.OauthClientUpdateWithoutDeveloperApiKeysInput, Prisma.OauthClientUncheckedUpdateWithoutDeveloperApiKeysInput>
+}
+
+export type OauthClientUpdateWithoutDeveloperApiKeysInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clientDiscoveryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  skipConsent?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  enableEndSession?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  subjectType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scopes?: Prisma.OauthClientUpdatescopesInput | string[]
+  clientCredentialsScopes?: Prisma.OauthClientUpdateclientCredentialsScopesInput | string[]
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contacts?: Prisma.OauthClientUpdatecontactsInput | string[]
+  tos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  policy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareStatement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  redirectUris?: Prisma.OauthClientUpdateredirectUrisInput | string[]
+  postLogoutRedirectUris?: Prisma.OauthClientUpdatepostLogoutRedirectUrisInput | string[]
+  backchannelLogoutUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  backchannelLogoutSessionRequired?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  tokenEndpointAuthMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jwks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jwksUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grantTypes?: Prisma.OauthClientUpdategrantTypesInput | string[]
+  responseTypes?: Prisma.OauthClientUpdateresponseTypesInput | string[]
+  requirePKCE?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  dpopBoundAccessTokens?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  referenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  developer?: Prisma.UserUpdateOneWithoutDevelopedAppsNestedInput
+  oauthclientresources?: Prisma.OauthClientResourceUpdateManyWithoutOauthclientNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutOauthclientNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutOauthclientNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutOauthclientNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutOauthClientNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutOauthClientNestedInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUpdateManyWithoutOauthClientNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutOauthClientNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutOauthClientNestedInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutOauthClientNestedInput
+}
+
+export type OauthClientUncheckedUpdateWithoutDeveloperApiKeysInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clientDiscoveryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  skipConsent?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  enableEndSession?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  subjectType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scopes?: Prisma.OauthClientUpdatescopesInput | string[]
+  clientCredentialsScopes?: Prisma.OauthClientUpdateclientCredentialsScopesInput | string[]
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contacts?: Prisma.OauthClientUpdatecontactsInput | string[]
+  tos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  policy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareStatement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  redirectUris?: Prisma.OauthClientUpdateredirectUrisInput | string[]
+  postLogoutRedirectUris?: Prisma.OauthClientUpdatepostLogoutRedirectUrisInput | string[]
+  backchannelLogoutUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  backchannelLogoutSessionRequired?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  tokenEndpointAuthMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jwks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jwksUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grantTypes?: Prisma.OauthClientUpdategrantTypesInput | string[]
+  responseTypes?: Prisma.OauthClientUpdateresponseTypesInput | string[]
+  requirePKCE?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  dpopBoundAccessTokens?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  referenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  oauthclientresources?: Prisma.OauthClientResourceUncheckedUpdateManyWithoutOauthclientNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutOauthclientNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutOauthclientNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutOauthclientNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutOauthClientNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutOauthClientNestedInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedUpdateManyWithoutOauthClientNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOauthClientNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutOauthClientNestedInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutOauthClientNestedInput
+}
+
 export type OauthClientCreateWithoutOauthclientresourcesInput = {
   id: string
   clientId: string
@@ -1372,7 +1731,13 @@ export type OauthClientCreateWithoutOauthclientresourcesInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutOauthclientInput
   oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutOauthclientInput
   oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutOauthclientInput
-  collectionAccess?: Prisma.AppCollectionAccessCreateNestedManyWithoutOauthClientInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutOauthClientInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutOauthClientInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutOauthClientInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerCreateNestedManyWithoutOauthClientInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOauthClientInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutOauthClientInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutOauthClientInput
 }
 
 export type OauthClientUncheckedCreateWithoutOauthclientresourcesInput = {
@@ -1415,7 +1780,13 @@ export type OauthClientUncheckedCreateWithoutOauthclientresourcesInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutOauthclientInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutOauthclientInput
   oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutOauthclientInput
-  collectionAccess?: Prisma.AppCollectionAccessUncheckedCreateNestedManyWithoutOauthClientInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutOauthClientInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutOauthClientInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutOauthClientInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedCreateNestedManyWithoutOauthClientInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOauthClientInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutOauthClientInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutOauthClientInput
 }
 
 export type OauthClientCreateOrConnectWithoutOauthclientresourcesInput = {
@@ -1474,7 +1845,13 @@ export type OauthClientUpdateWithoutOauthclientresourcesInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutOauthclientNestedInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutOauthclientNestedInput
   oauthconsents?: Prisma.OauthConsentUpdateManyWithoutOauthclientNestedInput
-  collectionAccess?: Prisma.AppCollectionAccessUpdateManyWithoutOauthClientNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutOauthClientNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutOauthClientNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutOauthClientNestedInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUpdateManyWithoutOauthClientNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutOauthClientNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutOauthClientNestedInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutOauthClientNestedInput
 }
 
 export type OauthClientUncheckedUpdateWithoutOauthclientresourcesInput = {
@@ -1517,7 +1894,13 @@ export type OauthClientUncheckedUpdateWithoutOauthclientresourcesInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutOauthclientNestedInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutOauthclientNestedInput
   oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutOauthclientNestedInput
-  collectionAccess?: Prisma.AppCollectionAccessUncheckedUpdateManyWithoutOauthClientNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutOauthClientNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutOauthClientNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutOauthClientNestedInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedUpdateManyWithoutOauthClientNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOauthClientNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutOauthClientNestedInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutOauthClientNestedInput
 }
 
 export type OauthClientCreateWithoutOauthrefreshtokensInput = {
@@ -1560,7 +1943,13 @@ export type OauthClientCreateWithoutOauthrefreshtokensInput = {
   oauthclientresources?: Prisma.OauthClientResourceCreateNestedManyWithoutOauthclientInput
   oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutOauthclientInput
   oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutOauthclientInput
-  collectionAccess?: Prisma.AppCollectionAccessCreateNestedManyWithoutOauthClientInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutOauthClientInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutOauthClientInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutOauthClientInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerCreateNestedManyWithoutOauthClientInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOauthClientInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutOauthClientInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutOauthClientInput
 }
 
 export type OauthClientUncheckedCreateWithoutOauthrefreshtokensInput = {
@@ -1603,7 +1992,13 @@ export type OauthClientUncheckedCreateWithoutOauthrefreshtokensInput = {
   oauthclientresources?: Prisma.OauthClientResourceUncheckedCreateNestedManyWithoutOauthclientInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutOauthclientInput
   oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutOauthclientInput
-  collectionAccess?: Prisma.AppCollectionAccessUncheckedCreateNestedManyWithoutOauthClientInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutOauthClientInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutOauthClientInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutOauthClientInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedCreateNestedManyWithoutOauthClientInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOauthClientInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutOauthClientInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutOauthClientInput
 }
 
 export type OauthClientCreateOrConnectWithoutOauthrefreshtokensInput = {
@@ -1662,7 +2057,13 @@ export type OauthClientUpdateWithoutOauthrefreshtokensInput = {
   oauthclientresources?: Prisma.OauthClientResourceUpdateManyWithoutOauthclientNestedInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutOauthclientNestedInput
   oauthconsents?: Prisma.OauthConsentUpdateManyWithoutOauthclientNestedInput
-  collectionAccess?: Prisma.AppCollectionAccessUpdateManyWithoutOauthClientNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutOauthClientNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutOauthClientNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutOauthClientNestedInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUpdateManyWithoutOauthClientNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutOauthClientNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutOauthClientNestedInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutOauthClientNestedInput
 }
 
 export type OauthClientUncheckedUpdateWithoutOauthrefreshtokensInput = {
@@ -1705,7 +2106,13 @@ export type OauthClientUncheckedUpdateWithoutOauthrefreshtokensInput = {
   oauthclientresources?: Prisma.OauthClientResourceUncheckedUpdateManyWithoutOauthclientNestedInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutOauthclientNestedInput
   oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutOauthclientNestedInput
-  collectionAccess?: Prisma.AppCollectionAccessUncheckedUpdateManyWithoutOauthClientNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutOauthClientNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutOauthClientNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutOauthClientNestedInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedUpdateManyWithoutOauthClientNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOauthClientNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutOauthClientNestedInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutOauthClientNestedInput
 }
 
 export type OauthClientCreateWithoutOauthaccesstokensInput = {
@@ -1748,7 +2155,13 @@ export type OauthClientCreateWithoutOauthaccesstokensInput = {
   oauthclientresources?: Prisma.OauthClientResourceCreateNestedManyWithoutOauthclientInput
   oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutOauthclientInput
   oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutOauthclientInput
-  collectionAccess?: Prisma.AppCollectionAccessCreateNestedManyWithoutOauthClientInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutOauthClientInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutOauthClientInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutOauthClientInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerCreateNestedManyWithoutOauthClientInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOauthClientInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutOauthClientInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutOauthClientInput
 }
 
 export type OauthClientUncheckedCreateWithoutOauthaccesstokensInput = {
@@ -1791,7 +2204,13 @@ export type OauthClientUncheckedCreateWithoutOauthaccesstokensInput = {
   oauthclientresources?: Prisma.OauthClientResourceUncheckedCreateNestedManyWithoutOauthclientInput
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutOauthclientInput
   oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutOauthclientInput
-  collectionAccess?: Prisma.AppCollectionAccessUncheckedCreateNestedManyWithoutOauthClientInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutOauthClientInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutOauthClientInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutOauthClientInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedCreateNestedManyWithoutOauthClientInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOauthClientInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutOauthClientInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutOauthClientInput
 }
 
 export type OauthClientCreateOrConnectWithoutOauthaccesstokensInput = {
@@ -1850,7 +2269,13 @@ export type OauthClientUpdateWithoutOauthaccesstokensInput = {
   oauthclientresources?: Prisma.OauthClientResourceUpdateManyWithoutOauthclientNestedInput
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutOauthclientNestedInput
   oauthconsents?: Prisma.OauthConsentUpdateManyWithoutOauthclientNestedInput
-  collectionAccess?: Prisma.AppCollectionAccessUpdateManyWithoutOauthClientNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutOauthClientNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutOauthClientNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutOauthClientNestedInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUpdateManyWithoutOauthClientNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutOauthClientNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutOauthClientNestedInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutOauthClientNestedInput
 }
 
 export type OauthClientUncheckedUpdateWithoutOauthaccesstokensInput = {
@@ -1893,7 +2318,13 @@ export type OauthClientUncheckedUpdateWithoutOauthaccesstokensInput = {
   oauthclientresources?: Prisma.OauthClientResourceUncheckedUpdateManyWithoutOauthclientNestedInput
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutOauthclientNestedInput
   oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutOauthclientNestedInput
-  collectionAccess?: Prisma.AppCollectionAccessUncheckedUpdateManyWithoutOauthClientNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutOauthClientNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutOauthClientNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutOauthClientNestedInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedUpdateManyWithoutOauthClientNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOauthClientNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutOauthClientNestedInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutOauthClientNestedInput
 }
 
 export type OauthClientCreateWithoutOauthconsentsInput = {
@@ -1936,7 +2367,13 @@ export type OauthClientCreateWithoutOauthconsentsInput = {
   oauthclientresources?: Prisma.OauthClientResourceCreateNestedManyWithoutOauthclientInput
   oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutOauthclientInput
   oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutOauthclientInput
-  collectionAccess?: Prisma.AppCollectionAccessCreateNestedManyWithoutOauthClientInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutOauthClientInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutOauthClientInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutOauthClientInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerCreateNestedManyWithoutOauthClientInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOauthClientInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutOauthClientInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutOauthClientInput
 }
 
 export type OauthClientUncheckedCreateWithoutOauthconsentsInput = {
@@ -1979,7 +2416,13 @@ export type OauthClientUncheckedCreateWithoutOauthconsentsInput = {
   oauthclientresources?: Prisma.OauthClientResourceUncheckedCreateNestedManyWithoutOauthclientInput
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutOauthclientInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutOauthclientInput
-  collectionAccess?: Prisma.AppCollectionAccessUncheckedCreateNestedManyWithoutOauthClientInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutOauthClientInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutOauthClientInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutOauthClientInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedCreateNestedManyWithoutOauthClientInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOauthClientInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutOauthClientInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutOauthClientInput
 }
 
 export type OauthClientCreateOrConnectWithoutOauthconsentsInput = {
@@ -2038,7 +2481,13 @@ export type OauthClientUpdateWithoutOauthconsentsInput = {
   oauthclientresources?: Prisma.OauthClientResourceUpdateManyWithoutOauthclientNestedInput
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutOauthclientNestedInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutOauthclientNestedInput
-  collectionAccess?: Prisma.AppCollectionAccessUpdateManyWithoutOauthClientNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutOauthClientNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutOauthClientNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutOauthClientNestedInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUpdateManyWithoutOauthClientNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutOauthClientNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutOauthClientNestedInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutOauthClientNestedInput
 }
 
 export type OauthClientUncheckedUpdateWithoutOauthconsentsInput = {
@@ -2081,10 +2530,16 @@ export type OauthClientUncheckedUpdateWithoutOauthconsentsInput = {
   oauthclientresources?: Prisma.OauthClientResourceUncheckedUpdateManyWithoutOauthclientNestedInput
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutOauthclientNestedInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutOauthclientNestedInput
-  collectionAccess?: Prisma.AppCollectionAccessUncheckedUpdateManyWithoutOauthClientNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutOauthClientNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutOauthClientNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutOauthClientNestedInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedUpdateManyWithoutOauthClientNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOauthClientNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutOauthClientNestedInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutOauthClientNestedInput
 }
 
-export type OauthClientCreateWithoutCollectionAccessInput = {
+export type OauthClientCreateWithoutAppMemoriesInput = {
   id: string
   clientId: string
   clientSecret?: string | null
@@ -2125,9 +2580,15 @@ export type OauthClientCreateWithoutCollectionAccessInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutOauthclientInput
   oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutOauthclientInput
   oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutOauthclientInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutOauthClientInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutOauthClientInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerCreateNestedManyWithoutOauthClientInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOauthClientInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutOauthClientInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutOauthClientInput
 }
 
-export type OauthClientUncheckedCreateWithoutCollectionAccessInput = {
+export type OauthClientUncheckedCreateWithoutAppMemoriesInput = {
   id: string
   clientId: string
   clientSecret?: string | null
@@ -2168,25 +2629,31 @@ export type OauthClientUncheckedCreateWithoutCollectionAccessInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutOauthclientInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutOauthclientInput
   oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutOauthclientInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutOauthClientInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutOauthClientInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedCreateNestedManyWithoutOauthClientInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOauthClientInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutOauthClientInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutOauthClientInput
 }
 
-export type OauthClientCreateOrConnectWithoutCollectionAccessInput = {
+export type OauthClientCreateOrConnectWithoutAppMemoriesInput = {
   where: Prisma.OauthClientWhereUniqueInput
-  create: Prisma.XOR<Prisma.OauthClientCreateWithoutCollectionAccessInput, Prisma.OauthClientUncheckedCreateWithoutCollectionAccessInput>
+  create: Prisma.XOR<Prisma.OauthClientCreateWithoutAppMemoriesInput, Prisma.OauthClientUncheckedCreateWithoutAppMemoriesInput>
 }
 
-export type OauthClientUpsertWithoutCollectionAccessInput = {
-  update: Prisma.XOR<Prisma.OauthClientUpdateWithoutCollectionAccessInput, Prisma.OauthClientUncheckedUpdateWithoutCollectionAccessInput>
-  create: Prisma.XOR<Prisma.OauthClientCreateWithoutCollectionAccessInput, Prisma.OauthClientUncheckedCreateWithoutCollectionAccessInput>
+export type OauthClientUpsertWithoutAppMemoriesInput = {
+  update: Prisma.XOR<Prisma.OauthClientUpdateWithoutAppMemoriesInput, Prisma.OauthClientUncheckedUpdateWithoutAppMemoriesInput>
+  create: Prisma.XOR<Prisma.OauthClientCreateWithoutAppMemoriesInput, Prisma.OauthClientUncheckedCreateWithoutAppMemoriesInput>
   where?: Prisma.OauthClientWhereInput
 }
 
-export type OauthClientUpdateToOneWithWhereWithoutCollectionAccessInput = {
+export type OauthClientUpdateToOneWithWhereWithoutAppMemoriesInput = {
   where?: Prisma.OauthClientWhereInput
-  data: Prisma.XOR<Prisma.OauthClientUpdateWithoutCollectionAccessInput, Prisma.OauthClientUncheckedUpdateWithoutCollectionAccessInput>
+  data: Prisma.XOR<Prisma.OauthClientUpdateWithoutAppMemoriesInput, Prisma.OauthClientUncheckedUpdateWithoutAppMemoriesInput>
 }
 
-export type OauthClientUpdateWithoutCollectionAccessInput = {
+export type OauthClientUpdateWithoutAppMemoriesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   clientId?: Prisma.StringFieldUpdateOperationsInput | string
   clientSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2227,9 +2694,15 @@ export type OauthClientUpdateWithoutCollectionAccessInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutOauthclientNestedInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutOauthclientNestedInput
   oauthconsents?: Prisma.OauthConsentUpdateManyWithoutOauthclientNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutOauthClientNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutOauthClientNestedInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUpdateManyWithoutOauthClientNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutOauthClientNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutOauthClientNestedInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutOauthClientNestedInput
 }
 
-export type OauthClientUncheckedUpdateWithoutCollectionAccessInput = {
+export type OauthClientUncheckedUpdateWithoutAppMemoriesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   clientId?: Prisma.StringFieldUpdateOperationsInput | string
   clientSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2270,6 +2743,1072 @@ export type OauthClientUncheckedUpdateWithoutCollectionAccessInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutOauthclientNestedInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutOauthclientNestedInput
   oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutOauthclientNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutOauthClientNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutOauthClientNestedInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedUpdateManyWithoutOauthClientNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOauthClientNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutOauthClientNestedInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutOauthClientNestedInput
+}
+
+export type OauthClientCreateWithoutAppMemoryUsageLedgersInput = {
+  id: string
+  clientId: string
+  clientSecret?: string | null
+  clientDiscoveryId?: string | null
+  disabled?: boolean | null
+  skipConsent?: boolean | null
+  enableEndSession?: boolean | null
+  subjectType?: string | null
+  scopes?: Prisma.OauthClientCreatescopesInput | string[]
+  clientCredentialsScopes?: Prisma.OauthClientCreateclientCredentialsScopesInput | string[]
+  name?: string | null
+  uri?: string | null
+  icon?: string | null
+  contacts?: Prisma.OauthClientCreatecontactsInput | string[]
+  tos?: string | null
+  policy?: string | null
+  softwareId?: string | null
+  softwareVersion?: string | null
+  softwareStatement?: string | null
+  redirectUris?: Prisma.OauthClientCreateredirectUrisInput | string[]
+  postLogoutRedirectUris?: Prisma.OauthClientCreatepostLogoutRedirectUrisInput | string[]
+  backchannelLogoutUri?: string | null
+  backchannelLogoutSessionRequired?: boolean | null
+  tokenEndpointAuthMethod?: string | null
+  applicationType?: string | null
+  jwks?: string | null
+  jwksUri?: string | null
+  grantTypes?: Prisma.OauthClientCreategrantTypesInput | string[]
+  responseTypes?: Prisma.OauthClientCreateresponseTypesInput | string[]
+  requirePKCE?: boolean | null
+  dpopBoundAccessTokens?: boolean | null
+  referenceId?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  developer?: Prisma.UserCreateNestedOneWithoutDevelopedAppsInput
+  oauthclientresources?: Prisma.OauthClientResourceCreateNestedManyWithoutOauthclientInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutOauthclientInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutOauthclientInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutOauthclientInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutOauthClientInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutOauthClientInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutOauthClientInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOauthClientInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutOauthClientInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutOauthClientInput
+}
+
+export type OauthClientUncheckedCreateWithoutAppMemoryUsageLedgersInput = {
+  id: string
+  clientId: string
+  clientSecret?: string | null
+  clientDiscoveryId?: string | null
+  disabled?: boolean | null
+  skipConsent?: boolean | null
+  enableEndSession?: boolean | null
+  subjectType?: string | null
+  scopes?: Prisma.OauthClientCreatescopesInput | string[]
+  clientCredentialsScopes?: Prisma.OauthClientCreateclientCredentialsScopesInput | string[]
+  userId?: string | null
+  name?: string | null
+  uri?: string | null
+  icon?: string | null
+  contacts?: Prisma.OauthClientCreatecontactsInput | string[]
+  tos?: string | null
+  policy?: string | null
+  softwareId?: string | null
+  softwareVersion?: string | null
+  softwareStatement?: string | null
+  redirectUris?: Prisma.OauthClientCreateredirectUrisInput | string[]
+  postLogoutRedirectUris?: Prisma.OauthClientCreatepostLogoutRedirectUrisInput | string[]
+  backchannelLogoutUri?: string | null
+  backchannelLogoutSessionRequired?: boolean | null
+  tokenEndpointAuthMethod?: string | null
+  applicationType?: string | null
+  jwks?: string | null
+  jwksUri?: string | null
+  grantTypes?: Prisma.OauthClientCreategrantTypesInput | string[]
+  responseTypes?: Prisma.OauthClientCreateresponseTypesInput | string[]
+  requirePKCE?: boolean | null
+  dpopBoundAccessTokens?: boolean | null
+  referenceId?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  oauthclientresources?: Prisma.OauthClientResourceUncheckedCreateNestedManyWithoutOauthclientInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutOauthclientInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutOauthclientInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutOauthclientInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutOauthClientInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutOauthClientInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutOauthClientInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOauthClientInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutOauthClientInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutOauthClientInput
+}
+
+export type OauthClientCreateOrConnectWithoutAppMemoryUsageLedgersInput = {
+  where: Prisma.OauthClientWhereUniqueInput
+  create: Prisma.XOR<Prisma.OauthClientCreateWithoutAppMemoryUsageLedgersInput, Prisma.OauthClientUncheckedCreateWithoutAppMemoryUsageLedgersInput>
+}
+
+export type OauthClientUpsertWithoutAppMemoryUsageLedgersInput = {
+  update: Prisma.XOR<Prisma.OauthClientUpdateWithoutAppMemoryUsageLedgersInput, Prisma.OauthClientUncheckedUpdateWithoutAppMemoryUsageLedgersInput>
+  create: Prisma.XOR<Prisma.OauthClientCreateWithoutAppMemoryUsageLedgersInput, Prisma.OauthClientUncheckedCreateWithoutAppMemoryUsageLedgersInput>
+  where?: Prisma.OauthClientWhereInput
+}
+
+export type OauthClientUpdateToOneWithWhereWithoutAppMemoryUsageLedgersInput = {
+  where?: Prisma.OauthClientWhereInput
+  data: Prisma.XOR<Prisma.OauthClientUpdateWithoutAppMemoryUsageLedgersInput, Prisma.OauthClientUncheckedUpdateWithoutAppMemoryUsageLedgersInput>
+}
+
+export type OauthClientUpdateWithoutAppMemoryUsageLedgersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clientDiscoveryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  skipConsent?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  enableEndSession?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  subjectType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scopes?: Prisma.OauthClientUpdatescopesInput | string[]
+  clientCredentialsScopes?: Prisma.OauthClientUpdateclientCredentialsScopesInput | string[]
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contacts?: Prisma.OauthClientUpdatecontactsInput | string[]
+  tos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  policy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareStatement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  redirectUris?: Prisma.OauthClientUpdateredirectUrisInput | string[]
+  postLogoutRedirectUris?: Prisma.OauthClientUpdatepostLogoutRedirectUrisInput | string[]
+  backchannelLogoutUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  backchannelLogoutSessionRequired?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  tokenEndpointAuthMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jwks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jwksUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grantTypes?: Prisma.OauthClientUpdategrantTypesInput | string[]
+  responseTypes?: Prisma.OauthClientUpdateresponseTypesInput | string[]
+  requirePKCE?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  dpopBoundAccessTokens?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  referenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  developer?: Prisma.UserUpdateOneWithoutDevelopedAppsNestedInput
+  oauthclientresources?: Prisma.OauthClientResourceUpdateManyWithoutOauthclientNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutOauthclientNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutOauthclientNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutOauthclientNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutOauthClientNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutOauthClientNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutOauthClientNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutOauthClientNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutOauthClientNestedInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutOauthClientNestedInput
+}
+
+export type OauthClientUncheckedUpdateWithoutAppMemoryUsageLedgersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clientDiscoveryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  skipConsent?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  enableEndSession?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  subjectType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scopes?: Prisma.OauthClientUpdatescopesInput | string[]
+  clientCredentialsScopes?: Prisma.OauthClientUpdateclientCredentialsScopesInput | string[]
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contacts?: Prisma.OauthClientUpdatecontactsInput | string[]
+  tos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  policy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareStatement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  redirectUris?: Prisma.OauthClientUpdateredirectUrisInput | string[]
+  postLogoutRedirectUris?: Prisma.OauthClientUpdatepostLogoutRedirectUrisInput | string[]
+  backchannelLogoutUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  backchannelLogoutSessionRequired?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  tokenEndpointAuthMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jwks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jwksUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grantTypes?: Prisma.OauthClientUpdategrantTypesInput | string[]
+  responseTypes?: Prisma.OauthClientUpdateresponseTypesInput | string[]
+  requirePKCE?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  dpopBoundAccessTokens?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  referenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  oauthclientresources?: Prisma.OauthClientResourceUncheckedUpdateManyWithoutOauthclientNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutOauthclientNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutOauthclientNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutOauthclientNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutOauthClientNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutOauthClientNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutOauthClientNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOauthClientNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutOauthClientNestedInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutOauthClientNestedInput
+}
+
+export type OauthClientCreateWithoutAccessGrantsInput = {
+  id: string
+  clientId: string
+  clientSecret?: string | null
+  clientDiscoveryId?: string | null
+  disabled?: boolean | null
+  skipConsent?: boolean | null
+  enableEndSession?: boolean | null
+  subjectType?: string | null
+  scopes?: Prisma.OauthClientCreatescopesInput | string[]
+  clientCredentialsScopes?: Prisma.OauthClientCreateclientCredentialsScopesInput | string[]
+  name?: string | null
+  uri?: string | null
+  icon?: string | null
+  contacts?: Prisma.OauthClientCreatecontactsInput | string[]
+  tos?: string | null
+  policy?: string | null
+  softwareId?: string | null
+  softwareVersion?: string | null
+  softwareStatement?: string | null
+  redirectUris?: Prisma.OauthClientCreateredirectUrisInput | string[]
+  postLogoutRedirectUris?: Prisma.OauthClientCreatepostLogoutRedirectUrisInput | string[]
+  backchannelLogoutUri?: string | null
+  backchannelLogoutSessionRequired?: boolean | null
+  tokenEndpointAuthMethod?: string | null
+  applicationType?: string | null
+  jwks?: string | null
+  jwksUri?: string | null
+  grantTypes?: Prisma.OauthClientCreategrantTypesInput | string[]
+  responseTypes?: Prisma.OauthClientCreateresponseTypesInput | string[]
+  requirePKCE?: boolean | null
+  dpopBoundAccessTokens?: boolean | null
+  referenceId?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  developer?: Prisma.UserCreateNestedOneWithoutDevelopedAppsInput
+  oauthclientresources?: Prisma.OauthClientResourceCreateNestedManyWithoutOauthclientInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutOauthclientInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutOauthclientInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutOauthclientInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutOauthClientInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutOauthClientInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerCreateNestedManyWithoutOauthClientInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOauthClientInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutOauthClientInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutOauthClientInput
+}
+
+export type OauthClientUncheckedCreateWithoutAccessGrantsInput = {
+  id: string
+  clientId: string
+  clientSecret?: string | null
+  clientDiscoveryId?: string | null
+  disabled?: boolean | null
+  skipConsent?: boolean | null
+  enableEndSession?: boolean | null
+  subjectType?: string | null
+  scopes?: Prisma.OauthClientCreatescopesInput | string[]
+  clientCredentialsScopes?: Prisma.OauthClientCreateclientCredentialsScopesInput | string[]
+  userId?: string | null
+  name?: string | null
+  uri?: string | null
+  icon?: string | null
+  contacts?: Prisma.OauthClientCreatecontactsInput | string[]
+  tos?: string | null
+  policy?: string | null
+  softwareId?: string | null
+  softwareVersion?: string | null
+  softwareStatement?: string | null
+  redirectUris?: Prisma.OauthClientCreateredirectUrisInput | string[]
+  postLogoutRedirectUris?: Prisma.OauthClientCreatepostLogoutRedirectUrisInput | string[]
+  backchannelLogoutUri?: string | null
+  backchannelLogoutSessionRequired?: boolean | null
+  tokenEndpointAuthMethod?: string | null
+  applicationType?: string | null
+  jwks?: string | null
+  jwksUri?: string | null
+  grantTypes?: Prisma.OauthClientCreategrantTypesInput | string[]
+  responseTypes?: Prisma.OauthClientCreateresponseTypesInput | string[]
+  requirePKCE?: boolean | null
+  dpopBoundAccessTokens?: boolean | null
+  referenceId?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  oauthclientresources?: Prisma.OauthClientResourceUncheckedCreateNestedManyWithoutOauthclientInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutOauthclientInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutOauthclientInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutOauthclientInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutOauthClientInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutOauthClientInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedCreateNestedManyWithoutOauthClientInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOauthClientInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutOauthClientInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutOauthClientInput
+}
+
+export type OauthClientCreateOrConnectWithoutAccessGrantsInput = {
+  where: Prisma.OauthClientWhereUniqueInput
+  create: Prisma.XOR<Prisma.OauthClientCreateWithoutAccessGrantsInput, Prisma.OauthClientUncheckedCreateWithoutAccessGrantsInput>
+}
+
+export type OauthClientUpsertWithoutAccessGrantsInput = {
+  update: Prisma.XOR<Prisma.OauthClientUpdateWithoutAccessGrantsInput, Prisma.OauthClientUncheckedUpdateWithoutAccessGrantsInput>
+  create: Prisma.XOR<Prisma.OauthClientCreateWithoutAccessGrantsInput, Prisma.OauthClientUncheckedCreateWithoutAccessGrantsInput>
+  where?: Prisma.OauthClientWhereInput
+}
+
+export type OauthClientUpdateToOneWithWhereWithoutAccessGrantsInput = {
+  where?: Prisma.OauthClientWhereInput
+  data: Prisma.XOR<Prisma.OauthClientUpdateWithoutAccessGrantsInput, Prisma.OauthClientUncheckedUpdateWithoutAccessGrantsInput>
+}
+
+export type OauthClientUpdateWithoutAccessGrantsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clientDiscoveryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  skipConsent?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  enableEndSession?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  subjectType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scopes?: Prisma.OauthClientUpdatescopesInput | string[]
+  clientCredentialsScopes?: Prisma.OauthClientUpdateclientCredentialsScopesInput | string[]
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contacts?: Prisma.OauthClientUpdatecontactsInput | string[]
+  tos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  policy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareStatement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  redirectUris?: Prisma.OauthClientUpdateredirectUrisInput | string[]
+  postLogoutRedirectUris?: Prisma.OauthClientUpdatepostLogoutRedirectUrisInput | string[]
+  backchannelLogoutUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  backchannelLogoutSessionRequired?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  tokenEndpointAuthMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jwks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jwksUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grantTypes?: Prisma.OauthClientUpdategrantTypesInput | string[]
+  responseTypes?: Prisma.OauthClientUpdateresponseTypesInput | string[]
+  requirePKCE?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  dpopBoundAccessTokens?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  referenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  developer?: Prisma.UserUpdateOneWithoutDevelopedAppsNestedInput
+  oauthclientresources?: Prisma.OauthClientResourceUpdateManyWithoutOauthclientNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutOauthclientNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutOauthclientNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutOauthclientNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutOauthClientNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutOauthClientNestedInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUpdateManyWithoutOauthClientNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutOauthClientNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutOauthClientNestedInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutOauthClientNestedInput
+}
+
+export type OauthClientUncheckedUpdateWithoutAccessGrantsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clientDiscoveryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  skipConsent?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  enableEndSession?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  subjectType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scopes?: Prisma.OauthClientUpdatescopesInput | string[]
+  clientCredentialsScopes?: Prisma.OauthClientUpdateclientCredentialsScopesInput | string[]
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contacts?: Prisma.OauthClientUpdatecontactsInput | string[]
+  tos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  policy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareStatement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  redirectUris?: Prisma.OauthClientUpdateredirectUrisInput | string[]
+  postLogoutRedirectUris?: Prisma.OauthClientUpdatepostLogoutRedirectUrisInput | string[]
+  backchannelLogoutUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  backchannelLogoutSessionRequired?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  tokenEndpointAuthMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jwks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jwksUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grantTypes?: Prisma.OauthClientUpdategrantTypesInput | string[]
+  responseTypes?: Prisma.OauthClientUpdateresponseTypesInput | string[]
+  requirePKCE?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  dpopBoundAccessTokens?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  referenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  oauthclientresources?: Prisma.OauthClientResourceUncheckedUpdateManyWithoutOauthclientNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutOauthclientNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutOauthclientNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutOauthclientNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutOauthClientNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutOauthClientNestedInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedUpdateManyWithoutOauthClientNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOauthClientNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutOauthClientNestedInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutOauthClientNestedInput
+}
+
+export type OauthClientCreateWithoutAccessRequestsInput = {
+  id: string
+  clientId: string
+  clientSecret?: string | null
+  clientDiscoveryId?: string | null
+  disabled?: boolean | null
+  skipConsent?: boolean | null
+  enableEndSession?: boolean | null
+  subjectType?: string | null
+  scopes?: Prisma.OauthClientCreatescopesInput | string[]
+  clientCredentialsScopes?: Prisma.OauthClientCreateclientCredentialsScopesInput | string[]
+  name?: string | null
+  uri?: string | null
+  icon?: string | null
+  contacts?: Prisma.OauthClientCreatecontactsInput | string[]
+  tos?: string | null
+  policy?: string | null
+  softwareId?: string | null
+  softwareVersion?: string | null
+  softwareStatement?: string | null
+  redirectUris?: Prisma.OauthClientCreateredirectUrisInput | string[]
+  postLogoutRedirectUris?: Prisma.OauthClientCreatepostLogoutRedirectUrisInput | string[]
+  backchannelLogoutUri?: string | null
+  backchannelLogoutSessionRequired?: boolean | null
+  tokenEndpointAuthMethod?: string | null
+  applicationType?: string | null
+  jwks?: string | null
+  jwksUri?: string | null
+  grantTypes?: Prisma.OauthClientCreategrantTypesInput | string[]
+  responseTypes?: Prisma.OauthClientCreateresponseTypesInput | string[]
+  requirePKCE?: boolean | null
+  dpopBoundAccessTokens?: boolean | null
+  referenceId?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  developer?: Prisma.UserCreateNestedOneWithoutDevelopedAppsInput
+  oauthclientresources?: Prisma.OauthClientResourceCreateNestedManyWithoutOauthclientInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutOauthclientInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutOauthclientInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutOauthclientInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutOauthClientInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutOauthClientInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutOauthClientInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerCreateNestedManyWithoutOauthClientInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutOauthClientInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutOauthClientInput
+}
+
+export type OauthClientUncheckedCreateWithoutAccessRequestsInput = {
+  id: string
+  clientId: string
+  clientSecret?: string | null
+  clientDiscoveryId?: string | null
+  disabled?: boolean | null
+  skipConsent?: boolean | null
+  enableEndSession?: boolean | null
+  subjectType?: string | null
+  scopes?: Prisma.OauthClientCreatescopesInput | string[]
+  clientCredentialsScopes?: Prisma.OauthClientCreateclientCredentialsScopesInput | string[]
+  userId?: string | null
+  name?: string | null
+  uri?: string | null
+  icon?: string | null
+  contacts?: Prisma.OauthClientCreatecontactsInput | string[]
+  tos?: string | null
+  policy?: string | null
+  softwareId?: string | null
+  softwareVersion?: string | null
+  softwareStatement?: string | null
+  redirectUris?: Prisma.OauthClientCreateredirectUrisInput | string[]
+  postLogoutRedirectUris?: Prisma.OauthClientCreatepostLogoutRedirectUrisInput | string[]
+  backchannelLogoutUri?: string | null
+  backchannelLogoutSessionRequired?: boolean | null
+  tokenEndpointAuthMethod?: string | null
+  applicationType?: string | null
+  jwks?: string | null
+  jwksUri?: string | null
+  grantTypes?: Prisma.OauthClientCreategrantTypesInput | string[]
+  responseTypes?: Prisma.OauthClientCreateresponseTypesInput | string[]
+  requirePKCE?: boolean | null
+  dpopBoundAccessTokens?: boolean | null
+  referenceId?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  oauthclientresources?: Prisma.OauthClientResourceUncheckedCreateNestedManyWithoutOauthclientInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutOauthclientInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutOauthclientInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutOauthclientInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutOauthClientInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutOauthClientInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutOauthClientInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedCreateNestedManyWithoutOauthClientInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutOauthClientInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutOauthClientInput
+}
+
+export type OauthClientCreateOrConnectWithoutAccessRequestsInput = {
+  where: Prisma.OauthClientWhereUniqueInput
+  create: Prisma.XOR<Prisma.OauthClientCreateWithoutAccessRequestsInput, Prisma.OauthClientUncheckedCreateWithoutAccessRequestsInput>
+}
+
+export type OauthClientUpsertWithoutAccessRequestsInput = {
+  update: Prisma.XOR<Prisma.OauthClientUpdateWithoutAccessRequestsInput, Prisma.OauthClientUncheckedUpdateWithoutAccessRequestsInput>
+  create: Prisma.XOR<Prisma.OauthClientCreateWithoutAccessRequestsInput, Prisma.OauthClientUncheckedCreateWithoutAccessRequestsInput>
+  where?: Prisma.OauthClientWhereInput
+}
+
+export type OauthClientUpdateToOneWithWhereWithoutAccessRequestsInput = {
+  where?: Prisma.OauthClientWhereInput
+  data: Prisma.XOR<Prisma.OauthClientUpdateWithoutAccessRequestsInput, Prisma.OauthClientUncheckedUpdateWithoutAccessRequestsInput>
+}
+
+export type OauthClientUpdateWithoutAccessRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clientDiscoveryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  skipConsent?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  enableEndSession?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  subjectType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scopes?: Prisma.OauthClientUpdatescopesInput | string[]
+  clientCredentialsScopes?: Prisma.OauthClientUpdateclientCredentialsScopesInput | string[]
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contacts?: Prisma.OauthClientUpdatecontactsInput | string[]
+  tos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  policy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareStatement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  redirectUris?: Prisma.OauthClientUpdateredirectUrisInput | string[]
+  postLogoutRedirectUris?: Prisma.OauthClientUpdatepostLogoutRedirectUrisInput | string[]
+  backchannelLogoutUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  backchannelLogoutSessionRequired?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  tokenEndpointAuthMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jwks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jwksUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grantTypes?: Prisma.OauthClientUpdategrantTypesInput | string[]
+  responseTypes?: Prisma.OauthClientUpdateresponseTypesInput | string[]
+  requirePKCE?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  dpopBoundAccessTokens?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  referenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  developer?: Prisma.UserUpdateOneWithoutDevelopedAppsNestedInput
+  oauthclientresources?: Prisma.OauthClientResourceUpdateManyWithoutOauthclientNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutOauthclientNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutOauthclientNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutOauthclientNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutOauthClientNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutOauthClientNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutOauthClientNestedInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUpdateManyWithoutOauthClientNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutOauthClientNestedInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutOauthClientNestedInput
+}
+
+export type OauthClientUncheckedUpdateWithoutAccessRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clientDiscoveryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  skipConsent?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  enableEndSession?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  subjectType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scopes?: Prisma.OauthClientUpdatescopesInput | string[]
+  clientCredentialsScopes?: Prisma.OauthClientUpdateclientCredentialsScopesInput | string[]
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contacts?: Prisma.OauthClientUpdatecontactsInput | string[]
+  tos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  policy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareStatement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  redirectUris?: Prisma.OauthClientUpdateredirectUrisInput | string[]
+  postLogoutRedirectUris?: Prisma.OauthClientUpdatepostLogoutRedirectUrisInput | string[]
+  backchannelLogoutUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  backchannelLogoutSessionRequired?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  tokenEndpointAuthMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jwks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jwksUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grantTypes?: Prisma.OauthClientUpdategrantTypesInput | string[]
+  responseTypes?: Prisma.OauthClientUpdateresponseTypesInput | string[]
+  requirePKCE?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  dpopBoundAccessTokens?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  referenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  oauthclientresources?: Prisma.OauthClientResourceUncheckedUpdateManyWithoutOauthclientNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutOauthclientNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutOauthclientNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutOauthclientNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutOauthClientNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutOauthClientNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutOauthClientNestedInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedUpdateManyWithoutOauthClientNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutOauthClientNestedInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutOauthClientNestedInput
+}
+
+export type OauthClientCreateWithoutContextRequestsInput = {
+  id: string
+  clientId: string
+  clientSecret?: string | null
+  clientDiscoveryId?: string | null
+  disabled?: boolean | null
+  skipConsent?: boolean | null
+  enableEndSession?: boolean | null
+  subjectType?: string | null
+  scopes?: Prisma.OauthClientCreatescopesInput | string[]
+  clientCredentialsScopes?: Prisma.OauthClientCreateclientCredentialsScopesInput | string[]
+  name?: string | null
+  uri?: string | null
+  icon?: string | null
+  contacts?: Prisma.OauthClientCreatecontactsInput | string[]
+  tos?: string | null
+  policy?: string | null
+  softwareId?: string | null
+  softwareVersion?: string | null
+  softwareStatement?: string | null
+  redirectUris?: Prisma.OauthClientCreateredirectUrisInput | string[]
+  postLogoutRedirectUris?: Prisma.OauthClientCreatepostLogoutRedirectUrisInput | string[]
+  backchannelLogoutUri?: string | null
+  backchannelLogoutSessionRequired?: boolean | null
+  tokenEndpointAuthMethod?: string | null
+  applicationType?: string | null
+  jwks?: string | null
+  jwksUri?: string | null
+  grantTypes?: Prisma.OauthClientCreategrantTypesInput | string[]
+  responseTypes?: Prisma.OauthClientCreateresponseTypesInput | string[]
+  requirePKCE?: boolean | null
+  dpopBoundAccessTokens?: boolean | null
+  referenceId?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  developer?: Prisma.UserCreateNestedOneWithoutDevelopedAppsInput
+  oauthclientresources?: Prisma.OauthClientResourceCreateNestedManyWithoutOauthclientInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutOauthclientInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutOauthclientInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutOauthclientInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutOauthClientInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutOauthClientInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutOauthClientInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerCreateNestedManyWithoutOauthClientInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOauthClientInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutOauthClientInput
+}
+
+export type OauthClientUncheckedCreateWithoutContextRequestsInput = {
+  id: string
+  clientId: string
+  clientSecret?: string | null
+  clientDiscoveryId?: string | null
+  disabled?: boolean | null
+  skipConsent?: boolean | null
+  enableEndSession?: boolean | null
+  subjectType?: string | null
+  scopes?: Prisma.OauthClientCreatescopesInput | string[]
+  clientCredentialsScopes?: Prisma.OauthClientCreateclientCredentialsScopesInput | string[]
+  userId?: string | null
+  name?: string | null
+  uri?: string | null
+  icon?: string | null
+  contacts?: Prisma.OauthClientCreatecontactsInput | string[]
+  tos?: string | null
+  policy?: string | null
+  softwareId?: string | null
+  softwareVersion?: string | null
+  softwareStatement?: string | null
+  redirectUris?: Prisma.OauthClientCreateredirectUrisInput | string[]
+  postLogoutRedirectUris?: Prisma.OauthClientCreatepostLogoutRedirectUrisInput | string[]
+  backchannelLogoutUri?: string | null
+  backchannelLogoutSessionRequired?: boolean | null
+  tokenEndpointAuthMethod?: string | null
+  applicationType?: string | null
+  jwks?: string | null
+  jwksUri?: string | null
+  grantTypes?: Prisma.OauthClientCreategrantTypesInput | string[]
+  responseTypes?: Prisma.OauthClientCreateresponseTypesInput | string[]
+  requirePKCE?: boolean | null
+  dpopBoundAccessTokens?: boolean | null
+  referenceId?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  oauthclientresources?: Prisma.OauthClientResourceUncheckedCreateNestedManyWithoutOauthclientInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutOauthclientInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutOauthclientInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutOauthclientInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutOauthClientInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutOauthClientInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutOauthClientInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedCreateNestedManyWithoutOauthClientInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOauthClientInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutOauthClientInput
+}
+
+export type OauthClientCreateOrConnectWithoutContextRequestsInput = {
+  where: Prisma.OauthClientWhereUniqueInput
+  create: Prisma.XOR<Prisma.OauthClientCreateWithoutContextRequestsInput, Prisma.OauthClientUncheckedCreateWithoutContextRequestsInput>
+}
+
+export type OauthClientUpsertWithoutContextRequestsInput = {
+  update: Prisma.XOR<Prisma.OauthClientUpdateWithoutContextRequestsInput, Prisma.OauthClientUncheckedUpdateWithoutContextRequestsInput>
+  create: Prisma.XOR<Prisma.OauthClientCreateWithoutContextRequestsInput, Prisma.OauthClientUncheckedCreateWithoutContextRequestsInput>
+  where?: Prisma.OauthClientWhereInput
+}
+
+export type OauthClientUpdateToOneWithWhereWithoutContextRequestsInput = {
+  where?: Prisma.OauthClientWhereInput
+  data: Prisma.XOR<Prisma.OauthClientUpdateWithoutContextRequestsInput, Prisma.OauthClientUncheckedUpdateWithoutContextRequestsInput>
+}
+
+export type OauthClientUpdateWithoutContextRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clientDiscoveryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  skipConsent?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  enableEndSession?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  subjectType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scopes?: Prisma.OauthClientUpdatescopesInput | string[]
+  clientCredentialsScopes?: Prisma.OauthClientUpdateclientCredentialsScopesInput | string[]
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contacts?: Prisma.OauthClientUpdatecontactsInput | string[]
+  tos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  policy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareStatement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  redirectUris?: Prisma.OauthClientUpdateredirectUrisInput | string[]
+  postLogoutRedirectUris?: Prisma.OauthClientUpdatepostLogoutRedirectUrisInput | string[]
+  backchannelLogoutUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  backchannelLogoutSessionRequired?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  tokenEndpointAuthMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jwks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jwksUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grantTypes?: Prisma.OauthClientUpdategrantTypesInput | string[]
+  responseTypes?: Prisma.OauthClientUpdateresponseTypesInput | string[]
+  requirePKCE?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  dpopBoundAccessTokens?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  referenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  developer?: Prisma.UserUpdateOneWithoutDevelopedAppsNestedInput
+  oauthclientresources?: Prisma.OauthClientResourceUpdateManyWithoutOauthclientNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutOauthclientNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutOauthclientNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutOauthclientNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutOauthClientNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutOauthClientNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutOauthClientNestedInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUpdateManyWithoutOauthClientNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutOauthClientNestedInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutOauthClientNestedInput
+}
+
+export type OauthClientUncheckedUpdateWithoutContextRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clientDiscoveryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  skipConsent?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  enableEndSession?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  subjectType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scopes?: Prisma.OauthClientUpdatescopesInput | string[]
+  clientCredentialsScopes?: Prisma.OauthClientUpdateclientCredentialsScopesInput | string[]
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contacts?: Prisma.OauthClientUpdatecontactsInput | string[]
+  tos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  policy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareStatement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  redirectUris?: Prisma.OauthClientUpdateredirectUrisInput | string[]
+  postLogoutRedirectUris?: Prisma.OauthClientUpdatepostLogoutRedirectUrisInput | string[]
+  backchannelLogoutUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  backchannelLogoutSessionRequired?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  tokenEndpointAuthMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jwks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jwksUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grantTypes?: Prisma.OauthClientUpdategrantTypesInput | string[]
+  responseTypes?: Prisma.OauthClientUpdateresponseTypesInput | string[]
+  requirePKCE?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  dpopBoundAccessTokens?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  referenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  oauthclientresources?: Prisma.OauthClientResourceUncheckedUpdateManyWithoutOauthclientNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutOauthclientNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutOauthclientNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutOauthclientNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutOauthClientNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutOauthClientNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutOauthClientNestedInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedUpdateManyWithoutOauthClientNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOauthClientNestedInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutOauthClientNestedInput
+}
+
+export type OauthClientCreateWithoutApiUsageLedgersInput = {
+  id: string
+  clientId: string
+  clientSecret?: string | null
+  clientDiscoveryId?: string | null
+  disabled?: boolean | null
+  skipConsent?: boolean | null
+  enableEndSession?: boolean | null
+  subjectType?: string | null
+  scopes?: Prisma.OauthClientCreatescopesInput | string[]
+  clientCredentialsScopes?: Prisma.OauthClientCreateclientCredentialsScopesInput | string[]
+  name?: string | null
+  uri?: string | null
+  icon?: string | null
+  contacts?: Prisma.OauthClientCreatecontactsInput | string[]
+  tos?: string | null
+  policy?: string | null
+  softwareId?: string | null
+  softwareVersion?: string | null
+  softwareStatement?: string | null
+  redirectUris?: Prisma.OauthClientCreateredirectUrisInput | string[]
+  postLogoutRedirectUris?: Prisma.OauthClientCreatepostLogoutRedirectUrisInput | string[]
+  backchannelLogoutUri?: string | null
+  backchannelLogoutSessionRequired?: boolean | null
+  tokenEndpointAuthMethod?: string | null
+  applicationType?: string | null
+  jwks?: string | null
+  jwksUri?: string | null
+  grantTypes?: Prisma.OauthClientCreategrantTypesInput | string[]
+  responseTypes?: Prisma.OauthClientCreateresponseTypesInput | string[]
+  requirePKCE?: boolean | null
+  dpopBoundAccessTokens?: boolean | null
+  referenceId?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  developer?: Prisma.UserCreateNestedOneWithoutDevelopedAppsInput
+  oauthclientresources?: Prisma.OauthClientResourceCreateNestedManyWithoutOauthclientInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenCreateNestedManyWithoutOauthclientInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenCreateNestedManyWithoutOauthclientInput
+  oauthconsents?: Prisma.OauthConsentCreateNestedManyWithoutOauthclientInput
+  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutOauthClientInput
+  appMemories?: Prisma.AppMemoryCreateNestedManyWithoutOauthClientInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutOauthClientInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerCreateNestedManyWithoutOauthClientInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutOauthClientInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutOauthClientInput
+}
+
+export type OauthClientUncheckedCreateWithoutApiUsageLedgersInput = {
+  id: string
+  clientId: string
+  clientSecret?: string | null
+  clientDiscoveryId?: string | null
+  disabled?: boolean | null
+  skipConsent?: boolean | null
+  enableEndSession?: boolean | null
+  subjectType?: string | null
+  scopes?: Prisma.OauthClientCreatescopesInput | string[]
+  clientCredentialsScopes?: Prisma.OauthClientCreateclientCredentialsScopesInput | string[]
+  userId?: string | null
+  name?: string | null
+  uri?: string | null
+  icon?: string | null
+  contacts?: Prisma.OauthClientCreatecontactsInput | string[]
+  tos?: string | null
+  policy?: string | null
+  softwareId?: string | null
+  softwareVersion?: string | null
+  softwareStatement?: string | null
+  redirectUris?: Prisma.OauthClientCreateredirectUrisInput | string[]
+  postLogoutRedirectUris?: Prisma.OauthClientCreatepostLogoutRedirectUrisInput | string[]
+  backchannelLogoutUri?: string | null
+  backchannelLogoutSessionRequired?: boolean | null
+  tokenEndpointAuthMethod?: string | null
+  applicationType?: string | null
+  jwks?: string | null
+  jwksUri?: string | null
+  grantTypes?: Prisma.OauthClientCreategrantTypesInput | string[]
+  responseTypes?: Prisma.OauthClientCreateresponseTypesInput | string[]
+  requirePKCE?: boolean | null
+  dpopBoundAccessTokens?: boolean | null
+  referenceId?: string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  oauthclientresources?: Prisma.OauthClientResourceUncheckedCreateNestedManyWithoutOauthclientInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedCreateNestedManyWithoutOauthclientInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedCreateNestedManyWithoutOauthclientInput
+  oauthconsents?: Prisma.OauthConsentUncheckedCreateNestedManyWithoutOauthclientInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutOauthClientInput
+  appMemories?: Prisma.AppMemoryUncheckedCreateNestedManyWithoutOauthClientInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutOauthClientInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedCreateNestedManyWithoutOauthClientInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutOauthClientInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutOauthClientInput
+}
+
+export type OauthClientCreateOrConnectWithoutApiUsageLedgersInput = {
+  where: Prisma.OauthClientWhereUniqueInput
+  create: Prisma.XOR<Prisma.OauthClientCreateWithoutApiUsageLedgersInput, Prisma.OauthClientUncheckedCreateWithoutApiUsageLedgersInput>
+}
+
+export type OauthClientUpsertWithoutApiUsageLedgersInput = {
+  update: Prisma.XOR<Prisma.OauthClientUpdateWithoutApiUsageLedgersInput, Prisma.OauthClientUncheckedUpdateWithoutApiUsageLedgersInput>
+  create: Prisma.XOR<Prisma.OauthClientCreateWithoutApiUsageLedgersInput, Prisma.OauthClientUncheckedCreateWithoutApiUsageLedgersInput>
+  where?: Prisma.OauthClientWhereInput
+}
+
+export type OauthClientUpdateToOneWithWhereWithoutApiUsageLedgersInput = {
+  where?: Prisma.OauthClientWhereInput
+  data: Prisma.XOR<Prisma.OauthClientUpdateWithoutApiUsageLedgersInput, Prisma.OauthClientUncheckedUpdateWithoutApiUsageLedgersInput>
+}
+
+export type OauthClientUpdateWithoutApiUsageLedgersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clientDiscoveryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  skipConsent?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  enableEndSession?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  subjectType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scopes?: Prisma.OauthClientUpdatescopesInput | string[]
+  clientCredentialsScopes?: Prisma.OauthClientUpdateclientCredentialsScopesInput | string[]
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contacts?: Prisma.OauthClientUpdatecontactsInput | string[]
+  tos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  policy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareStatement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  redirectUris?: Prisma.OauthClientUpdateredirectUrisInput | string[]
+  postLogoutRedirectUris?: Prisma.OauthClientUpdatepostLogoutRedirectUrisInput | string[]
+  backchannelLogoutUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  backchannelLogoutSessionRequired?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  tokenEndpointAuthMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jwks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jwksUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grantTypes?: Prisma.OauthClientUpdategrantTypesInput | string[]
+  responseTypes?: Prisma.OauthClientUpdateresponseTypesInput | string[]
+  requirePKCE?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  dpopBoundAccessTokens?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  referenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  developer?: Prisma.UserUpdateOneWithoutDevelopedAppsNestedInput
+  oauthclientresources?: Prisma.OauthClientResourceUpdateManyWithoutOauthclientNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutOauthclientNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutOauthclientNestedInput
+  oauthconsents?: Prisma.OauthConsentUpdateManyWithoutOauthclientNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutOauthClientNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutOauthClientNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutOauthClientNestedInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUpdateManyWithoutOauthClientNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutOauthClientNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutOauthClientNestedInput
+}
+
+export type OauthClientUncheckedUpdateWithoutApiUsageLedgersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clientDiscoveryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  skipConsent?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  enableEndSession?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  subjectType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scopes?: Prisma.OauthClientUpdatescopesInput | string[]
+  clientCredentialsScopes?: Prisma.OauthClientUpdateclientCredentialsScopesInput | string[]
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contacts?: Prisma.OauthClientUpdatecontactsInput | string[]
+  tos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  policy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwareStatement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  redirectUris?: Prisma.OauthClientUpdateredirectUrisInput | string[]
+  postLogoutRedirectUris?: Prisma.OauthClientUpdatepostLogoutRedirectUrisInput | string[]
+  backchannelLogoutUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  backchannelLogoutSessionRequired?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  tokenEndpointAuthMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jwks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jwksUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grantTypes?: Prisma.OauthClientUpdategrantTypesInput | string[]
+  responseTypes?: Prisma.OauthClientUpdateresponseTypesInput | string[]
+  requirePKCE?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  dpopBoundAccessTokens?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  referenceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  oauthclientresources?: Prisma.OauthClientResourceUncheckedUpdateManyWithoutOauthclientNestedInput
+  oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutOauthclientNestedInput
+  oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutOauthclientNestedInput
+  oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutOauthclientNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutOauthClientNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutOauthClientNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutOauthClientNestedInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedUpdateManyWithoutOauthClientNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOauthClientNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutOauthClientNestedInput
 }
 
 export type OauthClientCreateManyDeveloperInput = {
@@ -2350,7 +3889,13 @@ export type OauthClientUpdateWithoutDeveloperInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUpdateManyWithoutOauthclientNestedInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUpdateManyWithoutOauthclientNestedInput
   oauthconsents?: Prisma.OauthConsentUpdateManyWithoutOauthclientNestedInput
-  collectionAccess?: Prisma.AppCollectionAccessUpdateManyWithoutOauthClientNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutOauthClientNestedInput
+  appMemories?: Prisma.AppMemoryUpdateManyWithoutOauthClientNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutOauthClientNestedInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUpdateManyWithoutOauthClientNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutOauthClientNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutOauthClientNestedInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutOauthClientNestedInput
 }
 
 export type OauthClientUncheckedUpdateWithoutDeveloperInput = {
@@ -2393,7 +3938,13 @@ export type OauthClientUncheckedUpdateWithoutDeveloperInput = {
   oauthrefreshtokens?: Prisma.OauthRefreshTokenUncheckedUpdateManyWithoutOauthclientNestedInput
   oauthaccesstokens?: Prisma.OauthAccessTokenUncheckedUpdateManyWithoutOauthclientNestedInput
   oauthconsents?: Prisma.OauthConsentUncheckedUpdateManyWithoutOauthclientNestedInput
-  collectionAccess?: Prisma.AppCollectionAccessUncheckedUpdateManyWithoutOauthClientNestedInput
+  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutOauthClientNestedInput
+  appMemories?: Prisma.AppMemoryUncheckedUpdateManyWithoutOauthClientNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutOauthClientNestedInput
+  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedUpdateManyWithoutOauthClientNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutOauthClientNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutOauthClientNestedInput
+  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutOauthClientNestedInput
 }
 
 export type OauthClientUncheckedUpdateManyWithoutDeveloperInput = {
@@ -2444,7 +3995,13 @@ export type OauthClientCountOutputType = {
   oauthrefreshtokens: number
   oauthaccesstokens: number
   oauthconsents: number
-  collectionAccess: number
+  developerApiKeys: number
+  appMemories: number
+  accessGrants: number
+  appMemoryUsageLedgers: number
+  accessRequests: number
+  contextRequests: number
+  apiUsageLedgers: number
 }
 
 export type OauthClientCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2452,7 +4009,13 @@ export type OauthClientCountOutputTypeSelect<ExtArgs extends runtime.Types.Exten
   oauthrefreshtokens?: boolean | OauthClientCountOutputTypeCountOauthrefreshtokensArgs
   oauthaccesstokens?: boolean | OauthClientCountOutputTypeCountOauthaccesstokensArgs
   oauthconsents?: boolean | OauthClientCountOutputTypeCountOauthconsentsArgs
-  collectionAccess?: boolean | OauthClientCountOutputTypeCountCollectionAccessArgs
+  developerApiKeys?: boolean | OauthClientCountOutputTypeCountDeveloperApiKeysArgs
+  appMemories?: boolean | OauthClientCountOutputTypeCountAppMemoriesArgs
+  accessGrants?: boolean | OauthClientCountOutputTypeCountAccessGrantsArgs
+  appMemoryUsageLedgers?: boolean | OauthClientCountOutputTypeCountAppMemoryUsageLedgersArgs
+  accessRequests?: boolean | OauthClientCountOutputTypeCountAccessRequestsArgs
+  contextRequests?: boolean | OauthClientCountOutputTypeCountContextRequestsArgs
+  apiUsageLedgers?: boolean | OauthClientCountOutputTypeCountApiUsageLedgersArgs
 }
 
 /**
@@ -2496,8 +4059,50 @@ export type OauthClientCountOutputTypeCountOauthconsentsArgs<ExtArgs extends run
 /**
  * OauthClientCountOutputType without action
  */
-export type OauthClientCountOutputTypeCountCollectionAccessArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AppCollectionAccessWhereInput
+export type OauthClientCountOutputTypeCountDeveloperApiKeysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DeveloperApiKeyWhereInput
+}
+
+/**
+ * OauthClientCountOutputType without action
+ */
+export type OauthClientCountOutputTypeCountAppMemoriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AppMemoryWhereInput
+}
+
+/**
+ * OauthClientCountOutputType without action
+ */
+export type OauthClientCountOutputTypeCountAccessGrantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AccessGrantWhereInput
+}
+
+/**
+ * OauthClientCountOutputType without action
+ */
+export type OauthClientCountOutputTypeCountAppMemoryUsageLedgersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AppMemoryUsageLedgerWhereInput
+}
+
+/**
+ * OauthClientCountOutputType without action
+ */
+export type OauthClientCountOutputTypeCountAccessRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AccessRequestWhereInput
+}
+
+/**
+ * OauthClientCountOutputType without action
+ */
+export type OauthClientCountOutputTypeCountContextRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ContextRequestWhereInput
+}
+
+/**
+ * OauthClientCountOutputType without action
+ */
+export type OauthClientCountOutputTypeCountApiUsageLedgersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ApiUsageLedgerWhereInput
 }
 
 
@@ -2543,7 +4148,13 @@ export type OauthClientSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   oauthrefreshtokens?: boolean | Prisma.OauthClient$oauthrefreshtokensArgs<ExtArgs>
   oauthaccesstokens?: boolean | Prisma.OauthClient$oauthaccesstokensArgs<ExtArgs>
   oauthconsents?: boolean | Prisma.OauthClient$oauthconsentsArgs<ExtArgs>
-  collectionAccess?: boolean | Prisma.OauthClient$collectionAccessArgs<ExtArgs>
+  developerApiKeys?: boolean | Prisma.OauthClient$developerApiKeysArgs<ExtArgs>
+  appMemories?: boolean | Prisma.OauthClient$appMemoriesArgs<ExtArgs>
+  accessGrants?: boolean | Prisma.OauthClient$accessGrantsArgs<ExtArgs>
+  appMemoryUsageLedgers?: boolean | Prisma.OauthClient$appMemoryUsageLedgersArgs<ExtArgs>
+  accessRequests?: boolean | Prisma.OauthClient$accessRequestsArgs<ExtArgs>
+  contextRequests?: boolean | Prisma.OauthClient$contextRequestsArgs<ExtArgs>
+  apiUsageLedgers?: boolean | Prisma.OauthClient$apiUsageLedgersArgs<ExtArgs>
   _count?: boolean | Prisma.OauthClientCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["oauthClient"]>
 
@@ -2673,7 +4284,13 @@ export type OauthClientInclude<ExtArgs extends runtime.Types.Extensions.Internal
   oauthrefreshtokens?: boolean | Prisma.OauthClient$oauthrefreshtokensArgs<ExtArgs>
   oauthaccesstokens?: boolean | Prisma.OauthClient$oauthaccesstokensArgs<ExtArgs>
   oauthconsents?: boolean | Prisma.OauthClient$oauthconsentsArgs<ExtArgs>
-  collectionAccess?: boolean | Prisma.OauthClient$collectionAccessArgs<ExtArgs>
+  developerApiKeys?: boolean | Prisma.OauthClient$developerApiKeysArgs<ExtArgs>
+  appMemories?: boolean | Prisma.OauthClient$appMemoriesArgs<ExtArgs>
+  accessGrants?: boolean | Prisma.OauthClient$accessGrantsArgs<ExtArgs>
+  appMemoryUsageLedgers?: boolean | Prisma.OauthClient$appMemoryUsageLedgersArgs<ExtArgs>
+  accessRequests?: boolean | Prisma.OauthClient$accessRequestsArgs<ExtArgs>
+  contextRequests?: boolean | Prisma.OauthClient$contextRequestsArgs<ExtArgs>
+  apiUsageLedgers?: boolean | Prisma.OauthClient$apiUsageLedgersArgs<ExtArgs>
   _count?: boolean | Prisma.OauthClientCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OauthClientIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2691,7 +4308,13 @@ export type $OauthClientPayload<ExtArgs extends runtime.Types.Extensions.Interna
     oauthrefreshtokens: Prisma.$OauthRefreshTokenPayload<ExtArgs>[]
     oauthaccesstokens: Prisma.$OauthAccessTokenPayload<ExtArgs>[]
     oauthconsents: Prisma.$OauthConsentPayload<ExtArgs>[]
-    collectionAccess: Prisma.$AppCollectionAccessPayload<ExtArgs>[]
+    developerApiKeys: Prisma.$DeveloperApiKeyPayload<ExtArgs>[]
+    appMemories: Prisma.$AppMemoryPayload<ExtArgs>[]
+    accessGrants: Prisma.$AccessGrantPayload<ExtArgs>[]
+    appMemoryUsageLedgers: Prisma.$AppMemoryUsageLedgerPayload<ExtArgs>[]
+    accessRequests: Prisma.$AccessRequestPayload<ExtArgs>[]
+    contextRequests: Prisma.$ContextRequestPayload<ExtArgs>[]
+    apiUsageLedgers: Prisma.$ApiUsageLedgerPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3129,7 +4752,13 @@ export interface Prisma__OauthClientClient<T, Null = never, ExtArgs extends runt
   oauthrefreshtokens<T extends Prisma.OauthClient$oauthrefreshtokensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OauthClient$oauthrefreshtokensArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OauthRefreshTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   oauthaccesstokens<T extends Prisma.OauthClient$oauthaccesstokensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OauthClient$oauthaccesstokensArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OauthAccessTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   oauthconsents<T extends Prisma.OauthClient$oauthconsentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OauthClient$oauthconsentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OauthConsentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  collectionAccess<T extends Prisma.OauthClient$collectionAccessArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OauthClient$collectionAccessArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppCollectionAccessPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  developerApiKeys<T extends Prisma.OauthClient$developerApiKeysArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OauthClient$developerApiKeysArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DeveloperApiKeyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  appMemories<T extends Prisma.OauthClient$appMemoriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OauthClient$appMemoriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppMemoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  accessGrants<T extends Prisma.OauthClient$accessGrantsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OauthClient$accessGrantsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccessGrantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  appMemoryUsageLedgers<T extends Prisma.OauthClient$appMemoryUsageLedgersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OauthClient$appMemoryUsageLedgersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppMemoryUsageLedgerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  accessRequests<T extends Prisma.OauthClient$accessRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OauthClient$accessRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  contextRequests<T extends Prisma.OauthClient$contextRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OauthClient$contextRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContextRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  apiUsageLedgers<T extends Prisma.OauthClient$apiUsageLedgersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OauthClient$apiUsageLedgersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApiUsageLedgerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3711,27 +5340,171 @@ export type OauthClient$oauthconsentsArgs<ExtArgs extends runtime.Types.Extensio
 }
 
 /**
- * OauthClient.collectionAccess
+ * OauthClient.developerApiKeys
  */
-export type OauthClient$collectionAccessArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type OauthClient$developerApiKeysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the AppCollectionAccess
+   * Select specific fields to fetch from the DeveloperApiKey
    */
-  select?: Prisma.AppCollectionAccessSelect<ExtArgs> | null
+  select?: Prisma.DeveloperApiKeySelect<ExtArgs> | null
   /**
-   * Omit specific fields from the AppCollectionAccess
+   * Omit specific fields from the DeveloperApiKey
    */
-  omit?: Prisma.AppCollectionAccessOmit<ExtArgs> | null
+  omit?: Prisma.DeveloperApiKeyOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AppCollectionAccessInclude<ExtArgs> | null
-  where?: Prisma.AppCollectionAccessWhereInput
-  orderBy?: Prisma.AppCollectionAccessOrderByWithRelationInput | Prisma.AppCollectionAccessOrderByWithRelationInput[]
-  cursor?: Prisma.AppCollectionAccessWhereUniqueInput
+  include?: Prisma.DeveloperApiKeyInclude<ExtArgs> | null
+  where?: Prisma.DeveloperApiKeyWhereInput
+  orderBy?: Prisma.DeveloperApiKeyOrderByWithRelationInput | Prisma.DeveloperApiKeyOrderByWithRelationInput[]
+  cursor?: Prisma.DeveloperApiKeyWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.AppCollectionAccessScalarFieldEnum | Prisma.AppCollectionAccessScalarFieldEnum[]
+  distinct?: Prisma.DeveloperApiKeyScalarFieldEnum | Prisma.DeveloperApiKeyScalarFieldEnum[]
+}
+
+/**
+ * OauthClient.appMemories
+ */
+export type OauthClient$appMemoriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AppMemory
+   */
+  select?: Prisma.AppMemorySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AppMemory
+   */
+  omit?: Prisma.AppMemoryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AppMemoryInclude<ExtArgs> | null
+  where?: Prisma.AppMemoryWhereInput
+  orderBy?: Prisma.AppMemoryOrderByWithRelationInput | Prisma.AppMemoryOrderByWithRelationInput[]
+  cursor?: Prisma.AppMemoryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AppMemoryScalarFieldEnum | Prisma.AppMemoryScalarFieldEnum[]
+}
+
+/**
+ * OauthClient.accessGrants
+ */
+export type OauthClient$accessGrantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AccessGrant
+   */
+  select?: Prisma.AccessGrantSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AccessGrant
+   */
+  omit?: Prisma.AccessGrantOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AccessGrantInclude<ExtArgs> | null
+  where?: Prisma.AccessGrantWhereInput
+  orderBy?: Prisma.AccessGrantOrderByWithRelationInput | Prisma.AccessGrantOrderByWithRelationInput[]
+  cursor?: Prisma.AccessGrantWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AccessGrantScalarFieldEnum | Prisma.AccessGrantScalarFieldEnum[]
+}
+
+/**
+ * OauthClient.appMemoryUsageLedgers
+ */
+export type OauthClient$appMemoryUsageLedgersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AppMemoryUsageLedger
+   */
+  select?: Prisma.AppMemoryUsageLedgerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AppMemoryUsageLedger
+   */
+  omit?: Prisma.AppMemoryUsageLedgerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AppMemoryUsageLedgerInclude<ExtArgs> | null
+  where?: Prisma.AppMemoryUsageLedgerWhereInput
+  orderBy?: Prisma.AppMemoryUsageLedgerOrderByWithRelationInput | Prisma.AppMemoryUsageLedgerOrderByWithRelationInput[]
+  cursor?: Prisma.AppMemoryUsageLedgerWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AppMemoryUsageLedgerScalarFieldEnum | Prisma.AppMemoryUsageLedgerScalarFieldEnum[]
+}
+
+/**
+ * OauthClient.accessRequests
+ */
+export type OauthClient$accessRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AccessRequest
+   */
+  select?: Prisma.AccessRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AccessRequest
+   */
+  omit?: Prisma.AccessRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AccessRequestInclude<ExtArgs> | null
+  where?: Prisma.AccessRequestWhereInput
+  orderBy?: Prisma.AccessRequestOrderByWithRelationInput | Prisma.AccessRequestOrderByWithRelationInput[]
+  cursor?: Prisma.AccessRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AccessRequestScalarFieldEnum | Prisma.AccessRequestScalarFieldEnum[]
+}
+
+/**
+ * OauthClient.contextRequests
+ */
+export type OauthClient$contextRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ContextRequest
+   */
+  select?: Prisma.ContextRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ContextRequest
+   */
+  omit?: Prisma.ContextRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ContextRequestInclude<ExtArgs> | null
+  where?: Prisma.ContextRequestWhereInput
+  orderBy?: Prisma.ContextRequestOrderByWithRelationInput | Prisma.ContextRequestOrderByWithRelationInput[]
+  cursor?: Prisma.ContextRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ContextRequestScalarFieldEnum | Prisma.ContextRequestScalarFieldEnum[]
+}
+
+/**
+ * OauthClient.apiUsageLedgers
+ */
+export type OauthClient$apiUsageLedgersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ApiUsageLedger
+   */
+  select?: Prisma.ApiUsageLedgerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ApiUsageLedger
+   */
+  omit?: Prisma.ApiUsageLedgerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApiUsageLedgerInclude<ExtArgs> | null
+  where?: Prisma.ApiUsageLedgerWhereInput
+  orderBy?: Prisma.ApiUsageLedgerOrderByWithRelationInput | Prisma.ApiUsageLedgerOrderByWithRelationInput[]
+  cursor?: Prisma.ApiUsageLedgerWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ApiUsageLedgerScalarFieldEnum | Prisma.ApiUsageLedgerScalarFieldEnum[]
 }
 
 /**

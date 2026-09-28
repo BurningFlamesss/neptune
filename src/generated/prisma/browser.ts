@@ -23,6 +23,16 @@ export * from './enums.ts';
  */
 export type User = Prisma.UserModel
 /**
+ * Model Organization
+ * 
+ */
+export type Organization = Prisma.OrganizationModel
+/**
+ * Model OrganizationMember
+ * 
+ */
+export type OrganizationMember = Prisma.OrganizationMemberModel
+/**
  * Model Session
  * 
  */
@@ -47,6 +57,16 @@ export type Jwks = Prisma.JwksModel
  * 
  */
 export type OauthClient = Prisma.OauthClientModel
+/**
+ * Model DeveloperApiKey
+ * 
+ */
+export type DeveloperApiKey = Prisma.DeveloperApiKeyModel
+/**
+ * Model ApiKeyPackScope
+ * 
+ */
+export type ApiKeyPackScope = Prisma.ApiKeyPackScopeModel
 /**
  * Model OauthResource
  * 
@@ -78,20 +98,175 @@ export type OauthConsent = Prisma.OauthConsentModel
  */
 export type OauthClientAssertion = Prisma.OauthClientAssertionModel
 /**
+ * Model Area
+ * 
+ */
+export type Area = Prisma.AreaModel
+/**
  * Model Collection
  * 
  */
 export type Collection = Prisma.CollectionModel
 /**
- * Model Asset
+ * Model Entry
  * 
  */
-export type Asset = Prisma.AssetModel
+export type Entry = Prisma.EntryModel
 /**
- * Model AppCollectionAccess
+ * Model EntryRelationship
  * 
  */
-export type AppCollectionAccess = Prisma.AppCollectionAccessModel
+export type EntryRelationship = Prisma.EntryRelationshipModel
+/**
+ * Model EntryTombstone
+ * 
+ */
+export type EntryTombstone = Prisma.EntryTombstoneModel
+/**
+ * Model AppMemory
+ * 
+ */
+export type AppMemory = Prisma.AppMemoryModel
+/**
+ * Model AppMemoryLink
+ * 
+ */
+export type AppMemoryLink = Prisma.AppMemoryLinkModel
+/**
+ * Model AppMemoryUsageLedger
+ * 
+ */
+export type AppMemoryUsageLedger = Prisma.AppMemoryUsageLedgerModel
+/**
+ * Model AccessGrant
+ * 
+ */
+export type AccessGrant = Prisma.AccessGrantModel
+/**
+ * Model AccessRequest
+ * 
+ */
+export type AccessRequest = Prisma.AccessRequestModel
+/**
+ * Model AccessRequestItem
+ * 
+ */
+export type AccessRequestItem = Prisma.AccessRequestItemModel
+/**
+ * Model ContextRequest
+ * 
+ */
+export type ContextRequest = Prisma.ContextRequestModel
+/**
+ * Model ContextReceipt
+ * 
+ */
+export type ContextReceipt = Prisma.ContextReceiptModel
+/**
+ * Model ContextReceiptItem
+ * 
+ */
+export type ContextReceiptItem = Prisma.ContextReceiptItemModel
+/**
+ * Model ApiUsageLedger
+ * 
+ */
+export type ApiUsageLedger = Prisma.ApiUsageLedgerModel
+/**
+ * Model UserRoyalty
+ * 
+ */
+export type UserRoyalty = Prisma.UserRoyaltyModel
+/**
+ * Model CreatorPayout
+ * 
+ */
+export type CreatorPayout = Prisma.CreatorPayoutModel
+/**
+ * Model Path
+ * 
+ */
+export type Path = Prisma.PathModel
+/**
+ * Model Revision
+ * 
+ */
+export type Revision = Prisma.RevisionModel
+/**
+ * Model RevisionChange
+ * 
+ */
+export type RevisionChange = Prisma.RevisionChangeModel
+/**
+ * Model Combine
+ * 
+ */
+export type Combine = Prisma.CombineModel
+/**
+ * Model CombineConflict
+ * 
+ */
+export type CombineConflict = Prisma.CombineConflictModel
+/**
+ * Model Pack
+ * 
+ */
+export type Pack = Prisma.PackModel
+/**
+ * Model Release
+ * 
+ */
+export type Release = Prisma.ReleaseModel
+/**
+ * Model PackImport
+ * 
+ */
+export type PackImport = Prisma.PackImportModel
+/**
+ * Model PackPurchase
+ * 
+ */
+export type PackPurchase = Prisma.PackPurchaseModel
+/**
+ * Model PackDonation
+ * 
+ */
+export type PackDonation = Prisma.PackDonationModel
+/**
+ * Model PackSponsorship
+ * 
+ */
+export type PackSponsorship = Prisma.PackSponsorshipModel
+/**
+ * Model KnowledgeBounty
+ * 
+ */
+export type KnowledgeBounty = Prisma.KnowledgeBountyModel
+/**
+ * Model BountySubmission
+ * 
+ */
+export type BountySubmission = Prisma.BountySubmissionModel
+/**
+ * Model Star
+ * 
+ */
+export type Star = Prisma.StarModel
+/**
+ * Model TuneApp
+ * 
+ */
+export type TuneApp = Prisma.TuneAppModel
+/**
+ * Model TuneAppInstallation
+ * 
+ */
+export type TuneAppInstallation = Prisma.TuneAppInstallationModel
+/**
+ * Model RecallBlock
+ * 
+ */
+export type RecallBlock = Prisma.RecallBlockModel
 /**
  * Model BillingProfile
  * 

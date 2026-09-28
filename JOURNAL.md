@@ -42,3 +42,59 @@ Error: Unauthorized - Missing Cookie
 # Error
 
 Rendered fewer hooks than expected. This may be caused by an accidental early return statement.
+
+# Error
+
+The position of select menu being misorientated
+
+### resolved by AI (Opencode):  position = "popper",
+
+# Error
+
+Recall Result
+partly resolved
+No details returned by the model.
+
+### resolved by AI: if (c.type === "RUN_ERROR" || c.type === "error") {
+    const upstreamDetail = c.error?.metadata?.raw || c.error?.message || c.message;
+    const providerName = c.error?.metadata?.provider_name;
+    throw new Error(
+      `OpenRouter Error${providerName ? ` (${providerName})` : ""}: ${
+        upstreamDetail || JSON.stringify(c.error || c)
+      }`
+    );
+  }
+
+  type OpenRouterModelId = Parameters<typeof createOpenRouterText>[0];
+
+const FREE_MODEL_FALLBACKS: OpenRouterModelId[] = [
+    "qwen/qwen3.8-27b:free" as OpenRouterModelId,
+    "nvidia/nemotron-3-super-120b-a12b:free" as OpenRouterModelId,
+    "deepseek/deepseek-v4-flash-0731:free" as OpenRouterModelId,
+    "openrouter/free" as OpenRouterModelId,
+];
+
+# Error
+
+npm run db:generate
+
+> db:generate
+> dotenv -e .env.local -- prisma generate
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+Error: Prisma schema validation - (get-dmmf wasm)
+Error code: P1012
+error: Error validating model "Path": Ambiguous self relation detected. The fields `path` and `paths` in model `Path` both refer to `Path`. If they are part of the same relation add the same relation name for them with `@relation(<name>)`.
+  -->  prisma\schema.prisma:1092
+   | 
+1091 |   updatedAt DateTime @updatedAt
+1092 |   path      Path?    @relation(fields: [pathId], references: [id])
+1093 |   pathId    String?
+   | 
+
+Validation Error Count: 1
+[Context: getDmmf]
+
+Prisma CLI Version : 7.10.0

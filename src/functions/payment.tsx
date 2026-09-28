@@ -3,10 +3,17 @@ import { z } from "zod";
 import { delay } from "#/lib/utils.ts";
 import { sessionMiddleware } from "#/middleware/authentication.tsx";
 
+function serializePlan<T extends { storageLimitBytes?: bigint | null }>(plan: T) {
+	return {
+		...plan,
+		storageLimitBytes: plan.storageLimitBytes !== null && plan.storageLimitBytes !== undefined ? Number(plan.storageLimitBytes) : null
+	}
+}
+
 export const getPlans = createServerFn().handler(async () => {
 	const { prisma } = await import("#/db.ts");
 
-	return await prisma.plan.findMany({
+	const plans = await prisma.plan.findMany({
 		where: {
 			isActive: true,
 		},
@@ -19,13 +26,15 @@ export const getPlans = createServerFn().handler(async () => {
 			comparedAtPrice: true,
 			name: true,
 			id: true,
-			features: true,
-			notIncludedFeatures: true,
-			intelligenceStorage: true,
-			recall: true,
-			sharing: true,
-			sync: true,
-			versioning: true,
+			interval: true,
+			basePFactor: true,
+			monthlyComputeQuotaCents: true,
+			monthlyMarketplaceCreditsCents: true,
+			rateLimitPerMinute: true,
+			maxConnectedApps: true,
+			storageLimitBytes: true,
+			displayFeaturesIncluded: true,
+			displayFeaturesNotIncluded: true,
 			_count: {
 				select: {
 					payments: {
@@ -37,10 +46,13 @@ export const getPlans = createServerFn().handler(async () => {
 			},
 		},
 	});
+
+	return plans.map(serializePlan)
 });
 
 const getIndividualPackParamSchema = z.object({
 	plan: z.string(),
+	billing: z.enum(["monthly", "annually", "lifetime"]).optional()
 });
 
 export const getIndividualPack = createServerFn()
@@ -48,10 +60,17 @@ export const getIndividualPack = createServerFn()
 	.handler(async ({ data }) => {
 		const { prisma } = await import("#/db.ts");
 
-		return await prisma.plan.findFirst({
+		const intervalMap = {
+			monthly: "MONTHLY",
+			annually: "ANNUALLY",
+			lifetime: "LIFETIME",
+		} as const
+
+		const plan = await prisma.plan.findFirst({
 			where: {
 				name: data.plan,
 				isActive: true,
+				...(data.billing ? { interval: intervalMap[data.billing] } : {})
 			},
 			select: {
 				currency: true,
@@ -59,13 +78,15 @@ export const getIndividualPack = createServerFn()
 				comparedAtPrice: true,
 				name: true,
 				id: true,
-				features: true,
-				notIncludedFeatures: true,
-				intelligenceStorage: true,
-				recall: true,
-				sharing: true,
-				sync: true,
-				versioning: true,
+				interval: true,
+				basePFactor: true,
+				monthlyComputeQuotaCents: true,
+				monthlyMarketplaceCreditsCents: true,
+				rateLimitPerMinute: true,
+				maxConnectedApps: true,
+				storageLimitBytes: true,
+				displayFeaturesIncluded: true,
+				displayFeaturesNotIncluded: true,
 				_count: {
 					select: {
 						payments: {
@@ -77,6 +98,8 @@ export const getIndividualPack = createServerFn()
 				},
 			},
 		});
+
+		return plan ? serializePlan(plan) : null
 	});
 
 const getRecentTransactionParamSchema = z.object({
@@ -99,10 +122,19 @@ export const getRecentTransaction = createServerFn()
 			},
 			select: {
 				id: true,
+				orderId: true,
+				purpose: true,
+				subTotal: true,
 				total: true,
 				discount: true,
 				status: true,
-				plan: true,
+				plan: {
+					select: {
+						id: true,
+						name: true,
+						interval: true
+					}
+				},
 				metadata: true,
 				currency: true,
 				provider: true,
@@ -128,6 +160,10 @@ export const redeemCouponService = createServerFn()
 			throw new Error("Unauthorized");
 		}
 
+		if (!data.planId) {
+			throw new Error("Plan ID is required")
+		}
+
 		const now = new Date();
 		const userId = session.user.id;
 
@@ -147,6 +183,9 @@ export const redeemCouponService = createServerFn()
 							select: {
 								id: true,
 								code: true,
+								type: true,
+								percentageDiscount: true,
+								fixedDiscount: true,
 								status: true,
 								redeemptionType: true,
 								maxUses: true,
@@ -154,6 +193,11 @@ export const redeemCouponService = createServerFn()
 								perUserLimit: true,
 								startsAt: true,
 								expiresAt: true,
+								applicablePlans: {
+									select: {
+										id: true
+									}
+								}
 							},
 						});
 
@@ -187,6 +231,10 @@ export const redeemCouponService = createServerFn()
 							throw new Error("Plan not found");
 						}
 
+						if (coupon.applicablePlans.length > 0 && !coupon.applicablePlans.some(applicablePlan => applicablePlan.id === plan.id)) {
+							throw new Error("Coupon isnot valid for this plan")
+						}
+
 						const redeemptionCount = await transaction.couponUsage.count({
 							where: {
 								couponId: coupon.id,
@@ -198,7 +246,20 @@ export const redeemCouponService = createServerFn()
 							throw new Error("Redeemption limit reached");
 						}
 
-						if (coupon.redeemptionType === "CHECKOUT") {
+						let discountApplied = plan.price
+
+						if (coupon.type === "PERCENTAGE_DISCOUNT" && coupon.percentageDiscount !== null) {
+							discountApplied = Math.min(
+								plan.price,
+								Math.round(plan.price * (coupon.percentageDiscount / 100))
+							)
+						} else if (coupon.type === "FIXED_DISCOUNT" && coupon.fixedDiscount !== null) {
+							discountApplied = Math.min(plan.price, coupon.fixedDiscount)
+						}
+
+						const finalTotal = Math.max(0, plan.price - discountApplied)
+
+						if (coupon.redeemptionType === "CHECKOUT" && finalTotal > 0) {
 							throw new Error(
 								"This coupon must be applied during checkout payment.",
 							);
@@ -208,8 +269,11 @@ export const redeemCouponService = createServerFn()
 							data: {
 								userId,
 								couponId: coupon.id,
+								discountApplied
 							},
 						});
+
+						const newUsedCount = coupon.usedCount + 1
 
 						await transaction.coupon.update({
 							where: {
@@ -217,13 +281,16 @@ export const redeemCouponService = createServerFn()
 							},
 							data: {
 								usedCount: { increment: 1 },
+								...(coupon.maxUses !== null && newUsedCount >= coupon.maxUses ? { status: "EXHAUSTED" } : {})
 							},
 						});
 
 						await transaction.payment.create({
 							data: {
 								userId,
+								purpose: "SUBSCRIPTION",
 								provider: "MANUAL",
+								status: "SUCCEEDED",
 								currency: plan.currency,
 								subTotal: plan.price,
 								discount: plan.price,
@@ -282,6 +349,17 @@ export const redeemCouponService = createServerFn()
 								},
 							});
 						}
+
+						await transaction.user.update({
+							where: {
+								id: userId
+							},
+							data: {
+								computeQuotaBalanceCents: plan.monthlyComputeQuotaCents,
+								marketplaceCreditBalanceCents: plan.monthlyMarketplaceCreditsCents,
+								currentBillingCycleStart: currentPeriodStart
+							}
+						})
 
 						return {
 							success: true,
@@ -447,11 +525,12 @@ export const getUserPlan = createServerFn()
 	.handler(async ({ data, context }) => {
 		const { prisma } = await import("#/db.ts")
 
-		if (!data.userId || !context.session?.user.id) {
+		const userId = data?.userId || context.session?.user.id
+
+		if (!userId) {
 			throw new Error("Unauthorized")
 		}
 
-		const userId = data.userId || context.session.user.id
 
 		const activeSubscription = await prisma.subscription.findFirst({
 			where: {
@@ -470,7 +549,7 @@ export const getUserPlan = createServerFn()
 		})
 
 		if (activeSubscription?.plan) {
-			return activeSubscription.plan
+			return serializePlan(activeSubscription.plan)
 		}
 
 		const freePlan = await prisma.plan.findFirst({
@@ -484,5 +563,5 @@ export const getUserPlan = createServerFn()
 			throw new Error("Critical Error: No free plan configured in the database")
 		}
 
-		return freePlan
+		return serializePlan(freePlan)
 	})
