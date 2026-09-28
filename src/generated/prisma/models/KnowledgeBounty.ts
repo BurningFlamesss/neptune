@@ -48,7 +48,7 @@ export type KnowledgeBountyMinAggregateOutputType = {
   description: string | null
   creatorOrgId: string | null
   creatorUserId: string | null
-  targetPackId: string | null
+  targetCollectionId: string | null
   escrowAmountCents: number | null
   platformFeeCent: number | null
   maintainerSharePercent: number | null
@@ -68,7 +68,7 @@ export type KnowledgeBountyMaxAggregateOutputType = {
   description: string | null
   creatorOrgId: string | null
   creatorUserId: string | null
-  targetPackId: string | null
+  targetCollectionId: string | null
   escrowAmountCents: number | null
   platformFeeCent: number | null
   maintainerSharePercent: number | null
@@ -89,7 +89,7 @@ export type KnowledgeBountyCountAggregateOutputType = {
   requirements: number
   creatorOrgId: number
   creatorUserId: number
-  targetPackId: number
+  targetCollectionId: number
   escrowAmountCents: number
   platformFeeCent: number
   maintainerSharePercent: number
@@ -127,7 +127,7 @@ export type KnowledgeBountyMinAggregateInputType = {
   description?: true
   creatorOrgId?: true
   creatorUserId?: true
-  targetPackId?: true
+  targetCollectionId?: true
   escrowAmountCents?: true
   platformFeeCent?: true
   maintainerSharePercent?: true
@@ -147,7 +147,7 @@ export type KnowledgeBountyMaxAggregateInputType = {
   description?: true
   creatorOrgId?: true
   creatorUserId?: true
-  targetPackId?: true
+  targetCollectionId?: true
   escrowAmountCents?: true
   platformFeeCent?: true
   maintainerSharePercent?: true
@@ -168,7 +168,7 @@ export type KnowledgeBountyCountAggregateInputType = {
   requirements?: true
   creatorOrgId?: true
   creatorUserId?: true
-  targetPackId?: true
+  targetCollectionId?: true
   escrowAmountCents?: true
   platformFeeCent?: true
   maintainerSharePercent?: true
@@ -276,7 +276,7 @@ export type KnowledgeBountyGroupByOutputType = {
   requirements: runtime.JsonValue | null
   creatorOrgId: string | null
   creatorUserId: string | null
-  targetPackId: string | null
+  targetCollectionId: string | null
   escrowAmountCents: number
   platformFeeCent: number
   maintainerSharePercent: number
@@ -320,7 +320,7 @@ export type KnowledgeBountyWhereInput = {
   requirements?: Prisma.JsonNullableFilter<"KnowledgeBounty">
   creatorOrgId?: Prisma.StringNullableFilter<"KnowledgeBounty"> | string | null
   creatorUserId?: Prisma.StringNullableFilter<"KnowledgeBounty"> | string | null
-  targetPackId?: Prisma.StringNullableFilter<"KnowledgeBounty"> | string | null
+  targetCollectionId?: Prisma.StringNullableFilter<"KnowledgeBounty"> | string | null
   escrowAmountCents?: Prisma.IntFilter<"KnowledgeBounty"> | number
   platformFeeCent?: Prisma.FloatFilter<"KnowledgeBounty"> | number
   maintainerSharePercent?: Prisma.FloatFilter<"KnowledgeBounty"> | number
@@ -334,9 +334,9 @@ export type KnowledgeBountyWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"KnowledgeBounty"> | Date | string
   creatorOrg?: Prisma.XOR<Prisma.OrganizationNullableScalarRelationFilter, Prisma.OrganizationWhereInput> | null
   creatorUser?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-  targetPack?: Prisma.XOR<Prisma.PackNullableScalarRelationFilter, Prisma.PackWhereInput> | null
+  targetCollection?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
   payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
-  submissions?: Prisma.BountySubmissionListRelationFilter
+  combines?: Prisma.CombineListRelationFilter
   royalties?: Prisma.UserRoyaltyListRelationFilter
 }
 
@@ -347,7 +347,7 @@ export type KnowledgeBountyOrderByWithRelationInput = {
   requirements?: Prisma.SortOrderInput | Prisma.SortOrder
   creatorOrgId?: Prisma.SortOrderInput | Prisma.SortOrder
   creatorUserId?: Prisma.SortOrderInput | Prisma.SortOrder
-  targetPackId?: Prisma.SortOrderInput | Prisma.SortOrder
+  targetCollectionId?: Prisma.SortOrderInput | Prisma.SortOrder
   escrowAmountCents?: Prisma.SortOrder
   platformFeeCent?: Prisma.SortOrder
   maintainerSharePercent?: Prisma.SortOrder
@@ -361,9 +361,9 @@ export type KnowledgeBountyOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   creatorOrg?: Prisma.OrganizationOrderByWithRelationInput
   creatorUser?: Prisma.UserOrderByWithRelationInput
-  targetPack?: Prisma.PackOrderByWithRelationInput
+  targetCollection?: Prisma.CollectionOrderByWithRelationInput
   payment?: Prisma.PaymentOrderByWithRelationInput
-  submissions?: Prisma.BountySubmissionOrderByRelationAggregateInput
+  combines?: Prisma.CombineOrderByRelationAggregateInput
   royalties?: Prisma.UserRoyaltyOrderByRelationAggregateInput
 }
 
@@ -378,7 +378,7 @@ export type KnowledgeBountyWhereUniqueInput = Prisma.AtLeast<{
   requirements?: Prisma.JsonNullableFilter<"KnowledgeBounty">
   creatorOrgId?: Prisma.StringNullableFilter<"KnowledgeBounty"> | string | null
   creatorUserId?: Prisma.StringNullableFilter<"KnowledgeBounty"> | string | null
-  targetPackId?: Prisma.StringNullableFilter<"KnowledgeBounty"> | string | null
+  targetCollectionId?: Prisma.StringNullableFilter<"KnowledgeBounty"> | string | null
   escrowAmountCents?: Prisma.IntFilter<"KnowledgeBounty"> | number
   platformFeeCent?: Prisma.FloatFilter<"KnowledgeBounty"> | number
   maintainerSharePercent?: Prisma.FloatFilter<"KnowledgeBounty"> | number
@@ -391,9 +391,9 @@ export type KnowledgeBountyWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"KnowledgeBounty"> | Date | string
   creatorOrg?: Prisma.XOR<Prisma.OrganizationNullableScalarRelationFilter, Prisma.OrganizationWhereInput> | null
   creatorUser?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-  targetPack?: Prisma.XOR<Prisma.PackNullableScalarRelationFilter, Prisma.PackWhereInput> | null
+  targetCollection?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
   payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
-  submissions?: Prisma.BountySubmissionListRelationFilter
+  combines?: Prisma.CombineListRelationFilter
   royalties?: Prisma.UserRoyaltyListRelationFilter
 }, "id" | "paymentId">
 
@@ -404,7 +404,7 @@ export type KnowledgeBountyOrderByWithAggregationInput = {
   requirements?: Prisma.SortOrderInput | Prisma.SortOrder
   creatorOrgId?: Prisma.SortOrderInput | Prisma.SortOrder
   creatorUserId?: Prisma.SortOrderInput | Prisma.SortOrder
-  targetPackId?: Prisma.SortOrderInput | Prisma.SortOrder
+  targetCollectionId?: Prisma.SortOrderInput | Prisma.SortOrder
   escrowAmountCents?: Prisma.SortOrder
   platformFeeCent?: Prisma.SortOrder
   maintainerSharePercent?: Prisma.SortOrder
@@ -433,7 +433,7 @@ export type KnowledgeBountyScalarWhereWithAggregatesInput = {
   requirements?: Prisma.JsonNullableWithAggregatesFilter<"KnowledgeBounty">
   creatorOrgId?: Prisma.StringNullableWithAggregatesFilter<"KnowledgeBounty"> | string | null
   creatorUserId?: Prisma.StringNullableWithAggregatesFilter<"KnowledgeBounty"> | string | null
-  targetPackId?: Prisma.StringNullableWithAggregatesFilter<"KnowledgeBounty"> | string | null
+  targetCollectionId?: Prisma.StringNullableWithAggregatesFilter<"KnowledgeBounty"> | string | null
   escrowAmountCents?: Prisma.IntWithAggregatesFilter<"KnowledgeBounty"> | number
   platformFeeCent?: Prisma.FloatWithAggregatesFilter<"KnowledgeBounty"> | number
   maintainerSharePercent?: Prisma.FloatWithAggregatesFilter<"KnowledgeBounty"> | number
@@ -464,9 +464,9 @@ export type KnowledgeBountyCreateInput = {
   updatedAt?: Date | string
   creatorOrg?: Prisma.OrganizationCreateNestedOneWithoutKnowledgeBountiesInput
   creatorUser?: Prisma.UserCreateNestedOneWithoutBountiesCreatedInput
-  targetPack?: Prisma.PackCreateNestedOneWithoutBountiesInput
+  targetCollection?: Prisma.CollectionCreateNestedOneWithoutBountiesInput
   payment?: Prisma.PaymentCreateNestedOneWithoutKnowledgeBountyInput
-  submissions?: Prisma.BountySubmissionCreateNestedManyWithoutBountyInput
+  combines?: Prisma.CombineCreateNestedManyWithoutBountyInput
   royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutBountyInput
 }
 
@@ -477,7 +477,7 @@ export type KnowledgeBountyUncheckedCreateInput = {
   requirements?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   creatorOrgId?: string | null
   creatorUserId?: string | null
-  targetPackId?: string | null
+  targetCollectionId?: string | null
   escrowAmountCents: number
   platformFeeCent?: number
   maintainerSharePercent?: number
@@ -489,7 +489,7 @@ export type KnowledgeBountyUncheckedCreateInput = {
   completedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  submissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutBountyInput
+  combines?: Prisma.CombineUncheckedCreateNestedManyWithoutBountyInput
   royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutBountyInput
 }
 
@@ -510,9 +510,9 @@ export type KnowledgeBountyUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   creatorOrg?: Prisma.OrganizationUpdateOneWithoutKnowledgeBountiesNestedInput
   creatorUser?: Prisma.UserUpdateOneWithoutBountiesCreatedNestedInput
-  targetPack?: Prisma.PackUpdateOneWithoutBountiesNestedInput
+  targetCollection?: Prisma.CollectionUpdateOneWithoutBountiesNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutKnowledgeBountyNestedInput
-  submissions?: Prisma.BountySubmissionUpdateManyWithoutBountyNestedInput
+  combines?: Prisma.CombineUpdateManyWithoutBountyNestedInput
   royalties?: Prisma.UserRoyaltyUpdateManyWithoutBountyNestedInput
 }
 
@@ -523,7 +523,7 @@ export type KnowledgeBountyUncheckedUpdateInput = {
   requirements?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   creatorOrgId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creatorUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetPackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  targetCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   escrowAmountCents?: Prisma.IntFieldUpdateOperationsInput | number
   platformFeeCent?: Prisma.FloatFieldUpdateOperationsInput | number
   maintainerSharePercent?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -535,7 +535,7 @@ export type KnowledgeBountyUncheckedUpdateInput = {
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  submissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutBountyNestedInput
+  combines?: Prisma.CombineUncheckedUpdateManyWithoutBountyNestedInput
   royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutBountyNestedInput
 }
 
@@ -546,7 +546,7 @@ export type KnowledgeBountyCreateManyInput = {
   requirements?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   creatorOrgId?: string | null
   creatorUserId?: string | null
-  targetPackId?: string | null
+  targetCollectionId?: string | null
   escrowAmountCents: number
   platformFeeCent?: number
   maintainerSharePercent?: number
@@ -584,7 +584,7 @@ export type KnowledgeBountyUncheckedUpdateManyInput = {
   requirements?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   creatorOrgId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creatorUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetPackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  targetCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   escrowAmountCents?: Prisma.IntFieldUpdateOperationsInput | number
   platformFeeCent?: Prisma.FloatFieldUpdateOperationsInput | number
   maintainerSharePercent?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -620,7 +620,7 @@ export type KnowledgeBountyCountOrderByAggregateInput = {
   requirements?: Prisma.SortOrder
   creatorOrgId?: Prisma.SortOrder
   creatorUserId?: Prisma.SortOrder
-  targetPackId?: Prisma.SortOrder
+  targetCollectionId?: Prisma.SortOrder
   escrowAmountCents?: Prisma.SortOrder
   platformFeeCent?: Prisma.SortOrder
   maintainerSharePercent?: Prisma.SortOrder
@@ -648,7 +648,7 @@ export type KnowledgeBountyMaxOrderByAggregateInput = {
   description?: Prisma.SortOrder
   creatorOrgId?: Prisma.SortOrder
   creatorUserId?: Prisma.SortOrder
-  targetPackId?: Prisma.SortOrder
+  targetCollectionId?: Prisma.SortOrder
   escrowAmountCents?: Prisma.SortOrder
   platformFeeCent?: Prisma.SortOrder
   maintainerSharePercent?: Prisma.SortOrder
@@ -668,7 +668,7 @@ export type KnowledgeBountyMinOrderByAggregateInput = {
   description?: Prisma.SortOrder
   creatorOrgId?: Prisma.SortOrder
   creatorUserId?: Prisma.SortOrder
-  targetPackId?: Prisma.SortOrder
+  targetCollectionId?: Prisma.SortOrder
   escrowAmountCents?: Prisma.SortOrder
   platformFeeCent?: Prisma.SortOrder
   maintainerSharePercent?: Prisma.SortOrder
@@ -688,11 +688,6 @@ export type KnowledgeBountySumOrderByAggregateInput = {
   maintainerSharePercent?: Prisma.SortOrder
   remainingPoolCents?: Prisma.SortOrder
   targetEntryCount?: Prisma.SortOrder
-}
-
-export type KnowledgeBountyScalarRelationFilter = {
-  is?: Prisma.KnowledgeBountyWhereInput
-  isNot?: Prisma.KnowledgeBountyWhereInput
 }
 
 export type KnowledgeBountyCreateNestedManyWithoutCreatorUserInput = {
@@ -779,6 +774,48 @@ export type KnowledgeBountyUncheckedUpdateManyWithoutCreatorOrgNestedInput = {
   deleteMany?: Prisma.KnowledgeBountyScalarWhereInput | Prisma.KnowledgeBountyScalarWhereInput[]
 }
 
+export type KnowledgeBountyCreateNestedManyWithoutTargetCollectionInput = {
+  create?: Prisma.XOR<Prisma.KnowledgeBountyCreateWithoutTargetCollectionInput, Prisma.KnowledgeBountyUncheckedCreateWithoutTargetCollectionInput> | Prisma.KnowledgeBountyCreateWithoutTargetCollectionInput[] | Prisma.KnowledgeBountyUncheckedCreateWithoutTargetCollectionInput[]
+  connectOrCreate?: Prisma.KnowledgeBountyCreateOrConnectWithoutTargetCollectionInput | Prisma.KnowledgeBountyCreateOrConnectWithoutTargetCollectionInput[]
+  createMany?: Prisma.KnowledgeBountyCreateManyTargetCollectionInputEnvelope
+  connect?: Prisma.KnowledgeBountyWhereUniqueInput | Prisma.KnowledgeBountyWhereUniqueInput[]
+}
+
+export type KnowledgeBountyUncheckedCreateNestedManyWithoutTargetCollectionInput = {
+  create?: Prisma.XOR<Prisma.KnowledgeBountyCreateWithoutTargetCollectionInput, Prisma.KnowledgeBountyUncheckedCreateWithoutTargetCollectionInput> | Prisma.KnowledgeBountyCreateWithoutTargetCollectionInput[] | Prisma.KnowledgeBountyUncheckedCreateWithoutTargetCollectionInput[]
+  connectOrCreate?: Prisma.KnowledgeBountyCreateOrConnectWithoutTargetCollectionInput | Prisma.KnowledgeBountyCreateOrConnectWithoutTargetCollectionInput[]
+  createMany?: Prisma.KnowledgeBountyCreateManyTargetCollectionInputEnvelope
+  connect?: Prisma.KnowledgeBountyWhereUniqueInput | Prisma.KnowledgeBountyWhereUniqueInput[]
+}
+
+export type KnowledgeBountyUpdateManyWithoutTargetCollectionNestedInput = {
+  create?: Prisma.XOR<Prisma.KnowledgeBountyCreateWithoutTargetCollectionInput, Prisma.KnowledgeBountyUncheckedCreateWithoutTargetCollectionInput> | Prisma.KnowledgeBountyCreateWithoutTargetCollectionInput[] | Prisma.KnowledgeBountyUncheckedCreateWithoutTargetCollectionInput[]
+  connectOrCreate?: Prisma.KnowledgeBountyCreateOrConnectWithoutTargetCollectionInput | Prisma.KnowledgeBountyCreateOrConnectWithoutTargetCollectionInput[]
+  upsert?: Prisma.KnowledgeBountyUpsertWithWhereUniqueWithoutTargetCollectionInput | Prisma.KnowledgeBountyUpsertWithWhereUniqueWithoutTargetCollectionInput[]
+  createMany?: Prisma.KnowledgeBountyCreateManyTargetCollectionInputEnvelope
+  set?: Prisma.KnowledgeBountyWhereUniqueInput | Prisma.KnowledgeBountyWhereUniqueInput[]
+  disconnect?: Prisma.KnowledgeBountyWhereUniqueInput | Prisma.KnowledgeBountyWhereUniqueInput[]
+  delete?: Prisma.KnowledgeBountyWhereUniqueInput | Prisma.KnowledgeBountyWhereUniqueInput[]
+  connect?: Prisma.KnowledgeBountyWhereUniqueInput | Prisma.KnowledgeBountyWhereUniqueInput[]
+  update?: Prisma.KnowledgeBountyUpdateWithWhereUniqueWithoutTargetCollectionInput | Prisma.KnowledgeBountyUpdateWithWhereUniqueWithoutTargetCollectionInput[]
+  updateMany?: Prisma.KnowledgeBountyUpdateManyWithWhereWithoutTargetCollectionInput | Prisma.KnowledgeBountyUpdateManyWithWhereWithoutTargetCollectionInput[]
+  deleteMany?: Prisma.KnowledgeBountyScalarWhereInput | Prisma.KnowledgeBountyScalarWhereInput[]
+}
+
+export type KnowledgeBountyUncheckedUpdateManyWithoutTargetCollectionNestedInput = {
+  create?: Prisma.XOR<Prisma.KnowledgeBountyCreateWithoutTargetCollectionInput, Prisma.KnowledgeBountyUncheckedCreateWithoutTargetCollectionInput> | Prisma.KnowledgeBountyCreateWithoutTargetCollectionInput[] | Prisma.KnowledgeBountyUncheckedCreateWithoutTargetCollectionInput[]
+  connectOrCreate?: Prisma.KnowledgeBountyCreateOrConnectWithoutTargetCollectionInput | Prisma.KnowledgeBountyCreateOrConnectWithoutTargetCollectionInput[]
+  upsert?: Prisma.KnowledgeBountyUpsertWithWhereUniqueWithoutTargetCollectionInput | Prisma.KnowledgeBountyUpsertWithWhereUniqueWithoutTargetCollectionInput[]
+  createMany?: Prisma.KnowledgeBountyCreateManyTargetCollectionInputEnvelope
+  set?: Prisma.KnowledgeBountyWhereUniqueInput | Prisma.KnowledgeBountyWhereUniqueInput[]
+  disconnect?: Prisma.KnowledgeBountyWhereUniqueInput | Prisma.KnowledgeBountyWhereUniqueInput[]
+  delete?: Prisma.KnowledgeBountyWhereUniqueInput | Prisma.KnowledgeBountyWhereUniqueInput[]
+  connect?: Prisma.KnowledgeBountyWhereUniqueInput | Prisma.KnowledgeBountyWhereUniqueInput[]
+  update?: Prisma.KnowledgeBountyUpdateWithWhereUniqueWithoutTargetCollectionInput | Prisma.KnowledgeBountyUpdateWithWhereUniqueWithoutTargetCollectionInput[]
+  updateMany?: Prisma.KnowledgeBountyUpdateManyWithWhereWithoutTargetCollectionInput | Prisma.KnowledgeBountyUpdateManyWithWhereWithoutTargetCollectionInput[]
+  deleteMany?: Prisma.KnowledgeBountyScalarWhereInput | Prisma.KnowledgeBountyScalarWhereInput[]
+}
+
 export type KnowledgeBountyCreateNestedOneWithoutRoyaltiesInput = {
   create?: Prisma.XOR<Prisma.KnowledgeBountyCreateWithoutRoyaltiesInput, Prisma.KnowledgeBountyUncheckedCreateWithoutRoyaltiesInput>
   connectOrCreate?: Prisma.KnowledgeBountyCreateOrConnectWithoutRoyaltiesInput
@@ -795,64 +832,24 @@ export type KnowledgeBountyUpdateOneWithoutRoyaltiesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.KnowledgeBountyUpdateToOneWithWhereWithoutRoyaltiesInput, Prisma.KnowledgeBountyUpdateWithoutRoyaltiesInput>, Prisma.KnowledgeBountyUncheckedUpdateWithoutRoyaltiesInput>
 }
 
-export type KnowledgeBountyCreateNestedManyWithoutTargetPackInput = {
-  create?: Prisma.XOR<Prisma.KnowledgeBountyCreateWithoutTargetPackInput, Prisma.KnowledgeBountyUncheckedCreateWithoutTargetPackInput> | Prisma.KnowledgeBountyCreateWithoutTargetPackInput[] | Prisma.KnowledgeBountyUncheckedCreateWithoutTargetPackInput[]
-  connectOrCreate?: Prisma.KnowledgeBountyCreateOrConnectWithoutTargetPackInput | Prisma.KnowledgeBountyCreateOrConnectWithoutTargetPackInput[]
-  createMany?: Prisma.KnowledgeBountyCreateManyTargetPackInputEnvelope
-  connect?: Prisma.KnowledgeBountyWhereUniqueInput | Prisma.KnowledgeBountyWhereUniqueInput[]
+export type KnowledgeBountyCreateNestedOneWithoutCombinesInput = {
+  create?: Prisma.XOR<Prisma.KnowledgeBountyCreateWithoutCombinesInput, Prisma.KnowledgeBountyUncheckedCreateWithoutCombinesInput>
+  connectOrCreate?: Prisma.KnowledgeBountyCreateOrConnectWithoutCombinesInput
+  connect?: Prisma.KnowledgeBountyWhereUniqueInput
 }
 
-export type KnowledgeBountyUncheckedCreateNestedManyWithoutTargetPackInput = {
-  create?: Prisma.XOR<Prisma.KnowledgeBountyCreateWithoutTargetPackInput, Prisma.KnowledgeBountyUncheckedCreateWithoutTargetPackInput> | Prisma.KnowledgeBountyCreateWithoutTargetPackInput[] | Prisma.KnowledgeBountyUncheckedCreateWithoutTargetPackInput[]
-  connectOrCreate?: Prisma.KnowledgeBountyCreateOrConnectWithoutTargetPackInput | Prisma.KnowledgeBountyCreateOrConnectWithoutTargetPackInput[]
-  createMany?: Prisma.KnowledgeBountyCreateManyTargetPackInputEnvelope
-  connect?: Prisma.KnowledgeBountyWhereUniqueInput | Prisma.KnowledgeBountyWhereUniqueInput[]
-}
-
-export type KnowledgeBountyUpdateManyWithoutTargetPackNestedInput = {
-  create?: Prisma.XOR<Prisma.KnowledgeBountyCreateWithoutTargetPackInput, Prisma.KnowledgeBountyUncheckedCreateWithoutTargetPackInput> | Prisma.KnowledgeBountyCreateWithoutTargetPackInput[] | Prisma.KnowledgeBountyUncheckedCreateWithoutTargetPackInput[]
-  connectOrCreate?: Prisma.KnowledgeBountyCreateOrConnectWithoutTargetPackInput | Prisma.KnowledgeBountyCreateOrConnectWithoutTargetPackInput[]
-  upsert?: Prisma.KnowledgeBountyUpsertWithWhereUniqueWithoutTargetPackInput | Prisma.KnowledgeBountyUpsertWithWhereUniqueWithoutTargetPackInput[]
-  createMany?: Prisma.KnowledgeBountyCreateManyTargetPackInputEnvelope
-  set?: Prisma.KnowledgeBountyWhereUniqueInput | Prisma.KnowledgeBountyWhereUniqueInput[]
-  disconnect?: Prisma.KnowledgeBountyWhereUniqueInput | Prisma.KnowledgeBountyWhereUniqueInput[]
-  delete?: Prisma.KnowledgeBountyWhereUniqueInput | Prisma.KnowledgeBountyWhereUniqueInput[]
-  connect?: Prisma.KnowledgeBountyWhereUniqueInput | Prisma.KnowledgeBountyWhereUniqueInput[]
-  update?: Prisma.KnowledgeBountyUpdateWithWhereUniqueWithoutTargetPackInput | Prisma.KnowledgeBountyUpdateWithWhereUniqueWithoutTargetPackInput[]
-  updateMany?: Prisma.KnowledgeBountyUpdateManyWithWhereWithoutTargetPackInput | Prisma.KnowledgeBountyUpdateManyWithWhereWithoutTargetPackInput[]
-  deleteMany?: Prisma.KnowledgeBountyScalarWhereInput | Prisma.KnowledgeBountyScalarWhereInput[]
-}
-
-export type KnowledgeBountyUncheckedUpdateManyWithoutTargetPackNestedInput = {
-  create?: Prisma.XOR<Prisma.KnowledgeBountyCreateWithoutTargetPackInput, Prisma.KnowledgeBountyUncheckedCreateWithoutTargetPackInput> | Prisma.KnowledgeBountyCreateWithoutTargetPackInput[] | Prisma.KnowledgeBountyUncheckedCreateWithoutTargetPackInput[]
-  connectOrCreate?: Prisma.KnowledgeBountyCreateOrConnectWithoutTargetPackInput | Prisma.KnowledgeBountyCreateOrConnectWithoutTargetPackInput[]
-  upsert?: Prisma.KnowledgeBountyUpsertWithWhereUniqueWithoutTargetPackInput | Prisma.KnowledgeBountyUpsertWithWhereUniqueWithoutTargetPackInput[]
-  createMany?: Prisma.KnowledgeBountyCreateManyTargetPackInputEnvelope
-  set?: Prisma.KnowledgeBountyWhereUniqueInput | Prisma.KnowledgeBountyWhereUniqueInput[]
-  disconnect?: Prisma.KnowledgeBountyWhereUniqueInput | Prisma.KnowledgeBountyWhereUniqueInput[]
-  delete?: Prisma.KnowledgeBountyWhereUniqueInput | Prisma.KnowledgeBountyWhereUniqueInput[]
-  connect?: Prisma.KnowledgeBountyWhereUniqueInput | Prisma.KnowledgeBountyWhereUniqueInput[]
-  update?: Prisma.KnowledgeBountyUpdateWithWhereUniqueWithoutTargetPackInput | Prisma.KnowledgeBountyUpdateWithWhereUniqueWithoutTargetPackInput[]
-  updateMany?: Prisma.KnowledgeBountyUpdateManyWithWhereWithoutTargetPackInput | Prisma.KnowledgeBountyUpdateManyWithWhereWithoutTargetPackInput[]
-  deleteMany?: Prisma.KnowledgeBountyScalarWhereInput | Prisma.KnowledgeBountyScalarWhereInput[]
+export type KnowledgeBountyUpdateOneWithoutCombinesNestedInput = {
+  create?: Prisma.XOR<Prisma.KnowledgeBountyCreateWithoutCombinesInput, Prisma.KnowledgeBountyUncheckedCreateWithoutCombinesInput>
+  connectOrCreate?: Prisma.KnowledgeBountyCreateOrConnectWithoutCombinesInput
+  upsert?: Prisma.KnowledgeBountyUpsertWithoutCombinesInput
+  disconnect?: Prisma.KnowledgeBountyWhereInput | boolean
+  delete?: Prisma.KnowledgeBountyWhereInput | boolean
+  connect?: Prisma.KnowledgeBountyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.KnowledgeBountyUpdateToOneWithWhereWithoutCombinesInput, Prisma.KnowledgeBountyUpdateWithoutCombinesInput>, Prisma.KnowledgeBountyUncheckedUpdateWithoutCombinesInput>
 }
 
 export type EnumBountyStatusFieldUpdateOperationsInput = {
   set?: $Enums.BountyStatus
-}
-
-export type KnowledgeBountyCreateNestedOneWithoutSubmissionsInput = {
-  create?: Prisma.XOR<Prisma.KnowledgeBountyCreateWithoutSubmissionsInput, Prisma.KnowledgeBountyUncheckedCreateWithoutSubmissionsInput>
-  connectOrCreate?: Prisma.KnowledgeBountyCreateOrConnectWithoutSubmissionsInput
-  connect?: Prisma.KnowledgeBountyWhereUniqueInput
-}
-
-export type KnowledgeBountyUpdateOneRequiredWithoutSubmissionsNestedInput = {
-  create?: Prisma.XOR<Prisma.KnowledgeBountyCreateWithoutSubmissionsInput, Prisma.KnowledgeBountyUncheckedCreateWithoutSubmissionsInput>
-  connectOrCreate?: Prisma.KnowledgeBountyCreateOrConnectWithoutSubmissionsInput
-  upsert?: Prisma.KnowledgeBountyUpsertWithoutSubmissionsInput
-  connect?: Prisma.KnowledgeBountyWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.KnowledgeBountyUpdateToOneWithWhereWithoutSubmissionsInput, Prisma.KnowledgeBountyUpdateWithoutSubmissionsInput>, Prisma.KnowledgeBountyUncheckedUpdateWithoutSubmissionsInput>
 }
 
 export type KnowledgeBountyCreateNestedOneWithoutPaymentInput = {
@@ -903,9 +900,9 @@ export type KnowledgeBountyCreateWithoutCreatorUserInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   creatorOrg?: Prisma.OrganizationCreateNestedOneWithoutKnowledgeBountiesInput
-  targetPack?: Prisma.PackCreateNestedOneWithoutBountiesInput
+  targetCollection?: Prisma.CollectionCreateNestedOneWithoutBountiesInput
   payment?: Prisma.PaymentCreateNestedOneWithoutKnowledgeBountyInput
-  submissions?: Prisma.BountySubmissionCreateNestedManyWithoutBountyInput
+  combines?: Prisma.CombineCreateNestedManyWithoutBountyInput
   royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutBountyInput
 }
 
@@ -915,7 +912,7 @@ export type KnowledgeBountyUncheckedCreateWithoutCreatorUserInput = {
   description: string
   requirements?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   creatorOrgId?: string | null
-  targetPackId?: string | null
+  targetCollectionId?: string | null
   escrowAmountCents: number
   platformFeeCent?: number
   maintainerSharePercent?: number
@@ -927,7 +924,7 @@ export type KnowledgeBountyUncheckedCreateWithoutCreatorUserInput = {
   completedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  submissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutBountyInput
+  combines?: Prisma.CombineUncheckedCreateNestedManyWithoutBountyInput
   royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutBountyInput
 }
 
@@ -967,7 +964,7 @@ export type KnowledgeBountyScalarWhereInput = {
   requirements?: Prisma.JsonNullableFilter<"KnowledgeBounty">
   creatorOrgId?: Prisma.StringNullableFilter<"KnowledgeBounty"> | string | null
   creatorUserId?: Prisma.StringNullableFilter<"KnowledgeBounty"> | string | null
-  targetPackId?: Prisma.StringNullableFilter<"KnowledgeBounty"> | string | null
+  targetCollectionId?: Prisma.StringNullableFilter<"KnowledgeBounty"> | string | null
   escrowAmountCents?: Prisma.IntFilter<"KnowledgeBounty"> | number
   platformFeeCent?: Prisma.FloatFilter<"KnowledgeBounty"> | number
   maintainerSharePercent?: Prisma.FloatFilter<"KnowledgeBounty"> | number
@@ -997,9 +994,9 @@ export type KnowledgeBountyCreateWithoutCreatorOrgInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   creatorUser?: Prisma.UserCreateNestedOneWithoutBountiesCreatedInput
-  targetPack?: Prisma.PackCreateNestedOneWithoutBountiesInput
+  targetCollection?: Prisma.CollectionCreateNestedOneWithoutBountiesInput
   payment?: Prisma.PaymentCreateNestedOneWithoutKnowledgeBountyInput
-  submissions?: Prisma.BountySubmissionCreateNestedManyWithoutBountyInput
+  combines?: Prisma.CombineCreateNestedManyWithoutBountyInput
   royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutBountyInput
 }
 
@@ -1009,7 +1006,7 @@ export type KnowledgeBountyUncheckedCreateWithoutCreatorOrgInput = {
   description: string
   requirements?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   creatorUserId?: string | null
-  targetPackId?: string | null
+  targetCollectionId?: string | null
   escrowAmountCents: number
   platformFeeCent?: number
   maintainerSharePercent?: number
@@ -1021,7 +1018,7 @@ export type KnowledgeBountyUncheckedCreateWithoutCreatorOrgInput = {
   completedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  submissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutBountyInput
+  combines?: Prisma.CombineUncheckedCreateNestedManyWithoutBountyInput
   royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutBountyInput
 }
 
@@ -1051,6 +1048,76 @@ export type KnowledgeBountyUpdateManyWithWhereWithoutCreatorOrgInput = {
   data: Prisma.XOR<Prisma.KnowledgeBountyUpdateManyMutationInput, Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorOrgInput>
 }
 
+export type KnowledgeBountyCreateWithoutTargetCollectionInput = {
+  id?: string
+  title: string
+  description: string
+  requirements?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  escrowAmountCents: number
+  platformFeeCent?: number
+  maintainerSharePercent?: number
+  remainingPoolCents: number
+  targetEntryCount?: number
+  status?: $Enums.BountyStatus
+  expiresAt?: Date | string | null
+  completedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  creatorOrg?: Prisma.OrganizationCreateNestedOneWithoutKnowledgeBountiesInput
+  creatorUser?: Prisma.UserCreateNestedOneWithoutBountiesCreatedInput
+  payment?: Prisma.PaymentCreateNestedOneWithoutKnowledgeBountyInput
+  combines?: Prisma.CombineCreateNestedManyWithoutBountyInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutBountyInput
+}
+
+export type KnowledgeBountyUncheckedCreateWithoutTargetCollectionInput = {
+  id?: string
+  title: string
+  description: string
+  requirements?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  creatorOrgId?: string | null
+  creatorUserId?: string | null
+  escrowAmountCents: number
+  platformFeeCent?: number
+  maintainerSharePercent?: number
+  remainingPoolCents: number
+  targetEntryCount?: number
+  status?: $Enums.BountyStatus
+  paymentId?: string | null
+  expiresAt?: Date | string | null
+  completedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  combines?: Prisma.CombineUncheckedCreateNestedManyWithoutBountyInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutBountyInput
+}
+
+export type KnowledgeBountyCreateOrConnectWithoutTargetCollectionInput = {
+  where: Prisma.KnowledgeBountyWhereUniqueInput
+  create: Prisma.XOR<Prisma.KnowledgeBountyCreateWithoutTargetCollectionInput, Prisma.KnowledgeBountyUncheckedCreateWithoutTargetCollectionInput>
+}
+
+export type KnowledgeBountyCreateManyTargetCollectionInputEnvelope = {
+  data: Prisma.KnowledgeBountyCreateManyTargetCollectionInput | Prisma.KnowledgeBountyCreateManyTargetCollectionInput[]
+  skipDuplicates?: boolean
+}
+
+export type KnowledgeBountyUpsertWithWhereUniqueWithoutTargetCollectionInput = {
+  where: Prisma.KnowledgeBountyWhereUniqueInput
+  update: Prisma.XOR<Prisma.KnowledgeBountyUpdateWithoutTargetCollectionInput, Prisma.KnowledgeBountyUncheckedUpdateWithoutTargetCollectionInput>
+  create: Prisma.XOR<Prisma.KnowledgeBountyCreateWithoutTargetCollectionInput, Prisma.KnowledgeBountyUncheckedCreateWithoutTargetCollectionInput>
+}
+
+export type KnowledgeBountyUpdateWithWhereUniqueWithoutTargetCollectionInput = {
+  where: Prisma.KnowledgeBountyWhereUniqueInput
+  data: Prisma.XOR<Prisma.KnowledgeBountyUpdateWithoutTargetCollectionInput, Prisma.KnowledgeBountyUncheckedUpdateWithoutTargetCollectionInput>
+}
+
+export type KnowledgeBountyUpdateManyWithWhereWithoutTargetCollectionInput = {
+  where: Prisma.KnowledgeBountyScalarWhereInput
+  data: Prisma.XOR<Prisma.KnowledgeBountyUpdateManyMutationInput, Prisma.KnowledgeBountyUncheckedUpdateManyWithoutTargetCollectionInput>
+}
+
 export type KnowledgeBountyCreateWithoutRoyaltiesInput = {
   id?: string
   title: string
@@ -1068,9 +1135,9 @@ export type KnowledgeBountyCreateWithoutRoyaltiesInput = {
   updatedAt?: Date | string
   creatorOrg?: Prisma.OrganizationCreateNestedOneWithoutKnowledgeBountiesInput
   creatorUser?: Prisma.UserCreateNestedOneWithoutBountiesCreatedInput
-  targetPack?: Prisma.PackCreateNestedOneWithoutBountiesInput
+  targetCollection?: Prisma.CollectionCreateNestedOneWithoutBountiesInput
   payment?: Prisma.PaymentCreateNestedOneWithoutKnowledgeBountyInput
-  submissions?: Prisma.BountySubmissionCreateNestedManyWithoutBountyInput
+  combines?: Prisma.CombineCreateNestedManyWithoutBountyInput
 }
 
 export type KnowledgeBountyUncheckedCreateWithoutRoyaltiesInput = {
@@ -1080,7 +1147,7 @@ export type KnowledgeBountyUncheckedCreateWithoutRoyaltiesInput = {
   requirements?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   creatorOrgId?: string | null
   creatorUserId?: string | null
-  targetPackId?: string | null
+  targetCollectionId?: string | null
   escrowAmountCents: number
   platformFeeCent?: number
   maintainerSharePercent?: number
@@ -1092,7 +1159,7 @@ export type KnowledgeBountyUncheckedCreateWithoutRoyaltiesInput = {
   completedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  submissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutBountyInput
+  combines?: Prisma.CombineUncheckedCreateNestedManyWithoutBountyInput
 }
 
 export type KnowledgeBountyCreateOrConnectWithoutRoyaltiesInput = {
@@ -1128,9 +1195,9 @@ export type KnowledgeBountyUpdateWithoutRoyaltiesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   creatorOrg?: Prisma.OrganizationUpdateOneWithoutKnowledgeBountiesNestedInput
   creatorUser?: Prisma.UserUpdateOneWithoutBountiesCreatedNestedInput
-  targetPack?: Prisma.PackUpdateOneWithoutBountiesNestedInput
+  targetCollection?: Prisma.CollectionUpdateOneWithoutBountiesNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutKnowledgeBountyNestedInput
-  submissions?: Prisma.BountySubmissionUpdateManyWithoutBountyNestedInput
+  combines?: Prisma.CombineUpdateManyWithoutBountyNestedInput
 }
 
 export type KnowledgeBountyUncheckedUpdateWithoutRoyaltiesInput = {
@@ -1140,7 +1207,7 @@ export type KnowledgeBountyUncheckedUpdateWithoutRoyaltiesInput = {
   requirements?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   creatorOrgId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creatorUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetPackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  targetCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   escrowAmountCents?: Prisma.IntFieldUpdateOperationsInput | number
   platformFeeCent?: Prisma.FloatFieldUpdateOperationsInput | number
   maintainerSharePercent?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1152,10 +1219,10 @@ export type KnowledgeBountyUncheckedUpdateWithoutRoyaltiesInput = {
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  submissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutBountyNestedInput
+  combines?: Prisma.CombineUncheckedUpdateManyWithoutBountyNestedInput
 }
 
-export type KnowledgeBountyCreateWithoutTargetPackInput = {
+export type KnowledgeBountyCreateWithoutCombinesInput = {
   id?: string
   title: string
   description: string
@@ -1172,89 +1239,19 @@ export type KnowledgeBountyCreateWithoutTargetPackInput = {
   updatedAt?: Date | string
   creatorOrg?: Prisma.OrganizationCreateNestedOneWithoutKnowledgeBountiesInput
   creatorUser?: Prisma.UserCreateNestedOneWithoutBountiesCreatedInput
+  targetCollection?: Prisma.CollectionCreateNestedOneWithoutBountiesInput
   payment?: Prisma.PaymentCreateNestedOneWithoutKnowledgeBountyInput
-  submissions?: Prisma.BountySubmissionCreateNestedManyWithoutBountyInput
   royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutBountyInput
 }
 
-export type KnowledgeBountyUncheckedCreateWithoutTargetPackInput = {
+export type KnowledgeBountyUncheckedCreateWithoutCombinesInput = {
   id?: string
   title: string
   description: string
   requirements?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   creatorOrgId?: string | null
   creatorUserId?: string | null
-  escrowAmountCents: number
-  platformFeeCent?: number
-  maintainerSharePercent?: number
-  remainingPoolCents: number
-  targetEntryCount?: number
-  status?: $Enums.BountyStatus
-  paymentId?: string | null
-  expiresAt?: Date | string | null
-  completedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  submissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutBountyInput
-  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutBountyInput
-}
-
-export type KnowledgeBountyCreateOrConnectWithoutTargetPackInput = {
-  where: Prisma.KnowledgeBountyWhereUniqueInput
-  create: Prisma.XOR<Prisma.KnowledgeBountyCreateWithoutTargetPackInput, Prisma.KnowledgeBountyUncheckedCreateWithoutTargetPackInput>
-}
-
-export type KnowledgeBountyCreateManyTargetPackInputEnvelope = {
-  data: Prisma.KnowledgeBountyCreateManyTargetPackInput | Prisma.KnowledgeBountyCreateManyTargetPackInput[]
-  skipDuplicates?: boolean
-}
-
-export type KnowledgeBountyUpsertWithWhereUniqueWithoutTargetPackInput = {
-  where: Prisma.KnowledgeBountyWhereUniqueInput
-  update: Prisma.XOR<Prisma.KnowledgeBountyUpdateWithoutTargetPackInput, Prisma.KnowledgeBountyUncheckedUpdateWithoutTargetPackInput>
-  create: Prisma.XOR<Prisma.KnowledgeBountyCreateWithoutTargetPackInput, Prisma.KnowledgeBountyUncheckedCreateWithoutTargetPackInput>
-}
-
-export type KnowledgeBountyUpdateWithWhereUniqueWithoutTargetPackInput = {
-  where: Prisma.KnowledgeBountyWhereUniqueInput
-  data: Prisma.XOR<Prisma.KnowledgeBountyUpdateWithoutTargetPackInput, Prisma.KnowledgeBountyUncheckedUpdateWithoutTargetPackInput>
-}
-
-export type KnowledgeBountyUpdateManyWithWhereWithoutTargetPackInput = {
-  where: Prisma.KnowledgeBountyScalarWhereInput
-  data: Prisma.XOR<Prisma.KnowledgeBountyUpdateManyMutationInput, Prisma.KnowledgeBountyUncheckedUpdateManyWithoutTargetPackInput>
-}
-
-export type KnowledgeBountyCreateWithoutSubmissionsInput = {
-  id?: string
-  title: string
-  description: string
-  requirements?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  escrowAmountCents: number
-  platformFeeCent?: number
-  maintainerSharePercent?: number
-  remainingPoolCents: number
-  targetEntryCount?: number
-  status?: $Enums.BountyStatus
-  expiresAt?: Date | string | null
-  completedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  creatorOrg?: Prisma.OrganizationCreateNestedOneWithoutKnowledgeBountiesInput
-  creatorUser?: Prisma.UserCreateNestedOneWithoutBountiesCreatedInput
-  targetPack?: Prisma.PackCreateNestedOneWithoutBountiesInput
-  payment?: Prisma.PaymentCreateNestedOneWithoutKnowledgeBountyInput
-  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutBountyInput
-}
-
-export type KnowledgeBountyUncheckedCreateWithoutSubmissionsInput = {
-  id?: string
-  title: string
-  description: string
-  requirements?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  creatorOrgId?: string | null
-  creatorUserId?: string | null
-  targetPackId?: string | null
+  targetCollectionId?: string | null
   escrowAmountCents: number
   platformFeeCent?: number
   maintainerSharePercent?: number
@@ -1269,23 +1266,23 @@ export type KnowledgeBountyUncheckedCreateWithoutSubmissionsInput = {
   royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutBountyInput
 }
 
-export type KnowledgeBountyCreateOrConnectWithoutSubmissionsInput = {
+export type KnowledgeBountyCreateOrConnectWithoutCombinesInput = {
   where: Prisma.KnowledgeBountyWhereUniqueInput
-  create: Prisma.XOR<Prisma.KnowledgeBountyCreateWithoutSubmissionsInput, Prisma.KnowledgeBountyUncheckedCreateWithoutSubmissionsInput>
+  create: Prisma.XOR<Prisma.KnowledgeBountyCreateWithoutCombinesInput, Prisma.KnowledgeBountyUncheckedCreateWithoutCombinesInput>
 }
 
-export type KnowledgeBountyUpsertWithoutSubmissionsInput = {
-  update: Prisma.XOR<Prisma.KnowledgeBountyUpdateWithoutSubmissionsInput, Prisma.KnowledgeBountyUncheckedUpdateWithoutSubmissionsInput>
-  create: Prisma.XOR<Prisma.KnowledgeBountyCreateWithoutSubmissionsInput, Prisma.KnowledgeBountyUncheckedCreateWithoutSubmissionsInput>
+export type KnowledgeBountyUpsertWithoutCombinesInput = {
+  update: Prisma.XOR<Prisma.KnowledgeBountyUpdateWithoutCombinesInput, Prisma.KnowledgeBountyUncheckedUpdateWithoutCombinesInput>
+  create: Prisma.XOR<Prisma.KnowledgeBountyCreateWithoutCombinesInput, Prisma.KnowledgeBountyUncheckedCreateWithoutCombinesInput>
   where?: Prisma.KnowledgeBountyWhereInput
 }
 
-export type KnowledgeBountyUpdateToOneWithWhereWithoutSubmissionsInput = {
+export type KnowledgeBountyUpdateToOneWithWhereWithoutCombinesInput = {
   where?: Prisma.KnowledgeBountyWhereInput
-  data: Prisma.XOR<Prisma.KnowledgeBountyUpdateWithoutSubmissionsInput, Prisma.KnowledgeBountyUncheckedUpdateWithoutSubmissionsInput>
+  data: Prisma.XOR<Prisma.KnowledgeBountyUpdateWithoutCombinesInput, Prisma.KnowledgeBountyUncheckedUpdateWithoutCombinesInput>
 }
 
-export type KnowledgeBountyUpdateWithoutSubmissionsInput = {
+export type KnowledgeBountyUpdateWithoutCombinesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1302,19 +1299,19 @@ export type KnowledgeBountyUpdateWithoutSubmissionsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   creatorOrg?: Prisma.OrganizationUpdateOneWithoutKnowledgeBountiesNestedInput
   creatorUser?: Prisma.UserUpdateOneWithoutBountiesCreatedNestedInput
-  targetPack?: Prisma.PackUpdateOneWithoutBountiesNestedInput
+  targetCollection?: Prisma.CollectionUpdateOneWithoutBountiesNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutKnowledgeBountyNestedInput
   royalties?: Prisma.UserRoyaltyUpdateManyWithoutBountyNestedInput
 }
 
-export type KnowledgeBountyUncheckedUpdateWithoutSubmissionsInput = {
+export type KnowledgeBountyUncheckedUpdateWithoutCombinesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   requirements?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   creatorOrgId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creatorUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetPackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  targetCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   escrowAmountCents?: Prisma.IntFieldUpdateOperationsInput | number
   platformFeeCent?: Prisma.FloatFieldUpdateOperationsInput | number
   maintainerSharePercent?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1346,8 +1343,8 @@ export type KnowledgeBountyCreateWithoutPaymentInput = {
   updatedAt?: Date | string
   creatorOrg?: Prisma.OrganizationCreateNestedOneWithoutKnowledgeBountiesInput
   creatorUser?: Prisma.UserCreateNestedOneWithoutBountiesCreatedInput
-  targetPack?: Prisma.PackCreateNestedOneWithoutBountiesInput
-  submissions?: Prisma.BountySubmissionCreateNestedManyWithoutBountyInput
+  targetCollection?: Prisma.CollectionCreateNestedOneWithoutBountiesInput
+  combines?: Prisma.CombineCreateNestedManyWithoutBountyInput
   royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutBountyInput
 }
 
@@ -1358,7 +1355,7 @@ export type KnowledgeBountyUncheckedCreateWithoutPaymentInput = {
   requirements?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   creatorOrgId?: string | null
   creatorUserId?: string | null
-  targetPackId?: string | null
+  targetCollectionId?: string | null
   escrowAmountCents: number
   platformFeeCent?: number
   maintainerSharePercent?: number
@@ -1369,7 +1366,7 @@ export type KnowledgeBountyUncheckedCreateWithoutPaymentInput = {
   completedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  submissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutBountyInput
+  combines?: Prisma.CombineUncheckedCreateNestedManyWithoutBountyInput
   royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutBountyInput
 }
 
@@ -1406,8 +1403,8 @@ export type KnowledgeBountyUpdateWithoutPaymentInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   creatorOrg?: Prisma.OrganizationUpdateOneWithoutKnowledgeBountiesNestedInput
   creatorUser?: Prisma.UserUpdateOneWithoutBountiesCreatedNestedInput
-  targetPack?: Prisma.PackUpdateOneWithoutBountiesNestedInput
-  submissions?: Prisma.BountySubmissionUpdateManyWithoutBountyNestedInput
+  targetCollection?: Prisma.CollectionUpdateOneWithoutBountiesNestedInput
+  combines?: Prisma.CombineUpdateManyWithoutBountyNestedInput
   royalties?: Prisma.UserRoyaltyUpdateManyWithoutBountyNestedInput
 }
 
@@ -1418,7 +1415,7 @@ export type KnowledgeBountyUncheckedUpdateWithoutPaymentInput = {
   requirements?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   creatorOrgId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creatorUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetPackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  targetCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   escrowAmountCents?: Prisma.IntFieldUpdateOperationsInput | number
   platformFeeCent?: Prisma.FloatFieldUpdateOperationsInput | number
   maintainerSharePercent?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1429,7 +1426,7 @@ export type KnowledgeBountyUncheckedUpdateWithoutPaymentInput = {
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  submissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutBountyNestedInput
+  combines?: Prisma.CombineUncheckedUpdateManyWithoutBountyNestedInput
   royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutBountyNestedInput
 }
 
@@ -1439,7 +1436,7 @@ export type KnowledgeBountyCreateManyCreatorUserInput = {
   description: string
   requirements?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   creatorOrgId?: string | null
-  targetPackId?: string | null
+  targetCollectionId?: string | null
   escrowAmountCents: number
   platformFeeCent?: number
   maintainerSharePercent?: number
@@ -1469,9 +1466,9 @@ export type KnowledgeBountyUpdateWithoutCreatorUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   creatorOrg?: Prisma.OrganizationUpdateOneWithoutKnowledgeBountiesNestedInput
-  targetPack?: Prisma.PackUpdateOneWithoutBountiesNestedInput
+  targetCollection?: Prisma.CollectionUpdateOneWithoutBountiesNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutKnowledgeBountyNestedInput
-  submissions?: Prisma.BountySubmissionUpdateManyWithoutBountyNestedInput
+  combines?: Prisma.CombineUpdateManyWithoutBountyNestedInput
   royalties?: Prisma.UserRoyaltyUpdateManyWithoutBountyNestedInput
 }
 
@@ -1481,7 +1478,7 @@ export type KnowledgeBountyUncheckedUpdateWithoutCreatorUserInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   requirements?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   creatorOrgId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetPackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  targetCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   escrowAmountCents?: Prisma.IntFieldUpdateOperationsInput | number
   platformFeeCent?: Prisma.FloatFieldUpdateOperationsInput | number
   maintainerSharePercent?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1493,7 +1490,7 @@ export type KnowledgeBountyUncheckedUpdateWithoutCreatorUserInput = {
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  submissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutBountyNestedInput
+  combines?: Prisma.CombineUncheckedUpdateManyWithoutBountyNestedInput
   royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutBountyNestedInput
 }
 
@@ -1503,7 +1500,7 @@ export type KnowledgeBountyUncheckedUpdateManyWithoutCreatorUserInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   requirements?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   creatorOrgId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetPackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  targetCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   escrowAmountCents?: Prisma.IntFieldUpdateOperationsInput | number
   platformFeeCent?: Prisma.FloatFieldUpdateOperationsInput | number
   maintainerSharePercent?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1523,7 +1520,7 @@ export type KnowledgeBountyCreateManyCreatorOrgInput = {
   description: string
   requirements?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   creatorUserId?: string | null
-  targetPackId?: string | null
+  targetCollectionId?: string | null
   escrowAmountCents: number
   platformFeeCent?: number
   maintainerSharePercent?: number
@@ -1553,9 +1550,9 @@ export type KnowledgeBountyUpdateWithoutCreatorOrgInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   creatorUser?: Prisma.UserUpdateOneWithoutBountiesCreatedNestedInput
-  targetPack?: Prisma.PackUpdateOneWithoutBountiesNestedInput
+  targetCollection?: Prisma.CollectionUpdateOneWithoutBountiesNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutKnowledgeBountyNestedInput
-  submissions?: Prisma.BountySubmissionUpdateManyWithoutBountyNestedInput
+  combines?: Prisma.CombineUpdateManyWithoutBountyNestedInput
   royalties?: Prisma.UserRoyaltyUpdateManyWithoutBountyNestedInput
 }
 
@@ -1565,7 +1562,7 @@ export type KnowledgeBountyUncheckedUpdateWithoutCreatorOrgInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   requirements?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   creatorUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetPackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  targetCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   escrowAmountCents?: Prisma.IntFieldUpdateOperationsInput | number
   platformFeeCent?: Prisma.FloatFieldUpdateOperationsInput | number
   maintainerSharePercent?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1577,7 +1574,7 @@ export type KnowledgeBountyUncheckedUpdateWithoutCreatorOrgInput = {
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  submissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutBountyNestedInput
+  combines?: Prisma.CombineUncheckedUpdateManyWithoutBountyNestedInput
   royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutBountyNestedInput
 }
 
@@ -1587,7 +1584,7 @@ export type KnowledgeBountyUncheckedUpdateManyWithoutCreatorOrgInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   requirements?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   creatorUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetPackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  targetCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   escrowAmountCents?: Prisma.IntFieldUpdateOperationsInput | number
   platformFeeCent?: Prisma.FloatFieldUpdateOperationsInput | number
   maintainerSharePercent?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1601,7 +1598,7 @@ export type KnowledgeBountyUncheckedUpdateManyWithoutCreatorOrgInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type KnowledgeBountyCreateManyTargetPackInput = {
+export type KnowledgeBountyCreateManyTargetCollectionInput = {
   id?: string
   title: string
   description: string
@@ -1621,7 +1618,7 @@ export type KnowledgeBountyCreateManyTargetPackInput = {
   updatedAt?: Date | string
 }
 
-export type KnowledgeBountyUpdateWithoutTargetPackInput = {
+export type KnowledgeBountyUpdateWithoutTargetCollectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1639,11 +1636,11 @@ export type KnowledgeBountyUpdateWithoutTargetPackInput = {
   creatorOrg?: Prisma.OrganizationUpdateOneWithoutKnowledgeBountiesNestedInput
   creatorUser?: Prisma.UserUpdateOneWithoutBountiesCreatedNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutKnowledgeBountyNestedInput
-  submissions?: Prisma.BountySubmissionUpdateManyWithoutBountyNestedInput
+  combines?: Prisma.CombineUpdateManyWithoutBountyNestedInput
   royalties?: Prisma.UserRoyaltyUpdateManyWithoutBountyNestedInput
 }
 
-export type KnowledgeBountyUncheckedUpdateWithoutTargetPackInput = {
+export type KnowledgeBountyUncheckedUpdateWithoutTargetCollectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1661,11 +1658,11 @@ export type KnowledgeBountyUncheckedUpdateWithoutTargetPackInput = {
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  submissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutBountyNestedInput
+  combines?: Prisma.CombineUncheckedUpdateManyWithoutBountyNestedInput
   royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutBountyNestedInput
 }
 
-export type KnowledgeBountyUncheckedUpdateManyWithoutTargetPackInput = {
+export type KnowledgeBountyUncheckedUpdateManyWithoutTargetCollectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1691,12 +1688,12 @@ export type KnowledgeBountyUncheckedUpdateManyWithoutTargetPackInput = {
  */
 
 export type KnowledgeBountyCountOutputType = {
-  submissions: number
+  combines: number
   royalties: number
 }
 
 export type KnowledgeBountyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  submissions?: boolean | KnowledgeBountyCountOutputTypeCountSubmissionsArgs
+  combines?: boolean | KnowledgeBountyCountOutputTypeCountCombinesArgs
   royalties?: boolean | KnowledgeBountyCountOutputTypeCountRoyaltiesArgs
 }
 
@@ -1713,8 +1710,8 @@ export type KnowledgeBountyCountOutputTypeDefaultArgs<ExtArgs extends runtime.Ty
 /**
  * KnowledgeBountyCountOutputType without action
  */
-export type KnowledgeBountyCountOutputTypeCountSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.BountySubmissionWhereInput
+export type KnowledgeBountyCountOutputTypeCountCombinesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CombineWhereInput
 }
 
 /**
@@ -1732,7 +1729,7 @@ export type KnowledgeBountySelect<ExtArgs extends runtime.Types.Extensions.Inter
   requirements?: boolean
   creatorOrgId?: boolean
   creatorUserId?: boolean
-  targetPackId?: boolean
+  targetCollectionId?: boolean
   escrowAmountCents?: boolean
   platformFeeCent?: boolean
   maintainerSharePercent?: boolean
@@ -1746,9 +1743,9 @@ export type KnowledgeBountySelect<ExtArgs extends runtime.Types.Extensions.Inter
   updatedAt?: boolean
   creatorOrg?: boolean | Prisma.KnowledgeBounty$creatorOrgArgs<ExtArgs>
   creatorUser?: boolean | Prisma.KnowledgeBounty$creatorUserArgs<ExtArgs>
-  targetPack?: boolean | Prisma.KnowledgeBounty$targetPackArgs<ExtArgs>
+  targetCollection?: boolean | Prisma.KnowledgeBounty$targetCollectionArgs<ExtArgs>
   payment?: boolean | Prisma.KnowledgeBounty$paymentArgs<ExtArgs>
-  submissions?: boolean | Prisma.KnowledgeBounty$submissionsArgs<ExtArgs>
+  combines?: boolean | Prisma.KnowledgeBounty$combinesArgs<ExtArgs>
   royalties?: boolean | Prisma.KnowledgeBounty$royaltiesArgs<ExtArgs>
   _count?: boolean | Prisma.KnowledgeBountyCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["knowledgeBounty"]>
@@ -1760,7 +1757,7 @@ export type KnowledgeBountySelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   requirements?: boolean
   creatorOrgId?: boolean
   creatorUserId?: boolean
-  targetPackId?: boolean
+  targetCollectionId?: boolean
   escrowAmountCents?: boolean
   platformFeeCent?: boolean
   maintainerSharePercent?: boolean
@@ -1774,7 +1771,7 @@ export type KnowledgeBountySelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   updatedAt?: boolean
   creatorOrg?: boolean | Prisma.KnowledgeBounty$creatorOrgArgs<ExtArgs>
   creatorUser?: boolean | Prisma.KnowledgeBounty$creatorUserArgs<ExtArgs>
-  targetPack?: boolean | Prisma.KnowledgeBounty$targetPackArgs<ExtArgs>
+  targetCollection?: boolean | Prisma.KnowledgeBounty$targetCollectionArgs<ExtArgs>
   payment?: boolean | Prisma.KnowledgeBounty$paymentArgs<ExtArgs>
 }, ExtArgs["result"]["knowledgeBounty"]>
 
@@ -1785,7 +1782,7 @@ export type KnowledgeBountySelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   requirements?: boolean
   creatorOrgId?: boolean
   creatorUserId?: boolean
-  targetPackId?: boolean
+  targetCollectionId?: boolean
   escrowAmountCents?: boolean
   platformFeeCent?: boolean
   maintainerSharePercent?: boolean
@@ -1799,7 +1796,7 @@ export type KnowledgeBountySelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   updatedAt?: boolean
   creatorOrg?: boolean | Prisma.KnowledgeBounty$creatorOrgArgs<ExtArgs>
   creatorUser?: boolean | Prisma.KnowledgeBounty$creatorUserArgs<ExtArgs>
-  targetPack?: boolean | Prisma.KnowledgeBounty$targetPackArgs<ExtArgs>
+  targetCollection?: boolean | Prisma.KnowledgeBounty$targetCollectionArgs<ExtArgs>
   payment?: boolean | Prisma.KnowledgeBounty$paymentArgs<ExtArgs>
 }, ExtArgs["result"]["knowledgeBounty"]>
 
@@ -1810,7 +1807,7 @@ export type KnowledgeBountySelectScalar = {
   requirements?: boolean
   creatorOrgId?: boolean
   creatorUserId?: boolean
-  targetPackId?: boolean
+  targetCollectionId?: boolean
   escrowAmountCents?: boolean
   platformFeeCent?: boolean
   maintainerSharePercent?: boolean
@@ -1824,26 +1821,26 @@ export type KnowledgeBountySelectScalar = {
   updatedAt?: boolean
 }
 
-export type KnowledgeBountyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "requirements" | "creatorOrgId" | "creatorUserId" | "targetPackId" | "escrowAmountCents" | "platformFeeCent" | "maintainerSharePercent" | "remainingPoolCents" | "targetEntryCount" | "status" | "paymentId" | "expiresAt" | "completedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["knowledgeBounty"]>
+export type KnowledgeBountyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "requirements" | "creatorOrgId" | "creatorUserId" | "targetCollectionId" | "escrowAmountCents" | "platformFeeCent" | "maintainerSharePercent" | "remainingPoolCents" | "targetEntryCount" | "status" | "paymentId" | "expiresAt" | "completedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["knowledgeBounty"]>
 export type KnowledgeBountyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   creatorOrg?: boolean | Prisma.KnowledgeBounty$creatorOrgArgs<ExtArgs>
   creatorUser?: boolean | Prisma.KnowledgeBounty$creatorUserArgs<ExtArgs>
-  targetPack?: boolean | Prisma.KnowledgeBounty$targetPackArgs<ExtArgs>
+  targetCollection?: boolean | Prisma.KnowledgeBounty$targetCollectionArgs<ExtArgs>
   payment?: boolean | Prisma.KnowledgeBounty$paymentArgs<ExtArgs>
-  submissions?: boolean | Prisma.KnowledgeBounty$submissionsArgs<ExtArgs>
+  combines?: boolean | Prisma.KnowledgeBounty$combinesArgs<ExtArgs>
   royalties?: boolean | Prisma.KnowledgeBounty$royaltiesArgs<ExtArgs>
   _count?: boolean | Prisma.KnowledgeBountyCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type KnowledgeBountyIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   creatorOrg?: boolean | Prisma.KnowledgeBounty$creatorOrgArgs<ExtArgs>
   creatorUser?: boolean | Prisma.KnowledgeBounty$creatorUserArgs<ExtArgs>
-  targetPack?: boolean | Prisma.KnowledgeBounty$targetPackArgs<ExtArgs>
+  targetCollection?: boolean | Prisma.KnowledgeBounty$targetCollectionArgs<ExtArgs>
   payment?: boolean | Prisma.KnowledgeBounty$paymentArgs<ExtArgs>
 }
 export type KnowledgeBountyIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   creatorOrg?: boolean | Prisma.KnowledgeBounty$creatorOrgArgs<ExtArgs>
   creatorUser?: boolean | Prisma.KnowledgeBounty$creatorUserArgs<ExtArgs>
-  targetPack?: boolean | Prisma.KnowledgeBounty$targetPackArgs<ExtArgs>
+  targetCollection?: boolean | Prisma.KnowledgeBounty$targetCollectionArgs<ExtArgs>
   payment?: boolean | Prisma.KnowledgeBounty$paymentArgs<ExtArgs>
 }
 
@@ -1852,9 +1849,9 @@ export type $KnowledgeBountyPayload<ExtArgs extends runtime.Types.Extensions.Int
   objects: {
     creatorOrg: Prisma.$OrganizationPayload<ExtArgs> | null
     creatorUser: Prisma.$UserPayload<ExtArgs> | null
-    targetPack: Prisma.$PackPayload<ExtArgs> | null
+    targetCollection: Prisma.$CollectionPayload<ExtArgs> | null
     payment: Prisma.$PaymentPayload<ExtArgs> | null
-    submissions: Prisma.$BountySubmissionPayload<ExtArgs>[]
+    combines: Prisma.$CombinePayload<ExtArgs>[]
     royalties: Prisma.$UserRoyaltyPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1864,7 +1861,7 @@ export type $KnowledgeBountyPayload<ExtArgs extends runtime.Types.Extensions.Int
     requirements: runtime.JsonValue | null
     creatorOrgId: string | null
     creatorUserId: string | null
-    targetPackId: string | null
+    targetCollectionId: string | null
     escrowAmountCents: number
     platformFeeCent: number
     maintainerSharePercent: number
@@ -2272,9 +2269,9 @@ export interface Prisma__KnowledgeBountyClient<T, Null = never, ExtArgs extends 
   readonly [Symbol.toStringTag]: "PrismaPromise"
   creatorOrg<T extends Prisma.KnowledgeBounty$creatorOrgArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.KnowledgeBounty$creatorOrgArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   creatorUser<T extends Prisma.KnowledgeBounty$creatorUserArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.KnowledgeBounty$creatorUserArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  targetPack<T extends Prisma.KnowledgeBounty$targetPackArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.KnowledgeBounty$targetPackArgs<ExtArgs>>): Prisma.Prisma__PackClient<runtime.Types.Result.GetResult<Prisma.$PackPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  targetCollection<T extends Prisma.KnowledgeBounty$targetCollectionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.KnowledgeBounty$targetCollectionArgs<ExtArgs>>): Prisma.Prisma__CollectionClient<runtime.Types.Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   payment<T extends Prisma.KnowledgeBounty$paymentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.KnowledgeBounty$paymentArgs<ExtArgs>>): Prisma.Prisma__PaymentClient<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  submissions<T extends Prisma.KnowledgeBounty$submissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.KnowledgeBounty$submissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BountySubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  combines<T extends Prisma.KnowledgeBounty$combinesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.KnowledgeBounty$combinesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CombinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   royalties<T extends Prisma.KnowledgeBounty$royaltiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.KnowledgeBounty$royaltiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserRoyaltyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2311,7 +2308,7 @@ export interface KnowledgeBountyFieldRefs {
   readonly requirements: Prisma.FieldRef<"KnowledgeBounty", 'Json'>
   readonly creatorOrgId: Prisma.FieldRef<"KnowledgeBounty", 'String'>
   readonly creatorUserId: Prisma.FieldRef<"KnowledgeBounty", 'String'>
-  readonly targetPackId: Prisma.FieldRef<"KnowledgeBounty", 'String'>
+  readonly targetCollectionId: Prisma.FieldRef<"KnowledgeBounty", 'String'>
   readonly escrowAmountCents: Prisma.FieldRef<"KnowledgeBounty", 'Int'>
   readonly platformFeeCent: Prisma.FieldRef<"KnowledgeBounty", 'Float'>
   readonly maintainerSharePercent: Prisma.FieldRef<"KnowledgeBounty", 'Float'>
@@ -2762,22 +2759,22 @@ export type KnowledgeBounty$creatorUserArgs<ExtArgs extends runtime.Types.Extens
 }
 
 /**
- * KnowledgeBounty.targetPack
+ * KnowledgeBounty.targetCollection
  */
-export type KnowledgeBounty$targetPackArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type KnowledgeBounty$targetCollectionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Pack
+   * Select specific fields to fetch from the Collection
    */
-  select?: Prisma.PackSelect<ExtArgs> | null
+  select?: Prisma.CollectionSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Pack
+   * Omit specific fields from the Collection
    */
-  omit?: Prisma.PackOmit<ExtArgs> | null
+  omit?: Prisma.CollectionOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PackInclude<ExtArgs> | null
-  where?: Prisma.PackWhereInput
+  include?: Prisma.CollectionInclude<ExtArgs> | null
+  where?: Prisma.CollectionWhereInput
 }
 
 /**
@@ -2800,27 +2797,27 @@ export type KnowledgeBounty$paymentArgs<ExtArgs extends runtime.Types.Extensions
 }
 
 /**
- * KnowledgeBounty.submissions
+ * KnowledgeBounty.combines
  */
-export type KnowledgeBounty$submissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type KnowledgeBounty$combinesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the BountySubmission
+   * Select specific fields to fetch from the Combine
    */
-  select?: Prisma.BountySubmissionSelect<ExtArgs> | null
+  select?: Prisma.CombineSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the BountySubmission
+   * Omit specific fields from the Combine
    */
-  omit?: Prisma.BountySubmissionOmit<ExtArgs> | null
+  omit?: Prisma.CombineOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.BountySubmissionInclude<ExtArgs> | null
-  where?: Prisma.BountySubmissionWhereInput
-  orderBy?: Prisma.BountySubmissionOrderByWithRelationInput | Prisma.BountySubmissionOrderByWithRelationInput[]
-  cursor?: Prisma.BountySubmissionWhereUniqueInput
+  include?: Prisma.CombineInclude<ExtArgs> | null
+  where?: Prisma.CombineWhereInput
+  orderBy?: Prisma.CombineOrderByWithRelationInput | Prisma.CombineOrderByWithRelationInput[]
+  cursor?: Prisma.CombineWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.BountySubmissionScalarFieldEnum | Prisma.BountySubmissionScalarFieldEnum[]
+  distinct?: Prisma.CombineScalarFieldEnum | Prisma.CombineScalarFieldEnum[]
 }
 
 /**

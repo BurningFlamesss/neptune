@@ -29,13 +29,12 @@ export type ContextRequestMinAggregateOutputType = {
   userId: string | null
   clientId: string | null
   apiKeyId: string | null
-  packId: string | null
+  collectionId: string | null
   purpose: string | null
   query: string | null
   status: $Enums.ContextRequestStatus | null
   requestedAt: Date | null
   completedAt: Date | null
-  oauthClientId: string | null
 }
 
 export type ContextRequestMaxAggregateOutputType = {
@@ -43,13 +42,12 @@ export type ContextRequestMaxAggregateOutputType = {
   userId: string | null
   clientId: string | null
   apiKeyId: string | null
-  packId: string | null
+  collectionId: string | null
   purpose: string | null
   query: string | null
   status: $Enums.ContextRequestStatus | null
   requestedAt: Date | null
   completedAt: Date | null
-  oauthClientId: string | null
 }
 
 export type ContextRequestCountAggregateOutputType = {
@@ -57,13 +55,12 @@ export type ContextRequestCountAggregateOutputType = {
   userId: number
   clientId: number
   apiKeyId: number
-  packId: number
+  collectionId: number
   purpose: number
   query: number
   status: number
   requestedAt: number
   completedAt: number
-  oauthClientId: number
   _all: number
 }
 
@@ -73,13 +70,12 @@ export type ContextRequestMinAggregateInputType = {
   userId?: true
   clientId?: true
   apiKeyId?: true
-  packId?: true
+  collectionId?: true
   purpose?: true
   query?: true
   status?: true
   requestedAt?: true
   completedAt?: true
-  oauthClientId?: true
 }
 
 export type ContextRequestMaxAggregateInputType = {
@@ -87,13 +83,12 @@ export type ContextRequestMaxAggregateInputType = {
   userId?: true
   clientId?: true
   apiKeyId?: true
-  packId?: true
+  collectionId?: true
   purpose?: true
   query?: true
   status?: true
   requestedAt?: true
   completedAt?: true
-  oauthClientId?: true
 }
 
 export type ContextRequestCountAggregateInputType = {
@@ -101,13 +96,12 @@ export type ContextRequestCountAggregateInputType = {
   userId?: true
   clientId?: true
   apiKeyId?: true
-  packId?: true
+  collectionId?: true
   purpose?: true
   query?: true
   status?: true
   requestedAt?: true
   completedAt?: true
-  oauthClientId?: true
   _all?: true
 }
 
@@ -186,15 +180,14 @@ export type ContextRequestGroupByArgs<ExtArgs extends runtime.Types.Extensions.I
 export type ContextRequestGroupByOutputType = {
   id: string
   userId: string | null
-  clientId: string
+  clientId: string | null
   apiKeyId: string | null
-  packId: string | null
+  collectionId: string | null
   purpose: string
   query: string
   status: $Enums.ContextRequestStatus
   requestedAt: Date
   completedAt: Date | null
-  oauthClientId: string | null
   _count: ContextRequestCountAggregateOutputType | null
   _min: ContextRequestMinAggregateOutputType | null
   _max: ContextRequestMaxAggregateOutputType | null
@@ -221,40 +214,38 @@ export type ContextRequestWhereInput = {
   NOT?: Prisma.ContextRequestWhereInput | Prisma.ContextRequestWhereInput[]
   id?: Prisma.StringFilter<"ContextRequest"> | string
   userId?: Prisma.StringNullableFilter<"ContextRequest"> | string | null
-  clientId?: Prisma.StringFilter<"ContextRequest"> | string
+  clientId?: Prisma.StringNullableFilter<"ContextRequest"> | string | null
   apiKeyId?: Prisma.StringNullableFilter<"ContextRequest"> | string | null
-  packId?: Prisma.StringNullableFilter<"ContextRequest"> | string | null
+  collectionId?: Prisma.StringNullableFilter<"ContextRequest"> | string | null
   purpose?: Prisma.StringFilter<"ContextRequest"> | string
   query?: Prisma.StringFilter<"ContextRequest"> | string
   status?: Prisma.EnumContextRequestStatusFilter<"ContextRequest"> | $Enums.ContextRequestStatus
   requestedAt?: Prisma.DateTimeFilter<"ContextRequest"> | Date | string
   completedAt?: Prisma.DateTimeNullableFilter<"ContextRequest"> | Date | string | null
-  oauthClientId?: Prisma.StringNullableFilter<"ContextRequest"> | string | null
   user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-  oauthClient?: Prisma.XOR<Prisma.OauthClientScalarRelationFilter, Prisma.OauthClientWhereInput>
+  oauthClient?: Prisma.XOR<Prisma.OauthClientNullableScalarRelationFilter, Prisma.OauthClientWhereInput> | null
   apiKey?: Prisma.XOR<Prisma.DeveloperApiKeyNullableScalarRelationFilter, Prisma.DeveloperApiKeyWhereInput> | null
-  pack?: Prisma.XOR<Prisma.PackNullableScalarRelationFilter, Prisma.PackWhereInput> | null
-  receipt?: Prisma.XOR<Prisma.ContextReceiptNullableScalarRelationFilter, Prisma.ContextReceiptWhereInput> | null
+  collection?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
+  items?: Prisma.ContextRequestItemListRelationFilter
   ledgerEntry?: Prisma.XOR<Prisma.ApiUsageLedgerNullableScalarRelationFilter, Prisma.ApiUsageLedgerWhereInput> | null
 }
 
 export type ContextRequestOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrderInput | Prisma.SortOrder
-  clientId?: Prisma.SortOrder
+  clientId?: Prisma.SortOrderInput | Prisma.SortOrder
   apiKeyId?: Prisma.SortOrderInput | Prisma.SortOrder
-  packId?: Prisma.SortOrderInput | Prisma.SortOrder
+  collectionId?: Prisma.SortOrderInput | Prisma.SortOrder
   purpose?: Prisma.SortOrder
   query?: Prisma.SortOrder
   status?: Prisma.SortOrder
   requestedAt?: Prisma.SortOrder
   completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  oauthClientId?: Prisma.SortOrderInput | Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   oauthClient?: Prisma.OauthClientOrderByWithRelationInput
   apiKey?: Prisma.DeveloperApiKeyOrderByWithRelationInput
-  pack?: Prisma.PackOrderByWithRelationInput
-  receipt?: Prisma.ContextReceiptOrderByWithRelationInput
+  collection?: Prisma.CollectionOrderByWithRelationInput
+  items?: Prisma.ContextRequestItemOrderByRelationAggregateInput
   ledgerEntry?: Prisma.ApiUsageLedgerOrderByWithRelationInput
 }
 
@@ -264,35 +255,33 @@ export type ContextRequestWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.ContextRequestWhereInput[]
   NOT?: Prisma.ContextRequestWhereInput | Prisma.ContextRequestWhereInput[]
   userId?: Prisma.StringNullableFilter<"ContextRequest"> | string | null
-  clientId?: Prisma.StringFilter<"ContextRequest"> | string
+  clientId?: Prisma.StringNullableFilter<"ContextRequest"> | string | null
   apiKeyId?: Prisma.StringNullableFilter<"ContextRequest"> | string | null
-  packId?: Prisma.StringNullableFilter<"ContextRequest"> | string | null
+  collectionId?: Prisma.StringNullableFilter<"ContextRequest"> | string | null
   purpose?: Prisma.StringFilter<"ContextRequest"> | string
   query?: Prisma.StringFilter<"ContextRequest"> | string
   status?: Prisma.EnumContextRequestStatusFilter<"ContextRequest"> | $Enums.ContextRequestStatus
   requestedAt?: Prisma.DateTimeFilter<"ContextRequest"> | Date | string
   completedAt?: Prisma.DateTimeNullableFilter<"ContextRequest"> | Date | string | null
-  oauthClientId?: Prisma.StringNullableFilter<"ContextRequest"> | string | null
   user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-  oauthClient?: Prisma.XOR<Prisma.OauthClientScalarRelationFilter, Prisma.OauthClientWhereInput>
+  oauthClient?: Prisma.XOR<Prisma.OauthClientNullableScalarRelationFilter, Prisma.OauthClientWhereInput> | null
   apiKey?: Prisma.XOR<Prisma.DeveloperApiKeyNullableScalarRelationFilter, Prisma.DeveloperApiKeyWhereInput> | null
-  pack?: Prisma.XOR<Prisma.PackNullableScalarRelationFilter, Prisma.PackWhereInput> | null
-  receipt?: Prisma.XOR<Prisma.ContextReceiptNullableScalarRelationFilter, Prisma.ContextReceiptWhereInput> | null
+  collection?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
+  items?: Prisma.ContextRequestItemListRelationFilter
   ledgerEntry?: Prisma.XOR<Prisma.ApiUsageLedgerNullableScalarRelationFilter, Prisma.ApiUsageLedgerWhereInput> | null
 }, "id">
 
 export type ContextRequestOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrderInput | Prisma.SortOrder
-  clientId?: Prisma.SortOrder
+  clientId?: Prisma.SortOrderInput | Prisma.SortOrder
   apiKeyId?: Prisma.SortOrderInput | Prisma.SortOrder
-  packId?: Prisma.SortOrderInput | Prisma.SortOrder
+  collectionId?: Prisma.SortOrderInput | Prisma.SortOrder
   purpose?: Prisma.SortOrder
   query?: Prisma.SortOrder
   status?: Prisma.SortOrder
   requestedAt?: Prisma.SortOrder
   completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  oauthClientId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ContextRequestCountOrderByAggregateInput
   _max?: Prisma.ContextRequestMaxOrderByAggregateInput
   _min?: Prisma.ContextRequestMinOrderByAggregateInput
@@ -304,15 +293,14 @@ export type ContextRequestScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ContextRequestScalarWhereWithAggregatesInput | Prisma.ContextRequestScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"ContextRequest"> | string
   userId?: Prisma.StringNullableWithAggregatesFilter<"ContextRequest"> | string | null
-  clientId?: Prisma.StringWithAggregatesFilter<"ContextRequest"> | string
+  clientId?: Prisma.StringNullableWithAggregatesFilter<"ContextRequest"> | string | null
   apiKeyId?: Prisma.StringNullableWithAggregatesFilter<"ContextRequest"> | string | null
-  packId?: Prisma.StringNullableWithAggregatesFilter<"ContextRequest"> | string | null
+  collectionId?: Prisma.StringNullableWithAggregatesFilter<"ContextRequest"> | string | null
   purpose?: Prisma.StringWithAggregatesFilter<"ContextRequest"> | string
   query?: Prisma.StringWithAggregatesFilter<"ContextRequest"> | string
   status?: Prisma.EnumContextRequestStatusWithAggregatesFilter<"ContextRequest"> | $Enums.ContextRequestStatus
   requestedAt?: Prisma.DateTimeWithAggregatesFilter<"ContextRequest"> | Date | string
   completedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"ContextRequest"> | Date | string | null
-  oauthClientId?: Prisma.StringNullableWithAggregatesFilter<"ContextRequest"> | string | null
 }
 
 export type ContextRequestCreateInput = {
@@ -322,28 +310,26 @@ export type ContextRequestCreateInput = {
   status?: $Enums.ContextRequestStatus
   requestedAt?: Date | string
   completedAt?: Date | string | null
-  oauthClientId?: string | null
   user?: Prisma.UserCreateNestedOneWithoutContextRequestsInput
-  oauthClient: Prisma.OauthClientCreateNestedOneWithoutContextRequestsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutContextRequestsInput
   apiKey?: Prisma.DeveloperApiKeyCreateNestedOneWithoutContextRequestsInput
-  pack?: Prisma.PackCreateNestedOneWithoutContextRequestsInput
-  receipt?: Prisma.ContextReceiptCreateNestedOneWithoutContextRequestInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutContextRequestsInput
+  items?: Prisma.ContextRequestItemCreateNestedManyWithoutContextRequestInput
   ledgerEntry?: Prisma.ApiUsageLedgerCreateNestedOneWithoutContextRequestInput
 }
 
 export type ContextRequestUncheckedCreateInput = {
   id?: string
   userId?: string | null
-  clientId: string
+  clientId?: string | null
   apiKeyId?: string | null
-  packId?: string | null
+  collectionId?: string | null
   purpose: string
   query: string
   status?: $Enums.ContextRequestStatus
   requestedAt?: Date | string
   completedAt?: Date | string | null
-  oauthClientId?: string | null
-  receipt?: Prisma.ContextReceiptUncheckedCreateNestedOneWithoutContextRequestInput
+  items?: Prisma.ContextRequestItemUncheckedCreateNestedManyWithoutContextRequestInput
   ledgerEntry?: Prisma.ApiUsageLedgerUncheckedCreateNestedOneWithoutContextRequestInput
 }
 
@@ -354,43 +340,40 @@ export type ContextRequestUpdateInput = {
   status?: Prisma.EnumContextRequestStatusFieldUpdateOperationsInput | $Enums.ContextRequestStatus
   requestedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user?: Prisma.UserUpdateOneWithoutContextRequestsNestedInput
-  oauthClient?: Prisma.OauthClientUpdateOneRequiredWithoutContextRequestsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutContextRequestsNestedInput
   apiKey?: Prisma.DeveloperApiKeyUpdateOneWithoutContextRequestsNestedInput
-  pack?: Prisma.PackUpdateOneWithoutContextRequestsNestedInput
-  receipt?: Prisma.ContextReceiptUpdateOneWithoutContextRequestNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutContextRequestsNestedInput
+  items?: Prisma.ContextRequestItemUpdateManyWithoutContextRequestNestedInput
   ledgerEntry?: Prisma.ApiUsageLedgerUpdateOneWithoutContextRequestNestedInput
 }
 
 export type ContextRequestUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   query?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumContextRequestStatusFieldUpdateOperationsInput | $Enums.ContextRequestStatus
   requestedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  receipt?: Prisma.ContextReceiptUncheckedUpdateOneWithoutContextRequestNestedInput
+  items?: Prisma.ContextRequestItemUncheckedUpdateManyWithoutContextRequestNestedInput
   ledgerEntry?: Prisma.ApiUsageLedgerUncheckedUpdateOneWithoutContextRequestNestedInput
 }
 
 export type ContextRequestCreateManyInput = {
   id?: string
   userId?: string | null
-  clientId: string
+  clientId?: string | null
   apiKeyId?: string | null
-  packId?: string | null
+  collectionId?: string | null
   purpose: string
   query: string
   status?: $Enums.ContextRequestStatus
   requestedAt?: Date | string
   completedAt?: Date | string | null
-  oauthClientId?: string | null
 }
 
 export type ContextRequestUpdateManyMutationInput = {
@@ -400,21 +383,19 @@ export type ContextRequestUpdateManyMutationInput = {
   status?: Prisma.EnumContextRequestStatusFieldUpdateOperationsInput | $Enums.ContextRequestStatus
   requestedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ContextRequestUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   query?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumContextRequestStatusFieldUpdateOperationsInput | $Enums.ContextRequestStatus
   requestedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ContextRequestListRelationFilter = {
@@ -432,13 +413,12 @@ export type ContextRequestCountOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
   apiKeyId?: Prisma.SortOrder
-  packId?: Prisma.SortOrder
+  collectionId?: Prisma.SortOrder
   purpose?: Prisma.SortOrder
   query?: Prisma.SortOrder
   status?: Prisma.SortOrder
   requestedAt?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
-  oauthClientId?: Prisma.SortOrder
 }
 
 export type ContextRequestMaxOrderByAggregateInput = {
@@ -446,13 +426,12 @@ export type ContextRequestMaxOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
   apiKeyId?: Prisma.SortOrder
-  packId?: Prisma.SortOrder
+  collectionId?: Prisma.SortOrder
   purpose?: Prisma.SortOrder
   query?: Prisma.SortOrder
   status?: Prisma.SortOrder
   requestedAt?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
-  oauthClientId?: Prisma.SortOrder
 }
 
 export type ContextRequestMinOrderByAggregateInput = {
@@ -460,13 +439,12 @@ export type ContextRequestMinOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
   apiKeyId?: Prisma.SortOrder
-  packId?: Prisma.SortOrder
+  collectionId?: Prisma.SortOrder
   purpose?: Prisma.SortOrder
   query?: Prisma.SortOrder
   status?: Prisma.SortOrder
   requestedAt?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
-  oauthClientId?: Prisma.SortOrder
 }
 
 export type ContextRequestScalarRelationFilter = {
@@ -605,22 +583,64 @@ export type ContextRequestUncheckedUpdateManyWithoutApiKeyNestedInput = {
   deleteMany?: Prisma.ContextRequestScalarWhereInput | Prisma.ContextRequestScalarWhereInput[]
 }
 
+export type ContextRequestCreateNestedManyWithoutCollectionInput = {
+  create?: Prisma.XOR<Prisma.ContextRequestCreateWithoutCollectionInput, Prisma.ContextRequestUncheckedCreateWithoutCollectionInput> | Prisma.ContextRequestCreateWithoutCollectionInput[] | Prisma.ContextRequestUncheckedCreateWithoutCollectionInput[]
+  connectOrCreate?: Prisma.ContextRequestCreateOrConnectWithoutCollectionInput | Prisma.ContextRequestCreateOrConnectWithoutCollectionInput[]
+  createMany?: Prisma.ContextRequestCreateManyCollectionInputEnvelope
+  connect?: Prisma.ContextRequestWhereUniqueInput | Prisma.ContextRequestWhereUniqueInput[]
+}
+
+export type ContextRequestUncheckedCreateNestedManyWithoutCollectionInput = {
+  create?: Prisma.XOR<Prisma.ContextRequestCreateWithoutCollectionInput, Prisma.ContextRequestUncheckedCreateWithoutCollectionInput> | Prisma.ContextRequestCreateWithoutCollectionInput[] | Prisma.ContextRequestUncheckedCreateWithoutCollectionInput[]
+  connectOrCreate?: Prisma.ContextRequestCreateOrConnectWithoutCollectionInput | Prisma.ContextRequestCreateOrConnectWithoutCollectionInput[]
+  createMany?: Prisma.ContextRequestCreateManyCollectionInputEnvelope
+  connect?: Prisma.ContextRequestWhereUniqueInput | Prisma.ContextRequestWhereUniqueInput[]
+}
+
+export type ContextRequestUpdateManyWithoutCollectionNestedInput = {
+  create?: Prisma.XOR<Prisma.ContextRequestCreateWithoutCollectionInput, Prisma.ContextRequestUncheckedCreateWithoutCollectionInput> | Prisma.ContextRequestCreateWithoutCollectionInput[] | Prisma.ContextRequestUncheckedCreateWithoutCollectionInput[]
+  connectOrCreate?: Prisma.ContextRequestCreateOrConnectWithoutCollectionInput | Prisma.ContextRequestCreateOrConnectWithoutCollectionInput[]
+  upsert?: Prisma.ContextRequestUpsertWithWhereUniqueWithoutCollectionInput | Prisma.ContextRequestUpsertWithWhereUniqueWithoutCollectionInput[]
+  createMany?: Prisma.ContextRequestCreateManyCollectionInputEnvelope
+  set?: Prisma.ContextRequestWhereUniqueInput | Prisma.ContextRequestWhereUniqueInput[]
+  disconnect?: Prisma.ContextRequestWhereUniqueInput | Prisma.ContextRequestWhereUniqueInput[]
+  delete?: Prisma.ContextRequestWhereUniqueInput | Prisma.ContextRequestWhereUniqueInput[]
+  connect?: Prisma.ContextRequestWhereUniqueInput | Prisma.ContextRequestWhereUniqueInput[]
+  update?: Prisma.ContextRequestUpdateWithWhereUniqueWithoutCollectionInput | Prisma.ContextRequestUpdateWithWhereUniqueWithoutCollectionInput[]
+  updateMany?: Prisma.ContextRequestUpdateManyWithWhereWithoutCollectionInput | Prisma.ContextRequestUpdateManyWithWhereWithoutCollectionInput[]
+  deleteMany?: Prisma.ContextRequestScalarWhereInput | Prisma.ContextRequestScalarWhereInput[]
+}
+
+export type ContextRequestUncheckedUpdateManyWithoutCollectionNestedInput = {
+  create?: Prisma.XOR<Prisma.ContextRequestCreateWithoutCollectionInput, Prisma.ContextRequestUncheckedCreateWithoutCollectionInput> | Prisma.ContextRequestCreateWithoutCollectionInput[] | Prisma.ContextRequestUncheckedCreateWithoutCollectionInput[]
+  connectOrCreate?: Prisma.ContextRequestCreateOrConnectWithoutCollectionInput | Prisma.ContextRequestCreateOrConnectWithoutCollectionInput[]
+  upsert?: Prisma.ContextRequestUpsertWithWhereUniqueWithoutCollectionInput | Prisma.ContextRequestUpsertWithWhereUniqueWithoutCollectionInput[]
+  createMany?: Prisma.ContextRequestCreateManyCollectionInputEnvelope
+  set?: Prisma.ContextRequestWhereUniqueInput | Prisma.ContextRequestWhereUniqueInput[]
+  disconnect?: Prisma.ContextRequestWhereUniqueInput | Prisma.ContextRequestWhereUniqueInput[]
+  delete?: Prisma.ContextRequestWhereUniqueInput | Prisma.ContextRequestWhereUniqueInput[]
+  connect?: Prisma.ContextRequestWhereUniqueInput | Prisma.ContextRequestWhereUniqueInput[]
+  update?: Prisma.ContextRequestUpdateWithWhereUniqueWithoutCollectionInput | Prisma.ContextRequestUpdateWithWhereUniqueWithoutCollectionInput[]
+  updateMany?: Prisma.ContextRequestUpdateManyWithWhereWithoutCollectionInput | Prisma.ContextRequestUpdateManyWithWhereWithoutCollectionInput[]
+  deleteMany?: Prisma.ContextRequestScalarWhereInput | Prisma.ContextRequestScalarWhereInput[]
+}
+
 export type EnumContextRequestStatusFieldUpdateOperationsInput = {
   set?: $Enums.ContextRequestStatus
 }
 
-export type ContextRequestCreateNestedOneWithoutReceiptInput = {
-  create?: Prisma.XOR<Prisma.ContextRequestCreateWithoutReceiptInput, Prisma.ContextRequestUncheckedCreateWithoutReceiptInput>
-  connectOrCreate?: Prisma.ContextRequestCreateOrConnectWithoutReceiptInput
+export type ContextRequestCreateNestedOneWithoutItemsInput = {
+  create?: Prisma.XOR<Prisma.ContextRequestCreateWithoutItemsInput, Prisma.ContextRequestUncheckedCreateWithoutItemsInput>
+  connectOrCreate?: Prisma.ContextRequestCreateOrConnectWithoutItemsInput
   connect?: Prisma.ContextRequestWhereUniqueInput
 }
 
-export type ContextRequestUpdateOneRequiredWithoutReceiptNestedInput = {
-  create?: Prisma.XOR<Prisma.ContextRequestCreateWithoutReceiptInput, Prisma.ContextRequestUncheckedCreateWithoutReceiptInput>
-  connectOrCreate?: Prisma.ContextRequestCreateOrConnectWithoutReceiptInput
-  upsert?: Prisma.ContextRequestUpsertWithoutReceiptInput
+export type ContextRequestUpdateOneRequiredWithoutItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.ContextRequestCreateWithoutItemsInput, Prisma.ContextRequestUncheckedCreateWithoutItemsInput>
+  connectOrCreate?: Prisma.ContextRequestCreateOrConnectWithoutItemsInput
+  upsert?: Prisma.ContextRequestUpsertWithoutItemsInput
   connect?: Prisma.ContextRequestWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ContextRequestUpdateToOneWithWhereWithoutReceiptInput, Prisma.ContextRequestUpdateWithoutReceiptInput>, Prisma.ContextRequestUncheckedUpdateWithoutReceiptInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ContextRequestUpdateToOneWithWhereWithoutItemsInput, Prisma.ContextRequestUpdateWithoutItemsInput>, Prisma.ContextRequestUncheckedUpdateWithoutItemsInput>
 }
 
 export type ContextRequestCreateNestedOneWithoutLedgerEntryInput = {
@@ -639,48 +659,6 @@ export type ContextRequestUpdateOneWithoutLedgerEntryNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ContextRequestUpdateToOneWithWhereWithoutLedgerEntryInput, Prisma.ContextRequestUpdateWithoutLedgerEntryInput>, Prisma.ContextRequestUncheckedUpdateWithoutLedgerEntryInput>
 }
 
-export type ContextRequestCreateNestedManyWithoutPackInput = {
-  create?: Prisma.XOR<Prisma.ContextRequestCreateWithoutPackInput, Prisma.ContextRequestUncheckedCreateWithoutPackInput> | Prisma.ContextRequestCreateWithoutPackInput[] | Prisma.ContextRequestUncheckedCreateWithoutPackInput[]
-  connectOrCreate?: Prisma.ContextRequestCreateOrConnectWithoutPackInput | Prisma.ContextRequestCreateOrConnectWithoutPackInput[]
-  createMany?: Prisma.ContextRequestCreateManyPackInputEnvelope
-  connect?: Prisma.ContextRequestWhereUniqueInput | Prisma.ContextRequestWhereUniqueInput[]
-}
-
-export type ContextRequestUncheckedCreateNestedManyWithoutPackInput = {
-  create?: Prisma.XOR<Prisma.ContextRequestCreateWithoutPackInput, Prisma.ContextRequestUncheckedCreateWithoutPackInput> | Prisma.ContextRequestCreateWithoutPackInput[] | Prisma.ContextRequestUncheckedCreateWithoutPackInput[]
-  connectOrCreate?: Prisma.ContextRequestCreateOrConnectWithoutPackInput | Prisma.ContextRequestCreateOrConnectWithoutPackInput[]
-  createMany?: Prisma.ContextRequestCreateManyPackInputEnvelope
-  connect?: Prisma.ContextRequestWhereUniqueInput | Prisma.ContextRequestWhereUniqueInput[]
-}
-
-export type ContextRequestUpdateManyWithoutPackNestedInput = {
-  create?: Prisma.XOR<Prisma.ContextRequestCreateWithoutPackInput, Prisma.ContextRequestUncheckedCreateWithoutPackInput> | Prisma.ContextRequestCreateWithoutPackInput[] | Prisma.ContextRequestUncheckedCreateWithoutPackInput[]
-  connectOrCreate?: Prisma.ContextRequestCreateOrConnectWithoutPackInput | Prisma.ContextRequestCreateOrConnectWithoutPackInput[]
-  upsert?: Prisma.ContextRequestUpsertWithWhereUniqueWithoutPackInput | Prisma.ContextRequestUpsertWithWhereUniqueWithoutPackInput[]
-  createMany?: Prisma.ContextRequestCreateManyPackInputEnvelope
-  set?: Prisma.ContextRequestWhereUniqueInput | Prisma.ContextRequestWhereUniqueInput[]
-  disconnect?: Prisma.ContextRequestWhereUniqueInput | Prisma.ContextRequestWhereUniqueInput[]
-  delete?: Prisma.ContextRequestWhereUniqueInput | Prisma.ContextRequestWhereUniqueInput[]
-  connect?: Prisma.ContextRequestWhereUniqueInput | Prisma.ContextRequestWhereUniqueInput[]
-  update?: Prisma.ContextRequestUpdateWithWhereUniqueWithoutPackInput | Prisma.ContextRequestUpdateWithWhereUniqueWithoutPackInput[]
-  updateMany?: Prisma.ContextRequestUpdateManyWithWhereWithoutPackInput | Prisma.ContextRequestUpdateManyWithWhereWithoutPackInput[]
-  deleteMany?: Prisma.ContextRequestScalarWhereInput | Prisma.ContextRequestScalarWhereInput[]
-}
-
-export type ContextRequestUncheckedUpdateManyWithoutPackNestedInput = {
-  create?: Prisma.XOR<Prisma.ContextRequestCreateWithoutPackInput, Prisma.ContextRequestUncheckedCreateWithoutPackInput> | Prisma.ContextRequestCreateWithoutPackInput[] | Prisma.ContextRequestUncheckedCreateWithoutPackInput[]
-  connectOrCreate?: Prisma.ContextRequestCreateOrConnectWithoutPackInput | Prisma.ContextRequestCreateOrConnectWithoutPackInput[]
-  upsert?: Prisma.ContextRequestUpsertWithWhereUniqueWithoutPackInput | Prisma.ContextRequestUpsertWithWhereUniqueWithoutPackInput[]
-  createMany?: Prisma.ContextRequestCreateManyPackInputEnvelope
-  set?: Prisma.ContextRequestWhereUniqueInput | Prisma.ContextRequestWhereUniqueInput[]
-  disconnect?: Prisma.ContextRequestWhereUniqueInput | Prisma.ContextRequestWhereUniqueInput[]
-  delete?: Prisma.ContextRequestWhereUniqueInput | Prisma.ContextRequestWhereUniqueInput[]
-  connect?: Prisma.ContextRequestWhereUniqueInput | Prisma.ContextRequestWhereUniqueInput[]
-  update?: Prisma.ContextRequestUpdateWithWhereUniqueWithoutPackInput | Prisma.ContextRequestUpdateWithWhereUniqueWithoutPackInput[]
-  updateMany?: Prisma.ContextRequestUpdateManyWithWhereWithoutPackInput | Prisma.ContextRequestUpdateManyWithWhereWithoutPackInput[]
-  deleteMany?: Prisma.ContextRequestScalarWhereInput | Prisma.ContextRequestScalarWhereInput[]
-}
-
 export type ContextRequestCreateWithoutUserInput = {
   id?: string
   purpose: string
@@ -688,26 +666,24 @@ export type ContextRequestCreateWithoutUserInput = {
   status?: $Enums.ContextRequestStatus
   requestedAt?: Date | string
   completedAt?: Date | string | null
-  oauthClientId?: string | null
-  oauthClient: Prisma.OauthClientCreateNestedOneWithoutContextRequestsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutContextRequestsInput
   apiKey?: Prisma.DeveloperApiKeyCreateNestedOneWithoutContextRequestsInput
-  pack?: Prisma.PackCreateNestedOneWithoutContextRequestsInput
-  receipt?: Prisma.ContextReceiptCreateNestedOneWithoutContextRequestInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutContextRequestsInput
+  items?: Prisma.ContextRequestItemCreateNestedManyWithoutContextRequestInput
   ledgerEntry?: Prisma.ApiUsageLedgerCreateNestedOneWithoutContextRequestInput
 }
 
 export type ContextRequestUncheckedCreateWithoutUserInput = {
   id?: string
-  clientId: string
+  clientId?: string | null
   apiKeyId?: string | null
-  packId?: string | null
+  collectionId?: string | null
   purpose: string
   query: string
   status?: $Enums.ContextRequestStatus
   requestedAt?: Date | string
   completedAt?: Date | string | null
-  oauthClientId?: string | null
-  receipt?: Prisma.ContextReceiptUncheckedCreateNestedOneWithoutContextRequestInput
+  items?: Prisma.ContextRequestItemUncheckedCreateNestedManyWithoutContextRequestInput
   ledgerEntry?: Prisma.ApiUsageLedgerUncheckedCreateNestedOneWithoutContextRequestInput
 }
 
@@ -743,15 +719,14 @@ export type ContextRequestScalarWhereInput = {
   NOT?: Prisma.ContextRequestScalarWhereInput | Prisma.ContextRequestScalarWhereInput[]
   id?: Prisma.StringFilter<"ContextRequest"> | string
   userId?: Prisma.StringNullableFilter<"ContextRequest"> | string | null
-  clientId?: Prisma.StringFilter<"ContextRequest"> | string
+  clientId?: Prisma.StringNullableFilter<"ContextRequest"> | string | null
   apiKeyId?: Prisma.StringNullableFilter<"ContextRequest"> | string | null
-  packId?: Prisma.StringNullableFilter<"ContextRequest"> | string | null
+  collectionId?: Prisma.StringNullableFilter<"ContextRequest"> | string | null
   purpose?: Prisma.StringFilter<"ContextRequest"> | string
   query?: Prisma.StringFilter<"ContextRequest"> | string
   status?: Prisma.EnumContextRequestStatusFilter<"ContextRequest"> | $Enums.ContextRequestStatus
   requestedAt?: Prisma.DateTimeFilter<"ContextRequest"> | Date | string
   completedAt?: Prisma.DateTimeNullableFilter<"ContextRequest"> | Date | string | null
-  oauthClientId?: Prisma.StringNullableFilter<"ContextRequest"> | string | null
 }
 
 export type ContextRequestCreateWithoutOauthClientInput = {
@@ -761,11 +736,10 @@ export type ContextRequestCreateWithoutOauthClientInput = {
   status?: $Enums.ContextRequestStatus
   requestedAt?: Date | string
   completedAt?: Date | string | null
-  oauthClientId?: string | null
   user?: Prisma.UserCreateNestedOneWithoutContextRequestsInput
   apiKey?: Prisma.DeveloperApiKeyCreateNestedOneWithoutContextRequestsInput
-  pack?: Prisma.PackCreateNestedOneWithoutContextRequestsInput
-  receipt?: Prisma.ContextReceiptCreateNestedOneWithoutContextRequestInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutContextRequestsInput
+  items?: Prisma.ContextRequestItemCreateNestedManyWithoutContextRequestInput
   ledgerEntry?: Prisma.ApiUsageLedgerCreateNestedOneWithoutContextRequestInput
 }
 
@@ -773,14 +747,13 @@ export type ContextRequestUncheckedCreateWithoutOauthClientInput = {
   id?: string
   userId?: string | null
   apiKeyId?: string | null
-  packId?: string | null
+  collectionId?: string | null
   purpose: string
   query: string
   status?: $Enums.ContextRequestStatus
   requestedAt?: Date | string
   completedAt?: Date | string | null
-  oauthClientId?: string | null
-  receipt?: Prisma.ContextReceiptUncheckedCreateNestedOneWithoutContextRequestInput
+  items?: Prisma.ContextRequestItemUncheckedCreateNestedManyWithoutContextRequestInput
   ledgerEntry?: Prisma.ApiUsageLedgerUncheckedCreateNestedOneWithoutContextRequestInput
 }
 
@@ -817,26 +790,24 @@ export type ContextRequestCreateWithoutApiKeyInput = {
   status?: $Enums.ContextRequestStatus
   requestedAt?: Date | string
   completedAt?: Date | string | null
-  oauthClientId?: string | null
   user?: Prisma.UserCreateNestedOneWithoutContextRequestsInput
-  oauthClient: Prisma.OauthClientCreateNestedOneWithoutContextRequestsInput
-  pack?: Prisma.PackCreateNestedOneWithoutContextRequestsInput
-  receipt?: Prisma.ContextReceiptCreateNestedOneWithoutContextRequestInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutContextRequestsInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutContextRequestsInput
+  items?: Prisma.ContextRequestItemCreateNestedManyWithoutContextRequestInput
   ledgerEntry?: Prisma.ApiUsageLedgerCreateNestedOneWithoutContextRequestInput
 }
 
 export type ContextRequestUncheckedCreateWithoutApiKeyInput = {
   id?: string
   userId?: string | null
-  clientId: string
-  packId?: string | null
+  clientId?: string | null
+  collectionId?: string | null
   purpose: string
   query: string
   status?: $Enums.ContextRequestStatus
   requestedAt?: Date | string
   completedAt?: Date | string | null
-  oauthClientId?: string | null
-  receipt?: Prisma.ContextReceiptUncheckedCreateNestedOneWithoutContextRequestInput
+  items?: Prisma.ContextRequestItemUncheckedCreateNestedManyWithoutContextRequestInput
   ledgerEntry?: Prisma.ApiUsageLedgerUncheckedCreateNestedOneWithoutContextRequestInput
 }
 
@@ -866,79 +837,129 @@ export type ContextRequestUpdateManyWithWhereWithoutApiKeyInput = {
   data: Prisma.XOR<Prisma.ContextRequestUpdateManyMutationInput, Prisma.ContextRequestUncheckedUpdateManyWithoutApiKeyInput>
 }
 
-export type ContextRequestCreateWithoutReceiptInput = {
+export type ContextRequestCreateWithoutCollectionInput = {
   id?: string
   purpose: string
   query: string
   status?: $Enums.ContextRequestStatus
   requestedAt?: Date | string
   completedAt?: Date | string | null
-  oauthClientId?: string | null
   user?: Prisma.UserCreateNestedOneWithoutContextRequestsInput
-  oauthClient: Prisma.OauthClientCreateNestedOneWithoutContextRequestsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutContextRequestsInput
   apiKey?: Prisma.DeveloperApiKeyCreateNestedOneWithoutContextRequestsInput
-  pack?: Prisma.PackCreateNestedOneWithoutContextRequestsInput
+  items?: Prisma.ContextRequestItemCreateNestedManyWithoutContextRequestInput
   ledgerEntry?: Prisma.ApiUsageLedgerCreateNestedOneWithoutContextRequestInput
 }
 
-export type ContextRequestUncheckedCreateWithoutReceiptInput = {
+export type ContextRequestUncheckedCreateWithoutCollectionInput = {
   id?: string
   userId?: string | null
-  clientId: string
+  clientId?: string | null
   apiKeyId?: string | null
-  packId?: string | null
   purpose: string
   query: string
   status?: $Enums.ContextRequestStatus
   requestedAt?: Date | string
   completedAt?: Date | string | null
-  oauthClientId?: string | null
+  items?: Prisma.ContextRequestItemUncheckedCreateNestedManyWithoutContextRequestInput
   ledgerEntry?: Prisma.ApiUsageLedgerUncheckedCreateNestedOneWithoutContextRequestInput
 }
 
-export type ContextRequestCreateOrConnectWithoutReceiptInput = {
+export type ContextRequestCreateOrConnectWithoutCollectionInput = {
   where: Prisma.ContextRequestWhereUniqueInput
-  create: Prisma.XOR<Prisma.ContextRequestCreateWithoutReceiptInput, Prisma.ContextRequestUncheckedCreateWithoutReceiptInput>
+  create: Prisma.XOR<Prisma.ContextRequestCreateWithoutCollectionInput, Prisma.ContextRequestUncheckedCreateWithoutCollectionInput>
 }
 
-export type ContextRequestUpsertWithoutReceiptInput = {
-  update: Prisma.XOR<Prisma.ContextRequestUpdateWithoutReceiptInput, Prisma.ContextRequestUncheckedUpdateWithoutReceiptInput>
-  create: Prisma.XOR<Prisma.ContextRequestCreateWithoutReceiptInput, Prisma.ContextRequestUncheckedCreateWithoutReceiptInput>
+export type ContextRequestCreateManyCollectionInputEnvelope = {
+  data: Prisma.ContextRequestCreateManyCollectionInput | Prisma.ContextRequestCreateManyCollectionInput[]
+  skipDuplicates?: boolean
+}
+
+export type ContextRequestUpsertWithWhereUniqueWithoutCollectionInput = {
+  where: Prisma.ContextRequestWhereUniqueInput
+  update: Prisma.XOR<Prisma.ContextRequestUpdateWithoutCollectionInput, Prisma.ContextRequestUncheckedUpdateWithoutCollectionInput>
+  create: Prisma.XOR<Prisma.ContextRequestCreateWithoutCollectionInput, Prisma.ContextRequestUncheckedCreateWithoutCollectionInput>
+}
+
+export type ContextRequestUpdateWithWhereUniqueWithoutCollectionInput = {
+  where: Prisma.ContextRequestWhereUniqueInput
+  data: Prisma.XOR<Prisma.ContextRequestUpdateWithoutCollectionInput, Prisma.ContextRequestUncheckedUpdateWithoutCollectionInput>
+}
+
+export type ContextRequestUpdateManyWithWhereWithoutCollectionInput = {
+  where: Prisma.ContextRequestScalarWhereInput
+  data: Prisma.XOR<Prisma.ContextRequestUpdateManyMutationInput, Prisma.ContextRequestUncheckedUpdateManyWithoutCollectionInput>
+}
+
+export type ContextRequestCreateWithoutItemsInput = {
+  id?: string
+  purpose: string
+  query: string
+  status?: $Enums.ContextRequestStatus
+  requestedAt?: Date | string
+  completedAt?: Date | string | null
+  user?: Prisma.UserCreateNestedOneWithoutContextRequestsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutContextRequestsInput
+  apiKey?: Prisma.DeveloperApiKeyCreateNestedOneWithoutContextRequestsInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutContextRequestsInput
+  ledgerEntry?: Prisma.ApiUsageLedgerCreateNestedOneWithoutContextRequestInput
+}
+
+export type ContextRequestUncheckedCreateWithoutItemsInput = {
+  id?: string
+  userId?: string | null
+  clientId?: string | null
+  apiKeyId?: string | null
+  collectionId?: string | null
+  purpose: string
+  query: string
+  status?: $Enums.ContextRequestStatus
+  requestedAt?: Date | string
+  completedAt?: Date | string | null
+  ledgerEntry?: Prisma.ApiUsageLedgerUncheckedCreateNestedOneWithoutContextRequestInput
+}
+
+export type ContextRequestCreateOrConnectWithoutItemsInput = {
+  where: Prisma.ContextRequestWhereUniqueInput
+  create: Prisma.XOR<Prisma.ContextRequestCreateWithoutItemsInput, Prisma.ContextRequestUncheckedCreateWithoutItemsInput>
+}
+
+export type ContextRequestUpsertWithoutItemsInput = {
+  update: Prisma.XOR<Prisma.ContextRequestUpdateWithoutItemsInput, Prisma.ContextRequestUncheckedUpdateWithoutItemsInput>
+  create: Prisma.XOR<Prisma.ContextRequestCreateWithoutItemsInput, Prisma.ContextRequestUncheckedCreateWithoutItemsInput>
   where?: Prisma.ContextRequestWhereInput
 }
 
-export type ContextRequestUpdateToOneWithWhereWithoutReceiptInput = {
+export type ContextRequestUpdateToOneWithWhereWithoutItemsInput = {
   where?: Prisma.ContextRequestWhereInput
-  data: Prisma.XOR<Prisma.ContextRequestUpdateWithoutReceiptInput, Prisma.ContextRequestUncheckedUpdateWithoutReceiptInput>
+  data: Prisma.XOR<Prisma.ContextRequestUpdateWithoutItemsInput, Prisma.ContextRequestUncheckedUpdateWithoutItemsInput>
 }
 
-export type ContextRequestUpdateWithoutReceiptInput = {
+export type ContextRequestUpdateWithoutItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   query?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumContextRequestStatusFieldUpdateOperationsInput | $Enums.ContextRequestStatus
   requestedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user?: Prisma.UserUpdateOneWithoutContextRequestsNestedInput
-  oauthClient?: Prisma.OauthClientUpdateOneRequiredWithoutContextRequestsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutContextRequestsNestedInput
   apiKey?: Prisma.DeveloperApiKeyUpdateOneWithoutContextRequestsNestedInput
-  pack?: Prisma.PackUpdateOneWithoutContextRequestsNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutContextRequestsNestedInput
   ledgerEntry?: Prisma.ApiUsageLedgerUpdateOneWithoutContextRequestNestedInput
 }
 
-export type ContextRequestUncheckedUpdateWithoutReceiptInput = {
+export type ContextRequestUncheckedUpdateWithoutItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   query?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumContextRequestStatusFieldUpdateOperationsInput | $Enums.ContextRequestStatus
   requestedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ledgerEntry?: Prisma.ApiUsageLedgerUncheckedUpdateOneWithoutContextRequestNestedInput
 }
 
@@ -949,27 +970,25 @@ export type ContextRequestCreateWithoutLedgerEntryInput = {
   status?: $Enums.ContextRequestStatus
   requestedAt?: Date | string
   completedAt?: Date | string | null
-  oauthClientId?: string | null
   user?: Prisma.UserCreateNestedOneWithoutContextRequestsInput
-  oauthClient: Prisma.OauthClientCreateNestedOneWithoutContextRequestsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutContextRequestsInput
   apiKey?: Prisma.DeveloperApiKeyCreateNestedOneWithoutContextRequestsInput
-  pack?: Prisma.PackCreateNestedOneWithoutContextRequestsInput
-  receipt?: Prisma.ContextReceiptCreateNestedOneWithoutContextRequestInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutContextRequestsInput
+  items?: Prisma.ContextRequestItemCreateNestedManyWithoutContextRequestInput
 }
 
 export type ContextRequestUncheckedCreateWithoutLedgerEntryInput = {
   id?: string
   userId?: string | null
-  clientId: string
+  clientId?: string | null
   apiKeyId?: string | null
-  packId?: string | null
+  collectionId?: string | null
   purpose: string
   query: string
   status?: $Enums.ContextRequestStatus
   requestedAt?: Date | string
   completedAt?: Date | string | null
-  oauthClientId?: string | null
-  receipt?: Prisma.ContextReceiptUncheckedCreateNestedOneWithoutContextRequestInput
+  items?: Prisma.ContextRequestItemUncheckedCreateNestedManyWithoutContextRequestInput
 }
 
 export type ContextRequestCreateOrConnectWithoutLedgerEntryInput = {
@@ -995,96 +1014,37 @@ export type ContextRequestUpdateWithoutLedgerEntryInput = {
   status?: Prisma.EnumContextRequestStatusFieldUpdateOperationsInput | $Enums.ContextRequestStatus
   requestedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user?: Prisma.UserUpdateOneWithoutContextRequestsNestedInput
-  oauthClient?: Prisma.OauthClientUpdateOneRequiredWithoutContextRequestsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutContextRequestsNestedInput
   apiKey?: Prisma.DeveloperApiKeyUpdateOneWithoutContextRequestsNestedInput
-  pack?: Prisma.PackUpdateOneWithoutContextRequestsNestedInput
-  receipt?: Prisma.ContextReceiptUpdateOneWithoutContextRequestNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutContextRequestsNestedInput
+  items?: Prisma.ContextRequestItemUpdateManyWithoutContextRequestNestedInput
 }
 
 export type ContextRequestUncheckedUpdateWithoutLedgerEntryInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   query?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumContextRequestStatusFieldUpdateOperationsInput | $Enums.ContextRequestStatus
   requestedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  receipt?: Prisma.ContextReceiptUncheckedUpdateOneWithoutContextRequestNestedInput
-}
-
-export type ContextRequestCreateWithoutPackInput = {
-  id?: string
-  purpose: string
-  query: string
-  status?: $Enums.ContextRequestStatus
-  requestedAt?: Date | string
-  completedAt?: Date | string | null
-  oauthClientId?: string | null
-  user?: Prisma.UserCreateNestedOneWithoutContextRequestsInput
-  oauthClient: Prisma.OauthClientCreateNestedOneWithoutContextRequestsInput
-  apiKey?: Prisma.DeveloperApiKeyCreateNestedOneWithoutContextRequestsInput
-  receipt?: Prisma.ContextReceiptCreateNestedOneWithoutContextRequestInput
-  ledgerEntry?: Prisma.ApiUsageLedgerCreateNestedOneWithoutContextRequestInput
-}
-
-export type ContextRequestUncheckedCreateWithoutPackInput = {
-  id?: string
-  userId?: string | null
-  clientId: string
-  apiKeyId?: string | null
-  purpose: string
-  query: string
-  status?: $Enums.ContextRequestStatus
-  requestedAt?: Date | string
-  completedAt?: Date | string | null
-  oauthClientId?: string | null
-  receipt?: Prisma.ContextReceiptUncheckedCreateNestedOneWithoutContextRequestInput
-  ledgerEntry?: Prisma.ApiUsageLedgerUncheckedCreateNestedOneWithoutContextRequestInput
-}
-
-export type ContextRequestCreateOrConnectWithoutPackInput = {
-  where: Prisma.ContextRequestWhereUniqueInput
-  create: Prisma.XOR<Prisma.ContextRequestCreateWithoutPackInput, Prisma.ContextRequestUncheckedCreateWithoutPackInput>
-}
-
-export type ContextRequestCreateManyPackInputEnvelope = {
-  data: Prisma.ContextRequestCreateManyPackInput | Prisma.ContextRequestCreateManyPackInput[]
-  skipDuplicates?: boolean
-}
-
-export type ContextRequestUpsertWithWhereUniqueWithoutPackInput = {
-  where: Prisma.ContextRequestWhereUniqueInput
-  update: Prisma.XOR<Prisma.ContextRequestUpdateWithoutPackInput, Prisma.ContextRequestUncheckedUpdateWithoutPackInput>
-  create: Prisma.XOR<Prisma.ContextRequestCreateWithoutPackInput, Prisma.ContextRequestUncheckedCreateWithoutPackInput>
-}
-
-export type ContextRequestUpdateWithWhereUniqueWithoutPackInput = {
-  where: Prisma.ContextRequestWhereUniqueInput
-  data: Prisma.XOR<Prisma.ContextRequestUpdateWithoutPackInput, Prisma.ContextRequestUncheckedUpdateWithoutPackInput>
-}
-
-export type ContextRequestUpdateManyWithWhereWithoutPackInput = {
-  where: Prisma.ContextRequestScalarWhereInput
-  data: Prisma.XOR<Prisma.ContextRequestUpdateManyMutationInput, Prisma.ContextRequestUncheckedUpdateManyWithoutPackInput>
+  items?: Prisma.ContextRequestItemUncheckedUpdateManyWithoutContextRequestNestedInput
 }
 
 export type ContextRequestCreateManyUserInput = {
   id?: string
-  clientId: string
+  clientId?: string | null
   apiKeyId?: string | null
-  packId?: string | null
+  collectionId?: string | null
   purpose: string
   query: string
   status?: $Enums.ContextRequestStatus
   requestedAt?: Date | string
   completedAt?: Date | string | null
-  oauthClientId?: string | null
 }
 
 export type ContextRequestUpdateWithoutUserInput = {
@@ -1094,53 +1054,49 @@ export type ContextRequestUpdateWithoutUserInput = {
   status?: Prisma.EnumContextRequestStatusFieldUpdateOperationsInput | $Enums.ContextRequestStatus
   requestedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  oauthClient?: Prisma.OauthClientUpdateOneRequiredWithoutContextRequestsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutContextRequestsNestedInput
   apiKey?: Prisma.DeveloperApiKeyUpdateOneWithoutContextRequestsNestedInput
-  pack?: Prisma.PackUpdateOneWithoutContextRequestsNestedInput
-  receipt?: Prisma.ContextReceiptUpdateOneWithoutContextRequestNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutContextRequestsNestedInput
+  items?: Prisma.ContextRequestItemUpdateManyWithoutContextRequestNestedInput
   ledgerEntry?: Prisma.ApiUsageLedgerUpdateOneWithoutContextRequestNestedInput
 }
 
 export type ContextRequestUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   query?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumContextRequestStatusFieldUpdateOperationsInput | $Enums.ContextRequestStatus
   requestedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  receipt?: Prisma.ContextReceiptUncheckedUpdateOneWithoutContextRequestNestedInput
+  items?: Prisma.ContextRequestItemUncheckedUpdateManyWithoutContextRequestNestedInput
   ledgerEntry?: Prisma.ApiUsageLedgerUncheckedUpdateOneWithoutContextRequestNestedInput
 }
 
 export type ContextRequestUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   query?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumContextRequestStatusFieldUpdateOperationsInput | $Enums.ContextRequestStatus
   requestedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ContextRequestCreateManyOauthClientInput = {
   id?: string
   userId?: string | null
   apiKeyId?: string | null
-  packId?: string | null
+  collectionId?: string | null
   purpose: string
   query: string
   status?: $Enums.ContextRequestStatus
   requestedAt?: Date | string
   completedAt?: Date | string | null
-  oauthClientId?: string | null
 }
 
 export type ContextRequestUpdateWithoutOauthClientInput = {
@@ -1150,11 +1106,10 @@ export type ContextRequestUpdateWithoutOauthClientInput = {
   status?: Prisma.EnumContextRequestStatusFieldUpdateOperationsInput | $Enums.ContextRequestStatus
   requestedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user?: Prisma.UserUpdateOneWithoutContextRequestsNestedInput
   apiKey?: Prisma.DeveloperApiKeyUpdateOneWithoutContextRequestsNestedInput
-  pack?: Prisma.PackUpdateOneWithoutContextRequestsNestedInput
-  receipt?: Prisma.ContextReceiptUpdateOneWithoutContextRequestNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutContextRequestsNestedInput
+  items?: Prisma.ContextRequestItemUpdateManyWithoutContextRequestNestedInput
   ledgerEntry?: Prisma.ApiUsageLedgerUpdateOneWithoutContextRequestNestedInput
 }
 
@@ -1162,14 +1117,13 @@ export type ContextRequestUncheckedUpdateWithoutOauthClientInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   query?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumContextRequestStatusFieldUpdateOperationsInput | $Enums.ContextRequestStatus
   requestedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  receipt?: Prisma.ContextReceiptUncheckedUpdateOneWithoutContextRequestNestedInput
+  items?: Prisma.ContextRequestItemUncheckedUpdateManyWithoutContextRequestNestedInput
   ledgerEntry?: Prisma.ApiUsageLedgerUncheckedUpdateOneWithoutContextRequestNestedInput
 }
 
@@ -1177,26 +1131,24 @@ export type ContextRequestUncheckedUpdateManyWithoutOauthClientInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   query?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumContextRequestStatusFieldUpdateOperationsInput | $Enums.ContextRequestStatus
   requestedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ContextRequestCreateManyApiKeyInput = {
   id?: string
   userId?: string | null
-  clientId: string
-  packId?: string | null
+  clientId?: string | null
+  collectionId?: string | null
   purpose: string
   query: string
   status?: $Enums.ContextRequestStatus
   requestedAt?: Date | string
   completedAt?: Date | string | null
-  oauthClientId?: string | null
 }
 
 export type ContextRequestUpdateWithoutApiKeyInput = {
@@ -1206,98 +1158,120 @@ export type ContextRequestUpdateWithoutApiKeyInput = {
   status?: Prisma.EnumContextRequestStatusFieldUpdateOperationsInput | $Enums.ContextRequestStatus
   requestedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user?: Prisma.UserUpdateOneWithoutContextRequestsNestedInput
-  oauthClient?: Prisma.OauthClientUpdateOneRequiredWithoutContextRequestsNestedInput
-  pack?: Prisma.PackUpdateOneWithoutContextRequestsNestedInput
-  receipt?: Prisma.ContextReceiptUpdateOneWithoutContextRequestNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutContextRequestsNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutContextRequestsNestedInput
+  items?: Prisma.ContextRequestItemUpdateManyWithoutContextRequestNestedInput
   ledgerEntry?: Prisma.ApiUsageLedgerUpdateOneWithoutContextRequestNestedInput
 }
 
 export type ContextRequestUncheckedUpdateWithoutApiKeyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   query?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumContextRequestStatusFieldUpdateOperationsInput | $Enums.ContextRequestStatus
   requestedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  receipt?: Prisma.ContextReceiptUncheckedUpdateOneWithoutContextRequestNestedInput
+  items?: Prisma.ContextRequestItemUncheckedUpdateManyWithoutContextRequestNestedInput
   ledgerEntry?: Prisma.ApiUsageLedgerUncheckedUpdateOneWithoutContextRequestNestedInput
 }
 
 export type ContextRequestUncheckedUpdateManyWithoutApiKeyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   query?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumContextRequestStatusFieldUpdateOperationsInput | $Enums.ContextRequestStatus
   requestedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
-export type ContextRequestCreateManyPackInput = {
+export type ContextRequestCreateManyCollectionInput = {
   id?: string
   userId?: string | null
-  clientId: string
+  clientId?: string | null
   apiKeyId?: string | null
   purpose: string
   query: string
   status?: $Enums.ContextRequestStatus
   requestedAt?: Date | string
   completedAt?: Date | string | null
-  oauthClientId?: string | null
 }
 
-export type ContextRequestUpdateWithoutPackInput = {
+export type ContextRequestUpdateWithoutCollectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   query?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumContextRequestStatusFieldUpdateOperationsInput | $Enums.ContextRequestStatus
   requestedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user?: Prisma.UserUpdateOneWithoutContextRequestsNestedInput
-  oauthClient?: Prisma.OauthClientUpdateOneRequiredWithoutContextRequestsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutContextRequestsNestedInput
   apiKey?: Prisma.DeveloperApiKeyUpdateOneWithoutContextRequestsNestedInput
-  receipt?: Prisma.ContextReceiptUpdateOneWithoutContextRequestNestedInput
+  items?: Prisma.ContextRequestItemUpdateManyWithoutContextRequestNestedInput
   ledgerEntry?: Prisma.ApiUsageLedgerUpdateOneWithoutContextRequestNestedInput
 }
 
-export type ContextRequestUncheckedUpdateWithoutPackInput = {
+export type ContextRequestUncheckedUpdateWithoutCollectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   query?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumContextRequestStatusFieldUpdateOperationsInput | $Enums.ContextRequestStatus
   requestedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  receipt?: Prisma.ContextReceiptUncheckedUpdateOneWithoutContextRequestNestedInput
+  items?: Prisma.ContextRequestItemUncheckedUpdateManyWithoutContextRequestNestedInput
   ledgerEntry?: Prisma.ApiUsageLedgerUncheckedUpdateOneWithoutContextRequestNestedInput
 }
 
-export type ContextRequestUncheckedUpdateManyWithoutPackInput = {
+export type ContextRequestUncheckedUpdateManyWithoutCollectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   query?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumContextRequestStatusFieldUpdateOperationsInput | $Enums.ContextRequestStatus
   requestedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
+
+/**
+ * Count Type ContextRequestCountOutputType
+ */
+
+export type ContextRequestCountOutputType = {
+  items: number
+}
+
+export type ContextRequestCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  items?: boolean | ContextRequestCountOutputTypeCountItemsArgs
+}
+
+/**
+ * ContextRequestCountOutputType without action
+ */
+export type ContextRequestCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ContextRequestCountOutputType
+   */
+  select?: Prisma.ContextRequestCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ContextRequestCountOutputType without action
+ */
+export type ContextRequestCountOutputTypeCountItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ContextRequestItemWhereInput
+}
 
 
 export type ContextRequestSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1305,19 +1279,19 @@ export type ContextRequestSelect<ExtArgs extends runtime.Types.Extensions.Intern
   userId?: boolean
   clientId?: boolean
   apiKeyId?: boolean
-  packId?: boolean
+  collectionId?: boolean
   purpose?: boolean
   query?: boolean
   status?: boolean
   requestedAt?: boolean
   completedAt?: boolean
-  oauthClientId?: boolean
   user?: boolean | Prisma.ContextRequest$userArgs<ExtArgs>
-  oauthClient?: boolean | Prisma.OauthClientDefaultArgs<ExtArgs>
+  oauthClient?: boolean | Prisma.ContextRequest$oauthClientArgs<ExtArgs>
   apiKey?: boolean | Prisma.ContextRequest$apiKeyArgs<ExtArgs>
-  pack?: boolean | Prisma.ContextRequest$packArgs<ExtArgs>
-  receipt?: boolean | Prisma.ContextRequest$receiptArgs<ExtArgs>
+  collection?: boolean | Prisma.ContextRequest$collectionArgs<ExtArgs>
+  items?: boolean | Prisma.ContextRequest$itemsArgs<ExtArgs>
   ledgerEntry?: boolean | Prisma.ContextRequest$ledgerEntryArgs<ExtArgs>
+  _count?: boolean | Prisma.ContextRequestCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["contextRequest"]>
 
 export type ContextRequestSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1325,17 +1299,16 @@ export type ContextRequestSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   userId?: boolean
   clientId?: boolean
   apiKeyId?: boolean
-  packId?: boolean
+  collectionId?: boolean
   purpose?: boolean
   query?: boolean
   status?: boolean
   requestedAt?: boolean
   completedAt?: boolean
-  oauthClientId?: boolean
   user?: boolean | Prisma.ContextRequest$userArgs<ExtArgs>
-  oauthClient?: boolean | Prisma.OauthClientDefaultArgs<ExtArgs>
+  oauthClient?: boolean | Prisma.ContextRequest$oauthClientArgs<ExtArgs>
   apiKey?: boolean | Prisma.ContextRequest$apiKeyArgs<ExtArgs>
-  pack?: boolean | Prisma.ContextRequest$packArgs<ExtArgs>
+  collection?: boolean | Prisma.ContextRequest$collectionArgs<ExtArgs>
 }, ExtArgs["result"]["contextRequest"]>
 
 export type ContextRequestSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1343,17 +1316,16 @@ export type ContextRequestSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   userId?: boolean
   clientId?: boolean
   apiKeyId?: boolean
-  packId?: boolean
+  collectionId?: boolean
   purpose?: boolean
   query?: boolean
   status?: boolean
   requestedAt?: boolean
   completedAt?: boolean
-  oauthClientId?: boolean
   user?: boolean | Prisma.ContextRequest$userArgs<ExtArgs>
-  oauthClient?: boolean | Prisma.OauthClientDefaultArgs<ExtArgs>
+  oauthClient?: boolean | Prisma.ContextRequest$oauthClientArgs<ExtArgs>
   apiKey?: boolean | Prisma.ContextRequest$apiKeyArgs<ExtArgs>
-  pack?: boolean | Prisma.ContextRequest$packArgs<ExtArgs>
+  collection?: boolean | Prisma.ContextRequest$collectionArgs<ExtArgs>
 }, ExtArgs["result"]["contextRequest"]>
 
 export type ContextRequestSelectScalar = {
@@ -1361,59 +1333,58 @@ export type ContextRequestSelectScalar = {
   userId?: boolean
   clientId?: boolean
   apiKeyId?: boolean
-  packId?: boolean
+  collectionId?: boolean
   purpose?: boolean
   query?: boolean
   status?: boolean
   requestedAt?: boolean
   completedAt?: boolean
-  oauthClientId?: boolean
 }
 
-export type ContextRequestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "clientId" | "apiKeyId" | "packId" | "purpose" | "query" | "status" | "requestedAt" | "completedAt" | "oauthClientId", ExtArgs["result"]["contextRequest"]>
+export type ContextRequestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "clientId" | "apiKeyId" | "collectionId" | "purpose" | "query" | "status" | "requestedAt" | "completedAt", ExtArgs["result"]["contextRequest"]>
 export type ContextRequestInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.ContextRequest$userArgs<ExtArgs>
-  oauthClient?: boolean | Prisma.OauthClientDefaultArgs<ExtArgs>
+  oauthClient?: boolean | Prisma.ContextRequest$oauthClientArgs<ExtArgs>
   apiKey?: boolean | Prisma.ContextRequest$apiKeyArgs<ExtArgs>
-  pack?: boolean | Prisma.ContextRequest$packArgs<ExtArgs>
-  receipt?: boolean | Prisma.ContextRequest$receiptArgs<ExtArgs>
+  collection?: boolean | Prisma.ContextRequest$collectionArgs<ExtArgs>
+  items?: boolean | Prisma.ContextRequest$itemsArgs<ExtArgs>
   ledgerEntry?: boolean | Prisma.ContextRequest$ledgerEntryArgs<ExtArgs>
+  _count?: boolean | Prisma.ContextRequestCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ContextRequestIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.ContextRequest$userArgs<ExtArgs>
-  oauthClient?: boolean | Prisma.OauthClientDefaultArgs<ExtArgs>
+  oauthClient?: boolean | Prisma.ContextRequest$oauthClientArgs<ExtArgs>
   apiKey?: boolean | Prisma.ContextRequest$apiKeyArgs<ExtArgs>
-  pack?: boolean | Prisma.ContextRequest$packArgs<ExtArgs>
+  collection?: boolean | Prisma.ContextRequest$collectionArgs<ExtArgs>
 }
 export type ContextRequestIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.ContextRequest$userArgs<ExtArgs>
-  oauthClient?: boolean | Prisma.OauthClientDefaultArgs<ExtArgs>
+  oauthClient?: boolean | Prisma.ContextRequest$oauthClientArgs<ExtArgs>
   apiKey?: boolean | Prisma.ContextRequest$apiKeyArgs<ExtArgs>
-  pack?: boolean | Prisma.ContextRequest$packArgs<ExtArgs>
+  collection?: boolean | Prisma.ContextRequest$collectionArgs<ExtArgs>
 }
 
 export type $ContextRequestPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ContextRequest"
   objects: {
     user: Prisma.$UserPayload<ExtArgs> | null
-    oauthClient: Prisma.$OauthClientPayload<ExtArgs>
+    oauthClient: Prisma.$OauthClientPayload<ExtArgs> | null
     apiKey: Prisma.$DeveloperApiKeyPayload<ExtArgs> | null
-    pack: Prisma.$PackPayload<ExtArgs> | null
-    receipt: Prisma.$ContextReceiptPayload<ExtArgs> | null
+    collection: Prisma.$CollectionPayload<ExtArgs> | null
+    items: Prisma.$ContextRequestItemPayload<ExtArgs>[]
     ledgerEntry: Prisma.$ApiUsageLedgerPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     userId: string | null
-    clientId: string
+    clientId: string | null
     apiKeyId: string | null
-    packId: string | null
+    collectionId: string | null
     purpose: string
     query: string
     status: $Enums.ContextRequestStatus
     requestedAt: Date
     completedAt: Date | null
-    oauthClientId: string | null
   }, ExtArgs["result"]["contextRequest"]>
   composites: {}
 }
@@ -1809,10 +1780,10 @@ readonly fields: ContextRequestFieldRefs;
 export interface Prisma__ContextRequestClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.ContextRequest$userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ContextRequest$userArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  oauthClient<T extends Prisma.OauthClientDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OauthClientDefaultArgs<ExtArgs>>): Prisma.Prisma__OauthClientClient<runtime.Types.Result.GetResult<Prisma.$OauthClientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  oauthClient<T extends Prisma.ContextRequest$oauthClientArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ContextRequest$oauthClientArgs<ExtArgs>>): Prisma.Prisma__OauthClientClient<runtime.Types.Result.GetResult<Prisma.$OauthClientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   apiKey<T extends Prisma.ContextRequest$apiKeyArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ContextRequest$apiKeyArgs<ExtArgs>>): Prisma.Prisma__DeveloperApiKeyClient<runtime.Types.Result.GetResult<Prisma.$DeveloperApiKeyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  pack<T extends Prisma.ContextRequest$packArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ContextRequest$packArgs<ExtArgs>>): Prisma.Prisma__PackClient<runtime.Types.Result.GetResult<Prisma.$PackPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  receipt<T extends Prisma.ContextRequest$receiptArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ContextRequest$receiptArgs<ExtArgs>>): Prisma.Prisma__ContextReceiptClient<runtime.Types.Result.GetResult<Prisma.$ContextReceiptPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  collection<T extends Prisma.ContextRequest$collectionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ContextRequest$collectionArgs<ExtArgs>>): Prisma.Prisma__CollectionClient<runtime.Types.Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  items<T extends Prisma.ContextRequest$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ContextRequest$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContextRequestItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   ledgerEntry<T extends Prisma.ContextRequest$ledgerEntryArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ContextRequest$ledgerEntryArgs<ExtArgs>>): Prisma.Prisma__ApiUsageLedgerClient<runtime.Types.Result.GetResult<Prisma.$ApiUsageLedgerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1847,13 +1818,12 @@ export interface ContextRequestFieldRefs {
   readonly userId: Prisma.FieldRef<"ContextRequest", 'String'>
   readonly clientId: Prisma.FieldRef<"ContextRequest", 'String'>
   readonly apiKeyId: Prisma.FieldRef<"ContextRequest", 'String'>
-  readonly packId: Prisma.FieldRef<"ContextRequest", 'String'>
+  readonly collectionId: Prisma.FieldRef<"ContextRequest", 'String'>
   readonly purpose: Prisma.FieldRef<"ContextRequest", 'String'>
   readonly query: Prisma.FieldRef<"ContextRequest", 'String'>
   readonly status: Prisma.FieldRef<"ContextRequest", 'ContextRequestStatus'>
   readonly requestedAt: Prisma.FieldRef<"ContextRequest", 'DateTime'>
   readonly completedAt: Prisma.FieldRef<"ContextRequest", 'DateTime'>
-  readonly oauthClientId: Prisma.FieldRef<"ContextRequest", 'String'>
 }
     
 
@@ -2274,6 +2244,25 @@ export type ContextRequest$userArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 /**
+ * ContextRequest.oauthClient
+ */
+export type ContextRequest$oauthClientArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OauthClient
+   */
+  select?: Prisma.OauthClientSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OauthClient
+   */
+  omit?: Prisma.OauthClientOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OauthClientInclude<ExtArgs> | null
+  where?: Prisma.OauthClientWhereInput
+}
+
+/**
  * ContextRequest.apiKey
  */
 export type ContextRequest$apiKeyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2293,41 +2282,46 @@ export type ContextRequest$apiKeyArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 /**
- * ContextRequest.pack
+ * ContextRequest.collection
  */
-export type ContextRequest$packArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ContextRequest$collectionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Pack
+   * Select specific fields to fetch from the Collection
    */
-  select?: Prisma.PackSelect<ExtArgs> | null
+  select?: Prisma.CollectionSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Pack
+   * Omit specific fields from the Collection
    */
-  omit?: Prisma.PackOmit<ExtArgs> | null
+  omit?: Prisma.CollectionOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PackInclude<ExtArgs> | null
-  where?: Prisma.PackWhereInput
+  include?: Prisma.CollectionInclude<ExtArgs> | null
+  where?: Prisma.CollectionWhereInput
 }
 
 /**
- * ContextRequest.receipt
+ * ContextRequest.items
  */
-export type ContextRequest$receiptArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ContextRequest$itemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the ContextReceipt
+   * Select specific fields to fetch from the ContextRequestItem
    */
-  select?: Prisma.ContextReceiptSelect<ExtArgs> | null
+  select?: Prisma.ContextRequestItemSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the ContextReceipt
+   * Omit specific fields from the ContextRequestItem
    */
-  omit?: Prisma.ContextReceiptOmit<ExtArgs> | null
+  omit?: Prisma.ContextRequestItemOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ContextReceiptInclude<ExtArgs> | null
-  where?: Prisma.ContextReceiptWhereInput
+  include?: Prisma.ContextRequestItemInclude<ExtArgs> | null
+  where?: Prisma.ContextRequestItemWhereInput
+  orderBy?: Prisma.ContextRequestItemOrderByWithRelationInput | Prisma.ContextRequestItemOrderByWithRelationInput[]
+  cursor?: Prisma.ContextRequestItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ContextRequestItemScalarFieldEnum | Prisma.ContextRequestItemScalarFieldEnum[]
 }
 
 /**

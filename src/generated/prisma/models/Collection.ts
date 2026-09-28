@@ -29,11 +29,25 @@ export type AggregateCollection = {
 export type CollectionAvgAggregateOutputType = {
   version: number | null
   entryCount: number | null
+  mFactor: number | null
+  oneTimePriceCents: number | null
+  platformFeePercent: number | null
+  maintainerFeePercent: number | null
+  contributorPoolPercent: number | null
+  sponsorBudgetRemainingCents: number | null
+  sponsoredMFactor: number | null
 }
 
 export type CollectionSumAggregateOutputType = {
   version: number | null
   entryCount: number | null
+  mFactor: number | null
+  oneTimePriceCents: number | null
+  platformFeePercent: number | null
+  maintainerFeePercent: number | null
+  contributorPoolPercent: number | null
+  sponsorBudgetRemainingCents: number | null
+  sponsoredMFactor: number | null
 }
 
 export type CollectionMinAggregateOutputType = {
@@ -41,16 +55,33 @@ export type CollectionMinAggregateOutputType = {
   name: string | null
   slug: string | null
   description: string | null
+  kind: $Enums.CollectionKind | null
   visibility: $Enums.Visibility | null
   version: number | null
   entryCount: number | null
   userId: string | null
+  organizationId: string | null
+  oauthClientId: string | null
   areaId: string | null
   parentId: string | null
-  isVirtualMount: boolean | null
+  externalSubjectKey: string | null
+  accessCode: string | null
+  accessCodeType: $Enums.AccessCodeType | null
+  accessCodeExpiresAt: Date | null
   syncMode: $Enums.SyncMode | null
-  copiedFromCollectionId: string | null
-  sourceReleaseId: string | null
+  upstreamCollectionId: string | null
+  upstreamPathId: string | null
+  installedRevisionId: string | null
+  accessMode: $Enums.CollectionAccessMode | null
+  monetizationType: $Enums.MonetizationType | null
+  mFactor: number | null
+  oneTimePriceCents: number | null
+  platformFeePercent: number | null
+  maintainerFeePercent: number | null
+  contributorPoolPercent: number | null
+  isVerifiedOfficial: boolean | null
+  sponsorBudgetRemainingCents: number | null
+  sponsoredMFactor: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -60,16 +91,33 @@ export type CollectionMaxAggregateOutputType = {
   name: string | null
   slug: string | null
   description: string | null
+  kind: $Enums.CollectionKind | null
   visibility: $Enums.Visibility | null
   version: number | null
   entryCount: number | null
   userId: string | null
+  organizationId: string | null
+  oauthClientId: string | null
   areaId: string | null
   parentId: string | null
-  isVirtualMount: boolean | null
+  externalSubjectKey: string | null
+  accessCode: string | null
+  accessCodeType: $Enums.AccessCodeType | null
+  accessCodeExpiresAt: Date | null
   syncMode: $Enums.SyncMode | null
-  copiedFromCollectionId: string | null
-  sourceReleaseId: string | null
+  upstreamCollectionId: string | null
+  upstreamPathId: string | null
+  installedRevisionId: string | null
+  accessMode: $Enums.CollectionAccessMode | null
+  monetizationType: $Enums.MonetizationType | null
+  mFactor: number | null
+  oneTimePriceCents: number | null
+  platformFeePercent: number | null
+  maintainerFeePercent: number | null
+  contributorPoolPercent: number | null
+  isVerifiedOfficial: boolean | null
+  sponsorBudgetRemainingCents: number | null
+  sponsoredMFactor: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -79,16 +127,33 @@ export type CollectionCountAggregateOutputType = {
   name: number
   slug: number
   description: number
+  kind: number
   visibility: number
   version: number
   entryCount: number
   userId: number
+  organizationId: number
+  oauthClientId: number
   areaId: number
   parentId: number
-  isVirtualMount: number
+  externalSubjectKey: number
+  accessCode: number
+  accessCodeType: number
+  accessCodeExpiresAt: number
   syncMode: number
-  copiedFromCollectionId: number
-  sourceReleaseId: number
+  upstreamCollectionId: number
+  upstreamPathId: number
+  installedRevisionId: number
+  accessMode: number
+  monetizationType: number
+  mFactor: number
+  oneTimePriceCents: number
+  platformFeePercent: number
+  maintainerFeePercent: number
+  contributorPoolPercent: number
+  isVerifiedOfficial: number
+  sponsorBudgetRemainingCents: number
+  sponsoredMFactor: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -98,11 +163,25 @@ export type CollectionCountAggregateOutputType = {
 export type CollectionAvgAggregateInputType = {
   version?: true
   entryCount?: true
+  mFactor?: true
+  oneTimePriceCents?: true
+  platformFeePercent?: true
+  maintainerFeePercent?: true
+  contributorPoolPercent?: true
+  sponsorBudgetRemainingCents?: true
+  sponsoredMFactor?: true
 }
 
 export type CollectionSumAggregateInputType = {
   version?: true
   entryCount?: true
+  mFactor?: true
+  oneTimePriceCents?: true
+  platformFeePercent?: true
+  maintainerFeePercent?: true
+  contributorPoolPercent?: true
+  sponsorBudgetRemainingCents?: true
+  sponsoredMFactor?: true
 }
 
 export type CollectionMinAggregateInputType = {
@@ -110,16 +189,33 @@ export type CollectionMinAggregateInputType = {
   name?: true
   slug?: true
   description?: true
+  kind?: true
   visibility?: true
   version?: true
   entryCount?: true
   userId?: true
+  organizationId?: true
+  oauthClientId?: true
   areaId?: true
   parentId?: true
-  isVirtualMount?: true
+  externalSubjectKey?: true
+  accessCode?: true
+  accessCodeType?: true
+  accessCodeExpiresAt?: true
   syncMode?: true
-  copiedFromCollectionId?: true
-  sourceReleaseId?: true
+  upstreamCollectionId?: true
+  upstreamPathId?: true
+  installedRevisionId?: true
+  accessMode?: true
+  monetizationType?: true
+  mFactor?: true
+  oneTimePriceCents?: true
+  platformFeePercent?: true
+  maintainerFeePercent?: true
+  contributorPoolPercent?: true
+  isVerifiedOfficial?: true
+  sponsorBudgetRemainingCents?: true
+  sponsoredMFactor?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -129,16 +225,33 @@ export type CollectionMaxAggregateInputType = {
   name?: true
   slug?: true
   description?: true
+  kind?: true
   visibility?: true
   version?: true
   entryCount?: true
   userId?: true
+  organizationId?: true
+  oauthClientId?: true
   areaId?: true
   parentId?: true
-  isVirtualMount?: true
+  externalSubjectKey?: true
+  accessCode?: true
+  accessCodeType?: true
+  accessCodeExpiresAt?: true
   syncMode?: true
-  copiedFromCollectionId?: true
-  sourceReleaseId?: true
+  upstreamCollectionId?: true
+  upstreamPathId?: true
+  installedRevisionId?: true
+  accessMode?: true
+  monetizationType?: true
+  mFactor?: true
+  oneTimePriceCents?: true
+  platformFeePercent?: true
+  maintainerFeePercent?: true
+  contributorPoolPercent?: true
+  isVerifiedOfficial?: true
+  sponsorBudgetRemainingCents?: true
+  sponsoredMFactor?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -148,16 +261,33 @@ export type CollectionCountAggregateInputType = {
   name?: true
   slug?: true
   description?: true
+  kind?: true
   visibility?: true
   version?: true
   entryCount?: true
   userId?: true
+  organizationId?: true
+  oauthClientId?: true
   areaId?: true
   parentId?: true
-  isVirtualMount?: true
+  externalSubjectKey?: true
+  accessCode?: true
+  accessCodeType?: true
+  accessCodeExpiresAt?: true
   syncMode?: true
-  copiedFromCollectionId?: true
-  sourceReleaseId?: true
+  upstreamCollectionId?: true
+  upstreamPathId?: true
+  installedRevisionId?: true
+  accessMode?: true
+  monetizationType?: true
+  mFactor?: true
+  oneTimePriceCents?: true
+  platformFeePercent?: true
+  maintainerFeePercent?: true
+  contributorPoolPercent?: true
+  isVerifiedOfficial?: true
+  sponsorBudgetRemainingCents?: true
+  sponsoredMFactor?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -254,16 +384,33 @@ export type CollectionGroupByOutputType = {
   name: string
   slug: string
   description: string | null
+  kind: $Enums.CollectionKind
   visibility: $Enums.Visibility
   version: number
   entryCount: number
   userId: string
+  organizationId: string | null
+  oauthClientId: string | null
   areaId: string | null
   parentId: string | null
-  isVirtualMount: boolean
+  externalSubjectKey: string | null
+  accessCode: string | null
+  accessCodeType: $Enums.AccessCodeType
+  accessCodeExpiresAt: Date | null
   syncMode: $Enums.SyncMode
-  copiedFromCollectionId: string | null
-  sourceReleaseId: string | null
+  upstreamCollectionId: string | null
+  upstreamPathId: string | null
+  installedRevisionId: string | null
+  accessMode: $Enums.CollectionAccessMode
+  monetizationType: $Enums.MonetizationType
+  mFactor: number
+  oneTimePriceCents: number | null
+  platformFeePercent: number
+  maintainerFeePercent: number
+  contributorPoolPercent: number
+  isVerifiedOfficial: boolean
+  sponsorBudgetRemainingCents: number
+  sponsoredMFactor: number
   createdAt: Date
   updatedAt: Date
   _count: CollectionCountAggregateOutputType | null
@@ -296,30 +443,56 @@ export type CollectionWhereInput = {
   name?: Prisma.StringFilter<"Collection"> | string
   slug?: Prisma.StringFilter<"Collection"> | string
   description?: Prisma.StringNullableFilter<"Collection"> | string | null
+  kind?: Prisma.EnumCollectionKindFilter<"Collection"> | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFilter<"Collection"> | $Enums.Visibility
   version?: Prisma.IntFilter<"Collection"> | number
   entryCount?: Prisma.IntFilter<"Collection"> | number
   userId?: Prisma.StringFilter<"Collection"> | string
+  organizationId?: Prisma.StringNullableFilter<"Collection"> | string | null
+  oauthClientId?: Prisma.StringNullableFilter<"Collection"> | string | null
   areaId?: Prisma.StringNullableFilter<"Collection"> | string | null
   parentId?: Prisma.StringNullableFilter<"Collection"> | string | null
-  isVirtualMount?: Prisma.BoolFilter<"Collection"> | boolean
+  externalSubjectKey?: Prisma.StringNullableFilter<"Collection"> | string | null
+  accessCode?: Prisma.StringNullableFilter<"Collection"> | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFilter<"Collection"> | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.DateTimeNullableFilter<"Collection"> | Date | string | null
   syncMode?: Prisma.EnumSyncModeFilter<"Collection"> | $Enums.SyncMode
-  copiedFromCollectionId?: Prisma.StringNullableFilter<"Collection"> | string | null
-  sourceReleaseId?: Prisma.StringNullableFilter<"Collection"> | string | null
+  upstreamCollectionId?: Prisma.StringNullableFilter<"Collection"> | string | null
+  upstreamPathId?: Prisma.StringNullableFilter<"Collection"> | string | null
+  installedRevisionId?: Prisma.StringNullableFilter<"Collection"> | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFilter<"Collection"> | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFilter<"Collection"> | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFilter<"Collection"> | number
+  oneTimePriceCents?: Prisma.IntNullableFilter<"Collection"> | number | null
+  platformFeePercent?: Prisma.FloatFilter<"Collection"> | number
+  maintainerFeePercent?: Prisma.FloatFilter<"Collection"> | number
+  contributorPoolPercent?: Prisma.FloatFilter<"Collection"> | number
+  isVerifiedOfficial?: Prisma.BoolFilter<"Collection"> | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFilter<"Collection"> | number
+  sponsoredMFactor?: Prisma.FloatFilter<"Collection"> | number
   createdAt?: Prisma.DateTimeFilter<"Collection"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Collection"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  organization?: Prisma.XOR<Prisma.OrganizationNullableScalarRelationFilter, Prisma.OrganizationWhereInput> | null
+  oauthClient?: Prisma.XOR<Prisma.OauthClientNullableScalarRelationFilter, Prisma.OauthClientWhereInput> | null
   area?: Prisma.XOR<Prisma.AreaNullableScalarRelationFilter, Prisma.AreaWhereInput> | null
   parent?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
   children?: Prisma.CollectionListRelationFilter
-  copiedFrom?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
-  copies?: Prisma.CollectionListRelationFilter
-  sourceRelease?: Prisma.XOR<Prisma.ReleaseNullableScalarRelationFilter, Prisma.ReleaseWhereInput> | null
+  upstreamCollection?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
+  downstreamCollections?: Prisma.CollectionListRelationFilter
+  upstreamPath?: Prisma.XOR<Prisma.PathNullableScalarRelationFilter, Prisma.PathWhereInput> | null
+  installedRevision?: Prisma.XOR<Prisma.RevisionNullableScalarRelationFilter, Prisma.RevisionWhereInput> | null
   entries?: Prisma.EntryListRelationFilter
+  originatedEntries?: Prisma.EntryListRelationFilter
   paths?: Prisma.PathListRelationFilter
   accessGrants?: Prisma.AccessGrantListRelationFilter
-  packImports?: Prisma.PackImportListRelationFilter
-  publishedPacks?: Prisma.PackListRelationFilter
+  accessRequests?: Prisma.AccessRequestListRelationFilter
+  contextRequests?: Prisma.ContextRequestListRelationFilter
+  usageLedgers?: Prisma.ApiUsageLedgerListRelationFilter
+  bounties?: Prisma.KnowledgeBountyListRelationFilter
+  payments?: Prisma.PaymentListRelationFilter
+  royalties?: Prisma.UserRoyaltyListRelationFilter
+  stars?: Prisma.StarListRelationFilter
 }
 
 export type CollectionOrderByWithRelationInput = {
@@ -327,30 +500,56 @@ export type CollectionOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  kind?: Prisma.SortOrder
   visibility?: Prisma.SortOrder
   version?: Prisma.SortOrder
   entryCount?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrderInput | Prisma.SortOrder
+  oauthClientId?: Prisma.SortOrderInput | Prisma.SortOrder
   areaId?: Prisma.SortOrderInput | Prisma.SortOrder
   parentId?: Prisma.SortOrderInput | Prisma.SortOrder
-  isVirtualMount?: Prisma.SortOrder
+  externalSubjectKey?: Prisma.SortOrderInput | Prisma.SortOrder
+  accessCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  accessCodeType?: Prisma.SortOrder
+  accessCodeExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   syncMode?: Prisma.SortOrder
-  copiedFromCollectionId?: Prisma.SortOrderInput | Prisma.SortOrder
-  sourceReleaseId?: Prisma.SortOrderInput | Prisma.SortOrder
+  upstreamCollectionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  upstreamPathId?: Prisma.SortOrderInput | Prisma.SortOrder
+  installedRevisionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  accessMode?: Prisma.SortOrder
+  monetizationType?: Prisma.SortOrder
+  mFactor?: Prisma.SortOrder
+  oneTimePriceCents?: Prisma.SortOrderInput | Prisma.SortOrder
+  platformFeePercent?: Prisma.SortOrder
+  maintainerFeePercent?: Prisma.SortOrder
+  contributorPoolPercent?: Prisma.SortOrder
+  isVerifiedOfficial?: Prisma.SortOrder
+  sponsorBudgetRemainingCents?: Prisma.SortOrder
+  sponsoredMFactor?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
+  organization?: Prisma.OrganizationOrderByWithRelationInput
+  oauthClient?: Prisma.OauthClientOrderByWithRelationInput
   area?: Prisma.AreaOrderByWithRelationInput
   parent?: Prisma.CollectionOrderByWithRelationInput
   children?: Prisma.CollectionOrderByRelationAggregateInput
-  copiedFrom?: Prisma.CollectionOrderByWithRelationInput
-  copies?: Prisma.CollectionOrderByRelationAggregateInput
-  sourceRelease?: Prisma.ReleaseOrderByWithRelationInput
+  upstreamCollection?: Prisma.CollectionOrderByWithRelationInput
+  downstreamCollections?: Prisma.CollectionOrderByRelationAggregateInput
+  upstreamPath?: Prisma.PathOrderByWithRelationInput
+  installedRevision?: Prisma.RevisionOrderByWithRelationInput
   entries?: Prisma.EntryOrderByRelationAggregateInput
+  originatedEntries?: Prisma.EntryOrderByRelationAggregateInput
   paths?: Prisma.PathOrderByRelationAggregateInput
   accessGrants?: Prisma.AccessGrantOrderByRelationAggregateInput
-  packImports?: Prisma.PackImportOrderByRelationAggregateInput
-  publishedPacks?: Prisma.PackOrderByRelationAggregateInput
+  accessRequests?: Prisma.AccessRequestOrderByRelationAggregateInput
+  contextRequests?: Prisma.ContextRequestOrderByRelationAggregateInput
+  usageLedgers?: Prisma.ApiUsageLedgerOrderByRelationAggregateInput
+  bounties?: Prisma.KnowledgeBountyOrderByRelationAggregateInput
+  payments?: Prisma.PaymentOrderByRelationAggregateInput
+  royalties?: Prisma.UserRoyaltyOrderByRelationAggregateInput
+  stars?: Prisma.StarOrderByRelationAggregateInput
 }
 
 export type CollectionWhereUniqueInput = Prisma.AtLeast<{
@@ -361,30 +560,56 @@ export type CollectionWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Collection"> | string
   slug?: Prisma.StringFilter<"Collection"> | string
   description?: Prisma.StringNullableFilter<"Collection"> | string | null
+  kind?: Prisma.EnumCollectionKindFilter<"Collection"> | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFilter<"Collection"> | $Enums.Visibility
   version?: Prisma.IntFilter<"Collection"> | number
   entryCount?: Prisma.IntFilter<"Collection"> | number
   userId?: Prisma.StringFilter<"Collection"> | string
+  organizationId?: Prisma.StringNullableFilter<"Collection"> | string | null
+  oauthClientId?: Prisma.StringNullableFilter<"Collection"> | string | null
   areaId?: Prisma.StringNullableFilter<"Collection"> | string | null
   parentId?: Prisma.StringNullableFilter<"Collection"> | string | null
-  isVirtualMount?: Prisma.BoolFilter<"Collection"> | boolean
+  externalSubjectKey?: Prisma.StringNullableFilter<"Collection"> | string | null
+  accessCode?: Prisma.StringNullableFilter<"Collection"> | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFilter<"Collection"> | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.DateTimeNullableFilter<"Collection"> | Date | string | null
   syncMode?: Prisma.EnumSyncModeFilter<"Collection"> | $Enums.SyncMode
-  copiedFromCollectionId?: Prisma.StringNullableFilter<"Collection"> | string | null
-  sourceReleaseId?: Prisma.StringNullableFilter<"Collection"> | string | null
+  upstreamCollectionId?: Prisma.StringNullableFilter<"Collection"> | string | null
+  upstreamPathId?: Prisma.StringNullableFilter<"Collection"> | string | null
+  installedRevisionId?: Prisma.StringNullableFilter<"Collection"> | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFilter<"Collection"> | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFilter<"Collection"> | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFilter<"Collection"> | number
+  oneTimePriceCents?: Prisma.IntNullableFilter<"Collection"> | number | null
+  platformFeePercent?: Prisma.FloatFilter<"Collection"> | number
+  maintainerFeePercent?: Prisma.FloatFilter<"Collection"> | number
+  contributorPoolPercent?: Prisma.FloatFilter<"Collection"> | number
+  isVerifiedOfficial?: Prisma.BoolFilter<"Collection"> | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFilter<"Collection"> | number
+  sponsoredMFactor?: Prisma.FloatFilter<"Collection"> | number
   createdAt?: Prisma.DateTimeFilter<"Collection"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Collection"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  organization?: Prisma.XOR<Prisma.OrganizationNullableScalarRelationFilter, Prisma.OrganizationWhereInput> | null
+  oauthClient?: Prisma.XOR<Prisma.OauthClientNullableScalarRelationFilter, Prisma.OauthClientWhereInput> | null
   area?: Prisma.XOR<Prisma.AreaNullableScalarRelationFilter, Prisma.AreaWhereInput> | null
   parent?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
   children?: Prisma.CollectionListRelationFilter
-  copiedFrom?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
-  copies?: Prisma.CollectionListRelationFilter
-  sourceRelease?: Prisma.XOR<Prisma.ReleaseNullableScalarRelationFilter, Prisma.ReleaseWhereInput> | null
+  upstreamCollection?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
+  downstreamCollections?: Prisma.CollectionListRelationFilter
+  upstreamPath?: Prisma.XOR<Prisma.PathNullableScalarRelationFilter, Prisma.PathWhereInput> | null
+  installedRevision?: Prisma.XOR<Prisma.RevisionNullableScalarRelationFilter, Prisma.RevisionWhereInput> | null
   entries?: Prisma.EntryListRelationFilter
+  originatedEntries?: Prisma.EntryListRelationFilter
   paths?: Prisma.PathListRelationFilter
   accessGrants?: Prisma.AccessGrantListRelationFilter
-  packImports?: Prisma.PackImportListRelationFilter
-  publishedPacks?: Prisma.PackListRelationFilter
+  accessRequests?: Prisma.AccessRequestListRelationFilter
+  contextRequests?: Prisma.ContextRequestListRelationFilter
+  usageLedgers?: Prisma.ApiUsageLedgerListRelationFilter
+  bounties?: Prisma.KnowledgeBountyListRelationFilter
+  payments?: Prisma.PaymentListRelationFilter
+  royalties?: Prisma.UserRoyaltyListRelationFilter
+  stars?: Prisma.StarListRelationFilter
 }, "id">
 
 export type CollectionOrderByWithAggregationInput = {
@@ -392,16 +617,33 @@ export type CollectionOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  kind?: Prisma.SortOrder
   visibility?: Prisma.SortOrder
   version?: Prisma.SortOrder
   entryCount?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrderInput | Prisma.SortOrder
+  oauthClientId?: Prisma.SortOrderInput | Prisma.SortOrder
   areaId?: Prisma.SortOrderInput | Prisma.SortOrder
   parentId?: Prisma.SortOrderInput | Prisma.SortOrder
-  isVirtualMount?: Prisma.SortOrder
+  externalSubjectKey?: Prisma.SortOrderInput | Prisma.SortOrder
+  accessCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  accessCodeType?: Prisma.SortOrder
+  accessCodeExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   syncMode?: Prisma.SortOrder
-  copiedFromCollectionId?: Prisma.SortOrderInput | Prisma.SortOrder
-  sourceReleaseId?: Prisma.SortOrderInput | Prisma.SortOrder
+  upstreamCollectionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  upstreamPathId?: Prisma.SortOrderInput | Prisma.SortOrder
+  installedRevisionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  accessMode?: Prisma.SortOrder
+  monetizationType?: Prisma.SortOrder
+  mFactor?: Prisma.SortOrder
+  oneTimePriceCents?: Prisma.SortOrderInput | Prisma.SortOrder
+  platformFeePercent?: Prisma.SortOrder
+  maintainerFeePercent?: Prisma.SortOrder
+  contributorPoolPercent?: Prisma.SortOrder
+  isVerifiedOfficial?: Prisma.SortOrder
+  sponsorBudgetRemainingCents?: Prisma.SortOrder
+  sponsoredMFactor?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.CollectionCountOrderByAggregateInput
@@ -419,16 +661,33 @@ export type CollectionScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"Collection"> | string
   slug?: Prisma.StringWithAggregatesFilter<"Collection"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Collection"> | string | null
+  kind?: Prisma.EnumCollectionKindWithAggregatesFilter<"Collection"> | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityWithAggregatesFilter<"Collection"> | $Enums.Visibility
   version?: Prisma.IntWithAggregatesFilter<"Collection"> | number
   entryCount?: Prisma.IntWithAggregatesFilter<"Collection"> | number
   userId?: Prisma.StringWithAggregatesFilter<"Collection"> | string
+  organizationId?: Prisma.StringNullableWithAggregatesFilter<"Collection"> | string | null
+  oauthClientId?: Prisma.StringNullableWithAggregatesFilter<"Collection"> | string | null
   areaId?: Prisma.StringNullableWithAggregatesFilter<"Collection"> | string | null
   parentId?: Prisma.StringNullableWithAggregatesFilter<"Collection"> | string | null
-  isVirtualMount?: Prisma.BoolWithAggregatesFilter<"Collection"> | boolean
+  externalSubjectKey?: Prisma.StringNullableWithAggregatesFilter<"Collection"> | string | null
+  accessCode?: Prisma.StringNullableWithAggregatesFilter<"Collection"> | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeWithAggregatesFilter<"Collection"> | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Collection"> | Date | string | null
   syncMode?: Prisma.EnumSyncModeWithAggregatesFilter<"Collection"> | $Enums.SyncMode
-  copiedFromCollectionId?: Prisma.StringNullableWithAggregatesFilter<"Collection"> | string | null
-  sourceReleaseId?: Prisma.StringNullableWithAggregatesFilter<"Collection"> | string | null
+  upstreamCollectionId?: Prisma.StringNullableWithAggregatesFilter<"Collection"> | string | null
+  upstreamPathId?: Prisma.StringNullableWithAggregatesFilter<"Collection"> | string | null
+  installedRevisionId?: Prisma.StringNullableWithAggregatesFilter<"Collection"> | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeWithAggregatesFilter<"Collection"> | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeWithAggregatesFilter<"Collection"> | $Enums.MonetizationType
+  mFactor?: Prisma.FloatWithAggregatesFilter<"Collection"> | number
+  oneTimePriceCents?: Prisma.IntNullableWithAggregatesFilter<"Collection"> | number | null
+  platformFeePercent?: Prisma.FloatWithAggregatesFilter<"Collection"> | number
+  maintainerFeePercent?: Prisma.FloatWithAggregatesFilter<"Collection"> | number
+  contributorPoolPercent?: Prisma.FloatWithAggregatesFilter<"Collection"> | number
+  isVerifiedOfficial?: Prisma.BoolWithAggregatesFilter<"Collection"> | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatWithAggregatesFilter<"Collection"> | number
+  sponsoredMFactor?: Prisma.FloatWithAggregatesFilter<"Collection"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Collection"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Collection"> | Date | string
 }
@@ -438,25 +697,48 @@ export type CollectionCreateInput = {
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutCollectionsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAppCollectionsInput
   area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
   parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
   children?: Prisma.CollectionCreateNestedManyWithoutParentInput
-  copiedFrom?: Prisma.CollectionCreateNestedOneWithoutCopiesInput
-  copies?: Prisma.CollectionCreateNestedManyWithoutCopiedFromInput
-  sourceRelease?: Prisma.ReleaseCreateNestedOneWithoutImportedIntoInput
+  upstreamCollection?: Prisma.CollectionCreateNestedOneWithoutDownstreamCollectionsInput
+  downstreamCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamCollectionInput
+  upstreamPath?: Prisma.PathCreateNestedOneWithoutMountedCollectionsInput
+  installedRevision?: Prisma.RevisionCreateNestedOneWithoutMountedCollectionsInput
   entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryCreateNestedManyWithoutSourceCollectionInput
   paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
   accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
-  packImports?: Prisma.PackImportCreateNestedManyWithoutTargetCollectionInput
-  publishedPacks?: Prisma.PackCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarCreateNestedManyWithoutCollectionInput
 }
 
 export type CollectionUncheckedCreateInput = {
@@ -464,25 +746,48 @@ export type CollectionUncheckedCreateInput = {
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
   userId: string
+  organizationId?: string | null
+  oauthClientId?: string | null
   areaId?: string | null
   parentId?: string | null
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
-  copiedFromCollectionId?: string | null
-  sourceReleaseId?: string | null
+  upstreamCollectionId?: string | null
+  upstreamPathId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
-  copies?: Prisma.CollectionUncheckedCreateNestedManyWithoutCopiedFromInput
+  downstreamCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamCollectionInput
   entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutSourceCollectionInput
   paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
   accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
-  packImports?: Prisma.PackImportUncheckedCreateNestedManyWithoutTargetCollectionInput
-  publishedPacks?: Prisma.PackUncheckedCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutCollectionInput
 }
 
 export type CollectionUpdateInput = {
@@ -490,25 +795,48 @@ export type CollectionUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutCollectionsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAppCollectionsNestedInput
   area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
   parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
   children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
-  copiedFrom?: Prisma.CollectionUpdateOneWithoutCopiesNestedInput
-  copies?: Prisma.CollectionUpdateManyWithoutCopiedFromNestedInput
-  sourceRelease?: Prisma.ReleaseUpdateOneWithoutImportedIntoNestedInput
+  upstreamCollection?: Prisma.CollectionUpdateOneWithoutDownstreamCollectionsNestedInput
+  downstreamCollections?: Prisma.CollectionUpdateManyWithoutUpstreamCollectionNestedInput
+  upstreamPath?: Prisma.PathUpdateOneWithoutMountedCollectionsNestedInput
+  installedRevision?: Prisma.RevisionUpdateOneWithoutMountedCollectionsNestedInput
   entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUpdateManyWithoutSourceCollectionNestedInput
   paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
   accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
-  packImports?: Prisma.PackImportUpdateManyWithoutTargetCollectionNestedInput
-  publishedPacks?: Prisma.PackUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUpdateManyWithoutCollectionNestedInput
 }
 
 export type CollectionUncheckedUpdateInput = {
@@ -516,25 +844,48 @@ export type CollectionUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
-  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
-  copies?: Prisma.CollectionUncheckedUpdateManyWithoutCopiedFromNestedInput
+  downstreamCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamCollectionNestedInput
   entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUncheckedUpdateManyWithoutSourceCollectionNestedInput
   paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
   accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
-  packImports?: Prisma.PackImportUncheckedUpdateManyWithoutTargetCollectionNestedInput
-  publishedPacks?: Prisma.PackUncheckedUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutCollectionNestedInput
 }
 
 export type CollectionCreateManyInput = {
@@ -542,16 +893,33 @@ export type CollectionCreateManyInput = {
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
   userId: string
+  organizationId?: string | null
+  oauthClientId?: string | null
   areaId?: string | null
   parentId?: string | null
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
-  copiedFromCollectionId?: string | null
-  sourceReleaseId?: string | null
+  upstreamCollectionId?: string | null
+  upstreamPathId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -561,11 +929,25 @@ export type CollectionUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -575,16 +957,33 @@ export type CollectionUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
-  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -609,16 +1008,33 @@ export type CollectionCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  kind?: Prisma.SortOrder
   visibility?: Prisma.SortOrder
   version?: Prisma.SortOrder
   entryCount?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
+  oauthClientId?: Prisma.SortOrder
   areaId?: Prisma.SortOrder
   parentId?: Prisma.SortOrder
-  isVirtualMount?: Prisma.SortOrder
+  externalSubjectKey?: Prisma.SortOrder
+  accessCode?: Prisma.SortOrder
+  accessCodeType?: Prisma.SortOrder
+  accessCodeExpiresAt?: Prisma.SortOrder
   syncMode?: Prisma.SortOrder
-  copiedFromCollectionId?: Prisma.SortOrder
-  sourceReleaseId?: Prisma.SortOrder
+  upstreamCollectionId?: Prisma.SortOrder
+  upstreamPathId?: Prisma.SortOrder
+  installedRevisionId?: Prisma.SortOrder
+  accessMode?: Prisma.SortOrder
+  monetizationType?: Prisma.SortOrder
+  mFactor?: Prisma.SortOrder
+  oneTimePriceCents?: Prisma.SortOrder
+  platformFeePercent?: Prisma.SortOrder
+  maintainerFeePercent?: Prisma.SortOrder
+  contributorPoolPercent?: Prisma.SortOrder
+  isVerifiedOfficial?: Prisma.SortOrder
+  sponsorBudgetRemainingCents?: Prisma.SortOrder
+  sponsoredMFactor?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -626,6 +1042,13 @@ export type CollectionCountOrderByAggregateInput = {
 export type CollectionAvgOrderByAggregateInput = {
   version?: Prisma.SortOrder
   entryCount?: Prisma.SortOrder
+  mFactor?: Prisma.SortOrder
+  oneTimePriceCents?: Prisma.SortOrder
+  platformFeePercent?: Prisma.SortOrder
+  maintainerFeePercent?: Prisma.SortOrder
+  contributorPoolPercent?: Prisma.SortOrder
+  sponsorBudgetRemainingCents?: Prisma.SortOrder
+  sponsoredMFactor?: Prisma.SortOrder
 }
 
 export type CollectionMaxOrderByAggregateInput = {
@@ -633,16 +1056,33 @@ export type CollectionMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  kind?: Prisma.SortOrder
   visibility?: Prisma.SortOrder
   version?: Prisma.SortOrder
   entryCount?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
+  oauthClientId?: Prisma.SortOrder
   areaId?: Prisma.SortOrder
   parentId?: Prisma.SortOrder
-  isVirtualMount?: Prisma.SortOrder
+  externalSubjectKey?: Prisma.SortOrder
+  accessCode?: Prisma.SortOrder
+  accessCodeType?: Prisma.SortOrder
+  accessCodeExpiresAt?: Prisma.SortOrder
   syncMode?: Prisma.SortOrder
-  copiedFromCollectionId?: Prisma.SortOrder
-  sourceReleaseId?: Prisma.SortOrder
+  upstreamCollectionId?: Prisma.SortOrder
+  upstreamPathId?: Prisma.SortOrder
+  installedRevisionId?: Prisma.SortOrder
+  accessMode?: Prisma.SortOrder
+  monetizationType?: Prisma.SortOrder
+  mFactor?: Prisma.SortOrder
+  oneTimePriceCents?: Prisma.SortOrder
+  platformFeePercent?: Prisma.SortOrder
+  maintainerFeePercent?: Prisma.SortOrder
+  contributorPoolPercent?: Prisma.SortOrder
+  isVerifiedOfficial?: Prisma.SortOrder
+  sponsorBudgetRemainingCents?: Prisma.SortOrder
+  sponsoredMFactor?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -652,16 +1092,33 @@ export type CollectionMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  kind?: Prisma.SortOrder
   visibility?: Prisma.SortOrder
   version?: Prisma.SortOrder
   entryCount?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
+  oauthClientId?: Prisma.SortOrder
   areaId?: Prisma.SortOrder
   parentId?: Prisma.SortOrder
-  isVirtualMount?: Prisma.SortOrder
+  externalSubjectKey?: Prisma.SortOrder
+  accessCode?: Prisma.SortOrder
+  accessCodeType?: Prisma.SortOrder
+  accessCodeExpiresAt?: Prisma.SortOrder
   syncMode?: Prisma.SortOrder
-  copiedFromCollectionId?: Prisma.SortOrder
-  sourceReleaseId?: Prisma.SortOrder
+  upstreamCollectionId?: Prisma.SortOrder
+  upstreamPathId?: Prisma.SortOrder
+  installedRevisionId?: Prisma.SortOrder
+  accessMode?: Prisma.SortOrder
+  monetizationType?: Prisma.SortOrder
+  mFactor?: Prisma.SortOrder
+  oneTimePriceCents?: Prisma.SortOrder
+  platformFeePercent?: Prisma.SortOrder
+  maintainerFeePercent?: Prisma.SortOrder
+  contributorPoolPercent?: Prisma.SortOrder
+  isVerifiedOfficial?: Prisma.SortOrder
+  sponsorBudgetRemainingCents?: Prisma.SortOrder
+  sponsoredMFactor?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -669,6 +1126,13 @@ export type CollectionMinOrderByAggregateInput = {
 export type CollectionSumOrderByAggregateInput = {
   version?: Prisma.SortOrder
   entryCount?: Prisma.SortOrder
+  mFactor?: Prisma.SortOrder
+  oneTimePriceCents?: Prisma.SortOrder
+  platformFeePercent?: Prisma.SortOrder
+  maintainerFeePercent?: Prisma.SortOrder
+  contributorPoolPercent?: Prisma.SortOrder
+  sponsorBudgetRemainingCents?: Prisma.SortOrder
+  sponsoredMFactor?: Prisma.SortOrder
 }
 
 export type CollectionScalarRelationFilter = {
@@ -715,6 +1179,90 @@ export type CollectionUncheckedUpdateManyWithoutUserNestedInput = {
   connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
   update?: Prisma.CollectionUpdateWithWhereUniqueWithoutUserInput | Prisma.CollectionUpdateWithWhereUniqueWithoutUserInput[]
   updateMany?: Prisma.CollectionUpdateManyWithWhereWithoutUserInput | Prisma.CollectionUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.CollectionScalarWhereInput | Prisma.CollectionScalarWhereInput[]
+}
+
+export type CollectionCreateNestedManyWithoutOrganizationInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutOrganizationInput, Prisma.CollectionUncheckedCreateWithoutOrganizationInput> | Prisma.CollectionCreateWithoutOrganizationInput[] | Prisma.CollectionUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutOrganizationInput | Prisma.CollectionCreateOrConnectWithoutOrganizationInput[]
+  createMany?: Prisma.CollectionCreateManyOrganizationInputEnvelope
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+}
+
+export type CollectionUncheckedCreateNestedManyWithoutOrganizationInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutOrganizationInput, Prisma.CollectionUncheckedCreateWithoutOrganizationInput> | Prisma.CollectionCreateWithoutOrganizationInput[] | Prisma.CollectionUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutOrganizationInput | Prisma.CollectionCreateOrConnectWithoutOrganizationInput[]
+  createMany?: Prisma.CollectionCreateManyOrganizationInputEnvelope
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+}
+
+export type CollectionUpdateManyWithoutOrganizationNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutOrganizationInput, Prisma.CollectionUncheckedCreateWithoutOrganizationInput> | Prisma.CollectionCreateWithoutOrganizationInput[] | Prisma.CollectionUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutOrganizationInput | Prisma.CollectionCreateOrConnectWithoutOrganizationInput[]
+  upsert?: Prisma.CollectionUpsertWithWhereUniqueWithoutOrganizationInput | Prisma.CollectionUpsertWithWhereUniqueWithoutOrganizationInput[]
+  createMany?: Prisma.CollectionCreateManyOrganizationInputEnvelope
+  set?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  disconnect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  delete?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  update?: Prisma.CollectionUpdateWithWhereUniqueWithoutOrganizationInput | Prisma.CollectionUpdateWithWhereUniqueWithoutOrganizationInput[]
+  updateMany?: Prisma.CollectionUpdateManyWithWhereWithoutOrganizationInput | Prisma.CollectionUpdateManyWithWhereWithoutOrganizationInput[]
+  deleteMany?: Prisma.CollectionScalarWhereInput | Prisma.CollectionScalarWhereInput[]
+}
+
+export type CollectionUncheckedUpdateManyWithoutOrganizationNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutOrganizationInput, Prisma.CollectionUncheckedCreateWithoutOrganizationInput> | Prisma.CollectionCreateWithoutOrganizationInput[] | Prisma.CollectionUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutOrganizationInput | Prisma.CollectionCreateOrConnectWithoutOrganizationInput[]
+  upsert?: Prisma.CollectionUpsertWithWhereUniqueWithoutOrganizationInput | Prisma.CollectionUpsertWithWhereUniqueWithoutOrganizationInput[]
+  createMany?: Prisma.CollectionCreateManyOrganizationInputEnvelope
+  set?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  disconnect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  delete?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  update?: Prisma.CollectionUpdateWithWhereUniqueWithoutOrganizationInput | Prisma.CollectionUpdateWithWhereUniqueWithoutOrganizationInput[]
+  updateMany?: Prisma.CollectionUpdateManyWithWhereWithoutOrganizationInput | Prisma.CollectionUpdateManyWithWhereWithoutOrganizationInput[]
+  deleteMany?: Prisma.CollectionScalarWhereInput | Prisma.CollectionScalarWhereInput[]
+}
+
+export type CollectionCreateNestedManyWithoutOauthClientInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutOauthClientInput, Prisma.CollectionUncheckedCreateWithoutOauthClientInput> | Prisma.CollectionCreateWithoutOauthClientInput[] | Prisma.CollectionUncheckedCreateWithoutOauthClientInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutOauthClientInput | Prisma.CollectionCreateOrConnectWithoutOauthClientInput[]
+  createMany?: Prisma.CollectionCreateManyOauthClientInputEnvelope
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+}
+
+export type CollectionUncheckedCreateNestedManyWithoutOauthClientInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutOauthClientInput, Prisma.CollectionUncheckedCreateWithoutOauthClientInput> | Prisma.CollectionCreateWithoutOauthClientInput[] | Prisma.CollectionUncheckedCreateWithoutOauthClientInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutOauthClientInput | Prisma.CollectionCreateOrConnectWithoutOauthClientInput[]
+  createMany?: Prisma.CollectionCreateManyOauthClientInputEnvelope
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+}
+
+export type CollectionUpdateManyWithoutOauthClientNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutOauthClientInput, Prisma.CollectionUncheckedCreateWithoutOauthClientInput> | Prisma.CollectionCreateWithoutOauthClientInput[] | Prisma.CollectionUncheckedCreateWithoutOauthClientInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutOauthClientInput | Prisma.CollectionCreateOrConnectWithoutOauthClientInput[]
+  upsert?: Prisma.CollectionUpsertWithWhereUniqueWithoutOauthClientInput | Prisma.CollectionUpsertWithWhereUniqueWithoutOauthClientInput[]
+  createMany?: Prisma.CollectionCreateManyOauthClientInputEnvelope
+  set?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  disconnect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  delete?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  update?: Prisma.CollectionUpdateWithWhereUniqueWithoutOauthClientInput | Prisma.CollectionUpdateWithWhereUniqueWithoutOauthClientInput[]
+  updateMany?: Prisma.CollectionUpdateManyWithWhereWithoutOauthClientInput | Prisma.CollectionUpdateManyWithWhereWithoutOauthClientInput[]
+  deleteMany?: Prisma.CollectionScalarWhereInput | Prisma.CollectionScalarWhereInput[]
+}
+
+export type CollectionUncheckedUpdateManyWithoutOauthClientNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutOauthClientInput, Prisma.CollectionUncheckedCreateWithoutOauthClientInput> | Prisma.CollectionCreateWithoutOauthClientInput[] | Prisma.CollectionUncheckedCreateWithoutOauthClientInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutOauthClientInput | Prisma.CollectionCreateOrConnectWithoutOauthClientInput[]
+  upsert?: Prisma.CollectionUpsertWithWhereUniqueWithoutOauthClientInput | Prisma.CollectionUpsertWithWhereUniqueWithoutOauthClientInput[]
+  createMany?: Prisma.CollectionCreateManyOauthClientInputEnvelope
+  set?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  disconnect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  delete?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  update?: Prisma.CollectionUpdateWithWhereUniqueWithoutOauthClientInput | Prisma.CollectionUpdateWithWhereUniqueWithoutOauthClientInput[]
+  updateMany?: Prisma.CollectionUpdateManyWithWhereWithoutOauthClientInput | Prisma.CollectionUpdateManyWithWhereWithoutOauthClientInput[]
   deleteMany?: Prisma.CollectionScalarWhereInput | Prisma.CollectionScalarWhereInput[]
 }
 
@@ -773,16 +1321,16 @@ export type CollectionCreateNestedManyWithoutParentInput = {
   connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
 }
 
-export type CollectionCreateNestedOneWithoutCopiesInput = {
-  create?: Prisma.XOR<Prisma.CollectionCreateWithoutCopiesInput, Prisma.CollectionUncheckedCreateWithoutCopiesInput>
-  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutCopiesInput
+export type CollectionCreateNestedOneWithoutDownstreamCollectionsInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutDownstreamCollectionsInput, Prisma.CollectionUncheckedCreateWithoutDownstreamCollectionsInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutDownstreamCollectionsInput
   connect?: Prisma.CollectionWhereUniqueInput
 }
 
-export type CollectionCreateNestedManyWithoutCopiedFromInput = {
-  create?: Prisma.XOR<Prisma.CollectionCreateWithoutCopiedFromInput, Prisma.CollectionUncheckedCreateWithoutCopiedFromInput> | Prisma.CollectionCreateWithoutCopiedFromInput[] | Prisma.CollectionUncheckedCreateWithoutCopiedFromInput[]
-  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutCopiedFromInput | Prisma.CollectionCreateOrConnectWithoutCopiedFromInput[]
-  createMany?: Prisma.CollectionCreateManyCopiedFromInputEnvelope
+export type CollectionCreateNestedManyWithoutUpstreamCollectionInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutUpstreamCollectionInput, Prisma.CollectionUncheckedCreateWithoutUpstreamCollectionInput> | Prisma.CollectionCreateWithoutUpstreamCollectionInput[] | Prisma.CollectionUncheckedCreateWithoutUpstreamCollectionInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutUpstreamCollectionInput | Prisma.CollectionCreateOrConnectWithoutUpstreamCollectionInput[]
+  createMany?: Prisma.CollectionCreateManyUpstreamCollectionInputEnvelope
   connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
 }
 
@@ -793,19 +1341,35 @@ export type CollectionUncheckedCreateNestedManyWithoutParentInput = {
   connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
 }
 
-export type CollectionUncheckedCreateNestedManyWithoutCopiedFromInput = {
-  create?: Prisma.XOR<Prisma.CollectionCreateWithoutCopiedFromInput, Prisma.CollectionUncheckedCreateWithoutCopiedFromInput> | Prisma.CollectionCreateWithoutCopiedFromInput[] | Prisma.CollectionUncheckedCreateWithoutCopiedFromInput[]
-  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutCopiedFromInput | Prisma.CollectionCreateOrConnectWithoutCopiedFromInput[]
-  createMany?: Prisma.CollectionCreateManyCopiedFromInputEnvelope
+export type CollectionUncheckedCreateNestedManyWithoutUpstreamCollectionInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutUpstreamCollectionInput, Prisma.CollectionUncheckedCreateWithoutUpstreamCollectionInput> | Prisma.CollectionCreateWithoutUpstreamCollectionInput[] | Prisma.CollectionUncheckedCreateWithoutUpstreamCollectionInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutUpstreamCollectionInput | Prisma.CollectionCreateOrConnectWithoutUpstreamCollectionInput[]
+  createMany?: Prisma.CollectionCreateManyUpstreamCollectionInputEnvelope
   connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+}
+
+export type EnumCollectionKindFieldUpdateOperationsInput = {
+  set?: $Enums.CollectionKind
 }
 
 export type EnumVisibilityFieldUpdateOperationsInput = {
   set?: $Enums.Visibility
 }
 
+export type EnumAccessCodeTypeFieldUpdateOperationsInput = {
+  set?: $Enums.AccessCodeType
+}
+
 export type EnumSyncModeFieldUpdateOperationsInput = {
   set?: $Enums.SyncMode
+}
+
+export type EnumCollectionAccessModeFieldUpdateOperationsInput = {
+  set?: $Enums.CollectionAccessMode
+}
+
+export type EnumMonetizationTypeFieldUpdateOperationsInput = {
+  set?: $Enums.MonetizationType
 }
 
 export type CollectionUpdateOneWithoutChildrenNestedInput = {
@@ -832,27 +1396,27 @@ export type CollectionUpdateManyWithoutParentNestedInput = {
   deleteMany?: Prisma.CollectionScalarWhereInput | Prisma.CollectionScalarWhereInput[]
 }
 
-export type CollectionUpdateOneWithoutCopiesNestedInput = {
-  create?: Prisma.XOR<Prisma.CollectionCreateWithoutCopiesInput, Prisma.CollectionUncheckedCreateWithoutCopiesInput>
-  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutCopiesInput
-  upsert?: Prisma.CollectionUpsertWithoutCopiesInput
+export type CollectionUpdateOneWithoutDownstreamCollectionsNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutDownstreamCollectionsInput, Prisma.CollectionUncheckedCreateWithoutDownstreamCollectionsInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutDownstreamCollectionsInput
+  upsert?: Prisma.CollectionUpsertWithoutDownstreamCollectionsInput
   disconnect?: Prisma.CollectionWhereInput | boolean
   delete?: Prisma.CollectionWhereInput | boolean
   connect?: Prisma.CollectionWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CollectionUpdateToOneWithWhereWithoutCopiesInput, Prisma.CollectionUpdateWithoutCopiesInput>, Prisma.CollectionUncheckedUpdateWithoutCopiesInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CollectionUpdateToOneWithWhereWithoutDownstreamCollectionsInput, Prisma.CollectionUpdateWithoutDownstreamCollectionsInput>, Prisma.CollectionUncheckedUpdateWithoutDownstreamCollectionsInput>
 }
 
-export type CollectionUpdateManyWithoutCopiedFromNestedInput = {
-  create?: Prisma.XOR<Prisma.CollectionCreateWithoutCopiedFromInput, Prisma.CollectionUncheckedCreateWithoutCopiedFromInput> | Prisma.CollectionCreateWithoutCopiedFromInput[] | Prisma.CollectionUncheckedCreateWithoutCopiedFromInput[]
-  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutCopiedFromInput | Prisma.CollectionCreateOrConnectWithoutCopiedFromInput[]
-  upsert?: Prisma.CollectionUpsertWithWhereUniqueWithoutCopiedFromInput | Prisma.CollectionUpsertWithWhereUniqueWithoutCopiedFromInput[]
-  createMany?: Prisma.CollectionCreateManyCopiedFromInputEnvelope
+export type CollectionUpdateManyWithoutUpstreamCollectionNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutUpstreamCollectionInput, Prisma.CollectionUncheckedCreateWithoutUpstreamCollectionInput> | Prisma.CollectionCreateWithoutUpstreamCollectionInput[] | Prisma.CollectionUncheckedCreateWithoutUpstreamCollectionInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutUpstreamCollectionInput | Prisma.CollectionCreateOrConnectWithoutUpstreamCollectionInput[]
+  upsert?: Prisma.CollectionUpsertWithWhereUniqueWithoutUpstreamCollectionInput | Prisma.CollectionUpsertWithWhereUniqueWithoutUpstreamCollectionInput[]
+  createMany?: Prisma.CollectionCreateManyUpstreamCollectionInputEnvelope
   set?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
   disconnect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
   delete?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
   connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
-  update?: Prisma.CollectionUpdateWithWhereUniqueWithoutCopiedFromInput | Prisma.CollectionUpdateWithWhereUniqueWithoutCopiedFromInput[]
-  updateMany?: Prisma.CollectionUpdateManyWithWhereWithoutCopiedFromInput | Prisma.CollectionUpdateManyWithWhereWithoutCopiedFromInput[]
+  update?: Prisma.CollectionUpdateWithWhereUniqueWithoutUpstreamCollectionInput | Prisma.CollectionUpdateWithWhereUniqueWithoutUpstreamCollectionInput[]
+  updateMany?: Prisma.CollectionUpdateManyWithWhereWithoutUpstreamCollectionInput | Prisma.CollectionUpdateManyWithWhereWithoutUpstreamCollectionInput[]
   deleteMany?: Prisma.CollectionScalarWhereInput | Prisma.CollectionScalarWhereInput[]
 }
 
@@ -870,17 +1434,17 @@ export type CollectionUncheckedUpdateManyWithoutParentNestedInput = {
   deleteMany?: Prisma.CollectionScalarWhereInput | Prisma.CollectionScalarWhereInput[]
 }
 
-export type CollectionUncheckedUpdateManyWithoutCopiedFromNestedInput = {
-  create?: Prisma.XOR<Prisma.CollectionCreateWithoutCopiedFromInput, Prisma.CollectionUncheckedCreateWithoutCopiedFromInput> | Prisma.CollectionCreateWithoutCopiedFromInput[] | Prisma.CollectionUncheckedCreateWithoutCopiedFromInput[]
-  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutCopiedFromInput | Prisma.CollectionCreateOrConnectWithoutCopiedFromInput[]
-  upsert?: Prisma.CollectionUpsertWithWhereUniqueWithoutCopiedFromInput | Prisma.CollectionUpsertWithWhereUniqueWithoutCopiedFromInput[]
-  createMany?: Prisma.CollectionCreateManyCopiedFromInputEnvelope
+export type CollectionUncheckedUpdateManyWithoutUpstreamCollectionNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutUpstreamCollectionInput, Prisma.CollectionUncheckedCreateWithoutUpstreamCollectionInput> | Prisma.CollectionCreateWithoutUpstreamCollectionInput[] | Prisma.CollectionUncheckedCreateWithoutUpstreamCollectionInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutUpstreamCollectionInput | Prisma.CollectionCreateOrConnectWithoutUpstreamCollectionInput[]
+  upsert?: Prisma.CollectionUpsertWithWhereUniqueWithoutUpstreamCollectionInput | Prisma.CollectionUpsertWithWhereUniqueWithoutUpstreamCollectionInput[]
+  createMany?: Prisma.CollectionCreateManyUpstreamCollectionInputEnvelope
   set?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
   disconnect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
   delete?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
   connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
-  update?: Prisma.CollectionUpdateWithWhereUniqueWithoutCopiedFromInput | Prisma.CollectionUpdateWithWhereUniqueWithoutCopiedFromInput[]
-  updateMany?: Prisma.CollectionUpdateManyWithWhereWithoutCopiedFromInput | Prisma.CollectionUpdateManyWithWhereWithoutCopiedFromInput[]
+  update?: Prisma.CollectionUpdateWithWhereUniqueWithoutUpstreamCollectionInput | Prisma.CollectionUpdateWithWhereUniqueWithoutUpstreamCollectionInput[]
+  updateMany?: Prisma.CollectionUpdateManyWithWhereWithoutUpstreamCollectionInput | Prisma.CollectionUpdateManyWithWhereWithoutUpstreamCollectionInput[]
   deleteMany?: Prisma.CollectionScalarWhereInput | Prisma.CollectionScalarWhereInput[]
 }
 
@@ -890,12 +1454,28 @@ export type CollectionCreateNestedOneWithoutEntriesInput = {
   connect?: Prisma.CollectionWhereUniqueInput
 }
 
+export type CollectionCreateNestedOneWithoutOriginatedEntriesInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutOriginatedEntriesInput, Prisma.CollectionUncheckedCreateWithoutOriginatedEntriesInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutOriginatedEntriesInput
+  connect?: Prisma.CollectionWhereUniqueInput
+}
+
 export type CollectionUpdateOneRequiredWithoutEntriesNestedInput = {
   create?: Prisma.XOR<Prisma.CollectionCreateWithoutEntriesInput, Prisma.CollectionUncheckedCreateWithoutEntriesInput>
   connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutEntriesInput
   upsert?: Prisma.CollectionUpsertWithoutEntriesInput
   connect?: Prisma.CollectionWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.CollectionUpdateToOneWithWhereWithoutEntriesInput, Prisma.CollectionUpdateWithoutEntriesInput>, Prisma.CollectionUncheckedUpdateWithoutEntriesInput>
+}
+
+export type CollectionUpdateOneWithoutOriginatedEntriesNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutOriginatedEntriesInput, Prisma.CollectionUncheckedCreateWithoutOriginatedEntriesInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutOriginatedEntriesInput
+  upsert?: Prisma.CollectionUpsertWithoutOriginatedEntriesInput
+  disconnect?: Prisma.CollectionWhereInput | boolean
+  delete?: Prisma.CollectionWhereInput | boolean
+  connect?: Prisma.CollectionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CollectionUpdateToOneWithWhereWithoutOriginatedEntriesInput, Prisma.CollectionUpdateWithoutOriginatedEntriesInput>, Prisma.CollectionUncheckedUpdateWithoutOriginatedEntriesInput>
 }
 
 export type CollectionCreateNestedOneWithoutAccessGrantsInput = {
@@ -914,10 +1494,88 @@ export type CollectionUpdateOneWithoutAccessGrantsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CollectionUpdateToOneWithWhereWithoutAccessGrantsInput, Prisma.CollectionUpdateWithoutAccessGrantsInput>, Prisma.CollectionUncheckedUpdateWithoutAccessGrantsInput>
 }
 
+export type CollectionCreateNestedOneWithoutAccessRequestsInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutAccessRequestsInput, Prisma.CollectionUncheckedCreateWithoutAccessRequestsInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutAccessRequestsInput
+  connect?: Prisma.CollectionWhereUniqueInput
+}
+
+export type CollectionUpdateOneWithoutAccessRequestsNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutAccessRequestsInput, Prisma.CollectionUncheckedCreateWithoutAccessRequestsInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutAccessRequestsInput
+  upsert?: Prisma.CollectionUpsertWithoutAccessRequestsInput
+  disconnect?: Prisma.CollectionWhereInput | boolean
+  delete?: Prisma.CollectionWhereInput | boolean
+  connect?: Prisma.CollectionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CollectionUpdateToOneWithWhereWithoutAccessRequestsInput, Prisma.CollectionUpdateWithoutAccessRequestsInput>, Prisma.CollectionUncheckedUpdateWithoutAccessRequestsInput>
+}
+
+export type CollectionCreateNestedOneWithoutContextRequestsInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutContextRequestsInput, Prisma.CollectionUncheckedCreateWithoutContextRequestsInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutContextRequestsInput
+  connect?: Prisma.CollectionWhereUniqueInput
+}
+
+export type CollectionUpdateOneWithoutContextRequestsNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutContextRequestsInput, Prisma.CollectionUncheckedCreateWithoutContextRequestsInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutContextRequestsInput
+  upsert?: Prisma.CollectionUpsertWithoutContextRequestsInput
+  disconnect?: Prisma.CollectionWhereInput | boolean
+  delete?: Prisma.CollectionWhereInput | boolean
+  connect?: Prisma.CollectionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CollectionUpdateToOneWithWhereWithoutContextRequestsInput, Prisma.CollectionUpdateWithoutContextRequestsInput>, Prisma.CollectionUncheckedUpdateWithoutContextRequestsInput>
+}
+
+export type CollectionCreateNestedOneWithoutUsageLedgersInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutUsageLedgersInput, Prisma.CollectionUncheckedCreateWithoutUsageLedgersInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutUsageLedgersInput
+  connect?: Prisma.CollectionWhereUniqueInput
+}
+
+export type CollectionUpdateOneWithoutUsageLedgersNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutUsageLedgersInput, Prisma.CollectionUncheckedCreateWithoutUsageLedgersInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutUsageLedgersInput
+  upsert?: Prisma.CollectionUpsertWithoutUsageLedgersInput
+  disconnect?: Prisma.CollectionWhereInput | boolean
+  delete?: Prisma.CollectionWhereInput | boolean
+  connect?: Prisma.CollectionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CollectionUpdateToOneWithWhereWithoutUsageLedgersInput, Prisma.CollectionUpdateWithoutUsageLedgersInput>, Prisma.CollectionUncheckedUpdateWithoutUsageLedgersInput>
+}
+
+export type CollectionCreateNestedOneWithoutRoyaltiesInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutRoyaltiesInput, Prisma.CollectionUncheckedCreateWithoutRoyaltiesInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutRoyaltiesInput
+  connect?: Prisma.CollectionWhereUniqueInput
+}
+
+export type CollectionUpdateOneWithoutRoyaltiesNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutRoyaltiesInput, Prisma.CollectionUncheckedCreateWithoutRoyaltiesInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutRoyaltiesInput
+  upsert?: Prisma.CollectionUpsertWithoutRoyaltiesInput
+  disconnect?: Prisma.CollectionWhereInput | boolean
+  delete?: Prisma.CollectionWhereInput | boolean
+  connect?: Prisma.CollectionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CollectionUpdateToOneWithWhereWithoutRoyaltiesInput, Prisma.CollectionUpdateWithoutRoyaltiesInput>, Prisma.CollectionUncheckedUpdateWithoutRoyaltiesInput>
+}
+
 export type CollectionCreateNestedOneWithoutPathsInput = {
   create?: Prisma.XOR<Prisma.CollectionCreateWithoutPathsInput, Prisma.CollectionUncheckedCreateWithoutPathsInput>
   connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutPathsInput
   connect?: Prisma.CollectionWhereUniqueInput
+}
+
+export type CollectionCreateNestedManyWithoutUpstreamPathInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutUpstreamPathInput, Prisma.CollectionUncheckedCreateWithoutUpstreamPathInput> | Prisma.CollectionCreateWithoutUpstreamPathInput[] | Prisma.CollectionUncheckedCreateWithoutUpstreamPathInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutUpstreamPathInput | Prisma.CollectionCreateOrConnectWithoutUpstreamPathInput[]
+  createMany?: Prisma.CollectionCreateManyUpstreamPathInputEnvelope
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+}
+
+export type CollectionUncheckedCreateNestedManyWithoutUpstreamPathInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutUpstreamPathInput, Prisma.CollectionUncheckedCreateWithoutUpstreamPathInput> | Prisma.CollectionCreateWithoutUpstreamPathInput[] | Prisma.CollectionUncheckedCreateWithoutUpstreamPathInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutUpstreamPathInput | Prisma.CollectionCreateOrConnectWithoutUpstreamPathInput[]
+  createMany?: Prisma.CollectionCreateManyUpstreamPathInputEnvelope
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
 }
 
 export type CollectionUpdateOneRequiredWithoutPathsNestedInput = {
@@ -928,76 +1586,122 @@ export type CollectionUpdateOneRequiredWithoutPathsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CollectionUpdateToOneWithWhereWithoutPathsInput, Prisma.CollectionUpdateWithoutPathsInput>, Prisma.CollectionUncheckedUpdateWithoutPathsInput>
 }
 
-export type CollectionCreateNestedOneWithoutPublishedPacksInput = {
-  create?: Prisma.XOR<Prisma.CollectionCreateWithoutPublishedPacksInput, Prisma.CollectionUncheckedCreateWithoutPublishedPacksInput>
-  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutPublishedPacksInput
+export type CollectionUpdateManyWithoutUpstreamPathNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutUpstreamPathInput, Prisma.CollectionUncheckedCreateWithoutUpstreamPathInput> | Prisma.CollectionCreateWithoutUpstreamPathInput[] | Prisma.CollectionUncheckedCreateWithoutUpstreamPathInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutUpstreamPathInput | Prisma.CollectionCreateOrConnectWithoutUpstreamPathInput[]
+  upsert?: Prisma.CollectionUpsertWithWhereUniqueWithoutUpstreamPathInput | Prisma.CollectionUpsertWithWhereUniqueWithoutUpstreamPathInput[]
+  createMany?: Prisma.CollectionCreateManyUpstreamPathInputEnvelope
+  set?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  disconnect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  delete?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  update?: Prisma.CollectionUpdateWithWhereUniqueWithoutUpstreamPathInput | Prisma.CollectionUpdateWithWhereUniqueWithoutUpstreamPathInput[]
+  updateMany?: Prisma.CollectionUpdateManyWithWhereWithoutUpstreamPathInput | Prisma.CollectionUpdateManyWithWhereWithoutUpstreamPathInput[]
+  deleteMany?: Prisma.CollectionScalarWhereInput | Prisma.CollectionScalarWhereInput[]
+}
+
+export type CollectionUncheckedUpdateManyWithoutUpstreamPathNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutUpstreamPathInput, Prisma.CollectionUncheckedCreateWithoutUpstreamPathInput> | Prisma.CollectionCreateWithoutUpstreamPathInput[] | Prisma.CollectionUncheckedCreateWithoutUpstreamPathInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutUpstreamPathInput | Prisma.CollectionCreateOrConnectWithoutUpstreamPathInput[]
+  upsert?: Prisma.CollectionUpsertWithWhereUniqueWithoutUpstreamPathInput | Prisma.CollectionUpsertWithWhereUniqueWithoutUpstreamPathInput[]
+  createMany?: Prisma.CollectionCreateManyUpstreamPathInputEnvelope
+  set?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  disconnect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  delete?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  update?: Prisma.CollectionUpdateWithWhereUniqueWithoutUpstreamPathInput | Prisma.CollectionUpdateWithWhereUniqueWithoutUpstreamPathInput[]
+  updateMany?: Prisma.CollectionUpdateManyWithWhereWithoutUpstreamPathInput | Prisma.CollectionUpdateManyWithWhereWithoutUpstreamPathInput[]
+  deleteMany?: Prisma.CollectionScalarWhereInput | Prisma.CollectionScalarWhereInput[]
+}
+
+export type CollectionCreateNestedManyWithoutInstalledRevisionInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutInstalledRevisionInput, Prisma.CollectionUncheckedCreateWithoutInstalledRevisionInput> | Prisma.CollectionCreateWithoutInstalledRevisionInput[] | Prisma.CollectionUncheckedCreateWithoutInstalledRevisionInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutInstalledRevisionInput | Prisma.CollectionCreateOrConnectWithoutInstalledRevisionInput[]
+  createMany?: Prisma.CollectionCreateManyInstalledRevisionInputEnvelope
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+}
+
+export type CollectionUncheckedCreateNestedManyWithoutInstalledRevisionInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutInstalledRevisionInput, Prisma.CollectionUncheckedCreateWithoutInstalledRevisionInput> | Prisma.CollectionCreateWithoutInstalledRevisionInput[] | Prisma.CollectionUncheckedCreateWithoutInstalledRevisionInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutInstalledRevisionInput | Prisma.CollectionCreateOrConnectWithoutInstalledRevisionInput[]
+  createMany?: Prisma.CollectionCreateManyInstalledRevisionInputEnvelope
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+}
+
+export type CollectionUpdateManyWithoutInstalledRevisionNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutInstalledRevisionInput, Prisma.CollectionUncheckedCreateWithoutInstalledRevisionInput> | Prisma.CollectionCreateWithoutInstalledRevisionInput[] | Prisma.CollectionUncheckedCreateWithoutInstalledRevisionInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutInstalledRevisionInput | Prisma.CollectionCreateOrConnectWithoutInstalledRevisionInput[]
+  upsert?: Prisma.CollectionUpsertWithWhereUniqueWithoutInstalledRevisionInput | Prisma.CollectionUpsertWithWhereUniqueWithoutInstalledRevisionInput[]
+  createMany?: Prisma.CollectionCreateManyInstalledRevisionInputEnvelope
+  set?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  disconnect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  delete?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  update?: Prisma.CollectionUpdateWithWhereUniqueWithoutInstalledRevisionInput | Prisma.CollectionUpdateWithWhereUniqueWithoutInstalledRevisionInput[]
+  updateMany?: Prisma.CollectionUpdateManyWithWhereWithoutInstalledRevisionInput | Prisma.CollectionUpdateManyWithWhereWithoutInstalledRevisionInput[]
+  deleteMany?: Prisma.CollectionScalarWhereInput | Prisma.CollectionScalarWhereInput[]
+}
+
+export type CollectionUncheckedUpdateManyWithoutInstalledRevisionNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutInstalledRevisionInput, Prisma.CollectionUncheckedCreateWithoutInstalledRevisionInput> | Prisma.CollectionCreateWithoutInstalledRevisionInput[] | Prisma.CollectionUncheckedCreateWithoutInstalledRevisionInput[]
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutInstalledRevisionInput | Prisma.CollectionCreateOrConnectWithoutInstalledRevisionInput[]
+  upsert?: Prisma.CollectionUpsertWithWhereUniqueWithoutInstalledRevisionInput | Prisma.CollectionUpsertWithWhereUniqueWithoutInstalledRevisionInput[]
+  createMany?: Prisma.CollectionCreateManyInstalledRevisionInputEnvelope
+  set?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  disconnect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  delete?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
+  update?: Prisma.CollectionUpdateWithWhereUniqueWithoutInstalledRevisionInput | Prisma.CollectionUpdateWithWhereUniqueWithoutInstalledRevisionInput[]
+  updateMany?: Prisma.CollectionUpdateManyWithWhereWithoutInstalledRevisionInput | Prisma.CollectionUpdateManyWithWhereWithoutInstalledRevisionInput[]
+  deleteMany?: Prisma.CollectionScalarWhereInput | Prisma.CollectionScalarWhereInput[]
+}
+
+export type CollectionCreateNestedOneWithoutBountiesInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutBountiesInput, Prisma.CollectionUncheckedCreateWithoutBountiesInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutBountiesInput
   connect?: Prisma.CollectionWhereUniqueInput
 }
 
-export type CollectionUpdateOneWithoutPublishedPacksNestedInput = {
-  create?: Prisma.XOR<Prisma.CollectionCreateWithoutPublishedPacksInput, Prisma.CollectionUncheckedCreateWithoutPublishedPacksInput>
-  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutPublishedPacksInput
-  upsert?: Prisma.CollectionUpsertWithoutPublishedPacksInput
+export type CollectionUpdateOneWithoutBountiesNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutBountiesInput, Prisma.CollectionUncheckedCreateWithoutBountiesInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutBountiesInput
+  upsert?: Prisma.CollectionUpsertWithoutBountiesInput
   disconnect?: Prisma.CollectionWhereInput | boolean
   delete?: Prisma.CollectionWhereInput | boolean
   connect?: Prisma.CollectionWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CollectionUpdateToOneWithWhereWithoutPublishedPacksInput, Prisma.CollectionUpdateWithoutPublishedPacksInput>, Prisma.CollectionUncheckedUpdateWithoutPublishedPacksInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CollectionUpdateToOneWithWhereWithoutBountiesInput, Prisma.CollectionUpdateWithoutBountiesInput>, Prisma.CollectionUncheckedUpdateWithoutBountiesInput>
 }
 
-export type CollectionCreateNestedManyWithoutSourceReleaseInput = {
-  create?: Prisma.XOR<Prisma.CollectionCreateWithoutSourceReleaseInput, Prisma.CollectionUncheckedCreateWithoutSourceReleaseInput> | Prisma.CollectionCreateWithoutSourceReleaseInput[] | Prisma.CollectionUncheckedCreateWithoutSourceReleaseInput[]
-  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutSourceReleaseInput | Prisma.CollectionCreateOrConnectWithoutSourceReleaseInput[]
-  createMany?: Prisma.CollectionCreateManySourceReleaseInputEnvelope
-  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
-}
-
-export type CollectionUncheckedCreateNestedManyWithoutSourceReleaseInput = {
-  create?: Prisma.XOR<Prisma.CollectionCreateWithoutSourceReleaseInput, Prisma.CollectionUncheckedCreateWithoutSourceReleaseInput> | Prisma.CollectionCreateWithoutSourceReleaseInput[] | Prisma.CollectionUncheckedCreateWithoutSourceReleaseInput[]
-  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutSourceReleaseInput | Prisma.CollectionCreateOrConnectWithoutSourceReleaseInput[]
-  createMany?: Prisma.CollectionCreateManySourceReleaseInputEnvelope
-  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
-}
-
-export type CollectionUpdateManyWithoutSourceReleaseNestedInput = {
-  create?: Prisma.XOR<Prisma.CollectionCreateWithoutSourceReleaseInput, Prisma.CollectionUncheckedCreateWithoutSourceReleaseInput> | Prisma.CollectionCreateWithoutSourceReleaseInput[] | Prisma.CollectionUncheckedCreateWithoutSourceReleaseInput[]
-  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutSourceReleaseInput | Prisma.CollectionCreateOrConnectWithoutSourceReleaseInput[]
-  upsert?: Prisma.CollectionUpsertWithWhereUniqueWithoutSourceReleaseInput | Prisma.CollectionUpsertWithWhereUniqueWithoutSourceReleaseInput[]
-  createMany?: Prisma.CollectionCreateManySourceReleaseInputEnvelope
-  set?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
-  disconnect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
-  delete?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
-  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
-  update?: Prisma.CollectionUpdateWithWhereUniqueWithoutSourceReleaseInput | Prisma.CollectionUpdateWithWhereUniqueWithoutSourceReleaseInput[]
-  updateMany?: Prisma.CollectionUpdateManyWithWhereWithoutSourceReleaseInput | Prisma.CollectionUpdateManyWithWhereWithoutSourceReleaseInput[]
-  deleteMany?: Prisma.CollectionScalarWhereInput | Prisma.CollectionScalarWhereInput[]
-}
-
-export type CollectionUncheckedUpdateManyWithoutSourceReleaseNestedInput = {
-  create?: Prisma.XOR<Prisma.CollectionCreateWithoutSourceReleaseInput, Prisma.CollectionUncheckedCreateWithoutSourceReleaseInput> | Prisma.CollectionCreateWithoutSourceReleaseInput[] | Prisma.CollectionUncheckedCreateWithoutSourceReleaseInput[]
-  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutSourceReleaseInput | Prisma.CollectionCreateOrConnectWithoutSourceReleaseInput[]
-  upsert?: Prisma.CollectionUpsertWithWhereUniqueWithoutSourceReleaseInput | Prisma.CollectionUpsertWithWhereUniqueWithoutSourceReleaseInput[]
-  createMany?: Prisma.CollectionCreateManySourceReleaseInputEnvelope
-  set?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
-  disconnect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
-  delete?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
-  connect?: Prisma.CollectionWhereUniqueInput | Prisma.CollectionWhereUniqueInput[]
-  update?: Prisma.CollectionUpdateWithWhereUniqueWithoutSourceReleaseInput | Prisma.CollectionUpdateWithWhereUniqueWithoutSourceReleaseInput[]
-  updateMany?: Prisma.CollectionUpdateManyWithWhereWithoutSourceReleaseInput | Prisma.CollectionUpdateManyWithWhereWithoutSourceReleaseInput[]
-  deleteMany?: Prisma.CollectionScalarWhereInput | Prisma.CollectionScalarWhereInput[]
-}
-
-export type CollectionCreateNestedOneWithoutPackImportsInput = {
-  create?: Prisma.XOR<Prisma.CollectionCreateWithoutPackImportsInput, Prisma.CollectionUncheckedCreateWithoutPackImportsInput>
-  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutPackImportsInput
+export type CollectionCreateNestedOneWithoutStarsInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutStarsInput, Prisma.CollectionUncheckedCreateWithoutStarsInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutStarsInput
   connect?: Prisma.CollectionWhereUniqueInput
 }
 
-export type CollectionUpdateOneRequiredWithoutPackImportsNestedInput = {
-  create?: Prisma.XOR<Prisma.CollectionCreateWithoutPackImportsInput, Prisma.CollectionUncheckedCreateWithoutPackImportsInput>
-  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutPackImportsInput
-  upsert?: Prisma.CollectionUpsertWithoutPackImportsInput
+export type CollectionUpdateOneWithoutStarsNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutStarsInput, Prisma.CollectionUncheckedCreateWithoutStarsInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutStarsInput
+  upsert?: Prisma.CollectionUpsertWithoutStarsInput
+  disconnect?: Prisma.CollectionWhereInput | boolean
+  delete?: Prisma.CollectionWhereInput | boolean
   connect?: Prisma.CollectionWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CollectionUpdateToOneWithWhereWithoutPackImportsInput, Prisma.CollectionUpdateWithoutPackImportsInput>, Prisma.CollectionUncheckedUpdateWithoutPackImportsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CollectionUpdateToOneWithWhereWithoutStarsInput, Prisma.CollectionUpdateWithoutStarsInput>, Prisma.CollectionUncheckedUpdateWithoutStarsInput>
+}
+
+export type CollectionCreateNestedOneWithoutPaymentsInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutPaymentsInput, Prisma.CollectionUncheckedCreateWithoutPaymentsInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutPaymentsInput
+  connect?: Prisma.CollectionWhereUniqueInput
+}
+
+export type CollectionUpdateOneWithoutPaymentsNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectionCreateWithoutPaymentsInput, Prisma.CollectionUncheckedCreateWithoutPaymentsInput>
+  connectOrCreate?: Prisma.CollectionCreateOrConnectWithoutPaymentsInput
+  upsert?: Prisma.CollectionUpsertWithoutPaymentsInput
+  disconnect?: Prisma.CollectionWhereInput | boolean
+  delete?: Prisma.CollectionWhereInput | boolean
+  connect?: Prisma.CollectionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CollectionUpdateToOneWithWhereWithoutPaymentsInput, Prisma.CollectionUpdateWithoutPaymentsInput>, Prisma.CollectionUncheckedUpdateWithoutPaymentsInput>
 }
 
 export type CollectionCreateWithoutUserInput = {
@@ -1005,24 +1709,47 @@ export type CollectionCreateWithoutUserInput = {
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  organization?: Prisma.OrganizationCreateNestedOneWithoutCollectionsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAppCollectionsInput
   area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
   parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
   children?: Prisma.CollectionCreateNestedManyWithoutParentInput
-  copiedFrom?: Prisma.CollectionCreateNestedOneWithoutCopiesInput
-  copies?: Prisma.CollectionCreateNestedManyWithoutCopiedFromInput
-  sourceRelease?: Prisma.ReleaseCreateNestedOneWithoutImportedIntoInput
+  upstreamCollection?: Prisma.CollectionCreateNestedOneWithoutDownstreamCollectionsInput
+  downstreamCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamCollectionInput
+  upstreamPath?: Prisma.PathCreateNestedOneWithoutMountedCollectionsInput
+  installedRevision?: Prisma.RevisionCreateNestedOneWithoutMountedCollectionsInput
   entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryCreateNestedManyWithoutSourceCollectionInput
   paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
   accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
-  packImports?: Prisma.PackImportCreateNestedManyWithoutTargetCollectionInput
-  publishedPacks?: Prisma.PackCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarCreateNestedManyWithoutCollectionInput
 }
 
 export type CollectionUncheckedCreateWithoutUserInput = {
@@ -1030,24 +1757,47 @@ export type CollectionUncheckedCreateWithoutUserInput = {
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
+  organizationId?: string | null
+  oauthClientId?: string | null
   areaId?: string | null
   parentId?: string | null
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
-  copiedFromCollectionId?: string | null
-  sourceReleaseId?: string | null
+  upstreamCollectionId?: string | null
+  upstreamPathId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
-  copies?: Prisma.CollectionUncheckedCreateNestedManyWithoutCopiedFromInput
+  downstreamCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamCollectionInput
   entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutSourceCollectionInput
   paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
   accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
-  packImports?: Prisma.PackImportUncheckedCreateNestedManyWithoutTargetCollectionInput
-  publishedPacks?: Prisma.PackUncheckedCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutCollectionInput
 }
 
 export type CollectionCreateOrConnectWithoutUserInput = {
@@ -1084,18 +1834,279 @@ export type CollectionScalarWhereInput = {
   name?: Prisma.StringFilter<"Collection"> | string
   slug?: Prisma.StringFilter<"Collection"> | string
   description?: Prisma.StringNullableFilter<"Collection"> | string | null
+  kind?: Prisma.EnumCollectionKindFilter<"Collection"> | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFilter<"Collection"> | $Enums.Visibility
   version?: Prisma.IntFilter<"Collection"> | number
   entryCount?: Prisma.IntFilter<"Collection"> | number
   userId?: Prisma.StringFilter<"Collection"> | string
+  organizationId?: Prisma.StringNullableFilter<"Collection"> | string | null
+  oauthClientId?: Prisma.StringNullableFilter<"Collection"> | string | null
   areaId?: Prisma.StringNullableFilter<"Collection"> | string | null
   parentId?: Prisma.StringNullableFilter<"Collection"> | string | null
-  isVirtualMount?: Prisma.BoolFilter<"Collection"> | boolean
+  externalSubjectKey?: Prisma.StringNullableFilter<"Collection"> | string | null
+  accessCode?: Prisma.StringNullableFilter<"Collection"> | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFilter<"Collection"> | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.DateTimeNullableFilter<"Collection"> | Date | string | null
   syncMode?: Prisma.EnumSyncModeFilter<"Collection"> | $Enums.SyncMode
-  copiedFromCollectionId?: Prisma.StringNullableFilter<"Collection"> | string | null
-  sourceReleaseId?: Prisma.StringNullableFilter<"Collection"> | string | null
+  upstreamCollectionId?: Prisma.StringNullableFilter<"Collection"> | string | null
+  upstreamPathId?: Prisma.StringNullableFilter<"Collection"> | string | null
+  installedRevisionId?: Prisma.StringNullableFilter<"Collection"> | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFilter<"Collection"> | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFilter<"Collection"> | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFilter<"Collection"> | number
+  oneTimePriceCents?: Prisma.IntNullableFilter<"Collection"> | number | null
+  platformFeePercent?: Prisma.FloatFilter<"Collection"> | number
+  maintainerFeePercent?: Prisma.FloatFilter<"Collection"> | number
+  contributorPoolPercent?: Prisma.FloatFilter<"Collection"> | number
+  isVerifiedOfficial?: Prisma.BoolFilter<"Collection"> | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFilter<"Collection"> | number
+  sponsoredMFactor?: Prisma.FloatFilter<"Collection"> | number
   createdAt?: Prisma.DateTimeFilter<"Collection"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Collection"> | Date | string
+}
+
+export type CollectionCreateWithoutOrganizationInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  kind?: $Enums.CollectionKind
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  syncMode?: $Enums.SyncMode
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAppCollectionsInput
+  area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
+  parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
+  children?: Prisma.CollectionCreateNestedManyWithoutParentInput
+  upstreamCollection?: Prisma.CollectionCreateNestedOneWithoutDownstreamCollectionsInput
+  downstreamCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamCollectionInput
+  upstreamPath?: Prisma.PathCreateNestedOneWithoutMountedCollectionsInput
+  installedRevision?: Prisma.RevisionCreateNestedOneWithoutMountedCollectionsInput
+  entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryCreateNestedManyWithoutSourceCollectionInput
+  paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionUncheckedCreateWithoutOrganizationInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  kind?: $Enums.CollectionKind
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  userId: string
+  oauthClientId?: string | null
+  areaId?: string | null
+  parentId?: string | null
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  syncMode?: $Enums.SyncMode
+  upstreamCollectionId?: string | null
+  upstreamPathId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
+  downstreamCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamCollectionInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutSourceCollectionInput
+  paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionCreateOrConnectWithoutOrganizationInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutOrganizationInput, Prisma.CollectionUncheckedCreateWithoutOrganizationInput>
+}
+
+export type CollectionCreateManyOrganizationInputEnvelope = {
+  data: Prisma.CollectionCreateManyOrganizationInput | Prisma.CollectionCreateManyOrganizationInput[]
+  skipDuplicates?: boolean
+}
+
+export type CollectionUpsertWithWhereUniqueWithoutOrganizationInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  update: Prisma.XOR<Prisma.CollectionUpdateWithoutOrganizationInput, Prisma.CollectionUncheckedUpdateWithoutOrganizationInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutOrganizationInput, Prisma.CollectionUncheckedCreateWithoutOrganizationInput>
+}
+
+export type CollectionUpdateWithWhereUniqueWithoutOrganizationInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  data: Prisma.XOR<Prisma.CollectionUpdateWithoutOrganizationInput, Prisma.CollectionUncheckedUpdateWithoutOrganizationInput>
+}
+
+export type CollectionUpdateManyWithWhereWithoutOrganizationInput = {
+  where: Prisma.CollectionScalarWhereInput
+  data: Prisma.XOR<Prisma.CollectionUpdateManyMutationInput, Prisma.CollectionUncheckedUpdateManyWithoutOrganizationInput>
+}
+
+export type CollectionCreateWithoutOauthClientInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  kind?: $Enums.CollectionKind
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  syncMode?: $Enums.SyncMode
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutCollectionsInput
+  area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
+  parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
+  children?: Prisma.CollectionCreateNestedManyWithoutParentInput
+  upstreamCollection?: Prisma.CollectionCreateNestedOneWithoutDownstreamCollectionsInput
+  downstreamCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamCollectionInput
+  upstreamPath?: Prisma.PathCreateNestedOneWithoutMountedCollectionsInput
+  installedRevision?: Prisma.RevisionCreateNestedOneWithoutMountedCollectionsInput
+  entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryCreateNestedManyWithoutSourceCollectionInput
+  paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionUncheckedCreateWithoutOauthClientInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  kind?: $Enums.CollectionKind
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  userId: string
+  organizationId?: string | null
+  areaId?: string | null
+  parentId?: string | null
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  syncMode?: $Enums.SyncMode
+  upstreamCollectionId?: string | null
+  upstreamPathId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
+  downstreamCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamCollectionInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutSourceCollectionInput
+  paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionCreateOrConnectWithoutOauthClientInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutOauthClientInput, Prisma.CollectionUncheckedCreateWithoutOauthClientInput>
+}
+
+export type CollectionCreateManyOauthClientInputEnvelope = {
+  data: Prisma.CollectionCreateManyOauthClientInput | Prisma.CollectionCreateManyOauthClientInput[]
+  skipDuplicates?: boolean
+}
+
+export type CollectionUpsertWithWhereUniqueWithoutOauthClientInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  update: Prisma.XOR<Prisma.CollectionUpdateWithoutOauthClientInput, Prisma.CollectionUncheckedUpdateWithoutOauthClientInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutOauthClientInput, Prisma.CollectionUncheckedCreateWithoutOauthClientInput>
+}
+
+export type CollectionUpdateWithWhereUniqueWithoutOauthClientInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  data: Prisma.XOR<Prisma.CollectionUpdateWithoutOauthClientInput, Prisma.CollectionUncheckedUpdateWithoutOauthClientInput>
+}
+
+export type CollectionUpdateManyWithWhereWithoutOauthClientInput = {
+  where: Prisma.CollectionScalarWhereInput
+  data: Prisma.XOR<Prisma.CollectionUpdateManyMutationInput, Prisma.CollectionUncheckedUpdateManyWithoutOauthClientInput>
 }
 
 export type CollectionCreateWithoutAreaInput = {
@@ -1103,24 +2114,47 @@ export type CollectionCreateWithoutAreaInput = {
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutCollectionsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAppCollectionsInput
   parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
   children?: Prisma.CollectionCreateNestedManyWithoutParentInput
-  copiedFrom?: Prisma.CollectionCreateNestedOneWithoutCopiesInput
-  copies?: Prisma.CollectionCreateNestedManyWithoutCopiedFromInput
-  sourceRelease?: Prisma.ReleaseCreateNestedOneWithoutImportedIntoInput
+  upstreamCollection?: Prisma.CollectionCreateNestedOneWithoutDownstreamCollectionsInput
+  downstreamCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamCollectionInput
+  upstreamPath?: Prisma.PathCreateNestedOneWithoutMountedCollectionsInput
+  installedRevision?: Prisma.RevisionCreateNestedOneWithoutMountedCollectionsInput
   entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryCreateNestedManyWithoutSourceCollectionInput
   paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
   accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
-  packImports?: Prisma.PackImportCreateNestedManyWithoutTargetCollectionInput
-  publishedPacks?: Prisma.PackCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarCreateNestedManyWithoutCollectionInput
 }
 
 export type CollectionUncheckedCreateWithoutAreaInput = {
@@ -1128,24 +2162,47 @@ export type CollectionUncheckedCreateWithoutAreaInput = {
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
   userId: string
+  organizationId?: string | null
+  oauthClientId?: string | null
   parentId?: string | null
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
-  copiedFromCollectionId?: string | null
-  sourceReleaseId?: string | null
+  upstreamCollectionId?: string | null
+  upstreamPathId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
-  copies?: Prisma.CollectionUncheckedCreateNestedManyWithoutCopiedFromInput
+  downstreamCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamCollectionInput
   entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutSourceCollectionInput
   paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
   accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
-  packImports?: Prisma.PackImportUncheckedCreateNestedManyWithoutTargetCollectionInput
-  publishedPacks?: Prisma.PackUncheckedCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutCollectionInput
 }
 
 export type CollectionCreateOrConnectWithoutAreaInput = {
@@ -1179,24 +2236,47 @@ export type CollectionCreateWithoutChildrenInput = {
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutCollectionsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAppCollectionsInput
   area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
   parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
-  copiedFrom?: Prisma.CollectionCreateNestedOneWithoutCopiesInput
-  copies?: Prisma.CollectionCreateNestedManyWithoutCopiedFromInput
-  sourceRelease?: Prisma.ReleaseCreateNestedOneWithoutImportedIntoInput
+  upstreamCollection?: Prisma.CollectionCreateNestedOneWithoutDownstreamCollectionsInput
+  downstreamCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamCollectionInput
+  upstreamPath?: Prisma.PathCreateNestedOneWithoutMountedCollectionsInput
+  installedRevision?: Prisma.RevisionCreateNestedOneWithoutMountedCollectionsInput
   entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryCreateNestedManyWithoutSourceCollectionInput
   paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
   accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
-  packImports?: Prisma.PackImportCreateNestedManyWithoutTargetCollectionInput
-  publishedPacks?: Prisma.PackCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarCreateNestedManyWithoutCollectionInput
 }
 
 export type CollectionUncheckedCreateWithoutChildrenInput = {
@@ -1204,24 +2284,47 @@ export type CollectionUncheckedCreateWithoutChildrenInput = {
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
   userId: string
+  organizationId?: string | null
+  oauthClientId?: string | null
   areaId?: string | null
   parentId?: string | null
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
-  copiedFromCollectionId?: string | null
-  sourceReleaseId?: string | null
+  upstreamCollectionId?: string | null
+  upstreamPathId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  copies?: Prisma.CollectionUncheckedCreateNestedManyWithoutCopiedFromInput
+  downstreamCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamCollectionInput
   entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutSourceCollectionInput
   paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
   accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
-  packImports?: Prisma.PackImportUncheckedCreateNestedManyWithoutTargetCollectionInput
-  publishedPacks?: Prisma.PackUncheckedCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutCollectionInput
 }
 
 export type CollectionCreateOrConnectWithoutChildrenInput = {
@@ -1234,24 +2337,47 @@ export type CollectionCreateWithoutParentInput = {
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutCollectionsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAppCollectionsInput
   area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
   children?: Prisma.CollectionCreateNestedManyWithoutParentInput
-  copiedFrom?: Prisma.CollectionCreateNestedOneWithoutCopiesInput
-  copies?: Prisma.CollectionCreateNestedManyWithoutCopiedFromInput
-  sourceRelease?: Prisma.ReleaseCreateNestedOneWithoutImportedIntoInput
+  upstreamCollection?: Prisma.CollectionCreateNestedOneWithoutDownstreamCollectionsInput
+  downstreamCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamCollectionInput
+  upstreamPath?: Prisma.PathCreateNestedOneWithoutMountedCollectionsInput
+  installedRevision?: Prisma.RevisionCreateNestedOneWithoutMountedCollectionsInput
   entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryCreateNestedManyWithoutSourceCollectionInput
   paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
   accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
-  packImports?: Prisma.PackImportCreateNestedManyWithoutTargetCollectionInput
-  publishedPacks?: Prisma.PackCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarCreateNestedManyWithoutCollectionInput
 }
 
 export type CollectionUncheckedCreateWithoutParentInput = {
@@ -1259,24 +2385,47 @@ export type CollectionUncheckedCreateWithoutParentInput = {
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
   userId: string
+  organizationId?: string | null
+  oauthClientId?: string | null
   areaId?: string | null
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
-  copiedFromCollectionId?: string | null
-  sourceReleaseId?: string | null
+  upstreamCollectionId?: string | null
+  upstreamPathId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
-  copies?: Prisma.CollectionUncheckedCreateNestedManyWithoutCopiedFromInput
+  downstreamCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamCollectionInput
   entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutSourceCollectionInput
   paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
   accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
-  packImports?: Prisma.PackImportUncheckedCreateNestedManyWithoutTargetCollectionInput
-  publishedPacks?: Prisma.PackUncheckedCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutCollectionInput
 }
 
 export type CollectionCreateOrConnectWithoutParentInput = {
@@ -1289,118 +2438,210 @@ export type CollectionCreateManyParentInputEnvelope = {
   skipDuplicates?: boolean
 }
 
-export type CollectionCreateWithoutCopiesInput = {
+export type CollectionCreateWithoutDownstreamCollectionsInput = {
   id?: string
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutCollectionsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAppCollectionsInput
   area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
   parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
   children?: Prisma.CollectionCreateNestedManyWithoutParentInput
-  copiedFrom?: Prisma.CollectionCreateNestedOneWithoutCopiesInput
-  sourceRelease?: Prisma.ReleaseCreateNestedOneWithoutImportedIntoInput
+  upstreamCollection?: Prisma.CollectionCreateNestedOneWithoutDownstreamCollectionsInput
+  upstreamPath?: Prisma.PathCreateNestedOneWithoutMountedCollectionsInput
+  installedRevision?: Prisma.RevisionCreateNestedOneWithoutMountedCollectionsInput
   entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryCreateNestedManyWithoutSourceCollectionInput
   paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
   accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
-  packImports?: Prisma.PackImportCreateNestedManyWithoutTargetCollectionInput
-  publishedPacks?: Prisma.PackCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarCreateNestedManyWithoutCollectionInput
 }
 
-export type CollectionUncheckedCreateWithoutCopiesInput = {
+export type CollectionUncheckedCreateWithoutDownstreamCollectionsInput = {
   id?: string
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
   userId: string
+  organizationId?: string | null
+  oauthClientId?: string | null
   areaId?: string | null
   parentId?: string | null
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
-  copiedFromCollectionId?: string | null
-  sourceReleaseId?: string | null
+  upstreamCollectionId?: string | null
+  upstreamPathId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
   entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutSourceCollectionInput
   paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
   accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
-  packImports?: Prisma.PackImportUncheckedCreateNestedManyWithoutTargetCollectionInput
-  publishedPacks?: Prisma.PackUncheckedCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutCollectionInput
 }
 
-export type CollectionCreateOrConnectWithoutCopiesInput = {
+export type CollectionCreateOrConnectWithoutDownstreamCollectionsInput = {
   where: Prisma.CollectionWhereUniqueInput
-  create: Prisma.XOR<Prisma.CollectionCreateWithoutCopiesInput, Prisma.CollectionUncheckedCreateWithoutCopiesInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutDownstreamCollectionsInput, Prisma.CollectionUncheckedCreateWithoutDownstreamCollectionsInput>
 }
 
-export type CollectionCreateWithoutCopiedFromInput = {
+export type CollectionCreateWithoutUpstreamCollectionInput = {
   id?: string
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutCollectionsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAppCollectionsInput
   area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
   parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
   children?: Prisma.CollectionCreateNestedManyWithoutParentInput
-  copies?: Prisma.CollectionCreateNestedManyWithoutCopiedFromInput
-  sourceRelease?: Prisma.ReleaseCreateNestedOneWithoutImportedIntoInput
+  downstreamCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamCollectionInput
+  upstreamPath?: Prisma.PathCreateNestedOneWithoutMountedCollectionsInput
+  installedRevision?: Prisma.RevisionCreateNestedOneWithoutMountedCollectionsInput
   entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryCreateNestedManyWithoutSourceCollectionInput
   paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
   accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
-  packImports?: Prisma.PackImportCreateNestedManyWithoutTargetCollectionInput
-  publishedPacks?: Prisma.PackCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarCreateNestedManyWithoutCollectionInput
 }
 
-export type CollectionUncheckedCreateWithoutCopiedFromInput = {
+export type CollectionUncheckedCreateWithoutUpstreamCollectionInput = {
   id?: string
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
   userId: string
+  organizationId?: string | null
+  oauthClientId?: string | null
   areaId?: string | null
   parentId?: string | null
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
-  sourceReleaseId?: string | null
+  upstreamPathId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
-  copies?: Prisma.CollectionUncheckedCreateNestedManyWithoutCopiedFromInput
+  downstreamCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamCollectionInput
   entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutSourceCollectionInput
   paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
   accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
-  packImports?: Prisma.PackImportUncheckedCreateNestedManyWithoutTargetCollectionInput
-  publishedPacks?: Prisma.PackUncheckedCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutCollectionInput
 }
 
-export type CollectionCreateOrConnectWithoutCopiedFromInput = {
+export type CollectionCreateOrConnectWithoutUpstreamCollectionInput = {
   where: Prisma.CollectionWhereUniqueInput
-  create: Prisma.XOR<Prisma.CollectionCreateWithoutCopiedFromInput, Prisma.CollectionUncheckedCreateWithoutCopiedFromInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutUpstreamCollectionInput, Prisma.CollectionUncheckedCreateWithoutUpstreamCollectionInput>
 }
 
-export type CollectionCreateManyCopiedFromInputEnvelope = {
-  data: Prisma.CollectionCreateManyCopiedFromInput | Prisma.CollectionCreateManyCopiedFromInput[]
+export type CollectionCreateManyUpstreamCollectionInputEnvelope = {
+  data: Prisma.CollectionCreateManyUpstreamCollectionInput | Prisma.CollectionCreateManyUpstreamCollectionInput[]
   skipDuplicates?: boolean
 }
 
@@ -1420,24 +2661,47 @@ export type CollectionUpdateWithoutChildrenInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutCollectionsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAppCollectionsNestedInput
   area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
   parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
-  copiedFrom?: Prisma.CollectionUpdateOneWithoutCopiesNestedInput
-  copies?: Prisma.CollectionUpdateManyWithoutCopiedFromNestedInput
-  sourceRelease?: Prisma.ReleaseUpdateOneWithoutImportedIntoNestedInput
+  upstreamCollection?: Prisma.CollectionUpdateOneWithoutDownstreamCollectionsNestedInput
+  downstreamCollections?: Prisma.CollectionUpdateManyWithoutUpstreamCollectionNestedInput
+  upstreamPath?: Prisma.PathUpdateOneWithoutMountedCollectionsNestedInput
+  installedRevision?: Prisma.RevisionUpdateOneWithoutMountedCollectionsNestedInput
   entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUpdateManyWithoutSourceCollectionNestedInput
   paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
   accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
-  packImports?: Prisma.PackImportUpdateManyWithoutTargetCollectionNestedInput
-  publishedPacks?: Prisma.PackUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUpdateManyWithoutCollectionNestedInput
 }
 
 export type CollectionUncheckedUpdateWithoutChildrenInput = {
@@ -1445,24 +2709,47 @@ export type CollectionUncheckedUpdateWithoutChildrenInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
-  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  copies?: Prisma.CollectionUncheckedUpdateManyWithoutCopiedFromNestedInput
+  downstreamCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamCollectionNestedInput
   entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUncheckedUpdateManyWithoutSourceCollectionNestedInput
   paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
   accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
-  packImports?: Prisma.PackImportUncheckedUpdateManyWithoutTargetCollectionNestedInput
-  publishedPacks?: Prisma.PackUncheckedUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutCollectionNestedInput
 }
 
 export type CollectionUpsertWithWhereUniqueWithoutParentInput = {
@@ -1481,81 +2768,127 @@ export type CollectionUpdateManyWithWhereWithoutParentInput = {
   data: Prisma.XOR<Prisma.CollectionUpdateManyMutationInput, Prisma.CollectionUncheckedUpdateManyWithoutParentInput>
 }
 
-export type CollectionUpsertWithoutCopiesInput = {
-  update: Prisma.XOR<Prisma.CollectionUpdateWithoutCopiesInput, Prisma.CollectionUncheckedUpdateWithoutCopiesInput>
-  create: Prisma.XOR<Prisma.CollectionCreateWithoutCopiesInput, Prisma.CollectionUncheckedCreateWithoutCopiesInput>
+export type CollectionUpsertWithoutDownstreamCollectionsInput = {
+  update: Prisma.XOR<Prisma.CollectionUpdateWithoutDownstreamCollectionsInput, Prisma.CollectionUncheckedUpdateWithoutDownstreamCollectionsInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutDownstreamCollectionsInput, Prisma.CollectionUncheckedCreateWithoutDownstreamCollectionsInput>
   where?: Prisma.CollectionWhereInput
 }
 
-export type CollectionUpdateToOneWithWhereWithoutCopiesInput = {
+export type CollectionUpdateToOneWithWhereWithoutDownstreamCollectionsInput = {
   where?: Prisma.CollectionWhereInput
-  data: Prisma.XOR<Prisma.CollectionUpdateWithoutCopiesInput, Prisma.CollectionUncheckedUpdateWithoutCopiesInput>
+  data: Prisma.XOR<Prisma.CollectionUpdateWithoutDownstreamCollectionsInput, Prisma.CollectionUncheckedUpdateWithoutDownstreamCollectionsInput>
 }
 
-export type CollectionUpdateWithoutCopiesInput = {
+export type CollectionUpdateWithoutDownstreamCollectionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutCollectionsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAppCollectionsNestedInput
   area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
   parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
   children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
-  copiedFrom?: Prisma.CollectionUpdateOneWithoutCopiesNestedInput
-  sourceRelease?: Prisma.ReleaseUpdateOneWithoutImportedIntoNestedInput
+  upstreamCollection?: Prisma.CollectionUpdateOneWithoutDownstreamCollectionsNestedInput
+  upstreamPath?: Prisma.PathUpdateOneWithoutMountedCollectionsNestedInput
+  installedRevision?: Prisma.RevisionUpdateOneWithoutMountedCollectionsNestedInput
   entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUpdateManyWithoutSourceCollectionNestedInput
   paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
   accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
-  packImports?: Prisma.PackImportUpdateManyWithoutTargetCollectionNestedInput
-  publishedPacks?: Prisma.PackUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUpdateManyWithoutCollectionNestedInput
 }
 
-export type CollectionUncheckedUpdateWithoutCopiesInput = {
+export type CollectionUncheckedUpdateWithoutDownstreamCollectionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
-  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
   entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUncheckedUpdateManyWithoutSourceCollectionNestedInput
   paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
   accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
-  packImports?: Prisma.PackImportUncheckedUpdateManyWithoutTargetCollectionNestedInput
-  publishedPacks?: Prisma.PackUncheckedUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutCollectionNestedInput
 }
 
-export type CollectionUpsertWithWhereUniqueWithoutCopiedFromInput = {
+export type CollectionUpsertWithWhereUniqueWithoutUpstreamCollectionInput = {
   where: Prisma.CollectionWhereUniqueInput
-  update: Prisma.XOR<Prisma.CollectionUpdateWithoutCopiedFromInput, Prisma.CollectionUncheckedUpdateWithoutCopiedFromInput>
-  create: Prisma.XOR<Prisma.CollectionCreateWithoutCopiedFromInput, Prisma.CollectionUncheckedCreateWithoutCopiedFromInput>
+  update: Prisma.XOR<Prisma.CollectionUpdateWithoutUpstreamCollectionInput, Prisma.CollectionUncheckedUpdateWithoutUpstreamCollectionInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutUpstreamCollectionInput, Prisma.CollectionUncheckedCreateWithoutUpstreamCollectionInput>
 }
 
-export type CollectionUpdateWithWhereUniqueWithoutCopiedFromInput = {
+export type CollectionUpdateWithWhereUniqueWithoutUpstreamCollectionInput = {
   where: Prisma.CollectionWhereUniqueInput
-  data: Prisma.XOR<Prisma.CollectionUpdateWithoutCopiedFromInput, Prisma.CollectionUncheckedUpdateWithoutCopiedFromInput>
+  data: Prisma.XOR<Prisma.CollectionUpdateWithoutUpstreamCollectionInput, Prisma.CollectionUncheckedUpdateWithoutUpstreamCollectionInput>
 }
 
-export type CollectionUpdateManyWithWhereWithoutCopiedFromInput = {
+export type CollectionUpdateManyWithWhereWithoutUpstreamCollectionInput = {
   where: Prisma.CollectionScalarWhereInput
-  data: Prisma.XOR<Prisma.CollectionUpdateManyMutationInput, Prisma.CollectionUncheckedUpdateManyWithoutCopiedFromInput>
+  data: Prisma.XOR<Prisma.CollectionUpdateManyMutationInput, Prisma.CollectionUncheckedUpdateManyWithoutUpstreamCollectionInput>
 }
 
 export type CollectionCreateWithoutEntriesInput = {
@@ -1563,24 +2896,47 @@ export type CollectionCreateWithoutEntriesInput = {
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutCollectionsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAppCollectionsInput
   area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
   parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
   children?: Prisma.CollectionCreateNestedManyWithoutParentInput
-  copiedFrom?: Prisma.CollectionCreateNestedOneWithoutCopiesInput
-  copies?: Prisma.CollectionCreateNestedManyWithoutCopiedFromInput
-  sourceRelease?: Prisma.ReleaseCreateNestedOneWithoutImportedIntoInput
+  upstreamCollection?: Prisma.CollectionCreateNestedOneWithoutDownstreamCollectionsInput
+  downstreamCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamCollectionInput
+  upstreamPath?: Prisma.PathCreateNestedOneWithoutMountedCollectionsInput
+  installedRevision?: Prisma.RevisionCreateNestedOneWithoutMountedCollectionsInput
+  originatedEntries?: Prisma.EntryCreateNestedManyWithoutSourceCollectionInput
   paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
   accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
-  packImports?: Prisma.PackImportCreateNestedManyWithoutTargetCollectionInput
-  publishedPacks?: Prisma.PackCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarCreateNestedManyWithoutCollectionInput
 }
 
 export type CollectionUncheckedCreateWithoutEntriesInput = {
@@ -1588,29 +2944,153 @@ export type CollectionUncheckedCreateWithoutEntriesInput = {
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
   userId: string
+  organizationId?: string | null
+  oauthClientId?: string | null
   areaId?: string | null
   parentId?: string | null
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
-  copiedFromCollectionId?: string | null
-  sourceReleaseId?: string | null
+  upstreamCollectionId?: string | null
+  upstreamPathId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
-  copies?: Prisma.CollectionUncheckedCreateNestedManyWithoutCopiedFromInput
+  downstreamCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamCollectionInput
+  originatedEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutSourceCollectionInput
   paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
   accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
-  packImports?: Prisma.PackImportUncheckedCreateNestedManyWithoutTargetCollectionInput
-  publishedPacks?: Prisma.PackUncheckedCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutCollectionInput
 }
 
 export type CollectionCreateOrConnectWithoutEntriesInput = {
   where: Prisma.CollectionWhereUniqueInput
   create: Prisma.XOR<Prisma.CollectionCreateWithoutEntriesInput, Prisma.CollectionUncheckedCreateWithoutEntriesInput>
+}
+
+export type CollectionCreateWithoutOriginatedEntriesInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  kind?: $Enums.CollectionKind
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  syncMode?: $Enums.SyncMode
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutCollectionsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAppCollectionsInput
+  area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
+  parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
+  children?: Prisma.CollectionCreateNestedManyWithoutParentInput
+  upstreamCollection?: Prisma.CollectionCreateNestedOneWithoutDownstreamCollectionsInput
+  downstreamCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamCollectionInput
+  upstreamPath?: Prisma.PathCreateNestedOneWithoutMountedCollectionsInput
+  installedRevision?: Prisma.RevisionCreateNestedOneWithoutMountedCollectionsInput
+  entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionUncheckedCreateWithoutOriginatedEntriesInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  kind?: $Enums.CollectionKind
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  userId: string
+  organizationId?: string | null
+  oauthClientId?: string | null
+  areaId?: string | null
+  parentId?: string | null
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  syncMode?: $Enums.SyncMode
+  upstreamCollectionId?: string | null
+  upstreamPathId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
+  downstreamCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamCollectionInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionCreateOrConnectWithoutOriginatedEntriesInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutOriginatedEntriesInput, Prisma.CollectionUncheckedCreateWithoutOriginatedEntriesInput>
 }
 
 export type CollectionUpsertWithoutEntriesInput = {
@@ -1629,24 +3109,47 @@ export type CollectionUpdateWithoutEntriesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutCollectionsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAppCollectionsNestedInput
   area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
   parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
   children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
-  copiedFrom?: Prisma.CollectionUpdateOneWithoutCopiesNestedInput
-  copies?: Prisma.CollectionUpdateManyWithoutCopiedFromNestedInput
-  sourceRelease?: Prisma.ReleaseUpdateOneWithoutImportedIntoNestedInput
+  upstreamCollection?: Prisma.CollectionUpdateOneWithoutDownstreamCollectionsNestedInput
+  downstreamCollections?: Prisma.CollectionUpdateManyWithoutUpstreamCollectionNestedInput
+  upstreamPath?: Prisma.PathUpdateOneWithoutMountedCollectionsNestedInput
+  installedRevision?: Prisma.RevisionUpdateOneWithoutMountedCollectionsNestedInput
+  originatedEntries?: Prisma.EntryUpdateManyWithoutSourceCollectionNestedInput
   paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
   accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
-  packImports?: Prisma.PackImportUpdateManyWithoutTargetCollectionNestedInput
-  publishedPacks?: Prisma.PackUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUpdateManyWithoutCollectionNestedInput
 }
 
 export type CollectionUncheckedUpdateWithoutEntriesInput = {
@@ -1654,24 +3157,154 @@ export type CollectionUncheckedUpdateWithoutEntriesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
-  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
-  copies?: Prisma.CollectionUncheckedUpdateManyWithoutCopiedFromNestedInput
+  downstreamCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamCollectionNestedInput
+  originatedEntries?: Prisma.EntryUncheckedUpdateManyWithoutSourceCollectionNestedInput
   paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
   accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
-  packImports?: Prisma.PackImportUncheckedUpdateManyWithoutTargetCollectionNestedInput
-  publishedPacks?: Prisma.PackUncheckedUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUpsertWithoutOriginatedEntriesInput = {
+  update: Prisma.XOR<Prisma.CollectionUpdateWithoutOriginatedEntriesInput, Prisma.CollectionUncheckedUpdateWithoutOriginatedEntriesInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutOriginatedEntriesInput, Prisma.CollectionUncheckedCreateWithoutOriginatedEntriesInput>
+  where?: Prisma.CollectionWhereInput
+}
+
+export type CollectionUpdateToOneWithWhereWithoutOriginatedEntriesInput = {
+  where?: Prisma.CollectionWhereInput
+  data: Prisma.XOR<Prisma.CollectionUpdateWithoutOriginatedEntriesInput, Prisma.CollectionUncheckedUpdateWithoutOriginatedEntriesInput>
+}
+
+export type CollectionUpdateWithoutOriginatedEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutCollectionsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAppCollectionsNestedInput
+  area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
+  parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
+  upstreamCollection?: Prisma.CollectionUpdateOneWithoutDownstreamCollectionsNestedInput
+  downstreamCollections?: Prisma.CollectionUpdateManyWithoutUpstreamCollectionNestedInput
+  upstreamPath?: Prisma.PathUpdateOneWithoutMountedCollectionsNestedInput
+  installedRevision?: Prisma.RevisionUpdateOneWithoutMountedCollectionsNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUncheckedUpdateWithoutOriginatedEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
+  downstreamCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamCollectionNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutCollectionNestedInput
 }
 
 export type CollectionCreateWithoutAccessGrantsInput = {
@@ -1679,24 +3312,47 @@ export type CollectionCreateWithoutAccessGrantsInput = {
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutCollectionsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAppCollectionsInput
   area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
   parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
   children?: Prisma.CollectionCreateNestedManyWithoutParentInput
-  copiedFrom?: Prisma.CollectionCreateNestedOneWithoutCopiesInput
-  copies?: Prisma.CollectionCreateNestedManyWithoutCopiedFromInput
-  sourceRelease?: Prisma.ReleaseCreateNestedOneWithoutImportedIntoInput
+  upstreamCollection?: Prisma.CollectionCreateNestedOneWithoutDownstreamCollectionsInput
+  downstreamCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamCollectionInput
+  upstreamPath?: Prisma.PathCreateNestedOneWithoutMountedCollectionsInput
+  installedRevision?: Prisma.RevisionCreateNestedOneWithoutMountedCollectionsInput
   entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryCreateNestedManyWithoutSourceCollectionInput
   paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
-  packImports?: Prisma.PackImportCreateNestedManyWithoutTargetCollectionInput
-  publishedPacks?: Prisma.PackCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarCreateNestedManyWithoutCollectionInput
 }
 
 export type CollectionUncheckedCreateWithoutAccessGrantsInput = {
@@ -1704,24 +3360,47 @@ export type CollectionUncheckedCreateWithoutAccessGrantsInput = {
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
   userId: string
+  organizationId?: string | null
+  oauthClientId?: string | null
   areaId?: string | null
   parentId?: string | null
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
-  copiedFromCollectionId?: string | null
-  sourceReleaseId?: string | null
+  upstreamCollectionId?: string | null
+  upstreamPathId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
-  copies?: Prisma.CollectionUncheckedCreateNestedManyWithoutCopiedFromInput
+  downstreamCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamCollectionInput
   entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutSourceCollectionInput
   paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
-  packImports?: Prisma.PackImportUncheckedCreateNestedManyWithoutTargetCollectionInput
-  publishedPacks?: Prisma.PackUncheckedCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutCollectionInput
 }
 
 export type CollectionCreateOrConnectWithoutAccessGrantsInput = {
@@ -1745,24 +3424,47 @@ export type CollectionUpdateWithoutAccessGrantsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutCollectionsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAppCollectionsNestedInput
   area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
   parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
   children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
-  copiedFrom?: Prisma.CollectionUpdateOneWithoutCopiesNestedInput
-  copies?: Prisma.CollectionUpdateManyWithoutCopiedFromNestedInput
-  sourceRelease?: Prisma.ReleaseUpdateOneWithoutImportedIntoNestedInput
+  upstreamCollection?: Prisma.CollectionUpdateOneWithoutDownstreamCollectionsNestedInput
+  downstreamCollections?: Prisma.CollectionUpdateManyWithoutUpstreamCollectionNestedInput
+  upstreamPath?: Prisma.PathUpdateOneWithoutMountedCollectionsNestedInput
+  installedRevision?: Prisma.RevisionUpdateOneWithoutMountedCollectionsNestedInput
   entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUpdateManyWithoutSourceCollectionNestedInput
   paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
-  packImports?: Prisma.PackImportUpdateManyWithoutTargetCollectionNestedInput
-  publishedPacks?: Prisma.PackUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUpdateManyWithoutCollectionNestedInput
 }
 
 export type CollectionUncheckedUpdateWithoutAccessGrantsInput = {
@@ -1770,24 +3472,879 @@ export type CollectionUncheckedUpdateWithoutAccessGrantsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
-  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
-  copies?: Prisma.CollectionUncheckedUpdateManyWithoutCopiedFromNestedInput
+  downstreamCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamCollectionNestedInput
   entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUncheckedUpdateManyWithoutSourceCollectionNestedInput
   paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
-  packImports?: Prisma.PackImportUncheckedUpdateManyWithoutTargetCollectionNestedInput
-  publishedPacks?: Prisma.PackUncheckedUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionCreateWithoutAccessRequestsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  kind?: $Enums.CollectionKind
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  syncMode?: $Enums.SyncMode
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutCollectionsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAppCollectionsInput
+  area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
+  parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
+  children?: Prisma.CollectionCreateNestedManyWithoutParentInput
+  upstreamCollection?: Prisma.CollectionCreateNestedOneWithoutDownstreamCollectionsInput
+  downstreamCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamCollectionInput
+  upstreamPath?: Prisma.PathCreateNestedOneWithoutMountedCollectionsInput
+  installedRevision?: Prisma.RevisionCreateNestedOneWithoutMountedCollectionsInput
+  entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryCreateNestedManyWithoutSourceCollectionInput
+  paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionUncheckedCreateWithoutAccessRequestsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  kind?: $Enums.CollectionKind
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  userId: string
+  organizationId?: string | null
+  oauthClientId?: string | null
+  areaId?: string | null
+  parentId?: string | null
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  syncMode?: $Enums.SyncMode
+  upstreamCollectionId?: string | null
+  upstreamPathId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
+  downstreamCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamCollectionInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutSourceCollectionInput
+  paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionCreateOrConnectWithoutAccessRequestsInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutAccessRequestsInput, Prisma.CollectionUncheckedCreateWithoutAccessRequestsInput>
+}
+
+export type CollectionUpsertWithoutAccessRequestsInput = {
+  update: Prisma.XOR<Prisma.CollectionUpdateWithoutAccessRequestsInput, Prisma.CollectionUncheckedUpdateWithoutAccessRequestsInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutAccessRequestsInput, Prisma.CollectionUncheckedCreateWithoutAccessRequestsInput>
+  where?: Prisma.CollectionWhereInput
+}
+
+export type CollectionUpdateToOneWithWhereWithoutAccessRequestsInput = {
+  where?: Prisma.CollectionWhereInput
+  data: Prisma.XOR<Prisma.CollectionUpdateWithoutAccessRequestsInput, Prisma.CollectionUncheckedUpdateWithoutAccessRequestsInput>
+}
+
+export type CollectionUpdateWithoutAccessRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutCollectionsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAppCollectionsNestedInput
+  area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
+  parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
+  upstreamCollection?: Prisma.CollectionUpdateOneWithoutDownstreamCollectionsNestedInput
+  downstreamCollections?: Prisma.CollectionUpdateManyWithoutUpstreamCollectionNestedInput
+  upstreamPath?: Prisma.PathUpdateOneWithoutMountedCollectionsNestedInput
+  installedRevision?: Prisma.RevisionUpdateOneWithoutMountedCollectionsNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUpdateManyWithoutSourceCollectionNestedInput
+  paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUncheckedUpdateWithoutAccessRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
+  downstreamCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamCollectionNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUncheckedUpdateManyWithoutSourceCollectionNestedInput
+  paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionCreateWithoutContextRequestsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  kind?: $Enums.CollectionKind
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  syncMode?: $Enums.SyncMode
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutCollectionsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAppCollectionsInput
+  area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
+  parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
+  children?: Prisma.CollectionCreateNestedManyWithoutParentInput
+  upstreamCollection?: Prisma.CollectionCreateNestedOneWithoutDownstreamCollectionsInput
+  downstreamCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamCollectionInput
+  upstreamPath?: Prisma.PathCreateNestedOneWithoutMountedCollectionsInput
+  installedRevision?: Prisma.RevisionCreateNestedOneWithoutMountedCollectionsInput
+  entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryCreateNestedManyWithoutSourceCollectionInput
+  paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionUncheckedCreateWithoutContextRequestsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  kind?: $Enums.CollectionKind
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  userId: string
+  organizationId?: string | null
+  oauthClientId?: string | null
+  areaId?: string | null
+  parentId?: string | null
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  syncMode?: $Enums.SyncMode
+  upstreamCollectionId?: string | null
+  upstreamPathId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
+  downstreamCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamCollectionInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutSourceCollectionInput
+  paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionCreateOrConnectWithoutContextRequestsInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutContextRequestsInput, Prisma.CollectionUncheckedCreateWithoutContextRequestsInput>
+}
+
+export type CollectionUpsertWithoutContextRequestsInput = {
+  update: Prisma.XOR<Prisma.CollectionUpdateWithoutContextRequestsInput, Prisma.CollectionUncheckedUpdateWithoutContextRequestsInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutContextRequestsInput, Prisma.CollectionUncheckedCreateWithoutContextRequestsInput>
+  where?: Prisma.CollectionWhereInput
+}
+
+export type CollectionUpdateToOneWithWhereWithoutContextRequestsInput = {
+  where?: Prisma.CollectionWhereInput
+  data: Prisma.XOR<Prisma.CollectionUpdateWithoutContextRequestsInput, Prisma.CollectionUncheckedUpdateWithoutContextRequestsInput>
+}
+
+export type CollectionUpdateWithoutContextRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutCollectionsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAppCollectionsNestedInput
+  area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
+  parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
+  upstreamCollection?: Prisma.CollectionUpdateOneWithoutDownstreamCollectionsNestedInput
+  downstreamCollections?: Prisma.CollectionUpdateManyWithoutUpstreamCollectionNestedInput
+  upstreamPath?: Prisma.PathUpdateOneWithoutMountedCollectionsNestedInput
+  installedRevision?: Prisma.RevisionUpdateOneWithoutMountedCollectionsNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUpdateManyWithoutSourceCollectionNestedInput
+  paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUncheckedUpdateWithoutContextRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
+  downstreamCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamCollectionNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUncheckedUpdateManyWithoutSourceCollectionNestedInput
+  paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionCreateWithoutUsageLedgersInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  kind?: $Enums.CollectionKind
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  syncMode?: $Enums.SyncMode
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutCollectionsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAppCollectionsInput
+  area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
+  parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
+  children?: Prisma.CollectionCreateNestedManyWithoutParentInput
+  upstreamCollection?: Prisma.CollectionCreateNestedOneWithoutDownstreamCollectionsInput
+  downstreamCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamCollectionInput
+  upstreamPath?: Prisma.PathCreateNestedOneWithoutMountedCollectionsInput
+  installedRevision?: Prisma.RevisionCreateNestedOneWithoutMountedCollectionsInput
+  entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryCreateNestedManyWithoutSourceCollectionInput
+  paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionUncheckedCreateWithoutUsageLedgersInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  kind?: $Enums.CollectionKind
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  userId: string
+  organizationId?: string | null
+  oauthClientId?: string | null
+  areaId?: string | null
+  parentId?: string | null
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  syncMode?: $Enums.SyncMode
+  upstreamCollectionId?: string | null
+  upstreamPathId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
+  downstreamCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamCollectionInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutSourceCollectionInput
+  paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionCreateOrConnectWithoutUsageLedgersInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutUsageLedgersInput, Prisma.CollectionUncheckedCreateWithoutUsageLedgersInput>
+}
+
+export type CollectionUpsertWithoutUsageLedgersInput = {
+  update: Prisma.XOR<Prisma.CollectionUpdateWithoutUsageLedgersInput, Prisma.CollectionUncheckedUpdateWithoutUsageLedgersInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutUsageLedgersInput, Prisma.CollectionUncheckedCreateWithoutUsageLedgersInput>
+  where?: Prisma.CollectionWhereInput
+}
+
+export type CollectionUpdateToOneWithWhereWithoutUsageLedgersInput = {
+  where?: Prisma.CollectionWhereInput
+  data: Prisma.XOR<Prisma.CollectionUpdateWithoutUsageLedgersInput, Prisma.CollectionUncheckedUpdateWithoutUsageLedgersInput>
+}
+
+export type CollectionUpdateWithoutUsageLedgersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutCollectionsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAppCollectionsNestedInput
+  area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
+  parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
+  upstreamCollection?: Prisma.CollectionUpdateOneWithoutDownstreamCollectionsNestedInput
+  downstreamCollections?: Prisma.CollectionUpdateManyWithoutUpstreamCollectionNestedInput
+  upstreamPath?: Prisma.PathUpdateOneWithoutMountedCollectionsNestedInput
+  installedRevision?: Prisma.RevisionUpdateOneWithoutMountedCollectionsNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUpdateManyWithoutSourceCollectionNestedInput
+  paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUncheckedUpdateWithoutUsageLedgersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
+  downstreamCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamCollectionNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUncheckedUpdateManyWithoutSourceCollectionNestedInput
+  paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionCreateWithoutRoyaltiesInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  kind?: $Enums.CollectionKind
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  syncMode?: $Enums.SyncMode
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutCollectionsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAppCollectionsInput
+  area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
+  parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
+  children?: Prisma.CollectionCreateNestedManyWithoutParentInput
+  upstreamCollection?: Prisma.CollectionCreateNestedOneWithoutDownstreamCollectionsInput
+  downstreamCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamCollectionInput
+  upstreamPath?: Prisma.PathCreateNestedOneWithoutMountedCollectionsInput
+  installedRevision?: Prisma.RevisionCreateNestedOneWithoutMountedCollectionsInput
+  entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryCreateNestedManyWithoutSourceCollectionInput
+  paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionUncheckedCreateWithoutRoyaltiesInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  kind?: $Enums.CollectionKind
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  userId: string
+  organizationId?: string | null
+  oauthClientId?: string | null
+  areaId?: string | null
+  parentId?: string | null
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  syncMode?: $Enums.SyncMode
+  upstreamCollectionId?: string | null
+  upstreamPathId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
+  downstreamCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamCollectionInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutSourceCollectionInput
+  paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionCreateOrConnectWithoutRoyaltiesInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutRoyaltiesInput, Prisma.CollectionUncheckedCreateWithoutRoyaltiesInput>
+}
+
+export type CollectionUpsertWithoutRoyaltiesInput = {
+  update: Prisma.XOR<Prisma.CollectionUpdateWithoutRoyaltiesInput, Prisma.CollectionUncheckedUpdateWithoutRoyaltiesInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutRoyaltiesInput, Prisma.CollectionUncheckedCreateWithoutRoyaltiesInput>
+  where?: Prisma.CollectionWhereInput
+}
+
+export type CollectionUpdateToOneWithWhereWithoutRoyaltiesInput = {
+  where?: Prisma.CollectionWhereInput
+  data: Prisma.XOR<Prisma.CollectionUpdateWithoutRoyaltiesInput, Prisma.CollectionUncheckedUpdateWithoutRoyaltiesInput>
+}
+
+export type CollectionUpdateWithoutRoyaltiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutCollectionsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAppCollectionsNestedInput
+  area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
+  parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
+  upstreamCollection?: Prisma.CollectionUpdateOneWithoutDownstreamCollectionsNestedInput
+  downstreamCollections?: Prisma.CollectionUpdateManyWithoutUpstreamCollectionNestedInput
+  upstreamPath?: Prisma.PathUpdateOneWithoutMountedCollectionsNestedInput
+  installedRevision?: Prisma.RevisionUpdateOneWithoutMountedCollectionsNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUpdateManyWithoutSourceCollectionNestedInput
+  paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUncheckedUpdateWithoutRoyaltiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
+  downstreamCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamCollectionNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUncheckedUpdateManyWithoutSourceCollectionNestedInput
+  paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutCollectionNestedInput
 }
 
 export type CollectionCreateWithoutPathsInput = {
@@ -1795,24 +4352,47 @@ export type CollectionCreateWithoutPathsInput = {
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutCollectionsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAppCollectionsInput
   area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
   parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
   children?: Prisma.CollectionCreateNestedManyWithoutParentInput
-  copiedFrom?: Prisma.CollectionCreateNestedOneWithoutCopiesInput
-  copies?: Prisma.CollectionCreateNestedManyWithoutCopiedFromInput
-  sourceRelease?: Prisma.ReleaseCreateNestedOneWithoutImportedIntoInput
+  upstreamCollection?: Prisma.CollectionCreateNestedOneWithoutDownstreamCollectionsInput
+  downstreamCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamCollectionInput
+  upstreamPath?: Prisma.PathCreateNestedOneWithoutMountedCollectionsInput
+  installedRevision?: Prisma.RevisionCreateNestedOneWithoutMountedCollectionsInput
   entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryCreateNestedManyWithoutSourceCollectionInput
   accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
-  packImports?: Prisma.PackImportCreateNestedManyWithoutTargetCollectionInput
-  publishedPacks?: Prisma.PackCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarCreateNestedManyWithoutCollectionInput
 }
 
 export type CollectionUncheckedCreateWithoutPathsInput = {
@@ -1820,29 +4400,158 @@ export type CollectionUncheckedCreateWithoutPathsInput = {
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
   userId: string
+  organizationId?: string | null
+  oauthClientId?: string | null
   areaId?: string | null
   parentId?: string | null
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
-  copiedFromCollectionId?: string | null
-  sourceReleaseId?: string | null
+  upstreamCollectionId?: string | null
+  upstreamPathId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
-  copies?: Prisma.CollectionUncheckedCreateNestedManyWithoutCopiedFromInput
+  downstreamCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamCollectionInput
   entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutSourceCollectionInput
   accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
-  packImports?: Prisma.PackImportUncheckedCreateNestedManyWithoutTargetCollectionInput
-  publishedPacks?: Prisma.PackUncheckedCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutCollectionInput
 }
 
 export type CollectionCreateOrConnectWithoutPathsInput = {
   where: Prisma.CollectionWhereUniqueInput
   create: Prisma.XOR<Prisma.CollectionCreateWithoutPathsInput, Prisma.CollectionUncheckedCreateWithoutPathsInput>
+}
+
+export type CollectionCreateWithoutUpstreamPathInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  kind?: $Enums.CollectionKind
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  syncMode?: $Enums.SyncMode
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutCollectionsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAppCollectionsInput
+  area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
+  parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
+  children?: Prisma.CollectionCreateNestedManyWithoutParentInput
+  upstreamCollection?: Prisma.CollectionCreateNestedOneWithoutDownstreamCollectionsInput
+  downstreamCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamCollectionInput
+  installedRevision?: Prisma.RevisionCreateNestedOneWithoutMountedCollectionsInput
+  entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryCreateNestedManyWithoutSourceCollectionInput
+  paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionUncheckedCreateWithoutUpstreamPathInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  kind?: $Enums.CollectionKind
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  userId: string
+  organizationId?: string | null
+  oauthClientId?: string | null
+  areaId?: string | null
+  parentId?: string | null
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  syncMode?: $Enums.SyncMode
+  upstreamCollectionId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
+  downstreamCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamCollectionInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutSourceCollectionInput
+  paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionCreateOrConnectWithoutUpstreamPathInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutUpstreamPathInput, Prisma.CollectionUncheckedCreateWithoutUpstreamPathInput>
+}
+
+export type CollectionCreateManyUpstreamPathInputEnvelope = {
+  data: Prisma.CollectionCreateManyUpstreamPathInput | Prisma.CollectionCreateManyUpstreamPathInput[]
+  skipDuplicates?: boolean
 }
 
 export type CollectionUpsertWithoutPathsInput = {
@@ -1861,24 +4570,47 @@ export type CollectionUpdateWithoutPathsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutCollectionsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAppCollectionsNestedInput
   area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
   parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
   children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
-  copiedFrom?: Prisma.CollectionUpdateOneWithoutCopiesNestedInput
-  copies?: Prisma.CollectionUpdateManyWithoutCopiedFromNestedInput
-  sourceRelease?: Prisma.ReleaseUpdateOneWithoutImportedIntoNestedInput
+  upstreamCollection?: Prisma.CollectionUpdateOneWithoutDownstreamCollectionsNestedInput
+  downstreamCollections?: Prisma.CollectionUpdateManyWithoutUpstreamCollectionNestedInput
+  upstreamPath?: Prisma.PathUpdateOneWithoutMountedCollectionsNestedInput
+  installedRevision?: Prisma.RevisionUpdateOneWithoutMountedCollectionsNestedInput
   entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUpdateManyWithoutSourceCollectionNestedInput
   accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
-  packImports?: Prisma.PackImportUpdateManyWithoutTargetCollectionNestedInput
-  publishedPacks?: Prisma.PackUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUpdateManyWithoutCollectionNestedInput
 }
 
 export type CollectionUncheckedUpdateWithoutPathsInput = {
@@ -1886,332 +4618,809 @@ export type CollectionUncheckedUpdateWithoutPathsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
-  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
-  copies?: Prisma.CollectionUncheckedUpdateManyWithoutCopiedFromNestedInput
+  downstreamCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamCollectionNestedInput
   entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUncheckedUpdateManyWithoutSourceCollectionNestedInput
   accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
-  packImports?: Prisma.PackImportUncheckedUpdateManyWithoutTargetCollectionNestedInput
-  publishedPacks?: Prisma.PackUncheckedUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutCollectionNestedInput
 }
 
-export type CollectionCreateWithoutPublishedPacksInput = {
+export type CollectionUpsertWithWhereUniqueWithoutUpstreamPathInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  update: Prisma.XOR<Prisma.CollectionUpdateWithoutUpstreamPathInput, Prisma.CollectionUncheckedUpdateWithoutUpstreamPathInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutUpstreamPathInput, Prisma.CollectionUncheckedCreateWithoutUpstreamPathInput>
+}
+
+export type CollectionUpdateWithWhereUniqueWithoutUpstreamPathInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  data: Prisma.XOR<Prisma.CollectionUpdateWithoutUpstreamPathInput, Prisma.CollectionUncheckedUpdateWithoutUpstreamPathInput>
+}
+
+export type CollectionUpdateManyWithWhereWithoutUpstreamPathInput = {
+  where: Prisma.CollectionScalarWhereInput
+  data: Prisma.XOR<Prisma.CollectionUpdateManyMutationInput, Prisma.CollectionUncheckedUpdateManyWithoutUpstreamPathInput>
+}
+
+export type CollectionCreateWithoutInstalledRevisionInput = {
   id?: string
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutCollectionsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAppCollectionsInput
   area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
   parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
   children?: Prisma.CollectionCreateNestedManyWithoutParentInput
-  copiedFrom?: Prisma.CollectionCreateNestedOneWithoutCopiesInput
-  copies?: Prisma.CollectionCreateNestedManyWithoutCopiedFromInput
-  sourceRelease?: Prisma.ReleaseCreateNestedOneWithoutImportedIntoInput
+  upstreamCollection?: Prisma.CollectionCreateNestedOneWithoutDownstreamCollectionsInput
+  downstreamCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamCollectionInput
+  upstreamPath?: Prisma.PathCreateNestedOneWithoutMountedCollectionsInput
   entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryCreateNestedManyWithoutSourceCollectionInput
   paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
   accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
-  packImports?: Prisma.PackImportCreateNestedManyWithoutTargetCollectionInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarCreateNestedManyWithoutCollectionInput
 }
 
-export type CollectionUncheckedCreateWithoutPublishedPacksInput = {
+export type CollectionUncheckedCreateWithoutInstalledRevisionInput = {
   id?: string
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
   userId: string
+  organizationId?: string | null
+  oauthClientId?: string | null
   areaId?: string | null
   parentId?: string | null
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
-  copiedFromCollectionId?: string | null
-  sourceReleaseId?: string | null
+  upstreamCollectionId?: string | null
+  upstreamPathId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
-  copies?: Prisma.CollectionUncheckedCreateNestedManyWithoutCopiedFromInput
+  downstreamCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamCollectionInput
   entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutSourceCollectionInput
   paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
   accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
-  packImports?: Prisma.PackImportUncheckedCreateNestedManyWithoutTargetCollectionInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutCollectionInput
 }
 
-export type CollectionCreateOrConnectWithoutPublishedPacksInput = {
+export type CollectionCreateOrConnectWithoutInstalledRevisionInput = {
   where: Prisma.CollectionWhereUniqueInput
-  create: Prisma.XOR<Prisma.CollectionCreateWithoutPublishedPacksInput, Prisma.CollectionUncheckedCreateWithoutPublishedPacksInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutInstalledRevisionInput, Prisma.CollectionUncheckedCreateWithoutInstalledRevisionInput>
 }
 
-export type CollectionUpsertWithoutPublishedPacksInput = {
-  update: Prisma.XOR<Prisma.CollectionUpdateWithoutPublishedPacksInput, Prisma.CollectionUncheckedUpdateWithoutPublishedPacksInput>
-  create: Prisma.XOR<Prisma.CollectionCreateWithoutPublishedPacksInput, Prisma.CollectionUncheckedCreateWithoutPublishedPacksInput>
-  where?: Prisma.CollectionWhereInput
-}
-
-export type CollectionUpdateToOneWithWhereWithoutPublishedPacksInput = {
-  where?: Prisma.CollectionWhereInput
-  data: Prisma.XOR<Prisma.CollectionUpdateWithoutPublishedPacksInput, Prisma.CollectionUncheckedUpdateWithoutPublishedPacksInput>
-}
-
-export type CollectionUpdateWithoutPublishedPacksInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
-  version?: Prisma.IntFieldUpdateOperationsInput | number
-  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
-  area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
-  parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
-  children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
-  copiedFrom?: Prisma.CollectionUpdateOneWithoutCopiesNestedInput
-  copies?: Prisma.CollectionUpdateManyWithoutCopiedFromNestedInput
-  sourceRelease?: Prisma.ReleaseUpdateOneWithoutImportedIntoNestedInput
-  entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
-  paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
-  accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
-  packImports?: Prisma.PackImportUpdateManyWithoutTargetCollectionNestedInput
-}
-
-export type CollectionUncheckedUpdateWithoutPublishedPacksInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
-  version?: Prisma.IntFieldUpdateOperationsInput | number
-  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
-  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
-  copies?: Prisma.CollectionUncheckedUpdateManyWithoutCopiedFromNestedInput
-  entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
-  paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
-  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
-  packImports?: Prisma.PackImportUncheckedUpdateManyWithoutTargetCollectionNestedInput
-}
-
-export type CollectionCreateWithoutSourceReleaseInput = {
-  id?: string
-  name: string
-  slug: string
-  description?: string | null
-  visibility?: $Enums.Visibility
-  version?: number
-  entryCount?: number
-  isVirtualMount?: boolean
-  syncMode?: $Enums.SyncMode
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutCollectionsInput
-  area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
-  parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
-  children?: Prisma.CollectionCreateNestedManyWithoutParentInput
-  copiedFrom?: Prisma.CollectionCreateNestedOneWithoutCopiesInput
-  copies?: Prisma.CollectionCreateNestedManyWithoutCopiedFromInput
-  entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
-  paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
-  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
-  packImports?: Prisma.PackImportCreateNestedManyWithoutTargetCollectionInput
-  publishedPacks?: Prisma.PackCreateNestedManyWithoutCollectionInput
-}
-
-export type CollectionUncheckedCreateWithoutSourceReleaseInput = {
-  id?: string
-  name: string
-  slug: string
-  description?: string | null
-  visibility?: $Enums.Visibility
-  version?: number
-  entryCount?: number
-  userId: string
-  areaId?: string | null
-  parentId?: string | null
-  isVirtualMount?: boolean
-  syncMode?: $Enums.SyncMode
-  copiedFromCollectionId?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
-  copies?: Prisma.CollectionUncheckedCreateNestedManyWithoutCopiedFromInput
-  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
-  paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
-  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
-  packImports?: Prisma.PackImportUncheckedCreateNestedManyWithoutTargetCollectionInput
-  publishedPacks?: Prisma.PackUncheckedCreateNestedManyWithoutCollectionInput
-}
-
-export type CollectionCreateOrConnectWithoutSourceReleaseInput = {
-  where: Prisma.CollectionWhereUniqueInput
-  create: Prisma.XOR<Prisma.CollectionCreateWithoutSourceReleaseInput, Prisma.CollectionUncheckedCreateWithoutSourceReleaseInput>
-}
-
-export type CollectionCreateManySourceReleaseInputEnvelope = {
-  data: Prisma.CollectionCreateManySourceReleaseInput | Prisma.CollectionCreateManySourceReleaseInput[]
+export type CollectionCreateManyInstalledRevisionInputEnvelope = {
+  data: Prisma.CollectionCreateManyInstalledRevisionInput | Prisma.CollectionCreateManyInstalledRevisionInput[]
   skipDuplicates?: boolean
 }
 
-export type CollectionUpsertWithWhereUniqueWithoutSourceReleaseInput = {
+export type CollectionUpsertWithWhereUniqueWithoutInstalledRevisionInput = {
   where: Prisma.CollectionWhereUniqueInput
-  update: Prisma.XOR<Prisma.CollectionUpdateWithoutSourceReleaseInput, Prisma.CollectionUncheckedUpdateWithoutSourceReleaseInput>
-  create: Prisma.XOR<Prisma.CollectionCreateWithoutSourceReleaseInput, Prisma.CollectionUncheckedCreateWithoutSourceReleaseInput>
+  update: Prisma.XOR<Prisma.CollectionUpdateWithoutInstalledRevisionInput, Prisma.CollectionUncheckedUpdateWithoutInstalledRevisionInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutInstalledRevisionInput, Prisma.CollectionUncheckedCreateWithoutInstalledRevisionInput>
 }
 
-export type CollectionUpdateWithWhereUniqueWithoutSourceReleaseInput = {
+export type CollectionUpdateWithWhereUniqueWithoutInstalledRevisionInput = {
   where: Prisma.CollectionWhereUniqueInput
-  data: Prisma.XOR<Prisma.CollectionUpdateWithoutSourceReleaseInput, Prisma.CollectionUncheckedUpdateWithoutSourceReleaseInput>
+  data: Prisma.XOR<Prisma.CollectionUpdateWithoutInstalledRevisionInput, Prisma.CollectionUncheckedUpdateWithoutInstalledRevisionInput>
 }
 
-export type CollectionUpdateManyWithWhereWithoutSourceReleaseInput = {
+export type CollectionUpdateManyWithWhereWithoutInstalledRevisionInput = {
   where: Prisma.CollectionScalarWhereInput
-  data: Prisma.XOR<Prisma.CollectionUpdateManyMutationInput, Prisma.CollectionUncheckedUpdateManyWithoutSourceReleaseInput>
+  data: Prisma.XOR<Prisma.CollectionUpdateManyMutationInput, Prisma.CollectionUncheckedUpdateManyWithoutInstalledRevisionInput>
 }
 
-export type CollectionCreateWithoutPackImportsInput = {
+export type CollectionCreateWithoutBountiesInput = {
   id?: string
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutCollectionsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAppCollectionsInput
   area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
   parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
   children?: Prisma.CollectionCreateNestedManyWithoutParentInput
-  copiedFrom?: Prisma.CollectionCreateNestedOneWithoutCopiesInput
-  copies?: Prisma.CollectionCreateNestedManyWithoutCopiedFromInput
-  sourceRelease?: Prisma.ReleaseCreateNestedOneWithoutImportedIntoInput
+  upstreamCollection?: Prisma.CollectionCreateNestedOneWithoutDownstreamCollectionsInput
+  downstreamCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamCollectionInput
+  upstreamPath?: Prisma.PathCreateNestedOneWithoutMountedCollectionsInput
+  installedRevision?: Prisma.RevisionCreateNestedOneWithoutMountedCollectionsInput
   entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryCreateNestedManyWithoutSourceCollectionInput
   paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
   accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
-  publishedPacks?: Prisma.PackCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutCollectionInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarCreateNestedManyWithoutCollectionInput
 }
 
-export type CollectionUncheckedCreateWithoutPackImportsInput = {
+export type CollectionUncheckedCreateWithoutBountiesInput = {
   id?: string
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
   userId: string
+  organizationId?: string | null
+  oauthClientId?: string | null
   areaId?: string | null
   parentId?: string | null
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
-  copiedFromCollectionId?: string | null
-  sourceReleaseId?: string | null
+  upstreamCollectionId?: string | null
+  upstreamPathId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
-  copies?: Prisma.CollectionUncheckedCreateNestedManyWithoutCopiedFromInput
+  downstreamCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamCollectionInput
   entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutSourceCollectionInput
   paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
   accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
-  publishedPacks?: Prisma.PackUncheckedCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutCollectionInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutCollectionInput
 }
 
-export type CollectionCreateOrConnectWithoutPackImportsInput = {
+export type CollectionCreateOrConnectWithoutBountiesInput = {
   where: Prisma.CollectionWhereUniqueInput
-  create: Prisma.XOR<Prisma.CollectionCreateWithoutPackImportsInput, Prisma.CollectionUncheckedCreateWithoutPackImportsInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutBountiesInput, Prisma.CollectionUncheckedCreateWithoutBountiesInput>
 }
 
-export type CollectionUpsertWithoutPackImportsInput = {
-  update: Prisma.XOR<Prisma.CollectionUpdateWithoutPackImportsInput, Prisma.CollectionUncheckedUpdateWithoutPackImportsInput>
-  create: Prisma.XOR<Prisma.CollectionCreateWithoutPackImportsInput, Prisma.CollectionUncheckedCreateWithoutPackImportsInput>
+export type CollectionUpsertWithoutBountiesInput = {
+  update: Prisma.XOR<Prisma.CollectionUpdateWithoutBountiesInput, Prisma.CollectionUncheckedUpdateWithoutBountiesInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutBountiesInput, Prisma.CollectionUncheckedCreateWithoutBountiesInput>
   where?: Prisma.CollectionWhereInput
 }
 
-export type CollectionUpdateToOneWithWhereWithoutPackImportsInput = {
+export type CollectionUpdateToOneWithWhereWithoutBountiesInput = {
   where?: Prisma.CollectionWhereInput
-  data: Prisma.XOR<Prisma.CollectionUpdateWithoutPackImportsInput, Prisma.CollectionUncheckedUpdateWithoutPackImportsInput>
+  data: Prisma.XOR<Prisma.CollectionUpdateWithoutBountiesInput, Prisma.CollectionUncheckedUpdateWithoutBountiesInput>
 }
 
-export type CollectionUpdateWithoutPackImportsInput = {
+export type CollectionUpdateWithoutBountiesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutCollectionsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAppCollectionsNestedInput
   area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
   parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
   children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
-  copiedFrom?: Prisma.CollectionUpdateOneWithoutCopiesNestedInput
-  copies?: Prisma.CollectionUpdateManyWithoutCopiedFromNestedInput
-  sourceRelease?: Prisma.ReleaseUpdateOneWithoutImportedIntoNestedInput
+  upstreamCollection?: Prisma.CollectionUpdateOneWithoutDownstreamCollectionsNestedInput
+  downstreamCollections?: Prisma.CollectionUpdateManyWithoutUpstreamCollectionNestedInput
+  upstreamPath?: Prisma.PathUpdateOneWithoutMountedCollectionsNestedInput
+  installedRevision?: Prisma.RevisionUpdateOneWithoutMountedCollectionsNestedInput
   entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUpdateManyWithoutSourceCollectionNestedInput
   paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
   accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
-  publishedPacks?: Prisma.PackUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutCollectionNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUpdateManyWithoutCollectionNestedInput
 }
 
-export type CollectionUncheckedUpdateWithoutPackImportsInput = {
+export type CollectionUncheckedUpdateWithoutBountiesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
-  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
-  copies?: Prisma.CollectionUncheckedUpdateManyWithoutCopiedFromNestedInput
+  downstreamCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamCollectionNestedInput
   entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUncheckedUpdateManyWithoutSourceCollectionNestedInput
   paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
   accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
-  publishedPacks?: Prisma.PackUncheckedUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutCollectionNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionCreateWithoutStarsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  kind?: $Enums.CollectionKind
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  syncMode?: $Enums.SyncMode
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutCollectionsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAppCollectionsInput
+  area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
+  parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
+  children?: Prisma.CollectionCreateNestedManyWithoutParentInput
+  upstreamCollection?: Prisma.CollectionCreateNestedOneWithoutDownstreamCollectionsInput
+  downstreamCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamCollectionInput
+  upstreamPath?: Prisma.PathCreateNestedOneWithoutMountedCollectionsInput
+  installedRevision?: Prisma.RevisionCreateNestedOneWithoutMountedCollectionsInput
+  entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryCreateNestedManyWithoutSourceCollectionInput
+  paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionUncheckedCreateWithoutStarsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  kind?: $Enums.CollectionKind
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  userId: string
+  organizationId?: string | null
+  oauthClientId?: string | null
+  areaId?: string | null
+  parentId?: string | null
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  syncMode?: $Enums.SyncMode
+  upstreamCollectionId?: string | null
+  upstreamPathId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
+  downstreamCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamCollectionInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutSourceCollectionInput
+  paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutTargetCollectionInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutCollectionInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionCreateOrConnectWithoutStarsInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutStarsInput, Prisma.CollectionUncheckedCreateWithoutStarsInput>
+}
+
+export type CollectionUpsertWithoutStarsInput = {
+  update: Prisma.XOR<Prisma.CollectionUpdateWithoutStarsInput, Prisma.CollectionUncheckedUpdateWithoutStarsInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutStarsInput, Prisma.CollectionUncheckedCreateWithoutStarsInput>
+  where?: Prisma.CollectionWhereInput
+}
+
+export type CollectionUpdateToOneWithWhereWithoutStarsInput = {
+  where?: Prisma.CollectionWhereInput
+  data: Prisma.XOR<Prisma.CollectionUpdateWithoutStarsInput, Prisma.CollectionUncheckedUpdateWithoutStarsInput>
+}
+
+export type CollectionUpdateWithoutStarsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutCollectionsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAppCollectionsNestedInput
+  area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
+  parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
+  upstreamCollection?: Prisma.CollectionUpdateOneWithoutDownstreamCollectionsNestedInput
+  downstreamCollections?: Prisma.CollectionUpdateManyWithoutUpstreamCollectionNestedInput
+  upstreamPath?: Prisma.PathUpdateOneWithoutMountedCollectionsNestedInput
+  installedRevision?: Prisma.RevisionUpdateOneWithoutMountedCollectionsNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUpdateManyWithoutSourceCollectionNestedInput
+  paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUncheckedUpdateWithoutStarsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
+  downstreamCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamCollectionNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUncheckedUpdateManyWithoutSourceCollectionNestedInput
+  paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionCreateWithoutPaymentsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  kind?: $Enums.CollectionKind
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  syncMode?: $Enums.SyncMode
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutCollectionsInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutCollectionsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAppCollectionsInput
+  area?: Prisma.AreaCreateNestedOneWithoutCollectionsInput
+  parent?: Prisma.CollectionCreateNestedOneWithoutChildrenInput
+  children?: Prisma.CollectionCreateNestedManyWithoutParentInput
+  upstreamCollection?: Prisma.CollectionCreateNestedOneWithoutDownstreamCollectionsInput
+  downstreamCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamCollectionInput
+  upstreamPath?: Prisma.PathCreateNestedOneWithoutMountedCollectionsInput
+  installedRevision?: Prisma.RevisionCreateNestedOneWithoutMountedCollectionsInput
+  entries?: Prisma.EntryCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryCreateNestedManyWithoutSourceCollectionInput
+  paths?: Prisma.PathCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutTargetCollectionInput
+  royalties?: Prisma.UserRoyaltyCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionUncheckedCreateWithoutPaymentsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  kind?: $Enums.CollectionKind
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  userId: string
+  organizationId?: string | null
+  oauthClientId?: string | null
+  areaId?: string | null
+  parentId?: string | null
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  syncMode?: $Enums.SyncMode
+  upstreamCollectionId?: string | null
+  upstreamPathId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  children?: Prisma.CollectionUncheckedCreateNestedManyWithoutParentInput
+  downstreamCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamCollectionInput
+  entries?: Prisma.EntryUncheckedCreateNestedManyWithoutCollectionInput
+  originatedEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutSourceCollectionInput
+  paths?: Prisma.PathUncheckedCreateNestedManyWithoutCollectionInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutCollectionInput
+  accessRequests?: Prisma.AccessRequestUncheckedCreateNestedManyWithoutCollectionInput
+  contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutCollectionInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutCollectionInput
+  bounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutTargetCollectionInput
+  royalties?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutCollectionInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutCollectionInput
+}
+
+export type CollectionCreateOrConnectWithoutPaymentsInput = {
+  where: Prisma.CollectionWhereUniqueInput
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutPaymentsInput, Prisma.CollectionUncheckedCreateWithoutPaymentsInput>
+}
+
+export type CollectionUpsertWithoutPaymentsInput = {
+  update: Prisma.XOR<Prisma.CollectionUpdateWithoutPaymentsInput, Prisma.CollectionUncheckedUpdateWithoutPaymentsInput>
+  create: Prisma.XOR<Prisma.CollectionCreateWithoutPaymentsInput, Prisma.CollectionUncheckedCreateWithoutPaymentsInput>
+  where?: Prisma.CollectionWhereInput
+}
+
+export type CollectionUpdateToOneWithWhereWithoutPaymentsInput = {
+  where?: Prisma.CollectionWhereInput
+  data: Prisma.XOR<Prisma.CollectionUpdateWithoutPaymentsInput, Prisma.CollectionUncheckedUpdateWithoutPaymentsInput>
+}
+
+export type CollectionUpdateWithoutPaymentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutCollectionsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAppCollectionsNestedInput
+  area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
+  parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
+  upstreamCollection?: Prisma.CollectionUpdateOneWithoutDownstreamCollectionsNestedInput
+  downstreamCollections?: Prisma.CollectionUpdateManyWithoutUpstreamCollectionNestedInput
+  upstreamPath?: Prisma.PathUpdateOneWithoutMountedCollectionsNestedInput
+  installedRevision?: Prisma.RevisionUpdateOneWithoutMountedCollectionsNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUpdateManyWithoutSourceCollectionNestedInput
+  paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUpdateManyWithoutTargetCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUncheckedUpdateWithoutPaymentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
+  downstreamCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamCollectionNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUncheckedUpdateManyWithoutSourceCollectionNestedInput
+  paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutCollectionNestedInput
 }
 
 export type CollectionCreateManyUserInput = {
@@ -2219,15 +5428,32 @@ export type CollectionCreateManyUserInput = {
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
+  organizationId?: string | null
+  oauthClientId?: string | null
   areaId?: string | null
   parentId?: string | null
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
-  copiedFromCollectionId?: string | null
-  sourceReleaseId?: string | null
+  upstreamCollectionId?: string | null
+  upstreamPathId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -2237,24 +5463,47 @@ export type CollectionUpdateWithoutUserInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneWithoutCollectionsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAppCollectionsNestedInput
   area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
   parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
   children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
-  copiedFrom?: Prisma.CollectionUpdateOneWithoutCopiesNestedInput
-  copies?: Prisma.CollectionUpdateManyWithoutCopiedFromNestedInput
-  sourceRelease?: Prisma.ReleaseUpdateOneWithoutImportedIntoNestedInput
+  upstreamCollection?: Prisma.CollectionUpdateOneWithoutDownstreamCollectionsNestedInput
+  downstreamCollections?: Prisma.CollectionUpdateManyWithoutUpstreamCollectionNestedInput
+  upstreamPath?: Prisma.PathUpdateOneWithoutMountedCollectionsNestedInput
+  installedRevision?: Prisma.RevisionUpdateOneWithoutMountedCollectionsNestedInput
   entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUpdateManyWithoutSourceCollectionNestedInput
   paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
   accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
-  packImports?: Prisma.PackImportUpdateManyWithoutTargetCollectionNestedInput
-  publishedPacks?: Prisma.PackUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUpdateManyWithoutCollectionNestedInput
 }
 
 export type CollectionUncheckedUpdateWithoutUserInput = {
@@ -2262,24 +5511,47 @@ export type CollectionUncheckedUpdateWithoutUserInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
-  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
-  copies?: Prisma.CollectionUncheckedUpdateManyWithoutCopiedFromNestedInput
+  downstreamCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamCollectionNestedInput
   entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUncheckedUpdateManyWithoutSourceCollectionNestedInput
   paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
   accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
-  packImports?: Prisma.PackImportUncheckedUpdateManyWithoutTargetCollectionNestedInput
-  publishedPacks?: Prisma.PackUncheckedUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutCollectionNestedInput
 }
 
 export type CollectionUncheckedUpdateManyWithoutUserInput = {
@@ -2287,15 +5559,364 @@ export type CollectionUncheckedUpdateManyWithoutUserInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
-  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type CollectionCreateManyOrganizationInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  kind?: $Enums.CollectionKind
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  userId: string
+  oauthClientId?: string | null
+  areaId?: string | null
+  parentId?: string | null
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  syncMode?: $Enums.SyncMode
+  upstreamCollectionId?: string | null
+  upstreamPathId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type CollectionUpdateWithoutOrganizationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAppCollectionsNestedInput
+  area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
+  parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
+  upstreamCollection?: Prisma.CollectionUpdateOneWithoutDownstreamCollectionsNestedInput
+  downstreamCollections?: Prisma.CollectionUpdateManyWithoutUpstreamCollectionNestedInput
+  upstreamPath?: Prisma.PathUpdateOneWithoutMountedCollectionsNestedInput
+  installedRevision?: Prisma.RevisionUpdateOneWithoutMountedCollectionsNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUpdateManyWithoutSourceCollectionNestedInput
+  paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUncheckedUpdateWithoutOrganizationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
+  downstreamCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamCollectionNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUncheckedUpdateManyWithoutSourceCollectionNestedInput
+  paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUncheckedUpdateManyWithoutOrganizationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type CollectionCreateManyOauthClientInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  kind?: $Enums.CollectionKind
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  userId: string
+  organizationId?: string | null
+  areaId?: string | null
+  parentId?: string | null
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  syncMode?: $Enums.SyncMode
+  upstreamCollectionId?: string | null
+  upstreamPathId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type CollectionUpdateWithoutOauthClientInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutCollectionsNestedInput
+  area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
+  parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
+  upstreamCollection?: Prisma.CollectionUpdateOneWithoutDownstreamCollectionsNestedInput
+  downstreamCollections?: Prisma.CollectionUpdateManyWithoutUpstreamCollectionNestedInput
+  upstreamPath?: Prisma.PathUpdateOneWithoutMountedCollectionsNestedInput
+  installedRevision?: Prisma.RevisionUpdateOneWithoutMountedCollectionsNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUpdateManyWithoutSourceCollectionNestedInput
+  paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUncheckedUpdateWithoutOauthClientInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
+  downstreamCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamCollectionNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUncheckedUpdateManyWithoutSourceCollectionNestedInput
+  paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUncheckedUpdateManyWithoutOauthClientInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -2305,15 +5926,32 @@ export type CollectionCreateManyAreaInput = {
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
   userId: string
+  organizationId?: string | null
+  oauthClientId?: string | null
   parentId?: string | null
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
-  copiedFromCollectionId?: string | null
-  sourceReleaseId?: string | null
+  upstreamCollectionId?: string | null
+  upstreamPathId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -2323,24 +5961,47 @@ export type CollectionUpdateWithoutAreaInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutCollectionsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAppCollectionsNestedInput
   parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
   children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
-  copiedFrom?: Prisma.CollectionUpdateOneWithoutCopiesNestedInput
-  copies?: Prisma.CollectionUpdateManyWithoutCopiedFromNestedInput
-  sourceRelease?: Prisma.ReleaseUpdateOneWithoutImportedIntoNestedInput
+  upstreamCollection?: Prisma.CollectionUpdateOneWithoutDownstreamCollectionsNestedInput
+  downstreamCollections?: Prisma.CollectionUpdateManyWithoutUpstreamCollectionNestedInput
+  upstreamPath?: Prisma.PathUpdateOneWithoutMountedCollectionsNestedInput
+  installedRevision?: Prisma.RevisionUpdateOneWithoutMountedCollectionsNestedInput
   entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUpdateManyWithoutSourceCollectionNestedInput
   paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
   accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
-  packImports?: Prisma.PackImportUpdateManyWithoutTargetCollectionNestedInput
-  publishedPacks?: Prisma.PackUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUpdateManyWithoutCollectionNestedInput
 }
 
 export type CollectionUncheckedUpdateWithoutAreaInput = {
@@ -2348,24 +6009,47 @@ export type CollectionUncheckedUpdateWithoutAreaInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
-  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
-  copies?: Prisma.CollectionUncheckedUpdateManyWithoutCopiedFromNestedInput
+  downstreamCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamCollectionNestedInput
   entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUncheckedUpdateManyWithoutSourceCollectionNestedInput
   paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
   accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
-  packImports?: Prisma.PackImportUncheckedUpdateManyWithoutTargetCollectionNestedInput
-  publishedPacks?: Prisma.PackUncheckedUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutCollectionNestedInput
 }
 
 export type CollectionUncheckedUpdateManyWithoutAreaInput = {
@@ -2373,15 +6057,32 @@ export type CollectionUncheckedUpdateManyWithoutAreaInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
-  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -2391,33 +6092,67 @@ export type CollectionCreateManyParentInput = {
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
   userId: string
+  organizationId?: string | null
+  oauthClientId?: string | null
   areaId?: string | null
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
-  copiedFromCollectionId?: string | null
-  sourceReleaseId?: string | null
+  upstreamCollectionId?: string | null
+  upstreamPathId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
-export type CollectionCreateManyCopiedFromInput = {
+export type CollectionCreateManyUpstreamCollectionInput = {
   id?: string
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
   userId: string
+  organizationId?: string | null
+  oauthClientId?: string | null
   areaId?: string | null
   parentId?: string | null
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
-  sourceReleaseId?: string | null
+  upstreamPathId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -2427,24 +6162,47 @@ export type CollectionUpdateWithoutParentInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutCollectionsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAppCollectionsNestedInput
   area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
   children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
-  copiedFrom?: Prisma.CollectionUpdateOneWithoutCopiesNestedInput
-  copies?: Prisma.CollectionUpdateManyWithoutCopiedFromNestedInput
-  sourceRelease?: Prisma.ReleaseUpdateOneWithoutImportedIntoNestedInput
+  upstreamCollection?: Prisma.CollectionUpdateOneWithoutDownstreamCollectionsNestedInput
+  downstreamCollections?: Prisma.CollectionUpdateManyWithoutUpstreamCollectionNestedInput
+  upstreamPath?: Prisma.PathUpdateOneWithoutMountedCollectionsNestedInput
+  installedRevision?: Prisma.RevisionUpdateOneWithoutMountedCollectionsNestedInput
   entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUpdateManyWithoutSourceCollectionNestedInput
   paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
   accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
-  packImports?: Prisma.PackImportUpdateManyWithoutTargetCollectionNestedInput
-  publishedPacks?: Prisma.PackUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUpdateManyWithoutCollectionNestedInput
 }
 
 export type CollectionUncheckedUpdateWithoutParentInput = {
@@ -2452,24 +6210,47 @@ export type CollectionUncheckedUpdateWithoutParentInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
-  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
-  copies?: Prisma.CollectionUncheckedUpdateManyWithoutCopiedFromNestedInput
+  downstreamCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamCollectionNestedInput
   entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUncheckedUpdateManyWithoutSourceCollectionNestedInput
   paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
   accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
-  packImports?: Prisma.PackImportUncheckedUpdateManyWithoutTargetCollectionNestedInput
-  publishedPacks?: Prisma.PackUncheckedUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutCollectionNestedInput
 }
 
 export type CollectionUncheckedUpdateManyWithoutParentInput = {
@@ -2477,169 +6258,495 @@ export type CollectionUncheckedUpdateManyWithoutParentInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
-  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type CollectionUpdateWithoutCopiedFromInput = {
+export type CollectionUpdateWithoutUpstreamCollectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutCollectionsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAppCollectionsNestedInput
   area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
   parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
   children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
-  copies?: Prisma.CollectionUpdateManyWithoutCopiedFromNestedInput
-  sourceRelease?: Prisma.ReleaseUpdateOneWithoutImportedIntoNestedInput
+  downstreamCollections?: Prisma.CollectionUpdateManyWithoutUpstreamCollectionNestedInput
+  upstreamPath?: Prisma.PathUpdateOneWithoutMountedCollectionsNestedInput
+  installedRevision?: Prisma.RevisionUpdateOneWithoutMountedCollectionsNestedInput
   entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUpdateManyWithoutSourceCollectionNestedInput
   paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
   accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
-  packImports?: Prisma.PackImportUpdateManyWithoutTargetCollectionNestedInput
-  publishedPacks?: Prisma.PackUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUpdateManyWithoutCollectionNestedInput
 }
 
-export type CollectionUncheckedUpdateWithoutCopiedFromInput = {
+export type CollectionUncheckedUpdateWithoutUpstreamCollectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
-  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
-  copies?: Prisma.CollectionUncheckedUpdateManyWithoutCopiedFromNestedInput
+  downstreamCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamCollectionNestedInput
   entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUncheckedUpdateManyWithoutSourceCollectionNestedInput
   paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
   accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
-  packImports?: Prisma.PackImportUncheckedUpdateManyWithoutTargetCollectionNestedInput
-  publishedPacks?: Prisma.PackUncheckedUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutCollectionNestedInput
 }
 
-export type CollectionUncheckedUpdateManyWithoutCopiedFromInput = {
+export type CollectionUncheckedUpdateManyWithoutUpstreamCollectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
-  sourceReleaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type CollectionCreateManySourceReleaseInput = {
+export type CollectionCreateManyUpstreamPathInput = {
   id?: string
   name: string
   slug: string
   description?: string | null
+  kind?: $Enums.CollectionKind
   visibility?: $Enums.Visibility
   version?: number
   entryCount?: number
   userId: string
+  organizationId?: string | null
+  oauthClientId?: string | null
   areaId?: string | null
   parentId?: string | null
-  isVirtualMount?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   syncMode?: $Enums.SyncMode
-  copiedFromCollectionId?: string | null
+  upstreamCollectionId?: string | null
+  installedRevisionId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
-export type CollectionUpdateWithoutSourceReleaseInput = {
+export type CollectionUpdateWithoutUpstreamPathInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutCollectionsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAppCollectionsNestedInput
   area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
   parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
   children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
-  copiedFrom?: Prisma.CollectionUpdateOneWithoutCopiesNestedInput
-  copies?: Prisma.CollectionUpdateManyWithoutCopiedFromNestedInput
+  upstreamCollection?: Prisma.CollectionUpdateOneWithoutDownstreamCollectionsNestedInput
+  downstreamCollections?: Prisma.CollectionUpdateManyWithoutUpstreamCollectionNestedInput
+  installedRevision?: Prisma.RevisionUpdateOneWithoutMountedCollectionsNestedInput
   entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUpdateManyWithoutSourceCollectionNestedInput
   paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
   accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
-  packImports?: Prisma.PackImportUpdateManyWithoutTargetCollectionNestedInput
-  publishedPacks?: Prisma.PackUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUpdateManyWithoutCollectionNestedInput
 }
 
-export type CollectionUncheckedUpdateWithoutSourceReleaseInput = {
+export type CollectionUncheckedUpdateWithoutUpstreamPathInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
-  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
-  copies?: Prisma.CollectionUncheckedUpdateManyWithoutCopiedFromNestedInput
+  downstreamCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamCollectionNestedInput
   entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUncheckedUpdateManyWithoutSourceCollectionNestedInput
   paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
   accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
-  packImports?: Prisma.PackImportUncheckedUpdateManyWithoutTargetCollectionNestedInput
-  publishedPacks?: Prisma.PackUncheckedUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutCollectionNestedInput
 }
 
-export type CollectionUncheckedUpdateManyWithoutSourceReleaseInput = {
+export type CollectionUncheckedUpdateManyWithoutUpstreamPathInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
   visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
   version?: Prisma.IntFieldUpdateOperationsInput | number
   entryCount?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVirtualMount?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
-  copiedFromCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installedRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type CollectionCreateManyInstalledRevisionInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  kind?: $Enums.CollectionKind
+  visibility?: $Enums.Visibility
+  version?: number
+  entryCount?: number
+  userId: string
+  organizationId?: string | null
+  oauthClientId?: string | null
+  areaId?: string | null
+  parentId?: string | null
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  syncMode?: $Enums.SyncMode
+  upstreamCollectionId?: string | null
+  upstreamPathId?: string | null
+  accessMode?: $Enums.CollectionAccessMode
+  monetizationType?: $Enums.MonetizationType
+  mFactor?: number
+  oneTimePriceCents?: number | null
+  platformFeePercent?: number
+  maintainerFeePercent?: number
+  contributorPoolPercent?: number
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: number
+  sponsoredMFactor?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type CollectionUpdateWithoutInstalledRevisionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutCollectionsNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutCollectionsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAppCollectionsNestedInput
+  area?: Prisma.AreaUpdateOneWithoutCollectionsNestedInput
+  parent?: Prisma.CollectionUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.CollectionUpdateManyWithoutParentNestedInput
+  upstreamCollection?: Prisma.CollectionUpdateOneWithoutDownstreamCollectionsNestedInput
+  downstreamCollections?: Prisma.CollectionUpdateManyWithoutUpstreamCollectionNestedInput
+  upstreamPath?: Prisma.PathUpdateOneWithoutMountedCollectionsNestedInput
+  entries?: Prisma.EntryUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUpdateManyWithoutSourceCollectionNestedInput
+  paths?: Prisma.PathUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUncheckedUpdateWithoutInstalledRevisionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  children?: Prisma.CollectionUncheckedUpdateManyWithoutParentNestedInput
+  downstreamCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamCollectionNestedInput
+  entries?: Prisma.EntryUncheckedUpdateManyWithoutCollectionNestedInput
+  originatedEntries?: Prisma.EntryUncheckedUpdateManyWithoutSourceCollectionNestedInput
+  paths?: Prisma.PathUncheckedUpdateManyWithoutCollectionNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutCollectionNestedInput
+  accessRequests?: Prisma.AccessRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutCollectionNestedInput
+  usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutCollectionNestedInput
+  bounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutTargetCollectionNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutCollectionNestedInput
+  royalties?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutCollectionNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutCollectionNestedInput
+}
+
+export type CollectionUncheckedUpdateManyWithoutInstalledRevisionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.EnumCollectionKindFieldUpdateOperationsInput | $Enums.CollectionKind
+  visibility?: Prisma.EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  entryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  upstreamCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamPathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessMode?: Prisma.EnumCollectionAccessModeFieldUpdateOperationsInput | $Enums.CollectionAccessMode
+  monetizationType?: Prisma.EnumMonetizationTypeFieldUpdateOperationsInput | $Enums.MonetizationType
+  mFactor?: Prisma.FloatFieldUpdateOperationsInput | number
+  oneTimePriceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  platformFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  maintainerFeePercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  contributorPoolPercent?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVerifiedOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sponsorBudgetRemainingCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sponsoredMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -2651,22 +6758,34 @@ export type CollectionUncheckedUpdateManyWithoutSourceReleaseInput = {
 
 export type CollectionCountOutputType = {
   children: number
-  copies: number
+  downstreamCollections: number
   entries: number
+  originatedEntries: number
   paths: number
   accessGrants: number
-  packImports: number
-  publishedPacks: number
+  accessRequests: number
+  contextRequests: number
+  usageLedgers: number
+  bounties: number
+  payments: number
+  royalties: number
+  stars: number
 }
 
 export type CollectionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   children?: boolean | CollectionCountOutputTypeCountChildrenArgs
-  copies?: boolean | CollectionCountOutputTypeCountCopiesArgs
+  downstreamCollections?: boolean | CollectionCountOutputTypeCountDownstreamCollectionsArgs
   entries?: boolean | CollectionCountOutputTypeCountEntriesArgs
+  originatedEntries?: boolean | CollectionCountOutputTypeCountOriginatedEntriesArgs
   paths?: boolean | CollectionCountOutputTypeCountPathsArgs
   accessGrants?: boolean | CollectionCountOutputTypeCountAccessGrantsArgs
-  packImports?: boolean | CollectionCountOutputTypeCountPackImportsArgs
-  publishedPacks?: boolean | CollectionCountOutputTypeCountPublishedPacksArgs
+  accessRequests?: boolean | CollectionCountOutputTypeCountAccessRequestsArgs
+  contextRequests?: boolean | CollectionCountOutputTypeCountContextRequestsArgs
+  usageLedgers?: boolean | CollectionCountOutputTypeCountUsageLedgersArgs
+  bounties?: boolean | CollectionCountOutputTypeCountBountiesArgs
+  payments?: boolean | CollectionCountOutputTypeCountPaymentsArgs
+  royalties?: boolean | CollectionCountOutputTypeCountRoyaltiesArgs
+  stars?: boolean | CollectionCountOutputTypeCountStarsArgs
 }
 
 /**
@@ -2689,7 +6808,7 @@ export type CollectionCountOutputTypeCountChildrenArgs<ExtArgs extends runtime.T
 /**
  * CollectionCountOutputType without action
  */
-export type CollectionCountOutputTypeCountCopiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type CollectionCountOutputTypeCountDownstreamCollectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.CollectionWhereInput
 }
 
@@ -2697,6 +6816,13 @@ export type CollectionCountOutputTypeCountCopiesArgs<ExtArgs extends runtime.Typ
  * CollectionCountOutputType without action
  */
 export type CollectionCountOutputTypeCountEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EntryWhereInput
+}
+
+/**
+ * CollectionCountOutputType without action
+ */
+export type CollectionCountOutputTypeCountOriginatedEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.EntryWhereInput
 }
 
@@ -2717,15 +6843,50 @@ export type CollectionCountOutputTypeCountAccessGrantsArgs<ExtArgs extends runti
 /**
  * CollectionCountOutputType without action
  */
-export type CollectionCountOutputTypeCountPackImportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PackImportWhereInput
+export type CollectionCountOutputTypeCountAccessRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AccessRequestWhereInput
 }
 
 /**
  * CollectionCountOutputType without action
  */
-export type CollectionCountOutputTypeCountPublishedPacksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PackWhereInput
+export type CollectionCountOutputTypeCountContextRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ContextRequestWhereInput
+}
+
+/**
+ * CollectionCountOutputType without action
+ */
+export type CollectionCountOutputTypeCountUsageLedgersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ApiUsageLedgerWhereInput
+}
+
+/**
+ * CollectionCountOutputType without action
+ */
+export type CollectionCountOutputTypeCountBountiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.KnowledgeBountyWhereInput
+}
+
+/**
+ * CollectionCountOutputType without action
+ */
+export type CollectionCountOutputTypeCountPaymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PaymentWhereInput
+}
+
+/**
+ * CollectionCountOutputType without action
+ */
+export type CollectionCountOutputTypeCountRoyaltiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserRoyaltyWhereInput
+}
+
+/**
+ * CollectionCountOutputType without action
+ */
+export type CollectionCountOutputTypeCountStarsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.StarWhereInput
 }
 
 
@@ -2734,30 +6895,56 @@ export type CollectionSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   name?: boolean
   slug?: boolean
   description?: boolean
+  kind?: boolean
   visibility?: boolean
   version?: boolean
   entryCount?: boolean
   userId?: boolean
+  organizationId?: boolean
+  oauthClientId?: boolean
   areaId?: boolean
   parentId?: boolean
-  isVirtualMount?: boolean
+  externalSubjectKey?: boolean
+  accessCode?: boolean
+  accessCodeType?: boolean
+  accessCodeExpiresAt?: boolean
   syncMode?: boolean
-  copiedFromCollectionId?: boolean
-  sourceReleaseId?: boolean
+  upstreamCollectionId?: boolean
+  upstreamPathId?: boolean
+  installedRevisionId?: boolean
+  accessMode?: boolean
+  monetizationType?: boolean
+  mFactor?: boolean
+  oneTimePriceCents?: boolean
+  platformFeePercent?: boolean
+  maintainerFeePercent?: boolean
+  contributorPoolPercent?: boolean
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: boolean
+  sponsoredMFactor?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.Collection$organizationArgs<ExtArgs>
+  oauthClient?: boolean | Prisma.Collection$oauthClientArgs<ExtArgs>
   area?: boolean | Prisma.Collection$areaArgs<ExtArgs>
   parent?: boolean | Prisma.Collection$parentArgs<ExtArgs>
   children?: boolean | Prisma.Collection$childrenArgs<ExtArgs>
-  copiedFrom?: boolean | Prisma.Collection$copiedFromArgs<ExtArgs>
-  copies?: boolean | Prisma.Collection$copiesArgs<ExtArgs>
-  sourceRelease?: boolean | Prisma.Collection$sourceReleaseArgs<ExtArgs>
+  upstreamCollection?: boolean | Prisma.Collection$upstreamCollectionArgs<ExtArgs>
+  downstreamCollections?: boolean | Prisma.Collection$downstreamCollectionsArgs<ExtArgs>
+  upstreamPath?: boolean | Prisma.Collection$upstreamPathArgs<ExtArgs>
+  installedRevision?: boolean | Prisma.Collection$installedRevisionArgs<ExtArgs>
   entries?: boolean | Prisma.Collection$entriesArgs<ExtArgs>
+  originatedEntries?: boolean | Prisma.Collection$originatedEntriesArgs<ExtArgs>
   paths?: boolean | Prisma.Collection$pathsArgs<ExtArgs>
   accessGrants?: boolean | Prisma.Collection$accessGrantsArgs<ExtArgs>
-  packImports?: boolean | Prisma.Collection$packImportsArgs<ExtArgs>
-  publishedPacks?: boolean | Prisma.Collection$publishedPacksArgs<ExtArgs>
+  accessRequests?: boolean | Prisma.Collection$accessRequestsArgs<ExtArgs>
+  contextRequests?: boolean | Prisma.Collection$contextRequestsArgs<ExtArgs>
+  usageLedgers?: boolean | Prisma.Collection$usageLedgersArgs<ExtArgs>
+  bounties?: boolean | Prisma.Collection$bountiesArgs<ExtArgs>
+  payments?: boolean | Prisma.Collection$paymentsArgs<ExtArgs>
+  royalties?: boolean | Prisma.Collection$royaltiesArgs<ExtArgs>
+  stars?: boolean | Prisma.Collection$starsArgs<ExtArgs>
   _count?: boolean | Prisma.CollectionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["collection"]>
 
@@ -2766,23 +6953,43 @@ export type CollectionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   name?: boolean
   slug?: boolean
   description?: boolean
+  kind?: boolean
   visibility?: boolean
   version?: boolean
   entryCount?: boolean
   userId?: boolean
+  organizationId?: boolean
+  oauthClientId?: boolean
   areaId?: boolean
   parentId?: boolean
-  isVirtualMount?: boolean
+  externalSubjectKey?: boolean
+  accessCode?: boolean
+  accessCodeType?: boolean
+  accessCodeExpiresAt?: boolean
   syncMode?: boolean
-  copiedFromCollectionId?: boolean
-  sourceReleaseId?: boolean
+  upstreamCollectionId?: boolean
+  upstreamPathId?: boolean
+  installedRevisionId?: boolean
+  accessMode?: boolean
+  monetizationType?: boolean
+  mFactor?: boolean
+  oneTimePriceCents?: boolean
+  platformFeePercent?: boolean
+  maintainerFeePercent?: boolean
+  contributorPoolPercent?: boolean
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: boolean
+  sponsoredMFactor?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.Collection$organizationArgs<ExtArgs>
+  oauthClient?: boolean | Prisma.Collection$oauthClientArgs<ExtArgs>
   area?: boolean | Prisma.Collection$areaArgs<ExtArgs>
   parent?: boolean | Prisma.Collection$parentArgs<ExtArgs>
-  copiedFrom?: boolean | Prisma.Collection$copiedFromArgs<ExtArgs>
-  sourceRelease?: boolean | Prisma.Collection$sourceReleaseArgs<ExtArgs>
+  upstreamCollection?: boolean | Prisma.Collection$upstreamCollectionArgs<ExtArgs>
+  upstreamPath?: boolean | Prisma.Collection$upstreamPathArgs<ExtArgs>
+  installedRevision?: boolean | Prisma.Collection$installedRevisionArgs<ExtArgs>
 }, ExtArgs["result"]["collection"]>
 
 export type CollectionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -2790,23 +6997,43 @@ export type CollectionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   name?: boolean
   slug?: boolean
   description?: boolean
+  kind?: boolean
   visibility?: boolean
   version?: boolean
   entryCount?: boolean
   userId?: boolean
+  organizationId?: boolean
+  oauthClientId?: boolean
   areaId?: boolean
   parentId?: boolean
-  isVirtualMount?: boolean
+  externalSubjectKey?: boolean
+  accessCode?: boolean
+  accessCodeType?: boolean
+  accessCodeExpiresAt?: boolean
   syncMode?: boolean
-  copiedFromCollectionId?: boolean
-  sourceReleaseId?: boolean
+  upstreamCollectionId?: boolean
+  upstreamPathId?: boolean
+  installedRevisionId?: boolean
+  accessMode?: boolean
+  monetizationType?: boolean
+  mFactor?: boolean
+  oneTimePriceCents?: boolean
+  platformFeePercent?: boolean
+  maintainerFeePercent?: boolean
+  contributorPoolPercent?: boolean
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: boolean
+  sponsoredMFactor?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.Collection$organizationArgs<ExtArgs>
+  oauthClient?: boolean | Prisma.Collection$oauthClientArgs<ExtArgs>
   area?: boolean | Prisma.Collection$areaArgs<ExtArgs>
   parent?: boolean | Prisma.Collection$parentArgs<ExtArgs>
-  copiedFrom?: boolean | Prisma.Collection$copiedFromArgs<ExtArgs>
-  sourceRelease?: boolean | Prisma.Collection$sourceReleaseArgs<ExtArgs>
+  upstreamCollection?: boolean | Prisma.Collection$upstreamCollectionArgs<ExtArgs>
+  upstreamPath?: boolean | Prisma.Collection$upstreamPathArgs<ExtArgs>
+  installedRevision?: boolean | Prisma.Collection$installedRevisionArgs<ExtArgs>
 }, ExtArgs["result"]["collection"]>
 
 export type CollectionSelectScalar = {
@@ -2814,82 +7041,140 @@ export type CollectionSelectScalar = {
   name?: boolean
   slug?: boolean
   description?: boolean
+  kind?: boolean
   visibility?: boolean
   version?: boolean
   entryCount?: boolean
   userId?: boolean
+  organizationId?: boolean
+  oauthClientId?: boolean
   areaId?: boolean
   parentId?: boolean
-  isVirtualMount?: boolean
+  externalSubjectKey?: boolean
+  accessCode?: boolean
+  accessCodeType?: boolean
+  accessCodeExpiresAt?: boolean
   syncMode?: boolean
-  copiedFromCollectionId?: boolean
-  sourceReleaseId?: boolean
+  upstreamCollectionId?: boolean
+  upstreamPathId?: boolean
+  installedRevisionId?: boolean
+  accessMode?: boolean
+  monetizationType?: boolean
+  mFactor?: boolean
+  oneTimePriceCents?: boolean
+  platformFeePercent?: boolean
+  maintainerFeePercent?: boolean
+  contributorPoolPercent?: boolean
+  isVerifiedOfficial?: boolean
+  sponsorBudgetRemainingCents?: boolean
+  sponsoredMFactor?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type CollectionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "description" | "visibility" | "version" | "entryCount" | "userId" | "areaId" | "parentId" | "isVirtualMount" | "syncMode" | "copiedFromCollectionId" | "sourceReleaseId" | "createdAt" | "updatedAt", ExtArgs["result"]["collection"]>
+export type CollectionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "description" | "kind" | "visibility" | "version" | "entryCount" | "userId" | "organizationId" | "oauthClientId" | "areaId" | "parentId" | "externalSubjectKey" | "accessCode" | "accessCodeType" | "accessCodeExpiresAt" | "syncMode" | "upstreamCollectionId" | "upstreamPathId" | "installedRevisionId" | "accessMode" | "monetizationType" | "mFactor" | "oneTimePriceCents" | "platformFeePercent" | "maintainerFeePercent" | "contributorPoolPercent" | "isVerifiedOfficial" | "sponsorBudgetRemainingCents" | "sponsoredMFactor" | "createdAt" | "updatedAt", ExtArgs["result"]["collection"]>
 export type CollectionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.Collection$organizationArgs<ExtArgs>
+  oauthClient?: boolean | Prisma.Collection$oauthClientArgs<ExtArgs>
   area?: boolean | Prisma.Collection$areaArgs<ExtArgs>
   parent?: boolean | Prisma.Collection$parentArgs<ExtArgs>
   children?: boolean | Prisma.Collection$childrenArgs<ExtArgs>
-  copiedFrom?: boolean | Prisma.Collection$copiedFromArgs<ExtArgs>
-  copies?: boolean | Prisma.Collection$copiesArgs<ExtArgs>
-  sourceRelease?: boolean | Prisma.Collection$sourceReleaseArgs<ExtArgs>
+  upstreamCollection?: boolean | Prisma.Collection$upstreamCollectionArgs<ExtArgs>
+  downstreamCollections?: boolean | Prisma.Collection$downstreamCollectionsArgs<ExtArgs>
+  upstreamPath?: boolean | Prisma.Collection$upstreamPathArgs<ExtArgs>
+  installedRevision?: boolean | Prisma.Collection$installedRevisionArgs<ExtArgs>
   entries?: boolean | Prisma.Collection$entriesArgs<ExtArgs>
+  originatedEntries?: boolean | Prisma.Collection$originatedEntriesArgs<ExtArgs>
   paths?: boolean | Prisma.Collection$pathsArgs<ExtArgs>
   accessGrants?: boolean | Prisma.Collection$accessGrantsArgs<ExtArgs>
-  packImports?: boolean | Prisma.Collection$packImportsArgs<ExtArgs>
-  publishedPacks?: boolean | Prisma.Collection$publishedPacksArgs<ExtArgs>
+  accessRequests?: boolean | Prisma.Collection$accessRequestsArgs<ExtArgs>
+  contextRequests?: boolean | Prisma.Collection$contextRequestsArgs<ExtArgs>
+  usageLedgers?: boolean | Prisma.Collection$usageLedgersArgs<ExtArgs>
+  bounties?: boolean | Prisma.Collection$bountiesArgs<ExtArgs>
+  payments?: boolean | Prisma.Collection$paymentsArgs<ExtArgs>
+  royalties?: boolean | Prisma.Collection$royaltiesArgs<ExtArgs>
+  stars?: boolean | Prisma.Collection$starsArgs<ExtArgs>
   _count?: boolean | Prisma.CollectionCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CollectionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.Collection$organizationArgs<ExtArgs>
+  oauthClient?: boolean | Prisma.Collection$oauthClientArgs<ExtArgs>
   area?: boolean | Prisma.Collection$areaArgs<ExtArgs>
   parent?: boolean | Prisma.Collection$parentArgs<ExtArgs>
-  copiedFrom?: boolean | Prisma.Collection$copiedFromArgs<ExtArgs>
-  sourceRelease?: boolean | Prisma.Collection$sourceReleaseArgs<ExtArgs>
+  upstreamCollection?: boolean | Prisma.Collection$upstreamCollectionArgs<ExtArgs>
+  upstreamPath?: boolean | Prisma.Collection$upstreamPathArgs<ExtArgs>
+  installedRevision?: boolean | Prisma.Collection$installedRevisionArgs<ExtArgs>
 }
 export type CollectionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.Collection$organizationArgs<ExtArgs>
+  oauthClient?: boolean | Prisma.Collection$oauthClientArgs<ExtArgs>
   area?: boolean | Prisma.Collection$areaArgs<ExtArgs>
   parent?: boolean | Prisma.Collection$parentArgs<ExtArgs>
-  copiedFrom?: boolean | Prisma.Collection$copiedFromArgs<ExtArgs>
-  sourceRelease?: boolean | Prisma.Collection$sourceReleaseArgs<ExtArgs>
+  upstreamCollection?: boolean | Prisma.Collection$upstreamCollectionArgs<ExtArgs>
+  upstreamPath?: boolean | Prisma.Collection$upstreamPathArgs<ExtArgs>
+  installedRevision?: boolean | Prisma.Collection$installedRevisionArgs<ExtArgs>
 }
 
 export type $CollectionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Collection"
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
+    organization: Prisma.$OrganizationPayload<ExtArgs> | null
+    oauthClient: Prisma.$OauthClientPayload<ExtArgs> | null
     area: Prisma.$AreaPayload<ExtArgs> | null
     parent: Prisma.$CollectionPayload<ExtArgs> | null
     children: Prisma.$CollectionPayload<ExtArgs>[]
-    copiedFrom: Prisma.$CollectionPayload<ExtArgs> | null
-    copies: Prisma.$CollectionPayload<ExtArgs>[]
-    sourceRelease: Prisma.$ReleasePayload<ExtArgs> | null
+    upstreamCollection: Prisma.$CollectionPayload<ExtArgs> | null
+    downstreamCollections: Prisma.$CollectionPayload<ExtArgs>[]
+    upstreamPath: Prisma.$PathPayload<ExtArgs> | null
+    installedRevision: Prisma.$RevisionPayload<ExtArgs> | null
     entries: Prisma.$EntryPayload<ExtArgs>[]
+    originatedEntries: Prisma.$EntryPayload<ExtArgs>[]
     paths: Prisma.$PathPayload<ExtArgs>[]
     accessGrants: Prisma.$AccessGrantPayload<ExtArgs>[]
-    packImports: Prisma.$PackImportPayload<ExtArgs>[]
-    publishedPacks: Prisma.$PackPayload<ExtArgs>[]
+    accessRequests: Prisma.$AccessRequestPayload<ExtArgs>[]
+    contextRequests: Prisma.$ContextRequestPayload<ExtArgs>[]
+    usageLedgers: Prisma.$ApiUsageLedgerPayload<ExtArgs>[]
+    bounties: Prisma.$KnowledgeBountyPayload<ExtArgs>[]
+    payments: Prisma.$PaymentPayload<ExtArgs>[]
+    royalties: Prisma.$UserRoyaltyPayload<ExtArgs>[]
+    stars: Prisma.$StarPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
     slug: string
     description: string | null
+    kind: $Enums.CollectionKind
     visibility: $Enums.Visibility
     version: number
     entryCount: number
     userId: string
+    organizationId: string | null
+    oauthClientId: string | null
     areaId: string | null
     parentId: string | null
-    isVirtualMount: boolean
+    externalSubjectKey: string | null
+    accessCode: string | null
+    accessCodeType: $Enums.AccessCodeType
+    accessCodeExpiresAt: Date | null
     syncMode: $Enums.SyncMode
-    copiedFromCollectionId: string | null
-    sourceReleaseId: string | null
+    upstreamCollectionId: string | null
+    upstreamPathId: string | null
+    installedRevisionId: string | null
+    accessMode: $Enums.CollectionAccessMode
+    monetizationType: $Enums.MonetizationType
+    mFactor: number
+    oneTimePriceCents: number | null
+    platformFeePercent: number
+    maintainerFeePercent: number
+    contributorPoolPercent: number
+    isVerifiedOfficial: boolean
+    sponsorBudgetRemainingCents: number
+    sponsoredMFactor: number
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["collection"]>
@@ -3287,17 +7572,26 @@ readonly fields: CollectionFieldRefs;
 export interface Prisma__CollectionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  organization<T extends Prisma.Collection$organizationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$organizationArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  oauthClient<T extends Prisma.Collection$oauthClientArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$oauthClientArgs<ExtArgs>>): Prisma.Prisma__OauthClientClient<runtime.Types.Result.GetResult<Prisma.$OauthClientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   area<T extends Prisma.Collection$areaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$areaArgs<ExtArgs>>): Prisma.Prisma__AreaClient<runtime.Types.Result.GetResult<Prisma.$AreaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   parent<T extends Prisma.Collection$parentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$parentArgs<ExtArgs>>): Prisma.Prisma__CollectionClient<runtime.Types.Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   children<T extends Prisma.Collection$childrenArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$childrenArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  copiedFrom<T extends Prisma.Collection$copiedFromArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$copiedFromArgs<ExtArgs>>): Prisma.Prisma__CollectionClient<runtime.Types.Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  copies<T extends Prisma.Collection$copiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$copiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  sourceRelease<T extends Prisma.Collection$sourceReleaseArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$sourceReleaseArgs<ExtArgs>>): Prisma.Prisma__ReleaseClient<runtime.Types.Result.GetResult<Prisma.$ReleasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  upstreamCollection<T extends Prisma.Collection$upstreamCollectionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$upstreamCollectionArgs<ExtArgs>>): Prisma.Prisma__CollectionClient<runtime.Types.Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  downstreamCollections<T extends Prisma.Collection$downstreamCollectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$downstreamCollectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  upstreamPath<T extends Prisma.Collection$upstreamPathArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$upstreamPathArgs<ExtArgs>>): Prisma.Prisma__PathClient<runtime.Types.Result.GetResult<Prisma.$PathPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  installedRevision<T extends Prisma.Collection$installedRevisionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$installedRevisionArgs<ExtArgs>>): Prisma.Prisma__RevisionClient<runtime.Types.Result.GetResult<Prisma.$RevisionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   entries<T extends Prisma.Collection$entriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$entriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  originatedEntries<T extends Prisma.Collection$originatedEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$originatedEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   paths<T extends Prisma.Collection$pathsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$pathsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PathPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   accessGrants<T extends Prisma.Collection$accessGrantsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$accessGrantsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccessGrantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  packImports<T extends Prisma.Collection$packImportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$packImportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PackImportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  publishedPacks<T extends Prisma.Collection$publishedPacksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$publishedPacksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  accessRequests<T extends Prisma.Collection$accessRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$accessRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  contextRequests<T extends Prisma.Collection$contextRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$contextRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContextRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  usageLedgers<T extends Prisma.Collection$usageLedgersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$usageLedgersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApiUsageLedgerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  bounties<T extends Prisma.Collection$bountiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$bountiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$KnowledgeBountyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  payments<T extends Prisma.Collection$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  royalties<T extends Prisma.Collection$royaltiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$royaltiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserRoyaltyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  stars<T extends Prisma.Collection$starsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collection$starsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StarPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3331,16 +7625,33 @@ export interface CollectionFieldRefs {
   readonly name: Prisma.FieldRef<"Collection", 'String'>
   readonly slug: Prisma.FieldRef<"Collection", 'String'>
   readonly description: Prisma.FieldRef<"Collection", 'String'>
+  readonly kind: Prisma.FieldRef<"Collection", 'CollectionKind'>
   readonly visibility: Prisma.FieldRef<"Collection", 'Visibility'>
   readonly version: Prisma.FieldRef<"Collection", 'Int'>
   readonly entryCount: Prisma.FieldRef<"Collection", 'Int'>
   readonly userId: Prisma.FieldRef<"Collection", 'String'>
+  readonly organizationId: Prisma.FieldRef<"Collection", 'String'>
+  readonly oauthClientId: Prisma.FieldRef<"Collection", 'String'>
   readonly areaId: Prisma.FieldRef<"Collection", 'String'>
   readonly parentId: Prisma.FieldRef<"Collection", 'String'>
-  readonly isVirtualMount: Prisma.FieldRef<"Collection", 'Boolean'>
+  readonly externalSubjectKey: Prisma.FieldRef<"Collection", 'String'>
+  readonly accessCode: Prisma.FieldRef<"Collection", 'String'>
+  readonly accessCodeType: Prisma.FieldRef<"Collection", 'AccessCodeType'>
+  readonly accessCodeExpiresAt: Prisma.FieldRef<"Collection", 'DateTime'>
   readonly syncMode: Prisma.FieldRef<"Collection", 'SyncMode'>
-  readonly copiedFromCollectionId: Prisma.FieldRef<"Collection", 'String'>
-  readonly sourceReleaseId: Prisma.FieldRef<"Collection", 'String'>
+  readonly upstreamCollectionId: Prisma.FieldRef<"Collection", 'String'>
+  readonly upstreamPathId: Prisma.FieldRef<"Collection", 'String'>
+  readonly installedRevisionId: Prisma.FieldRef<"Collection", 'String'>
+  readonly accessMode: Prisma.FieldRef<"Collection", 'CollectionAccessMode'>
+  readonly monetizationType: Prisma.FieldRef<"Collection", 'MonetizationType'>
+  readonly mFactor: Prisma.FieldRef<"Collection", 'Float'>
+  readonly oneTimePriceCents: Prisma.FieldRef<"Collection", 'Int'>
+  readonly platformFeePercent: Prisma.FieldRef<"Collection", 'Float'>
+  readonly maintainerFeePercent: Prisma.FieldRef<"Collection", 'Float'>
+  readonly contributorPoolPercent: Prisma.FieldRef<"Collection", 'Float'>
+  readonly isVerifiedOfficial: Prisma.FieldRef<"Collection", 'Boolean'>
+  readonly sponsorBudgetRemainingCents: Prisma.FieldRef<"Collection", 'Float'>
+  readonly sponsoredMFactor: Prisma.FieldRef<"Collection", 'Float'>
   readonly createdAt: Prisma.FieldRef<"Collection", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Collection", 'DateTime'>
 }
@@ -3744,6 +8055,44 @@ export type CollectionDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
+ * Collection.organization
+ */
+export type Collection$organizationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Organization
+   */
+  select?: Prisma.OrganizationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Organization
+   */
+  omit?: Prisma.OrganizationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrganizationInclude<ExtArgs> | null
+  where?: Prisma.OrganizationWhereInput
+}
+
+/**
+ * Collection.oauthClient
+ */
+export type Collection$oauthClientArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OauthClient
+   */
+  select?: Prisma.OauthClientSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OauthClient
+   */
+  omit?: Prisma.OauthClientOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OauthClientInclude<ExtArgs> | null
+  where?: Prisma.OauthClientWhereInput
+}
+
+/**
  * Collection.area
  */
 export type Collection$areaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3806,9 +8155,9 @@ export type Collection$childrenArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 /**
- * Collection.copiedFrom
+ * Collection.upstreamCollection
  */
-export type Collection$copiedFromArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Collection$upstreamCollectionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Collection
    */
@@ -3825,9 +8174,9 @@ export type Collection$copiedFromArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 /**
- * Collection.copies
+ * Collection.downstreamCollections
  */
-export type Collection$copiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Collection$downstreamCollectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Collection
    */
@@ -3849,28 +8198,71 @@ export type Collection$copiesArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Collection.sourceRelease
+ * Collection.upstreamPath
  */
-export type Collection$sourceReleaseArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Collection$upstreamPathArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Release
+   * Select specific fields to fetch from the Path
    */
-  select?: Prisma.ReleaseSelect<ExtArgs> | null
+  select?: Prisma.PathSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Release
+   * Omit specific fields from the Path
    */
-  omit?: Prisma.ReleaseOmit<ExtArgs> | null
+  omit?: Prisma.PathOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ReleaseInclude<ExtArgs> | null
-  where?: Prisma.ReleaseWhereInput
+  include?: Prisma.PathInclude<ExtArgs> | null
+  where?: Prisma.PathWhereInput
+}
+
+/**
+ * Collection.installedRevision
+ */
+export type Collection$installedRevisionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Revision
+   */
+  select?: Prisma.RevisionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Revision
+   */
+  omit?: Prisma.RevisionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RevisionInclude<ExtArgs> | null
+  where?: Prisma.RevisionWhereInput
 }
 
 /**
  * Collection.entries
  */
 export type Collection$entriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Entry
+   */
+  select?: Prisma.EntrySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Entry
+   */
+  omit?: Prisma.EntryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EntryInclude<ExtArgs> | null
+  where?: Prisma.EntryWhereInput
+  orderBy?: Prisma.EntryOrderByWithRelationInput | Prisma.EntryOrderByWithRelationInput[]
+  cursor?: Prisma.EntryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EntryScalarFieldEnum | Prisma.EntryScalarFieldEnum[]
+}
+
+/**
+ * Collection.originatedEntries
+ */
+export type Collection$originatedEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Entry
    */
@@ -3940,51 +8332,171 @@ export type Collection$accessGrantsArgs<ExtArgs extends runtime.Types.Extensions
 }
 
 /**
- * Collection.packImports
+ * Collection.accessRequests
  */
-export type Collection$packImportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Collection$accessRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the PackImport
+   * Select specific fields to fetch from the AccessRequest
    */
-  select?: Prisma.PackImportSelect<ExtArgs> | null
+  select?: Prisma.AccessRequestSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the PackImport
+   * Omit specific fields from the AccessRequest
    */
-  omit?: Prisma.PackImportOmit<ExtArgs> | null
+  omit?: Prisma.AccessRequestOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PackImportInclude<ExtArgs> | null
-  where?: Prisma.PackImportWhereInput
-  orderBy?: Prisma.PackImportOrderByWithRelationInput | Prisma.PackImportOrderByWithRelationInput[]
-  cursor?: Prisma.PackImportWhereUniqueInput
+  include?: Prisma.AccessRequestInclude<ExtArgs> | null
+  where?: Prisma.AccessRequestWhereInput
+  orderBy?: Prisma.AccessRequestOrderByWithRelationInput | Prisma.AccessRequestOrderByWithRelationInput[]
+  cursor?: Prisma.AccessRequestWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.PackImportScalarFieldEnum | Prisma.PackImportScalarFieldEnum[]
+  distinct?: Prisma.AccessRequestScalarFieldEnum | Prisma.AccessRequestScalarFieldEnum[]
 }
 
 /**
- * Collection.publishedPacks
+ * Collection.contextRequests
  */
-export type Collection$publishedPacksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Collection$contextRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Pack
+   * Select specific fields to fetch from the ContextRequest
    */
-  select?: Prisma.PackSelect<ExtArgs> | null
+  select?: Prisma.ContextRequestSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Pack
+   * Omit specific fields from the ContextRequest
    */
-  omit?: Prisma.PackOmit<ExtArgs> | null
+  omit?: Prisma.ContextRequestOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PackInclude<ExtArgs> | null
-  where?: Prisma.PackWhereInput
-  orderBy?: Prisma.PackOrderByWithRelationInput | Prisma.PackOrderByWithRelationInput[]
-  cursor?: Prisma.PackWhereUniqueInput
+  include?: Prisma.ContextRequestInclude<ExtArgs> | null
+  where?: Prisma.ContextRequestWhereInput
+  orderBy?: Prisma.ContextRequestOrderByWithRelationInput | Prisma.ContextRequestOrderByWithRelationInput[]
+  cursor?: Prisma.ContextRequestWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.PackScalarFieldEnum | Prisma.PackScalarFieldEnum[]
+  distinct?: Prisma.ContextRequestScalarFieldEnum | Prisma.ContextRequestScalarFieldEnum[]
+}
+
+/**
+ * Collection.usageLedgers
+ */
+export type Collection$usageLedgersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ApiUsageLedger
+   */
+  select?: Prisma.ApiUsageLedgerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ApiUsageLedger
+   */
+  omit?: Prisma.ApiUsageLedgerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApiUsageLedgerInclude<ExtArgs> | null
+  where?: Prisma.ApiUsageLedgerWhereInput
+  orderBy?: Prisma.ApiUsageLedgerOrderByWithRelationInput | Prisma.ApiUsageLedgerOrderByWithRelationInput[]
+  cursor?: Prisma.ApiUsageLedgerWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ApiUsageLedgerScalarFieldEnum | Prisma.ApiUsageLedgerScalarFieldEnum[]
+}
+
+/**
+ * Collection.bounties
+ */
+export type Collection$bountiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the KnowledgeBounty
+   */
+  select?: Prisma.KnowledgeBountySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the KnowledgeBounty
+   */
+  omit?: Prisma.KnowledgeBountyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.KnowledgeBountyInclude<ExtArgs> | null
+  where?: Prisma.KnowledgeBountyWhereInput
+  orderBy?: Prisma.KnowledgeBountyOrderByWithRelationInput | Prisma.KnowledgeBountyOrderByWithRelationInput[]
+  cursor?: Prisma.KnowledgeBountyWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.KnowledgeBountyScalarFieldEnum | Prisma.KnowledgeBountyScalarFieldEnum[]
+}
+
+/**
+ * Collection.payments
+ */
+export type Collection$paymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Payment
+   */
+  select?: Prisma.PaymentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Payment
+   */
+  omit?: Prisma.PaymentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PaymentInclude<ExtArgs> | null
+  where?: Prisma.PaymentWhereInput
+  orderBy?: Prisma.PaymentOrderByWithRelationInput | Prisma.PaymentOrderByWithRelationInput[]
+  cursor?: Prisma.PaymentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PaymentScalarFieldEnum | Prisma.PaymentScalarFieldEnum[]
+}
+
+/**
+ * Collection.royalties
+ */
+export type Collection$royaltiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserRoyalty
+   */
+  select?: Prisma.UserRoyaltySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserRoyalty
+   */
+  omit?: Prisma.UserRoyaltyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserRoyaltyInclude<ExtArgs> | null
+  where?: Prisma.UserRoyaltyWhereInput
+  orderBy?: Prisma.UserRoyaltyOrderByWithRelationInput | Prisma.UserRoyaltyOrderByWithRelationInput[]
+  cursor?: Prisma.UserRoyaltyWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserRoyaltyScalarFieldEnum | Prisma.UserRoyaltyScalarFieldEnum[]
+}
+
+/**
+ * Collection.stars
+ */
+export type Collection$starsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Star
+   */
+  select?: Prisma.StarSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Star
+   */
+  omit?: Prisma.StarOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.StarInclude<ExtArgs> | null
+  where?: Prisma.StarWhereInput
+  orderBy?: Prisma.StarOrderByWithRelationInput | Prisma.StarOrderByWithRelationInput[]
+  cursor?: Prisma.StarWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.StarScalarFieldEnum | Prisma.StarScalarFieldEnum[]
 }
 
 /**

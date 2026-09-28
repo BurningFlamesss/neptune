@@ -30,6 +30,10 @@ export type PathMinAggregateOutputType = {
   name: string | null
   isDefault: boolean | null
   isBlindContribution: boolean | null
+  externalSubjectKey: string | null
+  accessCode: string | null
+  accessCodeType: $Enums.AccessCodeType | null
+  accessCodeExpiresAt: Date | null
   forkedFromRevisionId: string | null
   headRevisionId: string | null
   createdAt: Date | null
@@ -43,6 +47,10 @@ export type PathMaxAggregateOutputType = {
   name: string | null
   isDefault: boolean | null
   isBlindContribution: boolean | null
+  externalSubjectKey: string | null
+  accessCode: string | null
+  accessCodeType: $Enums.AccessCodeType | null
+  accessCodeExpiresAt: Date | null
   forkedFromRevisionId: string | null
   headRevisionId: string | null
   createdAt: Date | null
@@ -56,6 +64,10 @@ export type PathCountAggregateOutputType = {
   name: number
   isDefault: number
   isBlindContribution: number
+  externalSubjectKey: number
+  accessCode: number
+  accessCodeType: number
+  accessCodeExpiresAt: number
   forkedFromRevisionId: number
   headRevisionId: number
   createdAt: number
@@ -71,6 +83,10 @@ export type PathMinAggregateInputType = {
   name?: true
   isDefault?: true
   isBlindContribution?: true
+  externalSubjectKey?: true
+  accessCode?: true
+  accessCodeType?: true
+  accessCodeExpiresAt?: true
   forkedFromRevisionId?: true
   headRevisionId?: true
   createdAt?: true
@@ -84,6 +100,10 @@ export type PathMaxAggregateInputType = {
   name?: true
   isDefault?: true
   isBlindContribution?: true
+  externalSubjectKey?: true
+  accessCode?: true
+  accessCodeType?: true
+  accessCodeExpiresAt?: true
   forkedFromRevisionId?: true
   headRevisionId?: true
   createdAt?: true
@@ -97,6 +117,10 @@ export type PathCountAggregateInputType = {
   name?: true
   isDefault?: true
   isBlindContribution?: true
+  externalSubjectKey?: true
+  accessCode?: true
+  accessCodeType?: true
+  accessCodeExpiresAt?: true
   forkedFromRevisionId?: true
   headRevisionId?: true
   createdAt?: true
@@ -183,6 +207,10 @@ export type PathGroupByOutputType = {
   name: string
   isDefault: boolean
   isBlindContribution: boolean
+  externalSubjectKey: string | null
+  accessCode: string | null
+  accessCodeType: $Enums.AccessCodeType
+  accessCodeExpiresAt: Date | null
   forkedFromRevisionId: string | null
   headRevisionId: string | null
   createdAt: Date
@@ -217,6 +245,10 @@ export type PathWhereInput = {
   name?: Prisma.StringFilter<"Path"> | string
   isDefault?: Prisma.BoolFilter<"Path"> | boolean
   isBlindContribution?: Prisma.BoolFilter<"Path"> | boolean
+  externalSubjectKey?: Prisma.StringNullableFilter<"Path"> | string | null
+  accessCode?: Prisma.StringNullableFilter<"Path"> | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFilter<"Path"> | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.DateTimeNullableFilter<"Path"> | Date | string | null
   forkedFromRevisionId?: Prisma.StringNullableFilter<"Path"> | string | null
   headRevisionId?: Prisma.StringNullableFilter<"Path"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Path"> | Date | string
@@ -226,11 +258,12 @@ export type PathWhereInput = {
   forkedFromRevision?: Prisma.XOR<Prisma.RevisionNullableScalarRelationFilter, Prisma.RevisionWhereInput> | null
   revisions?: Prisma.RevisionListRelationFilter
   headRevision?: Prisma.XOR<Prisma.RevisionNullableScalarRelationFilter, Prisma.RevisionWhereInput> | null
+  mountedCollections?: Prisma.CollectionListRelationFilter
+  accessGrants?: Prisma.AccessGrantListRelationFilter
   targetCombines?: Prisma.CombineListRelationFilter
   sourceCombines?: Prisma.CombineListRelationFilter
-  bountySubmissions?: Prisma.BountySubmissionListRelationFilter
-  path?: Prisma.XOR<Prisma.PathNullableScalarRelationFilter, Prisma.PathWhereInput> | null
-  paths?: Prisma.PathListRelationFilter
+  parentPath?: Prisma.XOR<Prisma.PathNullableScalarRelationFilter, Prisma.PathWhereInput> | null
+  childPaths?: Prisma.PathListRelationFilter
 }
 
 export type PathOrderByWithRelationInput = {
@@ -239,6 +272,10 @@ export type PathOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   isDefault?: Prisma.SortOrder
   isBlindContribution?: Prisma.SortOrder
+  externalSubjectKey?: Prisma.SortOrderInput | Prisma.SortOrder
+  accessCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  accessCodeType?: Prisma.SortOrder
+  accessCodeExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   forkedFromRevisionId?: Prisma.SortOrderInput | Prisma.SortOrder
   headRevisionId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -248,11 +285,12 @@ export type PathOrderByWithRelationInput = {
   forkedFromRevision?: Prisma.RevisionOrderByWithRelationInput
   revisions?: Prisma.RevisionOrderByRelationAggregateInput
   headRevision?: Prisma.RevisionOrderByWithRelationInput
+  mountedCollections?: Prisma.CollectionOrderByRelationAggregateInput
+  accessGrants?: Prisma.AccessGrantOrderByRelationAggregateInput
   targetCombines?: Prisma.CombineOrderByRelationAggregateInput
   sourceCombines?: Prisma.CombineOrderByRelationAggregateInput
-  bountySubmissions?: Prisma.BountySubmissionOrderByRelationAggregateInput
-  path?: Prisma.PathOrderByWithRelationInput
-  paths?: Prisma.PathOrderByRelationAggregateInput
+  parentPath?: Prisma.PathOrderByWithRelationInput
+  childPaths?: Prisma.PathOrderByRelationAggregateInput
 }
 
 export type PathWhereUniqueInput = Prisma.AtLeast<{
@@ -265,6 +303,10 @@ export type PathWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Path"> | string
   isDefault?: Prisma.BoolFilter<"Path"> | boolean
   isBlindContribution?: Prisma.BoolFilter<"Path"> | boolean
+  externalSubjectKey?: Prisma.StringNullableFilter<"Path"> | string | null
+  accessCode?: Prisma.StringNullableFilter<"Path"> | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFilter<"Path"> | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.DateTimeNullableFilter<"Path"> | Date | string | null
   forkedFromRevisionId?: Prisma.StringNullableFilter<"Path"> | string | null
   headRevisionId?: Prisma.StringNullableFilter<"Path"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Path"> | Date | string
@@ -274,11 +316,12 @@ export type PathWhereUniqueInput = Prisma.AtLeast<{
   forkedFromRevision?: Prisma.XOR<Prisma.RevisionNullableScalarRelationFilter, Prisma.RevisionWhereInput> | null
   revisions?: Prisma.RevisionListRelationFilter
   headRevision?: Prisma.XOR<Prisma.RevisionNullableScalarRelationFilter, Prisma.RevisionWhereInput> | null
+  mountedCollections?: Prisma.CollectionListRelationFilter
+  accessGrants?: Prisma.AccessGrantListRelationFilter
   targetCombines?: Prisma.CombineListRelationFilter
   sourceCombines?: Prisma.CombineListRelationFilter
-  bountySubmissions?: Prisma.BountySubmissionListRelationFilter
-  path?: Prisma.XOR<Prisma.PathNullableScalarRelationFilter, Prisma.PathWhereInput> | null
-  paths?: Prisma.PathListRelationFilter
+  parentPath?: Prisma.XOR<Prisma.PathNullableScalarRelationFilter, Prisma.PathWhereInput> | null
+  childPaths?: Prisma.PathListRelationFilter
 }, "id" | "collectionId_name">
 
 export type PathOrderByWithAggregationInput = {
@@ -287,6 +330,10 @@ export type PathOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   isDefault?: Prisma.SortOrder
   isBlindContribution?: Prisma.SortOrder
+  externalSubjectKey?: Prisma.SortOrderInput | Prisma.SortOrder
+  accessCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  accessCodeType?: Prisma.SortOrder
+  accessCodeExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   forkedFromRevisionId?: Prisma.SortOrderInput | Prisma.SortOrder
   headRevisionId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -306,6 +353,10 @@ export type PathScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"Path"> | string
   isDefault?: Prisma.BoolWithAggregatesFilter<"Path"> | boolean
   isBlindContribution?: Prisma.BoolWithAggregatesFilter<"Path"> | boolean
+  externalSubjectKey?: Prisma.StringNullableWithAggregatesFilter<"Path"> | string | null
+  accessCode?: Prisma.StringNullableWithAggregatesFilter<"Path"> | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeWithAggregatesFilter<"Path"> | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Path"> | Date | string | null
   forkedFromRevisionId?: Prisma.StringNullableWithAggregatesFilter<"Path"> | string | null
   headRevisionId?: Prisma.StringNullableWithAggregatesFilter<"Path"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Path"> | Date | string
@@ -318,17 +369,22 @@ export type PathCreateInput = {
   name: string
   isDefault?: boolean
   isBlindContribution?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   collection: Prisma.CollectionCreateNestedOneWithoutPathsInput
   forkedFromRevision?: Prisma.RevisionCreateNestedOneWithoutForkedPathsInput
   revisions?: Prisma.RevisionCreateNestedManyWithoutPathInput
   headRevision?: Prisma.RevisionCreateNestedOneWithoutHeadOfPathsInput
+  mountedCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamPathInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutPathInput
   targetCombines?: Prisma.CombineCreateNestedManyWithoutTargetPathInput
   sourceCombines?: Prisma.CombineCreateNestedManyWithoutSourcePathInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutPathInput
-  path?: Prisma.PathCreateNestedOneWithoutPathsInput
-  paths?: Prisma.PathCreateNestedManyWithoutPathInput
+  parentPath?: Prisma.PathCreateNestedOneWithoutChildPathsInput
+  childPaths?: Prisma.PathCreateNestedManyWithoutParentPathInput
 }
 
 export type PathUncheckedCreateInput = {
@@ -337,16 +393,21 @@ export type PathUncheckedCreateInput = {
   name: string
   isDefault?: boolean
   isBlindContribution?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   forkedFromRevisionId?: string | null
   headRevisionId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   pathId?: string | null
   revisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutPathInput
+  mountedCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamPathInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutPathInput
   targetCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutTargetPathInput
   sourceCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutSourcePathInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutPathInput
-  paths?: Prisma.PathUncheckedCreateNestedManyWithoutPathInput
+  childPaths?: Prisma.PathUncheckedCreateNestedManyWithoutParentPathInput
 }
 
 export type PathUpdateInput = {
@@ -354,17 +415,22 @@ export type PathUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collection?: Prisma.CollectionUpdateOneRequiredWithoutPathsNestedInput
   forkedFromRevision?: Prisma.RevisionUpdateOneWithoutForkedPathsNestedInput
   revisions?: Prisma.RevisionUpdateManyWithoutPathNestedInput
   headRevision?: Prisma.RevisionUpdateOneWithoutHeadOfPathsNestedInput
+  mountedCollections?: Prisma.CollectionUpdateManyWithoutUpstreamPathNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutPathNestedInput
   targetCombines?: Prisma.CombineUpdateManyWithoutTargetPathNestedInput
   sourceCombines?: Prisma.CombineUpdateManyWithoutSourcePathNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutPathNestedInput
-  path?: Prisma.PathUpdateOneWithoutPathsNestedInput
-  paths?: Prisma.PathUpdateManyWithoutPathNestedInput
+  parentPath?: Prisma.PathUpdateOneWithoutChildPathsNestedInput
+  childPaths?: Prisma.PathUpdateManyWithoutParentPathNestedInput
 }
 
 export type PathUncheckedUpdateInput = {
@@ -373,16 +439,21 @@ export type PathUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   forkedFromRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   headRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisions?: Prisma.RevisionUncheckedUpdateManyWithoutPathNestedInput
+  mountedCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamPathNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutPathNestedInput
   targetCombines?: Prisma.CombineUncheckedUpdateManyWithoutTargetPathNestedInput
   sourceCombines?: Prisma.CombineUncheckedUpdateManyWithoutSourcePathNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutPathNestedInput
-  paths?: Prisma.PathUncheckedUpdateManyWithoutPathNestedInput
+  childPaths?: Prisma.PathUncheckedUpdateManyWithoutParentPathNestedInput
 }
 
 export type PathCreateManyInput = {
@@ -391,6 +462,10 @@ export type PathCreateManyInput = {
   name: string
   isDefault?: boolean
   isBlindContribution?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   forkedFromRevisionId?: string | null
   headRevisionId?: string | null
   createdAt?: Date | string
@@ -403,6 +478,10 @@ export type PathUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -413,11 +492,20 @@ export type PathUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   forkedFromRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   headRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type PathNullableScalarRelationFilter = {
+  is?: Prisma.PathWhereInput | null
+  isNot?: Prisma.PathWhereInput | null
 }
 
 export type PathListRelationFilter = {
@@ -428,11 +516,6 @@ export type PathListRelationFilter = {
 
 export type PathOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
-}
-
-export type PathNullableScalarRelationFilter = {
-  is?: Prisma.PathWhereInput | null
-  isNot?: Prisma.PathWhereInput | null
 }
 
 export type PathCollectionIdNameCompoundUniqueInput = {
@@ -446,6 +529,10 @@ export type PathCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   isDefault?: Prisma.SortOrder
   isBlindContribution?: Prisma.SortOrder
+  externalSubjectKey?: Prisma.SortOrder
+  accessCode?: Prisma.SortOrder
+  accessCodeType?: Prisma.SortOrder
+  accessCodeExpiresAt?: Prisma.SortOrder
   forkedFromRevisionId?: Prisma.SortOrder
   headRevisionId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -459,6 +546,10 @@ export type PathMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   isDefault?: Prisma.SortOrder
   isBlindContribution?: Prisma.SortOrder
+  externalSubjectKey?: Prisma.SortOrder
+  accessCode?: Prisma.SortOrder
+  accessCodeType?: Prisma.SortOrder
+  accessCodeExpiresAt?: Prisma.SortOrder
   forkedFromRevisionId?: Prisma.SortOrder
   headRevisionId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -472,6 +563,10 @@ export type PathMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   isDefault?: Prisma.SortOrder
   isBlindContribution?: Prisma.SortOrder
+  externalSubjectKey?: Prisma.SortOrder
+  accessCode?: Prisma.SortOrder
+  accessCodeType?: Prisma.SortOrder
+  accessCodeExpiresAt?: Prisma.SortOrder
   forkedFromRevisionId?: Prisma.SortOrder
   headRevisionId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -482,6 +577,12 @@ export type PathMinOrderByAggregateInput = {
 export type PathScalarRelationFilter = {
   is?: Prisma.PathWhereInput
   isNot?: Prisma.PathWhereInput
+}
+
+export type PathCreateNestedOneWithoutMountedCollectionsInput = {
+  create?: Prisma.XOR<Prisma.PathCreateWithoutMountedCollectionsInput, Prisma.PathUncheckedCreateWithoutMountedCollectionsInput>
+  connectOrCreate?: Prisma.PathCreateOrConnectWithoutMountedCollectionsInput
+  connect?: Prisma.PathWhereUniqueInput
 }
 
 export type PathCreateNestedManyWithoutCollectionInput = {
@@ -496,6 +597,16 @@ export type PathUncheckedCreateNestedManyWithoutCollectionInput = {
   connectOrCreate?: Prisma.PathCreateOrConnectWithoutCollectionInput | Prisma.PathCreateOrConnectWithoutCollectionInput[]
   createMany?: Prisma.PathCreateManyCollectionInputEnvelope
   connect?: Prisma.PathWhereUniqueInput | Prisma.PathWhereUniqueInput[]
+}
+
+export type PathUpdateOneWithoutMountedCollectionsNestedInput = {
+  create?: Prisma.XOR<Prisma.PathCreateWithoutMountedCollectionsInput, Prisma.PathUncheckedCreateWithoutMountedCollectionsInput>
+  connectOrCreate?: Prisma.PathCreateOrConnectWithoutMountedCollectionsInput
+  upsert?: Prisma.PathUpsertWithoutMountedCollectionsInput
+  disconnect?: Prisma.PathWhereInput | boolean
+  delete?: Prisma.PathWhereInput | boolean
+  connect?: Prisma.PathWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PathUpdateToOneWithWhereWithoutMountedCollectionsInput, Prisma.PathUpdateWithoutMountedCollectionsInput>, Prisma.PathUncheckedUpdateWithoutMountedCollectionsInput>
 }
 
 export type PathUpdateManyWithoutCollectionNestedInput = {
@@ -526,61 +637,77 @@ export type PathUncheckedUpdateManyWithoutCollectionNestedInput = {
   deleteMany?: Prisma.PathScalarWhereInput | Prisma.PathScalarWhereInput[]
 }
 
-export type PathCreateNestedOneWithoutPathsInput = {
-  create?: Prisma.XOR<Prisma.PathCreateWithoutPathsInput, Prisma.PathUncheckedCreateWithoutPathsInput>
-  connectOrCreate?: Prisma.PathCreateOrConnectWithoutPathsInput
+export type PathCreateNestedOneWithoutAccessGrantsInput = {
+  create?: Prisma.XOR<Prisma.PathCreateWithoutAccessGrantsInput, Prisma.PathUncheckedCreateWithoutAccessGrantsInput>
+  connectOrCreate?: Prisma.PathCreateOrConnectWithoutAccessGrantsInput
   connect?: Prisma.PathWhereUniqueInput
 }
 
-export type PathCreateNestedManyWithoutPathInput = {
-  create?: Prisma.XOR<Prisma.PathCreateWithoutPathInput, Prisma.PathUncheckedCreateWithoutPathInput> | Prisma.PathCreateWithoutPathInput[] | Prisma.PathUncheckedCreateWithoutPathInput[]
-  connectOrCreate?: Prisma.PathCreateOrConnectWithoutPathInput | Prisma.PathCreateOrConnectWithoutPathInput[]
-  createMany?: Prisma.PathCreateManyPathInputEnvelope
-  connect?: Prisma.PathWhereUniqueInput | Prisma.PathWhereUniqueInput[]
-}
-
-export type PathUncheckedCreateNestedManyWithoutPathInput = {
-  create?: Prisma.XOR<Prisma.PathCreateWithoutPathInput, Prisma.PathUncheckedCreateWithoutPathInput> | Prisma.PathCreateWithoutPathInput[] | Prisma.PathUncheckedCreateWithoutPathInput[]
-  connectOrCreate?: Prisma.PathCreateOrConnectWithoutPathInput | Prisma.PathCreateOrConnectWithoutPathInput[]
-  createMany?: Prisma.PathCreateManyPathInputEnvelope
-  connect?: Prisma.PathWhereUniqueInput | Prisma.PathWhereUniqueInput[]
-}
-
-export type PathUpdateOneWithoutPathsNestedInput = {
-  create?: Prisma.XOR<Prisma.PathCreateWithoutPathsInput, Prisma.PathUncheckedCreateWithoutPathsInput>
-  connectOrCreate?: Prisma.PathCreateOrConnectWithoutPathsInput
-  upsert?: Prisma.PathUpsertWithoutPathsInput
+export type PathUpdateOneWithoutAccessGrantsNestedInput = {
+  create?: Prisma.XOR<Prisma.PathCreateWithoutAccessGrantsInput, Prisma.PathUncheckedCreateWithoutAccessGrantsInput>
+  connectOrCreate?: Prisma.PathCreateOrConnectWithoutAccessGrantsInput
+  upsert?: Prisma.PathUpsertWithoutAccessGrantsInput
   disconnect?: Prisma.PathWhereInput | boolean
   delete?: Prisma.PathWhereInput | boolean
   connect?: Prisma.PathWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PathUpdateToOneWithWhereWithoutPathsInput, Prisma.PathUpdateWithoutPathsInput>, Prisma.PathUncheckedUpdateWithoutPathsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PathUpdateToOneWithWhereWithoutAccessGrantsInput, Prisma.PathUpdateWithoutAccessGrantsInput>, Prisma.PathUncheckedUpdateWithoutAccessGrantsInput>
 }
 
-export type PathUpdateManyWithoutPathNestedInput = {
-  create?: Prisma.XOR<Prisma.PathCreateWithoutPathInput, Prisma.PathUncheckedCreateWithoutPathInput> | Prisma.PathCreateWithoutPathInput[] | Prisma.PathUncheckedCreateWithoutPathInput[]
-  connectOrCreate?: Prisma.PathCreateOrConnectWithoutPathInput | Prisma.PathCreateOrConnectWithoutPathInput[]
-  upsert?: Prisma.PathUpsertWithWhereUniqueWithoutPathInput | Prisma.PathUpsertWithWhereUniqueWithoutPathInput[]
-  createMany?: Prisma.PathCreateManyPathInputEnvelope
+export type PathCreateNestedOneWithoutChildPathsInput = {
+  create?: Prisma.XOR<Prisma.PathCreateWithoutChildPathsInput, Prisma.PathUncheckedCreateWithoutChildPathsInput>
+  connectOrCreate?: Prisma.PathCreateOrConnectWithoutChildPathsInput
+  connect?: Prisma.PathWhereUniqueInput
+}
+
+export type PathCreateNestedManyWithoutParentPathInput = {
+  create?: Prisma.XOR<Prisma.PathCreateWithoutParentPathInput, Prisma.PathUncheckedCreateWithoutParentPathInput> | Prisma.PathCreateWithoutParentPathInput[] | Prisma.PathUncheckedCreateWithoutParentPathInput[]
+  connectOrCreate?: Prisma.PathCreateOrConnectWithoutParentPathInput | Prisma.PathCreateOrConnectWithoutParentPathInput[]
+  createMany?: Prisma.PathCreateManyParentPathInputEnvelope
+  connect?: Prisma.PathWhereUniqueInput | Prisma.PathWhereUniqueInput[]
+}
+
+export type PathUncheckedCreateNestedManyWithoutParentPathInput = {
+  create?: Prisma.XOR<Prisma.PathCreateWithoutParentPathInput, Prisma.PathUncheckedCreateWithoutParentPathInput> | Prisma.PathCreateWithoutParentPathInput[] | Prisma.PathUncheckedCreateWithoutParentPathInput[]
+  connectOrCreate?: Prisma.PathCreateOrConnectWithoutParentPathInput | Prisma.PathCreateOrConnectWithoutParentPathInput[]
+  createMany?: Prisma.PathCreateManyParentPathInputEnvelope
+  connect?: Prisma.PathWhereUniqueInput | Prisma.PathWhereUniqueInput[]
+}
+
+export type PathUpdateOneWithoutChildPathsNestedInput = {
+  create?: Prisma.XOR<Prisma.PathCreateWithoutChildPathsInput, Prisma.PathUncheckedCreateWithoutChildPathsInput>
+  connectOrCreate?: Prisma.PathCreateOrConnectWithoutChildPathsInput
+  upsert?: Prisma.PathUpsertWithoutChildPathsInput
+  disconnect?: Prisma.PathWhereInput | boolean
+  delete?: Prisma.PathWhereInput | boolean
+  connect?: Prisma.PathWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PathUpdateToOneWithWhereWithoutChildPathsInput, Prisma.PathUpdateWithoutChildPathsInput>, Prisma.PathUncheckedUpdateWithoutChildPathsInput>
+}
+
+export type PathUpdateManyWithoutParentPathNestedInput = {
+  create?: Prisma.XOR<Prisma.PathCreateWithoutParentPathInput, Prisma.PathUncheckedCreateWithoutParentPathInput> | Prisma.PathCreateWithoutParentPathInput[] | Prisma.PathUncheckedCreateWithoutParentPathInput[]
+  connectOrCreate?: Prisma.PathCreateOrConnectWithoutParentPathInput | Prisma.PathCreateOrConnectWithoutParentPathInput[]
+  upsert?: Prisma.PathUpsertWithWhereUniqueWithoutParentPathInput | Prisma.PathUpsertWithWhereUniqueWithoutParentPathInput[]
+  createMany?: Prisma.PathCreateManyParentPathInputEnvelope
   set?: Prisma.PathWhereUniqueInput | Prisma.PathWhereUniqueInput[]
   disconnect?: Prisma.PathWhereUniqueInput | Prisma.PathWhereUniqueInput[]
   delete?: Prisma.PathWhereUniqueInput | Prisma.PathWhereUniqueInput[]
   connect?: Prisma.PathWhereUniqueInput | Prisma.PathWhereUniqueInput[]
-  update?: Prisma.PathUpdateWithWhereUniqueWithoutPathInput | Prisma.PathUpdateWithWhereUniqueWithoutPathInput[]
-  updateMany?: Prisma.PathUpdateManyWithWhereWithoutPathInput | Prisma.PathUpdateManyWithWhereWithoutPathInput[]
+  update?: Prisma.PathUpdateWithWhereUniqueWithoutParentPathInput | Prisma.PathUpdateWithWhereUniqueWithoutParentPathInput[]
+  updateMany?: Prisma.PathUpdateManyWithWhereWithoutParentPathInput | Prisma.PathUpdateManyWithWhereWithoutParentPathInput[]
   deleteMany?: Prisma.PathScalarWhereInput | Prisma.PathScalarWhereInput[]
 }
 
-export type PathUncheckedUpdateManyWithoutPathNestedInput = {
-  create?: Prisma.XOR<Prisma.PathCreateWithoutPathInput, Prisma.PathUncheckedCreateWithoutPathInput> | Prisma.PathCreateWithoutPathInput[] | Prisma.PathUncheckedCreateWithoutPathInput[]
-  connectOrCreate?: Prisma.PathCreateOrConnectWithoutPathInput | Prisma.PathCreateOrConnectWithoutPathInput[]
-  upsert?: Prisma.PathUpsertWithWhereUniqueWithoutPathInput | Prisma.PathUpsertWithWhereUniqueWithoutPathInput[]
-  createMany?: Prisma.PathCreateManyPathInputEnvelope
+export type PathUncheckedUpdateManyWithoutParentPathNestedInput = {
+  create?: Prisma.XOR<Prisma.PathCreateWithoutParentPathInput, Prisma.PathUncheckedCreateWithoutParentPathInput> | Prisma.PathCreateWithoutParentPathInput[] | Prisma.PathUncheckedCreateWithoutParentPathInput[]
+  connectOrCreate?: Prisma.PathCreateOrConnectWithoutParentPathInput | Prisma.PathCreateOrConnectWithoutParentPathInput[]
+  upsert?: Prisma.PathUpsertWithWhereUniqueWithoutParentPathInput | Prisma.PathUpsertWithWhereUniqueWithoutParentPathInput[]
+  createMany?: Prisma.PathCreateManyParentPathInputEnvelope
   set?: Prisma.PathWhereUniqueInput | Prisma.PathWhereUniqueInput[]
   disconnect?: Prisma.PathWhereUniqueInput | Prisma.PathWhereUniqueInput[]
   delete?: Prisma.PathWhereUniqueInput | Prisma.PathWhereUniqueInput[]
   connect?: Prisma.PathWhereUniqueInput | Prisma.PathWhereUniqueInput[]
-  update?: Prisma.PathUpdateWithWhereUniqueWithoutPathInput | Prisma.PathUpdateWithWhereUniqueWithoutPathInput[]
-  updateMany?: Prisma.PathUpdateManyWithWhereWithoutPathInput | Prisma.PathUpdateManyWithWhereWithoutPathInput[]
+  update?: Prisma.PathUpdateWithWhereUniqueWithoutParentPathInput | Prisma.PathUpdateWithWhereUniqueWithoutParentPathInput[]
+  updateMany?: Prisma.PathUpdateManyWithWhereWithoutParentPathInput | Prisma.PathUpdateManyWithWhereWithoutParentPathInput[]
   deleteMany?: Prisma.PathScalarWhereInput | Prisma.PathScalarWhereInput[]
 }
 
@@ -710,20 +837,53 @@ export type PathUpdateOneRequiredWithoutSourceCombinesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PathUpdateToOneWithWhereWithoutSourceCombinesInput, Prisma.PathUpdateWithoutSourceCombinesInput>, Prisma.PathUncheckedUpdateWithoutSourceCombinesInput>
 }
 
-export type PathCreateNestedOneWithoutBountySubmissionsInput = {
-  create?: Prisma.XOR<Prisma.PathCreateWithoutBountySubmissionsInput, Prisma.PathUncheckedCreateWithoutBountySubmissionsInput>
-  connectOrCreate?: Prisma.PathCreateOrConnectWithoutBountySubmissionsInput
-  connect?: Prisma.PathWhereUniqueInput
+export type PathCreateWithoutMountedCollectionsInput = {
+  id?: string
+  name: string
+  isDefault?: boolean
+  isBlindContribution?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  collection: Prisma.CollectionCreateNestedOneWithoutPathsInput
+  forkedFromRevision?: Prisma.RevisionCreateNestedOneWithoutForkedPathsInput
+  revisions?: Prisma.RevisionCreateNestedManyWithoutPathInput
+  headRevision?: Prisma.RevisionCreateNestedOneWithoutHeadOfPathsInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutPathInput
+  targetCombines?: Prisma.CombineCreateNestedManyWithoutTargetPathInput
+  sourceCombines?: Prisma.CombineCreateNestedManyWithoutSourcePathInput
+  parentPath?: Prisma.PathCreateNestedOneWithoutChildPathsInput
+  childPaths?: Prisma.PathCreateNestedManyWithoutParentPathInput
 }
 
-export type PathUpdateOneWithoutBountySubmissionsNestedInput = {
-  create?: Prisma.XOR<Prisma.PathCreateWithoutBountySubmissionsInput, Prisma.PathUncheckedCreateWithoutBountySubmissionsInput>
-  connectOrCreate?: Prisma.PathCreateOrConnectWithoutBountySubmissionsInput
-  upsert?: Prisma.PathUpsertWithoutBountySubmissionsInput
-  disconnect?: Prisma.PathWhereInput | boolean
-  delete?: Prisma.PathWhereInput | boolean
-  connect?: Prisma.PathWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PathUpdateToOneWithWhereWithoutBountySubmissionsInput, Prisma.PathUpdateWithoutBountySubmissionsInput>, Prisma.PathUncheckedUpdateWithoutBountySubmissionsInput>
+export type PathUncheckedCreateWithoutMountedCollectionsInput = {
+  id?: string
+  collectionId: string
+  name: string
+  isDefault?: boolean
+  isBlindContribution?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  forkedFromRevisionId?: string | null
+  headRevisionId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  pathId?: string | null
+  revisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutPathInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutPathInput
+  targetCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutTargetPathInput
+  sourceCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutSourcePathInput
+  childPaths?: Prisma.PathUncheckedCreateNestedManyWithoutParentPathInput
+}
+
+export type PathCreateOrConnectWithoutMountedCollectionsInput = {
+  where: Prisma.PathWhereUniqueInput
+  create: Prisma.XOR<Prisma.PathCreateWithoutMountedCollectionsInput, Prisma.PathUncheckedCreateWithoutMountedCollectionsInput>
 }
 
 export type PathCreateWithoutCollectionInput = {
@@ -731,16 +891,21 @@ export type PathCreateWithoutCollectionInput = {
   name: string
   isDefault?: boolean
   isBlindContribution?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   forkedFromRevision?: Prisma.RevisionCreateNestedOneWithoutForkedPathsInput
   revisions?: Prisma.RevisionCreateNestedManyWithoutPathInput
   headRevision?: Prisma.RevisionCreateNestedOneWithoutHeadOfPathsInput
+  mountedCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamPathInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutPathInput
   targetCombines?: Prisma.CombineCreateNestedManyWithoutTargetPathInput
   sourceCombines?: Prisma.CombineCreateNestedManyWithoutSourcePathInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutPathInput
-  path?: Prisma.PathCreateNestedOneWithoutPathsInput
-  paths?: Prisma.PathCreateNestedManyWithoutPathInput
+  parentPath?: Prisma.PathCreateNestedOneWithoutChildPathsInput
+  childPaths?: Prisma.PathCreateNestedManyWithoutParentPathInput
 }
 
 export type PathUncheckedCreateWithoutCollectionInput = {
@@ -748,16 +913,21 @@ export type PathUncheckedCreateWithoutCollectionInput = {
   name: string
   isDefault?: boolean
   isBlindContribution?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   forkedFromRevisionId?: string | null
   headRevisionId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   pathId?: string | null
   revisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutPathInput
+  mountedCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamPathInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutPathInput
   targetCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutTargetPathInput
   sourceCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutSourcePathInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutPathInput
-  paths?: Prisma.PathUncheckedCreateNestedManyWithoutPathInput
+  childPaths?: Prisma.PathUncheckedCreateNestedManyWithoutParentPathInput
 }
 
 export type PathCreateOrConnectWithoutCollectionInput = {
@@ -768,6 +938,61 @@ export type PathCreateOrConnectWithoutCollectionInput = {
 export type PathCreateManyCollectionInputEnvelope = {
   data: Prisma.PathCreateManyCollectionInput | Prisma.PathCreateManyCollectionInput[]
   skipDuplicates?: boolean
+}
+
+export type PathUpsertWithoutMountedCollectionsInput = {
+  update: Prisma.XOR<Prisma.PathUpdateWithoutMountedCollectionsInput, Prisma.PathUncheckedUpdateWithoutMountedCollectionsInput>
+  create: Prisma.XOR<Prisma.PathCreateWithoutMountedCollectionsInput, Prisma.PathUncheckedCreateWithoutMountedCollectionsInput>
+  where?: Prisma.PathWhereInput
+}
+
+export type PathUpdateToOneWithWhereWithoutMountedCollectionsInput = {
+  where?: Prisma.PathWhereInput
+  data: Prisma.XOR<Prisma.PathUpdateWithoutMountedCollectionsInput, Prisma.PathUncheckedUpdateWithoutMountedCollectionsInput>
+}
+
+export type PathUpdateWithoutMountedCollectionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  collection?: Prisma.CollectionUpdateOneRequiredWithoutPathsNestedInput
+  forkedFromRevision?: Prisma.RevisionUpdateOneWithoutForkedPathsNestedInput
+  revisions?: Prisma.RevisionUpdateManyWithoutPathNestedInput
+  headRevision?: Prisma.RevisionUpdateOneWithoutHeadOfPathsNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutPathNestedInput
+  targetCombines?: Prisma.CombineUpdateManyWithoutTargetPathNestedInput
+  sourceCombines?: Prisma.CombineUpdateManyWithoutSourcePathNestedInput
+  parentPath?: Prisma.PathUpdateOneWithoutChildPathsNestedInput
+  childPaths?: Prisma.PathUpdateManyWithoutParentPathNestedInput
+}
+
+export type PathUncheckedUpdateWithoutMountedCollectionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  collectionId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  forkedFromRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  headRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  revisions?: Prisma.RevisionUncheckedUpdateManyWithoutPathNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutPathNestedInput
+  targetCombines?: Prisma.CombineUncheckedUpdateManyWithoutTargetPathNestedInput
+  sourceCombines?: Prisma.CombineUncheckedUpdateManyWithoutSourcePathNestedInput
+  childPaths?: Prisma.PathUncheckedUpdateManyWithoutParentPathNestedInput
 }
 
 export type PathUpsertWithWhereUniqueWithoutCollectionInput = {
@@ -795,6 +1020,10 @@ export type PathScalarWhereInput = {
   name?: Prisma.StringFilter<"Path"> | string
   isDefault?: Prisma.BoolFilter<"Path"> | boolean
   isBlindContribution?: Prisma.BoolFilter<"Path"> | boolean
+  externalSubjectKey?: Prisma.StringNullableFilter<"Path"> | string | null
+  accessCode?: Prisma.StringNullableFilter<"Path"> | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFilter<"Path"> | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.DateTimeNullableFilter<"Path"> | Date | string | null
   forkedFromRevisionId?: Prisma.StringNullableFilter<"Path"> | string | null
   headRevisionId?: Prisma.StringNullableFilter<"Path"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Path"> | Date | string
@@ -802,148 +1031,282 @@ export type PathScalarWhereInput = {
   pathId?: Prisma.StringNullableFilter<"Path"> | string | null
 }
 
-export type PathCreateWithoutPathsInput = {
+export type PathCreateWithoutAccessGrantsInput = {
   id?: string
   name: string
   isDefault?: boolean
   isBlindContribution?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   collection: Prisma.CollectionCreateNestedOneWithoutPathsInput
   forkedFromRevision?: Prisma.RevisionCreateNestedOneWithoutForkedPathsInput
   revisions?: Prisma.RevisionCreateNestedManyWithoutPathInput
   headRevision?: Prisma.RevisionCreateNestedOneWithoutHeadOfPathsInput
+  mountedCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamPathInput
   targetCombines?: Prisma.CombineCreateNestedManyWithoutTargetPathInput
   sourceCombines?: Prisma.CombineCreateNestedManyWithoutSourcePathInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutPathInput
-  path?: Prisma.PathCreateNestedOneWithoutPathsInput
+  parentPath?: Prisma.PathCreateNestedOneWithoutChildPathsInput
+  childPaths?: Prisma.PathCreateNestedManyWithoutParentPathInput
 }
 
-export type PathUncheckedCreateWithoutPathsInput = {
+export type PathUncheckedCreateWithoutAccessGrantsInput = {
   id?: string
   collectionId: string
   name: string
   isDefault?: boolean
   isBlindContribution?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   forkedFromRevisionId?: string | null
   headRevisionId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   pathId?: string | null
   revisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutPathInput
+  mountedCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamPathInput
   targetCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutTargetPathInput
   sourceCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutSourcePathInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutPathInput
+  childPaths?: Prisma.PathUncheckedCreateNestedManyWithoutParentPathInput
 }
 
-export type PathCreateOrConnectWithoutPathsInput = {
+export type PathCreateOrConnectWithoutAccessGrantsInput = {
   where: Prisma.PathWhereUniqueInput
-  create: Prisma.XOR<Prisma.PathCreateWithoutPathsInput, Prisma.PathUncheckedCreateWithoutPathsInput>
+  create: Prisma.XOR<Prisma.PathCreateWithoutAccessGrantsInput, Prisma.PathUncheckedCreateWithoutAccessGrantsInput>
 }
 
-export type PathCreateWithoutPathInput = {
-  id?: string
-  name: string
-  isDefault?: boolean
-  isBlindContribution?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  collection: Prisma.CollectionCreateNestedOneWithoutPathsInput
-  forkedFromRevision?: Prisma.RevisionCreateNestedOneWithoutForkedPathsInput
-  revisions?: Prisma.RevisionCreateNestedManyWithoutPathInput
-  headRevision?: Prisma.RevisionCreateNestedOneWithoutHeadOfPathsInput
-  targetCombines?: Prisma.CombineCreateNestedManyWithoutTargetPathInput
-  sourceCombines?: Prisma.CombineCreateNestedManyWithoutSourcePathInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutPathInput
-  paths?: Prisma.PathCreateNestedManyWithoutPathInput
-}
-
-export type PathUncheckedCreateWithoutPathInput = {
-  id?: string
-  collectionId: string
-  name: string
-  isDefault?: boolean
-  isBlindContribution?: boolean
-  forkedFromRevisionId?: string | null
-  headRevisionId?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  revisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutPathInput
-  targetCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutTargetPathInput
-  sourceCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutSourcePathInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutPathInput
-  paths?: Prisma.PathUncheckedCreateNestedManyWithoutPathInput
-}
-
-export type PathCreateOrConnectWithoutPathInput = {
-  where: Prisma.PathWhereUniqueInput
-  create: Prisma.XOR<Prisma.PathCreateWithoutPathInput, Prisma.PathUncheckedCreateWithoutPathInput>
-}
-
-export type PathCreateManyPathInputEnvelope = {
-  data: Prisma.PathCreateManyPathInput | Prisma.PathCreateManyPathInput[]
-  skipDuplicates?: boolean
-}
-
-export type PathUpsertWithoutPathsInput = {
-  update: Prisma.XOR<Prisma.PathUpdateWithoutPathsInput, Prisma.PathUncheckedUpdateWithoutPathsInput>
-  create: Prisma.XOR<Prisma.PathCreateWithoutPathsInput, Prisma.PathUncheckedCreateWithoutPathsInput>
+export type PathUpsertWithoutAccessGrantsInput = {
+  update: Prisma.XOR<Prisma.PathUpdateWithoutAccessGrantsInput, Prisma.PathUncheckedUpdateWithoutAccessGrantsInput>
+  create: Prisma.XOR<Prisma.PathCreateWithoutAccessGrantsInput, Prisma.PathUncheckedCreateWithoutAccessGrantsInput>
   where?: Prisma.PathWhereInput
 }
 
-export type PathUpdateToOneWithWhereWithoutPathsInput = {
+export type PathUpdateToOneWithWhereWithoutAccessGrantsInput = {
   where?: Prisma.PathWhereInput
-  data: Prisma.XOR<Prisma.PathUpdateWithoutPathsInput, Prisma.PathUncheckedUpdateWithoutPathsInput>
+  data: Prisma.XOR<Prisma.PathUpdateWithoutAccessGrantsInput, Prisma.PathUncheckedUpdateWithoutAccessGrantsInput>
 }
 
-export type PathUpdateWithoutPathsInput = {
+export type PathUpdateWithoutAccessGrantsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collection?: Prisma.CollectionUpdateOneRequiredWithoutPathsNestedInput
   forkedFromRevision?: Prisma.RevisionUpdateOneWithoutForkedPathsNestedInput
   revisions?: Prisma.RevisionUpdateManyWithoutPathNestedInput
   headRevision?: Prisma.RevisionUpdateOneWithoutHeadOfPathsNestedInput
+  mountedCollections?: Prisma.CollectionUpdateManyWithoutUpstreamPathNestedInput
   targetCombines?: Prisma.CombineUpdateManyWithoutTargetPathNestedInput
   sourceCombines?: Prisma.CombineUpdateManyWithoutSourcePathNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutPathNestedInput
-  path?: Prisma.PathUpdateOneWithoutPathsNestedInput
+  parentPath?: Prisma.PathUpdateOneWithoutChildPathsNestedInput
+  childPaths?: Prisma.PathUpdateManyWithoutParentPathNestedInput
 }
 
-export type PathUncheckedUpdateWithoutPathsInput = {
+export type PathUncheckedUpdateWithoutAccessGrantsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   collectionId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   forkedFromRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   headRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisions?: Prisma.RevisionUncheckedUpdateManyWithoutPathNestedInput
+  mountedCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamPathNestedInput
   targetCombines?: Prisma.CombineUncheckedUpdateManyWithoutTargetPathNestedInput
   sourceCombines?: Prisma.CombineUncheckedUpdateManyWithoutSourcePathNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutPathNestedInput
+  childPaths?: Prisma.PathUncheckedUpdateManyWithoutParentPathNestedInput
 }
 
-export type PathUpsertWithWhereUniqueWithoutPathInput = {
+export type PathCreateWithoutChildPathsInput = {
+  id?: string
+  name: string
+  isDefault?: boolean
+  isBlindContribution?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  collection: Prisma.CollectionCreateNestedOneWithoutPathsInput
+  forkedFromRevision?: Prisma.RevisionCreateNestedOneWithoutForkedPathsInput
+  revisions?: Prisma.RevisionCreateNestedManyWithoutPathInput
+  headRevision?: Prisma.RevisionCreateNestedOneWithoutHeadOfPathsInput
+  mountedCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamPathInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutPathInput
+  targetCombines?: Prisma.CombineCreateNestedManyWithoutTargetPathInput
+  sourceCombines?: Prisma.CombineCreateNestedManyWithoutSourcePathInput
+  parentPath?: Prisma.PathCreateNestedOneWithoutChildPathsInput
+}
+
+export type PathUncheckedCreateWithoutChildPathsInput = {
+  id?: string
+  collectionId: string
+  name: string
+  isDefault?: boolean
+  isBlindContribution?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  forkedFromRevisionId?: string | null
+  headRevisionId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  pathId?: string | null
+  revisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutPathInput
+  mountedCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamPathInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutPathInput
+  targetCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutTargetPathInput
+  sourceCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutSourcePathInput
+}
+
+export type PathCreateOrConnectWithoutChildPathsInput = {
   where: Prisma.PathWhereUniqueInput
-  update: Prisma.XOR<Prisma.PathUpdateWithoutPathInput, Prisma.PathUncheckedUpdateWithoutPathInput>
-  create: Prisma.XOR<Prisma.PathCreateWithoutPathInput, Prisma.PathUncheckedCreateWithoutPathInput>
+  create: Prisma.XOR<Prisma.PathCreateWithoutChildPathsInput, Prisma.PathUncheckedCreateWithoutChildPathsInput>
 }
 
-export type PathUpdateWithWhereUniqueWithoutPathInput = {
+export type PathCreateWithoutParentPathInput = {
+  id?: string
+  name: string
+  isDefault?: boolean
+  isBlindContribution?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  collection: Prisma.CollectionCreateNestedOneWithoutPathsInput
+  forkedFromRevision?: Prisma.RevisionCreateNestedOneWithoutForkedPathsInput
+  revisions?: Prisma.RevisionCreateNestedManyWithoutPathInput
+  headRevision?: Prisma.RevisionCreateNestedOneWithoutHeadOfPathsInput
+  mountedCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamPathInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutPathInput
+  targetCombines?: Prisma.CombineCreateNestedManyWithoutTargetPathInput
+  sourceCombines?: Prisma.CombineCreateNestedManyWithoutSourcePathInput
+  childPaths?: Prisma.PathCreateNestedManyWithoutParentPathInput
+}
+
+export type PathUncheckedCreateWithoutParentPathInput = {
+  id?: string
+  collectionId: string
+  name: string
+  isDefault?: boolean
+  isBlindContribution?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
+  forkedFromRevisionId?: string | null
+  headRevisionId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  revisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutPathInput
+  mountedCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamPathInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutPathInput
+  targetCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutTargetPathInput
+  sourceCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutSourcePathInput
+  childPaths?: Prisma.PathUncheckedCreateNestedManyWithoutParentPathInput
+}
+
+export type PathCreateOrConnectWithoutParentPathInput = {
   where: Prisma.PathWhereUniqueInput
-  data: Prisma.XOR<Prisma.PathUpdateWithoutPathInput, Prisma.PathUncheckedUpdateWithoutPathInput>
+  create: Prisma.XOR<Prisma.PathCreateWithoutParentPathInput, Prisma.PathUncheckedCreateWithoutParentPathInput>
 }
 
-export type PathUpdateManyWithWhereWithoutPathInput = {
+export type PathCreateManyParentPathInputEnvelope = {
+  data: Prisma.PathCreateManyParentPathInput | Prisma.PathCreateManyParentPathInput[]
+  skipDuplicates?: boolean
+}
+
+export type PathUpsertWithoutChildPathsInput = {
+  update: Prisma.XOR<Prisma.PathUpdateWithoutChildPathsInput, Prisma.PathUncheckedUpdateWithoutChildPathsInput>
+  create: Prisma.XOR<Prisma.PathCreateWithoutChildPathsInput, Prisma.PathUncheckedCreateWithoutChildPathsInput>
+  where?: Prisma.PathWhereInput
+}
+
+export type PathUpdateToOneWithWhereWithoutChildPathsInput = {
+  where?: Prisma.PathWhereInput
+  data: Prisma.XOR<Prisma.PathUpdateWithoutChildPathsInput, Prisma.PathUncheckedUpdateWithoutChildPathsInput>
+}
+
+export type PathUpdateWithoutChildPathsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  collection?: Prisma.CollectionUpdateOneRequiredWithoutPathsNestedInput
+  forkedFromRevision?: Prisma.RevisionUpdateOneWithoutForkedPathsNestedInput
+  revisions?: Prisma.RevisionUpdateManyWithoutPathNestedInput
+  headRevision?: Prisma.RevisionUpdateOneWithoutHeadOfPathsNestedInput
+  mountedCollections?: Prisma.CollectionUpdateManyWithoutUpstreamPathNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutPathNestedInput
+  targetCombines?: Prisma.CombineUpdateManyWithoutTargetPathNestedInput
+  sourceCombines?: Prisma.CombineUpdateManyWithoutSourcePathNestedInput
+  parentPath?: Prisma.PathUpdateOneWithoutChildPathsNestedInput
+}
+
+export type PathUncheckedUpdateWithoutChildPathsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  collectionId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  forkedFromRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  headRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  revisions?: Prisma.RevisionUncheckedUpdateManyWithoutPathNestedInput
+  mountedCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamPathNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutPathNestedInput
+  targetCombines?: Prisma.CombineUncheckedUpdateManyWithoutTargetPathNestedInput
+  sourceCombines?: Prisma.CombineUncheckedUpdateManyWithoutSourcePathNestedInput
+}
+
+export type PathUpsertWithWhereUniqueWithoutParentPathInput = {
+  where: Prisma.PathWhereUniqueInput
+  update: Prisma.XOR<Prisma.PathUpdateWithoutParentPathInput, Prisma.PathUncheckedUpdateWithoutParentPathInput>
+  create: Prisma.XOR<Prisma.PathCreateWithoutParentPathInput, Prisma.PathUncheckedCreateWithoutParentPathInput>
+}
+
+export type PathUpdateWithWhereUniqueWithoutParentPathInput = {
+  where: Prisma.PathWhereUniqueInput
+  data: Prisma.XOR<Prisma.PathUpdateWithoutParentPathInput, Prisma.PathUncheckedUpdateWithoutParentPathInput>
+}
+
+export type PathUpdateManyWithWhereWithoutParentPathInput = {
   where: Prisma.PathScalarWhereInput
-  data: Prisma.XOR<Prisma.PathUpdateManyMutationInput, Prisma.PathUncheckedUpdateManyWithoutPathInput>
+  data: Prisma.XOR<Prisma.PathUpdateManyMutationInput, Prisma.PathUncheckedUpdateManyWithoutParentPathInput>
 }
 
 export type PathCreateWithoutRevisionsInput = {
@@ -951,16 +1314,21 @@ export type PathCreateWithoutRevisionsInput = {
   name: string
   isDefault?: boolean
   isBlindContribution?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   collection: Prisma.CollectionCreateNestedOneWithoutPathsInput
   forkedFromRevision?: Prisma.RevisionCreateNestedOneWithoutForkedPathsInput
   headRevision?: Prisma.RevisionCreateNestedOneWithoutHeadOfPathsInput
+  mountedCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamPathInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutPathInput
   targetCombines?: Prisma.CombineCreateNestedManyWithoutTargetPathInput
   sourceCombines?: Prisma.CombineCreateNestedManyWithoutSourcePathInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutPathInput
-  path?: Prisma.PathCreateNestedOneWithoutPathsInput
-  paths?: Prisma.PathCreateNestedManyWithoutPathInput
+  parentPath?: Prisma.PathCreateNestedOneWithoutChildPathsInput
+  childPaths?: Prisma.PathCreateNestedManyWithoutParentPathInput
 }
 
 export type PathUncheckedCreateWithoutRevisionsInput = {
@@ -969,15 +1337,20 @@ export type PathUncheckedCreateWithoutRevisionsInput = {
   name: string
   isDefault?: boolean
   isBlindContribution?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   forkedFromRevisionId?: string | null
   headRevisionId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   pathId?: string | null
+  mountedCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamPathInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutPathInput
   targetCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutTargetPathInput
   sourceCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutSourcePathInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutPathInput
-  paths?: Prisma.PathUncheckedCreateNestedManyWithoutPathInput
+  childPaths?: Prisma.PathUncheckedCreateNestedManyWithoutParentPathInput
 }
 
 export type PathCreateOrConnectWithoutRevisionsInput = {
@@ -990,16 +1363,21 @@ export type PathCreateWithoutForkedFromRevisionInput = {
   name: string
   isDefault?: boolean
   isBlindContribution?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   collection: Prisma.CollectionCreateNestedOneWithoutPathsInput
   revisions?: Prisma.RevisionCreateNestedManyWithoutPathInput
   headRevision?: Prisma.RevisionCreateNestedOneWithoutHeadOfPathsInput
+  mountedCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamPathInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutPathInput
   targetCombines?: Prisma.CombineCreateNestedManyWithoutTargetPathInput
   sourceCombines?: Prisma.CombineCreateNestedManyWithoutSourcePathInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutPathInput
-  path?: Prisma.PathCreateNestedOneWithoutPathsInput
-  paths?: Prisma.PathCreateNestedManyWithoutPathInput
+  parentPath?: Prisma.PathCreateNestedOneWithoutChildPathsInput
+  childPaths?: Prisma.PathCreateNestedManyWithoutParentPathInput
 }
 
 export type PathUncheckedCreateWithoutForkedFromRevisionInput = {
@@ -1008,15 +1386,20 @@ export type PathUncheckedCreateWithoutForkedFromRevisionInput = {
   name: string
   isDefault?: boolean
   isBlindContribution?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   headRevisionId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   pathId?: string | null
   revisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutPathInput
+  mountedCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamPathInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutPathInput
   targetCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutTargetPathInput
   sourceCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutSourcePathInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutPathInput
-  paths?: Prisma.PathUncheckedCreateNestedManyWithoutPathInput
+  childPaths?: Prisma.PathUncheckedCreateNestedManyWithoutParentPathInput
 }
 
 export type PathCreateOrConnectWithoutForkedFromRevisionInput = {
@@ -1034,16 +1417,21 @@ export type PathCreateWithoutHeadRevisionInput = {
   name: string
   isDefault?: boolean
   isBlindContribution?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   collection: Prisma.CollectionCreateNestedOneWithoutPathsInput
   forkedFromRevision?: Prisma.RevisionCreateNestedOneWithoutForkedPathsInput
   revisions?: Prisma.RevisionCreateNestedManyWithoutPathInput
+  mountedCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamPathInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutPathInput
   targetCombines?: Prisma.CombineCreateNestedManyWithoutTargetPathInput
   sourceCombines?: Prisma.CombineCreateNestedManyWithoutSourcePathInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutPathInput
-  path?: Prisma.PathCreateNestedOneWithoutPathsInput
-  paths?: Prisma.PathCreateNestedManyWithoutPathInput
+  parentPath?: Prisma.PathCreateNestedOneWithoutChildPathsInput
+  childPaths?: Prisma.PathCreateNestedManyWithoutParentPathInput
 }
 
 export type PathUncheckedCreateWithoutHeadRevisionInput = {
@@ -1052,15 +1440,20 @@ export type PathUncheckedCreateWithoutHeadRevisionInput = {
   name: string
   isDefault?: boolean
   isBlindContribution?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   forkedFromRevisionId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   pathId?: string | null
   revisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutPathInput
+  mountedCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamPathInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutPathInput
   targetCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutTargetPathInput
   sourceCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutSourcePathInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutPathInput
-  paths?: Prisma.PathUncheckedCreateNestedManyWithoutPathInput
+  childPaths?: Prisma.PathUncheckedCreateNestedManyWithoutParentPathInput
 }
 
 export type PathCreateOrConnectWithoutHeadRevisionInput = {
@@ -1089,16 +1482,21 @@ export type PathUpdateWithoutRevisionsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collection?: Prisma.CollectionUpdateOneRequiredWithoutPathsNestedInput
   forkedFromRevision?: Prisma.RevisionUpdateOneWithoutForkedPathsNestedInput
   headRevision?: Prisma.RevisionUpdateOneWithoutHeadOfPathsNestedInput
+  mountedCollections?: Prisma.CollectionUpdateManyWithoutUpstreamPathNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutPathNestedInput
   targetCombines?: Prisma.CombineUpdateManyWithoutTargetPathNestedInput
   sourceCombines?: Prisma.CombineUpdateManyWithoutSourcePathNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutPathNestedInput
-  path?: Prisma.PathUpdateOneWithoutPathsNestedInput
-  paths?: Prisma.PathUpdateManyWithoutPathNestedInput
+  parentPath?: Prisma.PathUpdateOneWithoutChildPathsNestedInput
+  childPaths?: Prisma.PathUpdateManyWithoutParentPathNestedInput
 }
 
 export type PathUncheckedUpdateWithoutRevisionsInput = {
@@ -1107,15 +1505,20 @@ export type PathUncheckedUpdateWithoutRevisionsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   forkedFromRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   headRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mountedCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamPathNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutPathNestedInput
   targetCombines?: Prisma.CombineUncheckedUpdateManyWithoutTargetPathNestedInput
   sourceCombines?: Prisma.CombineUncheckedUpdateManyWithoutSourcePathNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutPathNestedInput
-  paths?: Prisma.PathUncheckedUpdateManyWithoutPathNestedInput
+  childPaths?: Prisma.PathUncheckedUpdateManyWithoutParentPathNestedInput
 }
 
 export type PathUpsertWithWhereUniqueWithoutForkedFromRevisionInput = {
@@ -1155,16 +1558,21 @@ export type PathCreateWithoutTargetCombinesInput = {
   name: string
   isDefault?: boolean
   isBlindContribution?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   collection: Prisma.CollectionCreateNestedOneWithoutPathsInput
   forkedFromRevision?: Prisma.RevisionCreateNestedOneWithoutForkedPathsInput
   revisions?: Prisma.RevisionCreateNestedManyWithoutPathInput
   headRevision?: Prisma.RevisionCreateNestedOneWithoutHeadOfPathsInput
+  mountedCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamPathInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutPathInput
   sourceCombines?: Prisma.CombineCreateNestedManyWithoutSourcePathInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutPathInput
-  path?: Prisma.PathCreateNestedOneWithoutPathsInput
-  paths?: Prisma.PathCreateNestedManyWithoutPathInput
+  parentPath?: Prisma.PathCreateNestedOneWithoutChildPathsInput
+  childPaths?: Prisma.PathCreateNestedManyWithoutParentPathInput
 }
 
 export type PathUncheckedCreateWithoutTargetCombinesInput = {
@@ -1173,15 +1581,20 @@ export type PathUncheckedCreateWithoutTargetCombinesInput = {
   name: string
   isDefault?: boolean
   isBlindContribution?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   forkedFromRevisionId?: string | null
   headRevisionId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   pathId?: string | null
   revisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutPathInput
+  mountedCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamPathInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutPathInput
   sourceCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutSourcePathInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutPathInput
-  paths?: Prisma.PathUncheckedCreateNestedManyWithoutPathInput
+  childPaths?: Prisma.PathUncheckedCreateNestedManyWithoutParentPathInput
 }
 
 export type PathCreateOrConnectWithoutTargetCombinesInput = {
@@ -1194,16 +1607,21 @@ export type PathCreateWithoutSourceCombinesInput = {
   name: string
   isDefault?: boolean
   isBlindContribution?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   collection: Prisma.CollectionCreateNestedOneWithoutPathsInput
   forkedFromRevision?: Prisma.RevisionCreateNestedOneWithoutForkedPathsInput
   revisions?: Prisma.RevisionCreateNestedManyWithoutPathInput
   headRevision?: Prisma.RevisionCreateNestedOneWithoutHeadOfPathsInput
+  mountedCollections?: Prisma.CollectionCreateNestedManyWithoutUpstreamPathInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutPathInput
   targetCombines?: Prisma.CombineCreateNestedManyWithoutTargetPathInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutPathInput
-  path?: Prisma.PathCreateNestedOneWithoutPathsInput
-  paths?: Prisma.PathCreateNestedManyWithoutPathInput
+  parentPath?: Prisma.PathCreateNestedOneWithoutChildPathsInput
+  childPaths?: Prisma.PathCreateNestedManyWithoutParentPathInput
 }
 
 export type PathUncheckedCreateWithoutSourceCombinesInput = {
@@ -1212,15 +1630,20 @@ export type PathUncheckedCreateWithoutSourceCombinesInput = {
   name: string
   isDefault?: boolean
   isBlindContribution?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   forkedFromRevisionId?: string | null
   headRevisionId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   pathId?: string | null
   revisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutPathInput
+  mountedCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutUpstreamPathInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutPathInput
   targetCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutTargetPathInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutPathInput
-  paths?: Prisma.PathUncheckedCreateNestedManyWithoutPathInput
+  childPaths?: Prisma.PathUncheckedCreateNestedManyWithoutParentPathInput
 }
 
 export type PathCreateOrConnectWithoutSourceCombinesInput = {
@@ -1244,16 +1667,21 @@ export type PathUpdateWithoutTargetCombinesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collection?: Prisma.CollectionUpdateOneRequiredWithoutPathsNestedInput
   forkedFromRevision?: Prisma.RevisionUpdateOneWithoutForkedPathsNestedInput
   revisions?: Prisma.RevisionUpdateManyWithoutPathNestedInput
   headRevision?: Prisma.RevisionUpdateOneWithoutHeadOfPathsNestedInput
+  mountedCollections?: Prisma.CollectionUpdateManyWithoutUpstreamPathNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutPathNestedInput
   sourceCombines?: Prisma.CombineUpdateManyWithoutSourcePathNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutPathNestedInput
-  path?: Prisma.PathUpdateOneWithoutPathsNestedInput
-  paths?: Prisma.PathUpdateManyWithoutPathNestedInput
+  parentPath?: Prisma.PathUpdateOneWithoutChildPathsNestedInput
+  childPaths?: Prisma.PathUpdateManyWithoutParentPathNestedInput
 }
 
 export type PathUncheckedUpdateWithoutTargetCombinesInput = {
@@ -1262,15 +1690,20 @@ export type PathUncheckedUpdateWithoutTargetCombinesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   forkedFromRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   headRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisions?: Prisma.RevisionUncheckedUpdateManyWithoutPathNestedInput
+  mountedCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamPathNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutPathNestedInput
   sourceCombines?: Prisma.CombineUncheckedUpdateManyWithoutSourcePathNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutPathNestedInput
-  paths?: Prisma.PathUncheckedUpdateManyWithoutPathNestedInput
+  childPaths?: Prisma.PathUncheckedUpdateManyWithoutParentPathNestedInput
 }
 
 export type PathUpsertWithoutSourceCombinesInput = {
@@ -1289,16 +1722,21 @@ export type PathUpdateWithoutSourceCombinesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collection?: Prisma.CollectionUpdateOneRequiredWithoutPathsNestedInput
   forkedFromRevision?: Prisma.RevisionUpdateOneWithoutForkedPathsNestedInput
   revisions?: Prisma.RevisionUpdateManyWithoutPathNestedInput
   headRevision?: Prisma.RevisionUpdateOneWithoutHeadOfPathsNestedInput
+  mountedCollections?: Prisma.CollectionUpdateManyWithoutUpstreamPathNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutPathNestedInput
   targetCombines?: Prisma.CombineUpdateManyWithoutTargetPathNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutPathNestedInput
-  path?: Prisma.PathUpdateOneWithoutPathsNestedInput
-  paths?: Prisma.PathUpdateManyWithoutPathNestedInput
+  parentPath?: Prisma.PathUpdateOneWithoutChildPathsNestedInput
+  childPaths?: Prisma.PathUpdateManyWithoutParentPathNestedInput
 }
 
 export type PathUncheckedUpdateWithoutSourceCombinesInput = {
@@ -1307,99 +1745,20 @@ export type PathUncheckedUpdateWithoutSourceCombinesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   forkedFromRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   headRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisions?: Prisma.RevisionUncheckedUpdateManyWithoutPathNestedInput
+  mountedCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamPathNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutPathNestedInput
   targetCombines?: Prisma.CombineUncheckedUpdateManyWithoutTargetPathNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutPathNestedInput
-  paths?: Prisma.PathUncheckedUpdateManyWithoutPathNestedInput
-}
-
-export type PathCreateWithoutBountySubmissionsInput = {
-  id?: string
-  name: string
-  isDefault?: boolean
-  isBlindContribution?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  collection: Prisma.CollectionCreateNestedOneWithoutPathsInput
-  forkedFromRevision?: Prisma.RevisionCreateNestedOneWithoutForkedPathsInput
-  revisions?: Prisma.RevisionCreateNestedManyWithoutPathInput
-  headRevision?: Prisma.RevisionCreateNestedOneWithoutHeadOfPathsInput
-  targetCombines?: Prisma.CombineCreateNestedManyWithoutTargetPathInput
-  sourceCombines?: Prisma.CombineCreateNestedManyWithoutSourcePathInput
-  path?: Prisma.PathCreateNestedOneWithoutPathsInput
-  paths?: Prisma.PathCreateNestedManyWithoutPathInput
-}
-
-export type PathUncheckedCreateWithoutBountySubmissionsInput = {
-  id?: string
-  collectionId: string
-  name: string
-  isDefault?: boolean
-  isBlindContribution?: boolean
-  forkedFromRevisionId?: string | null
-  headRevisionId?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  pathId?: string | null
-  revisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutPathInput
-  targetCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutTargetPathInput
-  sourceCombines?: Prisma.CombineUncheckedCreateNestedManyWithoutSourcePathInput
-  paths?: Prisma.PathUncheckedCreateNestedManyWithoutPathInput
-}
-
-export type PathCreateOrConnectWithoutBountySubmissionsInput = {
-  where: Prisma.PathWhereUniqueInput
-  create: Prisma.XOR<Prisma.PathCreateWithoutBountySubmissionsInput, Prisma.PathUncheckedCreateWithoutBountySubmissionsInput>
-}
-
-export type PathUpsertWithoutBountySubmissionsInput = {
-  update: Prisma.XOR<Prisma.PathUpdateWithoutBountySubmissionsInput, Prisma.PathUncheckedUpdateWithoutBountySubmissionsInput>
-  create: Prisma.XOR<Prisma.PathCreateWithoutBountySubmissionsInput, Prisma.PathUncheckedCreateWithoutBountySubmissionsInput>
-  where?: Prisma.PathWhereInput
-}
-
-export type PathUpdateToOneWithWhereWithoutBountySubmissionsInput = {
-  where?: Prisma.PathWhereInput
-  data: Prisma.XOR<Prisma.PathUpdateWithoutBountySubmissionsInput, Prisma.PathUncheckedUpdateWithoutBountySubmissionsInput>
-}
-
-export type PathUpdateWithoutBountySubmissionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  collection?: Prisma.CollectionUpdateOneRequiredWithoutPathsNestedInput
-  forkedFromRevision?: Prisma.RevisionUpdateOneWithoutForkedPathsNestedInput
-  revisions?: Prisma.RevisionUpdateManyWithoutPathNestedInput
-  headRevision?: Prisma.RevisionUpdateOneWithoutHeadOfPathsNestedInput
-  targetCombines?: Prisma.CombineUpdateManyWithoutTargetPathNestedInput
-  sourceCombines?: Prisma.CombineUpdateManyWithoutSourcePathNestedInput
-  path?: Prisma.PathUpdateOneWithoutPathsNestedInput
-  paths?: Prisma.PathUpdateManyWithoutPathNestedInput
-}
-
-export type PathUncheckedUpdateWithoutBountySubmissionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  collectionId?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  forkedFromRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  headRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  pathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  revisions?: Prisma.RevisionUncheckedUpdateManyWithoutPathNestedInput
-  targetCombines?: Prisma.CombineUncheckedUpdateManyWithoutTargetPathNestedInput
-  sourceCombines?: Prisma.CombineUncheckedUpdateManyWithoutSourcePathNestedInput
-  paths?: Prisma.PathUncheckedUpdateManyWithoutPathNestedInput
+  childPaths?: Prisma.PathUncheckedUpdateManyWithoutParentPathNestedInput
 }
 
 export type PathCreateManyCollectionInput = {
@@ -1407,6 +1766,10 @@ export type PathCreateManyCollectionInput = {
   name: string
   isDefault?: boolean
   isBlindContribution?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   forkedFromRevisionId?: string | null
   headRevisionId?: string | null
   createdAt?: Date | string
@@ -1419,16 +1782,21 @@ export type PathUpdateWithoutCollectionInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   forkedFromRevision?: Prisma.RevisionUpdateOneWithoutForkedPathsNestedInput
   revisions?: Prisma.RevisionUpdateManyWithoutPathNestedInput
   headRevision?: Prisma.RevisionUpdateOneWithoutHeadOfPathsNestedInput
+  mountedCollections?: Prisma.CollectionUpdateManyWithoutUpstreamPathNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutPathNestedInput
   targetCombines?: Prisma.CombineUpdateManyWithoutTargetPathNestedInput
   sourceCombines?: Prisma.CombineUpdateManyWithoutSourcePathNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutPathNestedInput
-  path?: Prisma.PathUpdateOneWithoutPathsNestedInput
-  paths?: Prisma.PathUpdateManyWithoutPathNestedInput
+  parentPath?: Prisma.PathUpdateOneWithoutChildPathsNestedInput
+  childPaths?: Prisma.PathUpdateManyWithoutParentPathNestedInput
 }
 
 export type PathUncheckedUpdateWithoutCollectionInput = {
@@ -1436,16 +1804,21 @@ export type PathUncheckedUpdateWithoutCollectionInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   forkedFromRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   headRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisions?: Prisma.RevisionUncheckedUpdateManyWithoutPathNestedInput
+  mountedCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamPathNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutPathNestedInput
   targetCombines?: Prisma.CombineUncheckedUpdateManyWithoutTargetPathNestedInput
   sourceCombines?: Prisma.CombineUncheckedUpdateManyWithoutSourcePathNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutPathNestedInput
-  paths?: Prisma.PathUncheckedUpdateManyWithoutPathNestedInput
+  childPaths?: Prisma.PathUncheckedUpdateManyWithoutParentPathNestedInput
 }
 
 export type PathUncheckedUpdateManyWithoutCollectionInput = {
@@ -1453,6 +1826,10 @@ export type PathUncheckedUpdateManyWithoutCollectionInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   forkedFromRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   headRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1460,58 +1837,76 @@ export type PathUncheckedUpdateManyWithoutCollectionInput = {
   pathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
-export type PathCreateManyPathInput = {
+export type PathCreateManyParentPathInput = {
   id?: string
   collectionId: string
   name: string
   isDefault?: boolean
   isBlindContribution?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   forkedFromRevisionId?: string | null
   headRevisionId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
-export type PathUpdateWithoutPathInput = {
+export type PathUpdateWithoutParentPathInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collection?: Prisma.CollectionUpdateOneRequiredWithoutPathsNestedInput
   forkedFromRevision?: Prisma.RevisionUpdateOneWithoutForkedPathsNestedInput
   revisions?: Prisma.RevisionUpdateManyWithoutPathNestedInput
   headRevision?: Prisma.RevisionUpdateOneWithoutHeadOfPathsNestedInput
+  mountedCollections?: Prisma.CollectionUpdateManyWithoutUpstreamPathNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutPathNestedInput
   targetCombines?: Prisma.CombineUpdateManyWithoutTargetPathNestedInput
   sourceCombines?: Prisma.CombineUpdateManyWithoutSourcePathNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutPathNestedInput
-  paths?: Prisma.PathUpdateManyWithoutPathNestedInput
+  childPaths?: Prisma.PathUpdateManyWithoutParentPathNestedInput
 }
 
-export type PathUncheckedUpdateWithoutPathInput = {
+export type PathUncheckedUpdateWithoutParentPathInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   collectionId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   forkedFromRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   headRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   revisions?: Prisma.RevisionUncheckedUpdateManyWithoutPathNestedInput
+  mountedCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamPathNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutPathNestedInput
   targetCombines?: Prisma.CombineUncheckedUpdateManyWithoutTargetPathNestedInput
   sourceCombines?: Prisma.CombineUncheckedUpdateManyWithoutSourcePathNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutPathNestedInput
-  paths?: Prisma.PathUncheckedUpdateManyWithoutPathNestedInput
+  childPaths?: Prisma.PathUncheckedUpdateManyWithoutParentPathNestedInput
 }
 
-export type PathUncheckedUpdateManyWithoutPathInput = {
+export type PathUncheckedUpdateManyWithoutParentPathInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   collectionId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   forkedFromRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   headRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1524,6 +1919,10 @@ export type PathCreateManyForkedFromRevisionInput = {
   name: string
   isDefault?: boolean
   isBlindContribution?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   headRevisionId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1536,6 +1935,10 @@ export type PathCreateManyHeadRevisionInput = {
   name: string
   isDefault?: boolean
   isBlindContribution?: boolean
+  externalSubjectKey?: string | null
+  accessCode?: string | null
+  accessCodeType?: $Enums.AccessCodeType
+  accessCodeExpiresAt?: Date | string | null
   forkedFromRevisionId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1547,16 +1950,21 @@ export type PathUpdateWithoutForkedFromRevisionInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collection?: Prisma.CollectionUpdateOneRequiredWithoutPathsNestedInput
   revisions?: Prisma.RevisionUpdateManyWithoutPathNestedInput
   headRevision?: Prisma.RevisionUpdateOneWithoutHeadOfPathsNestedInput
+  mountedCollections?: Prisma.CollectionUpdateManyWithoutUpstreamPathNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutPathNestedInput
   targetCombines?: Prisma.CombineUpdateManyWithoutTargetPathNestedInput
   sourceCombines?: Prisma.CombineUpdateManyWithoutSourcePathNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutPathNestedInput
-  path?: Prisma.PathUpdateOneWithoutPathsNestedInput
-  paths?: Prisma.PathUpdateManyWithoutPathNestedInput
+  parentPath?: Prisma.PathUpdateOneWithoutChildPathsNestedInput
+  childPaths?: Prisma.PathUpdateManyWithoutParentPathNestedInput
 }
 
 export type PathUncheckedUpdateWithoutForkedFromRevisionInput = {
@@ -1565,15 +1973,20 @@ export type PathUncheckedUpdateWithoutForkedFromRevisionInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisions?: Prisma.RevisionUncheckedUpdateManyWithoutPathNestedInput
+  mountedCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamPathNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutPathNestedInput
   targetCombines?: Prisma.CombineUncheckedUpdateManyWithoutTargetPathNestedInput
   sourceCombines?: Prisma.CombineUncheckedUpdateManyWithoutSourcePathNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutPathNestedInput
-  paths?: Prisma.PathUncheckedUpdateManyWithoutPathNestedInput
+  childPaths?: Prisma.PathUncheckedUpdateManyWithoutParentPathNestedInput
 }
 
 export type PathUncheckedUpdateManyWithoutForkedFromRevisionInput = {
@@ -1582,6 +1995,10 @@ export type PathUncheckedUpdateManyWithoutForkedFromRevisionInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   headRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1593,16 +2010,21 @@ export type PathUpdateWithoutHeadRevisionInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collection?: Prisma.CollectionUpdateOneRequiredWithoutPathsNestedInput
   forkedFromRevision?: Prisma.RevisionUpdateOneWithoutForkedPathsNestedInput
   revisions?: Prisma.RevisionUpdateManyWithoutPathNestedInput
+  mountedCollections?: Prisma.CollectionUpdateManyWithoutUpstreamPathNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutPathNestedInput
   targetCombines?: Prisma.CombineUpdateManyWithoutTargetPathNestedInput
   sourceCombines?: Prisma.CombineUpdateManyWithoutSourcePathNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutPathNestedInput
-  path?: Prisma.PathUpdateOneWithoutPathsNestedInput
-  paths?: Prisma.PathUpdateManyWithoutPathNestedInput
+  parentPath?: Prisma.PathUpdateOneWithoutChildPathsNestedInput
+  childPaths?: Prisma.PathUpdateManyWithoutParentPathNestedInput
 }
 
 export type PathUncheckedUpdateWithoutHeadRevisionInput = {
@@ -1611,15 +2033,20 @@ export type PathUncheckedUpdateWithoutHeadRevisionInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   forkedFromRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisions?: Prisma.RevisionUncheckedUpdateManyWithoutPathNestedInput
+  mountedCollections?: Prisma.CollectionUncheckedUpdateManyWithoutUpstreamPathNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutPathNestedInput
   targetCombines?: Prisma.CombineUncheckedUpdateManyWithoutTargetPathNestedInput
   sourceCombines?: Prisma.CombineUncheckedUpdateManyWithoutSourcePathNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutPathNestedInput
-  paths?: Prisma.PathUncheckedUpdateManyWithoutPathNestedInput
+  childPaths?: Prisma.PathUncheckedUpdateManyWithoutParentPathNestedInput
 }
 
 export type PathUncheckedUpdateManyWithoutHeadRevisionInput = {
@@ -1628,6 +2055,10 @@ export type PathUncheckedUpdateManyWithoutHeadRevisionInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBlindContribution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessCodeType?: Prisma.EnumAccessCodeTypeFieldUpdateOperationsInput | $Enums.AccessCodeType
+  accessCodeExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   forkedFromRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1641,18 +2072,20 @@ export type PathUncheckedUpdateManyWithoutHeadRevisionInput = {
 
 export type PathCountOutputType = {
   revisions: number
+  mountedCollections: number
+  accessGrants: number
   targetCombines: number
   sourceCombines: number
-  bountySubmissions: number
-  paths: number
+  childPaths: number
 }
 
 export type PathCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   revisions?: boolean | PathCountOutputTypeCountRevisionsArgs
+  mountedCollections?: boolean | PathCountOutputTypeCountMountedCollectionsArgs
+  accessGrants?: boolean | PathCountOutputTypeCountAccessGrantsArgs
   targetCombines?: boolean | PathCountOutputTypeCountTargetCombinesArgs
   sourceCombines?: boolean | PathCountOutputTypeCountSourceCombinesArgs
-  bountySubmissions?: boolean | PathCountOutputTypeCountBountySubmissionsArgs
-  paths?: boolean | PathCountOutputTypeCountPathsArgs
+  childPaths?: boolean | PathCountOutputTypeCountChildPathsArgs
 }
 
 /**
@@ -1675,6 +2108,20 @@ export type PathCountOutputTypeCountRevisionsArgs<ExtArgs extends runtime.Types.
 /**
  * PathCountOutputType without action
  */
+export type PathCountOutputTypeCountMountedCollectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CollectionWhereInput
+}
+
+/**
+ * PathCountOutputType without action
+ */
+export type PathCountOutputTypeCountAccessGrantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AccessGrantWhereInput
+}
+
+/**
+ * PathCountOutputType without action
+ */
 export type PathCountOutputTypeCountTargetCombinesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.CombineWhereInput
 }
@@ -1689,14 +2136,7 @@ export type PathCountOutputTypeCountSourceCombinesArgs<ExtArgs extends runtime.T
 /**
  * PathCountOutputType without action
  */
-export type PathCountOutputTypeCountBountySubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.BountySubmissionWhereInput
-}
-
-/**
- * PathCountOutputType without action
- */
-export type PathCountOutputTypeCountPathsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type PathCountOutputTypeCountChildPathsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.PathWhereInput
 }
 
@@ -1707,6 +2147,10 @@ export type PathSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   name?: boolean
   isDefault?: boolean
   isBlindContribution?: boolean
+  externalSubjectKey?: boolean
+  accessCode?: boolean
+  accessCodeType?: boolean
+  accessCodeExpiresAt?: boolean
   forkedFromRevisionId?: boolean
   headRevisionId?: boolean
   createdAt?: boolean
@@ -1716,11 +2160,12 @@ export type PathSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   forkedFromRevision?: boolean | Prisma.Path$forkedFromRevisionArgs<ExtArgs>
   revisions?: boolean | Prisma.Path$revisionsArgs<ExtArgs>
   headRevision?: boolean | Prisma.Path$headRevisionArgs<ExtArgs>
+  mountedCollections?: boolean | Prisma.Path$mountedCollectionsArgs<ExtArgs>
+  accessGrants?: boolean | Prisma.Path$accessGrantsArgs<ExtArgs>
   targetCombines?: boolean | Prisma.Path$targetCombinesArgs<ExtArgs>
   sourceCombines?: boolean | Prisma.Path$sourceCombinesArgs<ExtArgs>
-  bountySubmissions?: boolean | Prisma.Path$bountySubmissionsArgs<ExtArgs>
-  path?: boolean | Prisma.Path$pathArgs<ExtArgs>
-  paths?: boolean | Prisma.Path$pathsArgs<ExtArgs>
+  parentPath?: boolean | Prisma.Path$parentPathArgs<ExtArgs>
+  childPaths?: boolean | Prisma.Path$childPathsArgs<ExtArgs>
   _count?: boolean | Prisma.PathCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["path"]>
 
@@ -1730,6 +2175,10 @@ export type PathSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   name?: boolean
   isDefault?: boolean
   isBlindContribution?: boolean
+  externalSubjectKey?: boolean
+  accessCode?: boolean
+  accessCodeType?: boolean
+  accessCodeExpiresAt?: boolean
   forkedFromRevisionId?: boolean
   headRevisionId?: boolean
   createdAt?: boolean
@@ -1738,7 +2187,7 @@ export type PathSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   collection?: boolean | Prisma.CollectionDefaultArgs<ExtArgs>
   forkedFromRevision?: boolean | Prisma.Path$forkedFromRevisionArgs<ExtArgs>
   headRevision?: boolean | Prisma.Path$headRevisionArgs<ExtArgs>
-  path?: boolean | Prisma.Path$pathArgs<ExtArgs>
+  parentPath?: boolean | Prisma.Path$parentPathArgs<ExtArgs>
 }, ExtArgs["result"]["path"]>
 
 export type PathSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1747,6 +2196,10 @@ export type PathSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   name?: boolean
   isDefault?: boolean
   isBlindContribution?: boolean
+  externalSubjectKey?: boolean
+  accessCode?: boolean
+  accessCodeType?: boolean
+  accessCodeExpiresAt?: boolean
   forkedFromRevisionId?: boolean
   headRevisionId?: boolean
   createdAt?: boolean
@@ -1755,7 +2208,7 @@ export type PathSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   collection?: boolean | Prisma.CollectionDefaultArgs<ExtArgs>
   forkedFromRevision?: boolean | Prisma.Path$forkedFromRevisionArgs<ExtArgs>
   headRevision?: boolean | Prisma.Path$headRevisionArgs<ExtArgs>
-  path?: boolean | Prisma.Path$pathArgs<ExtArgs>
+  parentPath?: boolean | Prisma.Path$parentPathArgs<ExtArgs>
 }, ExtArgs["result"]["path"]>
 
 export type PathSelectScalar = {
@@ -1764,6 +2217,10 @@ export type PathSelectScalar = {
   name?: boolean
   isDefault?: boolean
   isBlindContribution?: boolean
+  externalSubjectKey?: boolean
+  accessCode?: boolean
+  accessCodeType?: boolean
+  accessCodeExpiresAt?: boolean
   forkedFromRevisionId?: boolean
   headRevisionId?: boolean
   createdAt?: boolean
@@ -1771,30 +2228,31 @@ export type PathSelectScalar = {
   pathId?: boolean
 }
 
-export type PathOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "collectionId" | "name" | "isDefault" | "isBlindContribution" | "forkedFromRevisionId" | "headRevisionId" | "createdAt" | "updatedAt" | "pathId", ExtArgs["result"]["path"]>
+export type PathOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "collectionId" | "name" | "isDefault" | "isBlindContribution" | "externalSubjectKey" | "accessCode" | "accessCodeType" | "accessCodeExpiresAt" | "forkedFromRevisionId" | "headRevisionId" | "createdAt" | "updatedAt" | "pathId", ExtArgs["result"]["path"]>
 export type PathInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   collection?: boolean | Prisma.CollectionDefaultArgs<ExtArgs>
   forkedFromRevision?: boolean | Prisma.Path$forkedFromRevisionArgs<ExtArgs>
   revisions?: boolean | Prisma.Path$revisionsArgs<ExtArgs>
   headRevision?: boolean | Prisma.Path$headRevisionArgs<ExtArgs>
+  mountedCollections?: boolean | Prisma.Path$mountedCollectionsArgs<ExtArgs>
+  accessGrants?: boolean | Prisma.Path$accessGrantsArgs<ExtArgs>
   targetCombines?: boolean | Prisma.Path$targetCombinesArgs<ExtArgs>
   sourceCombines?: boolean | Prisma.Path$sourceCombinesArgs<ExtArgs>
-  bountySubmissions?: boolean | Prisma.Path$bountySubmissionsArgs<ExtArgs>
-  path?: boolean | Prisma.Path$pathArgs<ExtArgs>
-  paths?: boolean | Prisma.Path$pathsArgs<ExtArgs>
+  parentPath?: boolean | Prisma.Path$parentPathArgs<ExtArgs>
+  childPaths?: boolean | Prisma.Path$childPathsArgs<ExtArgs>
   _count?: boolean | Prisma.PathCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PathIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   collection?: boolean | Prisma.CollectionDefaultArgs<ExtArgs>
   forkedFromRevision?: boolean | Prisma.Path$forkedFromRevisionArgs<ExtArgs>
   headRevision?: boolean | Prisma.Path$headRevisionArgs<ExtArgs>
-  path?: boolean | Prisma.Path$pathArgs<ExtArgs>
+  parentPath?: boolean | Prisma.Path$parentPathArgs<ExtArgs>
 }
 export type PathIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   collection?: boolean | Prisma.CollectionDefaultArgs<ExtArgs>
   forkedFromRevision?: boolean | Prisma.Path$forkedFromRevisionArgs<ExtArgs>
   headRevision?: boolean | Prisma.Path$headRevisionArgs<ExtArgs>
-  path?: boolean | Prisma.Path$pathArgs<ExtArgs>
+  parentPath?: boolean | Prisma.Path$parentPathArgs<ExtArgs>
 }
 
 export type $PathPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1804,11 +2262,12 @@ export type $PathPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     forkedFromRevision: Prisma.$RevisionPayload<ExtArgs> | null
     revisions: Prisma.$RevisionPayload<ExtArgs>[]
     headRevision: Prisma.$RevisionPayload<ExtArgs> | null
+    mountedCollections: Prisma.$CollectionPayload<ExtArgs>[]
+    accessGrants: Prisma.$AccessGrantPayload<ExtArgs>[]
     targetCombines: Prisma.$CombinePayload<ExtArgs>[]
     sourceCombines: Prisma.$CombinePayload<ExtArgs>[]
-    bountySubmissions: Prisma.$BountySubmissionPayload<ExtArgs>[]
-    path: Prisma.$PathPayload<ExtArgs> | null
-    paths: Prisma.$PathPayload<ExtArgs>[]
+    parentPath: Prisma.$PathPayload<ExtArgs> | null
+    childPaths: Prisma.$PathPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1816,6 +2275,10 @@ export type $PathPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     name: string
     isDefault: boolean
     isBlindContribution: boolean
+    externalSubjectKey: string | null
+    accessCode: string | null
+    accessCodeType: $Enums.AccessCodeType
+    accessCodeExpiresAt: Date | null
     forkedFromRevisionId: string | null
     headRevisionId: string | null
     createdAt: Date
@@ -2219,11 +2682,12 @@ export interface Prisma__PathClient<T, Null = never, ExtArgs extends runtime.Typ
   forkedFromRevision<T extends Prisma.Path$forkedFromRevisionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Path$forkedFromRevisionArgs<ExtArgs>>): Prisma.Prisma__RevisionClient<runtime.Types.Result.GetResult<Prisma.$RevisionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   revisions<T extends Prisma.Path$revisionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Path$revisionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RevisionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   headRevision<T extends Prisma.Path$headRevisionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Path$headRevisionArgs<ExtArgs>>): Prisma.Prisma__RevisionClient<runtime.Types.Result.GetResult<Prisma.$RevisionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  mountedCollections<T extends Prisma.Path$mountedCollectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Path$mountedCollectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  accessGrants<T extends Prisma.Path$accessGrantsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Path$accessGrantsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccessGrantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   targetCombines<T extends Prisma.Path$targetCombinesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Path$targetCombinesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CombinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sourceCombines<T extends Prisma.Path$sourceCombinesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Path$sourceCombinesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CombinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  bountySubmissions<T extends Prisma.Path$bountySubmissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Path$bountySubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BountySubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  path<T extends Prisma.Path$pathArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Path$pathArgs<ExtArgs>>): Prisma.Prisma__PathClient<runtime.Types.Result.GetResult<Prisma.$PathPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  paths<T extends Prisma.Path$pathsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Path$pathsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PathPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  parentPath<T extends Prisma.Path$parentPathArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Path$parentPathArgs<ExtArgs>>): Prisma.Prisma__PathClient<runtime.Types.Result.GetResult<Prisma.$PathPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  childPaths<T extends Prisma.Path$childPathsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Path$childPathsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PathPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2258,6 +2722,10 @@ export interface PathFieldRefs {
   readonly name: Prisma.FieldRef<"Path", 'String'>
   readonly isDefault: Prisma.FieldRef<"Path", 'Boolean'>
   readonly isBlindContribution: Prisma.FieldRef<"Path", 'Boolean'>
+  readonly externalSubjectKey: Prisma.FieldRef<"Path", 'String'>
+  readonly accessCode: Prisma.FieldRef<"Path", 'String'>
+  readonly accessCodeType: Prisma.FieldRef<"Path", 'AccessCodeType'>
+  readonly accessCodeExpiresAt: Prisma.FieldRef<"Path", 'DateTime'>
   readonly forkedFromRevisionId: Prisma.FieldRef<"Path", 'String'>
   readonly headRevisionId: Prisma.FieldRef<"Path", 'String'>
   readonly createdAt: Prisma.FieldRef<"Path", 'DateTime'>
@@ -2726,6 +3194,54 @@ export type Path$headRevisionArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
+ * Path.mountedCollections
+ */
+export type Path$mountedCollectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Collection
+   */
+  select?: Prisma.CollectionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Collection
+   */
+  omit?: Prisma.CollectionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CollectionInclude<ExtArgs> | null
+  where?: Prisma.CollectionWhereInput
+  orderBy?: Prisma.CollectionOrderByWithRelationInput | Prisma.CollectionOrderByWithRelationInput[]
+  cursor?: Prisma.CollectionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CollectionScalarFieldEnum | Prisma.CollectionScalarFieldEnum[]
+}
+
+/**
+ * Path.accessGrants
+ */
+export type Path$accessGrantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AccessGrant
+   */
+  select?: Prisma.AccessGrantSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AccessGrant
+   */
+  omit?: Prisma.AccessGrantOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AccessGrantInclude<ExtArgs> | null
+  where?: Prisma.AccessGrantWhereInput
+  orderBy?: Prisma.AccessGrantOrderByWithRelationInput | Prisma.AccessGrantOrderByWithRelationInput[]
+  cursor?: Prisma.AccessGrantWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AccessGrantScalarFieldEnum | Prisma.AccessGrantScalarFieldEnum[]
+}
+
+/**
  * Path.targetCombines
  */
 export type Path$targetCombinesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2774,33 +3290,9 @@ export type Path$sourceCombinesArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 /**
- * Path.bountySubmissions
+ * Path.parentPath
  */
-export type Path$bountySubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the BountySubmission
-   */
-  select?: Prisma.BountySubmissionSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the BountySubmission
-   */
-  omit?: Prisma.BountySubmissionOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.BountySubmissionInclude<ExtArgs> | null
-  where?: Prisma.BountySubmissionWhereInput
-  orderBy?: Prisma.BountySubmissionOrderByWithRelationInput | Prisma.BountySubmissionOrderByWithRelationInput[]
-  cursor?: Prisma.BountySubmissionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.BountySubmissionScalarFieldEnum | Prisma.BountySubmissionScalarFieldEnum[]
-}
-
-/**
- * Path.path
- */
-export type Path$pathArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Path$parentPathArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Path
    */
@@ -2817,9 +3309,9 @@ export type Path$pathArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 }
 
 /**
- * Path.paths
+ * Path.childPaths
  */
-export type Path$pathsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Path$childPathsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Path
    */

@@ -39,9 +39,10 @@ export type UserRoyaltyMinAggregateOutputType = {
   userId: string | null
   sourceType: $Enums.PayoutSourceType | null
   entryId: string | null
-  packId: string | null
+  collectionId: string | null
   ledgerId: string | null
   bountyId: string | null
+  paymentId: string | null
   amountInCents: number | null
   sourceClientId: string | null
   payoutId: string | null
@@ -54,9 +55,10 @@ export type UserRoyaltyMaxAggregateOutputType = {
   userId: string | null
   sourceType: $Enums.PayoutSourceType | null
   entryId: string | null
-  packId: string | null
+  collectionId: string | null
   ledgerId: string | null
   bountyId: string | null
+  paymentId: string | null
   amountInCents: number | null
   sourceClientId: string | null
   payoutId: string | null
@@ -69,9 +71,10 @@ export type UserRoyaltyCountAggregateOutputType = {
   userId: number
   sourceType: number
   entryId: number
-  packId: number
+  collectionId: number
   ledgerId: number
   bountyId: number
+  paymentId: number
   amountInCents: number
   sourceClientId: number
   payoutId: number
@@ -94,9 +97,10 @@ export type UserRoyaltyMinAggregateInputType = {
   userId?: true
   sourceType?: true
   entryId?: true
-  packId?: true
+  collectionId?: true
   ledgerId?: true
   bountyId?: true
+  paymentId?: true
   amountInCents?: true
   sourceClientId?: true
   payoutId?: true
@@ -109,9 +113,10 @@ export type UserRoyaltyMaxAggregateInputType = {
   userId?: true
   sourceType?: true
   entryId?: true
-  packId?: true
+  collectionId?: true
   ledgerId?: true
   bountyId?: true
+  paymentId?: true
   amountInCents?: true
   sourceClientId?: true
   payoutId?: true
@@ -124,9 +129,10 @@ export type UserRoyaltyCountAggregateInputType = {
   userId?: true
   sourceType?: true
   entryId?: true
-  packId?: true
+  collectionId?: true
   ledgerId?: true
   bountyId?: true
+  paymentId?: true
   amountInCents?: true
   sourceClientId?: true
   payoutId?: true
@@ -226,9 +232,10 @@ export type UserRoyaltyGroupByOutputType = {
   userId: string
   sourceType: $Enums.PayoutSourceType
   entryId: string | null
-  packId: string | null
+  collectionId: string | null
   ledgerId: string | null
   bountyId: string | null
+  paymentId: string | null
   amountInCents: number
   sourceClientId: string
   payoutId: string | null
@@ -264,9 +271,10 @@ export type UserRoyaltyWhereInput = {
   userId?: Prisma.StringFilter<"UserRoyalty"> | string
   sourceType?: Prisma.EnumPayoutSourceTypeFilter<"UserRoyalty"> | $Enums.PayoutSourceType
   entryId?: Prisma.StringNullableFilter<"UserRoyalty"> | string | null
-  packId?: Prisma.StringNullableFilter<"UserRoyalty"> | string | null
+  collectionId?: Prisma.StringNullableFilter<"UserRoyalty"> | string | null
   ledgerId?: Prisma.StringNullableFilter<"UserRoyalty"> | string | null
   bountyId?: Prisma.StringNullableFilter<"UserRoyalty"> | string | null
+  paymentId?: Prisma.StringNullableFilter<"UserRoyalty"> | string | null
   amountInCents?: Prisma.FloatFilter<"UserRoyalty"> | number
   sourceClientId?: Prisma.StringFilter<"UserRoyalty"> | string
   payoutId?: Prisma.StringNullableFilter<"UserRoyalty"> | string | null
@@ -274,9 +282,10 @@ export type UserRoyaltyWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"UserRoyalty"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   entry?: Prisma.XOR<Prisma.EntryNullableScalarRelationFilter, Prisma.EntryWhereInput> | null
-  pack?: Prisma.XOR<Prisma.PackNullableScalarRelationFilter, Prisma.PackWhereInput> | null
+  collection?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
   ledger?: Prisma.XOR<Prisma.ApiUsageLedgerNullableScalarRelationFilter, Prisma.ApiUsageLedgerWhereInput> | null
   bounty?: Prisma.XOR<Prisma.KnowledgeBountyNullableScalarRelationFilter, Prisma.KnowledgeBountyWhereInput> | null
+  payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
   payout?: Prisma.XOR<Prisma.CreatorPayoutNullableScalarRelationFilter, Prisma.CreatorPayoutWhereInput> | null
 }
 
@@ -285,9 +294,10 @@ export type UserRoyaltyOrderByWithRelationInput = {
   userId?: Prisma.SortOrder
   sourceType?: Prisma.SortOrder
   entryId?: Prisma.SortOrderInput | Prisma.SortOrder
-  packId?: Prisma.SortOrderInput | Prisma.SortOrder
+  collectionId?: Prisma.SortOrderInput | Prisma.SortOrder
   ledgerId?: Prisma.SortOrderInput | Prisma.SortOrder
   bountyId?: Prisma.SortOrderInput | Prisma.SortOrder
+  paymentId?: Prisma.SortOrderInput | Prisma.SortOrder
   amountInCents?: Prisma.SortOrder
   sourceClientId?: Prisma.SortOrder
   payoutId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -295,9 +305,10 @@ export type UserRoyaltyOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   entry?: Prisma.EntryOrderByWithRelationInput
-  pack?: Prisma.PackOrderByWithRelationInput
+  collection?: Prisma.CollectionOrderByWithRelationInput
   ledger?: Prisma.ApiUsageLedgerOrderByWithRelationInput
   bounty?: Prisma.KnowledgeBountyOrderByWithRelationInput
+  payment?: Prisma.PaymentOrderByWithRelationInput
   payout?: Prisma.CreatorPayoutOrderByWithRelationInput
 }
 
@@ -309,9 +320,10 @@ export type UserRoyaltyWhereUniqueInput = Prisma.AtLeast<{
   userId?: Prisma.StringFilter<"UserRoyalty"> | string
   sourceType?: Prisma.EnumPayoutSourceTypeFilter<"UserRoyalty"> | $Enums.PayoutSourceType
   entryId?: Prisma.StringNullableFilter<"UserRoyalty"> | string | null
-  packId?: Prisma.StringNullableFilter<"UserRoyalty"> | string | null
+  collectionId?: Prisma.StringNullableFilter<"UserRoyalty"> | string | null
   ledgerId?: Prisma.StringNullableFilter<"UserRoyalty"> | string | null
   bountyId?: Prisma.StringNullableFilter<"UserRoyalty"> | string | null
+  paymentId?: Prisma.StringNullableFilter<"UserRoyalty"> | string | null
   amountInCents?: Prisma.FloatFilter<"UserRoyalty"> | number
   sourceClientId?: Prisma.StringFilter<"UserRoyalty"> | string
   payoutId?: Prisma.StringNullableFilter<"UserRoyalty"> | string | null
@@ -319,9 +331,10 @@ export type UserRoyaltyWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"UserRoyalty"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   entry?: Prisma.XOR<Prisma.EntryNullableScalarRelationFilter, Prisma.EntryWhereInput> | null
-  pack?: Prisma.XOR<Prisma.PackNullableScalarRelationFilter, Prisma.PackWhereInput> | null
+  collection?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
   ledger?: Prisma.XOR<Prisma.ApiUsageLedgerNullableScalarRelationFilter, Prisma.ApiUsageLedgerWhereInput> | null
   bounty?: Prisma.XOR<Prisma.KnowledgeBountyNullableScalarRelationFilter, Prisma.KnowledgeBountyWhereInput> | null
+  payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
   payout?: Prisma.XOR<Prisma.CreatorPayoutNullableScalarRelationFilter, Prisma.CreatorPayoutWhereInput> | null
 }, "id">
 
@@ -330,9 +343,10 @@ export type UserRoyaltyOrderByWithAggregationInput = {
   userId?: Prisma.SortOrder
   sourceType?: Prisma.SortOrder
   entryId?: Prisma.SortOrderInput | Prisma.SortOrder
-  packId?: Prisma.SortOrderInput | Prisma.SortOrder
+  collectionId?: Prisma.SortOrderInput | Prisma.SortOrder
   ledgerId?: Prisma.SortOrderInput | Prisma.SortOrder
   bountyId?: Prisma.SortOrderInput | Prisma.SortOrder
+  paymentId?: Prisma.SortOrderInput | Prisma.SortOrder
   amountInCents?: Prisma.SortOrder
   sourceClientId?: Prisma.SortOrder
   payoutId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -353,9 +367,10 @@ export type UserRoyaltyScalarWhereWithAggregatesInput = {
   userId?: Prisma.StringWithAggregatesFilter<"UserRoyalty"> | string
   sourceType?: Prisma.EnumPayoutSourceTypeWithAggregatesFilter<"UserRoyalty"> | $Enums.PayoutSourceType
   entryId?: Prisma.StringNullableWithAggregatesFilter<"UserRoyalty"> | string | null
-  packId?: Prisma.StringNullableWithAggregatesFilter<"UserRoyalty"> | string | null
+  collectionId?: Prisma.StringNullableWithAggregatesFilter<"UserRoyalty"> | string | null
   ledgerId?: Prisma.StringNullableWithAggregatesFilter<"UserRoyalty"> | string | null
   bountyId?: Prisma.StringNullableWithAggregatesFilter<"UserRoyalty"> | string | null
+  paymentId?: Prisma.StringNullableWithAggregatesFilter<"UserRoyalty"> | string | null
   amountInCents?: Prisma.FloatWithAggregatesFilter<"UserRoyalty"> | number
   sourceClientId?: Prisma.StringWithAggregatesFilter<"UserRoyalty"> | string
   payoutId?: Prisma.StringNullableWithAggregatesFilter<"UserRoyalty"> | string | null
@@ -372,9 +387,10 @@ export type UserRoyaltyCreateInput = {
   createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutRoyaltiesInput
   entry?: Prisma.EntryCreateNestedOneWithoutRoyaltiesGeneratedInput
-  pack?: Prisma.PackCreateNestedOneWithoutRoyaltiesInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutRoyaltiesInput
   ledger?: Prisma.ApiUsageLedgerCreateNestedOneWithoutRoyaltiesDistributedInput
   bounty?: Prisma.KnowledgeBountyCreateNestedOneWithoutRoyaltiesInput
+  payment?: Prisma.PaymentCreateNestedOneWithoutRoyaltiesGeneratedInput
   payout?: Prisma.CreatorPayoutCreateNestedOneWithoutRoyaltiesInput
 }
 
@@ -383,9 +399,10 @@ export type UserRoyaltyUncheckedCreateInput = {
   userId: string
   sourceType?: $Enums.PayoutSourceType
   entryId?: string | null
-  packId?: string | null
+  collectionId?: string | null
   ledgerId?: string | null
   bountyId?: string | null
+  paymentId?: string | null
   amountInCents: number
   sourceClientId: string
   payoutId?: string | null
@@ -402,9 +419,10 @@ export type UserRoyaltyUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutRoyaltiesNestedInput
   entry?: Prisma.EntryUpdateOneWithoutRoyaltiesGeneratedNestedInput
-  pack?: Prisma.PackUpdateOneWithoutRoyaltiesNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutRoyaltiesNestedInput
   ledger?: Prisma.ApiUsageLedgerUpdateOneWithoutRoyaltiesDistributedNestedInput
   bounty?: Prisma.KnowledgeBountyUpdateOneWithoutRoyaltiesNestedInput
+  payment?: Prisma.PaymentUpdateOneWithoutRoyaltiesGeneratedNestedInput
   payout?: Prisma.CreatorPayoutUpdateOneWithoutRoyaltiesNestedInput
 }
 
@@ -413,9 +431,10 @@ export type UserRoyaltyUncheckedUpdateInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceType?: Prisma.EnumPayoutSourceTypeFieldUpdateOperationsInput | $Enums.PayoutSourceType
   entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ledgerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountInCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sourceClientId?: Prisma.StringFieldUpdateOperationsInput | string
   payoutId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -428,9 +447,10 @@ export type UserRoyaltyCreateManyInput = {
   userId: string
   sourceType?: $Enums.PayoutSourceType
   entryId?: string | null
-  packId?: string | null
+  collectionId?: string | null
   ledgerId?: string | null
   bountyId?: string | null
+  paymentId?: string | null
   amountInCents: number
   sourceClientId: string
   payoutId?: string | null
@@ -452,9 +472,10 @@ export type UserRoyaltyUncheckedUpdateManyInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceType?: Prisma.EnumPayoutSourceTypeFieldUpdateOperationsInput | $Enums.PayoutSourceType
   entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ledgerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountInCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sourceClientId?: Prisma.StringFieldUpdateOperationsInput | string
   payoutId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -477,9 +498,10 @@ export type UserRoyaltyCountOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   sourceType?: Prisma.SortOrder
   entryId?: Prisma.SortOrder
-  packId?: Prisma.SortOrder
+  collectionId?: Prisma.SortOrder
   ledgerId?: Prisma.SortOrder
   bountyId?: Prisma.SortOrder
+  paymentId?: Prisma.SortOrder
   amountInCents?: Prisma.SortOrder
   sourceClientId?: Prisma.SortOrder
   payoutId?: Prisma.SortOrder
@@ -496,9 +518,10 @@ export type UserRoyaltyMaxOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   sourceType?: Prisma.SortOrder
   entryId?: Prisma.SortOrder
-  packId?: Prisma.SortOrder
+  collectionId?: Prisma.SortOrder
   ledgerId?: Prisma.SortOrder
   bountyId?: Prisma.SortOrder
+  paymentId?: Prisma.SortOrder
   amountInCents?: Prisma.SortOrder
   sourceClientId?: Prisma.SortOrder
   payoutId?: Prisma.SortOrder
@@ -511,9 +534,10 @@ export type UserRoyaltyMinOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   sourceType?: Prisma.SortOrder
   entryId?: Prisma.SortOrder
-  packId?: Prisma.SortOrder
+  collectionId?: Prisma.SortOrder
   ledgerId?: Prisma.SortOrder
   bountyId?: Prisma.SortOrder
+  paymentId?: Prisma.SortOrder
   amountInCents?: Prisma.SortOrder
   sourceClientId?: Prisma.SortOrder
   payoutId?: Prisma.SortOrder
@@ -564,6 +588,48 @@ export type UserRoyaltyUncheckedUpdateManyWithoutUserNestedInput = {
   connect?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
   update?: Prisma.UserRoyaltyUpdateWithWhereUniqueWithoutUserInput | Prisma.UserRoyaltyUpdateWithWhereUniqueWithoutUserInput[]
   updateMany?: Prisma.UserRoyaltyUpdateManyWithWhereWithoutUserInput | Prisma.UserRoyaltyUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.UserRoyaltyScalarWhereInput | Prisma.UserRoyaltyScalarWhereInput[]
+}
+
+export type UserRoyaltyCreateNestedManyWithoutCollectionInput = {
+  create?: Prisma.XOR<Prisma.UserRoyaltyCreateWithoutCollectionInput, Prisma.UserRoyaltyUncheckedCreateWithoutCollectionInput> | Prisma.UserRoyaltyCreateWithoutCollectionInput[] | Prisma.UserRoyaltyUncheckedCreateWithoutCollectionInput[]
+  connectOrCreate?: Prisma.UserRoyaltyCreateOrConnectWithoutCollectionInput | Prisma.UserRoyaltyCreateOrConnectWithoutCollectionInput[]
+  createMany?: Prisma.UserRoyaltyCreateManyCollectionInputEnvelope
+  connect?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
+}
+
+export type UserRoyaltyUncheckedCreateNestedManyWithoutCollectionInput = {
+  create?: Prisma.XOR<Prisma.UserRoyaltyCreateWithoutCollectionInput, Prisma.UserRoyaltyUncheckedCreateWithoutCollectionInput> | Prisma.UserRoyaltyCreateWithoutCollectionInput[] | Prisma.UserRoyaltyUncheckedCreateWithoutCollectionInput[]
+  connectOrCreate?: Prisma.UserRoyaltyCreateOrConnectWithoutCollectionInput | Prisma.UserRoyaltyCreateOrConnectWithoutCollectionInput[]
+  createMany?: Prisma.UserRoyaltyCreateManyCollectionInputEnvelope
+  connect?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
+}
+
+export type UserRoyaltyUpdateManyWithoutCollectionNestedInput = {
+  create?: Prisma.XOR<Prisma.UserRoyaltyCreateWithoutCollectionInput, Prisma.UserRoyaltyUncheckedCreateWithoutCollectionInput> | Prisma.UserRoyaltyCreateWithoutCollectionInput[] | Prisma.UserRoyaltyUncheckedCreateWithoutCollectionInput[]
+  connectOrCreate?: Prisma.UserRoyaltyCreateOrConnectWithoutCollectionInput | Prisma.UserRoyaltyCreateOrConnectWithoutCollectionInput[]
+  upsert?: Prisma.UserRoyaltyUpsertWithWhereUniqueWithoutCollectionInput | Prisma.UserRoyaltyUpsertWithWhereUniqueWithoutCollectionInput[]
+  createMany?: Prisma.UserRoyaltyCreateManyCollectionInputEnvelope
+  set?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
+  disconnect?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
+  delete?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
+  connect?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
+  update?: Prisma.UserRoyaltyUpdateWithWhereUniqueWithoutCollectionInput | Prisma.UserRoyaltyUpdateWithWhereUniqueWithoutCollectionInput[]
+  updateMany?: Prisma.UserRoyaltyUpdateManyWithWhereWithoutCollectionInput | Prisma.UserRoyaltyUpdateManyWithWhereWithoutCollectionInput[]
+  deleteMany?: Prisma.UserRoyaltyScalarWhereInput | Prisma.UserRoyaltyScalarWhereInput[]
+}
+
+export type UserRoyaltyUncheckedUpdateManyWithoutCollectionNestedInput = {
+  create?: Prisma.XOR<Prisma.UserRoyaltyCreateWithoutCollectionInput, Prisma.UserRoyaltyUncheckedCreateWithoutCollectionInput> | Prisma.UserRoyaltyCreateWithoutCollectionInput[] | Prisma.UserRoyaltyUncheckedCreateWithoutCollectionInput[]
+  connectOrCreate?: Prisma.UserRoyaltyCreateOrConnectWithoutCollectionInput | Prisma.UserRoyaltyCreateOrConnectWithoutCollectionInput[]
+  upsert?: Prisma.UserRoyaltyUpsertWithWhereUniqueWithoutCollectionInput | Prisma.UserRoyaltyUpsertWithWhereUniqueWithoutCollectionInput[]
+  createMany?: Prisma.UserRoyaltyCreateManyCollectionInputEnvelope
+  set?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
+  disconnect?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
+  delete?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
+  connect?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
+  update?: Prisma.UserRoyaltyUpdateWithWhereUniqueWithoutCollectionInput | Prisma.UserRoyaltyUpdateWithWhereUniqueWithoutCollectionInput[]
+  updateMany?: Prisma.UserRoyaltyUpdateManyWithWhereWithoutCollectionInput | Prisma.UserRoyaltyUpdateManyWithWhereWithoutCollectionInput[]
   deleteMany?: Prisma.UserRoyaltyScalarWhereInput | Prisma.UserRoyaltyScalarWhereInput[]
 }
 
@@ -697,48 +763,6 @@ export type UserRoyaltyUncheckedUpdateManyWithoutPayoutNestedInput = {
   deleteMany?: Prisma.UserRoyaltyScalarWhereInput | Prisma.UserRoyaltyScalarWhereInput[]
 }
 
-export type UserRoyaltyCreateNestedManyWithoutPackInput = {
-  create?: Prisma.XOR<Prisma.UserRoyaltyCreateWithoutPackInput, Prisma.UserRoyaltyUncheckedCreateWithoutPackInput> | Prisma.UserRoyaltyCreateWithoutPackInput[] | Prisma.UserRoyaltyUncheckedCreateWithoutPackInput[]
-  connectOrCreate?: Prisma.UserRoyaltyCreateOrConnectWithoutPackInput | Prisma.UserRoyaltyCreateOrConnectWithoutPackInput[]
-  createMany?: Prisma.UserRoyaltyCreateManyPackInputEnvelope
-  connect?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
-}
-
-export type UserRoyaltyUncheckedCreateNestedManyWithoutPackInput = {
-  create?: Prisma.XOR<Prisma.UserRoyaltyCreateWithoutPackInput, Prisma.UserRoyaltyUncheckedCreateWithoutPackInput> | Prisma.UserRoyaltyCreateWithoutPackInput[] | Prisma.UserRoyaltyUncheckedCreateWithoutPackInput[]
-  connectOrCreate?: Prisma.UserRoyaltyCreateOrConnectWithoutPackInput | Prisma.UserRoyaltyCreateOrConnectWithoutPackInput[]
-  createMany?: Prisma.UserRoyaltyCreateManyPackInputEnvelope
-  connect?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
-}
-
-export type UserRoyaltyUpdateManyWithoutPackNestedInput = {
-  create?: Prisma.XOR<Prisma.UserRoyaltyCreateWithoutPackInput, Prisma.UserRoyaltyUncheckedCreateWithoutPackInput> | Prisma.UserRoyaltyCreateWithoutPackInput[] | Prisma.UserRoyaltyUncheckedCreateWithoutPackInput[]
-  connectOrCreate?: Prisma.UserRoyaltyCreateOrConnectWithoutPackInput | Prisma.UserRoyaltyCreateOrConnectWithoutPackInput[]
-  upsert?: Prisma.UserRoyaltyUpsertWithWhereUniqueWithoutPackInput | Prisma.UserRoyaltyUpsertWithWhereUniqueWithoutPackInput[]
-  createMany?: Prisma.UserRoyaltyCreateManyPackInputEnvelope
-  set?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
-  disconnect?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
-  delete?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
-  connect?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
-  update?: Prisma.UserRoyaltyUpdateWithWhereUniqueWithoutPackInput | Prisma.UserRoyaltyUpdateWithWhereUniqueWithoutPackInput[]
-  updateMany?: Prisma.UserRoyaltyUpdateManyWithWhereWithoutPackInput | Prisma.UserRoyaltyUpdateManyWithWhereWithoutPackInput[]
-  deleteMany?: Prisma.UserRoyaltyScalarWhereInput | Prisma.UserRoyaltyScalarWhereInput[]
-}
-
-export type UserRoyaltyUncheckedUpdateManyWithoutPackNestedInput = {
-  create?: Prisma.XOR<Prisma.UserRoyaltyCreateWithoutPackInput, Prisma.UserRoyaltyUncheckedCreateWithoutPackInput> | Prisma.UserRoyaltyCreateWithoutPackInput[] | Prisma.UserRoyaltyUncheckedCreateWithoutPackInput[]
-  connectOrCreate?: Prisma.UserRoyaltyCreateOrConnectWithoutPackInput | Prisma.UserRoyaltyCreateOrConnectWithoutPackInput[]
-  upsert?: Prisma.UserRoyaltyUpsertWithWhereUniqueWithoutPackInput | Prisma.UserRoyaltyUpsertWithWhereUniqueWithoutPackInput[]
-  createMany?: Prisma.UserRoyaltyCreateManyPackInputEnvelope
-  set?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
-  disconnect?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
-  delete?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
-  connect?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
-  update?: Prisma.UserRoyaltyUpdateWithWhereUniqueWithoutPackInput | Prisma.UserRoyaltyUpdateWithWhereUniqueWithoutPackInput[]
-  updateMany?: Prisma.UserRoyaltyUpdateManyWithWhereWithoutPackInput | Prisma.UserRoyaltyUpdateManyWithWhereWithoutPackInput[]
-  deleteMany?: Prisma.UserRoyaltyScalarWhereInput | Prisma.UserRoyaltyScalarWhereInput[]
-}
-
 export type UserRoyaltyCreateNestedManyWithoutBountyInput = {
   create?: Prisma.XOR<Prisma.UserRoyaltyCreateWithoutBountyInput, Prisma.UserRoyaltyUncheckedCreateWithoutBountyInput> | Prisma.UserRoyaltyCreateWithoutBountyInput[] | Prisma.UserRoyaltyUncheckedCreateWithoutBountyInput[]
   connectOrCreate?: Prisma.UserRoyaltyCreateOrConnectWithoutBountyInput | Prisma.UserRoyaltyCreateOrConnectWithoutBountyInput[]
@@ -781,6 +805,48 @@ export type UserRoyaltyUncheckedUpdateManyWithoutBountyNestedInput = {
   deleteMany?: Prisma.UserRoyaltyScalarWhereInput | Prisma.UserRoyaltyScalarWhereInput[]
 }
 
+export type UserRoyaltyCreateNestedManyWithoutPaymentInput = {
+  create?: Prisma.XOR<Prisma.UserRoyaltyCreateWithoutPaymentInput, Prisma.UserRoyaltyUncheckedCreateWithoutPaymentInput> | Prisma.UserRoyaltyCreateWithoutPaymentInput[] | Prisma.UserRoyaltyUncheckedCreateWithoutPaymentInput[]
+  connectOrCreate?: Prisma.UserRoyaltyCreateOrConnectWithoutPaymentInput | Prisma.UserRoyaltyCreateOrConnectWithoutPaymentInput[]
+  createMany?: Prisma.UserRoyaltyCreateManyPaymentInputEnvelope
+  connect?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
+}
+
+export type UserRoyaltyUncheckedCreateNestedManyWithoutPaymentInput = {
+  create?: Prisma.XOR<Prisma.UserRoyaltyCreateWithoutPaymentInput, Prisma.UserRoyaltyUncheckedCreateWithoutPaymentInput> | Prisma.UserRoyaltyCreateWithoutPaymentInput[] | Prisma.UserRoyaltyUncheckedCreateWithoutPaymentInput[]
+  connectOrCreate?: Prisma.UserRoyaltyCreateOrConnectWithoutPaymentInput | Prisma.UserRoyaltyCreateOrConnectWithoutPaymentInput[]
+  createMany?: Prisma.UserRoyaltyCreateManyPaymentInputEnvelope
+  connect?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
+}
+
+export type UserRoyaltyUpdateManyWithoutPaymentNestedInput = {
+  create?: Prisma.XOR<Prisma.UserRoyaltyCreateWithoutPaymentInput, Prisma.UserRoyaltyUncheckedCreateWithoutPaymentInput> | Prisma.UserRoyaltyCreateWithoutPaymentInput[] | Prisma.UserRoyaltyUncheckedCreateWithoutPaymentInput[]
+  connectOrCreate?: Prisma.UserRoyaltyCreateOrConnectWithoutPaymentInput | Prisma.UserRoyaltyCreateOrConnectWithoutPaymentInput[]
+  upsert?: Prisma.UserRoyaltyUpsertWithWhereUniqueWithoutPaymentInput | Prisma.UserRoyaltyUpsertWithWhereUniqueWithoutPaymentInput[]
+  createMany?: Prisma.UserRoyaltyCreateManyPaymentInputEnvelope
+  set?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
+  disconnect?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
+  delete?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
+  connect?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
+  update?: Prisma.UserRoyaltyUpdateWithWhereUniqueWithoutPaymentInput | Prisma.UserRoyaltyUpdateWithWhereUniqueWithoutPaymentInput[]
+  updateMany?: Prisma.UserRoyaltyUpdateManyWithWhereWithoutPaymentInput | Prisma.UserRoyaltyUpdateManyWithWhereWithoutPaymentInput[]
+  deleteMany?: Prisma.UserRoyaltyScalarWhereInput | Prisma.UserRoyaltyScalarWhereInput[]
+}
+
+export type UserRoyaltyUncheckedUpdateManyWithoutPaymentNestedInput = {
+  create?: Prisma.XOR<Prisma.UserRoyaltyCreateWithoutPaymentInput, Prisma.UserRoyaltyUncheckedCreateWithoutPaymentInput> | Prisma.UserRoyaltyCreateWithoutPaymentInput[] | Prisma.UserRoyaltyUncheckedCreateWithoutPaymentInput[]
+  connectOrCreate?: Prisma.UserRoyaltyCreateOrConnectWithoutPaymentInput | Prisma.UserRoyaltyCreateOrConnectWithoutPaymentInput[]
+  upsert?: Prisma.UserRoyaltyUpsertWithWhereUniqueWithoutPaymentInput | Prisma.UserRoyaltyUpsertWithWhereUniqueWithoutPaymentInput[]
+  createMany?: Prisma.UserRoyaltyCreateManyPaymentInputEnvelope
+  set?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
+  disconnect?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
+  delete?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
+  connect?: Prisma.UserRoyaltyWhereUniqueInput | Prisma.UserRoyaltyWhereUniqueInput[]
+  update?: Prisma.UserRoyaltyUpdateWithWhereUniqueWithoutPaymentInput | Prisma.UserRoyaltyUpdateWithWhereUniqueWithoutPaymentInput[]
+  updateMany?: Prisma.UserRoyaltyUpdateManyWithWhereWithoutPaymentInput | Prisma.UserRoyaltyUpdateManyWithWhereWithoutPaymentInput[]
+  deleteMany?: Prisma.UserRoyaltyScalarWhereInput | Prisma.UserRoyaltyScalarWhereInput[]
+}
+
 export type UserRoyaltyCreateWithoutUserInput = {
   id?: string
   sourceType?: $Enums.PayoutSourceType
@@ -789,9 +855,10 @@ export type UserRoyaltyCreateWithoutUserInput = {
   paidOutAt?: Date | string | null
   createdAt?: Date | string
   entry?: Prisma.EntryCreateNestedOneWithoutRoyaltiesGeneratedInput
-  pack?: Prisma.PackCreateNestedOneWithoutRoyaltiesInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutRoyaltiesInput
   ledger?: Prisma.ApiUsageLedgerCreateNestedOneWithoutRoyaltiesDistributedInput
   bounty?: Prisma.KnowledgeBountyCreateNestedOneWithoutRoyaltiesInput
+  payment?: Prisma.PaymentCreateNestedOneWithoutRoyaltiesGeneratedInput
   payout?: Prisma.CreatorPayoutCreateNestedOneWithoutRoyaltiesInput
 }
 
@@ -799,9 +866,10 @@ export type UserRoyaltyUncheckedCreateWithoutUserInput = {
   id?: string
   sourceType?: $Enums.PayoutSourceType
   entryId?: string | null
-  packId?: string | null
+  collectionId?: string | null
   ledgerId?: string | null
   bountyId?: string | null
+  paymentId?: string | null
   amountInCents: number
   sourceClientId: string
   payoutId?: string | null
@@ -843,14 +911,71 @@ export type UserRoyaltyScalarWhereInput = {
   userId?: Prisma.StringFilter<"UserRoyalty"> | string
   sourceType?: Prisma.EnumPayoutSourceTypeFilter<"UserRoyalty"> | $Enums.PayoutSourceType
   entryId?: Prisma.StringNullableFilter<"UserRoyalty"> | string | null
-  packId?: Prisma.StringNullableFilter<"UserRoyalty"> | string | null
+  collectionId?: Prisma.StringNullableFilter<"UserRoyalty"> | string | null
   ledgerId?: Prisma.StringNullableFilter<"UserRoyalty"> | string | null
   bountyId?: Prisma.StringNullableFilter<"UserRoyalty"> | string | null
+  paymentId?: Prisma.StringNullableFilter<"UserRoyalty"> | string | null
   amountInCents?: Prisma.FloatFilter<"UserRoyalty"> | number
   sourceClientId?: Prisma.StringFilter<"UserRoyalty"> | string
   payoutId?: Prisma.StringNullableFilter<"UserRoyalty"> | string | null
   paidOutAt?: Prisma.DateTimeNullableFilter<"UserRoyalty"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"UserRoyalty"> | Date | string
+}
+
+export type UserRoyaltyCreateWithoutCollectionInput = {
+  id?: string
+  sourceType?: $Enums.PayoutSourceType
+  amountInCents: number
+  sourceClientId: string
+  paidOutAt?: Date | string | null
+  createdAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutRoyaltiesInput
+  entry?: Prisma.EntryCreateNestedOneWithoutRoyaltiesGeneratedInput
+  ledger?: Prisma.ApiUsageLedgerCreateNestedOneWithoutRoyaltiesDistributedInput
+  bounty?: Prisma.KnowledgeBountyCreateNestedOneWithoutRoyaltiesInput
+  payment?: Prisma.PaymentCreateNestedOneWithoutRoyaltiesGeneratedInput
+  payout?: Prisma.CreatorPayoutCreateNestedOneWithoutRoyaltiesInput
+}
+
+export type UserRoyaltyUncheckedCreateWithoutCollectionInput = {
+  id?: string
+  userId: string
+  sourceType?: $Enums.PayoutSourceType
+  entryId?: string | null
+  ledgerId?: string | null
+  bountyId?: string | null
+  paymentId?: string | null
+  amountInCents: number
+  sourceClientId: string
+  payoutId?: string | null
+  paidOutAt?: Date | string | null
+  createdAt?: Date | string
+}
+
+export type UserRoyaltyCreateOrConnectWithoutCollectionInput = {
+  where: Prisma.UserRoyaltyWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserRoyaltyCreateWithoutCollectionInput, Prisma.UserRoyaltyUncheckedCreateWithoutCollectionInput>
+}
+
+export type UserRoyaltyCreateManyCollectionInputEnvelope = {
+  data: Prisma.UserRoyaltyCreateManyCollectionInput | Prisma.UserRoyaltyCreateManyCollectionInput[]
+  skipDuplicates?: boolean
+}
+
+export type UserRoyaltyUpsertWithWhereUniqueWithoutCollectionInput = {
+  where: Prisma.UserRoyaltyWhereUniqueInput
+  update: Prisma.XOR<Prisma.UserRoyaltyUpdateWithoutCollectionInput, Prisma.UserRoyaltyUncheckedUpdateWithoutCollectionInput>
+  create: Prisma.XOR<Prisma.UserRoyaltyCreateWithoutCollectionInput, Prisma.UserRoyaltyUncheckedCreateWithoutCollectionInput>
+}
+
+export type UserRoyaltyUpdateWithWhereUniqueWithoutCollectionInput = {
+  where: Prisma.UserRoyaltyWhereUniqueInput
+  data: Prisma.XOR<Prisma.UserRoyaltyUpdateWithoutCollectionInput, Prisma.UserRoyaltyUncheckedUpdateWithoutCollectionInput>
+}
+
+export type UserRoyaltyUpdateManyWithWhereWithoutCollectionInput = {
+  where: Prisma.UserRoyaltyScalarWhereInput
+  data: Prisma.XOR<Prisma.UserRoyaltyUpdateManyMutationInput, Prisma.UserRoyaltyUncheckedUpdateManyWithoutCollectionInput>
 }
 
 export type UserRoyaltyCreateWithoutEntryInput = {
@@ -861,9 +986,10 @@ export type UserRoyaltyCreateWithoutEntryInput = {
   paidOutAt?: Date | string | null
   createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutRoyaltiesInput
-  pack?: Prisma.PackCreateNestedOneWithoutRoyaltiesInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutRoyaltiesInput
   ledger?: Prisma.ApiUsageLedgerCreateNestedOneWithoutRoyaltiesDistributedInput
   bounty?: Prisma.KnowledgeBountyCreateNestedOneWithoutRoyaltiesInput
+  payment?: Prisma.PaymentCreateNestedOneWithoutRoyaltiesGeneratedInput
   payout?: Prisma.CreatorPayoutCreateNestedOneWithoutRoyaltiesInput
 }
 
@@ -871,9 +997,10 @@ export type UserRoyaltyUncheckedCreateWithoutEntryInput = {
   id?: string
   userId: string
   sourceType?: $Enums.PayoutSourceType
-  packId?: string | null
+  collectionId?: string | null
   ledgerId?: string | null
   bountyId?: string | null
+  paymentId?: string | null
   amountInCents: number
   sourceClientId: string
   payoutId?: string | null
@@ -916,8 +1043,9 @@ export type UserRoyaltyCreateWithoutLedgerInput = {
   createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutRoyaltiesInput
   entry?: Prisma.EntryCreateNestedOneWithoutRoyaltiesGeneratedInput
-  pack?: Prisma.PackCreateNestedOneWithoutRoyaltiesInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutRoyaltiesInput
   bounty?: Prisma.KnowledgeBountyCreateNestedOneWithoutRoyaltiesInput
+  payment?: Prisma.PaymentCreateNestedOneWithoutRoyaltiesGeneratedInput
   payout?: Prisma.CreatorPayoutCreateNestedOneWithoutRoyaltiesInput
 }
 
@@ -926,8 +1054,9 @@ export type UserRoyaltyUncheckedCreateWithoutLedgerInput = {
   userId: string
   sourceType?: $Enums.PayoutSourceType
   entryId?: string | null
-  packId?: string | null
+  collectionId?: string | null
   bountyId?: string | null
+  paymentId?: string | null
   amountInCents: number
   sourceClientId: string
   payoutId?: string | null
@@ -970,9 +1099,10 @@ export type UserRoyaltyCreateWithoutPayoutInput = {
   createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutRoyaltiesInput
   entry?: Prisma.EntryCreateNestedOneWithoutRoyaltiesGeneratedInput
-  pack?: Prisma.PackCreateNestedOneWithoutRoyaltiesInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutRoyaltiesInput
   ledger?: Prisma.ApiUsageLedgerCreateNestedOneWithoutRoyaltiesDistributedInput
   bounty?: Prisma.KnowledgeBountyCreateNestedOneWithoutRoyaltiesInput
+  payment?: Prisma.PaymentCreateNestedOneWithoutRoyaltiesGeneratedInput
 }
 
 export type UserRoyaltyUncheckedCreateWithoutPayoutInput = {
@@ -980,9 +1110,10 @@ export type UserRoyaltyUncheckedCreateWithoutPayoutInput = {
   userId: string
   sourceType?: $Enums.PayoutSourceType
   entryId?: string | null
-  packId?: string | null
+  collectionId?: string | null
   ledgerId?: string | null
   bountyId?: string | null
+  paymentId?: string | null
   amountInCents: number
   sourceClientId: string
   paidOutAt?: Date | string | null
@@ -1015,60 +1146,6 @@ export type UserRoyaltyUpdateManyWithWhereWithoutPayoutInput = {
   data: Prisma.XOR<Prisma.UserRoyaltyUpdateManyMutationInput, Prisma.UserRoyaltyUncheckedUpdateManyWithoutPayoutInput>
 }
 
-export type UserRoyaltyCreateWithoutPackInput = {
-  id?: string
-  sourceType?: $Enums.PayoutSourceType
-  amountInCents: number
-  sourceClientId: string
-  paidOutAt?: Date | string | null
-  createdAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutRoyaltiesInput
-  entry?: Prisma.EntryCreateNestedOneWithoutRoyaltiesGeneratedInput
-  ledger?: Prisma.ApiUsageLedgerCreateNestedOneWithoutRoyaltiesDistributedInput
-  bounty?: Prisma.KnowledgeBountyCreateNestedOneWithoutRoyaltiesInput
-  payout?: Prisma.CreatorPayoutCreateNestedOneWithoutRoyaltiesInput
-}
-
-export type UserRoyaltyUncheckedCreateWithoutPackInput = {
-  id?: string
-  userId: string
-  sourceType?: $Enums.PayoutSourceType
-  entryId?: string | null
-  ledgerId?: string | null
-  bountyId?: string | null
-  amountInCents: number
-  sourceClientId: string
-  payoutId?: string | null
-  paidOutAt?: Date | string | null
-  createdAt?: Date | string
-}
-
-export type UserRoyaltyCreateOrConnectWithoutPackInput = {
-  where: Prisma.UserRoyaltyWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserRoyaltyCreateWithoutPackInput, Prisma.UserRoyaltyUncheckedCreateWithoutPackInput>
-}
-
-export type UserRoyaltyCreateManyPackInputEnvelope = {
-  data: Prisma.UserRoyaltyCreateManyPackInput | Prisma.UserRoyaltyCreateManyPackInput[]
-  skipDuplicates?: boolean
-}
-
-export type UserRoyaltyUpsertWithWhereUniqueWithoutPackInput = {
-  where: Prisma.UserRoyaltyWhereUniqueInput
-  update: Prisma.XOR<Prisma.UserRoyaltyUpdateWithoutPackInput, Prisma.UserRoyaltyUncheckedUpdateWithoutPackInput>
-  create: Prisma.XOR<Prisma.UserRoyaltyCreateWithoutPackInput, Prisma.UserRoyaltyUncheckedCreateWithoutPackInput>
-}
-
-export type UserRoyaltyUpdateWithWhereUniqueWithoutPackInput = {
-  where: Prisma.UserRoyaltyWhereUniqueInput
-  data: Prisma.XOR<Prisma.UserRoyaltyUpdateWithoutPackInput, Prisma.UserRoyaltyUncheckedUpdateWithoutPackInput>
-}
-
-export type UserRoyaltyUpdateManyWithWhereWithoutPackInput = {
-  where: Prisma.UserRoyaltyScalarWhereInput
-  data: Prisma.XOR<Prisma.UserRoyaltyUpdateManyMutationInput, Prisma.UserRoyaltyUncheckedUpdateManyWithoutPackInput>
-}
-
 export type UserRoyaltyCreateWithoutBountyInput = {
   id?: string
   sourceType?: $Enums.PayoutSourceType
@@ -1078,8 +1155,9 @@ export type UserRoyaltyCreateWithoutBountyInput = {
   createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutRoyaltiesInput
   entry?: Prisma.EntryCreateNestedOneWithoutRoyaltiesGeneratedInput
-  pack?: Prisma.PackCreateNestedOneWithoutRoyaltiesInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutRoyaltiesInput
   ledger?: Prisma.ApiUsageLedgerCreateNestedOneWithoutRoyaltiesDistributedInput
+  payment?: Prisma.PaymentCreateNestedOneWithoutRoyaltiesGeneratedInput
   payout?: Prisma.CreatorPayoutCreateNestedOneWithoutRoyaltiesInput
 }
 
@@ -1088,8 +1166,9 @@ export type UserRoyaltyUncheckedCreateWithoutBountyInput = {
   userId: string
   sourceType?: $Enums.PayoutSourceType
   entryId?: string | null
-  packId?: string | null
+  collectionId?: string | null
   ledgerId?: string | null
+  paymentId?: string | null
   amountInCents: number
   sourceClientId: string
   payoutId?: string | null
@@ -1123,13 +1202,70 @@ export type UserRoyaltyUpdateManyWithWhereWithoutBountyInput = {
   data: Prisma.XOR<Prisma.UserRoyaltyUpdateManyMutationInput, Prisma.UserRoyaltyUncheckedUpdateManyWithoutBountyInput>
 }
 
+export type UserRoyaltyCreateWithoutPaymentInput = {
+  id?: string
+  sourceType?: $Enums.PayoutSourceType
+  amountInCents: number
+  sourceClientId: string
+  paidOutAt?: Date | string | null
+  createdAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutRoyaltiesInput
+  entry?: Prisma.EntryCreateNestedOneWithoutRoyaltiesGeneratedInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutRoyaltiesInput
+  ledger?: Prisma.ApiUsageLedgerCreateNestedOneWithoutRoyaltiesDistributedInput
+  bounty?: Prisma.KnowledgeBountyCreateNestedOneWithoutRoyaltiesInput
+  payout?: Prisma.CreatorPayoutCreateNestedOneWithoutRoyaltiesInput
+}
+
+export type UserRoyaltyUncheckedCreateWithoutPaymentInput = {
+  id?: string
+  userId: string
+  sourceType?: $Enums.PayoutSourceType
+  entryId?: string | null
+  collectionId?: string | null
+  ledgerId?: string | null
+  bountyId?: string | null
+  amountInCents: number
+  sourceClientId: string
+  payoutId?: string | null
+  paidOutAt?: Date | string | null
+  createdAt?: Date | string
+}
+
+export type UserRoyaltyCreateOrConnectWithoutPaymentInput = {
+  where: Prisma.UserRoyaltyWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserRoyaltyCreateWithoutPaymentInput, Prisma.UserRoyaltyUncheckedCreateWithoutPaymentInput>
+}
+
+export type UserRoyaltyCreateManyPaymentInputEnvelope = {
+  data: Prisma.UserRoyaltyCreateManyPaymentInput | Prisma.UserRoyaltyCreateManyPaymentInput[]
+  skipDuplicates?: boolean
+}
+
+export type UserRoyaltyUpsertWithWhereUniqueWithoutPaymentInput = {
+  where: Prisma.UserRoyaltyWhereUniqueInput
+  update: Prisma.XOR<Prisma.UserRoyaltyUpdateWithoutPaymentInput, Prisma.UserRoyaltyUncheckedUpdateWithoutPaymentInput>
+  create: Prisma.XOR<Prisma.UserRoyaltyCreateWithoutPaymentInput, Prisma.UserRoyaltyUncheckedCreateWithoutPaymentInput>
+}
+
+export type UserRoyaltyUpdateWithWhereUniqueWithoutPaymentInput = {
+  where: Prisma.UserRoyaltyWhereUniqueInput
+  data: Prisma.XOR<Prisma.UserRoyaltyUpdateWithoutPaymentInput, Prisma.UserRoyaltyUncheckedUpdateWithoutPaymentInput>
+}
+
+export type UserRoyaltyUpdateManyWithWhereWithoutPaymentInput = {
+  where: Prisma.UserRoyaltyScalarWhereInput
+  data: Prisma.XOR<Prisma.UserRoyaltyUpdateManyMutationInput, Prisma.UserRoyaltyUncheckedUpdateManyWithoutPaymentInput>
+}
+
 export type UserRoyaltyCreateManyUserInput = {
   id?: string
   sourceType?: $Enums.PayoutSourceType
   entryId?: string | null
-  packId?: string | null
+  collectionId?: string | null
   ledgerId?: string | null
   bountyId?: string | null
+  paymentId?: string | null
   amountInCents: number
   sourceClientId: string
   payoutId?: string | null
@@ -1145,9 +1281,10 @@ export type UserRoyaltyUpdateWithoutUserInput = {
   paidOutAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   entry?: Prisma.EntryUpdateOneWithoutRoyaltiesGeneratedNestedInput
-  pack?: Prisma.PackUpdateOneWithoutRoyaltiesNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutRoyaltiesNestedInput
   ledger?: Prisma.ApiUsageLedgerUpdateOneWithoutRoyaltiesDistributedNestedInput
   bounty?: Prisma.KnowledgeBountyUpdateOneWithoutRoyaltiesNestedInput
+  payment?: Prisma.PaymentUpdateOneWithoutRoyaltiesGeneratedNestedInput
   payout?: Prisma.CreatorPayoutUpdateOneWithoutRoyaltiesNestedInput
 }
 
@@ -1155,9 +1292,10 @@ export type UserRoyaltyUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   sourceType?: Prisma.EnumPayoutSourceTypeFieldUpdateOperationsInput | $Enums.PayoutSourceType
   entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ledgerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountInCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sourceClientId?: Prisma.StringFieldUpdateOperationsInput | string
   payoutId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1169,9 +1307,70 @@ export type UserRoyaltyUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   sourceType?: Prisma.EnumPayoutSourceTypeFieldUpdateOperationsInput | $Enums.PayoutSourceType
   entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ledgerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amountInCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sourceClientId?: Prisma.StringFieldUpdateOperationsInput | string
+  payoutId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paidOutAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type UserRoyaltyCreateManyCollectionInput = {
+  id?: string
+  userId: string
+  sourceType?: $Enums.PayoutSourceType
+  entryId?: string | null
+  ledgerId?: string | null
+  bountyId?: string | null
+  paymentId?: string | null
+  amountInCents: number
+  sourceClientId: string
+  payoutId?: string | null
+  paidOutAt?: Date | string | null
+  createdAt?: Date | string
+}
+
+export type UserRoyaltyUpdateWithoutCollectionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceType?: Prisma.EnumPayoutSourceTypeFieldUpdateOperationsInput | $Enums.PayoutSourceType
+  amountInCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sourceClientId?: Prisma.StringFieldUpdateOperationsInput | string
+  paidOutAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutRoyaltiesNestedInput
+  entry?: Prisma.EntryUpdateOneWithoutRoyaltiesGeneratedNestedInput
+  ledger?: Prisma.ApiUsageLedgerUpdateOneWithoutRoyaltiesDistributedNestedInput
+  bounty?: Prisma.KnowledgeBountyUpdateOneWithoutRoyaltiesNestedInput
+  payment?: Prisma.PaymentUpdateOneWithoutRoyaltiesGeneratedNestedInput
+  payout?: Prisma.CreatorPayoutUpdateOneWithoutRoyaltiesNestedInput
+}
+
+export type UserRoyaltyUncheckedUpdateWithoutCollectionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceType?: Prisma.EnumPayoutSourceTypeFieldUpdateOperationsInput | $Enums.PayoutSourceType
+  entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ledgerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amountInCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sourceClientId?: Prisma.StringFieldUpdateOperationsInput | string
+  payoutId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paidOutAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type UserRoyaltyUncheckedUpdateManyWithoutCollectionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceType?: Prisma.EnumPayoutSourceTypeFieldUpdateOperationsInput | $Enums.PayoutSourceType
+  entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ledgerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountInCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sourceClientId?: Prisma.StringFieldUpdateOperationsInput | string
   payoutId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1183,9 +1382,10 @@ export type UserRoyaltyCreateManyEntryInput = {
   id?: string
   userId: string
   sourceType?: $Enums.PayoutSourceType
-  packId?: string | null
+  collectionId?: string | null
   ledgerId?: string | null
   bountyId?: string | null
+  paymentId?: string | null
   amountInCents: number
   sourceClientId: string
   payoutId?: string | null
@@ -1201,9 +1401,10 @@ export type UserRoyaltyUpdateWithoutEntryInput = {
   paidOutAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutRoyaltiesNestedInput
-  pack?: Prisma.PackUpdateOneWithoutRoyaltiesNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutRoyaltiesNestedInput
   ledger?: Prisma.ApiUsageLedgerUpdateOneWithoutRoyaltiesDistributedNestedInput
   bounty?: Prisma.KnowledgeBountyUpdateOneWithoutRoyaltiesNestedInput
+  payment?: Prisma.PaymentUpdateOneWithoutRoyaltiesGeneratedNestedInput
   payout?: Prisma.CreatorPayoutUpdateOneWithoutRoyaltiesNestedInput
 }
 
@@ -1211,9 +1412,10 @@ export type UserRoyaltyUncheckedUpdateWithoutEntryInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceType?: Prisma.EnumPayoutSourceTypeFieldUpdateOperationsInput | $Enums.PayoutSourceType
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ledgerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountInCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sourceClientId?: Prisma.StringFieldUpdateOperationsInput | string
   payoutId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1225,9 +1427,10 @@ export type UserRoyaltyUncheckedUpdateManyWithoutEntryInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceType?: Prisma.EnumPayoutSourceTypeFieldUpdateOperationsInput | $Enums.PayoutSourceType
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ledgerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountInCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sourceClientId?: Prisma.StringFieldUpdateOperationsInput | string
   payoutId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1240,8 +1443,9 @@ export type UserRoyaltyCreateManyLedgerInput = {
   userId: string
   sourceType?: $Enums.PayoutSourceType
   entryId?: string | null
-  packId?: string | null
+  collectionId?: string | null
   bountyId?: string | null
+  paymentId?: string | null
   amountInCents: number
   sourceClientId: string
   payoutId?: string | null
@@ -1258,8 +1462,9 @@ export type UserRoyaltyUpdateWithoutLedgerInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutRoyaltiesNestedInput
   entry?: Prisma.EntryUpdateOneWithoutRoyaltiesGeneratedNestedInput
-  pack?: Prisma.PackUpdateOneWithoutRoyaltiesNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutRoyaltiesNestedInput
   bounty?: Prisma.KnowledgeBountyUpdateOneWithoutRoyaltiesNestedInput
+  payment?: Prisma.PaymentUpdateOneWithoutRoyaltiesGeneratedNestedInput
   payout?: Prisma.CreatorPayoutUpdateOneWithoutRoyaltiesNestedInput
 }
 
@@ -1268,8 +1473,9 @@ export type UserRoyaltyUncheckedUpdateWithoutLedgerInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceType?: Prisma.EnumPayoutSourceTypeFieldUpdateOperationsInput | $Enums.PayoutSourceType
   entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountInCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sourceClientId?: Prisma.StringFieldUpdateOperationsInput | string
   payoutId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1282,8 +1488,9 @@ export type UserRoyaltyUncheckedUpdateManyWithoutLedgerInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceType?: Prisma.EnumPayoutSourceTypeFieldUpdateOperationsInput | $Enums.PayoutSourceType
   entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountInCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sourceClientId?: Prisma.StringFieldUpdateOperationsInput | string
   payoutId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1296,9 +1503,10 @@ export type UserRoyaltyCreateManyPayoutInput = {
   userId: string
   sourceType?: $Enums.PayoutSourceType
   entryId?: string | null
-  packId?: string | null
+  collectionId?: string | null
   ledgerId?: string | null
   bountyId?: string | null
+  paymentId?: string | null
   amountInCents: number
   sourceClientId: string
   paidOutAt?: Date | string | null
@@ -1314,9 +1522,10 @@ export type UserRoyaltyUpdateWithoutPayoutInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutRoyaltiesNestedInput
   entry?: Prisma.EntryUpdateOneWithoutRoyaltiesGeneratedNestedInput
-  pack?: Prisma.PackUpdateOneWithoutRoyaltiesNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutRoyaltiesNestedInput
   ledger?: Prisma.ApiUsageLedgerUpdateOneWithoutRoyaltiesDistributedNestedInput
   bounty?: Prisma.KnowledgeBountyUpdateOneWithoutRoyaltiesNestedInput
+  payment?: Prisma.PaymentUpdateOneWithoutRoyaltiesGeneratedNestedInput
 }
 
 export type UserRoyaltyUncheckedUpdateWithoutPayoutInput = {
@@ -1324,9 +1533,10 @@ export type UserRoyaltyUncheckedUpdateWithoutPayoutInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceType?: Prisma.EnumPayoutSourceTypeFieldUpdateOperationsInput | $Enums.PayoutSourceType
   entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ledgerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountInCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sourceClientId?: Prisma.StringFieldUpdateOperationsInput | string
   paidOutAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1338,67 +1548,12 @@ export type UserRoyaltyUncheckedUpdateManyWithoutPayoutInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceType?: Prisma.EnumPayoutSourceTypeFieldUpdateOperationsInput | $Enums.PayoutSourceType
   entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ledgerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountInCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sourceClientId?: Prisma.StringFieldUpdateOperationsInput | string
-  paidOutAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type UserRoyaltyCreateManyPackInput = {
-  id?: string
-  userId: string
-  sourceType?: $Enums.PayoutSourceType
-  entryId?: string | null
-  ledgerId?: string | null
-  bountyId?: string | null
-  amountInCents: number
-  sourceClientId: string
-  payoutId?: string | null
-  paidOutAt?: Date | string | null
-  createdAt?: Date | string
-}
-
-export type UserRoyaltyUpdateWithoutPackInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceType?: Prisma.EnumPayoutSourceTypeFieldUpdateOperationsInput | $Enums.PayoutSourceType
-  amountInCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  sourceClientId?: Prisma.StringFieldUpdateOperationsInput | string
-  paidOutAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutRoyaltiesNestedInput
-  entry?: Prisma.EntryUpdateOneWithoutRoyaltiesGeneratedNestedInput
-  ledger?: Prisma.ApiUsageLedgerUpdateOneWithoutRoyaltiesDistributedNestedInput
-  bounty?: Prisma.KnowledgeBountyUpdateOneWithoutRoyaltiesNestedInput
-  payout?: Prisma.CreatorPayoutUpdateOneWithoutRoyaltiesNestedInput
-}
-
-export type UserRoyaltyUncheckedUpdateWithoutPackInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceType?: Prisma.EnumPayoutSourceTypeFieldUpdateOperationsInput | $Enums.PayoutSourceType
-  entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ledgerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  amountInCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  sourceClientId?: Prisma.StringFieldUpdateOperationsInput | string
-  payoutId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  paidOutAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type UserRoyaltyUncheckedUpdateManyWithoutPackInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceType?: Prisma.EnumPayoutSourceTypeFieldUpdateOperationsInput | $Enums.PayoutSourceType
-  entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ledgerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  amountInCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  sourceClientId?: Prisma.StringFieldUpdateOperationsInput | string
-  payoutId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paidOutAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1408,8 +1563,9 @@ export type UserRoyaltyCreateManyBountyInput = {
   userId: string
   sourceType?: $Enums.PayoutSourceType
   entryId?: string | null
-  packId?: string | null
+  collectionId?: string | null
   ledgerId?: string | null
+  paymentId?: string | null
   amountInCents: number
   sourceClientId: string
   payoutId?: string | null
@@ -1426,8 +1582,9 @@ export type UserRoyaltyUpdateWithoutBountyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutRoyaltiesNestedInput
   entry?: Prisma.EntryUpdateOneWithoutRoyaltiesGeneratedNestedInput
-  pack?: Prisma.PackUpdateOneWithoutRoyaltiesNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutRoyaltiesNestedInput
   ledger?: Prisma.ApiUsageLedgerUpdateOneWithoutRoyaltiesDistributedNestedInput
+  payment?: Prisma.PaymentUpdateOneWithoutRoyaltiesGeneratedNestedInput
   payout?: Prisma.CreatorPayoutUpdateOneWithoutRoyaltiesNestedInput
 }
 
@@ -1436,8 +1593,9 @@ export type UserRoyaltyUncheckedUpdateWithoutBountyInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceType?: Prisma.EnumPayoutSourceTypeFieldUpdateOperationsInput | $Enums.PayoutSourceType
   entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ledgerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountInCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sourceClientId?: Prisma.StringFieldUpdateOperationsInput | string
   payoutId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1450,8 +1608,69 @@ export type UserRoyaltyUncheckedUpdateManyWithoutBountyInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceType?: Prisma.EnumPayoutSourceTypeFieldUpdateOperationsInput | $Enums.PayoutSourceType
   entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ledgerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amountInCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sourceClientId?: Prisma.StringFieldUpdateOperationsInput | string
+  payoutId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paidOutAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type UserRoyaltyCreateManyPaymentInput = {
+  id?: string
+  userId: string
+  sourceType?: $Enums.PayoutSourceType
+  entryId?: string | null
+  collectionId?: string | null
+  ledgerId?: string | null
+  bountyId?: string | null
+  amountInCents: number
+  sourceClientId: string
+  payoutId?: string | null
+  paidOutAt?: Date | string | null
+  createdAt?: Date | string
+}
+
+export type UserRoyaltyUpdateWithoutPaymentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceType?: Prisma.EnumPayoutSourceTypeFieldUpdateOperationsInput | $Enums.PayoutSourceType
+  amountInCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sourceClientId?: Prisma.StringFieldUpdateOperationsInput | string
+  paidOutAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutRoyaltiesNestedInput
+  entry?: Prisma.EntryUpdateOneWithoutRoyaltiesGeneratedNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutRoyaltiesNestedInput
+  ledger?: Prisma.ApiUsageLedgerUpdateOneWithoutRoyaltiesDistributedNestedInput
+  bounty?: Prisma.KnowledgeBountyUpdateOneWithoutRoyaltiesNestedInput
+  payout?: Prisma.CreatorPayoutUpdateOneWithoutRoyaltiesNestedInput
+}
+
+export type UserRoyaltyUncheckedUpdateWithoutPaymentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceType?: Prisma.EnumPayoutSourceTypeFieldUpdateOperationsInput | $Enums.PayoutSourceType
+  entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ledgerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amountInCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  sourceClientId?: Prisma.StringFieldUpdateOperationsInput | string
+  payoutId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paidOutAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type UserRoyaltyUncheckedUpdateManyWithoutPaymentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceType?: Prisma.EnumPayoutSourceTypeFieldUpdateOperationsInput | $Enums.PayoutSourceType
+  entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ledgerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountInCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sourceClientId?: Prisma.StringFieldUpdateOperationsInput | string
   payoutId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1466,9 +1685,10 @@ export type UserRoyaltySelect<ExtArgs extends runtime.Types.Extensions.InternalA
   userId?: boolean
   sourceType?: boolean
   entryId?: boolean
-  packId?: boolean
+  collectionId?: boolean
   ledgerId?: boolean
   bountyId?: boolean
+  paymentId?: boolean
   amountInCents?: boolean
   sourceClientId?: boolean
   payoutId?: boolean
@@ -1476,9 +1696,10 @@ export type UserRoyaltySelect<ExtArgs extends runtime.Types.Extensions.InternalA
   createdAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   entry?: boolean | Prisma.UserRoyalty$entryArgs<ExtArgs>
-  pack?: boolean | Prisma.UserRoyalty$packArgs<ExtArgs>
+  collection?: boolean | Prisma.UserRoyalty$collectionArgs<ExtArgs>
   ledger?: boolean | Prisma.UserRoyalty$ledgerArgs<ExtArgs>
   bounty?: boolean | Prisma.UserRoyalty$bountyArgs<ExtArgs>
+  payment?: boolean | Prisma.UserRoyalty$paymentArgs<ExtArgs>
   payout?: boolean | Prisma.UserRoyalty$payoutArgs<ExtArgs>
 }, ExtArgs["result"]["userRoyalty"]>
 
@@ -1487,9 +1708,10 @@ export type UserRoyaltySelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   userId?: boolean
   sourceType?: boolean
   entryId?: boolean
-  packId?: boolean
+  collectionId?: boolean
   ledgerId?: boolean
   bountyId?: boolean
+  paymentId?: boolean
   amountInCents?: boolean
   sourceClientId?: boolean
   payoutId?: boolean
@@ -1497,9 +1719,10 @@ export type UserRoyaltySelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   createdAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   entry?: boolean | Prisma.UserRoyalty$entryArgs<ExtArgs>
-  pack?: boolean | Prisma.UserRoyalty$packArgs<ExtArgs>
+  collection?: boolean | Prisma.UserRoyalty$collectionArgs<ExtArgs>
   ledger?: boolean | Prisma.UserRoyalty$ledgerArgs<ExtArgs>
   bounty?: boolean | Prisma.UserRoyalty$bountyArgs<ExtArgs>
+  payment?: boolean | Prisma.UserRoyalty$paymentArgs<ExtArgs>
   payout?: boolean | Prisma.UserRoyalty$payoutArgs<ExtArgs>
 }, ExtArgs["result"]["userRoyalty"]>
 
@@ -1508,9 +1731,10 @@ export type UserRoyaltySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   userId?: boolean
   sourceType?: boolean
   entryId?: boolean
-  packId?: boolean
+  collectionId?: boolean
   ledgerId?: boolean
   bountyId?: boolean
+  paymentId?: boolean
   amountInCents?: boolean
   sourceClientId?: boolean
   payoutId?: boolean
@@ -1518,9 +1742,10 @@ export type UserRoyaltySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   createdAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   entry?: boolean | Prisma.UserRoyalty$entryArgs<ExtArgs>
-  pack?: boolean | Prisma.UserRoyalty$packArgs<ExtArgs>
+  collection?: boolean | Prisma.UserRoyalty$collectionArgs<ExtArgs>
   ledger?: boolean | Prisma.UserRoyalty$ledgerArgs<ExtArgs>
   bounty?: boolean | Prisma.UserRoyalty$bountyArgs<ExtArgs>
+  payment?: boolean | Prisma.UserRoyalty$paymentArgs<ExtArgs>
   payout?: boolean | Prisma.UserRoyalty$payoutArgs<ExtArgs>
 }, ExtArgs["result"]["userRoyalty"]>
 
@@ -1529,9 +1754,10 @@ export type UserRoyaltySelectScalar = {
   userId?: boolean
   sourceType?: boolean
   entryId?: boolean
-  packId?: boolean
+  collectionId?: boolean
   ledgerId?: boolean
   bountyId?: boolean
+  paymentId?: boolean
   amountInCents?: boolean
   sourceClientId?: boolean
   payoutId?: boolean
@@ -1539,29 +1765,32 @@ export type UserRoyaltySelectScalar = {
   createdAt?: boolean
 }
 
-export type UserRoyaltyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "sourceType" | "entryId" | "packId" | "ledgerId" | "bountyId" | "amountInCents" | "sourceClientId" | "payoutId" | "paidOutAt" | "createdAt", ExtArgs["result"]["userRoyalty"]>
+export type UserRoyaltyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "sourceType" | "entryId" | "collectionId" | "ledgerId" | "bountyId" | "paymentId" | "amountInCents" | "sourceClientId" | "payoutId" | "paidOutAt" | "createdAt", ExtArgs["result"]["userRoyalty"]>
 export type UserRoyaltyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   entry?: boolean | Prisma.UserRoyalty$entryArgs<ExtArgs>
-  pack?: boolean | Prisma.UserRoyalty$packArgs<ExtArgs>
+  collection?: boolean | Prisma.UserRoyalty$collectionArgs<ExtArgs>
   ledger?: boolean | Prisma.UserRoyalty$ledgerArgs<ExtArgs>
   bounty?: boolean | Prisma.UserRoyalty$bountyArgs<ExtArgs>
+  payment?: boolean | Prisma.UserRoyalty$paymentArgs<ExtArgs>
   payout?: boolean | Prisma.UserRoyalty$payoutArgs<ExtArgs>
 }
 export type UserRoyaltyIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   entry?: boolean | Prisma.UserRoyalty$entryArgs<ExtArgs>
-  pack?: boolean | Prisma.UserRoyalty$packArgs<ExtArgs>
+  collection?: boolean | Prisma.UserRoyalty$collectionArgs<ExtArgs>
   ledger?: boolean | Prisma.UserRoyalty$ledgerArgs<ExtArgs>
   bounty?: boolean | Prisma.UserRoyalty$bountyArgs<ExtArgs>
+  payment?: boolean | Prisma.UserRoyalty$paymentArgs<ExtArgs>
   payout?: boolean | Prisma.UserRoyalty$payoutArgs<ExtArgs>
 }
 export type UserRoyaltyIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   entry?: boolean | Prisma.UserRoyalty$entryArgs<ExtArgs>
-  pack?: boolean | Prisma.UserRoyalty$packArgs<ExtArgs>
+  collection?: boolean | Prisma.UserRoyalty$collectionArgs<ExtArgs>
   ledger?: boolean | Prisma.UserRoyalty$ledgerArgs<ExtArgs>
   bounty?: boolean | Prisma.UserRoyalty$bountyArgs<ExtArgs>
+  payment?: boolean | Prisma.UserRoyalty$paymentArgs<ExtArgs>
   payout?: boolean | Prisma.UserRoyalty$payoutArgs<ExtArgs>
 }
 
@@ -1570,9 +1799,10 @@ export type $UserRoyaltyPayload<ExtArgs extends runtime.Types.Extensions.Interna
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
     entry: Prisma.$EntryPayload<ExtArgs> | null
-    pack: Prisma.$PackPayload<ExtArgs> | null
+    collection: Prisma.$CollectionPayload<ExtArgs> | null
     ledger: Prisma.$ApiUsageLedgerPayload<ExtArgs> | null
     bounty: Prisma.$KnowledgeBountyPayload<ExtArgs> | null
+    payment: Prisma.$PaymentPayload<ExtArgs> | null
     payout: Prisma.$CreatorPayoutPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1580,9 +1810,10 @@ export type $UserRoyaltyPayload<ExtArgs extends runtime.Types.Extensions.Interna
     userId: string
     sourceType: $Enums.PayoutSourceType
     entryId: string | null
-    packId: string | null
+    collectionId: string | null
     ledgerId: string | null
     bountyId: string | null
+    paymentId: string | null
     amountInCents: number
     sourceClientId: string
     payoutId: string | null
@@ -1984,9 +2215,10 @@ export interface Prisma__UserRoyaltyClient<T, Null = never, ExtArgs extends runt
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   entry<T extends Prisma.UserRoyalty$entryArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserRoyalty$entryArgs<ExtArgs>>): Prisma.Prisma__EntryClient<runtime.Types.Result.GetResult<Prisma.$EntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  pack<T extends Prisma.UserRoyalty$packArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserRoyalty$packArgs<ExtArgs>>): Prisma.Prisma__PackClient<runtime.Types.Result.GetResult<Prisma.$PackPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  collection<T extends Prisma.UserRoyalty$collectionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserRoyalty$collectionArgs<ExtArgs>>): Prisma.Prisma__CollectionClient<runtime.Types.Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   ledger<T extends Prisma.UserRoyalty$ledgerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserRoyalty$ledgerArgs<ExtArgs>>): Prisma.Prisma__ApiUsageLedgerClient<runtime.Types.Result.GetResult<Prisma.$ApiUsageLedgerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   bounty<T extends Prisma.UserRoyalty$bountyArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserRoyalty$bountyArgs<ExtArgs>>): Prisma.Prisma__KnowledgeBountyClient<runtime.Types.Result.GetResult<Prisma.$KnowledgeBountyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  payment<T extends Prisma.UserRoyalty$paymentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserRoyalty$paymentArgs<ExtArgs>>): Prisma.Prisma__PaymentClient<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   payout<T extends Prisma.UserRoyalty$payoutArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserRoyalty$payoutArgs<ExtArgs>>): Prisma.Prisma__CreatorPayoutClient<runtime.Types.Result.GetResult<Prisma.$CreatorPayoutPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2021,9 +2253,10 @@ export interface UserRoyaltyFieldRefs {
   readonly userId: Prisma.FieldRef<"UserRoyalty", 'String'>
   readonly sourceType: Prisma.FieldRef<"UserRoyalty", 'PayoutSourceType'>
   readonly entryId: Prisma.FieldRef<"UserRoyalty", 'String'>
-  readonly packId: Prisma.FieldRef<"UserRoyalty", 'String'>
+  readonly collectionId: Prisma.FieldRef<"UserRoyalty", 'String'>
   readonly ledgerId: Prisma.FieldRef<"UserRoyalty", 'String'>
   readonly bountyId: Prisma.FieldRef<"UserRoyalty", 'String'>
+  readonly paymentId: Prisma.FieldRef<"UserRoyalty", 'String'>
   readonly amountInCents: Prisma.FieldRef<"UserRoyalty", 'Float'>
   readonly sourceClientId: Prisma.FieldRef<"UserRoyalty", 'String'>
   readonly payoutId: Prisma.FieldRef<"UserRoyalty", 'String'>
@@ -2449,22 +2682,22 @@ export type UserRoyalty$entryArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * UserRoyalty.pack
+ * UserRoyalty.collection
  */
-export type UserRoyalty$packArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserRoyalty$collectionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Pack
+   * Select specific fields to fetch from the Collection
    */
-  select?: Prisma.PackSelect<ExtArgs> | null
+  select?: Prisma.CollectionSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Pack
+   * Omit specific fields from the Collection
    */
-  omit?: Prisma.PackOmit<ExtArgs> | null
+  omit?: Prisma.CollectionOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PackInclude<ExtArgs> | null
-  where?: Prisma.PackWhereInput
+  include?: Prisma.CollectionInclude<ExtArgs> | null
+  where?: Prisma.CollectionWhereInput
 }
 
 /**
@@ -2503,6 +2736,25 @@ export type UserRoyalty$bountyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    */
   include?: Prisma.KnowledgeBountyInclude<ExtArgs> | null
   where?: Prisma.KnowledgeBountyWhereInput
+}
+
+/**
+ * UserRoyalty.payment
+ */
+export type UserRoyalty$paymentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Payment
+   */
+  select?: Prisma.PaymentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Payment
+   */
+  omit?: Prisma.PaymentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PaymentInclude<ExtArgs> | null
+  where?: Prisma.PaymentWhereInput
 }
 
 /**

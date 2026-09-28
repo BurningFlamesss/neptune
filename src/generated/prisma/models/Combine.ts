@@ -20,8 +20,18 @@ export type CombineModel = runtime.Types.Result.DefaultSelection<Prisma.$Combine
 
 export type AggregateCombine = {
   _count: CombineCountAggregateOutputType | null
+  _avg: CombineAvgAggregateOutputType | null
+  _sum: CombineSumAggregateOutputType | null
   _min: CombineMinAggregateOutputType | null
   _max: CombineMaxAggregateOutputType | null
+}
+
+export type CombineAvgAggregateOutputType = {
+  bountyRewardCents: number | null
+}
+
+export type CombineSumAggregateOutputType = {
+  bountyRewardCents: number | null
 }
 
 export type CombineMinAggregateOutputType = {
@@ -36,6 +46,9 @@ export type CombineMinAggregateOutputType = {
   baseRevisionId: string | null
   status: $Enums.CombineStatus | null
   resultRevisionId: string | null
+  bountyId: string | null
+  bountyRewardCents: number | null
+  bountyReviewNotes: string | null
   createdAt: Date | null
   completedAt: Date | null
 }
@@ -52,6 +65,9 @@ export type CombineMaxAggregateOutputType = {
   baseRevisionId: string | null
   status: $Enums.CombineStatus | null
   resultRevisionId: string | null
+  bountyId: string | null
+  bountyRewardCents: number | null
+  bountyReviewNotes: string | null
   createdAt: Date | null
   completedAt: Date | null
 }
@@ -67,12 +83,24 @@ export type CombineCountAggregateOutputType = {
   sourceRevisionId: number
   baseRevisionId: number
   status: number
+  conflicts: number
   resultRevisionId: number
+  bountyId: number
+  bountyRewardCents: number
+  bountyReviewNotes: number
   createdAt: number
   completedAt: number
   _all: number
 }
 
+
+export type CombineAvgAggregateInputType = {
+  bountyRewardCents?: true
+}
+
+export type CombineSumAggregateInputType = {
+  bountyRewardCents?: true
+}
 
 export type CombineMinAggregateInputType = {
   id?: true
@@ -86,6 +114,9 @@ export type CombineMinAggregateInputType = {
   baseRevisionId?: true
   status?: true
   resultRevisionId?: true
+  bountyId?: true
+  bountyRewardCents?: true
+  bountyReviewNotes?: true
   createdAt?: true
   completedAt?: true
 }
@@ -102,6 +133,9 @@ export type CombineMaxAggregateInputType = {
   baseRevisionId?: true
   status?: true
   resultRevisionId?: true
+  bountyId?: true
+  bountyRewardCents?: true
+  bountyReviewNotes?: true
   createdAt?: true
   completedAt?: true
 }
@@ -117,7 +151,11 @@ export type CombineCountAggregateInputType = {
   sourceRevisionId?: true
   baseRevisionId?: true
   status?: true
+  conflicts?: true
   resultRevisionId?: true
+  bountyId?: true
+  bountyRewardCents?: true
+  bountyReviewNotes?: true
   createdAt?: true
   completedAt?: true
   _all?: true
@@ -161,6 +199,18 @@ export type CombineAggregateArgs<ExtArgs extends runtime.Types.Extensions.Intern
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: CombineAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: CombineSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: CombineMinAggregateInputType
@@ -191,6 +241,8 @@ export type CombineGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   _count?: CombineCountAggregateInputType | true
+  _avg?: CombineAvgAggregateInputType
+  _sum?: CombineSumAggregateInputType
   _min?: CombineMinAggregateInputType
   _max?: CombineMaxAggregateInputType
 }
@@ -206,10 +258,16 @@ export type CombineGroupByOutputType = {
   sourceRevisionId: string
   baseRevisionId: string | null
   status: $Enums.CombineStatus
+  conflicts: runtime.JsonValue | null
   resultRevisionId: string | null
+  bountyId: string | null
+  bountyRewardCents: number
+  bountyReviewNotes: string | null
   createdAt: Date | null
   completedAt: Date | null
   _count: CombineCountAggregateOutputType | null
+  _avg: CombineAvgAggregateOutputType | null
+  _sum: CombineSumAggregateOutputType | null
   _min: CombineMinAggregateOutputType | null
   _max: CombineMaxAggregateOutputType | null
 }
@@ -243,7 +301,11 @@ export type CombineWhereInput = {
   sourceRevisionId?: Prisma.StringFilter<"Combine"> | string
   baseRevisionId?: Prisma.StringNullableFilter<"Combine"> | string | null
   status?: Prisma.EnumCombineStatusFilter<"Combine"> | $Enums.CombineStatus
+  conflicts?: Prisma.JsonNullableFilter<"Combine">
   resultRevisionId?: Prisma.StringNullableFilter<"Combine"> | string | null
+  bountyId?: Prisma.StringNullableFilter<"Combine"> | string | null
+  bountyRewardCents?: Prisma.FloatFilter<"Combine"> | number
+  bountyReviewNotes?: Prisma.StringNullableFilter<"Combine"> | string | null
   createdAt?: Prisma.DateTimeNullableFilter<"Combine"> | Date | string | null
   completedAt?: Prisma.DateTimeNullableFilter<"Combine"> | Date | string | null
   author?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
@@ -252,9 +314,8 @@ export type CombineWhereInput = {
   targetRevision?: Prisma.XOR<Prisma.RevisionScalarRelationFilter, Prisma.RevisionWhereInput>
   sourceRevision?: Prisma.XOR<Prisma.RevisionScalarRelationFilter, Prisma.RevisionWhereInput>
   baseRevision?: Prisma.XOR<Prisma.RevisionNullableScalarRelationFilter, Prisma.RevisionWhereInput> | null
-  conflicts?: Prisma.CombineConflictListRelationFilter
   resultRevision?: Prisma.XOR<Prisma.RevisionNullableScalarRelationFilter, Prisma.RevisionWhereInput> | null
-  bountySubmissions?: Prisma.BountySubmissionListRelationFilter
+  bounty?: Prisma.XOR<Prisma.KnowledgeBountyNullableScalarRelationFilter, Prisma.KnowledgeBountyWhereInput> | null
 }
 
 export type CombineOrderByWithRelationInput = {
@@ -268,7 +329,11 @@ export type CombineOrderByWithRelationInput = {
   sourceRevisionId?: Prisma.SortOrder
   baseRevisionId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
+  conflicts?: Prisma.SortOrderInput | Prisma.SortOrder
   resultRevisionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  bountyId?: Prisma.SortOrderInput | Prisma.SortOrder
+  bountyRewardCents?: Prisma.SortOrder
+  bountyReviewNotes?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrderInput | Prisma.SortOrder
   completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   author?: Prisma.UserOrderByWithRelationInput
@@ -277,9 +342,8 @@ export type CombineOrderByWithRelationInput = {
   targetRevision?: Prisma.RevisionOrderByWithRelationInput
   sourceRevision?: Prisma.RevisionOrderByWithRelationInput
   baseRevision?: Prisma.RevisionOrderByWithRelationInput
-  conflicts?: Prisma.CombineConflictOrderByRelationAggregateInput
   resultRevision?: Prisma.RevisionOrderByWithRelationInput
-  bountySubmissions?: Prisma.BountySubmissionOrderByRelationAggregateInput
+  bounty?: Prisma.KnowledgeBountyOrderByWithRelationInput
 }
 
 export type CombineWhereUniqueInput = Prisma.AtLeast<{
@@ -296,7 +360,11 @@ export type CombineWhereUniqueInput = Prisma.AtLeast<{
   sourceRevisionId?: Prisma.StringFilter<"Combine"> | string
   baseRevisionId?: Prisma.StringNullableFilter<"Combine"> | string | null
   status?: Prisma.EnumCombineStatusFilter<"Combine"> | $Enums.CombineStatus
+  conflicts?: Prisma.JsonNullableFilter<"Combine">
   resultRevisionId?: Prisma.StringNullableFilter<"Combine"> | string | null
+  bountyId?: Prisma.StringNullableFilter<"Combine"> | string | null
+  bountyRewardCents?: Prisma.FloatFilter<"Combine"> | number
+  bountyReviewNotes?: Prisma.StringNullableFilter<"Combine"> | string | null
   createdAt?: Prisma.DateTimeNullableFilter<"Combine"> | Date | string | null
   completedAt?: Prisma.DateTimeNullableFilter<"Combine"> | Date | string | null
   author?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
@@ -305,9 +373,8 @@ export type CombineWhereUniqueInput = Prisma.AtLeast<{
   targetRevision?: Prisma.XOR<Prisma.RevisionScalarRelationFilter, Prisma.RevisionWhereInput>
   sourceRevision?: Prisma.XOR<Prisma.RevisionScalarRelationFilter, Prisma.RevisionWhereInput>
   baseRevision?: Prisma.XOR<Prisma.RevisionNullableScalarRelationFilter, Prisma.RevisionWhereInput> | null
-  conflicts?: Prisma.CombineConflictListRelationFilter
   resultRevision?: Prisma.XOR<Prisma.RevisionNullableScalarRelationFilter, Prisma.RevisionWhereInput> | null
-  bountySubmissions?: Prisma.BountySubmissionListRelationFilter
+  bounty?: Prisma.XOR<Prisma.KnowledgeBountyNullableScalarRelationFilter, Prisma.KnowledgeBountyWhereInput> | null
 }, "id">
 
 export type CombineOrderByWithAggregationInput = {
@@ -321,12 +388,18 @@ export type CombineOrderByWithAggregationInput = {
   sourceRevisionId?: Prisma.SortOrder
   baseRevisionId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
+  conflicts?: Prisma.SortOrderInput | Prisma.SortOrder
   resultRevisionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  bountyId?: Prisma.SortOrderInput | Prisma.SortOrder
+  bountyRewardCents?: Prisma.SortOrder
+  bountyReviewNotes?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrderInput | Prisma.SortOrder
   completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.CombineCountOrderByAggregateInput
+  _avg?: Prisma.CombineAvgOrderByAggregateInput
   _max?: Prisma.CombineMaxOrderByAggregateInput
   _min?: Prisma.CombineMinOrderByAggregateInput
+  _sum?: Prisma.CombineSumOrderByAggregateInput
 }
 
 export type CombineScalarWhereWithAggregatesInput = {
@@ -343,7 +416,11 @@ export type CombineScalarWhereWithAggregatesInput = {
   sourceRevisionId?: Prisma.StringWithAggregatesFilter<"Combine"> | string
   baseRevisionId?: Prisma.StringNullableWithAggregatesFilter<"Combine"> | string | null
   status?: Prisma.EnumCombineStatusWithAggregatesFilter<"Combine"> | $Enums.CombineStatus
+  conflicts?: Prisma.JsonNullableWithAggregatesFilter<"Combine">
   resultRevisionId?: Prisma.StringNullableWithAggregatesFilter<"Combine"> | string | null
+  bountyId?: Prisma.StringNullableWithAggregatesFilter<"Combine"> | string | null
+  bountyRewardCents?: Prisma.FloatWithAggregatesFilter<"Combine"> | number
+  bountyReviewNotes?: Prisma.StringNullableWithAggregatesFilter<"Combine"> | string | null
   createdAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Combine"> | Date | string | null
   completedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Combine"> | Date | string | null
 }
@@ -353,6 +430,9 @@ export type CombineCreateInput = {
   title: string
   description?: string | null
   status?: $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  bountyRewardCents?: number
+  bountyReviewNotes?: string | null
   createdAt?: Date | string | null
   completedAt?: Date | string | null
   author?: Prisma.UserCreateNestedOneWithoutAuthoredCombinesInput
@@ -361,9 +441,8 @@ export type CombineCreateInput = {
   targetRevision: Prisma.RevisionCreateNestedOneWithoutCombineTargetInput
   sourceRevision: Prisma.RevisionCreateNestedOneWithoutCombineSourceInput
   baseRevision?: Prisma.RevisionCreateNestedOneWithoutCombineBaseInput
-  conflicts?: Prisma.CombineConflictCreateNestedManyWithoutCombineInput
   resultRevision?: Prisma.RevisionCreateNestedOneWithoutCombineResultInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutCombineInput
+  bounty?: Prisma.KnowledgeBountyCreateNestedOneWithoutCombinesInput
 }
 
 export type CombineUncheckedCreateInput = {
@@ -377,11 +456,13 @@ export type CombineUncheckedCreateInput = {
   sourceRevisionId: string
   baseRevisionId?: string | null
   status?: $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: string | null
+  bountyId?: string | null
+  bountyRewardCents?: number
+  bountyReviewNotes?: string | null
   createdAt?: Date | string | null
   completedAt?: Date | string | null
-  conflicts?: Prisma.CombineConflictUncheckedCreateNestedManyWithoutCombineInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutCombineInput
 }
 
 export type CombineUpdateInput = {
@@ -389,6 +470,9 @@ export type CombineUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   author?: Prisma.UserUpdateOneWithoutAuthoredCombinesNestedInput
@@ -397,9 +481,8 @@ export type CombineUpdateInput = {
   targetRevision?: Prisma.RevisionUpdateOneRequiredWithoutCombineTargetNestedInput
   sourceRevision?: Prisma.RevisionUpdateOneRequiredWithoutCombineSourceNestedInput
   baseRevision?: Prisma.RevisionUpdateOneWithoutCombineBaseNestedInput
-  conflicts?: Prisma.CombineConflictUpdateManyWithoutCombineNestedInput
   resultRevision?: Prisma.RevisionUpdateOneWithoutCombineResultNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutCombineNestedInput
+  bounty?: Prisma.KnowledgeBountyUpdateOneWithoutCombinesNestedInput
 }
 
 export type CombineUncheckedUpdateInput = {
@@ -413,11 +496,13 @@ export type CombineUncheckedUpdateInput = {
   sourceRevisionId?: Prisma.StringFieldUpdateOperationsInput | string
   baseRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  conflicts?: Prisma.CombineConflictUncheckedUpdateManyWithoutCombineNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutCombineNestedInput
 }
 
 export type CombineCreateManyInput = {
@@ -431,7 +516,11 @@ export type CombineCreateManyInput = {
   sourceRevisionId: string
   baseRevisionId?: string | null
   status?: $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: string | null
+  bountyId?: string | null
+  bountyRewardCents?: number
+  bountyReviewNotes?: string | null
   createdAt?: Date | string | null
   completedAt?: Date | string | null
 }
@@ -441,6 +530,9 @@ export type CombineUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -456,7 +548,11 @@ export type CombineUncheckedUpdateManyInput = {
   sourceRevisionId?: Prisma.StringFieldUpdateOperationsInput | string
   baseRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -482,9 +578,17 @@ export type CombineCountOrderByAggregateInput = {
   sourceRevisionId?: Prisma.SortOrder
   baseRevisionId?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  conflicts?: Prisma.SortOrder
   resultRevisionId?: Prisma.SortOrder
+  bountyId?: Prisma.SortOrder
+  bountyRewardCents?: Prisma.SortOrder
+  bountyReviewNotes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
+}
+
+export type CombineAvgOrderByAggregateInput = {
+  bountyRewardCents?: Prisma.SortOrder
 }
 
 export type CombineMaxOrderByAggregateInput = {
@@ -499,6 +603,9 @@ export type CombineMaxOrderByAggregateInput = {
   baseRevisionId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   resultRevisionId?: Prisma.SortOrder
+  bountyId?: Prisma.SortOrder
+  bountyRewardCents?: Prisma.SortOrder
+  bountyReviewNotes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
 }
@@ -515,18 +622,15 @@ export type CombineMinOrderByAggregateInput = {
   baseRevisionId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   resultRevisionId?: Prisma.SortOrder
+  bountyId?: Prisma.SortOrder
+  bountyRewardCents?: Prisma.SortOrder
+  bountyReviewNotes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
 }
 
-export type CombineScalarRelationFilter = {
-  is?: Prisma.CombineWhereInput
-  isNot?: Prisma.CombineWhereInput
-}
-
-export type CombineNullableScalarRelationFilter = {
-  is?: Prisma.CombineWhereInput | null
-  isNot?: Prisma.CombineWhereInput | null
+export type CombineSumOrderByAggregateInput = {
+  bountyRewardCents?: Prisma.SortOrder
 }
 
 export type CombineCreateNestedManyWithoutAuthorInput = {
@@ -827,34 +931,46 @@ export type EnumCombineStatusFieldUpdateOperationsInput = {
   set?: $Enums.CombineStatus
 }
 
-export type CombineCreateNestedOneWithoutConflictsInput = {
-  create?: Prisma.XOR<Prisma.CombineCreateWithoutConflictsInput, Prisma.CombineUncheckedCreateWithoutConflictsInput>
-  connectOrCreate?: Prisma.CombineCreateOrConnectWithoutConflictsInput
-  connect?: Prisma.CombineWhereUniqueInput
+export type CombineCreateNestedManyWithoutBountyInput = {
+  create?: Prisma.XOR<Prisma.CombineCreateWithoutBountyInput, Prisma.CombineUncheckedCreateWithoutBountyInput> | Prisma.CombineCreateWithoutBountyInput[] | Prisma.CombineUncheckedCreateWithoutBountyInput[]
+  connectOrCreate?: Prisma.CombineCreateOrConnectWithoutBountyInput | Prisma.CombineCreateOrConnectWithoutBountyInput[]
+  createMany?: Prisma.CombineCreateManyBountyInputEnvelope
+  connect?: Prisma.CombineWhereUniqueInput | Prisma.CombineWhereUniqueInput[]
 }
 
-export type CombineUpdateOneRequiredWithoutConflictsNestedInput = {
-  create?: Prisma.XOR<Prisma.CombineCreateWithoutConflictsInput, Prisma.CombineUncheckedCreateWithoutConflictsInput>
-  connectOrCreate?: Prisma.CombineCreateOrConnectWithoutConflictsInput
-  upsert?: Prisma.CombineUpsertWithoutConflictsInput
-  connect?: Prisma.CombineWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CombineUpdateToOneWithWhereWithoutConflictsInput, Prisma.CombineUpdateWithoutConflictsInput>, Prisma.CombineUncheckedUpdateWithoutConflictsInput>
+export type CombineUncheckedCreateNestedManyWithoutBountyInput = {
+  create?: Prisma.XOR<Prisma.CombineCreateWithoutBountyInput, Prisma.CombineUncheckedCreateWithoutBountyInput> | Prisma.CombineCreateWithoutBountyInput[] | Prisma.CombineUncheckedCreateWithoutBountyInput[]
+  connectOrCreate?: Prisma.CombineCreateOrConnectWithoutBountyInput | Prisma.CombineCreateOrConnectWithoutBountyInput[]
+  createMany?: Prisma.CombineCreateManyBountyInputEnvelope
+  connect?: Prisma.CombineWhereUniqueInput | Prisma.CombineWhereUniqueInput[]
 }
 
-export type CombineCreateNestedOneWithoutBountySubmissionsInput = {
-  create?: Prisma.XOR<Prisma.CombineCreateWithoutBountySubmissionsInput, Prisma.CombineUncheckedCreateWithoutBountySubmissionsInput>
-  connectOrCreate?: Prisma.CombineCreateOrConnectWithoutBountySubmissionsInput
-  connect?: Prisma.CombineWhereUniqueInput
+export type CombineUpdateManyWithoutBountyNestedInput = {
+  create?: Prisma.XOR<Prisma.CombineCreateWithoutBountyInput, Prisma.CombineUncheckedCreateWithoutBountyInput> | Prisma.CombineCreateWithoutBountyInput[] | Prisma.CombineUncheckedCreateWithoutBountyInput[]
+  connectOrCreate?: Prisma.CombineCreateOrConnectWithoutBountyInput | Prisma.CombineCreateOrConnectWithoutBountyInput[]
+  upsert?: Prisma.CombineUpsertWithWhereUniqueWithoutBountyInput | Prisma.CombineUpsertWithWhereUniqueWithoutBountyInput[]
+  createMany?: Prisma.CombineCreateManyBountyInputEnvelope
+  set?: Prisma.CombineWhereUniqueInput | Prisma.CombineWhereUniqueInput[]
+  disconnect?: Prisma.CombineWhereUniqueInput | Prisma.CombineWhereUniqueInput[]
+  delete?: Prisma.CombineWhereUniqueInput | Prisma.CombineWhereUniqueInput[]
+  connect?: Prisma.CombineWhereUniqueInput | Prisma.CombineWhereUniqueInput[]
+  update?: Prisma.CombineUpdateWithWhereUniqueWithoutBountyInput | Prisma.CombineUpdateWithWhereUniqueWithoutBountyInput[]
+  updateMany?: Prisma.CombineUpdateManyWithWhereWithoutBountyInput | Prisma.CombineUpdateManyWithWhereWithoutBountyInput[]
+  deleteMany?: Prisma.CombineScalarWhereInput | Prisma.CombineScalarWhereInput[]
 }
 
-export type CombineUpdateOneWithoutBountySubmissionsNestedInput = {
-  create?: Prisma.XOR<Prisma.CombineCreateWithoutBountySubmissionsInput, Prisma.CombineUncheckedCreateWithoutBountySubmissionsInput>
-  connectOrCreate?: Prisma.CombineCreateOrConnectWithoutBountySubmissionsInput
-  upsert?: Prisma.CombineUpsertWithoutBountySubmissionsInput
-  disconnect?: Prisma.CombineWhereInput | boolean
-  delete?: Prisma.CombineWhereInput | boolean
-  connect?: Prisma.CombineWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CombineUpdateToOneWithWhereWithoutBountySubmissionsInput, Prisma.CombineUpdateWithoutBountySubmissionsInput>, Prisma.CombineUncheckedUpdateWithoutBountySubmissionsInput>
+export type CombineUncheckedUpdateManyWithoutBountyNestedInput = {
+  create?: Prisma.XOR<Prisma.CombineCreateWithoutBountyInput, Prisma.CombineUncheckedCreateWithoutBountyInput> | Prisma.CombineCreateWithoutBountyInput[] | Prisma.CombineUncheckedCreateWithoutBountyInput[]
+  connectOrCreate?: Prisma.CombineCreateOrConnectWithoutBountyInput | Prisma.CombineCreateOrConnectWithoutBountyInput[]
+  upsert?: Prisma.CombineUpsertWithWhereUniqueWithoutBountyInput | Prisma.CombineUpsertWithWhereUniqueWithoutBountyInput[]
+  createMany?: Prisma.CombineCreateManyBountyInputEnvelope
+  set?: Prisma.CombineWhereUniqueInput | Prisma.CombineWhereUniqueInput[]
+  disconnect?: Prisma.CombineWhereUniqueInput | Prisma.CombineWhereUniqueInput[]
+  delete?: Prisma.CombineWhereUniqueInput | Prisma.CombineWhereUniqueInput[]
+  connect?: Prisma.CombineWhereUniqueInput | Prisma.CombineWhereUniqueInput[]
+  update?: Prisma.CombineUpdateWithWhereUniqueWithoutBountyInput | Prisma.CombineUpdateWithWhereUniqueWithoutBountyInput[]
+  updateMany?: Prisma.CombineUpdateManyWithWhereWithoutBountyInput | Prisma.CombineUpdateManyWithWhereWithoutBountyInput[]
+  deleteMany?: Prisma.CombineScalarWhereInput | Prisma.CombineScalarWhereInput[]
 }
 
 export type CombineCreateWithoutAuthorInput = {
@@ -862,6 +978,9 @@ export type CombineCreateWithoutAuthorInput = {
   title: string
   description?: string | null
   status?: $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  bountyRewardCents?: number
+  bountyReviewNotes?: string | null
   createdAt?: Date | string | null
   completedAt?: Date | string | null
   targetPath: Prisma.PathCreateNestedOneWithoutTargetCombinesInput
@@ -869,9 +988,8 @@ export type CombineCreateWithoutAuthorInput = {
   targetRevision: Prisma.RevisionCreateNestedOneWithoutCombineTargetInput
   sourceRevision: Prisma.RevisionCreateNestedOneWithoutCombineSourceInput
   baseRevision?: Prisma.RevisionCreateNestedOneWithoutCombineBaseInput
-  conflicts?: Prisma.CombineConflictCreateNestedManyWithoutCombineInput
   resultRevision?: Prisma.RevisionCreateNestedOneWithoutCombineResultInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutCombineInput
+  bounty?: Prisma.KnowledgeBountyCreateNestedOneWithoutCombinesInput
 }
 
 export type CombineUncheckedCreateWithoutAuthorInput = {
@@ -884,11 +1002,13 @@ export type CombineUncheckedCreateWithoutAuthorInput = {
   sourceRevisionId: string
   baseRevisionId?: string | null
   status?: $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: string | null
+  bountyId?: string | null
+  bountyRewardCents?: number
+  bountyReviewNotes?: string | null
   createdAt?: Date | string | null
   completedAt?: Date | string | null
-  conflicts?: Prisma.CombineConflictUncheckedCreateNestedManyWithoutCombineInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutCombineInput
 }
 
 export type CombineCreateOrConnectWithoutAuthorInput = {
@@ -931,7 +1051,11 @@ export type CombineScalarWhereInput = {
   sourceRevisionId?: Prisma.StringFilter<"Combine"> | string
   baseRevisionId?: Prisma.StringNullableFilter<"Combine"> | string | null
   status?: Prisma.EnumCombineStatusFilter<"Combine"> | $Enums.CombineStatus
+  conflicts?: Prisma.JsonNullableFilter<"Combine">
   resultRevisionId?: Prisma.StringNullableFilter<"Combine"> | string | null
+  bountyId?: Prisma.StringNullableFilter<"Combine"> | string | null
+  bountyRewardCents?: Prisma.FloatFilter<"Combine"> | number
+  bountyReviewNotes?: Prisma.StringNullableFilter<"Combine"> | string | null
   createdAt?: Prisma.DateTimeNullableFilter<"Combine"> | Date | string | null
   completedAt?: Prisma.DateTimeNullableFilter<"Combine"> | Date | string | null
 }
@@ -941,6 +1065,9 @@ export type CombineCreateWithoutTargetPathInput = {
   title: string
   description?: string | null
   status?: $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  bountyRewardCents?: number
+  bountyReviewNotes?: string | null
   createdAt?: Date | string | null
   completedAt?: Date | string | null
   author?: Prisma.UserCreateNestedOneWithoutAuthoredCombinesInput
@@ -948,9 +1075,8 @@ export type CombineCreateWithoutTargetPathInput = {
   targetRevision: Prisma.RevisionCreateNestedOneWithoutCombineTargetInput
   sourceRevision: Prisma.RevisionCreateNestedOneWithoutCombineSourceInput
   baseRevision?: Prisma.RevisionCreateNestedOneWithoutCombineBaseInput
-  conflicts?: Prisma.CombineConflictCreateNestedManyWithoutCombineInput
   resultRevision?: Prisma.RevisionCreateNestedOneWithoutCombineResultInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutCombineInput
+  bounty?: Prisma.KnowledgeBountyCreateNestedOneWithoutCombinesInput
 }
 
 export type CombineUncheckedCreateWithoutTargetPathInput = {
@@ -963,11 +1089,13 @@ export type CombineUncheckedCreateWithoutTargetPathInput = {
   sourceRevisionId: string
   baseRevisionId?: string | null
   status?: $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: string | null
+  bountyId?: string | null
+  bountyRewardCents?: number
+  bountyReviewNotes?: string | null
   createdAt?: Date | string | null
   completedAt?: Date | string | null
-  conflicts?: Prisma.CombineConflictUncheckedCreateNestedManyWithoutCombineInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutCombineInput
 }
 
 export type CombineCreateOrConnectWithoutTargetPathInput = {
@@ -985,6 +1113,9 @@ export type CombineCreateWithoutSourcePathInput = {
   title: string
   description?: string | null
   status?: $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  bountyRewardCents?: number
+  bountyReviewNotes?: string | null
   createdAt?: Date | string | null
   completedAt?: Date | string | null
   author?: Prisma.UserCreateNestedOneWithoutAuthoredCombinesInput
@@ -992,9 +1123,8 @@ export type CombineCreateWithoutSourcePathInput = {
   targetRevision: Prisma.RevisionCreateNestedOneWithoutCombineTargetInput
   sourceRevision: Prisma.RevisionCreateNestedOneWithoutCombineSourceInput
   baseRevision?: Prisma.RevisionCreateNestedOneWithoutCombineBaseInput
-  conflicts?: Prisma.CombineConflictCreateNestedManyWithoutCombineInput
   resultRevision?: Prisma.RevisionCreateNestedOneWithoutCombineResultInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutCombineInput
+  bounty?: Prisma.KnowledgeBountyCreateNestedOneWithoutCombinesInput
 }
 
 export type CombineUncheckedCreateWithoutSourcePathInput = {
@@ -1007,11 +1137,13 @@ export type CombineUncheckedCreateWithoutSourcePathInput = {
   sourceRevisionId: string
   baseRevisionId?: string | null
   status?: $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: string | null
+  bountyId?: string | null
+  bountyRewardCents?: number
+  bountyReviewNotes?: string | null
   createdAt?: Date | string | null
   completedAt?: Date | string | null
-  conflicts?: Prisma.CombineConflictUncheckedCreateNestedManyWithoutCombineInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutCombineInput
 }
 
 export type CombineCreateOrConnectWithoutSourcePathInput = {
@@ -1061,6 +1193,9 @@ export type CombineCreateWithoutTargetRevisionInput = {
   title: string
   description?: string | null
   status?: $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  bountyRewardCents?: number
+  bountyReviewNotes?: string | null
   createdAt?: Date | string | null
   completedAt?: Date | string | null
   author?: Prisma.UserCreateNestedOneWithoutAuthoredCombinesInput
@@ -1068,9 +1203,8 @@ export type CombineCreateWithoutTargetRevisionInput = {
   sourcePath: Prisma.PathCreateNestedOneWithoutSourceCombinesInput
   sourceRevision: Prisma.RevisionCreateNestedOneWithoutCombineSourceInput
   baseRevision?: Prisma.RevisionCreateNestedOneWithoutCombineBaseInput
-  conflicts?: Prisma.CombineConflictCreateNestedManyWithoutCombineInput
   resultRevision?: Prisma.RevisionCreateNestedOneWithoutCombineResultInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutCombineInput
+  bounty?: Prisma.KnowledgeBountyCreateNestedOneWithoutCombinesInput
 }
 
 export type CombineUncheckedCreateWithoutTargetRevisionInput = {
@@ -1083,11 +1217,13 @@ export type CombineUncheckedCreateWithoutTargetRevisionInput = {
   sourceRevisionId: string
   baseRevisionId?: string | null
   status?: $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: string | null
+  bountyId?: string | null
+  bountyRewardCents?: number
+  bountyReviewNotes?: string | null
   createdAt?: Date | string | null
   completedAt?: Date | string | null
-  conflicts?: Prisma.CombineConflictUncheckedCreateNestedManyWithoutCombineInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutCombineInput
 }
 
 export type CombineCreateOrConnectWithoutTargetRevisionInput = {
@@ -1105,6 +1241,9 @@ export type CombineCreateWithoutSourceRevisionInput = {
   title: string
   description?: string | null
   status?: $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  bountyRewardCents?: number
+  bountyReviewNotes?: string | null
   createdAt?: Date | string | null
   completedAt?: Date | string | null
   author?: Prisma.UserCreateNestedOneWithoutAuthoredCombinesInput
@@ -1112,9 +1251,8 @@ export type CombineCreateWithoutSourceRevisionInput = {
   sourcePath: Prisma.PathCreateNestedOneWithoutSourceCombinesInput
   targetRevision: Prisma.RevisionCreateNestedOneWithoutCombineTargetInput
   baseRevision?: Prisma.RevisionCreateNestedOneWithoutCombineBaseInput
-  conflicts?: Prisma.CombineConflictCreateNestedManyWithoutCombineInput
   resultRevision?: Prisma.RevisionCreateNestedOneWithoutCombineResultInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutCombineInput
+  bounty?: Prisma.KnowledgeBountyCreateNestedOneWithoutCombinesInput
 }
 
 export type CombineUncheckedCreateWithoutSourceRevisionInput = {
@@ -1127,11 +1265,13 @@ export type CombineUncheckedCreateWithoutSourceRevisionInput = {
   targetRevisionId: string
   baseRevisionId?: string | null
   status?: $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: string | null
+  bountyId?: string | null
+  bountyRewardCents?: number
+  bountyReviewNotes?: string | null
   createdAt?: Date | string | null
   completedAt?: Date | string | null
-  conflicts?: Prisma.CombineConflictUncheckedCreateNestedManyWithoutCombineInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutCombineInput
 }
 
 export type CombineCreateOrConnectWithoutSourceRevisionInput = {
@@ -1149,6 +1289,9 @@ export type CombineCreateWithoutBaseRevisionInput = {
   title: string
   description?: string | null
   status?: $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  bountyRewardCents?: number
+  bountyReviewNotes?: string | null
   createdAt?: Date | string | null
   completedAt?: Date | string | null
   author?: Prisma.UserCreateNestedOneWithoutAuthoredCombinesInput
@@ -1156,9 +1299,8 @@ export type CombineCreateWithoutBaseRevisionInput = {
   sourcePath: Prisma.PathCreateNestedOneWithoutSourceCombinesInput
   targetRevision: Prisma.RevisionCreateNestedOneWithoutCombineTargetInput
   sourceRevision: Prisma.RevisionCreateNestedOneWithoutCombineSourceInput
-  conflicts?: Prisma.CombineConflictCreateNestedManyWithoutCombineInput
   resultRevision?: Prisma.RevisionCreateNestedOneWithoutCombineResultInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutCombineInput
+  bounty?: Prisma.KnowledgeBountyCreateNestedOneWithoutCombinesInput
 }
 
 export type CombineUncheckedCreateWithoutBaseRevisionInput = {
@@ -1171,11 +1313,13 @@ export type CombineUncheckedCreateWithoutBaseRevisionInput = {
   targetRevisionId: string
   sourceRevisionId: string
   status?: $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: string | null
+  bountyId?: string | null
+  bountyRewardCents?: number
+  bountyReviewNotes?: string | null
   createdAt?: Date | string | null
   completedAt?: Date | string | null
-  conflicts?: Prisma.CombineConflictUncheckedCreateNestedManyWithoutCombineInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutCombineInput
 }
 
 export type CombineCreateOrConnectWithoutBaseRevisionInput = {
@@ -1193,6 +1337,9 @@ export type CombineCreateWithoutResultRevisionInput = {
   title: string
   description?: string | null
   status?: $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  bountyRewardCents?: number
+  bountyReviewNotes?: string | null
   createdAt?: Date | string | null
   completedAt?: Date | string | null
   author?: Prisma.UserCreateNestedOneWithoutAuthoredCombinesInput
@@ -1201,8 +1348,7 @@ export type CombineCreateWithoutResultRevisionInput = {
   targetRevision: Prisma.RevisionCreateNestedOneWithoutCombineTargetInput
   sourceRevision: Prisma.RevisionCreateNestedOneWithoutCombineSourceInput
   baseRevision?: Prisma.RevisionCreateNestedOneWithoutCombineBaseInput
-  conflicts?: Prisma.CombineConflictCreateNestedManyWithoutCombineInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutCombineInput
+  bounty?: Prisma.KnowledgeBountyCreateNestedOneWithoutCombinesInput
 }
 
 export type CombineUncheckedCreateWithoutResultRevisionInput = {
@@ -1216,10 +1362,12 @@ export type CombineUncheckedCreateWithoutResultRevisionInput = {
   sourceRevisionId: string
   baseRevisionId?: string | null
   status?: $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  bountyId?: string | null
+  bountyRewardCents?: number
+  bountyReviewNotes?: string | null
   createdAt?: Date | string | null
   completedAt?: Date | string | null
-  conflicts?: Prisma.CombineConflictUncheckedCreateNestedManyWithoutCombineInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutCombineInput
 }
 
 export type CombineCreateOrConnectWithoutResultRevisionInput = {
@@ -1296,11 +1444,14 @@ export type CombineUpdateManyWithWhereWithoutResultRevisionInput = {
   data: Prisma.XOR<Prisma.CombineUpdateManyMutationInput, Prisma.CombineUncheckedUpdateManyWithoutResultRevisionInput>
 }
 
-export type CombineCreateWithoutConflictsInput = {
+export type CombineCreateWithoutBountyInput = {
   id?: string
   title: string
   description?: string | null
   status?: $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  bountyRewardCents?: number
+  bountyReviewNotes?: string | null
   createdAt?: Date | string | null
   completedAt?: Date | string | null
   author?: Prisma.UserCreateNestedOneWithoutAuthoredCombinesInput
@@ -1310,10 +1461,9 @@ export type CombineCreateWithoutConflictsInput = {
   sourceRevision: Prisma.RevisionCreateNestedOneWithoutCombineSourceInput
   baseRevision?: Prisma.RevisionCreateNestedOneWithoutCombineBaseInput
   resultRevision?: Prisma.RevisionCreateNestedOneWithoutCombineResultInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutCombineInput
 }
 
-export type CombineUncheckedCreateWithoutConflictsInput = {
+export type CombineUncheckedCreateWithoutBountyInput = {
   id?: string
   title: string
   description?: string | null
@@ -1324,144 +1474,38 @@ export type CombineUncheckedCreateWithoutConflictsInput = {
   sourceRevisionId: string
   baseRevisionId?: string | null
   status?: $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: string | null
+  bountyRewardCents?: number
+  bountyReviewNotes?: string | null
   createdAt?: Date | string | null
   completedAt?: Date | string | null
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutCombineInput
 }
 
-export type CombineCreateOrConnectWithoutConflictsInput = {
+export type CombineCreateOrConnectWithoutBountyInput = {
   where: Prisma.CombineWhereUniqueInput
-  create: Prisma.XOR<Prisma.CombineCreateWithoutConflictsInput, Prisma.CombineUncheckedCreateWithoutConflictsInput>
+  create: Prisma.XOR<Prisma.CombineCreateWithoutBountyInput, Prisma.CombineUncheckedCreateWithoutBountyInput>
 }
 
-export type CombineUpsertWithoutConflictsInput = {
-  update: Prisma.XOR<Prisma.CombineUpdateWithoutConflictsInput, Prisma.CombineUncheckedUpdateWithoutConflictsInput>
-  create: Prisma.XOR<Prisma.CombineCreateWithoutConflictsInput, Prisma.CombineUncheckedCreateWithoutConflictsInput>
-  where?: Prisma.CombineWhereInput
+export type CombineCreateManyBountyInputEnvelope = {
+  data: Prisma.CombineCreateManyBountyInput | Prisma.CombineCreateManyBountyInput[]
+  skipDuplicates?: boolean
 }
 
-export type CombineUpdateToOneWithWhereWithoutConflictsInput = {
-  where?: Prisma.CombineWhereInput
-  data: Prisma.XOR<Prisma.CombineUpdateWithoutConflictsInput, Prisma.CombineUncheckedUpdateWithoutConflictsInput>
-}
-
-export type CombineUpdateWithoutConflictsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
-  createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  author?: Prisma.UserUpdateOneWithoutAuthoredCombinesNestedInput
-  targetPath?: Prisma.PathUpdateOneRequiredWithoutTargetCombinesNestedInput
-  sourcePath?: Prisma.PathUpdateOneRequiredWithoutSourceCombinesNestedInput
-  targetRevision?: Prisma.RevisionUpdateOneRequiredWithoutCombineTargetNestedInput
-  sourceRevision?: Prisma.RevisionUpdateOneRequiredWithoutCombineSourceNestedInput
-  baseRevision?: Prisma.RevisionUpdateOneWithoutCombineBaseNestedInput
-  resultRevision?: Prisma.RevisionUpdateOneWithoutCombineResultNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutCombineNestedInput
-}
-
-export type CombineUncheckedUpdateWithoutConflictsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetPathId?: Prisma.StringFieldUpdateOperationsInput | string
-  sourcePathId?: Prisma.StringFieldUpdateOperationsInput | string
-  targetRevisionId?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceRevisionId?: Prisma.StringFieldUpdateOperationsInput | string
-  baseRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
-  resultRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutCombineNestedInput
-}
-
-export type CombineCreateWithoutBountySubmissionsInput = {
-  id?: string
-  title: string
-  description?: string | null
-  status?: $Enums.CombineStatus
-  createdAt?: Date | string | null
-  completedAt?: Date | string | null
-  author?: Prisma.UserCreateNestedOneWithoutAuthoredCombinesInput
-  targetPath: Prisma.PathCreateNestedOneWithoutTargetCombinesInput
-  sourcePath: Prisma.PathCreateNestedOneWithoutSourceCombinesInput
-  targetRevision: Prisma.RevisionCreateNestedOneWithoutCombineTargetInput
-  sourceRevision: Prisma.RevisionCreateNestedOneWithoutCombineSourceInput
-  baseRevision?: Prisma.RevisionCreateNestedOneWithoutCombineBaseInput
-  conflicts?: Prisma.CombineConflictCreateNestedManyWithoutCombineInput
-  resultRevision?: Prisma.RevisionCreateNestedOneWithoutCombineResultInput
-}
-
-export type CombineUncheckedCreateWithoutBountySubmissionsInput = {
-  id?: string
-  title: string
-  description?: string | null
-  authorId?: string | null
-  targetPathId: string
-  sourcePathId: string
-  targetRevisionId: string
-  sourceRevisionId: string
-  baseRevisionId?: string | null
-  status?: $Enums.CombineStatus
-  resultRevisionId?: string | null
-  createdAt?: Date | string | null
-  completedAt?: Date | string | null
-  conflicts?: Prisma.CombineConflictUncheckedCreateNestedManyWithoutCombineInput
-}
-
-export type CombineCreateOrConnectWithoutBountySubmissionsInput = {
+export type CombineUpsertWithWhereUniqueWithoutBountyInput = {
   where: Prisma.CombineWhereUniqueInput
-  create: Prisma.XOR<Prisma.CombineCreateWithoutBountySubmissionsInput, Prisma.CombineUncheckedCreateWithoutBountySubmissionsInput>
+  update: Prisma.XOR<Prisma.CombineUpdateWithoutBountyInput, Prisma.CombineUncheckedUpdateWithoutBountyInput>
+  create: Prisma.XOR<Prisma.CombineCreateWithoutBountyInput, Prisma.CombineUncheckedCreateWithoutBountyInput>
 }
 
-export type CombineUpsertWithoutBountySubmissionsInput = {
-  update: Prisma.XOR<Prisma.CombineUpdateWithoutBountySubmissionsInput, Prisma.CombineUncheckedUpdateWithoutBountySubmissionsInput>
-  create: Prisma.XOR<Prisma.CombineCreateWithoutBountySubmissionsInput, Prisma.CombineUncheckedCreateWithoutBountySubmissionsInput>
-  where?: Prisma.CombineWhereInput
+export type CombineUpdateWithWhereUniqueWithoutBountyInput = {
+  where: Prisma.CombineWhereUniqueInput
+  data: Prisma.XOR<Prisma.CombineUpdateWithoutBountyInput, Prisma.CombineUncheckedUpdateWithoutBountyInput>
 }
 
-export type CombineUpdateToOneWithWhereWithoutBountySubmissionsInput = {
-  where?: Prisma.CombineWhereInput
-  data: Prisma.XOR<Prisma.CombineUpdateWithoutBountySubmissionsInput, Prisma.CombineUncheckedUpdateWithoutBountySubmissionsInput>
-}
-
-export type CombineUpdateWithoutBountySubmissionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
-  createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  author?: Prisma.UserUpdateOneWithoutAuthoredCombinesNestedInput
-  targetPath?: Prisma.PathUpdateOneRequiredWithoutTargetCombinesNestedInput
-  sourcePath?: Prisma.PathUpdateOneRequiredWithoutSourceCombinesNestedInput
-  targetRevision?: Prisma.RevisionUpdateOneRequiredWithoutCombineTargetNestedInput
-  sourceRevision?: Prisma.RevisionUpdateOneRequiredWithoutCombineSourceNestedInput
-  baseRevision?: Prisma.RevisionUpdateOneWithoutCombineBaseNestedInput
-  conflicts?: Prisma.CombineConflictUpdateManyWithoutCombineNestedInput
-  resultRevision?: Prisma.RevisionUpdateOneWithoutCombineResultNestedInput
-}
-
-export type CombineUncheckedUpdateWithoutBountySubmissionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetPathId?: Prisma.StringFieldUpdateOperationsInput | string
-  sourcePathId?: Prisma.StringFieldUpdateOperationsInput | string
-  targetRevisionId?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceRevisionId?: Prisma.StringFieldUpdateOperationsInput | string
-  baseRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
-  resultRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  conflicts?: Prisma.CombineConflictUncheckedUpdateManyWithoutCombineNestedInput
+export type CombineUpdateManyWithWhereWithoutBountyInput = {
+  where: Prisma.CombineScalarWhereInput
+  data: Prisma.XOR<Prisma.CombineUpdateManyMutationInput, Prisma.CombineUncheckedUpdateManyWithoutBountyInput>
 }
 
 export type CombineCreateManyAuthorInput = {
@@ -1474,7 +1518,11 @@ export type CombineCreateManyAuthorInput = {
   sourceRevisionId: string
   baseRevisionId?: string | null
   status?: $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: string | null
+  bountyId?: string | null
+  bountyRewardCents?: number
+  bountyReviewNotes?: string | null
   createdAt?: Date | string | null
   completedAt?: Date | string | null
 }
@@ -1484,6 +1532,9 @@ export type CombineUpdateWithoutAuthorInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   targetPath?: Prisma.PathUpdateOneRequiredWithoutTargetCombinesNestedInput
@@ -1491,9 +1542,8 @@ export type CombineUpdateWithoutAuthorInput = {
   targetRevision?: Prisma.RevisionUpdateOneRequiredWithoutCombineTargetNestedInput
   sourceRevision?: Prisma.RevisionUpdateOneRequiredWithoutCombineSourceNestedInput
   baseRevision?: Prisma.RevisionUpdateOneWithoutCombineBaseNestedInput
-  conflicts?: Prisma.CombineConflictUpdateManyWithoutCombineNestedInput
   resultRevision?: Prisma.RevisionUpdateOneWithoutCombineResultNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutCombineNestedInput
+  bounty?: Prisma.KnowledgeBountyUpdateOneWithoutCombinesNestedInput
 }
 
 export type CombineUncheckedUpdateWithoutAuthorInput = {
@@ -1506,11 +1556,13 @@ export type CombineUncheckedUpdateWithoutAuthorInput = {
   sourceRevisionId?: Prisma.StringFieldUpdateOperationsInput | string
   baseRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  conflicts?: Prisma.CombineConflictUncheckedUpdateManyWithoutCombineNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutCombineNestedInput
 }
 
 export type CombineUncheckedUpdateManyWithoutAuthorInput = {
@@ -1523,7 +1575,11 @@ export type CombineUncheckedUpdateManyWithoutAuthorInput = {
   sourceRevisionId?: Prisma.StringFieldUpdateOperationsInput | string
   baseRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -1538,7 +1594,11 @@ export type CombineCreateManyTargetPathInput = {
   sourceRevisionId: string
   baseRevisionId?: string | null
   status?: $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: string | null
+  bountyId?: string | null
+  bountyRewardCents?: number
+  bountyReviewNotes?: string | null
   createdAt?: Date | string | null
   completedAt?: Date | string | null
 }
@@ -1553,7 +1613,11 @@ export type CombineCreateManySourcePathInput = {
   sourceRevisionId: string
   baseRevisionId?: string | null
   status?: $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: string | null
+  bountyId?: string | null
+  bountyRewardCents?: number
+  bountyReviewNotes?: string | null
   createdAt?: Date | string | null
   completedAt?: Date | string | null
 }
@@ -1563,6 +1627,9 @@ export type CombineUpdateWithoutTargetPathInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   author?: Prisma.UserUpdateOneWithoutAuthoredCombinesNestedInput
@@ -1570,9 +1637,8 @@ export type CombineUpdateWithoutTargetPathInput = {
   targetRevision?: Prisma.RevisionUpdateOneRequiredWithoutCombineTargetNestedInput
   sourceRevision?: Prisma.RevisionUpdateOneRequiredWithoutCombineSourceNestedInput
   baseRevision?: Prisma.RevisionUpdateOneWithoutCombineBaseNestedInput
-  conflicts?: Prisma.CombineConflictUpdateManyWithoutCombineNestedInput
   resultRevision?: Prisma.RevisionUpdateOneWithoutCombineResultNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutCombineNestedInput
+  bounty?: Prisma.KnowledgeBountyUpdateOneWithoutCombinesNestedInput
 }
 
 export type CombineUncheckedUpdateWithoutTargetPathInput = {
@@ -1585,11 +1651,13 @@ export type CombineUncheckedUpdateWithoutTargetPathInput = {
   sourceRevisionId?: Prisma.StringFieldUpdateOperationsInput | string
   baseRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  conflicts?: Prisma.CombineConflictUncheckedUpdateManyWithoutCombineNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutCombineNestedInput
 }
 
 export type CombineUncheckedUpdateManyWithoutTargetPathInput = {
@@ -1602,7 +1670,11 @@ export type CombineUncheckedUpdateManyWithoutTargetPathInput = {
   sourceRevisionId?: Prisma.StringFieldUpdateOperationsInput | string
   baseRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -1612,6 +1684,9 @@ export type CombineUpdateWithoutSourcePathInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   author?: Prisma.UserUpdateOneWithoutAuthoredCombinesNestedInput
@@ -1619,9 +1694,8 @@ export type CombineUpdateWithoutSourcePathInput = {
   targetRevision?: Prisma.RevisionUpdateOneRequiredWithoutCombineTargetNestedInput
   sourceRevision?: Prisma.RevisionUpdateOneRequiredWithoutCombineSourceNestedInput
   baseRevision?: Prisma.RevisionUpdateOneWithoutCombineBaseNestedInput
-  conflicts?: Prisma.CombineConflictUpdateManyWithoutCombineNestedInput
   resultRevision?: Prisma.RevisionUpdateOneWithoutCombineResultNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutCombineNestedInput
+  bounty?: Prisma.KnowledgeBountyUpdateOneWithoutCombinesNestedInput
 }
 
 export type CombineUncheckedUpdateWithoutSourcePathInput = {
@@ -1634,11 +1708,13 @@ export type CombineUncheckedUpdateWithoutSourcePathInput = {
   sourceRevisionId?: Prisma.StringFieldUpdateOperationsInput | string
   baseRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  conflicts?: Prisma.CombineConflictUncheckedUpdateManyWithoutCombineNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutCombineNestedInput
 }
 
 export type CombineUncheckedUpdateManyWithoutSourcePathInput = {
@@ -1651,7 +1727,11 @@ export type CombineUncheckedUpdateManyWithoutSourcePathInput = {
   sourceRevisionId?: Prisma.StringFieldUpdateOperationsInput | string
   baseRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -1666,7 +1746,11 @@ export type CombineCreateManyTargetRevisionInput = {
   sourceRevisionId: string
   baseRevisionId?: string | null
   status?: $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: string | null
+  bountyId?: string | null
+  bountyRewardCents?: number
+  bountyReviewNotes?: string | null
   createdAt?: Date | string | null
   completedAt?: Date | string | null
 }
@@ -1681,7 +1765,11 @@ export type CombineCreateManySourceRevisionInput = {
   targetRevisionId: string
   baseRevisionId?: string | null
   status?: $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: string | null
+  bountyId?: string | null
+  bountyRewardCents?: number
+  bountyReviewNotes?: string | null
   createdAt?: Date | string | null
   completedAt?: Date | string | null
 }
@@ -1696,7 +1784,11 @@ export type CombineCreateManyBaseRevisionInput = {
   targetRevisionId: string
   sourceRevisionId: string
   status?: $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: string | null
+  bountyId?: string | null
+  bountyRewardCents?: number
+  bountyReviewNotes?: string | null
   createdAt?: Date | string | null
   completedAt?: Date | string | null
 }
@@ -1712,6 +1804,10 @@ export type CombineCreateManyResultRevisionInput = {
   sourceRevisionId: string
   baseRevisionId?: string | null
   status?: $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  bountyId?: string | null
+  bountyRewardCents?: number
+  bountyReviewNotes?: string | null
   createdAt?: Date | string | null
   completedAt?: Date | string | null
 }
@@ -1721,6 +1817,9 @@ export type CombineUpdateWithoutTargetRevisionInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   author?: Prisma.UserUpdateOneWithoutAuthoredCombinesNestedInput
@@ -1728,9 +1827,8 @@ export type CombineUpdateWithoutTargetRevisionInput = {
   sourcePath?: Prisma.PathUpdateOneRequiredWithoutSourceCombinesNestedInput
   sourceRevision?: Prisma.RevisionUpdateOneRequiredWithoutCombineSourceNestedInput
   baseRevision?: Prisma.RevisionUpdateOneWithoutCombineBaseNestedInput
-  conflicts?: Prisma.CombineConflictUpdateManyWithoutCombineNestedInput
   resultRevision?: Prisma.RevisionUpdateOneWithoutCombineResultNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutCombineNestedInput
+  bounty?: Prisma.KnowledgeBountyUpdateOneWithoutCombinesNestedInput
 }
 
 export type CombineUncheckedUpdateWithoutTargetRevisionInput = {
@@ -1743,11 +1841,13 @@ export type CombineUncheckedUpdateWithoutTargetRevisionInput = {
   sourceRevisionId?: Prisma.StringFieldUpdateOperationsInput | string
   baseRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  conflicts?: Prisma.CombineConflictUncheckedUpdateManyWithoutCombineNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutCombineNestedInput
 }
 
 export type CombineUncheckedUpdateManyWithoutTargetRevisionInput = {
@@ -1760,7 +1860,11 @@ export type CombineUncheckedUpdateManyWithoutTargetRevisionInput = {
   sourceRevisionId?: Prisma.StringFieldUpdateOperationsInput | string
   baseRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -1770,6 +1874,9 @@ export type CombineUpdateWithoutSourceRevisionInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   author?: Prisma.UserUpdateOneWithoutAuthoredCombinesNestedInput
@@ -1777,9 +1884,8 @@ export type CombineUpdateWithoutSourceRevisionInput = {
   sourcePath?: Prisma.PathUpdateOneRequiredWithoutSourceCombinesNestedInput
   targetRevision?: Prisma.RevisionUpdateOneRequiredWithoutCombineTargetNestedInput
   baseRevision?: Prisma.RevisionUpdateOneWithoutCombineBaseNestedInput
-  conflicts?: Prisma.CombineConflictUpdateManyWithoutCombineNestedInput
   resultRevision?: Prisma.RevisionUpdateOneWithoutCombineResultNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutCombineNestedInput
+  bounty?: Prisma.KnowledgeBountyUpdateOneWithoutCombinesNestedInput
 }
 
 export type CombineUncheckedUpdateWithoutSourceRevisionInput = {
@@ -1792,11 +1898,13 @@ export type CombineUncheckedUpdateWithoutSourceRevisionInput = {
   targetRevisionId?: Prisma.StringFieldUpdateOperationsInput | string
   baseRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  conflicts?: Prisma.CombineConflictUncheckedUpdateManyWithoutCombineNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutCombineNestedInput
 }
 
 export type CombineUncheckedUpdateManyWithoutSourceRevisionInput = {
@@ -1809,7 +1917,11 @@ export type CombineUncheckedUpdateManyWithoutSourceRevisionInput = {
   targetRevisionId?: Prisma.StringFieldUpdateOperationsInput | string
   baseRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -1819,6 +1931,9 @@ export type CombineUpdateWithoutBaseRevisionInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   author?: Prisma.UserUpdateOneWithoutAuthoredCombinesNestedInput
@@ -1826,9 +1941,8 @@ export type CombineUpdateWithoutBaseRevisionInput = {
   sourcePath?: Prisma.PathUpdateOneRequiredWithoutSourceCombinesNestedInput
   targetRevision?: Prisma.RevisionUpdateOneRequiredWithoutCombineTargetNestedInput
   sourceRevision?: Prisma.RevisionUpdateOneRequiredWithoutCombineSourceNestedInput
-  conflicts?: Prisma.CombineConflictUpdateManyWithoutCombineNestedInput
   resultRevision?: Prisma.RevisionUpdateOneWithoutCombineResultNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutCombineNestedInput
+  bounty?: Prisma.KnowledgeBountyUpdateOneWithoutCombinesNestedInput
 }
 
 export type CombineUncheckedUpdateWithoutBaseRevisionInput = {
@@ -1841,11 +1955,13 @@ export type CombineUncheckedUpdateWithoutBaseRevisionInput = {
   targetRevisionId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceRevisionId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  conflicts?: Prisma.CombineConflictUncheckedUpdateManyWithoutCombineNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutCombineNestedInput
 }
 
 export type CombineUncheckedUpdateManyWithoutBaseRevisionInput = {
@@ -1858,7 +1974,11 @@ export type CombineUncheckedUpdateManyWithoutBaseRevisionInput = {
   targetRevisionId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceRevisionId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   resultRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -1868,6 +1988,9 @@ export type CombineUpdateWithoutResultRevisionInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   author?: Prisma.UserUpdateOneWithoutAuthoredCombinesNestedInput
@@ -1876,8 +1999,7 @@ export type CombineUpdateWithoutResultRevisionInput = {
   targetRevision?: Prisma.RevisionUpdateOneRequiredWithoutCombineTargetNestedInput
   sourceRevision?: Prisma.RevisionUpdateOneRequiredWithoutCombineSourceNestedInput
   baseRevision?: Prisma.RevisionUpdateOneWithoutCombineBaseNestedInput
-  conflicts?: Prisma.CombineConflictUpdateManyWithoutCombineNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutCombineNestedInput
+  bounty?: Prisma.KnowledgeBountyUpdateOneWithoutCombinesNestedInput
 }
 
 export type CombineUncheckedUpdateWithoutResultRevisionInput = {
@@ -1891,10 +2013,12 @@ export type CombineUncheckedUpdateWithoutResultRevisionInput = {
   sourceRevisionId?: Prisma.StringFieldUpdateOperationsInput | string
   baseRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  conflicts?: Prisma.CombineConflictUncheckedUpdateManyWithoutCombineNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutCombineNestedInput
 }
 
 export type CombineUncheckedUpdateManyWithoutResultRevisionInput = {
@@ -1908,48 +2032,90 @@ export type CombineUncheckedUpdateManyWithoutResultRevisionInput = {
   sourceRevisionId?: Prisma.StringFieldUpdateOperationsInput | string
   baseRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  bountyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
-
-/**
- * Count Type CombineCountOutputType
- */
-
-export type CombineCountOutputType = {
-  conflicts: number
-  bountySubmissions: number
+export type CombineCreateManyBountyInput = {
+  id?: string
+  title: string
+  description?: string | null
+  authorId?: string | null
+  targetPathId: string
+  sourcePathId: string
+  targetRevisionId: string
+  sourceRevisionId: string
+  baseRevisionId?: string | null
+  status?: $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resultRevisionId?: string | null
+  bountyRewardCents?: number
+  bountyReviewNotes?: string | null
+  createdAt?: Date | string | null
+  completedAt?: Date | string | null
 }
 
-export type CombineCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  conflicts?: boolean | CombineCountOutputTypeCountConflictsArgs
-  bountySubmissions?: boolean | CombineCountOutputTypeCountBountySubmissionsArgs
+export type CombineUpdateWithoutBountyInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  author?: Prisma.UserUpdateOneWithoutAuthoredCombinesNestedInput
+  targetPath?: Prisma.PathUpdateOneRequiredWithoutTargetCombinesNestedInput
+  sourcePath?: Prisma.PathUpdateOneRequiredWithoutSourceCombinesNestedInput
+  targetRevision?: Prisma.RevisionUpdateOneRequiredWithoutCombineTargetNestedInput
+  sourceRevision?: Prisma.RevisionUpdateOneRequiredWithoutCombineSourceNestedInput
+  baseRevision?: Prisma.RevisionUpdateOneWithoutCombineBaseNestedInput
+  resultRevision?: Prisma.RevisionUpdateOneWithoutCombineResultNestedInput
 }
 
-/**
- * CombineCountOutputType without action
- */
-export type CombineCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the CombineCountOutputType
-   */
-  select?: Prisma.CombineCountOutputTypeSelect<ExtArgs> | null
+export type CombineUncheckedUpdateWithoutBountyInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  targetPathId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourcePathId?: Prisma.StringFieldUpdateOperationsInput | string
+  targetRevisionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceRevisionId?: Prisma.StringFieldUpdateOperationsInput | string
+  baseRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resultRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
-/**
- * CombineCountOutputType without action
- */
-export type CombineCountOutputTypeCountConflictsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CombineConflictWhereInput
+export type CombineUncheckedUpdateManyWithoutBountyInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  targetPathId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourcePathId?: Prisma.StringFieldUpdateOperationsInput | string
+  targetRevisionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceRevisionId?: Prisma.StringFieldUpdateOperationsInput | string
+  baseRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCombineStatusFieldUpdateOperationsInput | $Enums.CombineStatus
+  conflicts?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resultRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bountyRewardCents?: Prisma.FloatFieldUpdateOperationsInput | number
+  bountyReviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
-/**
- * CombineCountOutputType without action
- */
-export type CombineCountOutputTypeCountBountySubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.BountySubmissionWhereInput
-}
 
 
 export type CombineSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1963,7 +2129,11 @@ export type CombineSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   sourceRevisionId?: boolean
   baseRevisionId?: boolean
   status?: boolean
+  conflicts?: boolean
   resultRevisionId?: boolean
+  bountyId?: boolean
+  bountyRewardCents?: boolean
+  bountyReviewNotes?: boolean
   createdAt?: boolean
   completedAt?: boolean
   author?: boolean | Prisma.Combine$authorArgs<ExtArgs>
@@ -1972,10 +2142,8 @@ export type CombineSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   targetRevision?: boolean | Prisma.RevisionDefaultArgs<ExtArgs>
   sourceRevision?: boolean | Prisma.RevisionDefaultArgs<ExtArgs>
   baseRevision?: boolean | Prisma.Combine$baseRevisionArgs<ExtArgs>
-  conflicts?: boolean | Prisma.Combine$conflictsArgs<ExtArgs>
   resultRevision?: boolean | Prisma.Combine$resultRevisionArgs<ExtArgs>
-  bountySubmissions?: boolean | Prisma.Combine$bountySubmissionsArgs<ExtArgs>
-  _count?: boolean | Prisma.CombineCountOutputTypeDefaultArgs<ExtArgs>
+  bounty?: boolean | Prisma.Combine$bountyArgs<ExtArgs>
 }, ExtArgs["result"]["combine"]>
 
 export type CombineSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1989,7 +2157,11 @@ export type CombineSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   sourceRevisionId?: boolean
   baseRevisionId?: boolean
   status?: boolean
+  conflicts?: boolean
   resultRevisionId?: boolean
+  bountyId?: boolean
+  bountyRewardCents?: boolean
+  bountyReviewNotes?: boolean
   createdAt?: boolean
   completedAt?: boolean
   author?: boolean | Prisma.Combine$authorArgs<ExtArgs>
@@ -1999,6 +2171,7 @@ export type CombineSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   sourceRevision?: boolean | Prisma.RevisionDefaultArgs<ExtArgs>
   baseRevision?: boolean | Prisma.Combine$baseRevisionArgs<ExtArgs>
   resultRevision?: boolean | Prisma.Combine$resultRevisionArgs<ExtArgs>
+  bounty?: boolean | Prisma.Combine$bountyArgs<ExtArgs>
 }, ExtArgs["result"]["combine"]>
 
 export type CombineSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -2012,7 +2185,11 @@ export type CombineSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   sourceRevisionId?: boolean
   baseRevisionId?: boolean
   status?: boolean
+  conflicts?: boolean
   resultRevisionId?: boolean
+  bountyId?: boolean
+  bountyRewardCents?: boolean
+  bountyReviewNotes?: boolean
   createdAt?: boolean
   completedAt?: boolean
   author?: boolean | Prisma.Combine$authorArgs<ExtArgs>
@@ -2022,6 +2199,7 @@ export type CombineSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   sourceRevision?: boolean | Prisma.RevisionDefaultArgs<ExtArgs>
   baseRevision?: boolean | Prisma.Combine$baseRevisionArgs<ExtArgs>
   resultRevision?: boolean | Prisma.Combine$resultRevisionArgs<ExtArgs>
+  bounty?: boolean | Prisma.Combine$bountyArgs<ExtArgs>
 }, ExtArgs["result"]["combine"]>
 
 export type CombineSelectScalar = {
@@ -2035,12 +2213,16 @@ export type CombineSelectScalar = {
   sourceRevisionId?: boolean
   baseRevisionId?: boolean
   status?: boolean
+  conflicts?: boolean
   resultRevisionId?: boolean
+  bountyId?: boolean
+  bountyRewardCents?: boolean
+  bountyReviewNotes?: boolean
   createdAt?: boolean
   completedAt?: boolean
 }
 
-export type CombineOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "authorId" | "targetPathId" | "sourcePathId" | "targetRevisionId" | "sourceRevisionId" | "baseRevisionId" | "status" | "resultRevisionId" | "createdAt" | "completedAt", ExtArgs["result"]["combine"]>
+export type CombineOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "authorId" | "targetPathId" | "sourcePathId" | "targetRevisionId" | "sourceRevisionId" | "baseRevisionId" | "status" | "conflicts" | "resultRevisionId" | "bountyId" | "bountyRewardCents" | "bountyReviewNotes" | "createdAt" | "completedAt", ExtArgs["result"]["combine"]>
 export type CombineInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.Combine$authorArgs<ExtArgs>
   targetPath?: boolean | Prisma.PathDefaultArgs<ExtArgs>
@@ -2048,10 +2230,8 @@ export type CombineInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   targetRevision?: boolean | Prisma.RevisionDefaultArgs<ExtArgs>
   sourceRevision?: boolean | Prisma.RevisionDefaultArgs<ExtArgs>
   baseRevision?: boolean | Prisma.Combine$baseRevisionArgs<ExtArgs>
-  conflicts?: boolean | Prisma.Combine$conflictsArgs<ExtArgs>
   resultRevision?: boolean | Prisma.Combine$resultRevisionArgs<ExtArgs>
-  bountySubmissions?: boolean | Prisma.Combine$bountySubmissionsArgs<ExtArgs>
-  _count?: boolean | Prisma.CombineCountOutputTypeDefaultArgs<ExtArgs>
+  bounty?: boolean | Prisma.Combine$bountyArgs<ExtArgs>
 }
 export type CombineIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.Combine$authorArgs<ExtArgs>
@@ -2061,6 +2241,7 @@ export type CombineIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   sourceRevision?: boolean | Prisma.RevisionDefaultArgs<ExtArgs>
   baseRevision?: boolean | Prisma.Combine$baseRevisionArgs<ExtArgs>
   resultRevision?: boolean | Prisma.Combine$resultRevisionArgs<ExtArgs>
+  bounty?: boolean | Prisma.Combine$bountyArgs<ExtArgs>
 }
 export type CombineIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.Combine$authorArgs<ExtArgs>
@@ -2070,6 +2251,7 @@ export type CombineIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   sourceRevision?: boolean | Prisma.RevisionDefaultArgs<ExtArgs>
   baseRevision?: boolean | Prisma.Combine$baseRevisionArgs<ExtArgs>
   resultRevision?: boolean | Prisma.Combine$resultRevisionArgs<ExtArgs>
+  bounty?: boolean | Prisma.Combine$bountyArgs<ExtArgs>
 }
 
 export type $CombinePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2081,9 +2263,8 @@ export type $CombinePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     targetRevision: Prisma.$RevisionPayload<ExtArgs>
     sourceRevision: Prisma.$RevisionPayload<ExtArgs>
     baseRevision: Prisma.$RevisionPayload<ExtArgs> | null
-    conflicts: Prisma.$CombineConflictPayload<ExtArgs>[]
     resultRevision: Prisma.$RevisionPayload<ExtArgs> | null
-    bountySubmissions: Prisma.$BountySubmissionPayload<ExtArgs>[]
+    bounty: Prisma.$KnowledgeBountyPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2096,7 +2277,11 @@ export type $CombinePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     sourceRevisionId: string
     baseRevisionId: string | null
     status: $Enums.CombineStatus
+    conflicts: runtime.JsonValue | null
     resultRevisionId: string | null
+    bountyId: string | null
+    bountyRewardCents: number
+    bountyReviewNotes: string | null
     createdAt: Date | null
     completedAt: Date | null
   }, ExtArgs["result"]["combine"]>
@@ -2499,9 +2684,8 @@ export interface Prisma__CombineClient<T, Null = never, ExtArgs extends runtime.
   targetRevision<T extends Prisma.RevisionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RevisionDefaultArgs<ExtArgs>>): Prisma.Prisma__RevisionClient<runtime.Types.Result.GetResult<Prisma.$RevisionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   sourceRevision<T extends Prisma.RevisionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RevisionDefaultArgs<ExtArgs>>): Prisma.Prisma__RevisionClient<runtime.Types.Result.GetResult<Prisma.$RevisionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   baseRevision<T extends Prisma.Combine$baseRevisionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Combine$baseRevisionArgs<ExtArgs>>): Prisma.Prisma__RevisionClient<runtime.Types.Result.GetResult<Prisma.$RevisionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  conflicts<T extends Prisma.Combine$conflictsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Combine$conflictsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CombineConflictPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   resultRevision<T extends Prisma.Combine$resultRevisionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Combine$resultRevisionArgs<ExtArgs>>): Prisma.Prisma__RevisionClient<runtime.Types.Result.GetResult<Prisma.$RevisionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  bountySubmissions<T extends Prisma.Combine$bountySubmissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Combine$bountySubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BountySubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  bounty<T extends Prisma.Combine$bountyArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Combine$bountyArgs<ExtArgs>>): Prisma.Prisma__KnowledgeBountyClient<runtime.Types.Result.GetResult<Prisma.$KnowledgeBountyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2541,7 +2725,11 @@ export interface CombineFieldRefs {
   readonly sourceRevisionId: Prisma.FieldRef<"Combine", 'String'>
   readonly baseRevisionId: Prisma.FieldRef<"Combine", 'String'>
   readonly status: Prisma.FieldRef<"Combine", 'CombineStatus'>
+  readonly conflicts: Prisma.FieldRef<"Combine", 'Json'>
   readonly resultRevisionId: Prisma.FieldRef<"Combine", 'String'>
+  readonly bountyId: Prisma.FieldRef<"Combine", 'String'>
+  readonly bountyRewardCents: Prisma.FieldRef<"Combine", 'Float'>
+  readonly bountyReviewNotes: Prisma.FieldRef<"Combine", 'String'>
   readonly createdAt: Prisma.FieldRef<"Combine", 'DateTime'>
   readonly completedAt: Prisma.FieldRef<"Combine", 'DateTime'>
 }
@@ -2983,30 +3171,6 @@ export type Combine$baseRevisionArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
- * Combine.conflicts
- */
-export type Combine$conflictsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the CombineConflict
-   */
-  select?: Prisma.CombineConflictSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the CombineConflict
-   */
-  omit?: Prisma.CombineConflictOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CombineConflictInclude<ExtArgs> | null
-  where?: Prisma.CombineConflictWhereInput
-  orderBy?: Prisma.CombineConflictOrderByWithRelationInput | Prisma.CombineConflictOrderByWithRelationInput[]
-  cursor?: Prisma.CombineConflictWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.CombineConflictScalarFieldEnum | Prisma.CombineConflictScalarFieldEnum[]
-}
-
-/**
  * Combine.resultRevision
  */
 export type Combine$resultRevisionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3026,27 +3190,22 @@ export type Combine$resultRevisionArgs<ExtArgs extends runtime.Types.Extensions.
 }
 
 /**
- * Combine.bountySubmissions
+ * Combine.bounty
  */
-export type Combine$bountySubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Combine$bountyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the BountySubmission
+   * Select specific fields to fetch from the KnowledgeBounty
    */
-  select?: Prisma.BountySubmissionSelect<ExtArgs> | null
+  select?: Prisma.KnowledgeBountySelect<ExtArgs> | null
   /**
-   * Omit specific fields from the BountySubmission
+   * Omit specific fields from the KnowledgeBounty
    */
-  omit?: Prisma.BountySubmissionOmit<ExtArgs> | null
+  omit?: Prisma.KnowledgeBountyOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.BountySubmissionInclude<ExtArgs> | null
-  where?: Prisma.BountySubmissionWhereInput
-  orderBy?: Prisma.BountySubmissionOrderByWithRelationInput | Prisma.BountySubmissionOrderByWithRelationInput[]
-  cursor?: Prisma.BountySubmissionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.BountySubmissionScalarFieldEnum | Prisma.BountySubmissionScalarFieldEnum[]
+  include?: Prisma.KnowledgeBountyInclude<ExtArgs> | null
+  where?: Prisma.KnowledgeBountyWhereInput
 }
 
 /**

@@ -45,18 +45,22 @@ export type EntryMinAggregateOutputType = {
   content: string | null
   type: $Enums.EntryType | null
   version: number | null
+  externalSubjectKey: string | null
   state: $Enums.EntryState | null
   recallPolicy: $Enums.RecallPolicy | null
   origin: $Enums.EntryOrigin | null
   confidenceScore: number | null
   expiresAt: Date | null
   archivedAt: Date | null
+  deletedAt: Date | null
+  deletionReason: string | null
+  publishedAt: Date | null
   collectionId: string | null
-  appMemoryId: string | null
   userId: string | null
   authorId: string | null
-  sourcePackId: string | null
+  sourceCollectionId: string | null
   upstreamEntryId: string | null
+  syncMode: $Enums.SyncMode | null
   citationCount: number | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -69,18 +73,22 @@ export type EntryMaxAggregateOutputType = {
   content: string | null
   type: $Enums.EntryType | null
   version: number | null
+  externalSubjectKey: string | null
   state: $Enums.EntryState | null
   recallPolicy: $Enums.RecallPolicy | null
   origin: $Enums.EntryOrigin | null
   confidenceScore: number | null
   expiresAt: Date | null
   archivedAt: Date | null
+  deletedAt: Date | null
+  deletionReason: string | null
+  publishedAt: Date | null
   collectionId: string | null
-  appMemoryId: string | null
   userId: string | null
   authorId: string | null
-  sourcePackId: string | null
+  sourceCollectionId: string | null
   upstreamEntryId: string | null
+  syncMode: $Enums.SyncMode | null
   citationCount: number | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -94,19 +102,23 @@ export type EntryCountAggregateOutputType = {
   type: number
   version: number
   tags: number
+  externalSubjectKey: number
   state: number
   recallPolicy: number
   origin: number
   confidenceScore: number
   expiresAt: number
   archivedAt: number
+  deletedAt: number
+  deletionReason: number
+  publishedAt: number
   metadata: number
   collectionId: number
-  appMemoryId: number
   userId: number
   authorId: number
-  sourcePackId: number
+  sourceCollectionId: number
   upstreamEntryId: number
+  syncMode: number
   citationCount: number
   createdAt: number
   updatedAt: number
@@ -133,18 +145,22 @@ export type EntryMinAggregateInputType = {
   content?: true
   type?: true
   version?: true
+  externalSubjectKey?: true
   state?: true
   recallPolicy?: true
   origin?: true
   confidenceScore?: true
   expiresAt?: true
   archivedAt?: true
+  deletedAt?: true
+  deletionReason?: true
+  publishedAt?: true
   collectionId?: true
-  appMemoryId?: true
   userId?: true
   authorId?: true
-  sourcePackId?: true
+  sourceCollectionId?: true
   upstreamEntryId?: true
+  syncMode?: true
   citationCount?: true
   createdAt?: true
   updatedAt?: true
@@ -157,18 +173,22 @@ export type EntryMaxAggregateInputType = {
   content?: true
   type?: true
   version?: true
+  externalSubjectKey?: true
   state?: true
   recallPolicy?: true
   origin?: true
   confidenceScore?: true
   expiresAt?: true
   archivedAt?: true
+  deletedAt?: true
+  deletionReason?: true
+  publishedAt?: true
   collectionId?: true
-  appMemoryId?: true
   userId?: true
   authorId?: true
-  sourcePackId?: true
+  sourceCollectionId?: true
   upstreamEntryId?: true
+  syncMode?: true
   citationCount?: true
   createdAt?: true
   updatedAt?: true
@@ -182,19 +202,23 @@ export type EntryCountAggregateInputType = {
   type?: true
   version?: true
   tags?: true
+  externalSubjectKey?: true
   state?: true
   recallPolicy?: true
   origin?: true
   confidenceScore?: true
   expiresAt?: true
   archivedAt?: true
+  deletedAt?: true
+  deletionReason?: true
+  publishedAt?: true
   metadata?: true
   collectionId?: true
-  appMemoryId?: true
   userId?: true
   authorId?: true
-  sourcePackId?: true
+  sourceCollectionId?: true
   upstreamEntryId?: true
+  syncMode?: true
   citationCount?: true
   createdAt?: true
   updatedAt?: true
@@ -295,19 +319,23 @@ export type EntryGroupByOutputType = {
   type: $Enums.EntryType
   version: number
   tags: string[]
+  externalSubjectKey: string | null
   state: $Enums.EntryState
   recallPolicy: $Enums.RecallPolicy
   origin: $Enums.EntryOrigin
   confidenceScore: number
   expiresAt: Date | null
   archivedAt: Date | null
+  deletedAt: Date | null
+  deletionReason: string | null
+  publishedAt: Date | null
   metadata: runtime.JsonValue | null
   collectionId: string
-  appMemoryId: string | null
   userId: string
-  authorId: string
-  sourcePackId: string | null
+  authorId: string | null
+  sourceCollectionId: string | null
   upstreamEntryId: string | null
+  syncMode: $Enums.SyncMode
   citationCount: number
   createdAt: Date
   updatedAt: Date
@@ -344,34 +372,37 @@ export type EntryWhereInput = {
   type?: Prisma.EnumEntryTypeFilter<"Entry"> | $Enums.EntryType
   version?: Prisma.IntFilter<"Entry"> | number
   tags?: Prisma.StringNullableListFilter<"Entry">
+  externalSubjectKey?: Prisma.StringNullableFilter<"Entry"> | string | null
   state?: Prisma.EnumEntryStateFilter<"Entry"> | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFilter<"Entry"> | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFilter<"Entry"> | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFilter<"Entry"> | number
   expiresAt?: Prisma.DateTimeNullableFilter<"Entry"> | Date | string | null
   archivedAt?: Prisma.DateTimeNullableFilter<"Entry"> | Date | string | null
+  deletedAt?: Prisma.DateTimeNullableFilter<"Entry"> | Date | string | null
+  deletionReason?: Prisma.StringNullableFilter<"Entry"> | string | null
+  publishedAt?: Prisma.DateTimeNullableFilter<"Entry"> | Date | string | null
   metadata?: Prisma.JsonNullableFilter<"Entry">
   collectionId?: Prisma.StringFilter<"Entry"> | string
-  appMemoryId?: Prisma.StringNullableFilter<"Entry"> | string | null
   userId?: Prisma.StringFilter<"Entry"> | string
-  authorId?: Prisma.StringFilter<"Entry"> | string
-  sourcePackId?: Prisma.StringNullableFilter<"Entry"> | string | null
+  authorId?: Prisma.StringNullableFilter<"Entry"> | string | null
+  sourceCollectionId?: Prisma.StringNullableFilter<"Entry"> | string | null
   upstreamEntryId?: Prisma.StringNullableFilter<"Entry"> | string | null
+  syncMode?: Prisma.EnumSyncModeFilter<"Entry"> | $Enums.SyncMode
   citationCount?: Prisma.IntFilter<"Entry"> | number
   createdAt?: Prisma.DateTimeFilter<"Entry"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Entry"> | Date | string
   collection?: Prisma.XOR<Prisma.CollectionScalarRelationFilter, Prisma.CollectionWhereInput>
-  appMemory?: Prisma.XOR<Prisma.AppMemoryNullableScalarRelationFilter, Prisma.AppMemoryWhereInput> | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  sourcePack?: Prisma.XOR<Prisma.PackNullableScalarRelationFilter, Prisma.PackWhereInput> | null
+  author?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  sourceCollection?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
+  upstreamEntry?: Prisma.XOR<Prisma.EntryNullableScalarRelationFilter, Prisma.EntryWhereInput> | null
+  downstreamEntries?: Prisma.EntryListRelationFilter
   sourceRelationships?: Prisma.EntryRelationshipListRelationFilter
   targetRelationships?: Prisma.EntryRelationshipListRelationFilter
   revisionChanges?: Prisma.RevisionChangeListRelationFilter
-  tuneMemoryLinks?: Prisma.AppMemoryLinkListRelationFilter
-  appMemoryLinks?: Prisma.AppMemoryLinkListRelationFilter
   accessGrants?: Prisma.AccessGrantListRelationFilter
-  receiptItems?: Prisma.ContextReceiptItemListRelationFilter
+  receiptItems?: Prisma.ContextRequestItemListRelationFilter
   royaltiesGenerated?: Prisma.UserRoyaltyListRelationFilter
   stars?: Prisma.StarListRelationFilter
 }
@@ -384,34 +415,37 @@ export type EntryOrderByWithRelationInput = {
   type?: Prisma.SortOrder
   version?: Prisma.SortOrder
   tags?: Prisma.SortOrder
+  externalSubjectKey?: Prisma.SortOrderInput | Prisma.SortOrder
   state?: Prisma.SortOrder
   recallPolicy?: Prisma.SortOrder
   origin?: Prisma.SortOrder
   confidenceScore?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   archivedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletionReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  publishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder
   collectionId?: Prisma.SortOrder
-  appMemoryId?: Prisma.SortOrderInput | Prisma.SortOrder
   userId?: Prisma.SortOrder
-  authorId?: Prisma.SortOrder
-  sourcePackId?: Prisma.SortOrderInput | Prisma.SortOrder
+  authorId?: Prisma.SortOrderInput | Prisma.SortOrder
+  sourceCollectionId?: Prisma.SortOrderInput | Prisma.SortOrder
   upstreamEntryId?: Prisma.SortOrderInput | Prisma.SortOrder
+  syncMode?: Prisma.SortOrder
   citationCount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   collection?: Prisma.CollectionOrderByWithRelationInput
-  appMemory?: Prisma.AppMemoryOrderByWithRelationInput
   user?: Prisma.UserOrderByWithRelationInput
   author?: Prisma.UserOrderByWithRelationInput
-  sourcePack?: Prisma.PackOrderByWithRelationInput
+  sourceCollection?: Prisma.CollectionOrderByWithRelationInput
+  upstreamEntry?: Prisma.EntryOrderByWithRelationInput
+  downstreamEntries?: Prisma.EntryOrderByRelationAggregateInput
   sourceRelationships?: Prisma.EntryRelationshipOrderByRelationAggregateInput
   targetRelationships?: Prisma.EntryRelationshipOrderByRelationAggregateInput
   revisionChanges?: Prisma.RevisionChangeOrderByRelationAggregateInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkOrderByRelationAggregateInput
-  appMemoryLinks?: Prisma.AppMemoryLinkOrderByRelationAggregateInput
   accessGrants?: Prisma.AccessGrantOrderByRelationAggregateInput
-  receiptItems?: Prisma.ContextReceiptItemOrderByRelationAggregateInput
+  receiptItems?: Prisma.ContextRequestItemOrderByRelationAggregateInput
   royaltiesGenerated?: Prisma.UserRoyaltyOrderByRelationAggregateInput
   stars?: Prisma.StarOrderByRelationAggregateInput
 }
@@ -427,34 +461,37 @@ export type EntryWhereUniqueInput = Prisma.AtLeast<{
   type?: Prisma.EnumEntryTypeFilter<"Entry"> | $Enums.EntryType
   version?: Prisma.IntFilter<"Entry"> | number
   tags?: Prisma.StringNullableListFilter<"Entry">
+  externalSubjectKey?: Prisma.StringNullableFilter<"Entry"> | string | null
   state?: Prisma.EnumEntryStateFilter<"Entry"> | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFilter<"Entry"> | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFilter<"Entry"> | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFilter<"Entry"> | number
   expiresAt?: Prisma.DateTimeNullableFilter<"Entry"> | Date | string | null
   archivedAt?: Prisma.DateTimeNullableFilter<"Entry"> | Date | string | null
+  deletedAt?: Prisma.DateTimeNullableFilter<"Entry"> | Date | string | null
+  deletionReason?: Prisma.StringNullableFilter<"Entry"> | string | null
+  publishedAt?: Prisma.DateTimeNullableFilter<"Entry"> | Date | string | null
   metadata?: Prisma.JsonNullableFilter<"Entry">
   collectionId?: Prisma.StringFilter<"Entry"> | string
-  appMemoryId?: Prisma.StringNullableFilter<"Entry"> | string | null
   userId?: Prisma.StringFilter<"Entry"> | string
-  authorId?: Prisma.StringFilter<"Entry"> | string
-  sourcePackId?: Prisma.StringNullableFilter<"Entry"> | string | null
+  authorId?: Prisma.StringNullableFilter<"Entry"> | string | null
+  sourceCollectionId?: Prisma.StringNullableFilter<"Entry"> | string | null
   upstreamEntryId?: Prisma.StringNullableFilter<"Entry"> | string | null
+  syncMode?: Prisma.EnumSyncModeFilter<"Entry"> | $Enums.SyncMode
   citationCount?: Prisma.IntFilter<"Entry"> | number
   createdAt?: Prisma.DateTimeFilter<"Entry"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Entry"> | Date | string
   collection?: Prisma.XOR<Prisma.CollectionScalarRelationFilter, Prisma.CollectionWhereInput>
-  appMemory?: Prisma.XOR<Prisma.AppMemoryNullableScalarRelationFilter, Prisma.AppMemoryWhereInput> | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  sourcePack?: Prisma.XOR<Prisma.PackNullableScalarRelationFilter, Prisma.PackWhereInput> | null
+  author?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  sourceCollection?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
+  upstreamEntry?: Prisma.XOR<Prisma.EntryNullableScalarRelationFilter, Prisma.EntryWhereInput> | null
+  downstreamEntries?: Prisma.EntryListRelationFilter
   sourceRelationships?: Prisma.EntryRelationshipListRelationFilter
   targetRelationships?: Prisma.EntryRelationshipListRelationFilter
   revisionChanges?: Prisma.RevisionChangeListRelationFilter
-  tuneMemoryLinks?: Prisma.AppMemoryLinkListRelationFilter
-  appMemoryLinks?: Prisma.AppMemoryLinkListRelationFilter
   accessGrants?: Prisma.AccessGrantListRelationFilter
-  receiptItems?: Prisma.ContextReceiptItemListRelationFilter
+  receiptItems?: Prisma.ContextRequestItemListRelationFilter
   royaltiesGenerated?: Prisma.UserRoyaltyListRelationFilter
   stars?: Prisma.StarListRelationFilter
 }, "id">
@@ -467,19 +504,23 @@ export type EntryOrderByWithAggregationInput = {
   type?: Prisma.SortOrder
   version?: Prisma.SortOrder
   tags?: Prisma.SortOrder
+  externalSubjectKey?: Prisma.SortOrderInput | Prisma.SortOrder
   state?: Prisma.SortOrder
   recallPolicy?: Prisma.SortOrder
   origin?: Prisma.SortOrder
   confidenceScore?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   archivedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletionReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  publishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder
   collectionId?: Prisma.SortOrder
-  appMemoryId?: Prisma.SortOrderInput | Prisma.SortOrder
   userId?: Prisma.SortOrder
-  authorId?: Prisma.SortOrder
-  sourcePackId?: Prisma.SortOrderInput | Prisma.SortOrder
+  authorId?: Prisma.SortOrderInput | Prisma.SortOrder
+  sourceCollectionId?: Prisma.SortOrderInput | Prisma.SortOrder
   upstreamEntryId?: Prisma.SortOrderInput | Prisma.SortOrder
+  syncMode?: Prisma.SortOrder
   citationCount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -501,19 +542,23 @@ export type EntryScalarWhereWithAggregatesInput = {
   type?: Prisma.EnumEntryTypeWithAggregatesFilter<"Entry"> | $Enums.EntryType
   version?: Prisma.IntWithAggregatesFilter<"Entry"> | number
   tags?: Prisma.StringNullableListFilter<"Entry">
+  externalSubjectKey?: Prisma.StringNullableWithAggregatesFilter<"Entry"> | string | null
   state?: Prisma.EnumEntryStateWithAggregatesFilter<"Entry"> | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyWithAggregatesFilter<"Entry"> | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginWithAggregatesFilter<"Entry"> | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatWithAggregatesFilter<"Entry"> | number
   expiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Entry"> | Date | string | null
   archivedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Entry"> | Date | string | null
+  deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Entry"> | Date | string | null
+  deletionReason?: Prisma.StringNullableWithAggregatesFilter<"Entry"> | string | null
+  publishedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Entry"> | Date | string | null
   metadata?: Prisma.JsonNullableWithAggregatesFilter<"Entry">
   collectionId?: Prisma.StringWithAggregatesFilter<"Entry"> | string
-  appMemoryId?: Prisma.StringNullableWithAggregatesFilter<"Entry"> | string | null
   userId?: Prisma.StringWithAggregatesFilter<"Entry"> | string
-  authorId?: Prisma.StringWithAggregatesFilter<"Entry"> | string
-  sourcePackId?: Prisma.StringNullableWithAggregatesFilter<"Entry"> | string | null
+  authorId?: Prisma.StringNullableWithAggregatesFilter<"Entry"> | string | null
+  sourceCollectionId?: Prisma.StringNullableWithAggregatesFilter<"Entry"> | string | null
   upstreamEntryId?: Prisma.StringNullableWithAggregatesFilter<"Entry"> | string | null
+  syncMode?: Prisma.EnumSyncModeWithAggregatesFilter<"Entry"> | $Enums.SyncMode
   citationCount?: Prisma.IntWithAggregatesFilter<"Entry"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Entry"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Entry"> | Date | string
@@ -527,29 +572,32 @@ export type EntryCreateInput = {
   type: $Enums.EntryType
   version?: number
   tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
   state?: $Enums.EntryState
   recallPolicy?: $Enums.RecallPolicy
   origin?: $Enums.EntryOrigin
   confidenceScore?: number
   expiresAt?: Date | string | null
   archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
   citationCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   collection: Prisma.CollectionCreateNestedOneWithoutEntriesInput
-  appMemory?: Prisma.AppMemoryCreateNestedOneWithoutEntriesInput
   user: Prisma.UserCreateNestedOneWithoutEntriesInput
-  author: Prisma.UserCreateNestedOneWithoutAuthoredEntriesInput
-  sourcePack?: Prisma.PackCreateNestedOneWithoutEntriesInput
+  author?: Prisma.UserCreateNestedOneWithoutAuthoredEntriesInput
+  sourceCollection?: Prisma.CollectionCreateNestedOneWithoutOriginatedEntriesInput
+  upstreamEntry?: Prisma.EntryCreateNestedOneWithoutDownstreamEntriesInput
+  downstreamEntries?: Prisma.EntryCreateNestedManyWithoutUpstreamEntryInput
   sourceRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutSourceEntryInput
   targetRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutTargetEntryInput
   revisionChanges?: Prisma.RevisionChangeCreateNestedManyWithoutEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutTuneEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutAppEntryInput
   accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutEntryInput
-  receiptItems?: Prisma.ContextReceiptItemCreateNestedManyWithoutEntryInput
+  receiptItems?: Prisma.ContextRequestItemCreateNestedManyWithoutEntryInput
   royaltiesGenerated?: Prisma.UserRoyaltyCreateNestedManyWithoutEntryInput
   stars?: Prisma.StarCreateNestedManyWithoutEntryInput
 }
@@ -562,29 +610,32 @@ export type EntryUncheckedCreateInput = {
   type: $Enums.EntryType
   version?: number
   tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
   state?: $Enums.EntryState
   recallPolicy?: $Enums.RecallPolicy
   origin?: $Enums.EntryOrigin
   confidenceScore?: number
   expiresAt?: Date | string | null
   archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId: string
-  appMemoryId?: string | null
   userId: string
-  authorId: string
-  sourcePackId?: string | null
+  authorId?: string | null
+  sourceCollectionId?: string | null
   upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
   citationCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  downstreamEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutUpstreamEntryInput
   sourceRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutSourceEntryInput
   targetRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutTargetEntryInput
   revisionChanges?: Prisma.RevisionChangeUncheckedCreateNestedManyWithoutEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutTuneEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutAppEntryInput
   accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutEntryInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedCreateNestedManyWithoutEntryInput
+  receiptItems?: Prisma.ContextRequestItemUncheckedCreateNestedManyWithoutEntryInput
   royaltiesGenerated?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutEntryInput
   stars?: Prisma.StarUncheckedCreateNestedManyWithoutEntryInput
 }
@@ -597,29 +648,32 @@ export type EntryUpdateInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collection?: Prisma.CollectionUpdateOneRequiredWithoutEntriesNestedInput
-  appMemory?: Prisma.AppMemoryUpdateOneWithoutEntriesNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutEntriesNestedInput
-  author?: Prisma.UserUpdateOneRequiredWithoutAuthoredEntriesNestedInput
-  sourcePack?: Prisma.PackUpdateOneWithoutEntriesNestedInput
+  author?: Prisma.UserUpdateOneWithoutAuthoredEntriesNestedInput
+  sourceCollection?: Prisma.CollectionUpdateOneWithoutOriginatedEntriesNestedInput
+  upstreamEntry?: Prisma.EntryUpdateOneWithoutDownstreamEntriesNestedInput
+  downstreamEntries?: Prisma.EntryUpdateManyWithoutUpstreamEntryNestedInput
   sourceRelationships?: Prisma.EntryRelationshipUpdateManyWithoutSourceEntryNestedInput
   targetRelationships?: Prisma.EntryRelationshipUpdateManyWithoutTargetEntryNestedInput
   revisionChanges?: Prisma.RevisionChangeUpdateManyWithoutEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutTuneEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutAppEntryNestedInput
   accessGrants?: Prisma.AccessGrantUpdateManyWithoutEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUpdateManyWithoutEntryNestedInput
+  receiptItems?: Prisma.ContextRequestItemUpdateManyWithoutEntryNestedInput
   royaltiesGenerated?: Prisma.UserRoyaltyUpdateManyWithoutEntryNestedInput
   stars?: Prisma.StarUpdateManyWithoutEntryNestedInput
 }
@@ -632,29 +686,32 @@ export type EntryUncheckedUpdateInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId?: Prisma.StringFieldUpdateOperationsInput | string
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.StringFieldUpdateOperationsInput | string
-  sourcePackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  downstreamEntries?: Prisma.EntryUncheckedUpdateManyWithoutUpstreamEntryNestedInput
   sourceRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutSourceEntryNestedInput
   targetRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutTargetEntryNestedInput
   revisionChanges?: Prisma.RevisionChangeUncheckedUpdateManyWithoutEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutTuneEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutAppEntryNestedInput
   accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedUpdateManyWithoutEntryNestedInput
+  receiptItems?: Prisma.ContextRequestItemUncheckedUpdateManyWithoutEntryNestedInput
   royaltiesGenerated?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutEntryNestedInput
   stars?: Prisma.StarUncheckedUpdateManyWithoutEntryNestedInput
 }
@@ -667,19 +724,23 @@ export type EntryCreateManyInput = {
   type: $Enums.EntryType
   version?: number
   tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
   state?: $Enums.EntryState
   recallPolicy?: $Enums.RecallPolicy
   origin?: $Enums.EntryOrigin
   confidenceScore?: number
   expiresAt?: Date | string | null
   archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId: string
-  appMemoryId?: string | null
   userId: string
-  authorId: string
-  sourcePackId?: string | null
+  authorId?: string | null
+  sourceCollectionId?: string | null
   upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
   citationCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -693,14 +754,18 @@ export type EntryUpdateManyMutationInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -714,19 +779,23 @@ export type EntryUncheckedUpdateManyInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId?: Prisma.StringFieldUpdateOperationsInput | string
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.StringFieldUpdateOperationsInput | string
-  sourcePackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -742,6 +811,11 @@ export type EntryOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type EntryNullableScalarRelationFilter = {
+  is?: Prisma.EntryWhereInput | null
+  isNot?: Prisma.EntryWhereInput | null
+}
+
 export type EntryCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
@@ -750,19 +824,23 @@ export type EntryCountOrderByAggregateInput = {
   type?: Prisma.SortOrder
   version?: Prisma.SortOrder
   tags?: Prisma.SortOrder
+  externalSubjectKey?: Prisma.SortOrder
   state?: Prisma.SortOrder
   recallPolicy?: Prisma.SortOrder
   origin?: Prisma.SortOrder
   confidenceScore?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
   archivedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
+  deletionReason?: Prisma.SortOrder
+  publishedAt?: Prisma.SortOrder
   metadata?: Prisma.SortOrder
   collectionId?: Prisma.SortOrder
-  appMemoryId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
-  sourcePackId?: Prisma.SortOrder
+  sourceCollectionId?: Prisma.SortOrder
   upstreamEntryId?: Prisma.SortOrder
+  syncMode?: Prisma.SortOrder
   citationCount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -781,18 +859,22 @@ export type EntryMaxOrderByAggregateInput = {
   content?: Prisma.SortOrder
   type?: Prisma.SortOrder
   version?: Prisma.SortOrder
+  externalSubjectKey?: Prisma.SortOrder
   state?: Prisma.SortOrder
   recallPolicy?: Prisma.SortOrder
   origin?: Prisma.SortOrder
   confidenceScore?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
   archivedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
+  deletionReason?: Prisma.SortOrder
+  publishedAt?: Prisma.SortOrder
   collectionId?: Prisma.SortOrder
-  appMemoryId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
-  sourcePackId?: Prisma.SortOrder
+  sourceCollectionId?: Prisma.SortOrder
   upstreamEntryId?: Prisma.SortOrder
+  syncMode?: Prisma.SortOrder
   citationCount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -805,18 +887,22 @@ export type EntryMinOrderByAggregateInput = {
   content?: Prisma.SortOrder
   type?: Prisma.SortOrder
   version?: Prisma.SortOrder
+  externalSubjectKey?: Prisma.SortOrder
   state?: Prisma.SortOrder
   recallPolicy?: Prisma.SortOrder
   origin?: Prisma.SortOrder
   confidenceScore?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
   archivedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
+  deletionReason?: Prisma.SortOrder
+  publishedAt?: Prisma.SortOrder
   collectionId?: Prisma.SortOrder
-  appMemoryId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
-  sourcePackId?: Prisma.SortOrder
+  sourceCollectionId?: Prisma.SortOrder
   upstreamEntryId?: Prisma.SortOrder
+  syncMode?: Prisma.SortOrder
   citationCount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -831,11 +917,6 @@ export type EntrySumOrderByAggregateInput = {
 export type EntryScalarRelationFilter = {
   is?: Prisma.EntryWhereInput
   isNot?: Prisma.EntryWhereInput
-}
-
-export type EntryNullableScalarRelationFilter = {
-  is?: Prisma.EntryWhereInput | null
-  isNot?: Prisma.EntryWhereInput | null
 }
 
 export type EntryCreateNestedManyWithoutUserInput = {
@@ -929,10 +1010,24 @@ export type EntryCreateNestedManyWithoutCollectionInput = {
   connect?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
 }
 
+export type EntryCreateNestedManyWithoutSourceCollectionInput = {
+  create?: Prisma.XOR<Prisma.EntryCreateWithoutSourceCollectionInput, Prisma.EntryUncheckedCreateWithoutSourceCollectionInput> | Prisma.EntryCreateWithoutSourceCollectionInput[] | Prisma.EntryUncheckedCreateWithoutSourceCollectionInput[]
+  connectOrCreate?: Prisma.EntryCreateOrConnectWithoutSourceCollectionInput | Prisma.EntryCreateOrConnectWithoutSourceCollectionInput[]
+  createMany?: Prisma.EntryCreateManySourceCollectionInputEnvelope
+  connect?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
+}
+
 export type EntryUncheckedCreateNestedManyWithoutCollectionInput = {
   create?: Prisma.XOR<Prisma.EntryCreateWithoutCollectionInput, Prisma.EntryUncheckedCreateWithoutCollectionInput> | Prisma.EntryCreateWithoutCollectionInput[] | Prisma.EntryUncheckedCreateWithoutCollectionInput[]
   connectOrCreate?: Prisma.EntryCreateOrConnectWithoutCollectionInput | Prisma.EntryCreateOrConnectWithoutCollectionInput[]
   createMany?: Prisma.EntryCreateManyCollectionInputEnvelope
+  connect?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
+}
+
+export type EntryUncheckedCreateNestedManyWithoutSourceCollectionInput = {
+  create?: Prisma.XOR<Prisma.EntryCreateWithoutSourceCollectionInput, Prisma.EntryUncheckedCreateWithoutSourceCollectionInput> | Prisma.EntryCreateWithoutSourceCollectionInput[] | Prisma.EntryUncheckedCreateWithoutSourceCollectionInput[]
+  connectOrCreate?: Prisma.EntryCreateOrConnectWithoutSourceCollectionInput | Prisma.EntryCreateOrConnectWithoutSourceCollectionInput[]
+  createMany?: Prisma.EntryCreateManySourceCollectionInputEnvelope
   connect?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
 }
 
@@ -950,6 +1045,20 @@ export type EntryUpdateManyWithoutCollectionNestedInput = {
   deleteMany?: Prisma.EntryScalarWhereInput | Prisma.EntryScalarWhereInput[]
 }
 
+export type EntryUpdateManyWithoutSourceCollectionNestedInput = {
+  create?: Prisma.XOR<Prisma.EntryCreateWithoutSourceCollectionInput, Prisma.EntryUncheckedCreateWithoutSourceCollectionInput> | Prisma.EntryCreateWithoutSourceCollectionInput[] | Prisma.EntryUncheckedCreateWithoutSourceCollectionInput[]
+  connectOrCreate?: Prisma.EntryCreateOrConnectWithoutSourceCollectionInput | Prisma.EntryCreateOrConnectWithoutSourceCollectionInput[]
+  upsert?: Prisma.EntryUpsertWithWhereUniqueWithoutSourceCollectionInput | Prisma.EntryUpsertWithWhereUniqueWithoutSourceCollectionInput[]
+  createMany?: Prisma.EntryCreateManySourceCollectionInputEnvelope
+  set?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
+  disconnect?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
+  delete?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
+  connect?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
+  update?: Prisma.EntryUpdateWithWhereUniqueWithoutSourceCollectionInput | Prisma.EntryUpdateWithWhereUniqueWithoutSourceCollectionInput[]
+  updateMany?: Prisma.EntryUpdateManyWithWhereWithoutSourceCollectionInput | Prisma.EntryUpdateManyWithWhereWithoutSourceCollectionInput[]
+  deleteMany?: Prisma.EntryScalarWhereInput | Prisma.EntryScalarWhereInput[]
+}
+
 export type EntryUncheckedUpdateManyWithoutCollectionNestedInput = {
   create?: Prisma.XOR<Prisma.EntryCreateWithoutCollectionInput, Prisma.EntryUncheckedCreateWithoutCollectionInput> | Prisma.EntryCreateWithoutCollectionInput[] | Prisma.EntryUncheckedCreateWithoutCollectionInput[]
   connectOrCreate?: Prisma.EntryCreateOrConnectWithoutCollectionInput | Prisma.EntryCreateOrConnectWithoutCollectionInput[]
@@ -964,8 +1073,42 @@ export type EntryUncheckedUpdateManyWithoutCollectionNestedInput = {
   deleteMany?: Prisma.EntryScalarWhereInput | Prisma.EntryScalarWhereInput[]
 }
 
+export type EntryUncheckedUpdateManyWithoutSourceCollectionNestedInput = {
+  create?: Prisma.XOR<Prisma.EntryCreateWithoutSourceCollectionInput, Prisma.EntryUncheckedCreateWithoutSourceCollectionInput> | Prisma.EntryCreateWithoutSourceCollectionInput[] | Prisma.EntryUncheckedCreateWithoutSourceCollectionInput[]
+  connectOrCreate?: Prisma.EntryCreateOrConnectWithoutSourceCollectionInput | Prisma.EntryCreateOrConnectWithoutSourceCollectionInput[]
+  upsert?: Prisma.EntryUpsertWithWhereUniqueWithoutSourceCollectionInput | Prisma.EntryUpsertWithWhereUniqueWithoutSourceCollectionInput[]
+  createMany?: Prisma.EntryCreateManySourceCollectionInputEnvelope
+  set?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
+  disconnect?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
+  delete?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
+  connect?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
+  update?: Prisma.EntryUpdateWithWhereUniqueWithoutSourceCollectionInput | Prisma.EntryUpdateWithWhereUniqueWithoutSourceCollectionInput[]
+  updateMany?: Prisma.EntryUpdateManyWithWhereWithoutSourceCollectionInput | Prisma.EntryUpdateManyWithWhereWithoutSourceCollectionInput[]
+  deleteMany?: Prisma.EntryScalarWhereInput | Prisma.EntryScalarWhereInput[]
+}
+
 export type EntryCreatetagsInput = {
   set: string[]
+}
+
+export type EntryCreateNestedOneWithoutDownstreamEntriesInput = {
+  create?: Prisma.XOR<Prisma.EntryCreateWithoutDownstreamEntriesInput, Prisma.EntryUncheckedCreateWithoutDownstreamEntriesInput>
+  connectOrCreate?: Prisma.EntryCreateOrConnectWithoutDownstreamEntriesInput
+  connect?: Prisma.EntryWhereUniqueInput
+}
+
+export type EntryCreateNestedManyWithoutUpstreamEntryInput = {
+  create?: Prisma.XOR<Prisma.EntryCreateWithoutUpstreamEntryInput, Prisma.EntryUncheckedCreateWithoutUpstreamEntryInput> | Prisma.EntryCreateWithoutUpstreamEntryInput[] | Prisma.EntryUncheckedCreateWithoutUpstreamEntryInput[]
+  connectOrCreate?: Prisma.EntryCreateOrConnectWithoutUpstreamEntryInput | Prisma.EntryCreateOrConnectWithoutUpstreamEntryInput[]
+  createMany?: Prisma.EntryCreateManyUpstreamEntryInputEnvelope
+  connect?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
+}
+
+export type EntryUncheckedCreateNestedManyWithoutUpstreamEntryInput = {
+  create?: Prisma.XOR<Prisma.EntryCreateWithoutUpstreamEntryInput, Prisma.EntryUncheckedCreateWithoutUpstreamEntryInput> | Prisma.EntryCreateWithoutUpstreamEntryInput[] | Prisma.EntryUncheckedCreateWithoutUpstreamEntryInput[]
+  connectOrCreate?: Prisma.EntryCreateOrConnectWithoutUpstreamEntryInput | Prisma.EntryCreateOrConnectWithoutUpstreamEntryInput[]
+  createMany?: Prisma.EntryCreateManyUpstreamEntryInputEnvelope
+  connect?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
 }
 
 export type EnumEntryTypeFieldUpdateOperationsInput = {
@@ -987,6 +1130,44 @@ export type EnumRecallPolicyFieldUpdateOperationsInput = {
 
 export type EnumEntryOriginFieldUpdateOperationsInput = {
   set?: $Enums.EntryOrigin
+}
+
+export type EntryUpdateOneWithoutDownstreamEntriesNestedInput = {
+  create?: Prisma.XOR<Prisma.EntryCreateWithoutDownstreamEntriesInput, Prisma.EntryUncheckedCreateWithoutDownstreamEntriesInput>
+  connectOrCreate?: Prisma.EntryCreateOrConnectWithoutDownstreamEntriesInput
+  upsert?: Prisma.EntryUpsertWithoutDownstreamEntriesInput
+  disconnect?: Prisma.EntryWhereInput | boolean
+  delete?: Prisma.EntryWhereInput | boolean
+  connect?: Prisma.EntryWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EntryUpdateToOneWithWhereWithoutDownstreamEntriesInput, Prisma.EntryUpdateWithoutDownstreamEntriesInput>, Prisma.EntryUncheckedUpdateWithoutDownstreamEntriesInput>
+}
+
+export type EntryUpdateManyWithoutUpstreamEntryNestedInput = {
+  create?: Prisma.XOR<Prisma.EntryCreateWithoutUpstreamEntryInput, Prisma.EntryUncheckedCreateWithoutUpstreamEntryInput> | Prisma.EntryCreateWithoutUpstreamEntryInput[] | Prisma.EntryUncheckedCreateWithoutUpstreamEntryInput[]
+  connectOrCreate?: Prisma.EntryCreateOrConnectWithoutUpstreamEntryInput | Prisma.EntryCreateOrConnectWithoutUpstreamEntryInput[]
+  upsert?: Prisma.EntryUpsertWithWhereUniqueWithoutUpstreamEntryInput | Prisma.EntryUpsertWithWhereUniqueWithoutUpstreamEntryInput[]
+  createMany?: Prisma.EntryCreateManyUpstreamEntryInputEnvelope
+  set?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
+  disconnect?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
+  delete?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
+  connect?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
+  update?: Prisma.EntryUpdateWithWhereUniqueWithoutUpstreamEntryInput | Prisma.EntryUpdateWithWhereUniqueWithoutUpstreamEntryInput[]
+  updateMany?: Prisma.EntryUpdateManyWithWhereWithoutUpstreamEntryInput | Prisma.EntryUpdateManyWithWhereWithoutUpstreamEntryInput[]
+  deleteMany?: Prisma.EntryScalarWhereInput | Prisma.EntryScalarWhereInput[]
+}
+
+export type EntryUncheckedUpdateManyWithoutUpstreamEntryNestedInput = {
+  create?: Prisma.XOR<Prisma.EntryCreateWithoutUpstreamEntryInput, Prisma.EntryUncheckedCreateWithoutUpstreamEntryInput> | Prisma.EntryCreateWithoutUpstreamEntryInput[] | Prisma.EntryUncheckedCreateWithoutUpstreamEntryInput[]
+  connectOrCreate?: Prisma.EntryCreateOrConnectWithoutUpstreamEntryInput | Prisma.EntryCreateOrConnectWithoutUpstreamEntryInput[]
+  upsert?: Prisma.EntryUpsertWithWhereUniqueWithoutUpstreamEntryInput | Prisma.EntryUpsertWithWhereUniqueWithoutUpstreamEntryInput[]
+  createMany?: Prisma.EntryCreateManyUpstreamEntryInputEnvelope
+  set?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
+  disconnect?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
+  delete?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
+  connect?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
+  update?: Prisma.EntryUpdateWithWhereUniqueWithoutUpstreamEntryInput | Prisma.EntryUpdateWithWhereUniqueWithoutUpstreamEntryInput[]
+  updateMany?: Prisma.EntryUpdateManyWithWhereWithoutUpstreamEntryInput | Prisma.EntryUpdateManyWithWhereWithoutUpstreamEntryInput[]
+  deleteMany?: Prisma.EntryScalarWhereInput | Prisma.EntryScalarWhereInput[]
 }
 
 export type EntryCreateNestedOneWithoutSourceRelationshipsInput = {
@@ -1015,76 +1196,6 @@ export type EntryUpdateOneRequiredWithoutTargetRelationshipsNestedInput = {
   upsert?: Prisma.EntryUpsertWithoutTargetRelationshipsInput
   connect?: Prisma.EntryWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.EntryUpdateToOneWithWhereWithoutTargetRelationshipsInput, Prisma.EntryUpdateWithoutTargetRelationshipsInput>, Prisma.EntryUncheckedUpdateWithoutTargetRelationshipsInput>
-}
-
-export type EntryCreateNestedManyWithoutAppMemoryInput = {
-  create?: Prisma.XOR<Prisma.EntryCreateWithoutAppMemoryInput, Prisma.EntryUncheckedCreateWithoutAppMemoryInput> | Prisma.EntryCreateWithoutAppMemoryInput[] | Prisma.EntryUncheckedCreateWithoutAppMemoryInput[]
-  connectOrCreate?: Prisma.EntryCreateOrConnectWithoutAppMemoryInput | Prisma.EntryCreateOrConnectWithoutAppMemoryInput[]
-  createMany?: Prisma.EntryCreateManyAppMemoryInputEnvelope
-  connect?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
-}
-
-export type EntryUncheckedCreateNestedManyWithoutAppMemoryInput = {
-  create?: Prisma.XOR<Prisma.EntryCreateWithoutAppMemoryInput, Prisma.EntryUncheckedCreateWithoutAppMemoryInput> | Prisma.EntryCreateWithoutAppMemoryInput[] | Prisma.EntryUncheckedCreateWithoutAppMemoryInput[]
-  connectOrCreate?: Prisma.EntryCreateOrConnectWithoutAppMemoryInput | Prisma.EntryCreateOrConnectWithoutAppMemoryInput[]
-  createMany?: Prisma.EntryCreateManyAppMemoryInputEnvelope
-  connect?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
-}
-
-export type EntryUpdateManyWithoutAppMemoryNestedInput = {
-  create?: Prisma.XOR<Prisma.EntryCreateWithoutAppMemoryInput, Prisma.EntryUncheckedCreateWithoutAppMemoryInput> | Prisma.EntryCreateWithoutAppMemoryInput[] | Prisma.EntryUncheckedCreateWithoutAppMemoryInput[]
-  connectOrCreate?: Prisma.EntryCreateOrConnectWithoutAppMemoryInput | Prisma.EntryCreateOrConnectWithoutAppMemoryInput[]
-  upsert?: Prisma.EntryUpsertWithWhereUniqueWithoutAppMemoryInput | Prisma.EntryUpsertWithWhereUniqueWithoutAppMemoryInput[]
-  createMany?: Prisma.EntryCreateManyAppMemoryInputEnvelope
-  set?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
-  disconnect?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
-  delete?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
-  connect?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
-  update?: Prisma.EntryUpdateWithWhereUniqueWithoutAppMemoryInput | Prisma.EntryUpdateWithWhereUniqueWithoutAppMemoryInput[]
-  updateMany?: Prisma.EntryUpdateManyWithWhereWithoutAppMemoryInput | Prisma.EntryUpdateManyWithWhereWithoutAppMemoryInput[]
-  deleteMany?: Prisma.EntryScalarWhereInput | Prisma.EntryScalarWhereInput[]
-}
-
-export type EntryUncheckedUpdateManyWithoutAppMemoryNestedInput = {
-  create?: Prisma.XOR<Prisma.EntryCreateWithoutAppMemoryInput, Prisma.EntryUncheckedCreateWithoutAppMemoryInput> | Prisma.EntryCreateWithoutAppMemoryInput[] | Prisma.EntryUncheckedCreateWithoutAppMemoryInput[]
-  connectOrCreate?: Prisma.EntryCreateOrConnectWithoutAppMemoryInput | Prisma.EntryCreateOrConnectWithoutAppMemoryInput[]
-  upsert?: Prisma.EntryUpsertWithWhereUniqueWithoutAppMemoryInput | Prisma.EntryUpsertWithWhereUniqueWithoutAppMemoryInput[]
-  createMany?: Prisma.EntryCreateManyAppMemoryInputEnvelope
-  set?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
-  disconnect?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
-  delete?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
-  connect?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
-  update?: Prisma.EntryUpdateWithWhereUniqueWithoutAppMemoryInput | Prisma.EntryUpdateWithWhereUniqueWithoutAppMemoryInput[]
-  updateMany?: Prisma.EntryUpdateManyWithWhereWithoutAppMemoryInput | Prisma.EntryUpdateManyWithWhereWithoutAppMemoryInput[]
-  deleteMany?: Prisma.EntryScalarWhereInput | Prisma.EntryScalarWhereInput[]
-}
-
-export type EntryCreateNestedOneWithoutAppMemoryLinksInput = {
-  create?: Prisma.XOR<Prisma.EntryCreateWithoutAppMemoryLinksInput, Prisma.EntryUncheckedCreateWithoutAppMemoryLinksInput>
-  connectOrCreate?: Prisma.EntryCreateOrConnectWithoutAppMemoryLinksInput
-  connect?: Prisma.EntryWhereUniqueInput
-}
-
-export type EntryCreateNestedOneWithoutTuneMemoryLinksInput = {
-  create?: Prisma.XOR<Prisma.EntryCreateWithoutTuneMemoryLinksInput, Prisma.EntryUncheckedCreateWithoutTuneMemoryLinksInput>
-  connectOrCreate?: Prisma.EntryCreateOrConnectWithoutTuneMemoryLinksInput
-  connect?: Prisma.EntryWhereUniqueInput
-}
-
-export type EntryUpdateOneRequiredWithoutAppMemoryLinksNestedInput = {
-  create?: Prisma.XOR<Prisma.EntryCreateWithoutAppMemoryLinksInput, Prisma.EntryUncheckedCreateWithoutAppMemoryLinksInput>
-  connectOrCreate?: Prisma.EntryCreateOrConnectWithoutAppMemoryLinksInput
-  upsert?: Prisma.EntryUpsertWithoutAppMemoryLinksInput
-  connect?: Prisma.EntryWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.EntryUpdateToOneWithWhereWithoutAppMemoryLinksInput, Prisma.EntryUpdateWithoutAppMemoryLinksInput>, Prisma.EntryUncheckedUpdateWithoutAppMemoryLinksInput>
-}
-
-export type EntryUpdateOneRequiredWithoutTuneMemoryLinksNestedInput = {
-  create?: Prisma.XOR<Prisma.EntryCreateWithoutTuneMemoryLinksInput, Prisma.EntryUncheckedCreateWithoutTuneMemoryLinksInput>
-  connectOrCreate?: Prisma.EntryCreateOrConnectWithoutTuneMemoryLinksInput
-  upsert?: Prisma.EntryUpsertWithoutTuneMemoryLinksInput
-  connect?: Prisma.EntryWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.EntryUpdateToOneWithWhereWithoutTuneMemoryLinksInput, Prisma.EntryUpdateWithoutTuneMemoryLinksInput>, Prisma.EntryUncheckedUpdateWithoutTuneMemoryLinksInput>
 }
 
 export type EntryCreateNestedOneWithoutAccessGrantsInput = {
@@ -1151,48 +1262,6 @@ export type EntryUpdateOneWithoutRevisionChangesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.EntryUpdateToOneWithWhereWithoutRevisionChangesInput, Prisma.EntryUpdateWithoutRevisionChangesInput>, Prisma.EntryUncheckedUpdateWithoutRevisionChangesInput>
 }
 
-export type EntryCreateNestedManyWithoutSourcePackInput = {
-  create?: Prisma.XOR<Prisma.EntryCreateWithoutSourcePackInput, Prisma.EntryUncheckedCreateWithoutSourcePackInput> | Prisma.EntryCreateWithoutSourcePackInput[] | Prisma.EntryUncheckedCreateWithoutSourcePackInput[]
-  connectOrCreate?: Prisma.EntryCreateOrConnectWithoutSourcePackInput | Prisma.EntryCreateOrConnectWithoutSourcePackInput[]
-  createMany?: Prisma.EntryCreateManySourcePackInputEnvelope
-  connect?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
-}
-
-export type EntryUncheckedCreateNestedManyWithoutSourcePackInput = {
-  create?: Prisma.XOR<Prisma.EntryCreateWithoutSourcePackInput, Prisma.EntryUncheckedCreateWithoutSourcePackInput> | Prisma.EntryCreateWithoutSourcePackInput[] | Prisma.EntryUncheckedCreateWithoutSourcePackInput[]
-  connectOrCreate?: Prisma.EntryCreateOrConnectWithoutSourcePackInput | Prisma.EntryCreateOrConnectWithoutSourcePackInput[]
-  createMany?: Prisma.EntryCreateManySourcePackInputEnvelope
-  connect?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
-}
-
-export type EntryUpdateManyWithoutSourcePackNestedInput = {
-  create?: Prisma.XOR<Prisma.EntryCreateWithoutSourcePackInput, Prisma.EntryUncheckedCreateWithoutSourcePackInput> | Prisma.EntryCreateWithoutSourcePackInput[] | Prisma.EntryUncheckedCreateWithoutSourcePackInput[]
-  connectOrCreate?: Prisma.EntryCreateOrConnectWithoutSourcePackInput | Prisma.EntryCreateOrConnectWithoutSourcePackInput[]
-  upsert?: Prisma.EntryUpsertWithWhereUniqueWithoutSourcePackInput | Prisma.EntryUpsertWithWhereUniqueWithoutSourcePackInput[]
-  createMany?: Prisma.EntryCreateManySourcePackInputEnvelope
-  set?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
-  disconnect?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
-  delete?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
-  connect?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
-  update?: Prisma.EntryUpdateWithWhereUniqueWithoutSourcePackInput | Prisma.EntryUpdateWithWhereUniqueWithoutSourcePackInput[]
-  updateMany?: Prisma.EntryUpdateManyWithWhereWithoutSourcePackInput | Prisma.EntryUpdateManyWithWhereWithoutSourcePackInput[]
-  deleteMany?: Prisma.EntryScalarWhereInput | Prisma.EntryScalarWhereInput[]
-}
-
-export type EntryUncheckedUpdateManyWithoutSourcePackNestedInput = {
-  create?: Prisma.XOR<Prisma.EntryCreateWithoutSourcePackInput, Prisma.EntryUncheckedCreateWithoutSourcePackInput> | Prisma.EntryCreateWithoutSourcePackInput[] | Prisma.EntryUncheckedCreateWithoutSourcePackInput[]
-  connectOrCreate?: Prisma.EntryCreateOrConnectWithoutSourcePackInput | Prisma.EntryCreateOrConnectWithoutSourcePackInput[]
-  upsert?: Prisma.EntryUpsertWithWhereUniqueWithoutSourcePackInput | Prisma.EntryUpsertWithWhereUniqueWithoutSourcePackInput[]
-  createMany?: Prisma.EntryCreateManySourcePackInputEnvelope
-  set?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
-  disconnect?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
-  delete?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
-  connect?: Prisma.EntryWhereUniqueInput | Prisma.EntryWhereUniqueInput[]
-  update?: Prisma.EntryUpdateWithWhereUniqueWithoutSourcePackInput | Prisma.EntryUpdateWithWhereUniqueWithoutSourcePackInput[]
-  updateMany?: Prisma.EntryUpdateManyWithWhereWithoutSourcePackInput | Prisma.EntryUpdateManyWithWhereWithoutSourcePackInput[]
-  deleteMany?: Prisma.EntryScalarWhereInput | Prisma.EntryScalarWhereInput[]
-}
-
 export type EntryCreateNestedOneWithoutStarsInput = {
   create?: Prisma.XOR<Prisma.EntryCreateWithoutStarsInput, Prisma.EntryUncheckedCreateWithoutStarsInput>
   connectOrCreate?: Prisma.EntryCreateOrConnectWithoutStarsInput
@@ -1217,28 +1286,31 @@ export type EntryCreateWithoutUserInput = {
   type: $Enums.EntryType
   version?: number
   tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
   state?: $Enums.EntryState
   recallPolicy?: $Enums.RecallPolicy
   origin?: $Enums.EntryOrigin
   confidenceScore?: number
   expiresAt?: Date | string | null
   archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
   citationCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   collection: Prisma.CollectionCreateNestedOneWithoutEntriesInput
-  appMemory?: Prisma.AppMemoryCreateNestedOneWithoutEntriesInput
-  author: Prisma.UserCreateNestedOneWithoutAuthoredEntriesInput
-  sourcePack?: Prisma.PackCreateNestedOneWithoutEntriesInput
+  author?: Prisma.UserCreateNestedOneWithoutAuthoredEntriesInput
+  sourceCollection?: Prisma.CollectionCreateNestedOneWithoutOriginatedEntriesInput
+  upstreamEntry?: Prisma.EntryCreateNestedOneWithoutDownstreamEntriesInput
+  downstreamEntries?: Prisma.EntryCreateNestedManyWithoutUpstreamEntryInput
   sourceRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutSourceEntryInput
   targetRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutTargetEntryInput
   revisionChanges?: Prisma.RevisionChangeCreateNestedManyWithoutEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutTuneEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutAppEntryInput
   accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutEntryInput
-  receiptItems?: Prisma.ContextReceiptItemCreateNestedManyWithoutEntryInput
+  receiptItems?: Prisma.ContextRequestItemCreateNestedManyWithoutEntryInput
   royaltiesGenerated?: Prisma.UserRoyaltyCreateNestedManyWithoutEntryInput
   stars?: Prisma.StarCreateNestedManyWithoutEntryInput
 }
@@ -1251,28 +1323,31 @@ export type EntryUncheckedCreateWithoutUserInput = {
   type: $Enums.EntryType
   version?: number
   tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
   state?: $Enums.EntryState
   recallPolicy?: $Enums.RecallPolicy
   origin?: $Enums.EntryOrigin
   confidenceScore?: number
   expiresAt?: Date | string | null
   archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId: string
-  appMemoryId?: string | null
-  authorId: string
-  sourcePackId?: string | null
+  authorId?: string | null
+  sourceCollectionId?: string | null
   upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
   citationCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  downstreamEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutUpstreamEntryInput
   sourceRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutSourceEntryInput
   targetRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutTargetEntryInput
   revisionChanges?: Prisma.RevisionChangeUncheckedCreateNestedManyWithoutEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutTuneEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutAppEntryInput
   accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutEntryInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedCreateNestedManyWithoutEntryInput
+  receiptItems?: Prisma.ContextRequestItemUncheckedCreateNestedManyWithoutEntryInput
   royaltiesGenerated?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutEntryInput
   stars?: Prisma.StarUncheckedCreateNestedManyWithoutEntryInput
 }
@@ -1295,28 +1370,31 @@ export type EntryCreateWithoutAuthorInput = {
   type: $Enums.EntryType
   version?: number
   tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
   state?: $Enums.EntryState
   recallPolicy?: $Enums.RecallPolicy
   origin?: $Enums.EntryOrigin
   confidenceScore?: number
   expiresAt?: Date | string | null
   archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
   citationCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   collection: Prisma.CollectionCreateNestedOneWithoutEntriesInput
-  appMemory?: Prisma.AppMemoryCreateNestedOneWithoutEntriesInput
   user: Prisma.UserCreateNestedOneWithoutEntriesInput
-  sourcePack?: Prisma.PackCreateNestedOneWithoutEntriesInput
+  sourceCollection?: Prisma.CollectionCreateNestedOneWithoutOriginatedEntriesInput
+  upstreamEntry?: Prisma.EntryCreateNestedOneWithoutDownstreamEntriesInput
+  downstreamEntries?: Prisma.EntryCreateNestedManyWithoutUpstreamEntryInput
   sourceRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutSourceEntryInput
   targetRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutTargetEntryInput
   revisionChanges?: Prisma.RevisionChangeCreateNestedManyWithoutEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutTuneEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutAppEntryInput
   accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutEntryInput
-  receiptItems?: Prisma.ContextReceiptItemCreateNestedManyWithoutEntryInput
+  receiptItems?: Prisma.ContextRequestItemCreateNestedManyWithoutEntryInput
   royaltiesGenerated?: Prisma.UserRoyaltyCreateNestedManyWithoutEntryInput
   stars?: Prisma.StarCreateNestedManyWithoutEntryInput
 }
@@ -1329,28 +1407,31 @@ export type EntryUncheckedCreateWithoutAuthorInput = {
   type: $Enums.EntryType
   version?: number
   tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
   state?: $Enums.EntryState
   recallPolicy?: $Enums.RecallPolicy
   origin?: $Enums.EntryOrigin
   confidenceScore?: number
   expiresAt?: Date | string | null
   archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId: string
-  appMemoryId?: string | null
   userId: string
-  sourcePackId?: string | null
+  sourceCollectionId?: string | null
   upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
   citationCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  downstreamEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutUpstreamEntryInput
   sourceRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutSourceEntryInput
   targetRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutTargetEntryInput
   revisionChanges?: Prisma.RevisionChangeUncheckedCreateNestedManyWithoutEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutTuneEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutAppEntryInput
   accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutEntryInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedCreateNestedManyWithoutEntryInput
+  receiptItems?: Prisma.ContextRequestItemUncheckedCreateNestedManyWithoutEntryInput
   royaltiesGenerated?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutEntryInput
   stars?: Prisma.StarUncheckedCreateNestedManyWithoutEntryInput
 }
@@ -1392,19 +1473,23 @@ export type EntryScalarWhereInput = {
   type?: Prisma.EnumEntryTypeFilter<"Entry"> | $Enums.EntryType
   version?: Prisma.IntFilter<"Entry"> | number
   tags?: Prisma.StringNullableListFilter<"Entry">
+  externalSubjectKey?: Prisma.StringNullableFilter<"Entry"> | string | null
   state?: Prisma.EnumEntryStateFilter<"Entry"> | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFilter<"Entry"> | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFilter<"Entry"> | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFilter<"Entry"> | number
   expiresAt?: Prisma.DateTimeNullableFilter<"Entry"> | Date | string | null
   archivedAt?: Prisma.DateTimeNullableFilter<"Entry"> | Date | string | null
+  deletedAt?: Prisma.DateTimeNullableFilter<"Entry"> | Date | string | null
+  deletionReason?: Prisma.StringNullableFilter<"Entry"> | string | null
+  publishedAt?: Prisma.DateTimeNullableFilter<"Entry"> | Date | string | null
   metadata?: Prisma.JsonNullableFilter<"Entry">
   collectionId?: Prisma.StringFilter<"Entry"> | string
-  appMemoryId?: Prisma.StringNullableFilter<"Entry"> | string | null
   userId?: Prisma.StringFilter<"Entry"> | string
-  authorId?: Prisma.StringFilter<"Entry"> | string
-  sourcePackId?: Prisma.StringNullableFilter<"Entry"> | string | null
+  authorId?: Prisma.StringNullableFilter<"Entry"> | string | null
+  sourceCollectionId?: Prisma.StringNullableFilter<"Entry"> | string | null
   upstreamEntryId?: Prisma.StringNullableFilter<"Entry"> | string | null
+  syncMode?: Prisma.EnumSyncModeFilter<"Entry"> | $Enums.SyncMode
   citationCount?: Prisma.IntFilter<"Entry"> | number
   createdAt?: Prisma.DateTimeFilter<"Entry"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Entry"> | Date | string
@@ -1434,28 +1519,31 @@ export type EntryCreateWithoutCollectionInput = {
   type: $Enums.EntryType
   version?: number
   tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
   state?: $Enums.EntryState
   recallPolicy?: $Enums.RecallPolicy
   origin?: $Enums.EntryOrigin
   confidenceScore?: number
   expiresAt?: Date | string | null
   archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
   citationCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  appMemory?: Prisma.AppMemoryCreateNestedOneWithoutEntriesInput
   user: Prisma.UserCreateNestedOneWithoutEntriesInput
-  author: Prisma.UserCreateNestedOneWithoutAuthoredEntriesInput
-  sourcePack?: Prisma.PackCreateNestedOneWithoutEntriesInput
+  author?: Prisma.UserCreateNestedOneWithoutAuthoredEntriesInput
+  sourceCollection?: Prisma.CollectionCreateNestedOneWithoutOriginatedEntriesInput
+  upstreamEntry?: Prisma.EntryCreateNestedOneWithoutDownstreamEntriesInput
+  downstreamEntries?: Prisma.EntryCreateNestedManyWithoutUpstreamEntryInput
   sourceRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutSourceEntryInput
   targetRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutTargetEntryInput
   revisionChanges?: Prisma.RevisionChangeCreateNestedManyWithoutEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutTuneEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutAppEntryInput
   accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutEntryInput
-  receiptItems?: Prisma.ContextReceiptItemCreateNestedManyWithoutEntryInput
+  receiptItems?: Prisma.ContextRequestItemCreateNestedManyWithoutEntryInput
   royaltiesGenerated?: Prisma.UserRoyaltyCreateNestedManyWithoutEntryInput
   stars?: Prisma.StarCreateNestedManyWithoutEntryInput
 }
@@ -1468,28 +1556,31 @@ export type EntryUncheckedCreateWithoutCollectionInput = {
   type: $Enums.EntryType
   version?: number
   tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
   state?: $Enums.EntryState
   recallPolicy?: $Enums.RecallPolicy
   origin?: $Enums.EntryOrigin
   confidenceScore?: number
   expiresAt?: Date | string | null
   archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  appMemoryId?: string | null
   userId: string
-  authorId: string
-  sourcePackId?: string | null
+  authorId?: string | null
+  sourceCollectionId?: string | null
   upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
   citationCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  downstreamEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutUpstreamEntryInput
   sourceRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutSourceEntryInput
   targetRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutTargetEntryInput
   revisionChanges?: Prisma.RevisionChangeUncheckedCreateNestedManyWithoutEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutTuneEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutAppEntryInput
   accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutEntryInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedCreateNestedManyWithoutEntryInput
+  receiptItems?: Prisma.ContextRequestItemUncheckedCreateNestedManyWithoutEntryInput
   royaltiesGenerated?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutEntryInput
   stars?: Prisma.StarUncheckedCreateNestedManyWithoutEntryInput
 }
@@ -1501,6 +1592,90 @@ export type EntryCreateOrConnectWithoutCollectionInput = {
 
 export type EntryCreateManyCollectionInputEnvelope = {
   data: Prisma.EntryCreateManyCollectionInput | Prisma.EntryCreateManyCollectionInput[]
+  skipDuplicates?: boolean
+}
+
+export type EntryCreateWithoutSourceCollectionInput = {
+  id?: string
+  title: string
+  slug?: string | null
+  content: string
+  type: $Enums.EntryType
+  version?: number
+  tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
+  state?: $Enums.EntryState
+  recallPolicy?: $Enums.RecallPolicy
+  origin?: $Enums.EntryOrigin
+  confidenceScore?: number
+  expiresAt?: Date | string | null
+  archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  syncMode?: $Enums.SyncMode
+  citationCount?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  collection: Prisma.CollectionCreateNestedOneWithoutEntriesInput
+  user: Prisma.UserCreateNestedOneWithoutEntriesInput
+  author?: Prisma.UserCreateNestedOneWithoutAuthoredEntriesInput
+  upstreamEntry?: Prisma.EntryCreateNestedOneWithoutDownstreamEntriesInput
+  downstreamEntries?: Prisma.EntryCreateNestedManyWithoutUpstreamEntryInput
+  sourceRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutSourceEntryInput
+  targetRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutTargetEntryInput
+  revisionChanges?: Prisma.RevisionChangeCreateNestedManyWithoutEntryInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutEntryInput
+  receiptItems?: Prisma.ContextRequestItemCreateNestedManyWithoutEntryInput
+  royaltiesGenerated?: Prisma.UserRoyaltyCreateNestedManyWithoutEntryInput
+  stars?: Prisma.StarCreateNestedManyWithoutEntryInput
+}
+
+export type EntryUncheckedCreateWithoutSourceCollectionInput = {
+  id?: string
+  title: string
+  slug?: string | null
+  content: string
+  type: $Enums.EntryType
+  version?: number
+  tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
+  state?: $Enums.EntryState
+  recallPolicy?: $Enums.RecallPolicy
+  origin?: $Enums.EntryOrigin
+  confidenceScore?: number
+  expiresAt?: Date | string | null
+  archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  collectionId: string
+  userId: string
+  authorId?: string | null
+  upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
+  citationCount?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  downstreamEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutUpstreamEntryInput
+  sourceRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutSourceEntryInput
+  targetRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutTargetEntryInput
+  revisionChanges?: Prisma.RevisionChangeUncheckedCreateNestedManyWithoutEntryInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutEntryInput
+  receiptItems?: Prisma.ContextRequestItemUncheckedCreateNestedManyWithoutEntryInput
+  royaltiesGenerated?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutEntryInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutEntryInput
+}
+
+export type EntryCreateOrConnectWithoutSourceCollectionInput = {
+  where: Prisma.EntryWhereUniqueInput
+  create: Prisma.XOR<Prisma.EntryCreateWithoutSourceCollectionInput, Prisma.EntryUncheckedCreateWithoutSourceCollectionInput>
+}
+
+export type EntryCreateManySourceCollectionInputEnvelope = {
+  data: Prisma.EntryCreateManySourceCollectionInput | Prisma.EntryCreateManySourceCollectionInput[]
   skipDuplicates?: boolean
 }
 
@@ -1520,6 +1695,286 @@ export type EntryUpdateManyWithWhereWithoutCollectionInput = {
   data: Prisma.XOR<Prisma.EntryUpdateManyMutationInput, Prisma.EntryUncheckedUpdateManyWithoutCollectionInput>
 }
 
+export type EntryUpsertWithWhereUniqueWithoutSourceCollectionInput = {
+  where: Prisma.EntryWhereUniqueInput
+  update: Prisma.XOR<Prisma.EntryUpdateWithoutSourceCollectionInput, Prisma.EntryUncheckedUpdateWithoutSourceCollectionInput>
+  create: Prisma.XOR<Prisma.EntryCreateWithoutSourceCollectionInput, Prisma.EntryUncheckedCreateWithoutSourceCollectionInput>
+}
+
+export type EntryUpdateWithWhereUniqueWithoutSourceCollectionInput = {
+  where: Prisma.EntryWhereUniqueInput
+  data: Prisma.XOR<Prisma.EntryUpdateWithoutSourceCollectionInput, Prisma.EntryUncheckedUpdateWithoutSourceCollectionInput>
+}
+
+export type EntryUpdateManyWithWhereWithoutSourceCollectionInput = {
+  where: Prisma.EntryScalarWhereInput
+  data: Prisma.XOR<Prisma.EntryUpdateManyMutationInput, Prisma.EntryUncheckedUpdateManyWithoutSourceCollectionInput>
+}
+
+export type EntryCreateWithoutDownstreamEntriesInput = {
+  id?: string
+  title: string
+  slug?: string | null
+  content: string
+  type: $Enums.EntryType
+  version?: number
+  tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
+  state?: $Enums.EntryState
+  recallPolicy?: $Enums.RecallPolicy
+  origin?: $Enums.EntryOrigin
+  confidenceScore?: number
+  expiresAt?: Date | string | null
+  archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  syncMode?: $Enums.SyncMode
+  citationCount?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  collection: Prisma.CollectionCreateNestedOneWithoutEntriesInput
+  user: Prisma.UserCreateNestedOneWithoutEntriesInput
+  author?: Prisma.UserCreateNestedOneWithoutAuthoredEntriesInput
+  sourceCollection?: Prisma.CollectionCreateNestedOneWithoutOriginatedEntriesInput
+  upstreamEntry?: Prisma.EntryCreateNestedOneWithoutDownstreamEntriesInput
+  sourceRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutSourceEntryInput
+  targetRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutTargetEntryInput
+  revisionChanges?: Prisma.RevisionChangeCreateNestedManyWithoutEntryInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutEntryInput
+  receiptItems?: Prisma.ContextRequestItemCreateNestedManyWithoutEntryInput
+  royaltiesGenerated?: Prisma.UserRoyaltyCreateNestedManyWithoutEntryInput
+  stars?: Prisma.StarCreateNestedManyWithoutEntryInput
+}
+
+export type EntryUncheckedCreateWithoutDownstreamEntriesInput = {
+  id?: string
+  title: string
+  slug?: string | null
+  content: string
+  type: $Enums.EntryType
+  version?: number
+  tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
+  state?: $Enums.EntryState
+  recallPolicy?: $Enums.RecallPolicy
+  origin?: $Enums.EntryOrigin
+  confidenceScore?: number
+  expiresAt?: Date | string | null
+  archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  collectionId: string
+  userId: string
+  authorId?: string | null
+  sourceCollectionId?: string | null
+  upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
+  citationCount?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sourceRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutSourceEntryInput
+  targetRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutTargetEntryInput
+  revisionChanges?: Prisma.RevisionChangeUncheckedCreateNestedManyWithoutEntryInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutEntryInput
+  receiptItems?: Prisma.ContextRequestItemUncheckedCreateNestedManyWithoutEntryInput
+  royaltiesGenerated?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutEntryInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutEntryInput
+}
+
+export type EntryCreateOrConnectWithoutDownstreamEntriesInput = {
+  where: Prisma.EntryWhereUniqueInput
+  create: Prisma.XOR<Prisma.EntryCreateWithoutDownstreamEntriesInput, Prisma.EntryUncheckedCreateWithoutDownstreamEntriesInput>
+}
+
+export type EntryCreateWithoutUpstreamEntryInput = {
+  id?: string
+  title: string
+  slug?: string | null
+  content: string
+  type: $Enums.EntryType
+  version?: number
+  tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
+  state?: $Enums.EntryState
+  recallPolicy?: $Enums.RecallPolicy
+  origin?: $Enums.EntryOrigin
+  confidenceScore?: number
+  expiresAt?: Date | string | null
+  archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  syncMode?: $Enums.SyncMode
+  citationCount?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  collection: Prisma.CollectionCreateNestedOneWithoutEntriesInput
+  user: Prisma.UserCreateNestedOneWithoutEntriesInput
+  author?: Prisma.UserCreateNestedOneWithoutAuthoredEntriesInput
+  sourceCollection?: Prisma.CollectionCreateNestedOneWithoutOriginatedEntriesInput
+  downstreamEntries?: Prisma.EntryCreateNestedManyWithoutUpstreamEntryInput
+  sourceRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutSourceEntryInput
+  targetRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutTargetEntryInput
+  revisionChanges?: Prisma.RevisionChangeCreateNestedManyWithoutEntryInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutEntryInput
+  receiptItems?: Prisma.ContextRequestItemCreateNestedManyWithoutEntryInput
+  royaltiesGenerated?: Prisma.UserRoyaltyCreateNestedManyWithoutEntryInput
+  stars?: Prisma.StarCreateNestedManyWithoutEntryInput
+}
+
+export type EntryUncheckedCreateWithoutUpstreamEntryInput = {
+  id?: string
+  title: string
+  slug?: string | null
+  content: string
+  type: $Enums.EntryType
+  version?: number
+  tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
+  state?: $Enums.EntryState
+  recallPolicy?: $Enums.RecallPolicy
+  origin?: $Enums.EntryOrigin
+  confidenceScore?: number
+  expiresAt?: Date | string | null
+  archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  collectionId: string
+  userId: string
+  authorId?: string | null
+  sourceCollectionId?: string | null
+  syncMode?: $Enums.SyncMode
+  citationCount?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  downstreamEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutUpstreamEntryInput
+  sourceRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutSourceEntryInput
+  targetRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutTargetEntryInput
+  revisionChanges?: Prisma.RevisionChangeUncheckedCreateNestedManyWithoutEntryInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutEntryInput
+  receiptItems?: Prisma.ContextRequestItemUncheckedCreateNestedManyWithoutEntryInput
+  royaltiesGenerated?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutEntryInput
+  stars?: Prisma.StarUncheckedCreateNestedManyWithoutEntryInput
+}
+
+export type EntryCreateOrConnectWithoutUpstreamEntryInput = {
+  where: Prisma.EntryWhereUniqueInput
+  create: Prisma.XOR<Prisma.EntryCreateWithoutUpstreamEntryInput, Prisma.EntryUncheckedCreateWithoutUpstreamEntryInput>
+}
+
+export type EntryCreateManyUpstreamEntryInputEnvelope = {
+  data: Prisma.EntryCreateManyUpstreamEntryInput | Prisma.EntryCreateManyUpstreamEntryInput[]
+  skipDuplicates?: boolean
+}
+
+export type EntryUpsertWithoutDownstreamEntriesInput = {
+  update: Prisma.XOR<Prisma.EntryUpdateWithoutDownstreamEntriesInput, Prisma.EntryUncheckedUpdateWithoutDownstreamEntriesInput>
+  create: Prisma.XOR<Prisma.EntryCreateWithoutDownstreamEntriesInput, Prisma.EntryUncheckedCreateWithoutDownstreamEntriesInput>
+  where?: Prisma.EntryWhereInput
+}
+
+export type EntryUpdateToOneWithWhereWithoutDownstreamEntriesInput = {
+  where?: Prisma.EntryWhereInput
+  data: Prisma.XOR<Prisma.EntryUpdateWithoutDownstreamEntriesInput, Prisma.EntryUncheckedUpdateWithoutDownstreamEntriesInput>
+}
+
+export type EntryUpdateWithoutDownstreamEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
+  recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
+  origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
+  confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  citationCount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  collection?: Prisma.CollectionUpdateOneRequiredWithoutEntriesNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutEntriesNestedInput
+  author?: Prisma.UserUpdateOneWithoutAuthoredEntriesNestedInput
+  sourceCollection?: Prisma.CollectionUpdateOneWithoutOriginatedEntriesNestedInput
+  upstreamEntry?: Prisma.EntryUpdateOneWithoutDownstreamEntriesNestedInput
+  sourceRelationships?: Prisma.EntryRelationshipUpdateManyWithoutSourceEntryNestedInput
+  targetRelationships?: Prisma.EntryRelationshipUpdateManyWithoutTargetEntryNestedInput
+  revisionChanges?: Prisma.RevisionChangeUpdateManyWithoutEntryNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutEntryNestedInput
+  receiptItems?: Prisma.ContextRequestItemUpdateManyWithoutEntryNestedInput
+  royaltiesGenerated?: Prisma.UserRoyaltyUpdateManyWithoutEntryNestedInput
+  stars?: Prisma.StarUpdateManyWithoutEntryNestedInput
+}
+
+export type EntryUncheckedUpdateWithoutDownstreamEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
+  recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
+  origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
+  confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  collectionId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  citationCount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sourceRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutSourceEntryNestedInput
+  targetRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutTargetEntryNestedInput
+  revisionChanges?: Prisma.RevisionChangeUncheckedUpdateManyWithoutEntryNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutEntryNestedInput
+  receiptItems?: Prisma.ContextRequestItemUncheckedUpdateManyWithoutEntryNestedInput
+  royaltiesGenerated?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutEntryNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutEntryNestedInput
+}
+
+export type EntryUpsertWithWhereUniqueWithoutUpstreamEntryInput = {
+  where: Prisma.EntryWhereUniqueInput
+  update: Prisma.XOR<Prisma.EntryUpdateWithoutUpstreamEntryInput, Prisma.EntryUncheckedUpdateWithoutUpstreamEntryInput>
+  create: Prisma.XOR<Prisma.EntryCreateWithoutUpstreamEntryInput, Prisma.EntryUncheckedCreateWithoutUpstreamEntryInput>
+}
+
+export type EntryUpdateWithWhereUniqueWithoutUpstreamEntryInput = {
+  where: Prisma.EntryWhereUniqueInput
+  data: Prisma.XOR<Prisma.EntryUpdateWithoutUpstreamEntryInput, Prisma.EntryUncheckedUpdateWithoutUpstreamEntryInput>
+}
+
+export type EntryUpdateManyWithWhereWithoutUpstreamEntryInput = {
+  where: Prisma.EntryScalarWhereInput
+  data: Prisma.XOR<Prisma.EntryUpdateManyMutationInput, Prisma.EntryUncheckedUpdateManyWithoutUpstreamEntryInput>
+}
+
 export type EntryCreateWithoutSourceRelationshipsInput = {
   id?: string
   title: string
@@ -1528,28 +1983,31 @@ export type EntryCreateWithoutSourceRelationshipsInput = {
   type: $Enums.EntryType
   version?: number
   tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
   state?: $Enums.EntryState
   recallPolicy?: $Enums.RecallPolicy
   origin?: $Enums.EntryOrigin
   confidenceScore?: number
   expiresAt?: Date | string | null
   archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
   citationCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   collection: Prisma.CollectionCreateNestedOneWithoutEntriesInput
-  appMemory?: Prisma.AppMemoryCreateNestedOneWithoutEntriesInput
   user: Prisma.UserCreateNestedOneWithoutEntriesInput
-  author: Prisma.UserCreateNestedOneWithoutAuthoredEntriesInput
-  sourcePack?: Prisma.PackCreateNestedOneWithoutEntriesInput
+  author?: Prisma.UserCreateNestedOneWithoutAuthoredEntriesInput
+  sourceCollection?: Prisma.CollectionCreateNestedOneWithoutOriginatedEntriesInput
+  upstreamEntry?: Prisma.EntryCreateNestedOneWithoutDownstreamEntriesInput
+  downstreamEntries?: Prisma.EntryCreateNestedManyWithoutUpstreamEntryInput
   targetRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutTargetEntryInput
   revisionChanges?: Prisma.RevisionChangeCreateNestedManyWithoutEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutTuneEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutAppEntryInput
   accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutEntryInput
-  receiptItems?: Prisma.ContextReceiptItemCreateNestedManyWithoutEntryInput
+  receiptItems?: Prisma.ContextRequestItemCreateNestedManyWithoutEntryInput
   royaltiesGenerated?: Prisma.UserRoyaltyCreateNestedManyWithoutEntryInput
   stars?: Prisma.StarCreateNestedManyWithoutEntryInput
 }
@@ -1562,28 +2020,31 @@ export type EntryUncheckedCreateWithoutSourceRelationshipsInput = {
   type: $Enums.EntryType
   version?: number
   tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
   state?: $Enums.EntryState
   recallPolicy?: $Enums.RecallPolicy
   origin?: $Enums.EntryOrigin
   confidenceScore?: number
   expiresAt?: Date | string | null
   archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId: string
-  appMemoryId?: string | null
   userId: string
-  authorId: string
-  sourcePackId?: string | null
+  authorId?: string | null
+  sourceCollectionId?: string | null
   upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
   citationCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  downstreamEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutUpstreamEntryInput
   targetRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutTargetEntryInput
   revisionChanges?: Prisma.RevisionChangeUncheckedCreateNestedManyWithoutEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutTuneEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutAppEntryInput
   accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutEntryInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedCreateNestedManyWithoutEntryInput
+  receiptItems?: Prisma.ContextRequestItemUncheckedCreateNestedManyWithoutEntryInput
   royaltiesGenerated?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutEntryInput
   stars?: Prisma.StarUncheckedCreateNestedManyWithoutEntryInput
 }
@@ -1601,28 +2062,31 @@ export type EntryCreateWithoutTargetRelationshipsInput = {
   type: $Enums.EntryType
   version?: number
   tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
   state?: $Enums.EntryState
   recallPolicy?: $Enums.RecallPolicy
   origin?: $Enums.EntryOrigin
   confidenceScore?: number
   expiresAt?: Date | string | null
   archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
   citationCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   collection: Prisma.CollectionCreateNestedOneWithoutEntriesInput
-  appMemory?: Prisma.AppMemoryCreateNestedOneWithoutEntriesInput
   user: Prisma.UserCreateNestedOneWithoutEntriesInput
-  author: Prisma.UserCreateNestedOneWithoutAuthoredEntriesInput
-  sourcePack?: Prisma.PackCreateNestedOneWithoutEntriesInput
+  author?: Prisma.UserCreateNestedOneWithoutAuthoredEntriesInput
+  sourceCollection?: Prisma.CollectionCreateNestedOneWithoutOriginatedEntriesInput
+  upstreamEntry?: Prisma.EntryCreateNestedOneWithoutDownstreamEntriesInput
+  downstreamEntries?: Prisma.EntryCreateNestedManyWithoutUpstreamEntryInput
   sourceRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutSourceEntryInput
   revisionChanges?: Prisma.RevisionChangeCreateNestedManyWithoutEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutTuneEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutAppEntryInput
   accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutEntryInput
-  receiptItems?: Prisma.ContextReceiptItemCreateNestedManyWithoutEntryInput
+  receiptItems?: Prisma.ContextRequestItemCreateNestedManyWithoutEntryInput
   royaltiesGenerated?: Prisma.UserRoyaltyCreateNestedManyWithoutEntryInput
   stars?: Prisma.StarCreateNestedManyWithoutEntryInput
 }
@@ -1635,28 +2099,31 @@ export type EntryUncheckedCreateWithoutTargetRelationshipsInput = {
   type: $Enums.EntryType
   version?: number
   tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
   state?: $Enums.EntryState
   recallPolicy?: $Enums.RecallPolicy
   origin?: $Enums.EntryOrigin
   confidenceScore?: number
   expiresAt?: Date | string | null
   archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId: string
-  appMemoryId?: string | null
   userId: string
-  authorId: string
-  sourcePackId?: string | null
+  authorId?: string | null
+  sourceCollectionId?: string | null
   upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
   citationCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  downstreamEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutUpstreamEntryInput
   sourceRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutSourceEntryInput
   revisionChanges?: Prisma.RevisionChangeUncheckedCreateNestedManyWithoutEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutTuneEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutAppEntryInput
   accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutEntryInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedCreateNestedManyWithoutEntryInput
+  receiptItems?: Prisma.ContextRequestItemUncheckedCreateNestedManyWithoutEntryInput
   royaltiesGenerated?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutEntryInput
   stars?: Prisma.StarUncheckedCreateNestedManyWithoutEntryInput
 }
@@ -1685,28 +2152,31 @@ export type EntryUpdateWithoutSourceRelationshipsInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collection?: Prisma.CollectionUpdateOneRequiredWithoutEntriesNestedInput
-  appMemory?: Prisma.AppMemoryUpdateOneWithoutEntriesNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutEntriesNestedInput
-  author?: Prisma.UserUpdateOneRequiredWithoutAuthoredEntriesNestedInput
-  sourcePack?: Prisma.PackUpdateOneWithoutEntriesNestedInput
+  author?: Prisma.UserUpdateOneWithoutAuthoredEntriesNestedInput
+  sourceCollection?: Prisma.CollectionUpdateOneWithoutOriginatedEntriesNestedInput
+  upstreamEntry?: Prisma.EntryUpdateOneWithoutDownstreamEntriesNestedInput
+  downstreamEntries?: Prisma.EntryUpdateManyWithoutUpstreamEntryNestedInput
   targetRelationships?: Prisma.EntryRelationshipUpdateManyWithoutTargetEntryNestedInput
   revisionChanges?: Prisma.RevisionChangeUpdateManyWithoutEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutTuneEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutAppEntryNestedInput
   accessGrants?: Prisma.AccessGrantUpdateManyWithoutEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUpdateManyWithoutEntryNestedInput
+  receiptItems?: Prisma.ContextRequestItemUpdateManyWithoutEntryNestedInput
   royaltiesGenerated?: Prisma.UserRoyaltyUpdateManyWithoutEntryNestedInput
   stars?: Prisma.StarUpdateManyWithoutEntryNestedInput
 }
@@ -1719,28 +2189,31 @@ export type EntryUncheckedUpdateWithoutSourceRelationshipsInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId?: Prisma.StringFieldUpdateOperationsInput | string
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.StringFieldUpdateOperationsInput | string
-  sourcePackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  downstreamEntries?: Prisma.EntryUncheckedUpdateManyWithoutUpstreamEntryNestedInput
   targetRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutTargetEntryNestedInput
   revisionChanges?: Prisma.RevisionChangeUncheckedUpdateManyWithoutEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutTuneEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutAppEntryNestedInput
   accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedUpdateManyWithoutEntryNestedInput
+  receiptItems?: Prisma.ContextRequestItemUncheckedUpdateManyWithoutEntryNestedInput
   royaltiesGenerated?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutEntryNestedInput
   stars?: Prisma.StarUncheckedUpdateManyWithoutEntryNestedInput
 }
@@ -1764,28 +2237,31 @@ export type EntryUpdateWithoutTargetRelationshipsInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collection?: Prisma.CollectionUpdateOneRequiredWithoutEntriesNestedInput
-  appMemory?: Prisma.AppMemoryUpdateOneWithoutEntriesNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutEntriesNestedInput
-  author?: Prisma.UserUpdateOneRequiredWithoutAuthoredEntriesNestedInput
-  sourcePack?: Prisma.PackUpdateOneWithoutEntriesNestedInput
+  author?: Prisma.UserUpdateOneWithoutAuthoredEntriesNestedInput
+  sourceCollection?: Prisma.CollectionUpdateOneWithoutOriginatedEntriesNestedInput
+  upstreamEntry?: Prisma.EntryUpdateOneWithoutDownstreamEntriesNestedInput
+  downstreamEntries?: Prisma.EntryUpdateManyWithoutUpstreamEntryNestedInput
   sourceRelationships?: Prisma.EntryRelationshipUpdateManyWithoutSourceEntryNestedInput
   revisionChanges?: Prisma.RevisionChangeUpdateManyWithoutEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutTuneEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutAppEntryNestedInput
   accessGrants?: Prisma.AccessGrantUpdateManyWithoutEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUpdateManyWithoutEntryNestedInput
+  receiptItems?: Prisma.ContextRequestItemUpdateManyWithoutEntryNestedInput
   royaltiesGenerated?: Prisma.UserRoyaltyUpdateManyWithoutEntryNestedInput
   stars?: Prisma.StarUpdateManyWithoutEntryNestedInput
 }
@@ -1798,426 +2274,31 @@ export type EntryUncheckedUpdateWithoutTargetRelationshipsInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId?: Prisma.StringFieldUpdateOperationsInput | string
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.StringFieldUpdateOperationsInput | string
-  sourcePackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  downstreamEntries?: Prisma.EntryUncheckedUpdateManyWithoutUpstreamEntryNestedInput
   sourceRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutSourceEntryNestedInput
   revisionChanges?: Prisma.RevisionChangeUncheckedUpdateManyWithoutEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutTuneEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutAppEntryNestedInput
   accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedUpdateManyWithoutEntryNestedInput
-  royaltiesGenerated?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutEntryNestedInput
-  stars?: Prisma.StarUncheckedUpdateManyWithoutEntryNestedInput
-}
-
-export type EntryCreateWithoutAppMemoryInput = {
-  id?: string
-  title: string
-  slug?: string | null
-  content: string
-  type: $Enums.EntryType
-  version?: number
-  tags?: Prisma.EntryCreatetagsInput | string[]
-  state?: $Enums.EntryState
-  recallPolicy?: $Enums.RecallPolicy
-  origin?: $Enums.EntryOrigin
-  confidenceScore?: number
-  expiresAt?: Date | string | null
-  archivedAt?: Date | string | null
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: string | null
-  citationCount?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  collection: Prisma.CollectionCreateNestedOneWithoutEntriesInput
-  user: Prisma.UserCreateNestedOneWithoutEntriesInput
-  author: Prisma.UserCreateNestedOneWithoutAuthoredEntriesInput
-  sourcePack?: Prisma.PackCreateNestedOneWithoutEntriesInput
-  sourceRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutSourceEntryInput
-  targetRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutTargetEntryInput
-  revisionChanges?: Prisma.RevisionChangeCreateNestedManyWithoutEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutTuneEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutAppEntryInput
-  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutEntryInput
-  receiptItems?: Prisma.ContextReceiptItemCreateNestedManyWithoutEntryInput
-  royaltiesGenerated?: Prisma.UserRoyaltyCreateNestedManyWithoutEntryInput
-  stars?: Prisma.StarCreateNestedManyWithoutEntryInput
-}
-
-export type EntryUncheckedCreateWithoutAppMemoryInput = {
-  id?: string
-  title: string
-  slug?: string | null
-  content: string
-  type: $Enums.EntryType
-  version?: number
-  tags?: Prisma.EntryCreatetagsInput | string[]
-  state?: $Enums.EntryState
-  recallPolicy?: $Enums.RecallPolicy
-  origin?: $Enums.EntryOrigin
-  confidenceScore?: number
-  expiresAt?: Date | string | null
-  archivedAt?: Date | string | null
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  collectionId: string
-  userId: string
-  authorId: string
-  sourcePackId?: string | null
-  upstreamEntryId?: string | null
-  citationCount?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  sourceRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutSourceEntryInput
-  targetRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutTargetEntryInput
-  revisionChanges?: Prisma.RevisionChangeUncheckedCreateNestedManyWithoutEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutTuneEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutAppEntryInput
-  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutEntryInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedCreateNestedManyWithoutEntryInput
-  royaltiesGenerated?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutEntryInput
-  stars?: Prisma.StarUncheckedCreateNestedManyWithoutEntryInput
-}
-
-export type EntryCreateOrConnectWithoutAppMemoryInput = {
-  where: Prisma.EntryWhereUniqueInput
-  create: Prisma.XOR<Prisma.EntryCreateWithoutAppMemoryInput, Prisma.EntryUncheckedCreateWithoutAppMemoryInput>
-}
-
-export type EntryCreateManyAppMemoryInputEnvelope = {
-  data: Prisma.EntryCreateManyAppMemoryInput | Prisma.EntryCreateManyAppMemoryInput[]
-  skipDuplicates?: boolean
-}
-
-export type EntryUpsertWithWhereUniqueWithoutAppMemoryInput = {
-  where: Prisma.EntryWhereUniqueInput
-  update: Prisma.XOR<Prisma.EntryUpdateWithoutAppMemoryInput, Prisma.EntryUncheckedUpdateWithoutAppMemoryInput>
-  create: Prisma.XOR<Prisma.EntryCreateWithoutAppMemoryInput, Prisma.EntryUncheckedCreateWithoutAppMemoryInput>
-}
-
-export type EntryUpdateWithWhereUniqueWithoutAppMemoryInput = {
-  where: Prisma.EntryWhereUniqueInput
-  data: Prisma.XOR<Prisma.EntryUpdateWithoutAppMemoryInput, Prisma.EntryUncheckedUpdateWithoutAppMemoryInput>
-}
-
-export type EntryUpdateManyWithWhereWithoutAppMemoryInput = {
-  where: Prisma.EntryScalarWhereInput
-  data: Prisma.XOR<Prisma.EntryUpdateManyMutationInput, Prisma.EntryUncheckedUpdateManyWithoutAppMemoryInput>
-}
-
-export type EntryCreateWithoutAppMemoryLinksInput = {
-  id?: string
-  title: string
-  slug?: string | null
-  content: string
-  type: $Enums.EntryType
-  version?: number
-  tags?: Prisma.EntryCreatetagsInput | string[]
-  state?: $Enums.EntryState
-  recallPolicy?: $Enums.RecallPolicy
-  origin?: $Enums.EntryOrigin
-  confidenceScore?: number
-  expiresAt?: Date | string | null
-  archivedAt?: Date | string | null
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: string | null
-  citationCount?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  collection: Prisma.CollectionCreateNestedOneWithoutEntriesInput
-  appMemory?: Prisma.AppMemoryCreateNestedOneWithoutEntriesInput
-  user: Prisma.UserCreateNestedOneWithoutEntriesInput
-  author: Prisma.UserCreateNestedOneWithoutAuthoredEntriesInput
-  sourcePack?: Prisma.PackCreateNestedOneWithoutEntriesInput
-  sourceRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutSourceEntryInput
-  targetRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutTargetEntryInput
-  revisionChanges?: Prisma.RevisionChangeCreateNestedManyWithoutEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutTuneEntryInput
-  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutEntryInput
-  receiptItems?: Prisma.ContextReceiptItemCreateNestedManyWithoutEntryInput
-  royaltiesGenerated?: Prisma.UserRoyaltyCreateNestedManyWithoutEntryInput
-  stars?: Prisma.StarCreateNestedManyWithoutEntryInput
-}
-
-export type EntryUncheckedCreateWithoutAppMemoryLinksInput = {
-  id?: string
-  title: string
-  slug?: string | null
-  content: string
-  type: $Enums.EntryType
-  version?: number
-  tags?: Prisma.EntryCreatetagsInput | string[]
-  state?: $Enums.EntryState
-  recallPolicy?: $Enums.RecallPolicy
-  origin?: $Enums.EntryOrigin
-  confidenceScore?: number
-  expiresAt?: Date | string | null
-  archivedAt?: Date | string | null
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  collectionId: string
-  appMemoryId?: string | null
-  userId: string
-  authorId: string
-  sourcePackId?: string | null
-  upstreamEntryId?: string | null
-  citationCount?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  sourceRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutSourceEntryInput
-  targetRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutTargetEntryInput
-  revisionChanges?: Prisma.RevisionChangeUncheckedCreateNestedManyWithoutEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutTuneEntryInput
-  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutEntryInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedCreateNestedManyWithoutEntryInput
-  royaltiesGenerated?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutEntryInput
-  stars?: Prisma.StarUncheckedCreateNestedManyWithoutEntryInput
-}
-
-export type EntryCreateOrConnectWithoutAppMemoryLinksInput = {
-  where: Prisma.EntryWhereUniqueInput
-  create: Prisma.XOR<Prisma.EntryCreateWithoutAppMemoryLinksInput, Prisma.EntryUncheckedCreateWithoutAppMemoryLinksInput>
-}
-
-export type EntryCreateWithoutTuneMemoryLinksInput = {
-  id?: string
-  title: string
-  slug?: string | null
-  content: string
-  type: $Enums.EntryType
-  version?: number
-  tags?: Prisma.EntryCreatetagsInput | string[]
-  state?: $Enums.EntryState
-  recallPolicy?: $Enums.RecallPolicy
-  origin?: $Enums.EntryOrigin
-  confidenceScore?: number
-  expiresAt?: Date | string | null
-  archivedAt?: Date | string | null
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: string | null
-  citationCount?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  collection: Prisma.CollectionCreateNestedOneWithoutEntriesInput
-  appMemory?: Prisma.AppMemoryCreateNestedOneWithoutEntriesInput
-  user: Prisma.UserCreateNestedOneWithoutEntriesInput
-  author: Prisma.UserCreateNestedOneWithoutAuthoredEntriesInput
-  sourcePack?: Prisma.PackCreateNestedOneWithoutEntriesInput
-  sourceRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutSourceEntryInput
-  targetRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutTargetEntryInput
-  revisionChanges?: Prisma.RevisionChangeCreateNestedManyWithoutEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutAppEntryInput
-  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutEntryInput
-  receiptItems?: Prisma.ContextReceiptItemCreateNestedManyWithoutEntryInput
-  royaltiesGenerated?: Prisma.UserRoyaltyCreateNestedManyWithoutEntryInput
-  stars?: Prisma.StarCreateNestedManyWithoutEntryInput
-}
-
-export type EntryUncheckedCreateWithoutTuneMemoryLinksInput = {
-  id?: string
-  title: string
-  slug?: string | null
-  content: string
-  type: $Enums.EntryType
-  version?: number
-  tags?: Prisma.EntryCreatetagsInput | string[]
-  state?: $Enums.EntryState
-  recallPolicy?: $Enums.RecallPolicy
-  origin?: $Enums.EntryOrigin
-  confidenceScore?: number
-  expiresAt?: Date | string | null
-  archivedAt?: Date | string | null
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  collectionId: string
-  appMemoryId?: string | null
-  userId: string
-  authorId: string
-  sourcePackId?: string | null
-  upstreamEntryId?: string | null
-  citationCount?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  sourceRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutSourceEntryInput
-  targetRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutTargetEntryInput
-  revisionChanges?: Prisma.RevisionChangeUncheckedCreateNestedManyWithoutEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutAppEntryInput
-  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutEntryInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedCreateNestedManyWithoutEntryInput
-  royaltiesGenerated?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutEntryInput
-  stars?: Prisma.StarUncheckedCreateNestedManyWithoutEntryInput
-}
-
-export type EntryCreateOrConnectWithoutTuneMemoryLinksInput = {
-  where: Prisma.EntryWhereUniqueInput
-  create: Prisma.XOR<Prisma.EntryCreateWithoutTuneMemoryLinksInput, Prisma.EntryUncheckedCreateWithoutTuneMemoryLinksInput>
-}
-
-export type EntryUpsertWithoutAppMemoryLinksInput = {
-  update: Prisma.XOR<Prisma.EntryUpdateWithoutAppMemoryLinksInput, Prisma.EntryUncheckedUpdateWithoutAppMemoryLinksInput>
-  create: Prisma.XOR<Prisma.EntryCreateWithoutAppMemoryLinksInput, Prisma.EntryUncheckedCreateWithoutAppMemoryLinksInput>
-  where?: Prisma.EntryWhereInput
-}
-
-export type EntryUpdateToOneWithWhereWithoutAppMemoryLinksInput = {
-  where?: Prisma.EntryWhereInput
-  data: Prisma.XOR<Prisma.EntryUpdateWithoutAppMemoryLinksInput, Prisma.EntryUncheckedUpdateWithoutAppMemoryLinksInput>
-}
-
-export type EntryUpdateWithoutAppMemoryLinksInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  content?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
-  version?: Prisma.IntFieldUpdateOperationsInput | number
-  tags?: Prisma.EntryUpdatetagsInput | string[]
-  state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
-  recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
-  origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
-  confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
-  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  citationCount?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  collection?: Prisma.CollectionUpdateOneRequiredWithoutEntriesNestedInput
-  appMemory?: Prisma.AppMemoryUpdateOneWithoutEntriesNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutEntriesNestedInput
-  author?: Prisma.UserUpdateOneRequiredWithoutAuthoredEntriesNestedInput
-  sourcePack?: Prisma.PackUpdateOneWithoutEntriesNestedInput
-  sourceRelationships?: Prisma.EntryRelationshipUpdateManyWithoutSourceEntryNestedInput
-  targetRelationships?: Prisma.EntryRelationshipUpdateManyWithoutTargetEntryNestedInput
-  revisionChanges?: Prisma.RevisionChangeUpdateManyWithoutEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutTuneEntryNestedInput
-  accessGrants?: Prisma.AccessGrantUpdateManyWithoutEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUpdateManyWithoutEntryNestedInput
-  royaltiesGenerated?: Prisma.UserRoyaltyUpdateManyWithoutEntryNestedInput
-  stars?: Prisma.StarUpdateManyWithoutEntryNestedInput
-}
-
-export type EntryUncheckedUpdateWithoutAppMemoryLinksInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  content?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
-  version?: Prisma.IntFieldUpdateOperationsInput | number
-  tags?: Prisma.EntryUpdatetagsInput | string[]
-  state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
-  recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
-  origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
-  confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
-  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  collectionId?: Prisma.StringFieldUpdateOperationsInput | string
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.StringFieldUpdateOperationsInput | string
-  sourcePackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  citationCount?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sourceRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutSourceEntryNestedInput
-  targetRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutTargetEntryNestedInput
-  revisionChanges?: Prisma.RevisionChangeUncheckedUpdateManyWithoutEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutTuneEntryNestedInput
-  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedUpdateManyWithoutEntryNestedInput
-  royaltiesGenerated?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutEntryNestedInput
-  stars?: Prisma.StarUncheckedUpdateManyWithoutEntryNestedInput
-}
-
-export type EntryUpsertWithoutTuneMemoryLinksInput = {
-  update: Prisma.XOR<Prisma.EntryUpdateWithoutTuneMemoryLinksInput, Prisma.EntryUncheckedUpdateWithoutTuneMemoryLinksInput>
-  create: Prisma.XOR<Prisma.EntryCreateWithoutTuneMemoryLinksInput, Prisma.EntryUncheckedCreateWithoutTuneMemoryLinksInput>
-  where?: Prisma.EntryWhereInput
-}
-
-export type EntryUpdateToOneWithWhereWithoutTuneMemoryLinksInput = {
-  where?: Prisma.EntryWhereInput
-  data: Prisma.XOR<Prisma.EntryUpdateWithoutTuneMemoryLinksInput, Prisma.EntryUncheckedUpdateWithoutTuneMemoryLinksInput>
-}
-
-export type EntryUpdateWithoutTuneMemoryLinksInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  content?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
-  version?: Prisma.IntFieldUpdateOperationsInput | number
-  tags?: Prisma.EntryUpdatetagsInput | string[]
-  state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
-  recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
-  origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
-  confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
-  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  citationCount?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  collection?: Prisma.CollectionUpdateOneRequiredWithoutEntriesNestedInput
-  appMemory?: Prisma.AppMemoryUpdateOneWithoutEntriesNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutEntriesNestedInput
-  author?: Prisma.UserUpdateOneRequiredWithoutAuthoredEntriesNestedInput
-  sourcePack?: Prisma.PackUpdateOneWithoutEntriesNestedInput
-  sourceRelationships?: Prisma.EntryRelationshipUpdateManyWithoutSourceEntryNestedInput
-  targetRelationships?: Prisma.EntryRelationshipUpdateManyWithoutTargetEntryNestedInput
-  revisionChanges?: Prisma.RevisionChangeUpdateManyWithoutEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutAppEntryNestedInput
-  accessGrants?: Prisma.AccessGrantUpdateManyWithoutEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUpdateManyWithoutEntryNestedInput
-  royaltiesGenerated?: Prisma.UserRoyaltyUpdateManyWithoutEntryNestedInput
-  stars?: Prisma.StarUpdateManyWithoutEntryNestedInput
-}
-
-export type EntryUncheckedUpdateWithoutTuneMemoryLinksInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  content?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
-  version?: Prisma.IntFieldUpdateOperationsInput | number
-  tags?: Prisma.EntryUpdatetagsInput | string[]
-  state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
-  recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
-  origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
-  confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
-  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  collectionId?: Prisma.StringFieldUpdateOperationsInput | string
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.StringFieldUpdateOperationsInput | string
-  sourcePackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  citationCount?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sourceRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutSourceEntryNestedInput
-  targetRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutTargetEntryNestedInput
-  revisionChanges?: Prisma.RevisionChangeUncheckedUpdateManyWithoutEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutAppEntryNestedInput
-  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedUpdateManyWithoutEntryNestedInput
+  receiptItems?: Prisma.ContextRequestItemUncheckedUpdateManyWithoutEntryNestedInput
   royaltiesGenerated?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutEntryNestedInput
   stars?: Prisma.StarUncheckedUpdateManyWithoutEntryNestedInput
 }
@@ -2230,28 +2311,31 @@ export type EntryCreateWithoutAccessGrantsInput = {
   type: $Enums.EntryType
   version?: number
   tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
   state?: $Enums.EntryState
   recallPolicy?: $Enums.RecallPolicy
   origin?: $Enums.EntryOrigin
   confidenceScore?: number
   expiresAt?: Date | string | null
   archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
   citationCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   collection: Prisma.CollectionCreateNestedOneWithoutEntriesInput
-  appMemory?: Prisma.AppMemoryCreateNestedOneWithoutEntriesInput
   user: Prisma.UserCreateNestedOneWithoutEntriesInput
-  author: Prisma.UserCreateNestedOneWithoutAuthoredEntriesInput
-  sourcePack?: Prisma.PackCreateNestedOneWithoutEntriesInput
+  author?: Prisma.UserCreateNestedOneWithoutAuthoredEntriesInput
+  sourceCollection?: Prisma.CollectionCreateNestedOneWithoutOriginatedEntriesInput
+  upstreamEntry?: Prisma.EntryCreateNestedOneWithoutDownstreamEntriesInput
+  downstreamEntries?: Prisma.EntryCreateNestedManyWithoutUpstreamEntryInput
   sourceRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutSourceEntryInput
   targetRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutTargetEntryInput
   revisionChanges?: Prisma.RevisionChangeCreateNestedManyWithoutEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutTuneEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutAppEntryInput
-  receiptItems?: Prisma.ContextReceiptItemCreateNestedManyWithoutEntryInput
+  receiptItems?: Prisma.ContextRequestItemCreateNestedManyWithoutEntryInput
   royaltiesGenerated?: Prisma.UserRoyaltyCreateNestedManyWithoutEntryInput
   stars?: Prisma.StarCreateNestedManyWithoutEntryInput
 }
@@ -2264,28 +2348,31 @@ export type EntryUncheckedCreateWithoutAccessGrantsInput = {
   type: $Enums.EntryType
   version?: number
   tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
   state?: $Enums.EntryState
   recallPolicy?: $Enums.RecallPolicy
   origin?: $Enums.EntryOrigin
   confidenceScore?: number
   expiresAt?: Date | string | null
   archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId: string
-  appMemoryId?: string | null
   userId: string
-  authorId: string
-  sourcePackId?: string | null
+  authorId?: string | null
+  sourceCollectionId?: string | null
   upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
   citationCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  downstreamEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutUpstreamEntryInput
   sourceRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutSourceEntryInput
   targetRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutTargetEntryInput
   revisionChanges?: Prisma.RevisionChangeUncheckedCreateNestedManyWithoutEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutTuneEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutAppEntryInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedCreateNestedManyWithoutEntryInput
+  receiptItems?: Prisma.ContextRequestItemUncheckedCreateNestedManyWithoutEntryInput
   royaltiesGenerated?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutEntryInput
   stars?: Prisma.StarUncheckedCreateNestedManyWithoutEntryInput
 }
@@ -2314,28 +2401,31 @@ export type EntryUpdateWithoutAccessGrantsInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collection?: Prisma.CollectionUpdateOneRequiredWithoutEntriesNestedInput
-  appMemory?: Prisma.AppMemoryUpdateOneWithoutEntriesNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutEntriesNestedInput
-  author?: Prisma.UserUpdateOneRequiredWithoutAuthoredEntriesNestedInput
-  sourcePack?: Prisma.PackUpdateOneWithoutEntriesNestedInput
+  author?: Prisma.UserUpdateOneWithoutAuthoredEntriesNestedInput
+  sourceCollection?: Prisma.CollectionUpdateOneWithoutOriginatedEntriesNestedInput
+  upstreamEntry?: Prisma.EntryUpdateOneWithoutDownstreamEntriesNestedInput
+  downstreamEntries?: Prisma.EntryUpdateManyWithoutUpstreamEntryNestedInput
   sourceRelationships?: Prisma.EntryRelationshipUpdateManyWithoutSourceEntryNestedInput
   targetRelationships?: Prisma.EntryRelationshipUpdateManyWithoutTargetEntryNestedInput
   revisionChanges?: Prisma.RevisionChangeUpdateManyWithoutEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutTuneEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutAppEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUpdateManyWithoutEntryNestedInput
+  receiptItems?: Prisma.ContextRequestItemUpdateManyWithoutEntryNestedInput
   royaltiesGenerated?: Prisma.UserRoyaltyUpdateManyWithoutEntryNestedInput
   stars?: Prisma.StarUpdateManyWithoutEntryNestedInput
 }
@@ -2348,28 +2438,31 @@ export type EntryUncheckedUpdateWithoutAccessGrantsInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId?: Prisma.StringFieldUpdateOperationsInput | string
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.StringFieldUpdateOperationsInput | string
-  sourcePackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  downstreamEntries?: Prisma.EntryUncheckedUpdateManyWithoutUpstreamEntryNestedInput
   sourceRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutSourceEntryNestedInput
   targetRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutTargetEntryNestedInput
   revisionChanges?: Prisma.RevisionChangeUncheckedUpdateManyWithoutEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutTuneEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutAppEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedUpdateManyWithoutEntryNestedInput
+  receiptItems?: Prisma.ContextRequestItemUncheckedUpdateManyWithoutEntryNestedInput
   royaltiesGenerated?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutEntryNestedInput
   stars?: Prisma.StarUncheckedUpdateManyWithoutEntryNestedInput
 }
@@ -2382,27 +2475,30 @@ export type EntryCreateWithoutReceiptItemsInput = {
   type: $Enums.EntryType
   version?: number
   tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
   state?: $Enums.EntryState
   recallPolicy?: $Enums.RecallPolicy
   origin?: $Enums.EntryOrigin
   confidenceScore?: number
   expiresAt?: Date | string | null
   archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
   citationCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   collection: Prisma.CollectionCreateNestedOneWithoutEntriesInput
-  appMemory?: Prisma.AppMemoryCreateNestedOneWithoutEntriesInput
   user: Prisma.UserCreateNestedOneWithoutEntriesInput
-  author: Prisma.UserCreateNestedOneWithoutAuthoredEntriesInput
-  sourcePack?: Prisma.PackCreateNestedOneWithoutEntriesInput
+  author?: Prisma.UserCreateNestedOneWithoutAuthoredEntriesInput
+  sourceCollection?: Prisma.CollectionCreateNestedOneWithoutOriginatedEntriesInput
+  upstreamEntry?: Prisma.EntryCreateNestedOneWithoutDownstreamEntriesInput
+  downstreamEntries?: Prisma.EntryCreateNestedManyWithoutUpstreamEntryInput
   sourceRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutSourceEntryInput
   targetRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutTargetEntryInput
   revisionChanges?: Prisma.RevisionChangeCreateNestedManyWithoutEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutTuneEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutAppEntryInput
   accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutEntryInput
   royaltiesGenerated?: Prisma.UserRoyaltyCreateNestedManyWithoutEntryInput
   stars?: Prisma.StarCreateNestedManyWithoutEntryInput
@@ -2416,27 +2512,30 @@ export type EntryUncheckedCreateWithoutReceiptItemsInput = {
   type: $Enums.EntryType
   version?: number
   tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
   state?: $Enums.EntryState
   recallPolicy?: $Enums.RecallPolicy
   origin?: $Enums.EntryOrigin
   confidenceScore?: number
   expiresAt?: Date | string | null
   archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId: string
-  appMemoryId?: string | null
   userId: string
-  authorId: string
-  sourcePackId?: string | null
+  authorId?: string | null
+  sourceCollectionId?: string | null
   upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
   citationCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  downstreamEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutUpstreamEntryInput
   sourceRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutSourceEntryInput
   targetRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutTargetEntryInput
   revisionChanges?: Prisma.RevisionChangeUncheckedCreateNestedManyWithoutEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutTuneEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutAppEntryInput
   accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutEntryInput
   royaltiesGenerated?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutEntryInput
   stars?: Prisma.StarUncheckedCreateNestedManyWithoutEntryInput
@@ -2466,27 +2565,30 @@ export type EntryUpdateWithoutReceiptItemsInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collection?: Prisma.CollectionUpdateOneRequiredWithoutEntriesNestedInput
-  appMemory?: Prisma.AppMemoryUpdateOneWithoutEntriesNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutEntriesNestedInput
-  author?: Prisma.UserUpdateOneRequiredWithoutAuthoredEntriesNestedInput
-  sourcePack?: Prisma.PackUpdateOneWithoutEntriesNestedInput
+  author?: Prisma.UserUpdateOneWithoutAuthoredEntriesNestedInput
+  sourceCollection?: Prisma.CollectionUpdateOneWithoutOriginatedEntriesNestedInput
+  upstreamEntry?: Prisma.EntryUpdateOneWithoutDownstreamEntriesNestedInput
+  downstreamEntries?: Prisma.EntryUpdateManyWithoutUpstreamEntryNestedInput
   sourceRelationships?: Prisma.EntryRelationshipUpdateManyWithoutSourceEntryNestedInput
   targetRelationships?: Prisma.EntryRelationshipUpdateManyWithoutTargetEntryNestedInput
   revisionChanges?: Prisma.RevisionChangeUpdateManyWithoutEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutTuneEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutAppEntryNestedInput
   accessGrants?: Prisma.AccessGrantUpdateManyWithoutEntryNestedInput
   royaltiesGenerated?: Prisma.UserRoyaltyUpdateManyWithoutEntryNestedInput
   stars?: Prisma.StarUpdateManyWithoutEntryNestedInput
@@ -2500,27 +2602,30 @@ export type EntryUncheckedUpdateWithoutReceiptItemsInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId?: Prisma.StringFieldUpdateOperationsInput | string
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.StringFieldUpdateOperationsInput | string
-  sourcePackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  downstreamEntries?: Prisma.EntryUncheckedUpdateManyWithoutUpstreamEntryNestedInput
   sourceRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutSourceEntryNestedInput
   targetRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutTargetEntryNestedInput
   revisionChanges?: Prisma.RevisionChangeUncheckedUpdateManyWithoutEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutTuneEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutAppEntryNestedInput
   accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutEntryNestedInput
   royaltiesGenerated?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutEntryNestedInput
   stars?: Prisma.StarUncheckedUpdateManyWithoutEntryNestedInput
@@ -2534,29 +2639,32 @@ export type EntryCreateWithoutRoyaltiesGeneratedInput = {
   type: $Enums.EntryType
   version?: number
   tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
   state?: $Enums.EntryState
   recallPolicy?: $Enums.RecallPolicy
   origin?: $Enums.EntryOrigin
   confidenceScore?: number
   expiresAt?: Date | string | null
   archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
   citationCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   collection: Prisma.CollectionCreateNestedOneWithoutEntriesInput
-  appMemory?: Prisma.AppMemoryCreateNestedOneWithoutEntriesInput
   user: Prisma.UserCreateNestedOneWithoutEntriesInput
-  author: Prisma.UserCreateNestedOneWithoutAuthoredEntriesInput
-  sourcePack?: Prisma.PackCreateNestedOneWithoutEntriesInput
+  author?: Prisma.UserCreateNestedOneWithoutAuthoredEntriesInput
+  sourceCollection?: Prisma.CollectionCreateNestedOneWithoutOriginatedEntriesInput
+  upstreamEntry?: Prisma.EntryCreateNestedOneWithoutDownstreamEntriesInput
+  downstreamEntries?: Prisma.EntryCreateNestedManyWithoutUpstreamEntryInput
   sourceRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutSourceEntryInput
   targetRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutTargetEntryInput
   revisionChanges?: Prisma.RevisionChangeCreateNestedManyWithoutEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutTuneEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutAppEntryInput
   accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutEntryInput
-  receiptItems?: Prisma.ContextReceiptItemCreateNestedManyWithoutEntryInput
+  receiptItems?: Prisma.ContextRequestItemCreateNestedManyWithoutEntryInput
   stars?: Prisma.StarCreateNestedManyWithoutEntryInput
 }
 
@@ -2568,29 +2676,32 @@ export type EntryUncheckedCreateWithoutRoyaltiesGeneratedInput = {
   type: $Enums.EntryType
   version?: number
   tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
   state?: $Enums.EntryState
   recallPolicy?: $Enums.RecallPolicy
   origin?: $Enums.EntryOrigin
   confidenceScore?: number
   expiresAt?: Date | string | null
   archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId: string
-  appMemoryId?: string | null
   userId: string
-  authorId: string
-  sourcePackId?: string | null
+  authorId?: string | null
+  sourceCollectionId?: string | null
   upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
   citationCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  downstreamEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutUpstreamEntryInput
   sourceRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutSourceEntryInput
   targetRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutTargetEntryInput
   revisionChanges?: Prisma.RevisionChangeUncheckedCreateNestedManyWithoutEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutTuneEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutAppEntryInput
   accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutEntryInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedCreateNestedManyWithoutEntryInput
+  receiptItems?: Prisma.ContextRequestItemUncheckedCreateNestedManyWithoutEntryInput
   stars?: Prisma.StarUncheckedCreateNestedManyWithoutEntryInput
 }
 
@@ -2618,29 +2729,32 @@ export type EntryUpdateWithoutRoyaltiesGeneratedInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collection?: Prisma.CollectionUpdateOneRequiredWithoutEntriesNestedInput
-  appMemory?: Prisma.AppMemoryUpdateOneWithoutEntriesNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutEntriesNestedInput
-  author?: Prisma.UserUpdateOneRequiredWithoutAuthoredEntriesNestedInput
-  sourcePack?: Prisma.PackUpdateOneWithoutEntriesNestedInput
+  author?: Prisma.UserUpdateOneWithoutAuthoredEntriesNestedInput
+  sourceCollection?: Prisma.CollectionUpdateOneWithoutOriginatedEntriesNestedInput
+  upstreamEntry?: Prisma.EntryUpdateOneWithoutDownstreamEntriesNestedInput
+  downstreamEntries?: Prisma.EntryUpdateManyWithoutUpstreamEntryNestedInput
   sourceRelationships?: Prisma.EntryRelationshipUpdateManyWithoutSourceEntryNestedInput
   targetRelationships?: Prisma.EntryRelationshipUpdateManyWithoutTargetEntryNestedInput
   revisionChanges?: Prisma.RevisionChangeUpdateManyWithoutEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutTuneEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutAppEntryNestedInput
   accessGrants?: Prisma.AccessGrantUpdateManyWithoutEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUpdateManyWithoutEntryNestedInput
+  receiptItems?: Prisma.ContextRequestItemUpdateManyWithoutEntryNestedInput
   stars?: Prisma.StarUpdateManyWithoutEntryNestedInput
 }
 
@@ -2652,29 +2766,32 @@ export type EntryUncheckedUpdateWithoutRoyaltiesGeneratedInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId?: Prisma.StringFieldUpdateOperationsInput | string
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.StringFieldUpdateOperationsInput | string
-  sourcePackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  downstreamEntries?: Prisma.EntryUncheckedUpdateManyWithoutUpstreamEntryNestedInput
   sourceRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutSourceEntryNestedInput
   targetRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutTargetEntryNestedInput
   revisionChanges?: Prisma.RevisionChangeUncheckedUpdateManyWithoutEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutTuneEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutAppEntryNestedInput
   accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedUpdateManyWithoutEntryNestedInput
+  receiptItems?: Prisma.ContextRequestItemUncheckedUpdateManyWithoutEntryNestedInput
   stars?: Prisma.StarUncheckedUpdateManyWithoutEntryNestedInput
 }
 
@@ -2686,28 +2803,31 @@ export type EntryCreateWithoutRevisionChangesInput = {
   type: $Enums.EntryType
   version?: number
   tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
   state?: $Enums.EntryState
   recallPolicy?: $Enums.RecallPolicy
   origin?: $Enums.EntryOrigin
   confidenceScore?: number
   expiresAt?: Date | string | null
   archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
   citationCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   collection: Prisma.CollectionCreateNestedOneWithoutEntriesInput
-  appMemory?: Prisma.AppMemoryCreateNestedOneWithoutEntriesInput
   user: Prisma.UserCreateNestedOneWithoutEntriesInput
-  author: Prisma.UserCreateNestedOneWithoutAuthoredEntriesInput
-  sourcePack?: Prisma.PackCreateNestedOneWithoutEntriesInput
+  author?: Prisma.UserCreateNestedOneWithoutAuthoredEntriesInput
+  sourceCollection?: Prisma.CollectionCreateNestedOneWithoutOriginatedEntriesInput
+  upstreamEntry?: Prisma.EntryCreateNestedOneWithoutDownstreamEntriesInput
+  downstreamEntries?: Prisma.EntryCreateNestedManyWithoutUpstreamEntryInput
   sourceRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutSourceEntryInput
   targetRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutTargetEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutTuneEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutAppEntryInput
   accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutEntryInput
-  receiptItems?: Prisma.ContextReceiptItemCreateNestedManyWithoutEntryInput
+  receiptItems?: Prisma.ContextRequestItemCreateNestedManyWithoutEntryInput
   royaltiesGenerated?: Prisma.UserRoyaltyCreateNestedManyWithoutEntryInput
   stars?: Prisma.StarCreateNestedManyWithoutEntryInput
 }
@@ -2720,28 +2840,31 @@ export type EntryUncheckedCreateWithoutRevisionChangesInput = {
   type: $Enums.EntryType
   version?: number
   tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
   state?: $Enums.EntryState
   recallPolicy?: $Enums.RecallPolicy
   origin?: $Enums.EntryOrigin
   confidenceScore?: number
   expiresAt?: Date | string | null
   archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId: string
-  appMemoryId?: string | null
   userId: string
-  authorId: string
-  sourcePackId?: string | null
+  authorId?: string | null
+  sourceCollectionId?: string | null
   upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
   citationCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  downstreamEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutUpstreamEntryInput
   sourceRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutSourceEntryInput
   targetRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutTargetEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutTuneEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutAppEntryInput
   accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutEntryInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedCreateNestedManyWithoutEntryInput
+  receiptItems?: Prisma.ContextRequestItemUncheckedCreateNestedManyWithoutEntryInput
   royaltiesGenerated?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutEntryInput
   stars?: Prisma.StarUncheckedCreateNestedManyWithoutEntryInput
 }
@@ -2770,28 +2893,31 @@ export type EntryUpdateWithoutRevisionChangesInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collection?: Prisma.CollectionUpdateOneRequiredWithoutEntriesNestedInput
-  appMemory?: Prisma.AppMemoryUpdateOneWithoutEntriesNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutEntriesNestedInput
-  author?: Prisma.UserUpdateOneRequiredWithoutAuthoredEntriesNestedInput
-  sourcePack?: Prisma.PackUpdateOneWithoutEntriesNestedInput
+  author?: Prisma.UserUpdateOneWithoutAuthoredEntriesNestedInput
+  sourceCollection?: Prisma.CollectionUpdateOneWithoutOriginatedEntriesNestedInput
+  upstreamEntry?: Prisma.EntryUpdateOneWithoutDownstreamEntriesNestedInput
+  downstreamEntries?: Prisma.EntryUpdateManyWithoutUpstreamEntryNestedInput
   sourceRelationships?: Prisma.EntryRelationshipUpdateManyWithoutSourceEntryNestedInput
   targetRelationships?: Prisma.EntryRelationshipUpdateManyWithoutTargetEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutTuneEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutAppEntryNestedInput
   accessGrants?: Prisma.AccessGrantUpdateManyWithoutEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUpdateManyWithoutEntryNestedInput
+  receiptItems?: Prisma.ContextRequestItemUpdateManyWithoutEntryNestedInput
   royaltiesGenerated?: Prisma.UserRoyaltyUpdateManyWithoutEntryNestedInput
   stars?: Prisma.StarUpdateManyWithoutEntryNestedInput
 }
@@ -2804,124 +2930,33 @@ export type EntryUncheckedUpdateWithoutRevisionChangesInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId?: Prisma.StringFieldUpdateOperationsInput | string
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.StringFieldUpdateOperationsInput | string
-  sourcePackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  downstreamEntries?: Prisma.EntryUncheckedUpdateManyWithoutUpstreamEntryNestedInput
   sourceRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutSourceEntryNestedInput
   targetRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutTargetEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutTuneEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutAppEntryNestedInput
   accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedUpdateManyWithoutEntryNestedInput
+  receiptItems?: Prisma.ContextRequestItemUncheckedUpdateManyWithoutEntryNestedInput
   royaltiesGenerated?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutEntryNestedInput
   stars?: Prisma.StarUncheckedUpdateManyWithoutEntryNestedInput
-}
-
-export type EntryCreateWithoutSourcePackInput = {
-  id?: string
-  title: string
-  slug?: string | null
-  content: string
-  type: $Enums.EntryType
-  version?: number
-  tags?: Prisma.EntryCreatetagsInput | string[]
-  state?: $Enums.EntryState
-  recallPolicy?: $Enums.RecallPolicy
-  origin?: $Enums.EntryOrigin
-  confidenceScore?: number
-  expiresAt?: Date | string | null
-  archivedAt?: Date | string | null
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: string | null
-  citationCount?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  collection: Prisma.CollectionCreateNestedOneWithoutEntriesInput
-  appMemory?: Prisma.AppMemoryCreateNestedOneWithoutEntriesInput
-  user: Prisma.UserCreateNestedOneWithoutEntriesInput
-  author: Prisma.UserCreateNestedOneWithoutAuthoredEntriesInput
-  sourceRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutSourceEntryInput
-  targetRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutTargetEntryInput
-  revisionChanges?: Prisma.RevisionChangeCreateNestedManyWithoutEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutTuneEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutAppEntryInput
-  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutEntryInput
-  receiptItems?: Prisma.ContextReceiptItemCreateNestedManyWithoutEntryInput
-  royaltiesGenerated?: Prisma.UserRoyaltyCreateNestedManyWithoutEntryInput
-  stars?: Prisma.StarCreateNestedManyWithoutEntryInput
-}
-
-export type EntryUncheckedCreateWithoutSourcePackInput = {
-  id?: string
-  title: string
-  slug?: string | null
-  content: string
-  type: $Enums.EntryType
-  version?: number
-  tags?: Prisma.EntryCreatetagsInput | string[]
-  state?: $Enums.EntryState
-  recallPolicy?: $Enums.RecallPolicy
-  origin?: $Enums.EntryOrigin
-  confidenceScore?: number
-  expiresAt?: Date | string | null
-  archivedAt?: Date | string | null
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  collectionId: string
-  appMemoryId?: string | null
-  userId: string
-  authorId: string
-  upstreamEntryId?: string | null
-  citationCount?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  sourceRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutSourceEntryInput
-  targetRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutTargetEntryInput
-  revisionChanges?: Prisma.RevisionChangeUncheckedCreateNestedManyWithoutEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutTuneEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutAppEntryInput
-  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutEntryInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedCreateNestedManyWithoutEntryInput
-  royaltiesGenerated?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutEntryInput
-  stars?: Prisma.StarUncheckedCreateNestedManyWithoutEntryInput
-}
-
-export type EntryCreateOrConnectWithoutSourcePackInput = {
-  where: Prisma.EntryWhereUniqueInput
-  create: Prisma.XOR<Prisma.EntryCreateWithoutSourcePackInput, Prisma.EntryUncheckedCreateWithoutSourcePackInput>
-}
-
-export type EntryCreateManySourcePackInputEnvelope = {
-  data: Prisma.EntryCreateManySourcePackInput | Prisma.EntryCreateManySourcePackInput[]
-  skipDuplicates?: boolean
-}
-
-export type EntryUpsertWithWhereUniqueWithoutSourcePackInput = {
-  where: Prisma.EntryWhereUniqueInput
-  update: Prisma.XOR<Prisma.EntryUpdateWithoutSourcePackInput, Prisma.EntryUncheckedUpdateWithoutSourcePackInput>
-  create: Prisma.XOR<Prisma.EntryCreateWithoutSourcePackInput, Prisma.EntryUncheckedCreateWithoutSourcePackInput>
-}
-
-export type EntryUpdateWithWhereUniqueWithoutSourcePackInput = {
-  where: Prisma.EntryWhereUniqueInput
-  data: Prisma.XOR<Prisma.EntryUpdateWithoutSourcePackInput, Prisma.EntryUncheckedUpdateWithoutSourcePackInput>
-}
-
-export type EntryUpdateManyWithWhereWithoutSourcePackInput = {
-  where: Prisma.EntryScalarWhereInput
-  data: Prisma.XOR<Prisma.EntryUpdateManyMutationInput, Prisma.EntryUncheckedUpdateManyWithoutSourcePackInput>
 }
 
 export type EntryCreateWithoutStarsInput = {
@@ -2932,29 +2967,32 @@ export type EntryCreateWithoutStarsInput = {
   type: $Enums.EntryType
   version?: number
   tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
   state?: $Enums.EntryState
   recallPolicy?: $Enums.RecallPolicy
   origin?: $Enums.EntryOrigin
   confidenceScore?: number
   expiresAt?: Date | string | null
   archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
   citationCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   collection: Prisma.CollectionCreateNestedOneWithoutEntriesInput
-  appMemory?: Prisma.AppMemoryCreateNestedOneWithoutEntriesInput
   user: Prisma.UserCreateNestedOneWithoutEntriesInput
-  author: Prisma.UserCreateNestedOneWithoutAuthoredEntriesInput
-  sourcePack?: Prisma.PackCreateNestedOneWithoutEntriesInput
+  author?: Prisma.UserCreateNestedOneWithoutAuthoredEntriesInput
+  sourceCollection?: Prisma.CollectionCreateNestedOneWithoutOriginatedEntriesInput
+  upstreamEntry?: Prisma.EntryCreateNestedOneWithoutDownstreamEntriesInput
+  downstreamEntries?: Prisma.EntryCreateNestedManyWithoutUpstreamEntryInput
   sourceRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutSourceEntryInput
   targetRelationships?: Prisma.EntryRelationshipCreateNestedManyWithoutTargetEntryInput
   revisionChanges?: Prisma.RevisionChangeCreateNestedManyWithoutEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutTuneEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkCreateNestedManyWithoutAppEntryInput
   accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutEntryInput
-  receiptItems?: Prisma.ContextReceiptItemCreateNestedManyWithoutEntryInput
+  receiptItems?: Prisma.ContextRequestItemCreateNestedManyWithoutEntryInput
   royaltiesGenerated?: Prisma.UserRoyaltyCreateNestedManyWithoutEntryInput
 }
 
@@ -2966,29 +3004,32 @@ export type EntryUncheckedCreateWithoutStarsInput = {
   type: $Enums.EntryType
   version?: number
   tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
   state?: $Enums.EntryState
   recallPolicy?: $Enums.RecallPolicy
   origin?: $Enums.EntryOrigin
   confidenceScore?: number
   expiresAt?: Date | string | null
   archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId: string
-  appMemoryId?: string | null
   userId: string
-  authorId: string
-  sourcePackId?: string | null
+  authorId?: string | null
+  sourceCollectionId?: string | null
   upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
   citationCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  downstreamEntries?: Prisma.EntryUncheckedCreateNestedManyWithoutUpstreamEntryInput
   sourceRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutSourceEntryInput
   targetRelationships?: Prisma.EntryRelationshipUncheckedCreateNestedManyWithoutTargetEntryInput
   revisionChanges?: Prisma.RevisionChangeUncheckedCreateNestedManyWithoutEntryInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutTuneEntryInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedCreateNestedManyWithoutAppEntryInput
   accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutEntryInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedCreateNestedManyWithoutEntryInput
+  receiptItems?: Prisma.ContextRequestItemUncheckedCreateNestedManyWithoutEntryInput
   royaltiesGenerated?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutEntryInput
 }
 
@@ -3016,29 +3057,32 @@ export type EntryUpdateWithoutStarsInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collection?: Prisma.CollectionUpdateOneRequiredWithoutEntriesNestedInput
-  appMemory?: Prisma.AppMemoryUpdateOneWithoutEntriesNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutEntriesNestedInput
-  author?: Prisma.UserUpdateOneRequiredWithoutAuthoredEntriesNestedInput
-  sourcePack?: Prisma.PackUpdateOneWithoutEntriesNestedInput
+  author?: Prisma.UserUpdateOneWithoutAuthoredEntriesNestedInput
+  sourceCollection?: Prisma.CollectionUpdateOneWithoutOriginatedEntriesNestedInput
+  upstreamEntry?: Prisma.EntryUpdateOneWithoutDownstreamEntriesNestedInput
+  downstreamEntries?: Prisma.EntryUpdateManyWithoutUpstreamEntryNestedInput
   sourceRelationships?: Prisma.EntryRelationshipUpdateManyWithoutSourceEntryNestedInput
   targetRelationships?: Prisma.EntryRelationshipUpdateManyWithoutTargetEntryNestedInput
   revisionChanges?: Prisma.RevisionChangeUpdateManyWithoutEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutTuneEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutAppEntryNestedInput
   accessGrants?: Prisma.AccessGrantUpdateManyWithoutEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUpdateManyWithoutEntryNestedInput
+  receiptItems?: Prisma.ContextRequestItemUpdateManyWithoutEntryNestedInput
   royaltiesGenerated?: Prisma.UserRoyaltyUpdateManyWithoutEntryNestedInput
 }
 
@@ -3050,29 +3094,32 @@ export type EntryUncheckedUpdateWithoutStarsInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId?: Prisma.StringFieldUpdateOperationsInput | string
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.StringFieldUpdateOperationsInput | string
-  sourcePackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  downstreamEntries?: Prisma.EntryUncheckedUpdateManyWithoutUpstreamEntryNestedInput
   sourceRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutSourceEntryNestedInput
   targetRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutTargetEntryNestedInput
   revisionChanges?: Prisma.RevisionChangeUncheckedUpdateManyWithoutEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutTuneEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutAppEntryNestedInput
   accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedUpdateManyWithoutEntryNestedInput
+  receiptItems?: Prisma.ContextRequestItemUncheckedUpdateManyWithoutEntryNestedInput
   royaltiesGenerated?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutEntryNestedInput
 }
 
@@ -3084,18 +3131,22 @@ export type EntryCreateManyUserInput = {
   type: $Enums.EntryType
   version?: number
   tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
   state?: $Enums.EntryState
   recallPolicy?: $Enums.RecallPolicy
   origin?: $Enums.EntryOrigin
   confidenceScore?: number
   expiresAt?: Date | string | null
   archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId: string
-  appMemoryId?: string | null
-  authorId: string
-  sourcePackId?: string | null
+  authorId?: string | null
+  sourceCollectionId?: string | null
   upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
   citationCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3109,18 +3160,22 @@ export type EntryCreateManyAuthorInput = {
   type: $Enums.EntryType
   version?: number
   tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
   state?: $Enums.EntryState
   recallPolicy?: $Enums.RecallPolicy
   origin?: $Enums.EntryOrigin
   confidenceScore?: number
   expiresAt?: Date | string | null
   archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId: string
-  appMemoryId?: string | null
   userId: string
-  sourcePackId?: string | null
+  sourceCollectionId?: string | null
   upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
   citationCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3134,28 +3189,31 @@ export type EntryUpdateWithoutUserInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collection?: Prisma.CollectionUpdateOneRequiredWithoutEntriesNestedInput
-  appMemory?: Prisma.AppMemoryUpdateOneWithoutEntriesNestedInput
-  author?: Prisma.UserUpdateOneRequiredWithoutAuthoredEntriesNestedInput
-  sourcePack?: Prisma.PackUpdateOneWithoutEntriesNestedInput
+  author?: Prisma.UserUpdateOneWithoutAuthoredEntriesNestedInput
+  sourceCollection?: Prisma.CollectionUpdateOneWithoutOriginatedEntriesNestedInput
+  upstreamEntry?: Prisma.EntryUpdateOneWithoutDownstreamEntriesNestedInput
+  downstreamEntries?: Prisma.EntryUpdateManyWithoutUpstreamEntryNestedInput
   sourceRelationships?: Prisma.EntryRelationshipUpdateManyWithoutSourceEntryNestedInput
   targetRelationships?: Prisma.EntryRelationshipUpdateManyWithoutTargetEntryNestedInput
   revisionChanges?: Prisma.RevisionChangeUpdateManyWithoutEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutTuneEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutAppEntryNestedInput
   accessGrants?: Prisma.AccessGrantUpdateManyWithoutEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUpdateManyWithoutEntryNestedInput
+  receiptItems?: Prisma.ContextRequestItemUpdateManyWithoutEntryNestedInput
   royaltiesGenerated?: Prisma.UserRoyaltyUpdateManyWithoutEntryNestedInput
   stars?: Prisma.StarUpdateManyWithoutEntryNestedInput
 }
@@ -3168,28 +3226,31 @@ export type EntryUncheckedUpdateWithoutUserInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId?: Prisma.StringFieldUpdateOperationsInput | string
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authorId?: Prisma.StringFieldUpdateOperationsInput | string
-  sourcePackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  downstreamEntries?: Prisma.EntryUncheckedUpdateManyWithoutUpstreamEntryNestedInput
   sourceRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutSourceEntryNestedInput
   targetRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutTargetEntryNestedInput
   revisionChanges?: Prisma.RevisionChangeUncheckedUpdateManyWithoutEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutTuneEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutAppEntryNestedInput
   accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedUpdateManyWithoutEntryNestedInput
+  receiptItems?: Prisma.ContextRequestItemUncheckedUpdateManyWithoutEntryNestedInput
   royaltiesGenerated?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutEntryNestedInput
   stars?: Prisma.StarUncheckedUpdateManyWithoutEntryNestedInput
 }
@@ -3202,18 +3263,22 @@ export type EntryUncheckedUpdateManyWithoutUserInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId?: Prisma.StringFieldUpdateOperationsInput | string
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authorId?: Prisma.StringFieldUpdateOperationsInput | string
-  sourcePackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3227,28 +3292,31 @@ export type EntryUpdateWithoutAuthorInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collection?: Prisma.CollectionUpdateOneRequiredWithoutEntriesNestedInput
-  appMemory?: Prisma.AppMemoryUpdateOneWithoutEntriesNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutEntriesNestedInput
-  sourcePack?: Prisma.PackUpdateOneWithoutEntriesNestedInput
+  sourceCollection?: Prisma.CollectionUpdateOneWithoutOriginatedEntriesNestedInput
+  upstreamEntry?: Prisma.EntryUpdateOneWithoutDownstreamEntriesNestedInput
+  downstreamEntries?: Prisma.EntryUpdateManyWithoutUpstreamEntryNestedInput
   sourceRelationships?: Prisma.EntryRelationshipUpdateManyWithoutSourceEntryNestedInput
   targetRelationships?: Prisma.EntryRelationshipUpdateManyWithoutTargetEntryNestedInput
   revisionChanges?: Prisma.RevisionChangeUpdateManyWithoutEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutTuneEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutAppEntryNestedInput
   accessGrants?: Prisma.AccessGrantUpdateManyWithoutEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUpdateManyWithoutEntryNestedInput
+  receiptItems?: Prisma.ContextRequestItemUpdateManyWithoutEntryNestedInput
   royaltiesGenerated?: Prisma.UserRoyaltyUpdateManyWithoutEntryNestedInput
   stars?: Prisma.StarUpdateManyWithoutEntryNestedInput
 }
@@ -3261,28 +3329,31 @@ export type EntryUncheckedUpdateWithoutAuthorInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId?: Prisma.StringFieldUpdateOperationsInput | string
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  sourcePackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  downstreamEntries?: Prisma.EntryUncheckedUpdateManyWithoutUpstreamEntryNestedInput
   sourceRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutSourceEntryNestedInput
   targetRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutTargetEntryNestedInput
   revisionChanges?: Prisma.RevisionChangeUncheckedUpdateManyWithoutEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutTuneEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutAppEntryNestedInput
   accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedUpdateManyWithoutEntryNestedInput
+  receiptItems?: Prisma.ContextRequestItemUncheckedUpdateManyWithoutEntryNestedInput
   royaltiesGenerated?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutEntryNestedInput
   stars?: Prisma.StarUncheckedUpdateManyWithoutEntryNestedInput
 }
@@ -3295,18 +3366,22 @@ export type EntryUncheckedUpdateManyWithoutAuthorInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId?: Prisma.StringFieldUpdateOperationsInput | string
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  sourcePackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3320,18 +3395,51 @@ export type EntryCreateManyCollectionInput = {
   type: $Enums.EntryType
   version?: number
   tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
   state?: $Enums.EntryState
   recallPolicy?: $Enums.RecallPolicy
   origin?: $Enums.EntryOrigin
   confidenceScore?: number
   expiresAt?: Date | string | null
   archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  appMemoryId?: string | null
   userId: string
-  authorId: string
-  sourcePackId?: string | null
+  authorId?: string | null
+  sourceCollectionId?: string | null
   upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
+  citationCount?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type EntryCreateManySourceCollectionInput = {
+  id?: string
+  title: string
+  slug?: string | null
+  content: string
+  type: $Enums.EntryType
+  version?: number
+  tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
+  state?: $Enums.EntryState
+  recallPolicy?: $Enums.RecallPolicy
+  origin?: $Enums.EntryOrigin
+  confidenceScore?: number
+  expiresAt?: Date | string | null
+  archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  collectionId: string
+  userId: string
+  authorId?: string | null
+  upstreamEntryId?: string | null
+  syncMode?: $Enums.SyncMode
   citationCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3345,28 +3453,31 @@ export type EntryUpdateWithoutCollectionInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  appMemory?: Prisma.AppMemoryUpdateOneWithoutEntriesNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutEntriesNestedInput
-  author?: Prisma.UserUpdateOneRequiredWithoutAuthoredEntriesNestedInput
-  sourcePack?: Prisma.PackUpdateOneWithoutEntriesNestedInput
+  author?: Prisma.UserUpdateOneWithoutAuthoredEntriesNestedInput
+  sourceCollection?: Prisma.CollectionUpdateOneWithoutOriginatedEntriesNestedInput
+  upstreamEntry?: Prisma.EntryUpdateOneWithoutDownstreamEntriesNestedInput
+  downstreamEntries?: Prisma.EntryUpdateManyWithoutUpstreamEntryNestedInput
   sourceRelationships?: Prisma.EntryRelationshipUpdateManyWithoutSourceEntryNestedInput
   targetRelationships?: Prisma.EntryRelationshipUpdateManyWithoutTargetEntryNestedInput
   revisionChanges?: Prisma.RevisionChangeUpdateManyWithoutEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutTuneEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutAppEntryNestedInput
   accessGrants?: Prisma.AccessGrantUpdateManyWithoutEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUpdateManyWithoutEntryNestedInput
+  receiptItems?: Prisma.ContextRequestItemUpdateManyWithoutEntryNestedInput
   royaltiesGenerated?: Prisma.UserRoyaltyUpdateManyWithoutEntryNestedInput
   stars?: Prisma.StarUpdateManyWithoutEntryNestedInput
 }
@@ -3379,28 +3490,31 @@ export type EntryUncheckedUpdateWithoutCollectionInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.StringFieldUpdateOperationsInput | string
-  sourcePackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  downstreamEntries?: Prisma.EntryUncheckedUpdateManyWithoutUpstreamEntryNestedInput
   sourceRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutSourceEntryNestedInput
   targetRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutTargetEntryNestedInput
   revisionChanges?: Prisma.RevisionChangeUncheckedUpdateManyWithoutEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutTuneEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutAppEntryNestedInput
   accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedUpdateManyWithoutEntryNestedInput
+  receiptItems?: Prisma.ContextRequestItemUncheckedUpdateManyWithoutEntryNestedInput
   royaltiesGenerated?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutEntryNestedInput
   stars?: Prisma.StarUncheckedUpdateManyWithoutEntryNestedInput
 }
@@ -3413,24 +3527,131 @@ export type EntryUncheckedUpdateManyWithoutCollectionInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.StringFieldUpdateOperationsInput | string
-  sourcePackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type EntryCreateManyAppMemoryInput = {
+export type EntryUpdateWithoutSourceCollectionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
+  recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
+  origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
+  confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  citationCount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  collection?: Prisma.CollectionUpdateOneRequiredWithoutEntriesNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutEntriesNestedInput
+  author?: Prisma.UserUpdateOneWithoutAuthoredEntriesNestedInput
+  upstreamEntry?: Prisma.EntryUpdateOneWithoutDownstreamEntriesNestedInput
+  downstreamEntries?: Prisma.EntryUpdateManyWithoutUpstreamEntryNestedInput
+  sourceRelationships?: Prisma.EntryRelationshipUpdateManyWithoutSourceEntryNestedInput
+  targetRelationships?: Prisma.EntryRelationshipUpdateManyWithoutTargetEntryNestedInput
+  revisionChanges?: Prisma.RevisionChangeUpdateManyWithoutEntryNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutEntryNestedInput
+  receiptItems?: Prisma.ContextRequestItemUpdateManyWithoutEntryNestedInput
+  royaltiesGenerated?: Prisma.UserRoyaltyUpdateManyWithoutEntryNestedInput
+  stars?: Prisma.StarUpdateManyWithoutEntryNestedInput
+}
+
+export type EntryUncheckedUpdateWithoutSourceCollectionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
+  recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
+  origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
+  confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  collectionId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  citationCount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  downstreamEntries?: Prisma.EntryUncheckedUpdateManyWithoutUpstreamEntryNestedInput
+  sourceRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutSourceEntryNestedInput
+  targetRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutTargetEntryNestedInput
+  revisionChanges?: Prisma.RevisionChangeUncheckedUpdateManyWithoutEntryNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutEntryNestedInput
+  receiptItems?: Prisma.ContextRequestItemUncheckedUpdateManyWithoutEntryNestedInput
+  royaltiesGenerated?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutEntryNestedInput
+  stars?: Prisma.StarUncheckedUpdateManyWithoutEntryNestedInput
+}
+
+export type EntryUncheckedUpdateManyWithoutSourceCollectionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
+  recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
+  origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
+  confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  collectionId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
+  citationCount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type EntryCreateManyUpstreamEntryInput = {
   id?: string
   title: string
   slug?: string | null
@@ -3438,24 +3659,28 @@ export type EntryCreateManyAppMemoryInput = {
   type: $Enums.EntryType
   version?: number
   tags?: Prisma.EntryCreatetagsInput | string[]
+  externalSubjectKey?: string | null
   state?: $Enums.EntryState
   recallPolicy?: $Enums.RecallPolicy
   origin?: $Enums.EntryOrigin
   confidenceScore?: number
   expiresAt?: Date | string | null
   archivedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  deletionReason?: string | null
+  publishedAt?: Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId: string
   userId: string
-  authorId: string
-  sourcePackId?: string | null
-  upstreamEntryId?: string | null
+  authorId?: string | null
+  sourceCollectionId?: string | null
+  syncMode?: $Enums.SyncMode
   citationCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
-export type EntryUpdateWithoutAppMemoryInput = {
+export type EntryUpdateWithoutUpstreamEntryInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3463,33 +3688,36 @@ export type EntryUpdateWithoutAppMemoryInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collection?: Prisma.CollectionUpdateOneRequiredWithoutEntriesNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutEntriesNestedInput
-  author?: Prisma.UserUpdateOneRequiredWithoutAuthoredEntriesNestedInput
-  sourcePack?: Prisma.PackUpdateOneWithoutEntriesNestedInput
+  author?: Prisma.UserUpdateOneWithoutAuthoredEntriesNestedInput
+  sourceCollection?: Prisma.CollectionUpdateOneWithoutOriginatedEntriesNestedInput
+  downstreamEntries?: Prisma.EntryUpdateManyWithoutUpstreamEntryNestedInput
   sourceRelationships?: Prisma.EntryRelationshipUpdateManyWithoutSourceEntryNestedInput
   targetRelationships?: Prisma.EntryRelationshipUpdateManyWithoutTargetEntryNestedInput
   revisionChanges?: Prisma.RevisionChangeUpdateManyWithoutEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutTuneEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutAppEntryNestedInput
   accessGrants?: Prisma.AccessGrantUpdateManyWithoutEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUpdateManyWithoutEntryNestedInput
+  receiptItems?: Prisma.ContextRequestItemUpdateManyWithoutEntryNestedInput
   royaltiesGenerated?: Prisma.UserRoyaltyUpdateManyWithoutEntryNestedInput
   stars?: Prisma.StarUpdateManyWithoutEntryNestedInput
 }
 
-export type EntryUncheckedUpdateWithoutAppMemoryInput = {
+export type EntryUncheckedUpdateWithoutUpstreamEntryInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3497,33 +3725,36 @@ export type EntryUncheckedUpdateWithoutAppMemoryInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.StringFieldUpdateOperationsInput | string
-  sourcePackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  downstreamEntries?: Prisma.EntryUncheckedUpdateManyWithoutUpstreamEntryNestedInput
   sourceRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutSourceEntryNestedInput
   targetRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutTargetEntryNestedInput
   revisionChanges?: Prisma.RevisionChangeUncheckedUpdateManyWithoutEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutTuneEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutAppEntryNestedInput
   accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedUpdateManyWithoutEntryNestedInput
+  receiptItems?: Prisma.ContextRequestItemUncheckedUpdateManyWithoutEntryNestedInput
   royaltiesGenerated?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutEntryNestedInput
   stars?: Prisma.StarUncheckedUpdateManyWithoutEntryNestedInput
 }
 
-export type EntryUncheckedUpdateManyWithoutAppMemoryInput = {
+export type EntryUncheckedUpdateManyWithoutUpstreamEntryInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3531,136 +3762,22 @@ export type EntryUncheckedUpdateManyWithoutAppMemoryInput = {
   type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
   version?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.EntryUpdatetagsInput | string[]
+  externalSubjectKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
   recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
   origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
   confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectionId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.StringFieldUpdateOperationsInput | string
-  sourcePackId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  citationCount?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type EntryCreateManySourcePackInput = {
-  id?: string
-  title: string
-  slug?: string | null
-  content: string
-  type: $Enums.EntryType
-  version?: number
-  tags?: Prisma.EntryCreatetagsInput | string[]
-  state?: $Enums.EntryState
-  recallPolicy?: $Enums.RecallPolicy
-  origin?: $Enums.EntryOrigin
-  confidenceScore?: number
-  expiresAt?: Date | string | null
-  archivedAt?: Date | string | null
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  collectionId: string
-  appMemoryId?: string | null
-  userId: string
-  authorId: string
-  upstreamEntryId?: string | null
-  citationCount?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type EntryUpdateWithoutSourcePackInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  content?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
-  version?: Prisma.IntFieldUpdateOperationsInput | number
-  tags?: Prisma.EntryUpdatetagsInput | string[]
-  state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
-  recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
-  origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
-  confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
-  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  citationCount?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  collection?: Prisma.CollectionUpdateOneRequiredWithoutEntriesNestedInput
-  appMemory?: Prisma.AppMemoryUpdateOneWithoutEntriesNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutEntriesNestedInput
-  author?: Prisma.UserUpdateOneRequiredWithoutAuthoredEntriesNestedInput
-  sourceRelationships?: Prisma.EntryRelationshipUpdateManyWithoutSourceEntryNestedInput
-  targetRelationships?: Prisma.EntryRelationshipUpdateManyWithoutTargetEntryNestedInput
-  revisionChanges?: Prisma.RevisionChangeUpdateManyWithoutEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutTuneEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUpdateManyWithoutAppEntryNestedInput
-  accessGrants?: Prisma.AccessGrantUpdateManyWithoutEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUpdateManyWithoutEntryNestedInput
-  royaltiesGenerated?: Prisma.UserRoyaltyUpdateManyWithoutEntryNestedInput
-  stars?: Prisma.StarUpdateManyWithoutEntryNestedInput
-}
-
-export type EntryUncheckedUpdateWithoutSourcePackInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  content?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
-  version?: Prisma.IntFieldUpdateOperationsInput | number
-  tags?: Prisma.EntryUpdatetagsInput | string[]
-  state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
-  recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
-  origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
-  confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
-  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  collectionId?: Prisma.StringFieldUpdateOperationsInput | string
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.StringFieldUpdateOperationsInput | string
-  upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  citationCount?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sourceRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutSourceEntryNestedInput
-  targetRelationships?: Prisma.EntryRelationshipUncheckedUpdateManyWithoutTargetEntryNestedInput
-  revisionChanges?: Prisma.RevisionChangeUncheckedUpdateManyWithoutEntryNestedInput
-  tuneMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutTuneEntryNestedInput
-  appMemoryLinks?: Prisma.AppMemoryLinkUncheckedUpdateManyWithoutAppEntryNestedInput
-  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutEntryNestedInput
-  receiptItems?: Prisma.ContextReceiptItemUncheckedUpdateManyWithoutEntryNestedInput
-  royaltiesGenerated?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutEntryNestedInput
-  stars?: Prisma.StarUncheckedUpdateManyWithoutEntryNestedInput
-}
-
-export type EntryUncheckedUpdateManyWithoutSourcePackInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  content?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumEntryTypeFieldUpdateOperationsInput | $Enums.EntryType
-  version?: Prisma.IntFieldUpdateOperationsInput | number
-  tags?: Prisma.EntryUpdatetagsInput | string[]
-  state?: Prisma.EnumEntryStateFieldUpdateOperationsInput | $Enums.EntryState
-  recallPolicy?: Prisma.EnumRecallPolicyFieldUpdateOperationsInput | $Enums.RecallPolicy
-  origin?: Prisma.EnumEntryOriginFieldUpdateOperationsInput | $Enums.EntryOrigin
-  confidenceScore?: Prisma.FloatFieldUpdateOperationsInput | number
-  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  collectionId?: Prisma.StringFieldUpdateOperationsInput | string
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.StringFieldUpdateOperationsInput | string
-  upstreamEntryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceCollectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  syncMode?: Prisma.EnumSyncModeFieldUpdateOperationsInput | $Enums.SyncMode
   citationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3672,11 +3789,10 @@ export type EntryUncheckedUpdateManyWithoutSourcePackInput = {
  */
 
 export type EntryCountOutputType = {
+  downstreamEntries: number
   sourceRelationships: number
   targetRelationships: number
   revisionChanges: number
-  tuneMemoryLinks: number
-  appMemoryLinks: number
   accessGrants: number
   receiptItems: number
   royaltiesGenerated: number
@@ -3684,11 +3800,10 @@ export type EntryCountOutputType = {
 }
 
 export type EntryCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  downstreamEntries?: boolean | EntryCountOutputTypeCountDownstreamEntriesArgs
   sourceRelationships?: boolean | EntryCountOutputTypeCountSourceRelationshipsArgs
   targetRelationships?: boolean | EntryCountOutputTypeCountTargetRelationshipsArgs
   revisionChanges?: boolean | EntryCountOutputTypeCountRevisionChangesArgs
-  tuneMemoryLinks?: boolean | EntryCountOutputTypeCountTuneMemoryLinksArgs
-  appMemoryLinks?: boolean | EntryCountOutputTypeCountAppMemoryLinksArgs
   accessGrants?: boolean | EntryCountOutputTypeCountAccessGrantsArgs
   receiptItems?: boolean | EntryCountOutputTypeCountReceiptItemsArgs
   royaltiesGenerated?: boolean | EntryCountOutputTypeCountRoyaltiesGeneratedArgs
@@ -3703,6 +3818,13 @@ export type EntryCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extens
    * Select specific fields to fetch from the EntryCountOutputType
    */
   select?: Prisma.EntryCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * EntryCountOutputType without action
+ */
+export type EntryCountOutputTypeCountDownstreamEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EntryWhereInput
 }
 
 /**
@@ -3729,20 +3851,6 @@ export type EntryCountOutputTypeCountRevisionChangesArgs<ExtArgs extends runtime
 /**
  * EntryCountOutputType without action
  */
-export type EntryCountOutputTypeCountTuneMemoryLinksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AppMemoryLinkWhereInput
-}
-
-/**
- * EntryCountOutputType without action
- */
-export type EntryCountOutputTypeCountAppMemoryLinksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AppMemoryLinkWhereInput
-}
-
-/**
- * EntryCountOutputType without action
- */
 export type EntryCountOutputTypeCountAccessGrantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.AccessGrantWhereInput
 }
@@ -3751,7 +3859,7 @@ export type EntryCountOutputTypeCountAccessGrantsArgs<ExtArgs extends runtime.Ty
  * EntryCountOutputType without action
  */
 export type EntryCountOutputTypeCountReceiptItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ContextReceiptItemWhereInput
+  where?: Prisma.ContextRequestItemWhereInput
 }
 
 /**
@@ -3777,32 +3885,35 @@ export type EntrySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   type?: boolean
   version?: boolean
   tags?: boolean
+  externalSubjectKey?: boolean
   state?: boolean
   recallPolicy?: boolean
   origin?: boolean
   confidenceScore?: boolean
   expiresAt?: boolean
   archivedAt?: boolean
+  deletedAt?: boolean
+  deletionReason?: boolean
+  publishedAt?: boolean
   metadata?: boolean
   collectionId?: boolean
-  appMemoryId?: boolean
   userId?: boolean
   authorId?: boolean
-  sourcePackId?: boolean
+  sourceCollectionId?: boolean
   upstreamEntryId?: boolean
+  syncMode?: boolean
   citationCount?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   collection?: boolean | Prisma.CollectionDefaultArgs<ExtArgs>
-  appMemory?: boolean | Prisma.Entry$appMemoryArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  sourcePack?: boolean | Prisma.Entry$sourcePackArgs<ExtArgs>
+  author?: boolean | Prisma.Entry$authorArgs<ExtArgs>
+  sourceCollection?: boolean | Prisma.Entry$sourceCollectionArgs<ExtArgs>
+  upstreamEntry?: boolean | Prisma.Entry$upstreamEntryArgs<ExtArgs>
+  downstreamEntries?: boolean | Prisma.Entry$downstreamEntriesArgs<ExtArgs>
   sourceRelationships?: boolean | Prisma.Entry$sourceRelationshipsArgs<ExtArgs>
   targetRelationships?: boolean | Prisma.Entry$targetRelationshipsArgs<ExtArgs>
   revisionChanges?: boolean | Prisma.Entry$revisionChangesArgs<ExtArgs>
-  tuneMemoryLinks?: boolean | Prisma.Entry$tuneMemoryLinksArgs<ExtArgs>
-  appMemoryLinks?: boolean | Prisma.Entry$appMemoryLinksArgs<ExtArgs>
   accessGrants?: boolean | Prisma.Entry$accessGrantsArgs<ExtArgs>
   receiptItems?: boolean | Prisma.Entry$receiptItemsArgs<ExtArgs>
   royaltiesGenerated?: boolean | Prisma.Entry$royaltiesGeneratedArgs<ExtArgs>
@@ -3818,27 +3929,31 @@ export type EntrySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   type?: boolean
   version?: boolean
   tags?: boolean
+  externalSubjectKey?: boolean
   state?: boolean
   recallPolicy?: boolean
   origin?: boolean
   confidenceScore?: boolean
   expiresAt?: boolean
   archivedAt?: boolean
+  deletedAt?: boolean
+  deletionReason?: boolean
+  publishedAt?: boolean
   metadata?: boolean
   collectionId?: boolean
-  appMemoryId?: boolean
   userId?: boolean
   authorId?: boolean
-  sourcePackId?: boolean
+  sourceCollectionId?: boolean
   upstreamEntryId?: boolean
+  syncMode?: boolean
   citationCount?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   collection?: boolean | Prisma.CollectionDefaultArgs<ExtArgs>
-  appMemory?: boolean | Prisma.Entry$appMemoryArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  sourcePack?: boolean | Prisma.Entry$sourcePackArgs<ExtArgs>
+  author?: boolean | Prisma.Entry$authorArgs<ExtArgs>
+  sourceCollection?: boolean | Prisma.Entry$sourceCollectionArgs<ExtArgs>
+  upstreamEntry?: boolean | Prisma.Entry$upstreamEntryArgs<ExtArgs>
 }, ExtArgs["result"]["entry"]>
 
 export type EntrySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -3849,27 +3964,31 @@ export type EntrySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   type?: boolean
   version?: boolean
   tags?: boolean
+  externalSubjectKey?: boolean
   state?: boolean
   recallPolicy?: boolean
   origin?: boolean
   confidenceScore?: boolean
   expiresAt?: boolean
   archivedAt?: boolean
+  deletedAt?: boolean
+  deletionReason?: boolean
+  publishedAt?: boolean
   metadata?: boolean
   collectionId?: boolean
-  appMemoryId?: boolean
   userId?: boolean
   authorId?: boolean
-  sourcePackId?: boolean
+  sourceCollectionId?: boolean
   upstreamEntryId?: boolean
+  syncMode?: boolean
   citationCount?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   collection?: boolean | Prisma.CollectionDefaultArgs<ExtArgs>
-  appMemory?: boolean | Prisma.Entry$appMemoryArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  sourcePack?: boolean | Prisma.Entry$sourcePackArgs<ExtArgs>
+  author?: boolean | Prisma.Entry$authorArgs<ExtArgs>
+  sourceCollection?: boolean | Prisma.Entry$sourceCollectionArgs<ExtArgs>
+  upstreamEntry?: boolean | Prisma.Entry$upstreamEntryArgs<ExtArgs>
 }, ExtArgs["result"]["entry"]>
 
 export type EntrySelectScalar = {
@@ -3880,36 +3999,39 @@ export type EntrySelectScalar = {
   type?: boolean
   version?: boolean
   tags?: boolean
+  externalSubjectKey?: boolean
   state?: boolean
   recallPolicy?: boolean
   origin?: boolean
   confidenceScore?: boolean
   expiresAt?: boolean
   archivedAt?: boolean
+  deletedAt?: boolean
+  deletionReason?: boolean
+  publishedAt?: boolean
   metadata?: boolean
   collectionId?: boolean
-  appMemoryId?: boolean
   userId?: boolean
   authorId?: boolean
-  sourcePackId?: boolean
+  sourceCollectionId?: boolean
   upstreamEntryId?: boolean
+  syncMode?: boolean
   citationCount?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type EntryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "slug" | "content" | "type" | "version" | "tags" | "state" | "recallPolicy" | "origin" | "confidenceScore" | "expiresAt" | "archivedAt" | "metadata" | "collectionId" | "appMemoryId" | "userId" | "authorId" | "sourcePackId" | "upstreamEntryId" | "citationCount" | "createdAt" | "updatedAt", ExtArgs["result"]["entry"]>
+export type EntryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "slug" | "content" | "type" | "version" | "tags" | "externalSubjectKey" | "state" | "recallPolicy" | "origin" | "confidenceScore" | "expiresAt" | "archivedAt" | "deletedAt" | "deletionReason" | "publishedAt" | "metadata" | "collectionId" | "userId" | "authorId" | "sourceCollectionId" | "upstreamEntryId" | "syncMode" | "citationCount" | "createdAt" | "updatedAt", ExtArgs["result"]["entry"]>
 export type EntryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   collection?: boolean | Prisma.CollectionDefaultArgs<ExtArgs>
-  appMemory?: boolean | Prisma.Entry$appMemoryArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  sourcePack?: boolean | Prisma.Entry$sourcePackArgs<ExtArgs>
+  author?: boolean | Prisma.Entry$authorArgs<ExtArgs>
+  sourceCollection?: boolean | Prisma.Entry$sourceCollectionArgs<ExtArgs>
+  upstreamEntry?: boolean | Prisma.Entry$upstreamEntryArgs<ExtArgs>
+  downstreamEntries?: boolean | Prisma.Entry$downstreamEntriesArgs<ExtArgs>
   sourceRelationships?: boolean | Prisma.Entry$sourceRelationshipsArgs<ExtArgs>
   targetRelationships?: boolean | Prisma.Entry$targetRelationshipsArgs<ExtArgs>
   revisionChanges?: boolean | Prisma.Entry$revisionChangesArgs<ExtArgs>
-  tuneMemoryLinks?: boolean | Prisma.Entry$tuneMemoryLinksArgs<ExtArgs>
-  appMemoryLinks?: boolean | Prisma.Entry$appMemoryLinksArgs<ExtArgs>
   accessGrants?: boolean | Prisma.Entry$accessGrantsArgs<ExtArgs>
   receiptItems?: boolean | Prisma.Entry$receiptItemsArgs<ExtArgs>
   royaltiesGenerated?: boolean | Prisma.Entry$royaltiesGeneratedArgs<ExtArgs>
@@ -3918,34 +4040,33 @@ export type EntryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 }
 export type EntryIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   collection?: boolean | Prisma.CollectionDefaultArgs<ExtArgs>
-  appMemory?: boolean | Prisma.Entry$appMemoryArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  sourcePack?: boolean | Prisma.Entry$sourcePackArgs<ExtArgs>
+  author?: boolean | Prisma.Entry$authorArgs<ExtArgs>
+  sourceCollection?: boolean | Prisma.Entry$sourceCollectionArgs<ExtArgs>
+  upstreamEntry?: boolean | Prisma.Entry$upstreamEntryArgs<ExtArgs>
 }
 export type EntryIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   collection?: boolean | Prisma.CollectionDefaultArgs<ExtArgs>
-  appMemory?: boolean | Prisma.Entry$appMemoryArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  sourcePack?: boolean | Prisma.Entry$sourcePackArgs<ExtArgs>
+  author?: boolean | Prisma.Entry$authorArgs<ExtArgs>
+  sourceCollection?: boolean | Prisma.Entry$sourceCollectionArgs<ExtArgs>
+  upstreamEntry?: boolean | Prisma.Entry$upstreamEntryArgs<ExtArgs>
 }
 
 export type $EntryPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Entry"
   objects: {
     collection: Prisma.$CollectionPayload<ExtArgs>
-    appMemory: Prisma.$AppMemoryPayload<ExtArgs> | null
     user: Prisma.$UserPayload<ExtArgs>
-    author: Prisma.$UserPayload<ExtArgs>
-    sourcePack: Prisma.$PackPayload<ExtArgs> | null
+    author: Prisma.$UserPayload<ExtArgs> | null
+    sourceCollection: Prisma.$CollectionPayload<ExtArgs> | null
+    upstreamEntry: Prisma.$EntryPayload<ExtArgs> | null
+    downstreamEntries: Prisma.$EntryPayload<ExtArgs>[]
     sourceRelationships: Prisma.$EntryRelationshipPayload<ExtArgs>[]
     targetRelationships: Prisma.$EntryRelationshipPayload<ExtArgs>[]
     revisionChanges: Prisma.$RevisionChangePayload<ExtArgs>[]
-    tuneMemoryLinks: Prisma.$AppMemoryLinkPayload<ExtArgs>[]
-    appMemoryLinks: Prisma.$AppMemoryLinkPayload<ExtArgs>[]
     accessGrants: Prisma.$AccessGrantPayload<ExtArgs>[]
-    receiptItems: Prisma.$ContextReceiptItemPayload<ExtArgs>[]
+    receiptItems: Prisma.$ContextRequestItemPayload<ExtArgs>[]
     royaltiesGenerated: Prisma.$UserRoyaltyPayload<ExtArgs>[]
     stars: Prisma.$StarPayload<ExtArgs>[]
   }
@@ -3957,19 +4078,23 @@ export type $EntryPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     type: $Enums.EntryType
     version: number
     tags: string[]
+    externalSubjectKey: string | null
     state: $Enums.EntryState
     recallPolicy: $Enums.RecallPolicy
     origin: $Enums.EntryOrigin
     confidenceScore: number
     expiresAt: Date | null
     archivedAt: Date | null
+    deletedAt: Date | null
+    deletionReason: string | null
+    publishedAt: Date | null
     metadata: runtime.JsonValue | null
     collectionId: string
-    appMemoryId: string | null
     userId: string
-    authorId: string
-    sourcePackId: string | null
+    authorId: string | null
+    sourceCollectionId: string | null
     upstreamEntryId: string | null
+    syncMode: $Enums.SyncMode
     citationCount: number
     createdAt: Date
     updatedAt: Date
@@ -4368,17 +4493,16 @@ readonly fields: EntryFieldRefs;
 export interface Prisma__EntryClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   collection<T extends Prisma.CollectionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CollectionDefaultArgs<ExtArgs>>): Prisma.Prisma__CollectionClient<runtime.Types.Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  appMemory<T extends Prisma.Entry$appMemoryArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Entry$appMemoryArgs<ExtArgs>>): Prisma.Prisma__AppMemoryClient<runtime.Types.Result.GetResult<Prisma.$AppMemoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  author<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  sourcePack<T extends Prisma.Entry$sourcePackArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Entry$sourcePackArgs<ExtArgs>>): Prisma.Prisma__PackClient<runtime.Types.Result.GetResult<Prisma.$PackPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  author<T extends Prisma.Entry$authorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Entry$authorArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  sourceCollection<T extends Prisma.Entry$sourceCollectionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Entry$sourceCollectionArgs<ExtArgs>>): Prisma.Prisma__CollectionClient<runtime.Types.Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  upstreamEntry<T extends Prisma.Entry$upstreamEntryArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Entry$upstreamEntryArgs<ExtArgs>>): Prisma.Prisma__EntryClient<runtime.Types.Result.GetResult<Prisma.$EntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  downstreamEntries<T extends Prisma.Entry$downstreamEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Entry$downstreamEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sourceRelationships<T extends Prisma.Entry$sourceRelationshipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Entry$sourceRelationshipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EntryRelationshipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   targetRelationships<T extends Prisma.Entry$targetRelationshipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Entry$targetRelationshipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EntryRelationshipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   revisionChanges<T extends Prisma.Entry$revisionChangesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Entry$revisionChangesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RevisionChangePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  tuneMemoryLinks<T extends Prisma.Entry$tuneMemoryLinksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Entry$tuneMemoryLinksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppMemoryLinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  appMemoryLinks<T extends Prisma.Entry$appMemoryLinksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Entry$appMemoryLinksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppMemoryLinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   accessGrants<T extends Prisma.Entry$accessGrantsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Entry$accessGrantsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccessGrantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  receiptItems<T extends Prisma.Entry$receiptItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Entry$receiptItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContextReceiptItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  receiptItems<T extends Prisma.Entry$receiptItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Entry$receiptItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContextRequestItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   royaltiesGenerated<T extends Prisma.Entry$royaltiesGeneratedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Entry$royaltiesGeneratedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserRoyaltyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   stars<T extends Prisma.Entry$starsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Entry$starsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StarPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -4417,19 +4541,23 @@ export interface EntryFieldRefs {
   readonly type: Prisma.FieldRef<"Entry", 'EntryType'>
   readonly version: Prisma.FieldRef<"Entry", 'Int'>
   readonly tags: Prisma.FieldRef<"Entry", 'String[]'>
+  readonly externalSubjectKey: Prisma.FieldRef<"Entry", 'String'>
   readonly state: Prisma.FieldRef<"Entry", 'EntryState'>
   readonly recallPolicy: Prisma.FieldRef<"Entry", 'RecallPolicy'>
   readonly origin: Prisma.FieldRef<"Entry", 'EntryOrigin'>
   readonly confidenceScore: Prisma.FieldRef<"Entry", 'Float'>
   readonly expiresAt: Prisma.FieldRef<"Entry", 'DateTime'>
   readonly archivedAt: Prisma.FieldRef<"Entry", 'DateTime'>
+  readonly deletedAt: Prisma.FieldRef<"Entry", 'DateTime'>
+  readonly deletionReason: Prisma.FieldRef<"Entry", 'String'>
+  readonly publishedAt: Prisma.FieldRef<"Entry", 'DateTime'>
   readonly metadata: Prisma.FieldRef<"Entry", 'Json'>
   readonly collectionId: Prisma.FieldRef<"Entry", 'String'>
-  readonly appMemoryId: Prisma.FieldRef<"Entry", 'String'>
   readonly userId: Prisma.FieldRef<"Entry", 'String'>
   readonly authorId: Prisma.FieldRef<"Entry", 'String'>
-  readonly sourcePackId: Prisma.FieldRef<"Entry", 'String'>
+  readonly sourceCollectionId: Prisma.FieldRef<"Entry", 'String'>
   readonly upstreamEntryId: Prisma.FieldRef<"Entry", 'String'>
+  readonly syncMode: Prisma.FieldRef<"Entry", 'SyncMode'>
   readonly citationCount: Prisma.FieldRef<"Entry", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Entry", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Entry", 'DateTime'>
@@ -4834,41 +4962,84 @@ export type EntryDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
- * Entry.appMemory
+ * Entry.author
  */
-export type Entry$appMemoryArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Entry$authorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the AppMemory
+   * Select specific fields to fetch from the User
    */
-  select?: Prisma.AppMemorySelect<ExtArgs> | null
+  select?: Prisma.UserSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the AppMemory
+   * Omit specific fields from the User
    */
-  omit?: Prisma.AppMemoryOmit<ExtArgs> | null
+  omit?: Prisma.UserOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AppMemoryInclude<ExtArgs> | null
-  where?: Prisma.AppMemoryWhereInput
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
 }
 
 /**
- * Entry.sourcePack
+ * Entry.sourceCollection
  */
-export type Entry$sourcePackArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Entry$sourceCollectionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Pack
+   * Select specific fields to fetch from the Collection
    */
-  select?: Prisma.PackSelect<ExtArgs> | null
+  select?: Prisma.CollectionSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Pack
+   * Omit specific fields from the Collection
    */
-  omit?: Prisma.PackOmit<ExtArgs> | null
+  omit?: Prisma.CollectionOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PackInclude<ExtArgs> | null
-  where?: Prisma.PackWhereInput
+  include?: Prisma.CollectionInclude<ExtArgs> | null
+  where?: Prisma.CollectionWhereInput
+}
+
+/**
+ * Entry.upstreamEntry
+ */
+export type Entry$upstreamEntryArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Entry
+   */
+  select?: Prisma.EntrySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Entry
+   */
+  omit?: Prisma.EntryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EntryInclude<ExtArgs> | null
+  where?: Prisma.EntryWhereInput
+}
+
+/**
+ * Entry.downstreamEntries
+ */
+export type Entry$downstreamEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Entry
+   */
+  select?: Prisma.EntrySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Entry
+   */
+  omit?: Prisma.EntryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EntryInclude<ExtArgs> | null
+  where?: Prisma.EntryWhereInput
+  orderBy?: Prisma.EntryOrderByWithRelationInput | Prisma.EntryOrderByWithRelationInput[]
+  cursor?: Prisma.EntryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EntryScalarFieldEnum | Prisma.EntryScalarFieldEnum[]
 }
 
 /**
@@ -4944,54 +5115,6 @@ export type Entry$revisionChangesArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 /**
- * Entry.tuneMemoryLinks
- */
-export type Entry$tuneMemoryLinksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the AppMemoryLink
-   */
-  select?: Prisma.AppMemoryLinkSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the AppMemoryLink
-   */
-  omit?: Prisma.AppMemoryLinkOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AppMemoryLinkInclude<ExtArgs> | null
-  where?: Prisma.AppMemoryLinkWhereInput
-  orderBy?: Prisma.AppMemoryLinkOrderByWithRelationInput | Prisma.AppMemoryLinkOrderByWithRelationInput[]
-  cursor?: Prisma.AppMemoryLinkWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.AppMemoryLinkScalarFieldEnum | Prisma.AppMemoryLinkScalarFieldEnum[]
-}
-
-/**
- * Entry.appMemoryLinks
- */
-export type Entry$appMemoryLinksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the AppMemoryLink
-   */
-  select?: Prisma.AppMemoryLinkSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the AppMemoryLink
-   */
-  omit?: Prisma.AppMemoryLinkOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AppMemoryLinkInclude<ExtArgs> | null
-  where?: Prisma.AppMemoryLinkWhereInput
-  orderBy?: Prisma.AppMemoryLinkOrderByWithRelationInput | Prisma.AppMemoryLinkOrderByWithRelationInput[]
-  cursor?: Prisma.AppMemoryLinkWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.AppMemoryLinkScalarFieldEnum | Prisma.AppMemoryLinkScalarFieldEnum[]
-}
-
-/**
  * Entry.accessGrants
  */
 export type Entry$accessGrantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5020,23 +5143,23 @@ export type Entry$accessGrantsArgs<ExtArgs extends runtime.Types.Extensions.Inte
  */
 export type Entry$receiptItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the ContextReceiptItem
+   * Select specific fields to fetch from the ContextRequestItem
    */
-  select?: Prisma.ContextReceiptItemSelect<ExtArgs> | null
+  select?: Prisma.ContextRequestItemSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the ContextReceiptItem
+   * Omit specific fields from the ContextRequestItem
    */
-  omit?: Prisma.ContextReceiptItemOmit<ExtArgs> | null
+  omit?: Prisma.ContextRequestItemOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ContextReceiptItemInclude<ExtArgs> | null
-  where?: Prisma.ContextReceiptItemWhereInput
-  orderBy?: Prisma.ContextReceiptItemOrderByWithRelationInput | Prisma.ContextReceiptItemOrderByWithRelationInput[]
-  cursor?: Prisma.ContextReceiptItemWhereUniqueInput
+  include?: Prisma.ContextRequestItemInclude<ExtArgs> | null
+  where?: Prisma.ContextRequestItemWhereInput
+  orderBy?: Prisma.ContextRequestItemOrderByWithRelationInput | Prisma.ContextRequestItemOrderByWithRelationInput[]
+  cursor?: Prisma.ContextRequestItemWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.ContextReceiptItemScalarFieldEnum | Prisma.ContextReceiptItemScalarFieldEnum[]
+  distinct?: Prisma.ContextRequestItemScalarFieldEnum | Prisma.ContextRequestItemScalarFieldEnum[]
 }
 
 /**

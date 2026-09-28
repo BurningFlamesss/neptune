@@ -28,6 +28,9 @@ export type AccessRequestMinAggregateOutputType = {
   id: string | null
   userId: string | null
   clientId: string | null
+  resourceType: $Enums.AccessResourceType | null
+  resourceKey: string | null
+  collectionId: string | null
   purpose: string | null
   status: $Enums.AccessRequestStatus | null
   createdAt: Date | null
@@ -39,6 +42,9 @@ export type AccessRequestMaxAggregateOutputType = {
   id: string | null
   userId: string | null
   clientId: string | null
+  resourceType: $Enums.AccessResourceType | null
+  resourceKey: string | null
+  collectionId: string | null
   purpose: string | null
   status: $Enums.AccessRequestStatus | null
   createdAt: Date | null
@@ -50,8 +56,13 @@ export type AccessRequestCountAggregateOutputType = {
   id: number
   userId: number
   clientId: number
+  resourceType: number
+  resourceKey: number
+  collectionId: number
+  permissions: number
   purpose: number
   status: number
+  requestItems: number
   createdAt: number
   decidedAt: number
   expiresAt: number
@@ -63,6 +74,9 @@ export type AccessRequestMinAggregateInputType = {
   id?: true
   userId?: true
   clientId?: true
+  resourceType?: true
+  resourceKey?: true
+  collectionId?: true
   purpose?: true
   status?: true
   createdAt?: true
@@ -74,6 +88,9 @@ export type AccessRequestMaxAggregateInputType = {
   id?: true
   userId?: true
   clientId?: true
+  resourceType?: true
+  resourceKey?: true
+  collectionId?: true
   purpose?: true
   status?: true
   createdAt?: true
@@ -85,8 +102,13 @@ export type AccessRequestCountAggregateInputType = {
   id?: true
   userId?: true
   clientId?: true
+  resourceType?: true
+  resourceKey?: true
+  collectionId?: true
+  permissions?: true
   purpose?: true
   status?: true
+  requestItems?: true
   createdAt?: true
   decidedAt?: true
   expiresAt?: true
@@ -169,8 +191,13 @@ export type AccessRequestGroupByOutputType = {
   id: string
   userId: string
   clientId: string
+  resourceType: $Enums.AccessResourceType
+  resourceKey: string
+  collectionId: string | null
+  permissions: $Enums.AccessPermission[]
   purpose: string
   status: $Enums.AccessRequestStatus
+  requestItems: runtime.JsonValue | null
   createdAt: Date
   decidedAt: Date | null
   expiresAt: Date | null
@@ -201,28 +228,38 @@ export type AccessRequestWhereInput = {
   id?: Prisma.StringFilter<"AccessRequest"> | string
   userId?: Prisma.StringFilter<"AccessRequest"> | string
   clientId?: Prisma.StringFilter<"AccessRequest"> | string
+  resourceType?: Prisma.EnumAccessResourceTypeFilter<"AccessRequest"> | $Enums.AccessResourceType
+  resourceKey?: Prisma.StringFilter<"AccessRequest"> | string
+  collectionId?: Prisma.StringNullableFilter<"AccessRequest"> | string | null
+  permissions?: Prisma.EnumAccessPermissionNullableListFilter<"AccessRequest">
   purpose?: Prisma.StringFilter<"AccessRequest"> | string
   status?: Prisma.EnumAccessRequestStatusFilter<"AccessRequest"> | $Enums.AccessRequestStatus
+  requestItems?: Prisma.JsonNullableFilter<"AccessRequest">
   createdAt?: Prisma.DateTimeFilter<"AccessRequest"> | Date | string
   decidedAt?: Prisma.DateTimeNullableFilter<"AccessRequest"> | Date | string | null
   expiresAt?: Prisma.DateTimeNullableFilter<"AccessRequest"> | Date | string | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   oauthClient?: Prisma.XOR<Prisma.OauthClientScalarRelationFilter, Prisma.OauthClientWhereInput>
-  items?: Prisma.AccessRequestItemListRelationFilter
+  collection?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
 }
 
 export type AccessRequestOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
+  resourceType?: Prisma.SortOrder
+  resourceKey?: Prisma.SortOrder
+  collectionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  permissions?: Prisma.SortOrder
   purpose?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  requestItems?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   decidedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   expiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   oauthClient?: Prisma.OauthClientOrderByWithRelationInput
-  items?: Prisma.AccessRequestItemOrderByRelationAggregateInput
+  collection?: Prisma.CollectionOrderByWithRelationInput
 }
 
 export type AccessRequestWhereUniqueInput = Prisma.AtLeast<{
@@ -232,22 +269,32 @@ export type AccessRequestWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.AccessRequestWhereInput | Prisma.AccessRequestWhereInput[]
   userId?: Prisma.StringFilter<"AccessRequest"> | string
   clientId?: Prisma.StringFilter<"AccessRequest"> | string
+  resourceType?: Prisma.EnumAccessResourceTypeFilter<"AccessRequest"> | $Enums.AccessResourceType
+  resourceKey?: Prisma.StringFilter<"AccessRequest"> | string
+  collectionId?: Prisma.StringNullableFilter<"AccessRequest"> | string | null
+  permissions?: Prisma.EnumAccessPermissionNullableListFilter<"AccessRequest">
   purpose?: Prisma.StringFilter<"AccessRequest"> | string
   status?: Prisma.EnumAccessRequestStatusFilter<"AccessRequest"> | $Enums.AccessRequestStatus
+  requestItems?: Prisma.JsonNullableFilter<"AccessRequest">
   createdAt?: Prisma.DateTimeFilter<"AccessRequest"> | Date | string
   decidedAt?: Prisma.DateTimeNullableFilter<"AccessRequest"> | Date | string | null
   expiresAt?: Prisma.DateTimeNullableFilter<"AccessRequest"> | Date | string | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   oauthClient?: Prisma.XOR<Prisma.OauthClientScalarRelationFilter, Prisma.OauthClientWhereInput>
-  items?: Prisma.AccessRequestItemListRelationFilter
+  collection?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
 }, "id">
 
 export type AccessRequestOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
+  resourceType?: Prisma.SortOrder
+  resourceKey?: Prisma.SortOrder
+  collectionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  permissions?: Prisma.SortOrder
   purpose?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  requestItems?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   decidedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   expiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -263,8 +310,13 @@ export type AccessRequestScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"AccessRequest"> | string
   userId?: Prisma.StringWithAggregatesFilter<"AccessRequest"> | string
   clientId?: Prisma.StringWithAggregatesFilter<"AccessRequest"> | string
+  resourceType?: Prisma.EnumAccessResourceTypeWithAggregatesFilter<"AccessRequest"> | $Enums.AccessResourceType
+  resourceKey?: Prisma.StringWithAggregatesFilter<"AccessRequest"> | string
+  collectionId?: Prisma.StringNullableWithAggregatesFilter<"AccessRequest"> | string | null
+  permissions?: Prisma.EnumAccessPermissionNullableListFilter<"AccessRequest">
   purpose?: Prisma.StringWithAggregatesFilter<"AccessRequest"> | string
   status?: Prisma.EnumAccessRequestStatusWithAggregatesFilter<"AccessRequest"> | $Enums.AccessRequestStatus
+  requestItems?: Prisma.JsonNullableWithAggregatesFilter<"AccessRequest">
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"AccessRequest"> | Date | string
   decidedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"AccessRequest"> | Date | string | null
   expiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<"AccessRequest"> | Date | string | null
@@ -272,58 +324,79 @@ export type AccessRequestScalarWhereWithAggregatesInput = {
 
 export type AccessRequestCreateInput = {
   id?: string
+  resourceType: $Enums.AccessResourceType
+  resourceKey: string
+  permissions?: Prisma.AccessRequestCreatepermissionsInput | $Enums.AccessPermission[]
   purpose: string
   status?: $Enums.AccessRequestStatus
+  requestItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   decidedAt?: Date | string | null
   expiresAt?: Date | string | null
   user: Prisma.UserCreateNestedOneWithoutAccessRequestsInput
   oauthClient: Prisma.OauthClientCreateNestedOneWithoutAccessRequestsInput
-  items?: Prisma.AccessRequestItemCreateNestedManyWithoutAccessRequestInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutAccessRequestsInput
 }
 
 export type AccessRequestUncheckedCreateInput = {
   id?: string
   userId: string
   clientId: string
+  resourceType: $Enums.AccessResourceType
+  resourceKey: string
+  collectionId?: string | null
+  permissions?: Prisma.AccessRequestCreatepermissionsInput | $Enums.AccessPermission[]
   purpose: string
   status?: $Enums.AccessRequestStatus
+  requestItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   decidedAt?: Date | string | null
   expiresAt?: Date | string | null
-  items?: Prisma.AccessRequestItemUncheckedCreateNestedManyWithoutAccessRequestInput
 }
 
 export type AccessRequestUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
+  resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
+  permissions?: Prisma.AccessRequestUpdatepermissionsInput | $Enums.AccessPermission[]
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAccessRequestStatusFieldUpdateOperationsInput | $Enums.AccessRequestStatus
+  requestItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutAccessRequestsNestedInput
   oauthClient?: Prisma.OauthClientUpdateOneRequiredWithoutAccessRequestsNestedInput
-  items?: Prisma.AccessRequestItemUpdateManyWithoutAccessRequestNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutAccessRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
+  resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.AccessRequestUpdatepermissionsInput | $Enums.AccessPermission[]
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAccessRequestStatusFieldUpdateOperationsInput | $Enums.AccessRequestStatus
+  requestItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  items?: Prisma.AccessRequestItemUncheckedUpdateManyWithoutAccessRequestNestedInput
 }
 
 export type AccessRequestCreateManyInput = {
   id?: string
   userId: string
   clientId: string
+  resourceType: $Enums.AccessResourceType
+  resourceKey: string
+  collectionId?: string | null
+  permissions?: Prisma.AccessRequestCreatepermissionsInput | $Enums.AccessPermission[]
   purpose: string
   status?: $Enums.AccessRequestStatus
+  requestItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   decidedAt?: Date | string | null
   expiresAt?: Date | string | null
@@ -331,8 +404,12 @@ export type AccessRequestCreateManyInput = {
 
 export type AccessRequestUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
+  resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
+  permissions?: Prisma.AccessRequestUpdatepermissionsInput | $Enums.AccessPermission[]
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAccessRequestStatusFieldUpdateOperationsInput | $Enums.AccessRequestStatus
+  requestItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -342,8 +419,13 @@ export type AccessRequestUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
+  resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.AccessRequestUpdatepermissionsInput | $Enums.AccessPermission[]
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAccessRequestStatusFieldUpdateOperationsInput | $Enums.AccessRequestStatus
+  requestItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -363,8 +445,13 @@ export type AccessRequestCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
+  resourceType?: Prisma.SortOrder
+  resourceKey?: Prisma.SortOrder
+  collectionId?: Prisma.SortOrder
+  permissions?: Prisma.SortOrder
   purpose?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  requestItems?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   decidedAt?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
@@ -374,6 +461,9 @@ export type AccessRequestMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
+  resourceType?: Prisma.SortOrder
+  resourceKey?: Prisma.SortOrder
+  collectionId?: Prisma.SortOrder
   purpose?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -385,16 +475,14 @@ export type AccessRequestMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
+  resourceType?: Prisma.SortOrder
+  resourceKey?: Prisma.SortOrder
+  collectionId?: Prisma.SortOrder
   purpose?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   decidedAt?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
-}
-
-export type AccessRequestScalarRelationFilter = {
-  is?: Prisma.AccessRequestWhereInput
-  isNot?: Prisma.AccessRequestWhereInput
 }
 
 export type AccessRequestCreateNestedManyWithoutUserInput = {
@@ -481,44 +569,89 @@ export type AccessRequestUncheckedUpdateManyWithoutOauthClientNestedInput = {
   deleteMany?: Prisma.AccessRequestScalarWhereInput | Prisma.AccessRequestScalarWhereInput[]
 }
 
+export type AccessRequestCreateNestedManyWithoutCollectionInput = {
+  create?: Prisma.XOR<Prisma.AccessRequestCreateWithoutCollectionInput, Prisma.AccessRequestUncheckedCreateWithoutCollectionInput> | Prisma.AccessRequestCreateWithoutCollectionInput[] | Prisma.AccessRequestUncheckedCreateWithoutCollectionInput[]
+  connectOrCreate?: Prisma.AccessRequestCreateOrConnectWithoutCollectionInput | Prisma.AccessRequestCreateOrConnectWithoutCollectionInput[]
+  createMany?: Prisma.AccessRequestCreateManyCollectionInputEnvelope
+  connect?: Prisma.AccessRequestWhereUniqueInput | Prisma.AccessRequestWhereUniqueInput[]
+}
+
+export type AccessRequestUncheckedCreateNestedManyWithoutCollectionInput = {
+  create?: Prisma.XOR<Prisma.AccessRequestCreateWithoutCollectionInput, Prisma.AccessRequestUncheckedCreateWithoutCollectionInput> | Prisma.AccessRequestCreateWithoutCollectionInput[] | Prisma.AccessRequestUncheckedCreateWithoutCollectionInput[]
+  connectOrCreate?: Prisma.AccessRequestCreateOrConnectWithoutCollectionInput | Prisma.AccessRequestCreateOrConnectWithoutCollectionInput[]
+  createMany?: Prisma.AccessRequestCreateManyCollectionInputEnvelope
+  connect?: Prisma.AccessRequestWhereUniqueInput | Prisma.AccessRequestWhereUniqueInput[]
+}
+
+export type AccessRequestUpdateManyWithoutCollectionNestedInput = {
+  create?: Prisma.XOR<Prisma.AccessRequestCreateWithoutCollectionInput, Prisma.AccessRequestUncheckedCreateWithoutCollectionInput> | Prisma.AccessRequestCreateWithoutCollectionInput[] | Prisma.AccessRequestUncheckedCreateWithoutCollectionInput[]
+  connectOrCreate?: Prisma.AccessRequestCreateOrConnectWithoutCollectionInput | Prisma.AccessRequestCreateOrConnectWithoutCollectionInput[]
+  upsert?: Prisma.AccessRequestUpsertWithWhereUniqueWithoutCollectionInput | Prisma.AccessRequestUpsertWithWhereUniqueWithoutCollectionInput[]
+  createMany?: Prisma.AccessRequestCreateManyCollectionInputEnvelope
+  set?: Prisma.AccessRequestWhereUniqueInput | Prisma.AccessRequestWhereUniqueInput[]
+  disconnect?: Prisma.AccessRequestWhereUniqueInput | Prisma.AccessRequestWhereUniqueInput[]
+  delete?: Prisma.AccessRequestWhereUniqueInput | Prisma.AccessRequestWhereUniqueInput[]
+  connect?: Prisma.AccessRequestWhereUniqueInput | Prisma.AccessRequestWhereUniqueInput[]
+  update?: Prisma.AccessRequestUpdateWithWhereUniqueWithoutCollectionInput | Prisma.AccessRequestUpdateWithWhereUniqueWithoutCollectionInput[]
+  updateMany?: Prisma.AccessRequestUpdateManyWithWhereWithoutCollectionInput | Prisma.AccessRequestUpdateManyWithWhereWithoutCollectionInput[]
+  deleteMany?: Prisma.AccessRequestScalarWhereInput | Prisma.AccessRequestScalarWhereInput[]
+}
+
+export type AccessRequestUncheckedUpdateManyWithoutCollectionNestedInput = {
+  create?: Prisma.XOR<Prisma.AccessRequestCreateWithoutCollectionInput, Prisma.AccessRequestUncheckedCreateWithoutCollectionInput> | Prisma.AccessRequestCreateWithoutCollectionInput[] | Prisma.AccessRequestUncheckedCreateWithoutCollectionInput[]
+  connectOrCreate?: Prisma.AccessRequestCreateOrConnectWithoutCollectionInput | Prisma.AccessRequestCreateOrConnectWithoutCollectionInput[]
+  upsert?: Prisma.AccessRequestUpsertWithWhereUniqueWithoutCollectionInput | Prisma.AccessRequestUpsertWithWhereUniqueWithoutCollectionInput[]
+  createMany?: Prisma.AccessRequestCreateManyCollectionInputEnvelope
+  set?: Prisma.AccessRequestWhereUniqueInput | Prisma.AccessRequestWhereUniqueInput[]
+  disconnect?: Prisma.AccessRequestWhereUniqueInput | Prisma.AccessRequestWhereUniqueInput[]
+  delete?: Prisma.AccessRequestWhereUniqueInput | Prisma.AccessRequestWhereUniqueInput[]
+  connect?: Prisma.AccessRequestWhereUniqueInput | Prisma.AccessRequestWhereUniqueInput[]
+  update?: Prisma.AccessRequestUpdateWithWhereUniqueWithoutCollectionInput | Prisma.AccessRequestUpdateWithWhereUniqueWithoutCollectionInput[]
+  updateMany?: Prisma.AccessRequestUpdateManyWithWhereWithoutCollectionInput | Prisma.AccessRequestUpdateManyWithWhereWithoutCollectionInput[]
+  deleteMany?: Prisma.AccessRequestScalarWhereInput | Prisma.AccessRequestScalarWhereInput[]
+}
+
+export type AccessRequestCreatepermissionsInput = {
+  set: $Enums.AccessPermission[]
+}
+
+export type AccessRequestUpdatepermissionsInput = {
+  set?: $Enums.AccessPermission[]
+  push?: $Enums.AccessPermission | $Enums.AccessPermission[]
+}
+
 export type EnumAccessRequestStatusFieldUpdateOperationsInput = {
   set?: $Enums.AccessRequestStatus
 }
 
-export type AccessRequestCreateNestedOneWithoutItemsInput = {
-  create?: Prisma.XOR<Prisma.AccessRequestCreateWithoutItemsInput, Prisma.AccessRequestUncheckedCreateWithoutItemsInput>
-  connectOrCreate?: Prisma.AccessRequestCreateOrConnectWithoutItemsInput
-  connect?: Prisma.AccessRequestWhereUniqueInput
-}
-
-export type AccessRequestUpdateOneRequiredWithoutItemsNestedInput = {
-  create?: Prisma.XOR<Prisma.AccessRequestCreateWithoutItemsInput, Prisma.AccessRequestUncheckedCreateWithoutItemsInput>
-  connectOrCreate?: Prisma.AccessRequestCreateOrConnectWithoutItemsInput
-  upsert?: Prisma.AccessRequestUpsertWithoutItemsInput
-  connect?: Prisma.AccessRequestWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.AccessRequestUpdateToOneWithWhereWithoutItemsInput, Prisma.AccessRequestUpdateWithoutItemsInput>, Prisma.AccessRequestUncheckedUpdateWithoutItemsInput>
-}
-
 export type AccessRequestCreateWithoutUserInput = {
   id?: string
+  resourceType: $Enums.AccessResourceType
+  resourceKey: string
+  permissions?: Prisma.AccessRequestCreatepermissionsInput | $Enums.AccessPermission[]
   purpose: string
   status?: $Enums.AccessRequestStatus
+  requestItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   decidedAt?: Date | string | null
   expiresAt?: Date | string | null
   oauthClient: Prisma.OauthClientCreateNestedOneWithoutAccessRequestsInput
-  items?: Prisma.AccessRequestItemCreateNestedManyWithoutAccessRequestInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutAccessRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutUserInput = {
   id?: string
   clientId: string
+  resourceType: $Enums.AccessResourceType
+  resourceKey: string
+  collectionId?: string | null
+  permissions?: Prisma.AccessRequestCreatepermissionsInput | $Enums.AccessPermission[]
   purpose: string
   status?: $Enums.AccessRequestStatus
+  requestItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   decidedAt?: Date | string | null
   expiresAt?: Date | string | null
-  items?: Prisma.AccessRequestItemUncheckedCreateNestedManyWithoutAccessRequestInput
 }
 
 export type AccessRequestCreateOrConnectWithoutUserInput = {
@@ -554,8 +687,13 @@ export type AccessRequestScalarWhereInput = {
   id?: Prisma.StringFilter<"AccessRequest"> | string
   userId?: Prisma.StringFilter<"AccessRequest"> | string
   clientId?: Prisma.StringFilter<"AccessRequest"> | string
+  resourceType?: Prisma.EnumAccessResourceTypeFilter<"AccessRequest"> | $Enums.AccessResourceType
+  resourceKey?: Prisma.StringFilter<"AccessRequest"> | string
+  collectionId?: Prisma.StringNullableFilter<"AccessRequest"> | string | null
+  permissions?: Prisma.EnumAccessPermissionNullableListFilter<"AccessRequest">
   purpose?: Prisma.StringFilter<"AccessRequest"> | string
   status?: Prisma.EnumAccessRequestStatusFilter<"AccessRequest"> | $Enums.AccessRequestStatus
+  requestItems?: Prisma.JsonNullableFilter<"AccessRequest">
   createdAt?: Prisma.DateTimeFilter<"AccessRequest"> | Date | string
   decidedAt?: Prisma.DateTimeNullableFilter<"AccessRequest"> | Date | string | null
   expiresAt?: Prisma.DateTimeNullableFilter<"AccessRequest"> | Date | string | null
@@ -563,24 +701,32 @@ export type AccessRequestScalarWhereInput = {
 
 export type AccessRequestCreateWithoutOauthClientInput = {
   id?: string
+  resourceType: $Enums.AccessResourceType
+  resourceKey: string
+  permissions?: Prisma.AccessRequestCreatepermissionsInput | $Enums.AccessPermission[]
   purpose: string
   status?: $Enums.AccessRequestStatus
+  requestItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   decidedAt?: Date | string | null
   expiresAt?: Date | string | null
   user: Prisma.UserCreateNestedOneWithoutAccessRequestsInput
-  items?: Prisma.AccessRequestItemCreateNestedManyWithoutAccessRequestInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutAccessRequestsInput
 }
 
 export type AccessRequestUncheckedCreateWithoutOauthClientInput = {
   id?: string
   userId: string
+  resourceType: $Enums.AccessResourceType
+  resourceKey: string
+  collectionId?: string | null
+  permissions?: Prisma.AccessRequestCreatepermissionsInput | $Enums.AccessPermission[]
   purpose: string
   status?: $Enums.AccessRequestStatus
+  requestItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   decidedAt?: Date | string | null
   expiresAt?: Date | string | null
-  items?: Prisma.AccessRequestItemUncheckedCreateNestedManyWithoutAccessRequestInput
 }
 
 export type AccessRequestCreateOrConnectWithoutOauthClientInput = {
@@ -609,10 +755,14 @@ export type AccessRequestUpdateManyWithWhereWithoutOauthClientInput = {
   data: Prisma.XOR<Prisma.AccessRequestUpdateManyMutationInput, Prisma.AccessRequestUncheckedUpdateManyWithoutOauthClientInput>
 }
 
-export type AccessRequestCreateWithoutItemsInput = {
+export type AccessRequestCreateWithoutCollectionInput = {
   id?: string
+  resourceType: $Enums.AccessResourceType
+  resourceKey: string
+  permissions?: Prisma.AccessRequestCreatepermissionsInput | $Enums.AccessPermission[]
   purpose: string
   status?: $Enums.AccessRequestStatus
+  requestItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   decidedAt?: Date | string | null
   expiresAt?: Date | string | null
@@ -620,60 +770,57 @@ export type AccessRequestCreateWithoutItemsInput = {
   oauthClient: Prisma.OauthClientCreateNestedOneWithoutAccessRequestsInput
 }
 
-export type AccessRequestUncheckedCreateWithoutItemsInput = {
+export type AccessRequestUncheckedCreateWithoutCollectionInput = {
   id?: string
   userId: string
   clientId: string
+  resourceType: $Enums.AccessResourceType
+  resourceKey: string
+  permissions?: Prisma.AccessRequestCreatepermissionsInput | $Enums.AccessPermission[]
   purpose: string
   status?: $Enums.AccessRequestStatus
+  requestItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   decidedAt?: Date | string | null
   expiresAt?: Date | string | null
 }
 
-export type AccessRequestCreateOrConnectWithoutItemsInput = {
+export type AccessRequestCreateOrConnectWithoutCollectionInput = {
   where: Prisma.AccessRequestWhereUniqueInput
-  create: Prisma.XOR<Prisma.AccessRequestCreateWithoutItemsInput, Prisma.AccessRequestUncheckedCreateWithoutItemsInput>
+  create: Prisma.XOR<Prisma.AccessRequestCreateWithoutCollectionInput, Prisma.AccessRequestUncheckedCreateWithoutCollectionInput>
 }
 
-export type AccessRequestUpsertWithoutItemsInput = {
-  update: Prisma.XOR<Prisma.AccessRequestUpdateWithoutItemsInput, Prisma.AccessRequestUncheckedUpdateWithoutItemsInput>
-  create: Prisma.XOR<Prisma.AccessRequestCreateWithoutItemsInput, Prisma.AccessRequestUncheckedCreateWithoutItemsInput>
-  where?: Prisma.AccessRequestWhereInput
+export type AccessRequestCreateManyCollectionInputEnvelope = {
+  data: Prisma.AccessRequestCreateManyCollectionInput | Prisma.AccessRequestCreateManyCollectionInput[]
+  skipDuplicates?: boolean
 }
 
-export type AccessRequestUpdateToOneWithWhereWithoutItemsInput = {
-  where?: Prisma.AccessRequestWhereInput
-  data: Prisma.XOR<Prisma.AccessRequestUpdateWithoutItemsInput, Prisma.AccessRequestUncheckedUpdateWithoutItemsInput>
+export type AccessRequestUpsertWithWhereUniqueWithoutCollectionInput = {
+  where: Prisma.AccessRequestWhereUniqueInput
+  update: Prisma.XOR<Prisma.AccessRequestUpdateWithoutCollectionInput, Prisma.AccessRequestUncheckedUpdateWithoutCollectionInput>
+  create: Prisma.XOR<Prisma.AccessRequestCreateWithoutCollectionInput, Prisma.AccessRequestUncheckedCreateWithoutCollectionInput>
 }
 
-export type AccessRequestUpdateWithoutItemsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  purpose?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumAccessRequestStatusFieldUpdateOperationsInput | $Enums.AccessRequestStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  user?: Prisma.UserUpdateOneRequiredWithoutAccessRequestsNestedInput
-  oauthClient?: Prisma.OauthClientUpdateOneRequiredWithoutAccessRequestsNestedInput
+export type AccessRequestUpdateWithWhereUniqueWithoutCollectionInput = {
+  where: Prisma.AccessRequestWhereUniqueInput
+  data: Prisma.XOR<Prisma.AccessRequestUpdateWithoutCollectionInput, Prisma.AccessRequestUncheckedUpdateWithoutCollectionInput>
 }
 
-export type AccessRequestUncheckedUpdateWithoutItemsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
-  purpose?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumAccessRequestStatusFieldUpdateOperationsInput | $Enums.AccessRequestStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+export type AccessRequestUpdateManyWithWhereWithoutCollectionInput = {
+  where: Prisma.AccessRequestScalarWhereInput
+  data: Prisma.XOR<Prisma.AccessRequestUpdateManyMutationInput, Prisma.AccessRequestUncheckedUpdateManyWithoutCollectionInput>
 }
 
 export type AccessRequestCreateManyUserInput = {
   id?: string
   clientId: string
+  resourceType: $Enums.AccessResourceType
+  resourceKey: string
+  collectionId?: string | null
+  permissions?: Prisma.AccessRequestCreatepermissionsInput | $Enums.AccessPermission[]
   purpose: string
   status?: $Enums.AccessRequestStatus
+  requestItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   decidedAt?: Date | string | null
   expiresAt?: Date | string | null
@@ -681,31 +828,44 @@ export type AccessRequestCreateManyUserInput = {
 
 export type AccessRequestUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
+  resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
+  permissions?: Prisma.AccessRequestUpdatepermissionsInput | $Enums.AccessPermission[]
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAccessRequestStatusFieldUpdateOperationsInput | $Enums.AccessRequestStatus
+  requestItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   oauthClient?: Prisma.OauthClientUpdateOneRequiredWithoutAccessRequestsNestedInput
-  items?: Prisma.AccessRequestItemUpdateManyWithoutAccessRequestNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutAccessRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
+  resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.AccessRequestUpdatepermissionsInput | $Enums.AccessPermission[]
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAccessRequestStatusFieldUpdateOperationsInput | $Enums.AccessRequestStatus
+  requestItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  items?: Prisma.AccessRequestItemUncheckedUpdateManyWithoutAccessRequestNestedInput
 }
 
 export type AccessRequestUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
+  resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.AccessRequestUpdatepermissionsInput | $Enums.AccessPermission[]
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAccessRequestStatusFieldUpdateOperationsInput | $Enums.AccessRequestStatus
+  requestItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -714,8 +874,13 @@ export type AccessRequestUncheckedUpdateManyWithoutUserInput = {
 export type AccessRequestCreateManyOauthClientInput = {
   id?: string
   userId: string
+  resourceType: $Enums.AccessResourceType
+  resourceKey: string
+  collectionId?: string | null
+  permissions?: Prisma.AccessRequestCreatepermissionsInput | $Enums.AccessPermission[]
   purpose: string
   status?: $Enums.AccessRequestStatus
+  requestItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   decidedAt?: Date | string | null
   expiresAt?: Date | string | null
@@ -723,133 +888,199 @@ export type AccessRequestCreateManyOauthClientInput = {
 
 export type AccessRequestUpdateWithoutOauthClientInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
+  resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
+  permissions?: Prisma.AccessRequestUpdatepermissionsInput | $Enums.AccessPermission[]
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAccessRequestStatusFieldUpdateOperationsInput | $Enums.AccessRequestStatus
+  requestItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutAccessRequestsNestedInput
-  items?: Prisma.AccessRequestItemUpdateManyWithoutAccessRequestNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutAccessRequestsNestedInput
 }
 
 export type AccessRequestUncheckedUpdateWithoutOauthClientInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
+  resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.AccessRequestUpdatepermissionsInput | $Enums.AccessPermission[]
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAccessRequestStatusFieldUpdateOperationsInput | $Enums.AccessRequestStatus
+  requestItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  items?: Prisma.AccessRequestItemUncheckedUpdateManyWithoutAccessRequestNestedInput
 }
 
 export type AccessRequestUncheckedUpdateManyWithoutOauthClientInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
+  resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.AccessRequestUpdatepermissionsInput | $Enums.AccessPermission[]
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAccessRequestStatusFieldUpdateOperationsInput | $Enums.AccessRequestStatus
+  requestItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
-
-/**
- * Count Type AccessRequestCountOutputType
- */
-
-export type AccessRequestCountOutputType = {
-  items: number
+export type AccessRequestCreateManyCollectionInput = {
+  id?: string
+  userId: string
+  clientId: string
+  resourceType: $Enums.AccessResourceType
+  resourceKey: string
+  permissions?: Prisma.AccessRequestCreatepermissionsInput | $Enums.AccessPermission[]
+  purpose: string
+  status?: $Enums.AccessRequestStatus
+  requestItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  decidedAt?: Date | string | null
+  expiresAt?: Date | string | null
 }
 
-export type AccessRequestCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  items?: boolean | AccessRequestCountOutputTypeCountItemsArgs
+export type AccessRequestUpdateWithoutCollectionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
+  resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
+  permissions?: Prisma.AccessRequestUpdatepermissionsInput | $Enums.AccessPermission[]
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumAccessRequestStatusFieldUpdateOperationsInput | $Enums.AccessRequestStatus
+  requestItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  user?: Prisma.UserUpdateOneRequiredWithoutAccessRequestsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneRequiredWithoutAccessRequestsNestedInput
 }
 
-/**
- * AccessRequestCountOutputType without action
- */
-export type AccessRequestCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the AccessRequestCountOutputType
-   */
-  select?: Prisma.AccessRequestCountOutputTypeSelect<ExtArgs> | null
+export type AccessRequestUncheckedUpdateWithoutCollectionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
+  resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
+  permissions?: Prisma.AccessRequestUpdatepermissionsInput | $Enums.AccessPermission[]
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumAccessRequestStatusFieldUpdateOperationsInput | $Enums.AccessRequestStatus
+  requestItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
-/**
- * AccessRequestCountOutputType without action
- */
-export type AccessRequestCountOutputTypeCountItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AccessRequestItemWhereInput
+export type AccessRequestUncheckedUpdateManyWithoutCollectionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
+  resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
+  permissions?: Prisma.AccessRequestUpdatepermissionsInput | $Enums.AccessPermission[]
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumAccessRequestStatusFieldUpdateOperationsInput | $Enums.AccessRequestStatus
+  requestItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  decidedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
+
 
 
 export type AccessRequestSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
   clientId?: boolean
+  resourceType?: boolean
+  resourceKey?: boolean
+  collectionId?: boolean
+  permissions?: boolean
   purpose?: boolean
   status?: boolean
+  requestItems?: boolean
   createdAt?: boolean
   decidedAt?: boolean
   expiresAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   oauthClient?: boolean | Prisma.OauthClientDefaultArgs<ExtArgs>
-  items?: boolean | Prisma.AccessRequest$itemsArgs<ExtArgs>
-  _count?: boolean | Prisma.AccessRequestCountOutputTypeDefaultArgs<ExtArgs>
+  collection?: boolean | Prisma.AccessRequest$collectionArgs<ExtArgs>
 }, ExtArgs["result"]["accessRequest"]>
 
 export type AccessRequestSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
   clientId?: boolean
+  resourceType?: boolean
+  resourceKey?: boolean
+  collectionId?: boolean
+  permissions?: boolean
   purpose?: boolean
   status?: boolean
+  requestItems?: boolean
   createdAt?: boolean
   decidedAt?: boolean
   expiresAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   oauthClient?: boolean | Prisma.OauthClientDefaultArgs<ExtArgs>
+  collection?: boolean | Prisma.AccessRequest$collectionArgs<ExtArgs>
 }, ExtArgs["result"]["accessRequest"]>
 
 export type AccessRequestSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
   clientId?: boolean
+  resourceType?: boolean
+  resourceKey?: boolean
+  collectionId?: boolean
+  permissions?: boolean
   purpose?: boolean
   status?: boolean
+  requestItems?: boolean
   createdAt?: boolean
   decidedAt?: boolean
   expiresAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   oauthClient?: boolean | Prisma.OauthClientDefaultArgs<ExtArgs>
+  collection?: boolean | Prisma.AccessRequest$collectionArgs<ExtArgs>
 }, ExtArgs["result"]["accessRequest"]>
 
 export type AccessRequestSelectScalar = {
   id?: boolean
   userId?: boolean
   clientId?: boolean
+  resourceType?: boolean
+  resourceKey?: boolean
+  collectionId?: boolean
+  permissions?: boolean
   purpose?: boolean
   status?: boolean
+  requestItems?: boolean
   createdAt?: boolean
   decidedAt?: boolean
   expiresAt?: boolean
 }
 
-export type AccessRequestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "clientId" | "purpose" | "status" | "createdAt" | "decidedAt" | "expiresAt", ExtArgs["result"]["accessRequest"]>
+export type AccessRequestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "clientId" | "resourceType" | "resourceKey" | "collectionId" | "permissions" | "purpose" | "status" | "requestItems" | "createdAt" | "decidedAt" | "expiresAt", ExtArgs["result"]["accessRequest"]>
 export type AccessRequestInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   oauthClient?: boolean | Prisma.OauthClientDefaultArgs<ExtArgs>
-  items?: boolean | Prisma.AccessRequest$itemsArgs<ExtArgs>
-  _count?: boolean | Prisma.AccessRequestCountOutputTypeDefaultArgs<ExtArgs>
+  collection?: boolean | Prisma.AccessRequest$collectionArgs<ExtArgs>
 }
 export type AccessRequestIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   oauthClient?: boolean | Prisma.OauthClientDefaultArgs<ExtArgs>
+  collection?: boolean | Prisma.AccessRequest$collectionArgs<ExtArgs>
 }
 export type AccessRequestIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   oauthClient?: boolean | Prisma.OauthClientDefaultArgs<ExtArgs>
+  collection?: boolean | Prisma.AccessRequest$collectionArgs<ExtArgs>
 }
 
 export type $AccessRequestPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -857,14 +1088,19 @@ export type $AccessRequestPayload<ExtArgs extends runtime.Types.Extensions.Inter
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
     oauthClient: Prisma.$OauthClientPayload<ExtArgs>
-    items: Prisma.$AccessRequestItemPayload<ExtArgs>[]
+    collection: Prisma.$CollectionPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     userId: string
     clientId: string
+    resourceType: $Enums.AccessResourceType
+    resourceKey: string
+    collectionId: string | null
+    permissions: $Enums.AccessPermission[]
     purpose: string
     status: $Enums.AccessRequestStatus
+    requestItems: runtime.JsonValue | null
     createdAt: Date
     decidedAt: Date | null
     expiresAt: Date | null
@@ -1264,7 +1500,7 @@ export interface Prisma__AccessRequestClient<T, Null = never, ExtArgs extends ru
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   oauthClient<T extends Prisma.OauthClientDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OauthClientDefaultArgs<ExtArgs>>): Prisma.Prisma__OauthClientClient<runtime.Types.Result.GetResult<Prisma.$OauthClientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  items<T extends Prisma.AccessRequest$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequest$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccessRequestItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  collection<T extends Prisma.AccessRequest$collectionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessRequest$collectionArgs<ExtArgs>>): Prisma.Prisma__CollectionClient<runtime.Types.Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1297,8 +1533,13 @@ export interface AccessRequestFieldRefs {
   readonly id: Prisma.FieldRef<"AccessRequest", 'String'>
   readonly userId: Prisma.FieldRef<"AccessRequest", 'String'>
   readonly clientId: Prisma.FieldRef<"AccessRequest", 'String'>
+  readonly resourceType: Prisma.FieldRef<"AccessRequest", 'AccessResourceType'>
+  readonly resourceKey: Prisma.FieldRef<"AccessRequest", 'String'>
+  readonly collectionId: Prisma.FieldRef<"AccessRequest", 'String'>
+  readonly permissions: Prisma.FieldRef<"AccessRequest", 'AccessPermission[]'>
   readonly purpose: Prisma.FieldRef<"AccessRequest", 'String'>
   readonly status: Prisma.FieldRef<"AccessRequest", 'AccessRequestStatus'>
+  readonly requestItems: Prisma.FieldRef<"AccessRequest", 'Json'>
   readonly createdAt: Prisma.FieldRef<"AccessRequest", 'DateTime'>
   readonly decidedAt: Prisma.FieldRef<"AccessRequest", 'DateTime'>
   readonly expiresAt: Prisma.FieldRef<"AccessRequest", 'DateTime'>
@@ -1703,27 +1944,22 @@ export type AccessRequestDeleteManyArgs<ExtArgs extends runtime.Types.Extensions
 }
 
 /**
- * AccessRequest.items
+ * AccessRequest.collection
  */
-export type AccessRequest$itemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type AccessRequest$collectionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the AccessRequestItem
+   * Select specific fields to fetch from the Collection
    */
-  select?: Prisma.AccessRequestItemSelect<ExtArgs> | null
+  select?: Prisma.CollectionSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the AccessRequestItem
+   * Omit specific fields from the Collection
    */
-  omit?: Prisma.AccessRequestItemOmit<ExtArgs> | null
+  omit?: Prisma.CollectionOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AccessRequestItemInclude<ExtArgs> | null
-  where?: Prisma.AccessRequestItemWhereInput
-  orderBy?: Prisma.AccessRequestItemOrderByWithRelationInput | Prisma.AccessRequestItemOrderByWithRelationInput[]
-  cursor?: Prisma.AccessRequestItemWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.AccessRequestItemScalarFieldEnum | Prisma.AccessRequestItemScalarFieldEnum[]
+  include?: Prisma.CollectionInclude<ExtArgs> | null
+  where?: Prisma.CollectionWhereInput
 }
 
 /**

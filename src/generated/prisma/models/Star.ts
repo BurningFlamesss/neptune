@@ -27,7 +27,7 @@ export type AggregateStar = {
 export type StarMinAggregateOutputType = {
   id: string | null
   userId: string | null
-  packId: string | null
+  collectionId: string | null
   entryId: string | null
   createdAt: Date | null
 }
@@ -35,7 +35,7 @@ export type StarMinAggregateOutputType = {
 export type StarMaxAggregateOutputType = {
   id: string | null
   userId: string | null
-  packId: string | null
+  collectionId: string | null
   entryId: string | null
   createdAt: Date | null
 }
@@ -43,7 +43,7 @@ export type StarMaxAggregateOutputType = {
 export type StarCountAggregateOutputType = {
   id: number
   userId: number
-  packId: number
+  collectionId: number
   entryId: number
   createdAt: number
   _all: number
@@ -53,7 +53,7 @@ export type StarCountAggregateOutputType = {
 export type StarMinAggregateInputType = {
   id?: true
   userId?: true
-  packId?: true
+  collectionId?: true
   entryId?: true
   createdAt?: true
 }
@@ -61,7 +61,7 @@ export type StarMinAggregateInputType = {
 export type StarMaxAggregateInputType = {
   id?: true
   userId?: true
-  packId?: true
+  collectionId?: true
   entryId?: true
   createdAt?: true
 }
@@ -69,7 +69,7 @@ export type StarMaxAggregateInputType = {
 export type StarCountAggregateInputType = {
   id?: true
   userId?: true
-  packId?: true
+  collectionId?: true
   entryId?: true
   createdAt?: true
   _all?: true
@@ -150,7 +150,7 @@ export type StarGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type StarGroupByOutputType = {
   id: string
   userId: string
-  packId: string | null
+  collectionId: string | null
   entryId: string | null
   createdAt: Date
   _count: StarCountAggregateOutputType | null
@@ -179,45 +179,45 @@ export type StarWhereInput = {
   NOT?: Prisma.StarWhereInput | Prisma.StarWhereInput[]
   id?: Prisma.StringFilter<"Star"> | string
   userId?: Prisma.StringFilter<"Star"> | string
-  packId?: Prisma.StringNullableFilter<"Star"> | string | null
+  collectionId?: Prisma.StringNullableFilter<"Star"> | string | null
   entryId?: Prisma.StringNullableFilter<"Star"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Star"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  pack?: Prisma.XOR<Prisma.PackNullableScalarRelationFilter, Prisma.PackWhereInput> | null
+  collection?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
   entry?: Prisma.XOR<Prisma.EntryNullableScalarRelationFilter, Prisma.EntryWhereInput> | null
 }
 
 export type StarOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  packId?: Prisma.SortOrderInput | Prisma.SortOrder
+  collectionId?: Prisma.SortOrderInput | Prisma.SortOrder
   entryId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
-  pack?: Prisma.PackOrderByWithRelationInput
+  collection?: Prisma.CollectionOrderByWithRelationInput
   entry?: Prisma.EntryOrderByWithRelationInput
 }
 
 export type StarWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  userId_packId?: Prisma.StarUserIdPackIdCompoundUniqueInput
+  userId_collectionId?: Prisma.StarUserIdCollectionIdCompoundUniqueInput
   userId_entryId?: Prisma.StarUserIdEntryIdCompoundUniqueInput
   AND?: Prisma.StarWhereInput | Prisma.StarWhereInput[]
   OR?: Prisma.StarWhereInput[]
   NOT?: Prisma.StarWhereInput | Prisma.StarWhereInput[]
   userId?: Prisma.StringFilter<"Star"> | string
-  packId?: Prisma.StringNullableFilter<"Star"> | string | null
+  collectionId?: Prisma.StringNullableFilter<"Star"> | string | null
   entryId?: Prisma.StringNullableFilter<"Star"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Star"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  pack?: Prisma.XOR<Prisma.PackNullableScalarRelationFilter, Prisma.PackWhereInput> | null
+  collection?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
   entry?: Prisma.XOR<Prisma.EntryNullableScalarRelationFilter, Prisma.EntryWhereInput> | null
-}, "id" | "userId_packId" | "userId_entryId">
+}, "id" | "userId_collectionId" | "userId_entryId">
 
 export type StarOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  packId?: Prisma.SortOrderInput | Prisma.SortOrder
+  collectionId?: Prisma.SortOrderInput | Prisma.SortOrder
   entryId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.StarCountOrderByAggregateInput
@@ -231,7 +231,7 @@ export type StarScalarWhereWithAggregatesInput = {
   NOT?: Prisma.StarScalarWhereWithAggregatesInput | Prisma.StarScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Star"> | string
   userId?: Prisma.StringWithAggregatesFilter<"Star"> | string
-  packId?: Prisma.StringNullableWithAggregatesFilter<"Star"> | string | null
+  collectionId?: Prisma.StringNullableWithAggregatesFilter<"Star"> | string | null
   entryId?: Prisma.StringNullableWithAggregatesFilter<"Star"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Star"> | Date | string
 }
@@ -240,14 +240,14 @@ export type StarCreateInput = {
   id?: string
   createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutStarsInput
-  pack?: Prisma.PackCreateNestedOneWithoutStarsInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutStarsInput
   entry?: Prisma.EntryCreateNestedOneWithoutStarsInput
 }
 
 export type StarUncheckedCreateInput = {
   id?: string
   userId: string
-  packId?: string | null
+  collectionId?: string | null
   entryId?: string | null
   createdAt?: Date | string
 }
@@ -256,14 +256,14 @@ export type StarUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutStarsNestedInput
-  pack?: Prisma.PackUpdateOneWithoutStarsNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutStarsNestedInput
   entry?: Prisma.EntryUpdateOneWithoutStarsNestedInput
 }
 
 export type StarUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -271,7 +271,7 @@ export type StarUncheckedUpdateInput = {
 export type StarCreateManyInput = {
   id?: string
   userId: string
-  packId?: string | null
+  collectionId?: string | null
   entryId?: string | null
   createdAt?: Date | string
 }
@@ -284,7 +284,7 @@ export type StarUpdateManyMutationInput = {
 export type StarUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -299,9 +299,9 @@ export type StarOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type StarUserIdPackIdCompoundUniqueInput = {
+export type StarUserIdCollectionIdCompoundUniqueInput = {
   userId: string
-  packId: string
+  collectionId: string
 }
 
 export type StarUserIdEntryIdCompoundUniqueInput = {
@@ -312,7 +312,7 @@ export type StarUserIdEntryIdCompoundUniqueInput = {
 export type StarCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  packId?: Prisma.SortOrder
+  collectionId?: Prisma.SortOrder
   entryId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -320,7 +320,7 @@ export type StarCountOrderByAggregateInput = {
 export type StarMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  packId?: Prisma.SortOrder
+  collectionId?: Prisma.SortOrder
   entryId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -328,7 +328,7 @@ export type StarMaxOrderByAggregateInput = {
 export type StarMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  packId?: Prisma.SortOrder
+  collectionId?: Prisma.SortOrder
   entryId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -375,6 +375,48 @@ export type StarUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.StarScalarWhereInput | Prisma.StarScalarWhereInput[]
 }
 
+export type StarCreateNestedManyWithoutCollectionInput = {
+  create?: Prisma.XOR<Prisma.StarCreateWithoutCollectionInput, Prisma.StarUncheckedCreateWithoutCollectionInput> | Prisma.StarCreateWithoutCollectionInput[] | Prisma.StarUncheckedCreateWithoutCollectionInput[]
+  connectOrCreate?: Prisma.StarCreateOrConnectWithoutCollectionInput | Prisma.StarCreateOrConnectWithoutCollectionInput[]
+  createMany?: Prisma.StarCreateManyCollectionInputEnvelope
+  connect?: Prisma.StarWhereUniqueInput | Prisma.StarWhereUniqueInput[]
+}
+
+export type StarUncheckedCreateNestedManyWithoutCollectionInput = {
+  create?: Prisma.XOR<Prisma.StarCreateWithoutCollectionInput, Prisma.StarUncheckedCreateWithoutCollectionInput> | Prisma.StarCreateWithoutCollectionInput[] | Prisma.StarUncheckedCreateWithoutCollectionInput[]
+  connectOrCreate?: Prisma.StarCreateOrConnectWithoutCollectionInput | Prisma.StarCreateOrConnectWithoutCollectionInput[]
+  createMany?: Prisma.StarCreateManyCollectionInputEnvelope
+  connect?: Prisma.StarWhereUniqueInput | Prisma.StarWhereUniqueInput[]
+}
+
+export type StarUpdateManyWithoutCollectionNestedInput = {
+  create?: Prisma.XOR<Prisma.StarCreateWithoutCollectionInput, Prisma.StarUncheckedCreateWithoutCollectionInput> | Prisma.StarCreateWithoutCollectionInput[] | Prisma.StarUncheckedCreateWithoutCollectionInput[]
+  connectOrCreate?: Prisma.StarCreateOrConnectWithoutCollectionInput | Prisma.StarCreateOrConnectWithoutCollectionInput[]
+  upsert?: Prisma.StarUpsertWithWhereUniqueWithoutCollectionInput | Prisma.StarUpsertWithWhereUniqueWithoutCollectionInput[]
+  createMany?: Prisma.StarCreateManyCollectionInputEnvelope
+  set?: Prisma.StarWhereUniqueInput | Prisma.StarWhereUniqueInput[]
+  disconnect?: Prisma.StarWhereUniqueInput | Prisma.StarWhereUniqueInput[]
+  delete?: Prisma.StarWhereUniqueInput | Prisma.StarWhereUniqueInput[]
+  connect?: Prisma.StarWhereUniqueInput | Prisma.StarWhereUniqueInput[]
+  update?: Prisma.StarUpdateWithWhereUniqueWithoutCollectionInput | Prisma.StarUpdateWithWhereUniqueWithoutCollectionInput[]
+  updateMany?: Prisma.StarUpdateManyWithWhereWithoutCollectionInput | Prisma.StarUpdateManyWithWhereWithoutCollectionInput[]
+  deleteMany?: Prisma.StarScalarWhereInput | Prisma.StarScalarWhereInput[]
+}
+
+export type StarUncheckedUpdateManyWithoutCollectionNestedInput = {
+  create?: Prisma.XOR<Prisma.StarCreateWithoutCollectionInput, Prisma.StarUncheckedCreateWithoutCollectionInput> | Prisma.StarCreateWithoutCollectionInput[] | Prisma.StarUncheckedCreateWithoutCollectionInput[]
+  connectOrCreate?: Prisma.StarCreateOrConnectWithoutCollectionInput | Prisma.StarCreateOrConnectWithoutCollectionInput[]
+  upsert?: Prisma.StarUpsertWithWhereUniqueWithoutCollectionInput | Prisma.StarUpsertWithWhereUniqueWithoutCollectionInput[]
+  createMany?: Prisma.StarCreateManyCollectionInputEnvelope
+  set?: Prisma.StarWhereUniqueInput | Prisma.StarWhereUniqueInput[]
+  disconnect?: Prisma.StarWhereUniqueInput | Prisma.StarWhereUniqueInput[]
+  delete?: Prisma.StarWhereUniqueInput | Prisma.StarWhereUniqueInput[]
+  connect?: Prisma.StarWhereUniqueInput | Prisma.StarWhereUniqueInput[]
+  update?: Prisma.StarUpdateWithWhereUniqueWithoutCollectionInput | Prisma.StarUpdateWithWhereUniqueWithoutCollectionInput[]
+  updateMany?: Prisma.StarUpdateManyWithWhereWithoutCollectionInput | Prisma.StarUpdateManyWithWhereWithoutCollectionInput[]
+  deleteMany?: Prisma.StarScalarWhereInput | Prisma.StarScalarWhereInput[]
+}
+
 export type StarCreateNestedManyWithoutEntryInput = {
   create?: Prisma.XOR<Prisma.StarCreateWithoutEntryInput, Prisma.StarUncheckedCreateWithoutEntryInput> | Prisma.StarCreateWithoutEntryInput[] | Prisma.StarUncheckedCreateWithoutEntryInput[]
   connectOrCreate?: Prisma.StarCreateOrConnectWithoutEntryInput | Prisma.StarCreateOrConnectWithoutEntryInput[]
@@ -417,58 +459,16 @@ export type StarUncheckedUpdateManyWithoutEntryNestedInput = {
   deleteMany?: Prisma.StarScalarWhereInput | Prisma.StarScalarWhereInput[]
 }
 
-export type StarCreateNestedManyWithoutPackInput = {
-  create?: Prisma.XOR<Prisma.StarCreateWithoutPackInput, Prisma.StarUncheckedCreateWithoutPackInput> | Prisma.StarCreateWithoutPackInput[] | Prisma.StarUncheckedCreateWithoutPackInput[]
-  connectOrCreate?: Prisma.StarCreateOrConnectWithoutPackInput | Prisma.StarCreateOrConnectWithoutPackInput[]
-  createMany?: Prisma.StarCreateManyPackInputEnvelope
-  connect?: Prisma.StarWhereUniqueInput | Prisma.StarWhereUniqueInput[]
-}
-
-export type StarUncheckedCreateNestedManyWithoutPackInput = {
-  create?: Prisma.XOR<Prisma.StarCreateWithoutPackInput, Prisma.StarUncheckedCreateWithoutPackInput> | Prisma.StarCreateWithoutPackInput[] | Prisma.StarUncheckedCreateWithoutPackInput[]
-  connectOrCreate?: Prisma.StarCreateOrConnectWithoutPackInput | Prisma.StarCreateOrConnectWithoutPackInput[]
-  createMany?: Prisma.StarCreateManyPackInputEnvelope
-  connect?: Prisma.StarWhereUniqueInput | Prisma.StarWhereUniqueInput[]
-}
-
-export type StarUpdateManyWithoutPackNestedInput = {
-  create?: Prisma.XOR<Prisma.StarCreateWithoutPackInput, Prisma.StarUncheckedCreateWithoutPackInput> | Prisma.StarCreateWithoutPackInput[] | Prisma.StarUncheckedCreateWithoutPackInput[]
-  connectOrCreate?: Prisma.StarCreateOrConnectWithoutPackInput | Prisma.StarCreateOrConnectWithoutPackInput[]
-  upsert?: Prisma.StarUpsertWithWhereUniqueWithoutPackInput | Prisma.StarUpsertWithWhereUniqueWithoutPackInput[]
-  createMany?: Prisma.StarCreateManyPackInputEnvelope
-  set?: Prisma.StarWhereUniqueInput | Prisma.StarWhereUniqueInput[]
-  disconnect?: Prisma.StarWhereUniqueInput | Prisma.StarWhereUniqueInput[]
-  delete?: Prisma.StarWhereUniqueInput | Prisma.StarWhereUniqueInput[]
-  connect?: Prisma.StarWhereUniqueInput | Prisma.StarWhereUniqueInput[]
-  update?: Prisma.StarUpdateWithWhereUniqueWithoutPackInput | Prisma.StarUpdateWithWhereUniqueWithoutPackInput[]
-  updateMany?: Prisma.StarUpdateManyWithWhereWithoutPackInput | Prisma.StarUpdateManyWithWhereWithoutPackInput[]
-  deleteMany?: Prisma.StarScalarWhereInput | Prisma.StarScalarWhereInput[]
-}
-
-export type StarUncheckedUpdateManyWithoutPackNestedInput = {
-  create?: Prisma.XOR<Prisma.StarCreateWithoutPackInput, Prisma.StarUncheckedCreateWithoutPackInput> | Prisma.StarCreateWithoutPackInput[] | Prisma.StarUncheckedCreateWithoutPackInput[]
-  connectOrCreate?: Prisma.StarCreateOrConnectWithoutPackInput | Prisma.StarCreateOrConnectWithoutPackInput[]
-  upsert?: Prisma.StarUpsertWithWhereUniqueWithoutPackInput | Prisma.StarUpsertWithWhereUniqueWithoutPackInput[]
-  createMany?: Prisma.StarCreateManyPackInputEnvelope
-  set?: Prisma.StarWhereUniqueInput | Prisma.StarWhereUniqueInput[]
-  disconnect?: Prisma.StarWhereUniqueInput | Prisma.StarWhereUniqueInput[]
-  delete?: Prisma.StarWhereUniqueInput | Prisma.StarWhereUniqueInput[]
-  connect?: Prisma.StarWhereUniqueInput | Prisma.StarWhereUniqueInput[]
-  update?: Prisma.StarUpdateWithWhereUniqueWithoutPackInput | Prisma.StarUpdateWithWhereUniqueWithoutPackInput[]
-  updateMany?: Prisma.StarUpdateManyWithWhereWithoutPackInput | Prisma.StarUpdateManyWithWhereWithoutPackInput[]
-  deleteMany?: Prisma.StarScalarWhereInput | Prisma.StarScalarWhereInput[]
-}
-
 export type StarCreateWithoutUserInput = {
   id?: string
   createdAt?: Date | string
-  pack?: Prisma.PackCreateNestedOneWithoutStarsInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutStarsInput
   entry?: Prisma.EntryCreateNestedOneWithoutStarsInput
 }
 
 export type StarUncheckedCreateWithoutUserInput = {
   id?: string
-  packId?: string | null
+  collectionId?: string | null
   entryId?: string | null
   createdAt?: Date | string
 }
@@ -505,22 +505,62 @@ export type StarScalarWhereInput = {
   NOT?: Prisma.StarScalarWhereInput | Prisma.StarScalarWhereInput[]
   id?: Prisma.StringFilter<"Star"> | string
   userId?: Prisma.StringFilter<"Star"> | string
-  packId?: Prisma.StringNullableFilter<"Star"> | string | null
+  collectionId?: Prisma.StringNullableFilter<"Star"> | string | null
   entryId?: Prisma.StringNullableFilter<"Star"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Star"> | Date | string
+}
+
+export type StarCreateWithoutCollectionInput = {
+  id?: string
+  createdAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutStarsInput
+  entry?: Prisma.EntryCreateNestedOneWithoutStarsInput
+}
+
+export type StarUncheckedCreateWithoutCollectionInput = {
+  id?: string
+  userId: string
+  entryId?: string | null
+  createdAt?: Date | string
+}
+
+export type StarCreateOrConnectWithoutCollectionInput = {
+  where: Prisma.StarWhereUniqueInput
+  create: Prisma.XOR<Prisma.StarCreateWithoutCollectionInput, Prisma.StarUncheckedCreateWithoutCollectionInput>
+}
+
+export type StarCreateManyCollectionInputEnvelope = {
+  data: Prisma.StarCreateManyCollectionInput | Prisma.StarCreateManyCollectionInput[]
+  skipDuplicates?: boolean
+}
+
+export type StarUpsertWithWhereUniqueWithoutCollectionInput = {
+  where: Prisma.StarWhereUniqueInput
+  update: Prisma.XOR<Prisma.StarUpdateWithoutCollectionInput, Prisma.StarUncheckedUpdateWithoutCollectionInput>
+  create: Prisma.XOR<Prisma.StarCreateWithoutCollectionInput, Prisma.StarUncheckedCreateWithoutCollectionInput>
+}
+
+export type StarUpdateWithWhereUniqueWithoutCollectionInput = {
+  where: Prisma.StarWhereUniqueInput
+  data: Prisma.XOR<Prisma.StarUpdateWithoutCollectionInput, Prisma.StarUncheckedUpdateWithoutCollectionInput>
+}
+
+export type StarUpdateManyWithWhereWithoutCollectionInput = {
+  where: Prisma.StarScalarWhereInput
+  data: Prisma.XOR<Prisma.StarUpdateManyMutationInput, Prisma.StarUncheckedUpdateManyWithoutCollectionInput>
 }
 
 export type StarCreateWithoutEntryInput = {
   id?: string
   createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutStarsInput
-  pack?: Prisma.PackCreateNestedOneWithoutStarsInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutStarsInput
 }
 
 export type StarUncheckedCreateWithoutEntryInput = {
   id?: string
   userId: string
-  packId?: string | null
+  collectionId?: string | null
   createdAt?: Date | string
 }
 
@@ -550,49 +590,9 @@ export type StarUpdateManyWithWhereWithoutEntryInput = {
   data: Prisma.XOR<Prisma.StarUpdateManyMutationInput, Prisma.StarUncheckedUpdateManyWithoutEntryInput>
 }
 
-export type StarCreateWithoutPackInput = {
-  id?: string
-  createdAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutStarsInput
-  entry?: Prisma.EntryCreateNestedOneWithoutStarsInput
-}
-
-export type StarUncheckedCreateWithoutPackInput = {
-  id?: string
-  userId: string
-  entryId?: string | null
-  createdAt?: Date | string
-}
-
-export type StarCreateOrConnectWithoutPackInput = {
-  where: Prisma.StarWhereUniqueInput
-  create: Prisma.XOR<Prisma.StarCreateWithoutPackInput, Prisma.StarUncheckedCreateWithoutPackInput>
-}
-
-export type StarCreateManyPackInputEnvelope = {
-  data: Prisma.StarCreateManyPackInput | Prisma.StarCreateManyPackInput[]
-  skipDuplicates?: boolean
-}
-
-export type StarUpsertWithWhereUniqueWithoutPackInput = {
-  where: Prisma.StarWhereUniqueInput
-  update: Prisma.XOR<Prisma.StarUpdateWithoutPackInput, Prisma.StarUncheckedUpdateWithoutPackInput>
-  create: Prisma.XOR<Prisma.StarCreateWithoutPackInput, Prisma.StarUncheckedCreateWithoutPackInput>
-}
-
-export type StarUpdateWithWhereUniqueWithoutPackInput = {
-  where: Prisma.StarWhereUniqueInput
-  data: Prisma.XOR<Prisma.StarUpdateWithoutPackInput, Prisma.StarUncheckedUpdateWithoutPackInput>
-}
-
-export type StarUpdateManyWithWhereWithoutPackInput = {
-  where: Prisma.StarScalarWhereInput
-  data: Prisma.XOR<Prisma.StarUpdateManyMutationInput, Prisma.StarUncheckedUpdateManyWithoutPackInput>
-}
-
 export type StarCreateManyUserInput = {
   id?: string
-  packId?: string | null
+  collectionId?: string | null
   entryId?: string | null
   createdAt?: Date | string
 }
@@ -600,20 +600,48 @@ export type StarCreateManyUserInput = {
 export type StarUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  pack?: Prisma.PackUpdateOneWithoutStarsNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutStarsNestedInput
   entry?: Prisma.EntryUpdateOneWithoutStarsNestedInput
 }
 
 export type StarUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type StarUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type StarCreateManyCollectionInput = {
+  id?: string
+  userId: string
+  entryId?: string | null
+  createdAt?: Date | string
+}
+
+export type StarUpdateWithoutCollectionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutStarsNestedInput
+  entry?: Prisma.EntryUpdateOneWithoutStarsNestedInput
+}
+
+export type StarUncheckedUpdateWithoutCollectionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type StarUncheckedUpdateManyWithoutCollectionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -621,7 +649,7 @@ export type StarUncheckedUpdateManyWithoutUserInput = {
 export type StarCreateManyEntryInput = {
   id?: string
   userId: string
-  packId?: string | null
+  collectionId?: string | null
   createdAt?: Date | string
 }
 
@@ -629,48 +657,20 @@ export type StarUpdateWithoutEntryInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutStarsNestedInput
-  pack?: Prisma.PackUpdateOneWithoutStarsNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutStarsNestedInput
 }
 
 export type StarUncheckedUpdateWithoutEntryInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type StarUncheckedUpdateManyWithoutEntryInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type StarCreateManyPackInput = {
-  id?: string
-  userId: string
-  entryId?: string | null
-  createdAt?: Date | string
-}
-
-export type StarUpdateWithoutPackInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutStarsNestedInput
-  entry?: Prisma.EntryUpdateOneWithoutStarsNestedInput
-}
-
-export type StarUncheckedUpdateWithoutPackInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type StarUncheckedUpdateManyWithoutPackInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -679,58 +679,58 @@ export type StarUncheckedUpdateManyWithoutPackInput = {
 export type StarSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  packId?: boolean
+  collectionId?: boolean
   entryId?: boolean
   createdAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  pack?: boolean | Prisma.Star$packArgs<ExtArgs>
+  collection?: boolean | Prisma.Star$collectionArgs<ExtArgs>
   entry?: boolean | Prisma.Star$entryArgs<ExtArgs>
 }, ExtArgs["result"]["star"]>
 
 export type StarSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  packId?: boolean
+  collectionId?: boolean
   entryId?: boolean
   createdAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  pack?: boolean | Prisma.Star$packArgs<ExtArgs>
+  collection?: boolean | Prisma.Star$collectionArgs<ExtArgs>
   entry?: boolean | Prisma.Star$entryArgs<ExtArgs>
 }, ExtArgs["result"]["star"]>
 
 export type StarSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  packId?: boolean
+  collectionId?: boolean
   entryId?: boolean
   createdAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  pack?: boolean | Prisma.Star$packArgs<ExtArgs>
+  collection?: boolean | Prisma.Star$collectionArgs<ExtArgs>
   entry?: boolean | Prisma.Star$entryArgs<ExtArgs>
 }, ExtArgs["result"]["star"]>
 
 export type StarSelectScalar = {
   id?: boolean
   userId?: boolean
-  packId?: boolean
+  collectionId?: boolean
   entryId?: boolean
   createdAt?: boolean
 }
 
-export type StarOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "packId" | "entryId" | "createdAt", ExtArgs["result"]["star"]>
+export type StarOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "collectionId" | "entryId" | "createdAt", ExtArgs["result"]["star"]>
 export type StarInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  pack?: boolean | Prisma.Star$packArgs<ExtArgs>
+  collection?: boolean | Prisma.Star$collectionArgs<ExtArgs>
   entry?: boolean | Prisma.Star$entryArgs<ExtArgs>
 }
 export type StarIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  pack?: boolean | Prisma.Star$packArgs<ExtArgs>
+  collection?: boolean | Prisma.Star$collectionArgs<ExtArgs>
   entry?: boolean | Prisma.Star$entryArgs<ExtArgs>
 }
 export type StarIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  pack?: boolean | Prisma.Star$packArgs<ExtArgs>
+  collection?: boolean | Prisma.Star$collectionArgs<ExtArgs>
   entry?: boolean | Prisma.Star$entryArgs<ExtArgs>
 }
 
@@ -738,13 +738,13 @@ export type $StarPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "Star"
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
-    pack: Prisma.$PackPayload<ExtArgs> | null
+    collection: Prisma.$CollectionPayload<ExtArgs> | null
     entry: Prisma.$EntryPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     userId: string
-    packId: string | null
+    collectionId: string | null
     entryId: string | null
     createdAt: Date
   }, ExtArgs["result"]["star"]>
@@ -1142,7 +1142,7 @@ readonly fields: StarFieldRefs;
 export interface Prisma__StarClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  pack<T extends Prisma.Star$packArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Star$packArgs<ExtArgs>>): Prisma.Prisma__PackClient<runtime.Types.Result.GetResult<Prisma.$PackPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  collection<T extends Prisma.Star$collectionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Star$collectionArgs<ExtArgs>>): Prisma.Prisma__CollectionClient<runtime.Types.Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   entry<T extends Prisma.Star$entryArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Star$entryArgs<ExtArgs>>): Prisma.Prisma__EntryClient<runtime.Types.Result.GetResult<Prisma.$EntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1175,7 +1175,7 @@ export interface Prisma__StarClient<T, Null = never, ExtArgs extends runtime.Typ
 export interface StarFieldRefs {
   readonly id: Prisma.FieldRef<"Star", 'String'>
   readonly userId: Prisma.FieldRef<"Star", 'String'>
-  readonly packId: Prisma.FieldRef<"Star", 'String'>
+  readonly collectionId: Prisma.FieldRef<"Star", 'String'>
   readonly entryId: Prisma.FieldRef<"Star", 'String'>
   readonly createdAt: Prisma.FieldRef<"Star", 'DateTime'>
 }
@@ -1579,22 +1579,22 @@ export type StarDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * Star.pack
+ * Star.collection
  */
-export type Star$packArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Star$collectionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Pack
+   * Select specific fields to fetch from the Collection
    */
-  select?: Prisma.PackSelect<ExtArgs> | null
+  select?: Prisma.CollectionSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Pack
+   * Omit specific fields from the Collection
    */
-  omit?: Prisma.PackOmit<ExtArgs> | null
+  omit?: Prisma.CollectionOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PackInclude<ExtArgs> | null
-  where?: Prisma.PackWhereInput
+  include?: Prisma.CollectionInclude<ExtArgs> | null
+  where?: Prisma.CollectionWhereInput
 }
 
 /**

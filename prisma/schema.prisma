@@ -17,7 +17,7 @@ enum Visibility {
 enum CollectionKind {
   PERSONAL
   APP_MEMORY
-  COMMUNITY_COLLECTION
+  COMMUNITY_PACK
 }
 
 enum CollectionAccessMode {
@@ -137,21 +137,6 @@ enum BountyStatus {
   CANCELLED
 }
 
-enum BountySubmissionStatus {
-  PENDING
-  ACCEPTED
-  REJECTED
-  CHANGES_REQUIRED
-}
-
-enum AppMemoryOperation {
-  READ
-  WRITE
-  SEARCH
-  UPDATE
-  DELETE
-}
-
 enum AreaKind {
   PERSONAL
   PROJECTS
@@ -261,13 +246,6 @@ enum CombineStatus {
   ABORTED
 }
 
-enum ConflictResolution {
-  KEEP_TARGET
-  USE_SOURCE
-  CUSTOM
-  UNRESOLVED
-}
-
 model User {
   id                            String               @id
   name                          String
@@ -298,7 +276,6 @@ model User {
   areas                         Area[]
   entries                       Entry[]              @relation("UserEntries")
   authoredEntries               Entry[]              @relation("AuthoredEntries")
-  appMemories                   AppMemory[]          @relation("UserAppMemories")
   accessGrants                  AccessGrant[]        @relation("UserAccessGrants")
   accessRequests                AccessRequest[]      @relation("UserAccessRequests")
   contextRequests               ContextRequest[]     @relation("UserContextRequests")
@@ -307,15 +284,11 @@ model User {
   authoredRevisions Revision[] @relation("RevisionAuthor")
   authoredCombines  Combine[]  @relation("CombineAuthor")
 
-  royalties           UserRoyalty[]           @relation("UserRoyalties")
-  collections         Collection[]            @relation("UserCollections")
-  collectionPurchases CollectionPurchase[]    @relation("UserCollectionPurchases")
-  donationsSent       CollectionDonation[]    @relation("UserDonations")
-  sponsorshipsFunded  CollectionSponsorship[] @relation("UserSponsorships")
-  bountiesCreated     KnowledgeBounty[]       @relation("UserBounties")
-  bountySubmissions   BountySubmission[]      @relation("UserBountySubmissions")
-  payouts             CreatorPayout[]         @relation("UserPayouts")
-  stars               Star[]
+  royalties       UserRoyalty[]     @relation("UserRoyalties")
+  collections     Collection[]      @relation("UserCollections")
+  bountiesCreated KnowledgeBounty[] @relation("UserBounties")
+  payouts         CreatorPayout[]   @relation("UserPayouts")
+  stars           Star[]
 
   tuneApps             TuneApp[]             @relation("UserTuneApps")
   tuneAppInstallations TuneAppInstallation[] @relation("UserTuneAppInstalls")
@@ -340,16 +313,13 @@ model Organization {
   autoRechargeAmountCents    Float                @default(5000.0)
   members                    OrganizationMember[]
 
-  createdAt              DateTime                @default(now())
-  updatedAt              DateTime                @updatedAt
-  appMemoryUsageLedgers  AppMemoryUsageLedger[]  @relation("OrgAppMemoryLedger")
-  apiUsageLedgers        ApiUsageLedger[]        @relation("OrgUsageLedger")
-  collectionPurchases    CollectionPurchase[]    @relation("OrgCollectionPurchases")
-  collectionSponsorships CollectionSponsorship[] @relation("OrgSponsorships")
-  knowledgeBounties      KnowledgeBounty[]       @relation("OrgBounties")
-  payments               Payment[]               @relation("OrgPayments")
-  developerApiKeys       DeveloperApiKey[]       @relation("OrgApiKeys")
-  collections            Collection[]            @relation("OrgCollections")
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  apiUsageLedgers   ApiUsageLedger[]  @relation("OrgUsageLedger")
+  knowledgeBounties KnowledgeBounty[] @relation("OrgBounties")
+  payments          Payment[]         @relation("OrgPayments")
+  developerApiKeys  DeveloperApiKey[] @relation("OrgApiKeys")
+  collections       Collection[]      @relation("OrgCollections")
 
   @@map("organizations")
 }
@@ -401,6 +371,7 @@ model Account {
   updatedAt             DateTime  @updatedAt
 
   @@index([userId])
+  @@unique([providerId, accountId])
   @@map("account")
 }
 
@@ -471,15 +442,13 @@ model OauthClient {
 
   developerApiKeys DeveloperApiKey[] @relation("ClientApiKeys")
 
-  createdAt             DateTime               @default(now())
-  updatedAt             DateTime               @updatedAt
-  appMemories           AppMemory[]
-  accessGrants          AccessGrant[]          @relation("GrantedToApp")
-  appMemoryUsageLedgers AppMemoryUsageLedger[] @relation("ClientAppMemoryLedger")
-  accessRequests        AccessRequest[]        @relation("AppRequestsAccess")
-  contextRequests       ContextRequest[]       @relation("AppRequestsContext")
-  apiUsageLedgers       ApiUsageLedger[]       @relation("AppUsageLedger")
-  appCollections        Collection[]           @relation("ClientCollections")
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  accessGrants    AccessGrant[]    @relation("GrantedToApp")
+  accessRequests  AccessRequest[]  @relation("AppRequestsAccess")
+  contextRequests ContextRequest[] @relation("AppRequestsContext")
+  apiUsageLedgers ApiUsageLedger[] @relation("AppUsageLedger")
+  appCollections  Collection[]     @relation("ClientCollections")
 
   @@unique([clientId])
   @@index([userId])
@@ -501,11 +470,10 @@ model DeveloperApiKey {
   clientId    String?
   oauthClient OauthClient? @relation("ClientApiKeys", fields: [clientId], references: [id], onDelete: Cascade)
 
-  isGlobalScope          Boolean                 @default(false)
-  scopeCollection        ApiKeyCollectionScope[]
+  isGlobalScope          Boolean @default(false)
   monthlySpendCapCents   Float?
-  currentMonthSpendCents Float                   @default(0.0)
-  rateLimitPerMinute     Int                     @default(120)
+  currentMonthSpendCents Float   @default(0.0)
+  rateLimitPerMinute     Int     @default(120)
 
   lastUsedAt DateTime?
   expiresAt  DateTime?
@@ -514,24 +482,11 @@ model DeveloperApiKey {
 
   contextRequests ContextRequest[]
   usageLedgers    ApiUsageLedger[]
-  accessGrants    AccessGrant[]
-  accessGrants    AccessGrant[]
+  accessGrants    AccessGrant[]    @relation("GrantedToApiKey")
 
   @@index([userId])
   @@index([organizationId])
   @@map("developer_api_keys")
-}
-
-model ApiKeyCollectionScope {
-  id           String          @id @default(cuid())
-  apiKeyId     String
-  apiKey       DeveloperApiKey @relation(fields: [apiKeyId], references: [id], onDelete: Cascade)
-  collectionId String
-  collection   Collection      @relation(fields: [collectionId], references: [id], onDelete: Cascade)
-  createdAt    DateTime        @default(now())
-
-  @@unique([apiKeyId, collectionId])
-  @@map("api_key_collection_scopes")
 }
 
 model OauthResource {
@@ -725,26 +680,20 @@ model Collection {
   sponsorBudgetRemainingCents Float   @default(0.0)
   sponsoredMFactor            Float   @default(0.0)
 
-  entries           Entry[]                 @relation("CollectionEntries")
-  originatedEntries Entry[]                 @relation("EntrySourceCollection")
+  entries           Entry[]           @relation("CollectionEntries")
+  originatedEntries Entry[]           @relation("EntrySourceCollection")
   paths             Path[]
   accessGrants      AccessGrant[]
   accessRequests    AccessRequest[]
   contextRequests   ContextRequest[]
   usageLedgers      ApiUsageLedger[]
-  sponsorships      CollectionSponsorship[]
   bounties          KnowledgeBounty[]
-  payments          Payment[]               @relation("CollectionPayments")
+  payments          Payment[]         @relation("CollectionPayments")
   royalties         UserRoyalty[]
   stars             Star[]
 
-  createdAt              DateTime                @default(now())
-  updatedAt              DateTime                @updatedAt
-  apiKeyCollectionScopes ApiKeyCollectionScope[]
-  collectionPurchases    CollectionPurchase[]
-  collectionDonations    CollectionDonation[]
-  entries                Entry[]
-  payments               Payment[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([userId, kind])
   @@index([oauthClientId, externalSubjectKey])
@@ -778,12 +727,12 @@ model Entry {
   embedding Unsupported("vector")?
 
   collectionId String
-  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  collection   Collection @relation("CollectionEntries", fields: [collectionId], references: [id], onDelete: Cascade)
 
   userId   String
   user     User   @relation("UserEntries", fields: [userId], references: [id], onDelete: Cascade)
-  authorId String
-  author   User   @relation("AuthoredEntries", fields: [authorId], references: [id], onDelete: SetNull)
+  authorId String?
+  author   User?   @relation("AuthoredEntries", fields: [authorId], references: [id], onDelete: SetNull)
 
   sourceCollectionId String?
   sourceCollection   Collection? @relation("EntrySourceCollection", fields: [sourceCollectionId], references: [id], onDelete: SetNull)
@@ -797,18 +746,12 @@ model Entry {
   targetRelationships EntryRelationship[]  @relation("TargetRelationship")
   revisionChanges     RevisionChange[]
   accessGrants        AccessGrant[]
-  receiptItems        ContextReceiptItem[]
+  receiptItems        ContextRequestItem[]
   royaltiesGenerated  UserRoyalty[]
   stars               Star[]
 
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @updatedAt
-  appMemory      AppMemory?      @relation(fields: [appMemoryId], references: [id])
-  appMemoryId    String?
-  appMemoryLinks AppMemoryLink[]
-  collection     Collection      @relation(fields: [collectionId], references: [id])
-  appMemoryLinks AppMemoryLink[]
-  appMemoryLinks AppMemoryLink[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([collectionId, type, state])
   @@index([collectionId, externalSubjectKey])
@@ -836,81 +779,6 @@ model EntryRelationship {
   @@map("entry_relationships")
 }
 
-model EntryTombstone {
-  id              String  @id @default(cuid())
-  originalEntryId String  @unique
-  deletedByUserId String
-  reason          String?
-  cascaded        Boolean @default(false)
-
-  createdAt DateTime @default(now())
-
-  @@map("entry_tombstones")
-}
-
-model AppMemory {
-  id     String @id @default(cuid())
-  userId String
-  user   User   @relation("UserAppMemories", fields: [userId], references: [id], onDelete: Cascade)
-
-  clientId    String
-  oauthClient OauthClient @relation(fields: [clientId], references: [id], onDelete: Cascade)
-
-  entries      Entry[]
-  accessGrants AccessGrant[]
-  usageLedgers AppMemoryUsageLedger[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@unique([userId, clientId])
-  @@map("app_memories")
-}
-
-model AppMemoryLink {
-  id String @id @default(cuid())
-
-  appEntryId  String
-  tuneEntryId String
-  syncMode    SyncMode @default(REVIEW)
-  active      Boolean  @default(true)
-
-  lastAppRevision  Int?
-  lastTuneRevision Int?
-
-  appEntry  Entry @relation("AppMemoryEntry", fields: [appEntryId], references: [id], onDelete: Cascade)
-  tuneEntry Entry @relation("TuneMemoryEntry", fields: [tuneEntryId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now())
-
-  lastSyncedAt DateTime?
-  entry        Entry?    @relation(fields: [entryId], references: [id])
-  entryId      String?
-
-  @@unique([appEntryId, tuneEntryId])
-  @@map("app_memory_links")
-}
-
-model AppMemoryUsageLedger {
-  id             String             @id @default(cuid())
-  appMemoryId    String
-  appMemory      AppMemory          @relation(fields: [appMemoryId], references: [id], onDelete: Cascade)
-  clientId       String
-  oauthClient    OauthClient        @relation("ClientAppMemoryLedger", fields: [clientId], references: [id], onDelete: Cascade)
-  organizationId String?
-  organization   Organization?      @relation("OrgAppMemoryLedger", fields: [organizationId], references: [id], onDelete: SetNull)
-  operation      AppMemoryOperation
-  unitsProcessed Int                @default(1)
-  costInCents    Float              @default(0.0)
-  billedAt       DateTime?
-  createdAt      DateTime           @default(now())
-  oauthClientId  String?
-
-  @@index([clientId, createdAt])
-  @@index([organizationId, billedAt])
-  @@map("app_memory_usage_ledgers")
-}
-
 model AccessGrant {
   id     String @id @default(cuid())
   userId String
@@ -918,7 +786,7 @@ model AccessGrant {
 
   clientId String?
 
-  oauthClient OauthClient @relation("GrantedToApp", fields: [clientId], references: [id], onDelete: Cascade)
+  oauthClient OauthClient? @relation("GrantedToApp", fields: [clientId], references: [id], onDelete: Cascade)
 
   apiKeyId String?
   apiKey   DeveloperApiKey? @relation("GrantedToApiKey", fields: [apiKeyId], references: [id], onDelete: Cascade)
@@ -943,14 +811,10 @@ model AccessGrant {
   entryId String?
   entry   Entry?  @relation(fields: [entryId], references: [id], onDelete: Cascade)
 
-  expiresAt         DateTime?
-  grantedAt         DateTime         @default(now())
-  developerApiKey   DeveloperApiKey? @relation(fields: [developerApiKeyId], references: [id])
-  developerApiKeyId String?
-  appMemory         AppMemory?       @relation(fields: [appMemoryId], references: [id])
-  appMemoryId       String?
+  expiresAt DateTime?
+  grantedAt DateTime  @default(now())
 
-  @@unique([userId, clientId, resourceType])
+  @@unique([userId, clientId, resourceType, resourceKey])
   @@index([apiKeyId, collectionId])
   @@map("access_grants")
 }
@@ -969,28 +833,16 @@ model AccessRequest {
   collection   Collection?        @relation(fields: [collectionId], references: [id], onDelete: Cascade)
   permissions  AccessPermission[]
 
-  purpose String
-  status  AccessRequestStatus @default(PENDING)
+  purpose      String
+  status       AccessRequestStatus @default(PENDING)
+  requestItems Json?
 
-  createdAt          DateTime            @default(now())
-  decidedAt          DateTime?
-  expiresAt          DateTime?
-  accessRequestItems AccessRequestItem[]
+  createdAt DateTime  @default(now())
+  decidedAt DateTime?
+  expiresAt DateTime?
 
   @@index([userId, status])
   @@map("access_requests")
-}
-
-model AccessRequestItem {
-  id            String             @id @default(cuid())
-  requestId     String
-  accessRequest AccessRequest      @relation(fields: [requestId], references: [id], onDelete: Cascade)
-  resourceType  AccessResourceType
-  resourceKey   String
-  permissions   AccessPermission[]
-  reason        String?
-
-  @@map("access_request_items")
 }
 
 model ContextRequest {
@@ -1000,7 +852,7 @@ model ContextRequest {
 
   clientId String?
 
-  oauthClient  OauthClient      @relation("AppRequestsContext", fields: [clientId], references: [id], onDelete: Cascade)
+  oauthClient  OauthClient?     @relation("AppRequestsContext", fields: [clientId], references: [id], onDelete: Cascade)
   apiKeyId     String?
   apiKey       DeveloperApiKey? @relation(fields: [apiKeyId], references: [id], onDelete: SetNull)
   collectionId String?
@@ -1010,12 +862,11 @@ model ContextRequest {
 
   status ContextRequestStatus @default(PENDING)
 
-  items       ContextReceiptItem[]
+  items       ContextRequestItem[]
   ledgerEntry ApiUsageLedger?
 
-  requestedAt    DateTime        @default(now())
-  completedAt    DateTime?
-  contextReceipt ContextReceipt?
+  requestedAt DateTime  @default(now())
+  completedAt DateTime?
 
   @@index([clientId, status, requestedAt])
   @@index([userId, requestedAt])
@@ -1023,21 +874,7 @@ model ContextRequest {
   @@map("context_requests")
 }
 
-model ContextReceipt {
-  id String @id @default(cuid())
-
-  contextRequestId String @unique
-  itemCount        Int    @default(0)
-
-  contextRequest ContextRequest       @relation(fields: [contextRequestId], references: [id], onDelete: Cascade)
-  items          ContextReceiptItem[]
-
-  createdAt DateTime @default(now())
-
-  @@map("context_receipts")
-}
-
-model ContextReceiptItem {
+model ContextRequestItem {
   id               String         @id @default(cuid())
   contextRequestId String
   contextRequest   ContextRequest @relation(fields: [contextRequestId], references: [id], onDelete: Cascade)
@@ -1048,13 +885,11 @@ model ContextReceiptItem {
   excerpt        String? @db.Text
   citationWeight Float   @default(1.0)
 
-  createdAt        DateTime        @default(now())
-  contextReceipt   ContextReceipt? @relation(fields: [contextReceiptId], references: [id])
-  contextReceiptId String?
+  createdAt DateTime @default(now())
 
   @@index([contextRequestId])
   @@index([entryId])
-  @@map("context_receipt_items")
+  @@map("context_request_items")
 }
 
 model ApiUsageLedger {
@@ -1091,11 +926,9 @@ model ApiUsageLedger {
 
   royaltiesDistributed UserRoyalty[]
 
-  billedAt                DateTime?
-  createdAt               DateTime               @default(now())
-  oauthClientId           String?
-  collectionSponsorship   CollectionSponsorship? @relation(fields: [collectionSponsorshipId], references: [id])
-  collectionSponsorshipId String?
+  billedAt      DateTime?
+  createdAt     DateTime  @default(now())
+  oauthClientId String?
 
   @@index([userId, createdAt])
   @@index([organizationId, createdAt])
@@ -1169,7 +1002,6 @@ model Path {
 
   forkedFromRevisionId String?
   forkedFromRevision   Revision? @relation("PathFork", fields: [forkedFromRevisionId], references: [id], onDelete: SetNull)
-  forkedPaths          Path[]    @relation("PathFork")
 
   revisions      Revision[] @relation("PathRevisions")
   headRevisionId String?
@@ -1180,13 +1012,11 @@ model Path {
   targetCombines     Combine[]     @relation("CombineTargetPath")
   sourceCombines     Combine[]     @relation("CombineSourcePath")
 
-  createdAt         DateTime           @default(now())
-  updatedAt         DateTime           @updatedAt
-  path              Path?              @relation(fields: [pathId], references: [id])
-  pathId            String?
-  bountySubmissions BountySubmission[]
-  path              Path?              @relation(fields: [pathId], references: [id])
-  paths             Path[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  pathId     String?
+  parentPath Path?    @relation("PathToPath", fields: [pathId], references: [id])
+  childPaths Path[]   @relation("PathToPath")
 
   @@unique([collectionId, name])
   @@index([collectionId, externalSubjectKey])
@@ -1221,8 +1051,7 @@ model Revision {
   combineBase   Combine[] @relation("CombineBaseRevision")
   combineResult Combine[] @relation("CombineResultRevision")
 
-  createdAt         DateTime           @default(now())
-  bountySubmissions BountySubmission[]
+  createdAt DateTime @default(now())
 
   @@unique([pathId, number])
   @@index([pathId, releaseVersion])
@@ -1257,202 +1086,31 @@ model Combine {
   author      User?   @relation("CombineAuthor", fields: [authorId], references: [id], onDelete: SetNull)
 
   targetPathId     String
-  targetPath       Path              @relation("CombineTargetPath", fields: [targetPathId], references: [id], onDelete: Cascade)
+  targetPath       Path          @relation("CombineTargetPath", fields: [targetPathId], references: [id], onDelete: Cascade)
   sourcePathId     String
-  sourcePath       Path              @relation("CombineSourcePath", fields: [sourcePathId], references: [id], onDelete: Cascade)
+  sourcePath       Path          @relation("CombineSourcePath", fields: [sourcePathId], references: [id], onDelete: Cascade)
   targetRevisionId String
-  targetRevision   Revision          @relation("CombineTargetRevision", fields: [targetRevisionId], references: [id], onDelete: Cascade)
+  targetRevision   Revision      @relation("CombineTargetRevision", fields: [targetRevisionId], references: [id], onDelete: Cascade)
   sourceRevisionId String
-  sourceRevision   Revision          @relation("CombineSourceRevision", fields: [sourceRevisionId], references: [id], onDelete: Cascade)
+  sourceRevision   Revision      @relation("CombineSourceRevision", fields: [sourceRevisionId], references: [id], onDelete: Cascade)
   baseRevisionId   String?
-  baseRevision     Revision?         @relation("CombineBaseRevision", fields: [baseRevisionId], references: [id], onDelete: SetNull)
-  status           CombineStatus     @default(PENDING)
-  conflicts        CombineConflict[]
+  baseRevision     Revision?     @relation("CombineBaseRevision", fields: [baseRevisionId], references: [id], onDelete: SetNull)
+  status           CombineStatus @default(PENDING)
+  conflicts        Json?
   resultRevisionId String?
-  resultRevision   Revision?         @relation("CombineResultRevision", fields: [resultRevisionId], references: [id], onDelete: SetNull)
+  resultRevision   Revision?     @relation("CombineResultRevision", fields: [resultRevisionId], references: [id], onDelete: SetNull)
 
   bountyId          String?
   bounty            KnowledgeBounty? @relation(fields: [bountyId], references: [id], onDelete: SetNull)
   bountyRewardCents Float            @default(0.0)
   bountyReviewNotes String?
 
-  createdAt         DateTime?          @default(now())
-  completedAt       DateTime?
-  bountySubmissions BountySubmission[]
+  createdAt   DateTime? @default(now())
+  completedAt DateTime?
 
   @@index([targetPathId, status])
   @@index([bountyId, status])
   @@map("combines")
-}
-
-model CombineConflict {
-  id        String  @id @default(cuid())
-  combineId String
-  combine   Combine @relation(fields: [combineId], references: [id], onDelete: Cascade)
-
-  entryId     String?
-  baseValue   Json?
-  targetValue Json?
-  sourceValue Json?
-
-  resolution ConflictResolution @default(UNRESOLVED)
-
-  resolvedValue Json?
-  resolvedAt    DateTime?
-
-  @@index([combineId])
-  @@map("combine_conflicts")
-}
-
-// model Collection {
-//   id String @id @default(cuid())
-
-//   ownerId String
-//   owner   User   @relation("UserCollections", fields: [ownerId], references: [id], onDelete: Cascade)
-
-//   name        String
-//   slug        String     @unique
-//   description String?
-//   visibility  Visibility @default(PRIVATE)
-
-//   accessMode       CollectionAccessMode @default(OPEN)
-//   monetizationType MonetizationType     @default(FREE)
-
-//   // Formula: (Neff(N) / (10 * P)) * $1 * M / 1000 request
-//   entryCount        Int   @default(0) // N
-//   mFactor           Float @default(1.0) // M in [0, infinity)
-//   oneTimePriceCents Int?
-
-//   platformFeePercent     Float @default(15.0)
-//   maintainerFeePercent   Float @default(20.0)
-//   contributorPoolPercent Float @default(60.0) // if platform (15%) + maintainer (20%) + contributor (60%) != 100%, leftover (5%) goes to chariry/donation/well-fare programmes like afforestation
-
-//   releases        Release[]
-//   imports         CollectionImport[]
-//   entries         Entry[]                 @relation("CollectionEntries")
-//   purchases       CollectionPurchase[]
-//   donations       CollectionDonation[]
-//   sponsorships    CollectionSponsorship[]
-//   bounties        KnowledgeBounty[]
-//   apiKeyScopes    ApiKeyCollectionScope[]
-//   accessGrants    AccessGrant[]
-//   contextRequests ContextRequest[]
-//   usageLedgers    ApiUsageLedger[]
-//   royalties       UserRoyalty[]
-//   stars           Star[]
-
-//   createdAt    DateTime    @default(now())
-//   updatedAt    DateTime    @updatedAt
-//   collection   Collection? @relation("CollectionSourceCollection", fields: [collectionId], references: [id])
-//   collectionId String?
-
-//   @@index([ownerId, visibility])
-//   @@index([monetizationType, accessMode])
-//   @@map("collections")
-// }
-
-// model Release {
-//   id           String     @id @default(cuid())
-//   collectionId String
-//   collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
-
-//   version          String
-//   sourceRevisionId String?
-//   sourceRevision   Revision? @relation(fields: [sourceRevisionId], references: [id], onDelete: SetNull)
-
-//   notes        String?            @db.Text
-//   manifest     Json
-//   entryCount   Int                @default(0)
-//   importedInto Collection[]       @relation("ReleaseImportedCollections")
-//   imports      CollectionImport[]
-
-//   publishedAt DateTime @default(now())
-
-//   @@unique([collectionId, version])
-//   @@map("releases")
-// }
-
-// model CollectionImport {
-//   id           String     @id @default(cuid())
-//   collectionId String
-//   collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
-
-//   releaseId        String
-//   installedRelease Release @relation(fields: [releaseId], references: [id], onDelete: Cascade)
-
-//   targetCollectionId String
-//   targetCollection   Collection @relation(fields: [targetCollectionId], references: [id], onDelete: Cascade)
-
-//   syncMode SyncMode @default(REVIEW)
-
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt
-
-//   @@unique([collectionId, targetCollectionId])
-//   @@map("collection_imports")
-// }
-
-model CollectionPurchase {
-  id                  String        @id @default(cuid())
-  collectionId        String
-  collection          Collection    @relation(fields: [collectionId], references: [id], onDelete: Cascade)
-  userId              String?
-  user                User?         @relation("UserCollectionPurchases", fields: [userId], references: [id], onDelete: Cascade)
-  organizationId      String?
-  organization        Organization? @relation("OrgCollectionPurchases", fields: [organizationId], references: [id], onDelete: Cascade)
-  pricePaidCents      Int
-  platformFeeCents    Int // 15%
-  creatorNetCents     Int // 80% // Remaining 5% goes to charity/donations/well-fare programmes like afforestation
-  paidViaCreditsCents Float         @default(0.0)
-  paymentId           String?       @unique
-  payment             Payment?      @relation(fields: [paymentId], references: [id], onDelete: SetNull)
-  purchasedComputeM   Float         @default(1.2)
-  purchasedAt         DateTime      @default(now())
-
-  @@unique([collectionId, userId])
-  @@unique([collectionId, organizationId])
-  @@map("collection_purchases")
-}
-
-model CollectionDonation {
-  id               String     @id @default(cuid())
-  collectionId     String
-  collection       Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
-  donorUserId      String?
-  donorUser        User?      @relation("UserDonations", fields: [donorUserId], references: [id], onDelete: SetNull)
-  amountCents      Int
-  platformFeeCents Int        @default(0)
-  message          String?    @db.Text
-  paymentId        String?    @unique
-  payment          Payment?   @relation(fields: [paymentId], references: [id], onDelete: SetNull)
-  createdAt        DateTime   @default(now())
-
-  @@index([collectionId])
-  @@map("collection_donations")
-}
-
-model CollectionSponsorship {
-  id                   String        @id @default(cuid())
-  collectionId         String
-  collection           Collection    @relation(fields: [collectionId], references: [id], onDelete: Cascade)
-  sponsorOrgId         String?
-  sponsorOrg           Organization? @relation("OrgSponsorships", fields: [sponsorOrgId], references: [id], onDelete: SetNull)
-  sponsorUserId        String?
-  sponsorUser          User?         @relation("UserSponsorships", fields: [sponsorUserId], references: [id], onDelete: SetNull)
-  totalBudgetCents     Float
-  remainingBudgetCents Float
-  sponsoredMFactor     Float         @default(0.0) // 0.0 <= M <= 1.0
-  isActive             Boolean       @default(true)
-  isVerifiedOfficial   Boolean       @default(true)
-
-  startsAt  DateTime  @default(now())
-  endsAt    DateTime?
-  createdAt DateTime  @default(now())
-
-  usageLedgers ApiUsageLedger[]
-
-  @@index([collectionId, isActive])
-  @@map("collection_sponsorships")
 }
 
 model KnowledgeBounty {
@@ -1481,38 +1139,13 @@ model KnowledgeBounty {
   combines  Combine[]
   royalties UserRoyalty[]
 
-  expiresAt         DateTime?
-  completedAt       DateTime?
-  createdAt         DateTime           @default(now())
-  updatedAt         DateTime           @updatedAt
-  bountySubmissions BountySubmission[]
+  expiresAt   DateTime?
+  completedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 
   @@index([status, targetCollectionId])
   @@map("knowledge_bounties")
-}
-
-model BountySubmission {
-  id            String          @id @default(cuid())
-  bountyId      String
-  bounty        KnowledgeBounty @relation(fields: [bountyId], references: [id], onDelete: Cascade)
-  contributorId String
-  contributor   User            @relation("UserBountySubmissions", fields: [contributorId], references: [id], onDelete: Cascade)
-  pathId        String?
-  path          Path?           @relation(fields: [pathId], references: [id], onDelete: SetNull)
-  revisionId    String?
-  revision      Revision?       @relation(fields: [revisionId], references: [id], onDelete: SetNull)
-  combineId     String?
-  combine       Combine?        @relation(fields: [combineId], references: [id], onDelete: SetNull)
-
-  status               BountySubmissionStatus @default(PENDING)
-  rewardAllocatedCents Float                  @default(0.0)
-  reviewNotes          String?                @db.Text
-  submittedAt          DateTime               @default(now())
-  decidedAt            DateTime?
-
-  @@index([bountyId, status])
-  @@index([contributorId])
-  @@map("bounty_submissions")
 }
 
 model Star {
@@ -1540,7 +1173,7 @@ model TuneApp {
   name          String
   slug          String                @unique
   description   String?               @db.Text
-  manifesr      Json
+  manifest      Json
   codeRef       String
   installations TuneAppInstallation[]
   publishedAt   DateTime?
@@ -1672,7 +1305,7 @@ model Payment {
   total                 Int
 
   collectionId        String?
-  collection          Collection? @relation(fields: [collectionId], references: [id])
+  collection          Collection? @relation("CollectionPayments", fields: [collectionId], references: [id])
   platformFeeCents    Int
   creatorNetCents     Int
   paidViaCreditsCents Float
@@ -1686,13 +1319,10 @@ model Payment {
   plan          Plan?        @relation(fields: [planId], references: [id])
 
   knowledgeBounty   KnowledgeBounty?
-  royaliesGenerated UserRoyalty[]
+  royaltiesGenerated UserRoyalty[]
 
-  createdAt          DateTime            @default(now())
-  updatedAt          DateTime            @updatedAt
-  collectionPurchase CollectionPurchase?
-  collectionDonation CollectionDonation?
-  collection         Collection?         @relation(fields: [collectionId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([userId, status])
   @@index([organizationId, status])

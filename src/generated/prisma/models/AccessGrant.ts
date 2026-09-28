@@ -28,42 +28,41 @@ export type AccessGrantMinAggregateOutputType = {
   id: string | null
   userId: string | null
   clientId: string | null
+  apiKeyId: string | null
   resourceType: $Enums.AccessResourceType | null
   resourceKey: string | null
   effect: $Enums.AccessEffect | null
   inherits: boolean | null
   areaId: string | null
   collectionId: string | null
+  pathId: string | null
   entryId: string | null
-  appMemoryId: string | null
-  packId: string | null
   expiresAt: Date | null
   grantedAt: Date | null
-  oauthClientId: string | null
 }
 
 export type AccessGrantMaxAggregateOutputType = {
   id: string | null
   userId: string | null
   clientId: string | null
+  apiKeyId: string | null
   resourceType: $Enums.AccessResourceType | null
   resourceKey: string | null
   effect: $Enums.AccessEffect | null
   inherits: boolean | null
   areaId: string | null
   collectionId: string | null
+  pathId: string | null
   entryId: string | null
-  appMemoryId: string | null
-  packId: string | null
   expiresAt: Date | null
   grantedAt: Date | null
-  oauthClientId: string | null
 }
 
 export type AccessGrantCountAggregateOutputType = {
   id: number
   userId: number
   clientId: number
+  apiKeyId: number
   resourceType: number
   resourceKey: number
   effect: number
@@ -71,12 +70,10 @@ export type AccessGrantCountAggregateOutputType = {
   inherits: number
   areaId: number
   collectionId: number
+  pathId: number
   entryId: number
-  appMemoryId: number
-  packId: number
   expiresAt: number
   grantedAt: number
-  oauthClientId: number
   _all: number
 }
 
@@ -85,42 +82,41 @@ export type AccessGrantMinAggregateInputType = {
   id?: true
   userId?: true
   clientId?: true
+  apiKeyId?: true
   resourceType?: true
   resourceKey?: true
   effect?: true
   inherits?: true
   areaId?: true
   collectionId?: true
+  pathId?: true
   entryId?: true
-  appMemoryId?: true
-  packId?: true
   expiresAt?: true
   grantedAt?: true
-  oauthClientId?: true
 }
 
 export type AccessGrantMaxAggregateInputType = {
   id?: true
   userId?: true
   clientId?: true
+  apiKeyId?: true
   resourceType?: true
   resourceKey?: true
   effect?: true
   inherits?: true
   areaId?: true
   collectionId?: true
+  pathId?: true
   entryId?: true
-  appMemoryId?: true
-  packId?: true
   expiresAt?: true
   grantedAt?: true
-  oauthClientId?: true
 }
 
 export type AccessGrantCountAggregateInputType = {
   id?: true
   userId?: true
   clientId?: true
+  apiKeyId?: true
   resourceType?: true
   resourceKey?: true
   effect?: true
@@ -128,12 +124,10 @@ export type AccessGrantCountAggregateInputType = {
   inherits?: true
   areaId?: true
   collectionId?: true
+  pathId?: true
   entryId?: true
-  appMemoryId?: true
-  packId?: true
   expiresAt?: true
   grantedAt?: true
-  oauthClientId?: true
   _all?: true
 }
 
@@ -212,7 +206,8 @@ export type AccessGrantGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 export type AccessGrantGroupByOutputType = {
   id: string
   userId: string
-  clientId: string
+  clientId: string | null
+  apiKeyId: string | null
   resourceType: $Enums.AccessResourceType
   resourceKey: string
   effect: $Enums.AccessEffect
@@ -220,12 +215,10 @@ export type AccessGrantGroupByOutputType = {
   inherits: boolean
   areaId: string | null
   collectionId: string | null
+  pathId: string | null
   entryId: string | null
-  appMemoryId: string | null
-  packId: string | null
   expiresAt: Date | null
   grantedAt: Date
-  oauthClientId: string | null
   _count: AccessGrantCountAggregateOutputType | null
   _min: AccessGrantMinAggregateOutputType | null
   _max: AccessGrantMaxAggregateOutputType | null
@@ -252,7 +245,8 @@ export type AccessGrantWhereInput = {
   NOT?: Prisma.AccessGrantWhereInput | Prisma.AccessGrantWhereInput[]
   id?: Prisma.StringFilter<"AccessGrant"> | string
   userId?: Prisma.StringFilter<"AccessGrant"> | string
-  clientId?: Prisma.StringFilter<"AccessGrant"> | string
+  clientId?: Prisma.StringNullableFilter<"AccessGrant"> | string | null
+  apiKeyId?: Prisma.StringNullableFilter<"AccessGrant"> | string | null
   resourceType?: Prisma.EnumAccessResourceTypeFilter<"AccessGrant"> | $Enums.AccessResourceType
   resourceKey?: Prisma.StringFilter<"AccessGrant"> | string
   effect?: Prisma.EnumAccessEffectFilter<"AccessGrant"> | $Enums.AccessEffect
@@ -260,25 +254,24 @@ export type AccessGrantWhereInput = {
   inherits?: Prisma.BoolFilter<"AccessGrant"> | boolean
   areaId?: Prisma.StringNullableFilter<"AccessGrant"> | string | null
   collectionId?: Prisma.StringNullableFilter<"AccessGrant"> | string | null
+  pathId?: Prisma.StringNullableFilter<"AccessGrant"> | string | null
   entryId?: Prisma.StringNullableFilter<"AccessGrant"> | string | null
-  appMemoryId?: Prisma.StringNullableFilter<"AccessGrant"> | string | null
-  packId?: Prisma.StringNullableFilter<"AccessGrant"> | string | null
   expiresAt?: Prisma.DateTimeNullableFilter<"AccessGrant"> | Date | string | null
   grantedAt?: Prisma.DateTimeFilter<"AccessGrant"> | Date | string
-  oauthClientId?: Prisma.StringNullableFilter<"AccessGrant"> | string | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  oauthClient?: Prisma.XOR<Prisma.OauthClientScalarRelationFilter, Prisma.OauthClientWhereInput>
+  oauthClient?: Prisma.XOR<Prisma.OauthClientNullableScalarRelationFilter, Prisma.OauthClientWhereInput> | null
+  apiKey?: Prisma.XOR<Prisma.DeveloperApiKeyNullableScalarRelationFilter, Prisma.DeveloperApiKeyWhereInput> | null
   area?: Prisma.XOR<Prisma.AreaNullableScalarRelationFilter, Prisma.AreaWhereInput> | null
   collection?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
+  path?: Prisma.XOR<Prisma.PathNullableScalarRelationFilter, Prisma.PathWhereInput> | null
   entry?: Prisma.XOR<Prisma.EntryNullableScalarRelationFilter, Prisma.EntryWhereInput> | null
-  appMemory?: Prisma.XOR<Prisma.AppMemoryNullableScalarRelationFilter, Prisma.AppMemoryWhereInput> | null
-  pack?: Prisma.XOR<Prisma.PackNullableScalarRelationFilter, Prisma.PackWhereInput> | null
 }
 
 export type AccessGrantOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  clientId?: Prisma.SortOrder
+  clientId?: Prisma.SortOrderInput | Prisma.SortOrder
+  apiKeyId?: Prisma.SortOrderInput | Prisma.SortOrder
   resourceType?: Prisma.SortOrder
   resourceKey?: Prisma.SortOrder
   effect?: Prisma.SortOrder
@@ -286,29 +279,28 @@ export type AccessGrantOrderByWithRelationInput = {
   inherits?: Prisma.SortOrder
   areaId?: Prisma.SortOrderInput | Prisma.SortOrder
   collectionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  pathId?: Prisma.SortOrderInput | Prisma.SortOrder
   entryId?: Prisma.SortOrderInput | Prisma.SortOrder
-  appMemoryId?: Prisma.SortOrderInput | Prisma.SortOrder
-  packId?: Prisma.SortOrderInput | Prisma.SortOrder
   expiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   grantedAt?: Prisma.SortOrder
-  oauthClientId?: Prisma.SortOrderInput | Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   oauthClient?: Prisma.OauthClientOrderByWithRelationInput
+  apiKey?: Prisma.DeveloperApiKeyOrderByWithRelationInput
   area?: Prisma.AreaOrderByWithRelationInput
   collection?: Prisma.CollectionOrderByWithRelationInput
+  path?: Prisma.PathOrderByWithRelationInput
   entry?: Prisma.EntryOrderByWithRelationInput
-  appMemory?: Prisma.AppMemoryOrderByWithRelationInput
-  pack?: Prisma.PackOrderByWithRelationInput
 }
 
 export type AccessGrantWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  userId_clientId_resourceKey?: Prisma.AccessGrantUserIdClientIdResourceKeyCompoundUniqueInput
+  userId_clientId_resourceType_resourceKey?: Prisma.AccessGrantUserIdClientIdResourceTypeResourceKeyCompoundUniqueInput
   AND?: Prisma.AccessGrantWhereInput | Prisma.AccessGrantWhereInput[]
   OR?: Prisma.AccessGrantWhereInput[]
   NOT?: Prisma.AccessGrantWhereInput | Prisma.AccessGrantWhereInput[]
   userId?: Prisma.StringFilter<"AccessGrant"> | string
-  clientId?: Prisma.StringFilter<"AccessGrant"> | string
+  clientId?: Prisma.StringNullableFilter<"AccessGrant"> | string | null
+  apiKeyId?: Prisma.StringNullableFilter<"AccessGrant"> | string | null
   resourceType?: Prisma.EnumAccessResourceTypeFilter<"AccessGrant"> | $Enums.AccessResourceType
   resourceKey?: Prisma.StringFilter<"AccessGrant"> | string
   effect?: Prisma.EnumAccessEffectFilter<"AccessGrant"> | $Enums.AccessEffect
@@ -316,25 +308,24 @@ export type AccessGrantWhereUniqueInput = Prisma.AtLeast<{
   inherits?: Prisma.BoolFilter<"AccessGrant"> | boolean
   areaId?: Prisma.StringNullableFilter<"AccessGrant"> | string | null
   collectionId?: Prisma.StringNullableFilter<"AccessGrant"> | string | null
+  pathId?: Prisma.StringNullableFilter<"AccessGrant"> | string | null
   entryId?: Prisma.StringNullableFilter<"AccessGrant"> | string | null
-  appMemoryId?: Prisma.StringNullableFilter<"AccessGrant"> | string | null
-  packId?: Prisma.StringNullableFilter<"AccessGrant"> | string | null
   expiresAt?: Prisma.DateTimeNullableFilter<"AccessGrant"> | Date | string | null
   grantedAt?: Prisma.DateTimeFilter<"AccessGrant"> | Date | string
-  oauthClientId?: Prisma.StringNullableFilter<"AccessGrant"> | string | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  oauthClient?: Prisma.XOR<Prisma.OauthClientScalarRelationFilter, Prisma.OauthClientWhereInput>
+  oauthClient?: Prisma.XOR<Prisma.OauthClientNullableScalarRelationFilter, Prisma.OauthClientWhereInput> | null
+  apiKey?: Prisma.XOR<Prisma.DeveloperApiKeyNullableScalarRelationFilter, Prisma.DeveloperApiKeyWhereInput> | null
   area?: Prisma.XOR<Prisma.AreaNullableScalarRelationFilter, Prisma.AreaWhereInput> | null
   collection?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
+  path?: Prisma.XOR<Prisma.PathNullableScalarRelationFilter, Prisma.PathWhereInput> | null
   entry?: Prisma.XOR<Prisma.EntryNullableScalarRelationFilter, Prisma.EntryWhereInput> | null
-  appMemory?: Prisma.XOR<Prisma.AppMemoryNullableScalarRelationFilter, Prisma.AppMemoryWhereInput> | null
-  pack?: Prisma.XOR<Prisma.PackNullableScalarRelationFilter, Prisma.PackWhereInput> | null
-}, "id" | "userId_clientId_resourceKey">
+}, "id" | "userId_clientId_resourceType_resourceKey">
 
 export type AccessGrantOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  clientId?: Prisma.SortOrder
+  clientId?: Prisma.SortOrderInput | Prisma.SortOrder
+  apiKeyId?: Prisma.SortOrderInput | Prisma.SortOrder
   resourceType?: Prisma.SortOrder
   resourceKey?: Prisma.SortOrder
   effect?: Prisma.SortOrder
@@ -342,12 +333,10 @@ export type AccessGrantOrderByWithAggregationInput = {
   inherits?: Prisma.SortOrder
   areaId?: Prisma.SortOrderInput | Prisma.SortOrder
   collectionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  pathId?: Prisma.SortOrderInput | Prisma.SortOrder
   entryId?: Prisma.SortOrderInput | Prisma.SortOrder
-  appMemoryId?: Prisma.SortOrderInput | Prisma.SortOrder
-  packId?: Prisma.SortOrderInput | Prisma.SortOrder
   expiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   grantedAt?: Prisma.SortOrder
-  oauthClientId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.AccessGrantCountOrderByAggregateInput
   _max?: Prisma.AccessGrantMaxOrderByAggregateInput
   _min?: Prisma.AccessGrantMinOrderByAggregateInput
@@ -359,7 +348,8 @@ export type AccessGrantScalarWhereWithAggregatesInput = {
   NOT?: Prisma.AccessGrantScalarWhereWithAggregatesInput | Prisma.AccessGrantScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"AccessGrant"> | string
   userId?: Prisma.StringWithAggregatesFilter<"AccessGrant"> | string
-  clientId?: Prisma.StringWithAggregatesFilter<"AccessGrant"> | string
+  clientId?: Prisma.StringNullableWithAggregatesFilter<"AccessGrant"> | string | null
+  apiKeyId?: Prisma.StringNullableWithAggregatesFilter<"AccessGrant"> | string | null
   resourceType?: Prisma.EnumAccessResourceTypeWithAggregatesFilter<"AccessGrant"> | $Enums.AccessResourceType
   resourceKey?: Prisma.StringWithAggregatesFilter<"AccessGrant"> | string
   effect?: Prisma.EnumAccessEffectWithAggregatesFilter<"AccessGrant"> | $Enums.AccessEffect
@@ -367,12 +357,10 @@ export type AccessGrantScalarWhereWithAggregatesInput = {
   inherits?: Prisma.BoolWithAggregatesFilter<"AccessGrant"> | boolean
   areaId?: Prisma.StringNullableWithAggregatesFilter<"AccessGrant"> | string | null
   collectionId?: Prisma.StringNullableWithAggregatesFilter<"AccessGrant"> | string | null
+  pathId?: Prisma.StringNullableWithAggregatesFilter<"AccessGrant"> | string | null
   entryId?: Prisma.StringNullableWithAggregatesFilter<"AccessGrant"> | string | null
-  appMemoryId?: Prisma.StringNullableWithAggregatesFilter<"AccessGrant"> | string | null
-  packId?: Prisma.StringNullableWithAggregatesFilter<"AccessGrant"> | string | null
   expiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<"AccessGrant"> | Date | string | null
   grantedAt?: Prisma.DateTimeWithAggregatesFilter<"AccessGrant"> | Date | string
-  oauthClientId?: Prisma.StringNullableWithAggregatesFilter<"AccessGrant"> | string | null
 }
 
 export type AccessGrantCreateInput = {
@@ -384,20 +372,20 @@ export type AccessGrantCreateInput = {
   inherits?: boolean
   expiresAt?: Date | string | null
   grantedAt?: Date | string
-  oauthClientId?: string | null
   user: Prisma.UserCreateNestedOneWithoutAccessGrantsInput
-  oauthClient: Prisma.OauthClientCreateNestedOneWithoutAccessGrantsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAccessGrantsInput
+  apiKey?: Prisma.DeveloperApiKeyCreateNestedOneWithoutAccessGrantsInput
   area?: Prisma.AreaCreateNestedOneWithoutAccessGrantsInput
   collection?: Prisma.CollectionCreateNestedOneWithoutAccessGrantsInput
+  path?: Prisma.PathCreateNestedOneWithoutAccessGrantsInput
   entry?: Prisma.EntryCreateNestedOneWithoutAccessGrantsInput
-  appMemory?: Prisma.AppMemoryCreateNestedOneWithoutAccessGrantsInput
-  pack?: Prisma.PackCreateNestedOneWithoutAccessGrantsInput
 }
 
 export type AccessGrantUncheckedCreateInput = {
   id?: string
   userId: string
-  clientId: string
+  clientId?: string | null
+  apiKeyId?: string | null
   resourceType: $Enums.AccessResourceType
   resourceKey: string
   effect?: $Enums.AccessEffect
@@ -405,12 +393,10 @@ export type AccessGrantUncheckedCreateInput = {
   inherits?: boolean
   areaId?: string | null
   collectionId?: string | null
+  pathId?: string | null
   entryId?: string | null
-  appMemoryId?: string | null
-  packId?: string | null
   expiresAt?: Date | string | null
   grantedAt?: Date | string
-  oauthClientId?: string | null
 }
 
 export type AccessGrantUpdateInput = {
@@ -422,20 +408,20 @@ export type AccessGrantUpdateInput = {
   inherits?: Prisma.BoolFieldUpdateOperationsInput | boolean
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutAccessGrantsNestedInput
-  oauthClient?: Prisma.OauthClientUpdateOneRequiredWithoutAccessGrantsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAccessGrantsNestedInput
+  apiKey?: Prisma.DeveloperApiKeyUpdateOneWithoutAccessGrantsNestedInput
   area?: Prisma.AreaUpdateOneWithoutAccessGrantsNestedInput
   collection?: Prisma.CollectionUpdateOneWithoutAccessGrantsNestedInput
+  path?: Prisma.PathUpdateOneWithoutAccessGrantsNestedInput
   entry?: Prisma.EntryUpdateOneWithoutAccessGrantsNestedInput
-  appMemory?: Prisma.AppMemoryUpdateOneWithoutAccessGrantsNestedInput
-  pack?: Prisma.PackUpdateOneWithoutAccessGrantsNestedInput
 }
 
 export type AccessGrantUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
   resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
   effect?: Prisma.EnumAccessEffectFieldUpdateOperationsInput | $Enums.AccessEffect
@@ -443,18 +429,17 @@ export type AccessGrantUncheckedUpdateInput = {
   inherits?: Prisma.BoolFieldUpdateOperationsInput | boolean
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type AccessGrantCreateManyInput = {
   id?: string
   userId: string
-  clientId: string
+  clientId?: string | null
+  apiKeyId?: string | null
   resourceType: $Enums.AccessResourceType
   resourceKey: string
   effect?: $Enums.AccessEffect
@@ -462,12 +447,10 @@ export type AccessGrantCreateManyInput = {
   inherits?: boolean
   areaId?: string | null
   collectionId?: string | null
+  pathId?: string | null
   entryId?: string | null
-  appMemoryId?: string | null
-  packId?: string | null
   expiresAt?: Date | string | null
   grantedAt?: Date | string
-  oauthClientId?: string | null
 }
 
 export type AccessGrantUpdateManyMutationInput = {
@@ -479,13 +462,13 @@ export type AccessGrantUpdateManyMutationInput = {
   inherits?: Prisma.BoolFieldUpdateOperationsInput | boolean
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type AccessGrantUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
   resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
   effect?: Prisma.EnumAccessEffectFieldUpdateOperationsInput | $Enums.AccessEffect
@@ -493,12 +476,10 @@ export type AccessGrantUncheckedUpdateManyInput = {
   inherits?: Prisma.BoolFieldUpdateOperationsInput | boolean
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type AccessGrantListRelationFilter = {
@@ -519,9 +500,10 @@ export type EnumAccessPermissionNullableListFilter<$PrismaModel = never> = {
   isEmpty?: boolean
 }
 
-export type AccessGrantUserIdClientIdResourceKeyCompoundUniqueInput = {
+export type AccessGrantUserIdClientIdResourceTypeResourceKeyCompoundUniqueInput = {
   userId: string
   clientId: string
+  resourceType: $Enums.AccessResourceType
   resourceKey: string
 }
 
@@ -529,6 +511,7 @@ export type AccessGrantCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
+  apiKeyId?: Prisma.SortOrder
   resourceType?: Prisma.SortOrder
   resourceKey?: Prisma.SortOrder
   effect?: Prisma.SortOrder
@@ -536,48 +519,44 @@ export type AccessGrantCountOrderByAggregateInput = {
   inherits?: Prisma.SortOrder
   areaId?: Prisma.SortOrder
   collectionId?: Prisma.SortOrder
+  pathId?: Prisma.SortOrder
   entryId?: Prisma.SortOrder
-  appMemoryId?: Prisma.SortOrder
-  packId?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
   grantedAt?: Prisma.SortOrder
-  oauthClientId?: Prisma.SortOrder
 }
 
 export type AccessGrantMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
+  apiKeyId?: Prisma.SortOrder
   resourceType?: Prisma.SortOrder
   resourceKey?: Prisma.SortOrder
   effect?: Prisma.SortOrder
   inherits?: Prisma.SortOrder
   areaId?: Prisma.SortOrder
   collectionId?: Prisma.SortOrder
+  pathId?: Prisma.SortOrder
   entryId?: Prisma.SortOrder
-  appMemoryId?: Prisma.SortOrder
-  packId?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
   grantedAt?: Prisma.SortOrder
-  oauthClientId?: Prisma.SortOrder
 }
 
 export type AccessGrantMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
+  apiKeyId?: Prisma.SortOrder
   resourceType?: Prisma.SortOrder
   resourceKey?: Prisma.SortOrder
   effect?: Prisma.SortOrder
   inherits?: Prisma.SortOrder
   areaId?: Prisma.SortOrder
   collectionId?: Prisma.SortOrder
+  pathId?: Prisma.SortOrder
   entryId?: Prisma.SortOrder
-  appMemoryId?: Prisma.SortOrder
-  packId?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
   grantedAt?: Prisma.SortOrder
-  oauthClientId?: Prisma.SortOrder
 }
 
 export type AccessGrantCreateNestedManyWithoutUserInput = {
@@ -661,6 +640,48 @@ export type AccessGrantUncheckedUpdateManyWithoutOauthClientNestedInput = {
   connect?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
   update?: Prisma.AccessGrantUpdateWithWhereUniqueWithoutOauthClientInput | Prisma.AccessGrantUpdateWithWhereUniqueWithoutOauthClientInput[]
   updateMany?: Prisma.AccessGrantUpdateManyWithWhereWithoutOauthClientInput | Prisma.AccessGrantUpdateManyWithWhereWithoutOauthClientInput[]
+  deleteMany?: Prisma.AccessGrantScalarWhereInput | Prisma.AccessGrantScalarWhereInput[]
+}
+
+export type AccessGrantCreateNestedManyWithoutApiKeyInput = {
+  create?: Prisma.XOR<Prisma.AccessGrantCreateWithoutApiKeyInput, Prisma.AccessGrantUncheckedCreateWithoutApiKeyInput> | Prisma.AccessGrantCreateWithoutApiKeyInput[] | Prisma.AccessGrantUncheckedCreateWithoutApiKeyInput[]
+  connectOrCreate?: Prisma.AccessGrantCreateOrConnectWithoutApiKeyInput | Prisma.AccessGrantCreateOrConnectWithoutApiKeyInput[]
+  createMany?: Prisma.AccessGrantCreateManyApiKeyInputEnvelope
+  connect?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
+}
+
+export type AccessGrantUncheckedCreateNestedManyWithoutApiKeyInput = {
+  create?: Prisma.XOR<Prisma.AccessGrantCreateWithoutApiKeyInput, Prisma.AccessGrantUncheckedCreateWithoutApiKeyInput> | Prisma.AccessGrantCreateWithoutApiKeyInput[] | Prisma.AccessGrantUncheckedCreateWithoutApiKeyInput[]
+  connectOrCreate?: Prisma.AccessGrantCreateOrConnectWithoutApiKeyInput | Prisma.AccessGrantCreateOrConnectWithoutApiKeyInput[]
+  createMany?: Prisma.AccessGrantCreateManyApiKeyInputEnvelope
+  connect?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
+}
+
+export type AccessGrantUpdateManyWithoutApiKeyNestedInput = {
+  create?: Prisma.XOR<Prisma.AccessGrantCreateWithoutApiKeyInput, Prisma.AccessGrantUncheckedCreateWithoutApiKeyInput> | Prisma.AccessGrantCreateWithoutApiKeyInput[] | Prisma.AccessGrantUncheckedCreateWithoutApiKeyInput[]
+  connectOrCreate?: Prisma.AccessGrantCreateOrConnectWithoutApiKeyInput | Prisma.AccessGrantCreateOrConnectWithoutApiKeyInput[]
+  upsert?: Prisma.AccessGrantUpsertWithWhereUniqueWithoutApiKeyInput | Prisma.AccessGrantUpsertWithWhereUniqueWithoutApiKeyInput[]
+  createMany?: Prisma.AccessGrantCreateManyApiKeyInputEnvelope
+  set?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
+  disconnect?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
+  delete?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
+  connect?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
+  update?: Prisma.AccessGrantUpdateWithWhereUniqueWithoutApiKeyInput | Prisma.AccessGrantUpdateWithWhereUniqueWithoutApiKeyInput[]
+  updateMany?: Prisma.AccessGrantUpdateManyWithWhereWithoutApiKeyInput | Prisma.AccessGrantUpdateManyWithWhereWithoutApiKeyInput[]
+  deleteMany?: Prisma.AccessGrantScalarWhereInput | Prisma.AccessGrantScalarWhereInput[]
+}
+
+export type AccessGrantUncheckedUpdateManyWithoutApiKeyNestedInput = {
+  create?: Prisma.XOR<Prisma.AccessGrantCreateWithoutApiKeyInput, Prisma.AccessGrantUncheckedCreateWithoutApiKeyInput> | Prisma.AccessGrantCreateWithoutApiKeyInput[] | Prisma.AccessGrantUncheckedCreateWithoutApiKeyInput[]
+  connectOrCreate?: Prisma.AccessGrantCreateOrConnectWithoutApiKeyInput | Prisma.AccessGrantCreateOrConnectWithoutApiKeyInput[]
+  upsert?: Prisma.AccessGrantUpsertWithWhereUniqueWithoutApiKeyInput | Prisma.AccessGrantUpsertWithWhereUniqueWithoutApiKeyInput[]
+  createMany?: Prisma.AccessGrantCreateManyApiKeyInputEnvelope
+  set?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
+  disconnect?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
+  delete?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
+  connect?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
+  update?: Prisma.AccessGrantUpdateWithWhereUniqueWithoutApiKeyInput | Prisma.AccessGrantUpdateWithWhereUniqueWithoutApiKeyInput[]
+  updateMany?: Prisma.AccessGrantUpdateManyWithWhereWithoutApiKeyInput | Prisma.AccessGrantUpdateManyWithWhereWithoutApiKeyInput[]
   deleteMany?: Prisma.AccessGrantScalarWhereInput | Prisma.AccessGrantScalarWhereInput[]
 }
 
@@ -790,48 +811,6 @@ export type AccessGrantUncheckedUpdateManyWithoutEntryNestedInput = {
   deleteMany?: Prisma.AccessGrantScalarWhereInput | Prisma.AccessGrantScalarWhereInput[]
 }
 
-export type AccessGrantCreateNestedManyWithoutAppMemoryInput = {
-  create?: Prisma.XOR<Prisma.AccessGrantCreateWithoutAppMemoryInput, Prisma.AccessGrantUncheckedCreateWithoutAppMemoryInput> | Prisma.AccessGrantCreateWithoutAppMemoryInput[] | Prisma.AccessGrantUncheckedCreateWithoutAppMemoryInput[]
-  connectOrCreate?: Prisma.AccessGrantCreateOrConnectWithoutAppMemoryInput | Prisma.AccessGrantCreateOrConnectWithoutAppMemoryInput[]
-  createMany?: Prisma.AccessGrantCreateManyAppMemoryInputEnvelope
-  connect?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
-}
-
-export type AccessGrantUncheckedCreateNestedManyWithoutAppMemoryInput = {
-  create?: Prisma.XOR<Prisma.AccessGrantCreateWithoutAppMemoryInput, Prisma.AccessGrantUncheckedCreateWithoutAppMemoryInput> | Prisma.AccessGrantCreateWithoutAppMemoryInput[] | Prisma.AccessGrantUncheckedCreateWithoutAppMemoryInput[]
-  connectOrCreate?: Prisma.AccessGrantCreateOrConnectWithoutAppMemoryInput | Prisma.AccessGrantCreateOrConnectWithoutAppMemoryInput[]
-  createMany?: Prisma.AccessGrantCreateManyAppMemoryInputEnvelope
-  connect?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
-}
-
-export type AccessGrantUpdateManyWithoutAppMemoryNestedInput = {
-  create?: Prisma.XOR<Prisma.AccessGrantCreateWithoutAppMemoryInput, Prisma.AccessGrantUncheckedCreateWithoutAppMemoryInput> | Prisma.AccessGrantCreateWithoutAppMemoryInput[] | Prisma.AccessGrantUncheckedCreateWithoutAppMemoryInput[]
-  connectOrCreate?: Prisma.AccessGrantCreateOrConnectWithoutAppMemoryInput | Prisma.AccessGrantCreateOrConnectWithoutAppMemoryInput[]
-  upsert?: Prisma.AccessGrantUpsertWithWhereUniqueWithoutAppMemoryInput | Prisma.AccessGrantUpsertWithWhereUniqueWithoutAppMemoryInput[]
-  createMany?: Prisma.AccessGrantCreateManyAppMemoryInputEnvelope
-  set?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
-  disconnect?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
-  delete?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
-  connect?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
-  update?: Prisma.AccessGrantUpdateWithWhereUniqueWithoutAppMemoryInput | Prisma.AccessGrantUpdateWithWhereUniqueWithoutAppMemoryInput[]
-  updateMany?: Prisma.AccessGrantUpdateManyWithWhereWithoutAppMemoryInput | Prisma.AccessGrantUpdateManyWithWhereWithoutAppMemoryInput[]
-  deleteMany?: Prisma.AccessGrantScalarWhereInput | Prisma.AccessGrantScalarWhereInput[]
-}
-
-export type AccessGrantUncheckedUpdateManyWithoutAppMemoryNestedInput = {
-  create?: Prisma.XOR<Prisma.AccessGrantCreateWithoutAppMemoryInput, Prisma.AccessGrantUncheckedCreateWithoutAppMemoryInput> | Prisma.AccessGrantCreateWithoutAppMemoryInput[] | Prisma.AccessGrantUncheckedCreateWithoutAppMemoryInput[]
-  connectOrCreate?: Prisma.AccessGrantCreateOrConnectWithoutAppMemoryInput | Prisma.AccessGrantCreateOrConnectWithoutAppMemoryInput[]
-  upsert?: Prisma.AccessGrantUpsertWithWhereUniqueWithoutAppMemoryInput | Prisma.AccessGrantUpsertWithWhereUniqueWithoutAppMemoryInput[]
-  createMany?: Prisma.AccessGrantCreateManyAppMemoryInputEnvelope
-  set?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
-  disconnect?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
-  delete?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
-  connect?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
-  update?: Prisma.AccessGrantUpdateWithWhereUniqueWithoutAppMemoryInput | Prisma.AccessGrantUpdateWithWhereUniqueWithoutAppMemoryInput[]
-  updateMany?: Prisma.AccessGrantUpdateManyWithWhereWithoutAppMemoryInput | Prisma.AccessGrantUpdateManyWithWhereWithoutAppMemoryInput[]
-  deleteMany?: Prisma.AccessGrantScalarWhereInput | Prisma.AccessGrantScalarWhereInput[]
-}
-
 export type AccessGrantCreatepermissionsInput = {
   set: $Enums.AccessPermission[]
 }
@@ -849,45 +828,45 @@ export type AccessGrantUpdatepermissionsInput = {
   push?: $Enums.AccessPermission | $Enums.AccessPermission[]
 }
 
-export type AccessGrantCreateNestedManyWithoutPackInput = {
-  create?: Prisma.XOR<Prisma.AccessGrantCreateWithoutPackInput, Prisma.AccessGrantUncheckedCreateWithoutPackInput> | Prisma.AccessGrantCreateWithoutPackInput[] | Prisma.AccessGrantUncheckedCreateWithoutPackInput[]
-  connectOrCreate?: Prisma.AccessGrantCreateOrConnectWithoutPackInput | Prisma.AccessGrantCreateOrConnectWithoutPackInput[]
-  createMany?: Prisma.AccessGrantCreateManyPackInputEnvelope
+export type AccessGrantCreateNestedManyWithoutPathInput = {
+  create?: Prisma.XOR<Prisma.AccessGrantCreateWithoutPathInput, Prisma.AccessGrantUncheckedCreateWithoutPathInput> | Prisma.AccessGrantCreateWithoutPathInput[] | Prisma.AccessGrantUncheckedCreateWithoutPathInput[]
+  connectOrCreate?: Prisma.AccessGrantCreateOrConnectWithoutPathInput | Prisma.AccessGrantCreateOrConnectWithoutPathInput[]
+  createMany?: Prisma.AccessGrantCreateManyPathInputEnvelope
   connect?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
 }
 
-export type AccessGrantUncheckedCreateNestedManyWithoutPackInput = {
-  create?: Prisma.XOR<Prisma.AccessGrantCreateWithoutPackInput, Prisma.AccessGrantUncheckedCreateWithoutPackInput> | Prisma.AccessGrantCreateWithoutPackInput[] | Prisma.AccessGrantUncheckedCreateWithoutPackInput[]
-  connectOrCreate?: Prisma.AccessGrantCreateOrConnectWithoutPackInput | Prisma.AccessGrantCreateOrConnectWithoutPackInput[]
-  createMany?: Prisma.AccessGrantCreateManyPackInputEnvelope
+export type AccessGrantUncheckedCreateNestedManyWithoutPathInput = {
+  create?: Prisma.XOR<Prisma.AccessGrantCreateWithoutPathInput, Prisma.AccessGrantUncheckedCreateWithoutPathInput> | Prisma.AccessGrantCreateWithoutPathInput[] | Prisma.AccessGrantUncheckedCreateWithoutPathInput[]
+  connectOrCreate?: Prisma.AccessGrantCreateOrConnectWithoutPathInput | Prisma.AccessGrantCreateOrConnectWithoutPathInput[]
+  createMany?: Prisma.AccessGrantCreateManyPathInputEnvelope
   connect?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
 }
 
-export type AccessGrantUpdateManyWithoutPackNestedInput = {
-  create?: Prisma.XOR<Prisma.AccessGrantCreateWithoutPackInput, Prisma.AccessGrantUncheckedCreateWithoutPackInput> | Prisma.AccessGrantCreateWithoutPackInput[] | Prisma.AccessGrantUncheckedCreateWithoutPackInput[]
-  connectOrCreate?: Prisma.AccessGrantCreateOrConnectWithoutPackInput | Prisma.AccessGrantCreateOrConnectWithoutPackInput[]
-  upsert?: Prisma.AccessGrantUpsertWithWhereUniqueWithoutPackInput | Prisma.AccessGrantUpsertWithWhereUniqueWithoutPackInput[]
-  createMany?: Prisma.AccessGrantCreateManyPackInputEnvelope
+export type AccessGrantUpdateManyWithoutPathNestedInput = {
+  create?: Prisma.XOR<Prisma.AccessGrantCreateWithoutPathInput, Prisma.AccessGrantUncheckedCreateWithoutPathInput> | Prisma.AccessGrantCreateWithoutPathInput[] | Prisma.AccessGrantUncheckedCreateWithoutPathInput[]
+  connectOrCreate?: Prisma.AccessGrantCreateOrConnectWithoutPathInput | Prisma.AccessGrantCreateOrConnectWithoutPathInput[]
+  upsert?: Prisma.AccessGrantUpsertWithWhereUniqueWithoutPathInput | Prisma.AccessGrantUpsertWithWhereUniqueWithoutPathInput[]
+  createMany?: Prisma.AccessGrantCreateManyPathInputEnvelope
   set?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
   disconnect?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
   delete?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
   connect?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
-  update?: Prisma.AccessGrantUpdateWithWhereUniqueWithoutPackInput | Prisma.AccessGrantUpdateWithWhereUniqueWithoutPackInput[]
-  updateMany?: Prisma.AccessGrantUpdateManyWithWhereWithoutPackInput | Prisma.AccessGrantUpdateManyWithWhereWithoutPackInput[]
+  update?: Prisma.AccessGrantUpdateWithWhereUniqueWithoutPathInput | Prisma.AccessGrantUpdateWithWhereUniqueWithoutPathInput[]
+  updateMany?: Prisma.AccessGrantUpdateManyWithWhereWithoutPathInput | Prisma.AccessGrantUpdateManyWithWhereWithoutPathInput[]
   deleteMany?: Prisma.AccessGrantScalarWhereInput | Prisma.AccessGrantScalarWhereInput[]
 }
 
-export type AccessGrantUncheckedUpdateManyWithoutPackNestedInput = {
-  create?: Prisma.XOR<Prisma.AccessGrantCreateWithoutPackInput, Prisma.AccessGrantUncheckedCreateWithoutPackInput> | Prisma.AccessGrantCreateWithoutPackInput[] | Prisma.AccessGrantUncheckedCreateWithoutPackInput[]
-  connectOrCreate?: Prisma.AccessGrantCreateOrConnectWithoutPackInput | Prisma.AccessGrantCreateOrConnectWithoutPackInput[]
-  upsert?: Prisma.AccessGrantUpsertWithWhereUniqueWithoutPackInput | Prisma.AccessGrantUpsertWithWhereUniqueWithoutPackInput[]
-  createMany?: Prisma.AccessGrantCreateManyPackInputEnvelope
+export type AccessGrantUncheckedUpdateManyWithoutPathNestedInput = {
+  create?: Prisma.XOR<Prisma.AccessGrantCreateWithoutPathInput, Prisma.AccessGrantUncheckedCreateWithoutPathInput> | Prisma.AccessGrantCreateWithoutPathInput[] | Prisma.AccessGrantUncheckedCreateWithoutPathInput[]
+  connectOrCreate?: Prisma.AccessGrantCreateOrConnectWithoutPathInput | Prisma.AccessGrantCreateOrConnectWithoutPathInput[]
+  upsert?: Prisma.AccessGrantUpsertWithWhereUniqueWithoutPathInput | Prisma.AccessGrantUpsertWithWhereUniqueWithoutPathInput[]
+  createMany?: Prisma.AccessGrantCreateManyPathInputEnvelope
   set?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
   disconnect?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
   delete?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
   connect?: Prisma.AccessGrantWhereUniqueInput | Prisma.AccessGrantWhereUniqueInput[]
-  update?: Prisma.AccessGrantUpdateWithWhereUniqueWithoutPackInput | Prisma.AccessGrantUpdateWithWhereUniqueWithoutPackInput[]
-  updateMany?: Prisma.AccessGrantUpdateManyWithWhereWithoutPackInput | Prisma.AccessGrantUpdateManyWithWhereWithoutPackInput[]
+  update?: Prisma.AccessGrantUpdateWithWhereUniqueWithoutPathInput | Prisma.AccessGrantUpdateWithWhereUniqueWithoutPathInput[]
+  updateMany?: Prisma.AccessGrantUpdateManyWithWhereWithoutPathInput | Prisma.AccessGrantUpdateManyWithWhereWithoutPathInput[]
   deleteMany?: Prisma.AccessGrantScalarWhereInput | Prisma.AccessGrantScalarWhereInput[]
 }
 
@@ -900,18 +879,18 @@ export type AccessGrantCreateWithoutUserInput = {
   inherits?: boolean
   expiresAt?: Date | string | null
   grantedAt?: Date | string
-  oauthClientId?: string | null
-  oauthClient: Prisma.OauthClientCreateNestedOneWithoutAccessGrantsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAccessGrantsInput
+  apiKey?: Prisma.DeveloperApiKeyCreateNestedOneWithoutAccessGrantsInput
   area?: Prisma.AreaCreateNestedOneWithoutAccessGrantsInput
   collection?: Prisma.CollectionCreateNestedOneWithoutAccessGrantsInput
+  path?: Prisma.PathCreateNestedOneWithoutAccessGrantsInput
   entry?: Prisma.EntryCreateNestedOneWithoutAccessGrantsInput
-  appMemory?: Prisma.AppMemoryCreateNestedOneWithoutAccessGrantsInput
-  pack?: Prisma.PackCreateNestedOneWithoutAccessGrantsInput
 }
 
 export type AccessGrantUncheckedCreateWithoutUserInput = {
   id?: string
-  clientId: string
+  clientId?: string | null
+  apiKeyId?: string | null
   resourceType: $Enums.AccessResourceType
   resourceKey: string
   effect?: $Enums.AccessEffect
@@ -919,12 +898,10 @@ export type AccessGrantUncheckedCreateWithoutUserInput = {
   inherits?: boolean
   areaId?: string | null
   collectionId?: string | null
+  pathId?: string | null
   entryId?: string | null
-  appMemoryId?: string | null
-  packId?: string | null
   expiresAt?: Date | string | null
   grantedAt?: Date | string
-  oauthClientId?: string | null
 }
 
 export type AccessGrantCreateOrConnectWithoutUserInput = {
@@ -959,7 +936,8 @@ export type AccessGrantScalarWhereInput = {
   NOT?: Prisma.AccessGrantScalarWhereInput | Prisma.AccessGrantScalarWhereInput[]
   id?: Prisma.StringFilter<"AccessGrant"> | string
   userId?: Prisma.StringFilter<"AccessGrant"> | string
-  clientId?: Prisma.StringFilter<"AccessGrant"> | string
+  clientId?: Prisma.StringNullableFilter<"AccessGrant"> | string | null
+  apiKeyId?: Prisma.StringNullableFilter<"AccessGrant"> | string | null
   resourceType?: Prisma.EnumAccessResourceTypeFilter<"AccessGrant"> | $Enums.AccessResourceType
   resourceKey?: Prisma.StringFilter<"AccessGrant"> | string
   effect?: Prisma.EnumAccessEffectFilter<"AccessGrant"> | $Enums.AccessEffect
@@ -967,12 +945,10 @@ export type AccessGrantScalarWhereInput = {
   inherits?: Prisma.BoolFilter<"AccessGrant"> | boolean
   areaId?: Prisma.StringNullableFilter<"AccessGrant"> | string | null
   collectionId?: Prisma.StringNullableFilter<"AccessGrant"> | string | null
+  pathId?: Prisma.StringNullableFilter<"AccessGrant"> | string | null
   entryId?: Prisma.StringNullableFilter<"AccessGrant"> | string | null
-  appMemoryId?: Prisma.StringNullableFilter<"AccessGrant"> | string | null
-  packId?: Prisma.StringNullableFilter<"AccessGrant"> | string | null
   expiresAt?: Prisma.DateTimeNullableFilter<"AccessGrant"> | Date | string | null
   grantedAt?: Prisma.DateTimeFilter<"AccessGrant"> | Date | string
-  oauthClientId?: Prisma.StringNullableFilter<"AccessGrant"> | string | null
 }
 
 export type AccessGrantCreateWithoutOauthClientInput = {
@@ -984,18 +960,18 @@ export type AccessGrantCreateWithoutOauthClientInput = {
   inherits?: boolean
   expiresAt?: Date | string | null
   grantedAt?: Date | string
-  oauthClientId?: string | null
   user: Prisma.UserCreateNestedOneWithoutAccessGrantsInput
+  apiKey?: Prisma.DeveloperApiKeyCreateNestedOneWithoutAccessGrantsInput
   area?: Prisma.AreaCreateNestedOneWithoutAccessGrantsInput
   collection?: Prisma.CollectionCreateNestedOneWithoutAccessGrantsInput
+  path?: Prisma.PathCreateNestedOneWithoutAccessGrantsInput
   entry?: Prisma.EntryCreateNestedOneWithoutAccessGrantsInput
-  appMemory?: Prisma.AppMemoryCreateNestedOneWithoutAccessGrantsInput
-  pack?: Prisma.PackCreateNestedOneWithoutAccessGrantsInput
 }
 
 export type AccessGrantUncheckedCreateWithoutOauthClientInput = {
   id?: string
   userId: string
+  apiKeyId?: string | null
   resourceType: $Enums.AccessResourceType
   resourceKey: string
   effect?: $Enums.AccessEffect
@@ -1003,12 +979,10 @@ export type AccessGrantUncheckedCreateWithoutOauthClientInput = {
   inherits?: boolean
   areaId?: string | null
   collectionId?: string | null
+  pathId?: string | null
   entryId?: string | null
-  appMemoryId?: string | null
-  packId?: string | null
   expiresAt?: Date | string | null
   grantedAt?: Date | string
-  oauthClientId?: string | null
 }
 
 export type AccessGrantCreateOrConnectWithoutOauthClientInput = {
@@ -1037,6 +1011,66 @@ export type AccessGrantUpdateManyWithWhereWithoutOauthClientInput = {
   data: Prisma.XOR<Prisma.AccessGrantUpdateManyMutationInput, Prisma.AccessGrantUncheckedUpdateManyWithoutOauthClientInput>
 }
 
+export type AccessGrantCreateWithoutApiKeyInput = {
+  id?: string
+  resourceType: $Enums.AccessResourceType
+  resourceKey: string
+  effect?: $Enums.AccessEffect
+  permissions?: Prisma.AccessGrantCreatepermissionsInput | $Enums.AccessPermission[]
+  inherits?: boolean
+  expiresAt?: Date | string | null
+  grantedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutAccessGrantsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAccessGrantsInput
+  area?: Prisma.AreaCreateNestedOneWithoutAccessGrantsInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutAccessGrantsInput
+  path?: Prisma.PathCreateNestedOneWithoutAccessGrantsInput
+  entry?: Prisma.EntryCreateNestedOneWithoutAccessGrantsInput
+}
+
+export type AccessGrantUncheckedCreateWithoutApiKeyInput = {
+  id?: string
+  userId: string
+  clientId?: string | null
+  resourceType: $Enums.AccessResourceType
+  resourceKey: string
+  effect?: $Enums.AccessEffect
+  permissions?: Prisma.AccessGrantCreatepermissionsInput | $Enums.AccessPermission[]
+  inherits?: boolean
+  areaId?: string | null
+  collectionId?: string | null
+  pathId?: string | null
+  entryId?: string | null
+  expiresAt?: Date | string | null
+  grantedAt?: Date | string
+}
+
+export type AccessGrantCreateOrConnectWithoutApiKeyInput = {
+  where: Prisma.AccessGrantWhereUniqueInput
+  create: Prisma.XOR<Prisma.AccessGrantCreateWithoutApiKeyInput, Prisma.AccessGrantUncheckedCreateWithoutApiKeyInput>
+}
+
+export type AccessGrantCreateManyApiKeyInputEnvelope = {
+  data: Prisma.AccessGrantCreateManyApiKeyInput | Prisma.AccessGrantCreateManyApiKeyInput[]
+  skipDuplicates?: boolean
+}
+
+export type AccessGrantUpsertWithWhereUniqueWithoutApiKeyInput = {
+  where: Prisma.AccessGrantWhereUniqueInput
+  update: Prisma.XOR<Prisma.AccessGrantUpdateWithoutApiKeyInput, Prisma.AccessGrantUncheckedUpdateWithoutApiKeyInput>
+  create: Prisma.XOR<Prisma.AccessGrantCreateWithoutApiKeyInput, Prisma.AccessGrantUncheckedCreateWithoutApiKeyInput>
+}
+
+export type AccessGrantUpdateWithWhereUniqueWithoutApiKeyInput = {
+  where: Prisma.AccessGrantWhereUniqueInput
+  data: Prisma.XOR<Prisma.AccessGrantUpdateWithoutApiKeyInput, Prisma.AccessGrantUncheckedUpdateWithoutApiKeyInput>
+}
+
+export type AccessGrantUpdateManyWithWhereWithoutApiKeyInput = {
+  where: Prisma.AccessGrantScalarWhereInput
+  data: Prisma.XOR<Prisma.AccessGrantUpdateManyMutationInput, Prisma.AccessGrantUncheckedUpdateManyWithoutApiKeyInput>
+}
+
 export type AccessGrantCreateWithoutAreaInput = {
   id?: string
   resourceType: $Enums.AccessResourceType
@@ -1046,31 +1080,29 @@ export type AccessGrantCreateWithoutAreaInput = {
   inherits?: boolean
   expiresAt?: Date | string | null
   grantedAt?: Date | string
-  oauthClientId?: string | null
   user: Prisma.UserCreateNestedOneWithoutAccessGrantsInput
-  oauthClient: Prisma.OauthClientCreateNestedOneWithoutAccessGrantsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAccessGrantsInput
+  apiKey?: Prisma.DeveloperApiKeyCreateNestedOneWithoutAccessGrantsInput
   collection?: Prisma.CollectionCreateNestedOneWithoutAccessGrantsInput
+  path?: Prisma.PathCreateNestedOneWithoutAccessGrantsInput
   entry?: Prisma.EntryCreateNestedOneWithoutAccessGrantsInput
-  appMemory?: Prisma.AppMemoryCreateNestedOneWithoutAccessGrantsInput
-  pack?: Prisma.PackCreateNestedOneWithoutAccessGrantsInput
 }
 
 export type AccessGrantUncheckedCreateWithoutAreaInput = {
   id?: string
   userId: string
-  clientId: string
+  clientId?: string | null
+  apiKeyId?: string | null
   resourceType: $Enums.AccessResourceType
   resourceKey: string
   effect?: $Enums.AccessEffect
   permissions?: Prisma.AccessGrantCreatepermissionsInput | $Enums.AccessPermission[]
   inherits?: boolean
   collectionId?: string | null
+  pathId?: string | null
   entryId?: string | null
-  appMemoryId?: string | null
-  packId?: string | null
   expiresAt?: Date | string | null
   grantedAt?: Date | string
-  oauthClientId?: string | null
 }
 
 export type AccessGrantCreateOrConnectWithoutAreaInput = {
@@ -1108,31 +1140,29 @@ export type AccessGrantCreateWithoutCollectionInput = {
   inherits?: boolean
   expiresAt?: Date | string | null
   grantedAt?: Date | string
-  oauthClientId?: string | null
   user: Prisma.UserCreateNestedOneWithoutAccessGrantsInput
-  oauthClient: Prisma.OauthClientCreateNestedOneWithoutAccessGrantsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAccessGrantsInput
+  apiKey?: Prisma.DeveloperApiKeyCreateNestedOneWithoutAccessGrantsInput
   area?: Prisma.AreaCreateNestedOneWithoutAccessGrantsInput
+  path?: Prisma.PathCreateNestedOneWithoutAccessGrantsInput
   entry?: Prisma.EntryCreateNestedOneWithoutAccessGrantsInput
-  appMemory?: Prisma.AppMemoryCreateNestedOneWithoutAccessGrantsInput
-  pack?: Prisma.PackCreateNestedOneWithoutAccessGrantsInput
 }
 
 export type AccessGrantUncheckedCreateWithoutCollectionInput = {
   id?: string
   userId: string
-  clientId: string
+  clientId?: string | null
+  apiKeyId?: string | null
   resourceType: $Enums.AccessResourceType
   resourceKey: string
   effect?: $Enums.AccessEffect
   permissions?: Prisma.AccessGrantCreatepermissionsInput | $Enums.AccessPermission[]
   inherits?: boolean
   areaId?: string | null
+  pathId?: string | null
   entryId?: string | null
-  appMemoryId?: string | null
-  packId?: string | null
   expiresAt?: Date | string | null
   grantedAt?: Date | string
-  oauthClientId?: string | null
 }
 
 export type AccessGrantCreateOrConnectWithoutCollectionInput = {
@@ -1170,19 +1200,19 @@ export type AccessGrantCreateWithoutEntryInput = {
   inherits?: boolean
   expiresAt?: Date | string | null
   grantedAt?: Date | string
-  oauthClientId?: string | null
   user: Prisma.UserCreateNestedOneWithoutAccessGrantsInput
-  oauthClient: Prisma.OauthClientCreateNestedOneWithoutAccessGrantsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAccessGrantsInput
+  apiKey?: Prisma.DeveloperApiKeyCreateNestedOneWithoutAccessGrantsInput
   area?: Prisma.AreaCreateNestedOneWithoutAccessGrantsInput
   collection?: Prisma.CollectionCreateNestedOneWithoutAccessGrantsInput
-  appMemory?: Prisma.AppMemoryCreateNestedOneWithoutAccessGrantsInput
-  pack?: Prisma.PackCreateNestedOneWithoutAccessGrantsInput
+  path?: Prisma.PathCreateNestedOneWithoutAccessGrantsInput
 }
 
 export type AccessGrantUncheckedCreateWithoutEntryInput = {
   id?: string
   userId: string
-  clientId: string
+  clientId?: string | null
+  apiKeyId?: string | null
   resourceType: $Enums.AccessResourceType
   resourceKey: string
   effect?: $Enums.AccessEffect
@@ -1190,11 +1220,9 @@ export type AccessGrantUncheckedCreateWithoutEntryInput = {
   inherits?: boolean
   areaId?: string | null
   collectionId?: string | null
-  appMemoryId?: string | null
-  packId?: string | null
+  pathId?: string | null
   expiresAt?: Date | string | null
   grantedAt?: Date | string
-  oauthClientId?: string | null
 }
 
 export type AccessGrantCreateOrConnectWithoutEntryInput = {
@@ -1223,7 +1251,7 @@ export type AccessGrantUpdateManyWithWhereWithoutEntryInput = {
   data: Prisma.XOR<Prisma.AccessGrantUpdateManyMutationInput, Prisma.AccessGrantUncheckedUpdateManyWithoutEntryInput>
 }
 
-export type AccessGrantCreateWithoutAppMemoryInput = {
+export type AccessGrantCreateWithoutPathInput = {
   id?: string
   resourceType: $Enums.AccessResourceType
   resourceKey: string
@@ -1232,19 +1260,19 @@ export type AccessGrantCreateWithoutAppMemoryInput = {
   inherits?: boolean
   expiresAt?: Date | string | null
   grantedAt?: Date | string
-  oauthClientId?: string | null
   user: Prisma.UserCreateNestedOneWithoutAccessGrantsInput
-  oauthClient: Prisma.OauthClientCreateNestedOneWithoutAccessGrantsInput
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutAccessGrantsInput
+  apiKey?: Prisma.DeveloperApiKeyCreateNestedOneWithoutAccessGrantsInput
   area?: Prisma.AreaCreateNestedOneWithoutAccessGrantsInput
   collection?: Prisma.CollectionCreateNestedOneWithoutAccessGrantsInput
   entry?: Prisma.EntryCreateNestedOneWithoutAccessGrantsInput
-  pack?: Prisma.PackCreateNestedOneWithoutAccessGrantsInput
 }
 
-export type AccessGrantUncheckedCreateWithoutAppMemoryInput = {
+export type AccessGrantUncheckedCreateWithoutPathInput = {
   id?: string
   userId: string
-  clientId: string
+  clientId?: string | null
+  apiKeyId?: string | null
   resourceType: $Enums.AccessResourceType
   resourceKey: string
   effect?: $Enums.AccessEffect
@@ -1253,103 +1281,40 @@ export type AccessGrantUncheckedCreateWithoutAppMemoryInput = {
   areaId?: string | null
   collectionId?: string | null
   entryId?: string | null
-  packId?: string | null
   expiresAt?: Date | string | null
   grantedAt?: Date | string
-  oauthClientId?: string | null
 }
 
-export type AccessGrantCreateOrConnectWithoutAppMemoryInput = {
+export type AccessGrantCreateOrConnectWithoutPathInput = {
   where: Prisma.AccessGrantWhereUniqueInput
-  create: Prisma.XOR<Prisma.AccessGrantCreateWithoutAppMemoryInput, Prisma.AccessGrantUncheckedCreateWithoutAppMemoryInput>
+  create: Prisma.XOR<Prisma.AccessGrantCreateWithoutPathInput, Prisma.AccessGrantUncheckedCreateWithoutPathInput>
 }
 
-export type AccessGrantCreateManyAppMemoryInputEnvelope = {
-  data: Prisma.AccessGrantCreateManyAppMemoryInput | Prisma.AccessGrantCreateManyAppMemoryInput[]
+export type AccessGrantCreateManyPathInputEnvelope = {
+  data: Prisma.AccessGrantCreateManyPathInput | Prisma.AccessGrantCreateManyPathInput[]
   skipDuplicates?: boolean
 }
 
-export type AccessGrantUpsertWithWhereUniqueWithoutAppMemoryInput = {
+export type AccessGrantUpsertWithWhereUniqueWithoutPathInput = {
   where: Prisma.AccessGrantWhereUniqueInput
-  update: Prisma.XOR<Prisma.AccessGrantUpdateWithoutAppMemoryInput, Prisma.AccessGrantUncheckedUpdateWithoutAppMemoryInput>
-  create: Prisma.XOR<Prisma.AccessGrantCreateWithoutAppMemoryInput, Prisma.AccessGrantUncheckedCreateWithoutAppMemoryInput>
+  update: Prisma.XOR<Prisma.AccessGrantUpdateWithoutPathInput, Prisma.AccessGrantUncheckedUpdateWithoutPathInput>
+  create: Prisma.XOR<Prisma.AccessGrantCreateWithoutPathInput, Prisma.AccessGrantUncheckedCreateWithoutPathInput>
 }
 
-export type AccessGrantUpdateWithWhereUniqueWithoutAppMemoryInput = {
+export type AccessGrantUpdateWithWhereUniqueWithoutPathInput = {
   where: Prisma.AccessGrantWhereUniqueInput
-  data: Prisma.XOR<Prisma.AccessGrantUpdateWithoutAppMemoryInput, Prisma.AccessGrantUncheckedUpdateWithoutAppMemoryInput>
+  data: Prisma.XOR<Prisma.AccessGrantUpdateWithoutPathInput, Prisma.AccessGrantUncheckedUpdateWithoutPathInput>
 }
 
-export type AccessGrantUpdateManyWithWhereWithoutAppMemoryInput = {
+export type AccessGrantUpdateManyWithWhereWithoutPathInput = {
   where: Prisma.AccessGrantScalarWhereInput
-  data: Prisma.XOR<Prisma.AccessGrantUpdateManyMutationInput, Prisma.AccessGrantUncheckedUpdateManyWithoutAppMemoryInput>
-}
-
-export type AccessGrantCreateWithoutPackInput = {
-  id?: string
-  resourceType: $Enums.AccessResourceType
-  resourceKey: string
-  effect?: $Enums.AccessEffect
-  permissions?: Prisma.AccessGrantCreatepermissionsInput | $Enums.AccessPermission[]
-  inherits?: boolean
-  expiresAt?: Date | string | null
-  grantedAt?: Date | string
-  oauthClientId?: string | null
-  user: Prisma.UserCreateNestedOneWithoutAccessGrantsInput
-  oauthClient: Prisma.OauthClientCreateNestedOneWithoutAccessGrantsInput
-  area?: Prisma.AreaCreateNestedOneWithoutAccessGrantsInput
-  collection?: Prisma.CollectionCreateNestedOneWithoutAccessGrantsInput
-  entry?: Prisma.EntryCreateNestedOneWithoutAccessGrantsInput
-  appMemory?: Prisma.AppMemoryCreateNestedOneWithoutAccessGrantsInput
-}
-
-export type AccessGrantUncheckedCreateWithoutPackInput = {
-  id?: string
-  userId: string
-  clientId: string
-  resourceType: $Enums.AccessResourceType
-  resourceKey: string
-  effect?: $Enums.AccessEffect
-  permissions?: Prisma.AccessGrantCreatepermissionsInput | $Enums.AccessPermission[]
-  inherits?: boolean
-  areaId?: string | null
-  collectionId?: string | null
-  entryId?: string | null
-  appMemoryId?: string | null
-  expiresAt?: Date | string | null
-  grantedAt?: Date | string
-  oauthClientId?: string | null
-}
-
-export type AccessGrantCreateOrConnectWithoutPackInput = {
-  where: Prisma.AccessGrantWhereUniqueInput
-  create: Prisma.XOR<Prisma.AccessGrantCreateWithoutPackInput, Prisma.AccessGrantUncheckedCreateWithoutPackInput>
-}
-
-export type AccessGrantCreateManyPackInputEnvelope = {
-  data: Prisma.AccessGrantCreateManyPackInput | Prisma.AccessGrantCreateManyPackInput[]
-  skipDuplicates?: boolean
-}
-
-export type AccessGrantUpsertWithWhereUniqueWithoutPackInput = {
-  where: Prisma.AccessGrantWhereUniqueInput
-  update: Prisma.XOR<Prisma.AccessGrantUpdateWithoutPackInput, Prisma.AccessGrantUncheckedUpdateWithoutPackInput>
-  create: Prisma.XOR<Prisma.AccessGrantCreateWithoutPackInput, Prisma.AccessGrantUncheckedCreateWithoutPackInput>
-}
-
-export type AccessGrantUpdateWithWhereUniqueWithoutPackInput = {
-  where: Prisma.AccessGrantWhereUniqueInput
-  data: Prisma.XOR<Prisma.AccessGrantUpdateWithoutPackInput, Prisma.AccessGrantUncheckedUpdateWithoutPackInput>
-}
-
-export type AccessGrantUpdateManyWithWhereWithoutPackInput = {
-  where: Prisma.AccessGrantScalarWhereInput
-  data: Prisma.XOR<Prisma.AccessGrantUpdateManyMutationInput, Prisma.AccessGrantUncheckedUpdateManyWithoutPackInput>
+  data: Prisma.XOR<Prisma.AccessGrantUpdateManyMutationInput, Prisma.AccessGrantUncheckedUpdateManyWithoutPathInput>
 }
 
 export type AccessGrantCreateManyUserInput = {
   id?: string
-  clientId: string
+  clientId?: string | null
+  apiKeyId?: string | null
   resourceType: $Enums.AccessResourceType
   resourceKey: string
   effect?: $Enums.AccessEffect
@@ -1357,12 +1322,10 @@ export type AccessGrantCreateManyUserInput = {
   inherits?: boolean
   areaId?: string | null
   collectionId?: string | null
+  pathId?: string | null
   entryId?: string | null
-  appMemoryId?: string | null
-  packId?: string | null
   expiresAt?: Date | string | null
   grantedAt?: Date | string
-  oauthClientId?: string | null
 }
 
 export type AccessGrantUpdateWithoutUserInput = {
@@ -1374,18 +1337,18 @@ export type AccessGrantUpdateWithoutUserInput = {
   inherits?: Prisma.BoolFieldUpdateOperationsInput | boolean
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  oauthClient?: Prisma.OauthClientUpdateOneRequiredWithoutAccessGrantsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAccessGrantsNestedInput
+  apiKey?: Prisma.DeveloperApiKeyUpdateOneWithoutAccessGrantsNestedInput
   area?: Prisma.AreaUpdateOneWithoutAccessGrantsNestedInput
   collection?: Prisma.CollectionUpdateOneWithoutAccessGrantsNestedInput
+  path?: Prisma.PathUpdateOneWithoutAccessGrantsNestedInput
   entry?: Prisma.EntryUpdateOneWithoutAccessGrantsNestedInput
-  appMemory?: Prisma.AppMemoryUpdateOneWithoutAccessGrantsNestedInput
-  pack?: Prisma.PackUpdateOneWithoutAccessGrantsNestedInput
 }
 
 export type AccessGrantUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
   resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
   effect?: Prisma.EnumAccessEffectFieldUpdateOperationsInput | $Enums.AccessEffect
@@ -1393,17 +1356,16 @@ export type AccessGrantUncheckedUpdateWithoutUserInput = {
   inherits?: Prisma.BoolFieldUpdateOperationsInput | boolean
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type AccessGrantUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
   resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
   effect?: Prisma.EnumAccessEffectFieldUpdateOperationsInput | $Enums.AccessEffect
@@ -1411,17 +1373,16 @@ export type AccessGrantUncheckedUpdateManyWithoutUserInput = {
   inherits?: Prisma.BoolFieldUpdateOperationsInput | boolean
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type AccessGrantCreateManyOauthClientInput = {
   id?: string
   userId: string
+  apiKeyId?: string | null
   resourceType: $Enums.AccessResourceType
   resourceKey: string
   effect?: $Enums.AccessEffect
@@ -1429,12 +1390,10 @@ export type AccessGrantCreateManyOauthClientInput = {
   inherits?: boolean
   areaId?: string | null
   collectionId?: string | null
+  pathId?: string | null
   entryId?: string | null
-  appMemoryId?: string | null
-  packId?: string | null
   expiresAt?: Date | string | null
   grantedAt?: Date | string
-  oauthClientId?: string | null
 }
 
 export type AccessGrantUpdateWithoutOauthClientInput = {
@@ -1446,18 +1405,18 @@ export type AccessGrantUpdateWithoutOauthClientInput = {
   inherits?: Prisma.BoolFieldUpdateOperationsInput | boolean
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutAccessGrantsNestedInput
+  apiKey?: Prisma.DeveloperApiKeyUpdateOneWithoutAccessGrantsNestedInput
   area?: Prisma.AreaUpdateOneWithoutAccessGrantsNestedInput
   collection?: Prisma.CollectionUpdateOneWithoutAccessGrantsNestedInput
+  path?: Prisma.PathUpdateOneWithoutAccessGrantsNestedInput
   entry?: Prisma.EntryUpdateOneWithoutAccessGrantsNestedInput
-  appMemory?: Prisma.AppMemoryUpdateOneWithoutAccessGrantsNestedInput
-  pack?: Prisma.PackUpdateOneWithoutAccessGrantsNestedInput
 }
 
 export type AccessGrantUncheckedUpdateWithoutOauthClientInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
   resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
   effect?: Prisma.EnumAccessEffectFieldUpdateOperationsInput | $Enums.AccessEffect
@@ -1465,17 +1424,16 @@ export type AccessGrantUncheckedUpdateWithoutOauthClientInput = {
   inherits?: Prisma.BoolFieldUpdateOperationsInput | boolean
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type AccessGrantUncheckedUpdateManyWithoutOauthClientInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
   resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
   effect?: Prisma.EnumAccessEffectFieldUpdateOperationsInput | $Enums.AccessEffect
@@ -1483,30 +1441,95 @@ export type AccessGrantUncheckedUpdateManyWithoutOauthClientInput = {
   inherits?: Prisma.BoolFieldUpdateOperationsInput | boolean
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type AccessGrantCreateManyApiKeyInput = {
+  id?: string
+  userId: string
+  clientId?: string | null
+  resourceType: $Enums.AccessResourceType
+  resourceKey: string
+  effect?: $Enums.AccessEffect
+  permissions?: Prisma.AccessGrantCreatepermissionsInput | $Enums.AccessPermission[]
+  inherits?: boolean
+  areaId?: string | null
+  collectionId?: string | null
+  pathId?: string | null
+  entryId?: string | null
+  expiresAt?: Date | string | null
+  grantedAt?: Date | string
+}
+
+export type AccessGrantUpdateWithoutApiKeyInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
+  resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
+  effect?: Prisma.EnumAccessEffectFieldUpdateOperationsInput | $Enums.AccessEffect
+  permissions?: Prisma.AccessGrantUpdatepermissionsInput | $Enums.AccessPermission[]
+  inherits?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutAccessGrantsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAccessGrantsNestedInput
+  area?: Prisma.AreaUpdateOneWithoutAccessGrantsNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutAccessGrantsNestedInput
+  path?: Prisma.PathUpdateOneWithoutAccessGrantsNestedInput
+  entry?: Prisma.EntryUpdateOneWithoutAccessGrantsNestedInput
+}
+
+export type AccessGrantUncheckedUpdateWithoutApiKeyInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
+  resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
+  effect?: Prisma.EnumAccessEffectFieldUpdateOperationsInput | $Enums.AccessEffect
+  permissions?: Prisma.AccessGrantUpdatepermissionsInput | $Enums.AccessPermission[]
+  inherits?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type AccessGrantUncheckedUpdateManyWithoutApiKeyInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
+  resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
+  effect?: Prisma.EnumAccessEffectFieldUpdateOperationsInput | $Enums.AccessEffect
+  permissions?: Prisma.AccessGrantUpdatepermissionsInput | $Enums.AccessPermission[]
+  inherits?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type AccessGrantCreateManyAreaInput = {
   id?: string
   userId: string
-  clientId: string
+  clientId?: string | null
+  apiKeyId?: string | null
   resourceType: $Enums.AccessResourceType
   resourceKey: string
   effect?: $Enums.AccessEffect
   permissions?: Prisma.AccessGrantCreatepermissionsInput | $Enums.AccessPermission[]
   inherits?: boolean
   collectionId?: string | null
+  pathId?: string | null
   entryId?: string | null
-  appMemoryId?: string | null
-  packId?: string | null
   expiresAt?: Date | string | null
   grantedAt?: Date | string
-  oauthClientId?: string | null
 }
 
 export type AccessGrantUpdateWithoutAreaInput = {
@@ -1518,67 +1541,63 @@ export type AccessGrantUpdateWithoutAreaInput = {
   inherits?: Prisma.BoolFieldUpdateOperationsInput | boolean
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutAccessGrantsNestedInput
-  oauthClient?: Prisma.OauthClientUpdateOneRequiredWithoutAccessGrantsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAccessGrantsNestedInput
+  apiKey?: Prisma.DeveloperApiKeyUpdateOneWithoutAccessGrantsNestedInput
   collection?: Prisma.CollectionUpdateOneWithoutAccessGrantsNestedInput
+  path?: Prisma.PathUpdateOneWithoutAccessGrantsNestedInput
   entry?: Prisma.EntryUpdateOneWithoutAccessGrantsNestedInput
-  appMemory?: Prisma.AppMemoryUpdateOneWithoutAccessGrantsNestedInput
-  pack?: Prisma.PackUpdateOneWithoutAccessGrantsNestedInput
 }
 
 export type AccessGrantUncheckedUpdateWithoutAreaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
   resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
   effect?: Prisma.EnumAccessEffectFieldUpdateOperationsInput | $Enums.AccessEffect
   permissions?: Prisma.AccessGrantUpdatepermissionsInput | $Enums.AccessPermission[]
   inherits?: Prisma.BoolFieldUpdateOperationsInput | boolean
   collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type AccessGrantUncheckedUpdateManyWithoutAreaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
   resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
   effect?: Prisma.EnumAccessEffectFieldUpdateOperationsInput | $Enums.AccessEffect
   permissions?: Prisma.AccessGrantUpdatepermissionsInput | $Enums.AccessPermission[]
   inherits?: Prisma.BoolFieldUpdateOperationsInput | boolean
   collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type AccessGrantCreateManyCollectionInput = {
   id?: string
   userId: string
-  clientId: string
+  clientId?: string | null
+  apiKeyId?: string | null
   resourceType: $Enums.AccessResourceType
   resourceKey: string
   effect?: $Enums.AccessEffect
   permissions?: Prisma.AccessGrantCreatepermissionsInput | $Enums.AccessPermission[]
   inherits?: boolean
   areaId?: string | null
+  pathId?: string | null
   entryId?: string | null
-  appMemoryId?: string | null
-  packId?: string | null
   expiresAt?: Date | string | null
   grantedAt?: Date | string
-  oauthClientId?: string | null
 }
 
 export type AccessGrantUpdateWithoutCollectionInput = {
@@ -1590,55 +1609,53 @@ export type AccessGrantUpdateWithoutCollectionInput = {
   inherits?: Prisma.BoolFieldUpdateOperationsInput | boolean
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutAccessGrantsNestedInput
-  oauthClient?: Prisma.OauthClientUpdateOneRequiredWithoutAccessGrantsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAccessGrantsNestedInput
+  apiKey?: Prisma.DeveloperApiKeyUpdateOneWithoutAccessGrantsNestedInput
   area?: Prisma.AreaUpdateOneWithoutAccessGrantsNestedInput
+  path?: Prisma.PathUpdateOneWithoutAccessGrantsNestedInput
   entry?: Prisma.EntryUpdateOneWithoutAccessGrantsNestedInput
-  appMemory?: Prisma.AppMemoryUpdateOneWithoutAccessGrantsNestedInput
-  pack?: Prisma.PackUpdateOneWithoutAccessGrantsNestedInput
 }
 
 export type AccessGrantUncheckedUpdateWithoutCollectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
   resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
   effect?: Prisma.EnumAccessEffectFieldUpdateOperationsInput | $Enums.AccessEffect
   permissions?: Prisma.AccessGrantUpdatepermissionsInput | $Enums.AccessPermission[]
   inherits?: Prisma.BoolFieldUpdateOperationsInput | boolean
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type AccessGrantUncheckedUpdateManyWithoutCollectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
   resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
   effect?: Prisma.EnumAccessEffectFieldUpdateOperationsInput | $Enums.AccessEffect
   permissions?: Prisma.AccessGrantUpdatepermissionsInput | $Enums.AccessPermission[]
   inherits?: Prisma.BoolFieldUpdateOperationsInput | boolean
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type AccessGrantCreateManyEntryInput = {
   id?: string
   userId: string
-  clientId: string
+  clientId?: string | null
+  apiKeyId?: string | null
   resourceType: $Enums.AccessResourceType
   resourceKey: string
   effect?: $Enums.AccessEffect
@@ -1646,11 +1663,9 @@ export type AccessGrantCreateManyEntryInput = {
   inherits?: boolean
   areaId?: string | null
   collectionId?: string | null
-  appMemoryId?: string | null
-  packId?: string | null
+  pathId?: string | null
   expiresAt?: Date | string | null
   grantedAt?: Date | string
-  oauthClientId?: string | null
 }
 
 export type AccessGrantUpdateWithoutEntryInput = {
@@ -1662,19 +1677,19 @@ export type AccessGrantUpdateWithoutEntryInput = {
   inherits?: Prisma.BoolFieldUpdateOperationsInput | boolean
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutAccessGrantsNestedInput
-  oauthClient?: Prisma.OauthClientUpdateOneRequiredWithoutAccessGrantsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAccessGrantsNestedInput
+  apiKey?: Prisma.DeveloperApiKeyUpdateOneWithoutAccessGrantsNestedInput
   area?: Prisma.AreaUpdateOneWithoutAccessGrantsNestedInput
   collection?: Prisma.CollectionUpdateOneWithoutAccessGrantsNestedInput
-  appMemory?: Prisma.AppMemoryUpdateOneWithoutAccessGrantsNestedInput
-  pack?: Prisma.PackUpdateOneWithoutAccessGrantsNestedInput
+  path?: Prisma.PathUpdateOneWithoutAccessGrantsNestedInput
 }
 
 export type AccessGrantUncheckedUpdateWithoutEntryInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
   resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
   effect?: Prisma.EnumAccessEffectFieldUpdateOperationsInput | $Enums.AccessEffect
@@ -1682,17 +1697,16 @@ export type AccessGrantUncheckedUpdateWithoutEntryInput = {
   inherits?: Prisma.BoolFieldUpdateOperationsInput | boolean
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type AccessGrantUncheckedUpdateManyWithoutEntryInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
   resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
   effect?: Prisma.EnumAccessEffectFieldUpdateOperationsInput | $Enums.AccessEffect
@@ -1700,17 +1714,16 @@ export type AccessGrantUncheckedUpdateManyWithoutEntryInput = {
   inherits?: Prisma.BoolFieldUpdateOperationsInput | boolean
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pathId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
-export type AccessGrantCreateManyAppMemoryInput = {
+export type AccessGrantCreateManyPathInput = {
   id?: string
   userId: string
-  clientId: string
+  clientId?: string | null
+  apiKeyId?: string | null
   resourceType: $Enums.AccessResourceType
   resourceKey: string
   effect?: $Enums.AccessEffect
@@ -1719,13 +1732,11 @@ export type AccessGrantCreateManyAppMemoryInput = {
   areaId?: string | null
   collectionId?: string | null
   entryId?: string | null
-  packId?: string | null
   expiresAt?: Date | string | null
   grantedAt?: Date | string
-  oauthClientId?: string | null
 }
 
-export type AccessGrantUpdateWithoutAppMemoryInput = {
+export type AccessGrantUpdateWithoutPathInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
   resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1734,19 +1745,19 @@ export type AccessGrantUpdateWithoutAppMemoryInput = {
   inherits?: Prisma.BoolFieldUpdateOperationsInput | boolean
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutAccessGrantsNestedInput
-  oauthClient?: Prisma.OauthClientUpdateOneRequiredWithoutAccessGrantsNestedInput
+  oauthClient?: Prisma.OauthClientUpdateOneWithoutAccessGrantsNestedInput
+  apiKey?: Prisma.DeveloperApiKeyUpdateOneWithoutAccessGrantsNestedInput
   area?: Prisma.AreaUpdateOneWithoutAccessGrantsNestedInput
   collection?: Prisma.CollectionUpdateOneWithoutAccessGrantsNestedInput
   entry?: Prisma.EntryUpdateOneWithoutAccessGrantsNestedInput
-  pack?: Prisma.PackUpdateOneWithoutAccessGrantsNestedInput
 }
 
-export type AccessGrantUncheckedUpdateWithoutAppMemoryInput = {
+export type AccessGrantUncheckedUpdateWithoutPathInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
   resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
   effect?: Prisma.EnumAccessEffectFieldUpdateOperationsInput | $Enums.AccessEffect
@@ -1755,16 +1766,15 @@ export type AccessGrantUncheckedUpdateWithoutAppMemoryInput = {
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
-export type AccessGrantUncheckedUpdateManyWithoutAppMemoryInput = {
+export type AccessGrantUncheckedUpdateManyWithoutPathInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
   resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
   effect?: Prisma.EnumAccessEffectFieldUpdateOperationsInput | $Enums.AccessEffect
@@ -1773,82 +1783,8 @@ export type AccessGrantUncheckedUpdateManyWithoutAppMemoryInput = {
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-}
-
-export type AccessGrantCreateManyPackInput = {
-  id?: string
-  userId: string
-  clientId: string
-  resourceType: $Enums.AccessResourceType
-  resourceKey: string
-  effect?: $Enums.AccessEffect
-  permissions?: Prisma.AccessGrantCreatepermissionsInput | $Enums.AccessPermission[]
-  inherits?: boolean
-  areaId?: string | null
-  collectionId?: string | null
-  entryId?: string | null
-  appMemoryId?: string | null
-  expiresAt?: Date | string | null
-  grantedAt?: Date | string
-  oauthClientId?: string | null
-}
-
-export type AccessGrantUpdateWithoutPackInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
-  resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
-  effect?: Prisma.EnumAccessEffectFieldUpdateOperationsInput | $Enums.AccessEffect
-  permissions?: Prisma.AccessGrantUpdatepermissionsInput | $Enums.AccessPermission[]
-  inherits?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  user?: Prisma.UserUpdateOneRequiredWithoutAccessGrantsNestedInput
-  oauthClient?: Prisma.OauthClientUpdateOneRequiredWithoutAccessGrantsNestedInput
-  area?: Prisma.AreaUpdateOneWithoutAccessGrantsNestedInput
-  collection?: Prisma.CollectionUpdateOneWithoutAccessGrantsNestedInput
-  entry?: Prisma.EntryUpdateOneWithoutAccessGrantsNestedInput
-  appMemory?: Prisma.AppMemoryUpdateOneWithoutAccessGrantsNestedInput
-}
-
-export type AccessGrantUncheckedUpdateWithoutPackInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
-  resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
-  resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
-  effect?: Prisma.EnumAccessEffectFieldUpdateOperationsInput | $Enums.AccessEffect
-  permissions?: Prisma.AccessGrantUpdatepermissionsInput | $Enums.AccessPermission[]
-  inherits?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-}
-
-export type AccessGrantUncheckedUpdateManyWithoutPackInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
-  resourceType?: Prisma.EnumAccessResourceTypeFieldUpdateOperationsInput | $Enums.AccessResourceType
-  resourceKey?: Prisma.StringFieldUpdateOperationsInput | string
-  effect?: Prisma.EnumAccessEffectFieldUpdateOperationsInput | $Enums.AccessEffect
-  permissions?: Prisma.AccessGrantUpdatepermissionsInput | $Enums.AccessPermission[]
-  inherits?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  entryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  appMemoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  grantedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -1857,6 +1793,7 @@ export type AccessGrantSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   id?: boolean
   userId?: boolean
   clientId?: boolean
+  apiKeyId?: boolean
   resourceType?: boolean
   resourceKey?: boolean
   effect?: boolean
@@ -1864,25 +1801,24 @@ export type AccessGrantSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   inherits?: boolean
   areaId?: boolean
   collectionId?: boolean
+  pathId?: boolean
   entryId?: boolean
-  appMemoryId?: boolean
-  packId?: boolean
   expiresAt?: boolean
   grantedAt?: boolean
-  oauthClientId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  oauthClient?: boolean | Prisma.OauthClientDefaultArgs<ExtArgs>
+  oauthClient?: boolean | Prisma.AccessGrant$oauthClientArgs<ExtArgs>
+  apiKey?: boolean | Prisma.AccessGrant$apiKeyArgs<ExtArgs>
   area?: boolean | Prisma.AccessGrant$areaArgs<ExtArgs>
   collection?: boolean | Prisma.AccessGrant$collectionArgs<ExtArgs>
+  path?: boolean | Prisma.AccessGrant$pathArgs<ExtArgs>
   entry?: boolean | Prisma.AccessGrant$entryArgs<ExtArgs>
-  appMemory?: boolean | Prisma.AccessGrant$appMemoryArgs<ExtArgs>
-  pack?: boolean | Prisma.AccessGrant$packArgs<ExtArgs>
 }, ExtArgs["result"]["accessGrant"]>
 
 export type AccessGrantSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
   clientId?: boolean
+  apiKeyId?: boolean
   resourceType?: boolean
   resourceKey?: boolean
   effect?: boolean
@@ -1890,25 +1826,24 @@ export type AccessGrantSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   inherits?: boolean
   areaId?: boolean
   collectionId?: boolean
+  pathId?: boolean
   entryId?: boolean
-  appMemoryId?: boolean
-  packId?: boolean
   expiresAt?: boolean
   grantedAt?: boolean
-  oauthClientId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  oauthClient?: boolean | Prisma.OauthClientDefaultArgs<ExtArgs>
+  oauthClient?: boolean | Prisma.AccessGrant$oauthClientArgs<ExtArgs>
+  apiKey?: boolean | Prisma.AccessGrant$apiKeyArgs<ExtArgs>
   area?: boolean | Prisma.AccessGrant$areaArgs<ExtArgs>
   collection?: boolean | Prisma.AccessGrant$collectionArgs<ExtArgs>
+  path?: boolean | Prisma.AccessGrant$pathArgs<ExtArgs>
   entry?: boolean | Prisma.AccessGrant$entryArgs<ExtArgs>
-  appMemory?: boolean | Prisma.AccessGrant$appMemoryArgs<ExtArgs>
-  pack?: boolean | Prisma.AccessGrant$packArgs<ExtArgs>
 }, ExtArgs["result"]["accessGrant"]>
 
 export type AccessGrantSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
   clientId?: boolean
+  apiKeyId?: boolean
   resourceType?: boolean
   resourceKey?: boolean
   effect?: boolean
@@ -1916,25 +1851,24 @@ export type AccessGrantSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   inherits?: boolean
   areaId?: boolean
   collectionId?: boolean
+  pathId?: boolean
   entryId?: boolean
-  appMemoryId?: boolean
-  packId?: boolean
   expiresAt?: boolean
   grantedAt?: boolean
-  oauthClientId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  oauthClient?: boolean | Prisma.OauthClientDefaultArgs<ExtArgs>
+  oauthClient?: boolean | Prisma.AccessGrant$oauthClientArgs<ExtArgs>
+  apiKey?: boolean | Prisma.AccessGrant$apiKeyArgs<ExtArgs>
   area?: boolean | Prisma.AccessGrant$areaArgs<ExtArgs>
   collection?: boolean | Prisma.AccessGrant$collectionArgs<ExtArgs>
+  path?: boolean | Prisma.AccessGrant$pathArgs<ExtArgs>
   entry?: boolean | Prisma.AccessGrant$entryArgs<ExtArgs>
-  appMemory?: boolean | Prisma.AccessGrant$appMemoryArgs<ExtArgs>
-  pack?: boolean | Prisma.AccessGrant$packArgs<ExtArgs>
 }, ExtArgs["result"]["accessGrant"]>
 
 export type AccessGrantSelectScalar = {
   id?: boolean
   userId?: boolean
   clientId?: boolean
+  apiKeyId?: boolean
   resourceType?: boolean
   resourceKey?: boolean
   effect?: boolean
@@ -1942,58 +1876,57 @@ export type AccessGrantSelectScalar = {
   inherits?: boolean
   areaId?: boolean
   collectionId?: boolean
+  pathId?: boolean
   entryId?: boolean
-  appMemoryId?: boolean
-  packId?: boolean
   expiresAt?: boolean
   grantedAt?: boolean
-  oauthClientId?: boolean
 }
 
-export type AccessGrantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "clientId" | "resourceType" | "resourceKey" | "effect" | "permissions" | "inherits" | "areaId" | "collectionId" | "entryId" | "appMemoryId" | "packId" | "expiresAt" | "grantedAt" | "oauthClientId", ExtArgs["result"]["accessGrant"]>
+export type AccessGrantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "clientId" | "apiKeyId" | "resourceType" | "resourceKey" | "effect" | "permissions" | "inherits" | "areaId" | "collectionId" | "pathId" | "entryId" | "expiresAt" | "grantedAt", ExtArgs["result"]["accessGrant"]>
 export type AccessGrantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  oauthClient?: boolean | Prisma.OauthClientDefaultArgs<ExtArgs>
+  oauthClient?: boolean | Prisma.AccessGrant$oauthClientArgs<ExtArgs>
+  apiKey?: boolean | Prisma.AccessGrant$apiKeyArgs<ExtArgs>
   area?: boolean | Prisma.AccessGrant$areaArgs<ExtArgs>
   collection?: boolean | Prisma.AccessGrant$collectionArgs<ExtArgs>
+  path?: boolean | Prisma.AccessGrant$pathArgs<ExtArgs>
   entry?: boolean | Prisma.AccessGrant$entryArgs<ExtArgs>
-  appMemory?: boolean | Prisma.AccessGrant$appMemoryArgs<ExtArgs>
-  pack?: boolean | Prisma.AccessGrant$packArgs<ExtArgs>
 }
 export type AccessGrantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  oauthClient?: boolean | Prisma.OauthClientDefaultArgs<ExtArgs>
+  oauthClient?: boolean | Prisma.AccessGrant$oauthClientArgs<ExtArgs>
+  apiKey?: boolean | Prisma.AccessGrant$apiKeyArgs<ExtArgs>
   area?: boolean | Prisma.AccessGrant$areaArgs<ExtArgs>
   collection?: boolean | Prisma.AccessGrant$collectionArgs<ExtArgs>
+  path?: boolean | Prisma.AccessGrant$pathArgs<ExtArgs>
   entry?: boolean | Prisma.AccessGrant$entryArgs<ExtArgs>
-  appMemory?: boolean | Prisma.AccessGrant$appMemoryArgs<ExtArgs>
-  pack?: boolean | Prisma.AccessGrant$packArgs<ExtArgs>
 }
 export type AccessGrantIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  oauthClient?: boolean | Prisma.OauthClientDefaultArgs<ExtArgs>
+  oauthClient?: boolean | Prisma.AccessGrant$oauthClientArgs<ExtArgs>
+  apiKey?: boolean | Prisma.AccessGrant$apiKeyArgs<ExtArgs>
   area?: boolean | Prisma.AccessGrant$areaArgs<ExtArgs>
   collection?: boolean | Prisma.AccessGrant$collectionArgs<ExtArgs>
+  path?: boolean | Prisma.AccessGrant$pathArgs<ExtArgs>
   entry?: boolean | Prisma.AccessGrant$entryArgs<ExtArgs>
-  appMemory?: boolean | Prisma.AccessGrant$appMemoryArgs<ExtArgs>
-  pack?: boolean | Prisma.AccessGrant$packArgs<ExtArgs>
 }
 
 export type $AccessGrantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "AccessGrant"
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
-    oauthClient: Prisma.$OauthClientPayload<ExtArgs>
+    oauthClient: Prisma.$OauthClientPayload<ExtArgs> | null
+    apiKey: Prisma.$DeveloperApiKeyPayload<ExtArgs> | null
     area: Prisma.$AreaPayload<ExtArgs> | null
     collection: Prisma.$CollectionPayload<ExtArgs> | null
+    path: Prisma.$PathPayload<ExtArgs> | null
     entry: Prisma.$EntryPayload<ExtArgs> | null
-    appMemory: Prisma.$AppMemoryPayload<ExtArgs> | null
-    pack: Prisma.$PackPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     userId: string
-    clientId: string
+    clientId: string | null
+    apiKeyId: string | null
     resourceType: $Enums.AccessResourceType
     resourceKey: string
     effect: $Enums.AccessEffect
@@ -2001,12 +1934,10 @@ export type $AccessGrantPayload<ExtArgs extends runtime.Types.Extensions.Interna
     inherits: boolean
     areaId: string | null
     collectionId: string | null
+    pathId: string | null
     entryId: string | null
-    appMemoryId: string | null
-    packId: string | null
     expiresAt: Date | null
     grantedAt: Date
-    oauthClientId: string | null
   }, ExtArgs["result"]["accessGrant"]>
   composites: {}
 }
@@ -2402,12 +2333,12 @@ readonly fields: AccessGrantFieldRefs;
 export interface Prisma__AccessGrantClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  oauthClient<T extends Prisma.OauthClientDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OauthClientDefaultArgs<ExtArgs>>): Prisma.Prisma__OauthClientClient<runtime.Types.Result.GetResult<Prisma.$OauthClientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  oauthClient<T extends Prisma.AccessGrant$oauthClientArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessGrant$oauthClientArgs<ExtArgs>>): Prisma.Prisma__OauthClientClient<runtime.Types.Result.GetResult<Prisma.$OauthClientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  apiKey<T extends Prisma.AccessGrant$apiKeyArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessGrant$apiKeyArgs<ExtArgs>>): Prisma.Prisma__DeveloperApiKeyClient<runtime.Types.Result.GetResult<Prisma.$DeveloperApiKeyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   area<T extends Prisma.AccessGrant$areaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessGrant$areaArgs<ExtArgs>>): Prisma.Prisma__AreaClient<runtime.Types.Result.GetResult<Prisma.$AreaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   collection<T extends Prisma.AccessGrant$collectionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessGrant$collectionArgs<ExtArgs>>): Prisma.Prisma__CollectionClient<runtime.Types.Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  path<T extends Prisma.AccessGrant$pathArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessGrant$pathArgs<ExtArgs>>): Prisma.Prisma__PathClient<runtime.Types.Result.GetResult<Prisma.$PathPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   entry<T extends Prisma.AccessGrant$entryArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessGrant$entryArgs<ExtArgs>>): Prisma.Prisma__EntryClient<runtime.Types.Result.GetResult<Prisma.$EntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  appMemory<T extends Prisma.AccessGrant$appMemoryArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessGrant$appMemoryArgs<ExtArgs>>): Prisma.Prisma__AppMemoryClient<runtime.Types.Result.GetResult<Prisma.$AppMemoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  pack<T extends Prisma.AccessGrant$packArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessGrant$packArgs<ExtArgs>>): Prisma.Prisma__PackClient<runtime.Types.Result.GetResult<Prisma.$PackPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2440,6 +2371,7 @@ export interface AccessGrantFieldRefs {
   readonly id: Prisma.FieldRef<"AccessGrant", 'String'>
   readonly userId: Prisma.FieldRef<"AccessGrant", 'String'>
   readonly clientId: Prisma.FieldRef<"AccessGrant", 'String'>
+  readonly apiKeyId: Prisma.FieldRef<"AccessGrant", 'String'>
   readonly resourceType: Prisma.FieldRef<"AccessGrant", 'AccessResourceType'>
   readonly resourceKey: Prisma.FieldRef<"AccessGrant", 'String'>
   readonly effect: Prisma.FieldRef<"AccessGrant", 'AccessEffect'>
@@ -2447,12 +2379,10 @@ export interface AccessGrantFieldRefs {
   readonly inherits: Prisma.FieldRef<"AccessGrant", 'Boolean'>
   readonly areaId: Prisma.FieldRef<"AccessGrant", 'String'>
   readonly collectionId: Prisma.FieldRef<"AccessGrant", 'String'>
+  readonly pathId: Prisma.FieldRef<"AccessGrant", 'String'>
   readonly entryId: Prisma.FieldRef<"AccessGrant", 'String'>
-  readonly appMemoryId: Prisma.FieldRef<"AccessGrant", 'String'>
-  readonly packId: Prisma.FieldRef<"AccessGrant", 'String'>
   readonly expiresAt: Prisma.FieldRef<"AccessGrant", 'DateTime'>
   readonly grantedAt: Prisma.FieldRef<"AccessGrant", 'DateTime'>
-  readonly oauthClientId: Prisma.FieldRef<"AccessGrant", 'String'>
 }
     
 
@@ -2854,6 +2784,44 @@ export type AccessGrantDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 /**
+ * AccessGrant.oauthClient
+ */
+export type AccessGrant$oauthClientArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OauthClient
+   */
+  select?: Prisma.OauthClientSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OauthClient
+   */
+  omit?: Prisma.OauthClientOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OauthClientInclude<ExtArgs> | null
+  where?: Prisma.OauthClientWhereInput
+}
+
+/**
+ * AccessGrant.apiKey
+ */
+export type AccessGrant$apiKeyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DeveloperApiKey
+   */
+  select?: Prisma.DeveloperApiKeySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DeveloperApiKey
+   */
+  omit?: Prisma.DeveloperApiKeyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DeveloperApiKeyInclude<ExtArgs> | null
+  where?: Prisma.DeveloperApiKeyWhereInput
+}
+
+/**
  * AccessGrant.area
  */
 export type AccessGrant$areaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2892,6 +2860,25 @@ export type AccessGrant$collectionArgs<ExtArgs extends runtime.Types.Extensions.
 }
 
 /**
+ * AccessGrant.path
+ */
+export type AccessGrant$pathArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Path
+   */
+  select?: Prisma.PathSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Path
+   */
+  omit?: Prisma.PathOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PathInclude<ExtArgs> | null
+  where?: Prisma.PathWhereInput
+}
+
+/**
  * AccessGrant.entry
  */
 export type AccessGrant$entryArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2908,44 +2895,6 @@ export type AccessGrant$entryArgs<ExtArgs extends runtime.Types.Extensions.Inter
    */
   include?: Prisma.EntryInclude<ExtArgs> | null
   where?: Prisma.EntryWhereInput
-}
-
-/**
- * AccessGrant.appMemory
- */
-export type AccessGrant$appMemoryArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the AppMemory
-   */
-  select?: Prisma.AppMemorySelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the AppMemory
-   */
-  omit?: Prisma.AppMemoryOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AppMemoryInclude<ExtArgs> | null
-  where?: Prisma.AppMemoryWhereInput
-}
-
-/**
- * AccessGrant.pack
- */
-export type AccessGrant$packArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Pack
-   */
-  select?: Prisma.PackSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Pack
-   */
-  omit?: Prisma.PackOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PackInclude<ExtArgs> | null
-  where?: Prisma.PackWhereInput
 }
 
 /**

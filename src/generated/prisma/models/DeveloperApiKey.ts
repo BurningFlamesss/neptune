@@ -307,9 +307,9 @@ export type DeveloperApiKeyWhereInput = {
   user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   organization?: Prisma.XOR<Prisma.OrganizationNullableScalarRelationFilter, Prisma.OrganizationWhereInput> | null
   oauthClient?: Prisma.XOR<Prisma.OauthClientNullableScalarRelationFilter, Prisma.OauthClientWhereInput> | null
-  scopePack?: Prisma.ApiKeyPackScopeListRelationFilter
   contextRequests?: Prisma.ContextRequestListRelationFilter
   usageLedgers?: Prisma.ApiUsageLedgerListRelationFilter
+  accessGrants?: Prisma.AccessGrantListRelationFilter
 }
 
 export type DeveloperApiKeyOrderByWithRelationInput = {
@@ -331,9 +331,9 @@ export type DeveloperApiKeyOrderByWithRelationInput = {
   user?: Prisma.UserOrderByWithRelationInput
   organization?: Prisma.OrganizationOrderByWithRelationInput
   oauthClient?: Prisma.OauthClientOrderByWithRelationInput
-  scopePack?: Prisma.ApiKeyPackScopeOrderByRelationAggregateInput
   contextRequests?: Prisma.ContextRequestOrderByRelationAggregateInput
   usageLedgers?: Prisma.ApiUsageLedgerOrderByRelationAggregateInput
+  accessGrants?: Prisma.AccessGrantOrderByRelationAggregateInput
 }
 
 export type DeveloperApiKeyWhereUniqueInput = Prisma.AtLeast<{
@@ -358,9 +358,9 @@ export type DeveloperApiKeyWhereUniqueInput = Prisma.AtLeast<{
   user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   organization?: Prisma.XOR<Prisma.OrganizationNullableScalarRelationFilter, Prisma.OrganizationWhereInput> | null
   oauthClient?: Prisma.XOR<Prisma.OauthClientNullableScalarRelationFilter, Prisma.OauthClientWhereInput> | null
-  scopePack?: Prisma.ApiKeyPackScopeListRelationFilter
   contextRequests?: Prisma.ContextRequestListRelationFilter
   usageLedgers?: Prisma.ApiUsageLedgerListRelationFilter
+  accessGrants?: Prisma.AccessGrantListRelationFilter
 }, "id" | "keyHash">
 
 export type DeveloperApiKeyOrderByWithAggregationInput = {
@@ -423,9 +423,9 @@ export type DeveloperApiKeyCreateInput = {
   user?: Prisma.UserCreateNestedOneWithoutDeveloperApiKeysInput
   organization?: Prisma.OrganizationCreateNestedOneWithoutDeveloperApiKeysInput
   oauthClient?: Prisma.OauthClientCreateNestedOneWithoutDeveloperApiKeysInput
-  scopePack?: Prisma.ApiKeyPackScopeCreateNestedManyWithoutApiKeyInput
   contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutApiKeyInput
   usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutApiKeyInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutApiKeyInput
 }
 
 export type DeveloperApiKeyUncheckedCreateInput = {
@@ -444,9 +444,9 @@ export type DeveloperApiKeyUncheckedCreateInput = {
   expiresAt?: Date | string | null
   revokedAt?: Date | string | null
   createdAt?: Date | string
-  scopePack?: Prisma.ApiKeyPackScopeUncheckedCreateNestedManyWithoutApiKeyInput
   contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutApiKeyInput
   usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutApiKeyInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutApiKeyInput
 }
 
 export type DeveloperApiKeyUpdateInput = {
@@ -465,9 +465,9 @@ export type DeveloperApiKeyUpdateInput = {
   user?: Prisma.UserUpdateOneWithoutDeveloperApiKeysNestedInput
   organization?: Prisma.OrganizationUpdateOneWithoutDeveloperApiKeysNestedInput
   oauthClient?: Prisma.OauthClientUpdateOneWithoutDeveloperApiKeysNestedInput
-  scopePack?: Prisma.ApiKeyPackScopeUpdateManyWithoutApiKeyNestedInput
   contextRequests?: Prisma.ContextRequestUpdateManyWithoutApiKeyNestedInput
   usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutApiKeyNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutApiKeyNestedInput
 }
 
 export type DeveloperApiKeyUncheckedUpdateInput = {
@@ -486,9 +486,9 @@ export type DeveloperApiKeyUncheckedUpdateInput = {
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   revokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  scopePack?: Prisma.ApiKeyPackScopeUncheckedUpdateManyWithoutApiKeyNestedInput
   contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutApiKeyNestedInput
   usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutApiKeyNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutApiKeyNestedInput
 }
 
 export type DeveloperApiKeyCreateManyInput = {
@@ -616,11 +616,6 @@ export type DeveloperApiKeySumOrderByAggregateInput = {
   monthlySpendCapCents?: Prisma.SortOrder
   currentMonthSpendCents?: Prisma.SortOrder
   rateLimitPerMinute?: Prisma.SortOrder
-}
-
-export type DeveloperApiKeyScalarRelationFilter = {
-  is?: Prisma.DeveloperApiKeyWhereInput
-  isNot?: Prisma.DeveloperApiKeyWhereInput
 }
 
 export type DeveloperApiKeyNullableScalarRelationFilter = {
@@ -770,18 +765,20 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type DeveloperApiKeyCreateNestedOneWithoutScopePackInput = {
-  create?: Prisma.XOR<Prisma.DeveloperApiKeyCreateWithoutScopePackInput, Prisma.DeveloperApiKeyUncheckedCreateWithoutScopePackInput>
-  connectOrCreate?: Prisma.DeveloperApiKeyCreateOrConnectWithoutScopePackInput
+export type DeveloperApiKeyCreateNestedOneWithoutAccessGrantsInput = {
+  create?: Prisma.XOR<Prisma.DeveloperApiKeyCreateWithoutAccessGrantsInput, Prisma.DeveloperApiKeyUncheckedCreateWithoutAccessGrantsInput>
+  connectOrCreate?: Prisma.DeveloperApiKeyCreateOrConnectWithoutAccessGrantsInput
   connect?: Prisma.DeveloperApiKeyWhereUniqueInput
 }
 
-export type DeveloperApiKeyUpdateOneRequiredWithoutScopePackNestedInput = {
-  create?: Prisma.XOR<Prisma.DeveloperApiKeyCreateWithoutScopePackInput, Prisma.DeveloperApiKeyUncheckedCreateWithoutScopePackInput>
-  connectOrCreate?: Prisma.DeveloperApiKeyCreateOrConnectWithoutScopePackInput
-  upsert?: Prisma.DeveloperApiKeyUpsertWithoutScopePackInput
+export type DeveloperApiKeyUpdateOneWithoutAccessGrantsNestedInput = {
+  create?: Prisma.XOR<Prisma.DeveloperApiKeyCreateWithoutAccessGrantsInput, Prisma.DeveloperApiKeyUncheckedCreateWithoutAccessGrantsInput>
+  connectOrCreate?: Prisma.DeveloperApiKeyCreateOrConnectWithoutAccessGrantsInput
+  upsert?: Prisma.DeveloperApiKeyUpsertWithoutAccessGrantsInput
+  disconnect?: Prisma.DeveloperApiKeyWhereInput | boolean
+  delete?: Prisma.DeveloperApiKeyWhereInput | boolean
   connect?: Prisma.DeveloperApiKeyWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.DeveloperApiKeyUpdateToOneWithWhereWithoutScopePackInput, Prisma.DeveloperApiKeyUpdateWithoutScopePackInput>, Prisma.DeveloperApiKeyUncheckedUpdateWithoutScopePackInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DeveloperApiKeyUpdateToOneWithWhereWithoutAccessGrantsInput, Prisma.DeveloperApiKeyUpdateWithoutAccessGrantsInput>, Prisma.DeveloperApiKeyUncheckedUpdateWithoutAccessGrantsInput>
 }
 
 export type DeveloperApiKeyCreateNestedOneWithoutContextRequestsInput = {
@@ -831,9 +828,9 @@ export type DeveloperApiKeyCreateWithoutUserInput = {
   createdAt?: Date | string
   organization?: Prisma.OrganizationCreateNestedOneWithoutDeveloperApiKeysInput
   oauthClient?: Prisma.OauthClientCreateNestedOneWithoutDeveloperApiKeysInput
-  scopePack?: Prisma.ApiKeyPackScopeCreateNestedManyWithoutApiKeyInput
   contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutApiKeyInput
   usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutApiKeyInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutApiKeyInput
 }
 
 export type DeveloperApiKeyUncheckedCreateWithoutUserInput = {
@@ -851,9 +848,9 @@ export type DeveloperApiKeyUncheckedCreateWithoutUserInput = {
   expiresAt?: Date | string | null
   revokedAt?: Date | string | null
   createdAt?: Date | string
-  scopePack?: Prisma.ApiKeyPackScopeUncheckedCreateNestedManyWithoutApiKeyInput
   contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutApiKeyInput
   usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutApiKeyInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutApiKeyInput
 }
 
 export type DeveloperApiKeyCreateOrConnectWithoutUserInput = {
@@ -918,9 +915,9 @@ export type DeveloperApiKeyCreateWithoutOrganizationInput = {
   createdAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutDeveloperApiKeysInput
   oauthClient?: Prisma.OauthClientCreateNestedOneWithoutDeveloperApiKeysInput
-  scopePack?: Prisma.ApiKeyPackScopeCreateNestedManyWithoutApiKeyInput
   contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutApiKeyInput
   usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutApiKeyInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutApiKeyInput
 }
 
 export type DeveloperApiKeyUncheckedCreateWithoutOrganizationInput = {
@@ -938,9 +935,9 @@ export type DeveloperApiKeyUncheckedCreateWithoutOrganizationInput = {
   expiresAt?: Date | string | null
   revokedAt?: Date | string | null
   createdAt?: Date | string
-  scopePack?: Prisma.ApiKeyPackScopeUncheckedCreateNestedManyWithoutApiKeyInput
   contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutApiKeyInput
   usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutApiKeyInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutApiKeyInput
 }
 
 export type DeveloperApiKeyCreateOrConnectWithoutOrganizationInput = {
@@ -984,9 +981,9 @@ export type DeveloperApiKeyCreateWithoutOauthClientInput = {
   createdAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutDeveloperApiKeysInput
   organization?: Prisma.OrganizationCreateNestedOneWithoutDeveloperApiKeysInput
-  scopePack?: Prisma.ApiKeyPackScopeCreateNestedManyWithoutApiKeyInput
   contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutApiKeyInput
   usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutApiKeyInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutApiKeyInput
 }
 
 export type DeveloperApiKeyUncheckedCreateWithoutOauthClientInput = {
@@ -1004,9 +1001,9 @@ export type DeveloperApiKeyUncheckedCreateWithoutOauthClientInput = {
   expiresAt?: Date | string | null
   revokedAt?: Date | string | null
   createdAt?: Date | string
-  scopePack?: Prisma.ApiKeyPackScopeUncheckedCreateNestedManyWithoutApiKeyInput
   contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutApiKeyInput
   usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutApiKeyInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutApiKeyInput
 }
 
 export type DeveloperApiKeyCreateOrConnectWithoutOauthClientInput = {
@@ -1035,7 +1032,7 @@ export type DeveloperApiKeyUpdateManyWithWhereWithoutOauthClientInput = {
   data: Prisma.XOR<Prisma.DeveloperApiKeyUpdateManyMutationInput, Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutOauthClientInput>
 }
 
-export type DeveloperApiKeyCreateWithoutScopePackInput = {
+export type DeveloperApiKeyCreateWithoutAccessGrantsInput = {
   id?: string
   name: string
   keyPrefix: string
@@ -1055,7 +1052,7 @@ export type DeveloperApiKeyCreateWithoutScopePackInput = {
   usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutApiKeyInput
 }
 
-export type DeveloperApiKeyUncheckedCreateWithoutScopePackInput = {
+export type DeveloperApiKeyUncheckedCreateWithoutAccessGrantsInput = {
   id?: string
   name: string
   keyPrefix: string
@@ -1075,23 +1072,23 @@ export type DeveloperApiKeyUncheckedCreateWithoutScopePackInput = {
   usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutApiKeyInput
 }
 
-export type DeveloperApiKeyCreateOrConnectWithoutScopePackInput = {
+export type DeveloperApiKeyCreateOrConnectWithoutAccessGrantsInput = {
   where: Prisma.DeveloperApiKeyWhereUniqueInput
-  create: Prisma.XOR<Prisma.DeveloperApiKeyCreateWithoutScopePackInput, Prisma.DeveloperApiKeyUncheckedCreateWithoutScopePackInput>
+  create: Prisma.XOR<Prisma.DeveloperApiKeyCreateWithoutAccessGrantsInput, Prisma.DeveloperApiKeyUncheckedCreateWithoutAccessGrantsInput>
 }
 
-export type DeveloperApiKeyUpsertWithoutScopePackInput = {
-  update: Prisma.XOR<Prisma.DeveloperApiKeyUpdateWithoutScopePackInput, Prisma.DeveloperApiKeyUncheckedUpdateWithoutScopePackInput>
-  create: Prisma.XOR<Prisma.DeveloperApiKeyCreateWithoutScopePackInput, Prisma.DeveloperApiKeyUncheckedCreateWithoutScopePackInput>
+export type DeveloperApiKeyUpsertWithoutAccessGrantsInput = {
+  update: Prisma.XOR<Prisma.DeveloperApiKeyUpdateWithoutAccessGrantsInput, Prisma.DeveloperApiKeyUncheckedUpdateWithoutAccessGrantsInput>
+  create: Prisma.XOR<Prisma.DeveloperApiKeyCreateWithoutAccessGrantsInput, Prisma.DeveloperApiKeyUncheckedCreateWithoutAccessGrantsInput>
   where?: Prisma.DeveloperApiKeyWhereInput
 }
 
-export type DeveloperApiKeyUpdateToOneWithWhereWithoutScopePackInput = {
+export type DeveloperApiKeyUpdateToOneWithWhereWithoutAccessGrantsInput = {
   where?: Prisma.DeveloperApiKeyWhereInput
-  data: Prisma.XOR<Prisma.DeveloperApiKeyUpdateWithoutScopePackInput, Prisma.DeveloperApiKeyUncheckedUpdateWithoutScopePackInput>
+  data: Prisma.XOR<Prisma.DeveloperApiKeyUpdateWithoutAccessGrantsInput, Prisma.DeveloperApiKeyUncheckedUpdateWithoutAccessGrantsInput>
 }
 
-export type DeveloperApiKeyUpdateWithoutScopePackInput = {
+export type DeveloperApiKeyUpdateWithoutAccessGrantsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   keyPrefix?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1111,7 +1108,7 @@ export type DeveloperApiKeyUpdateWithoutScopePackInput = {
   usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutApiKeyNestedInput
 }
 
-export type DeveloperApiKeyUncheckedUpdateWithoutScopePackInput = {
+export type DeveloperApiKeyUncheckedUpdateWithoutAccessGrantsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   keyPrefix?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1147,8 +1144,8 @@ export type DeveloperApiKeyCreateWithoutContextRequestsInput = {
   user?: Prisma.UserCreateNestedOneWithoutDeveloperApiKeysInput
   organization?: Prisma.OrganizationCreateNestedOneWithoutDeveloperApiKeysInput
   oauthClient?: Prisma.OauthClientCreateNestedOneWithoutDeveloperApiKeysInput
-  scopePack?: Prisma.ApiKeyPackScopeCreateNestedManyWithoutApiKeyInput
   usageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutApiKeyInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutApiKeyInput
 }
 
 export type DeveloperApiKeyUncheckedCreateWithoutContextRequestsInput = {
@@ -1167,8 +1164,8 @@ export type DeveloperApiKeyUncheckedCreateWithoutContextRequestsInput = {
   expiresAt?: Date | string | null
   revokedAt?: Date | string | null
   createdAt?: Date | string
-  scopePack?: Prisma.ApiKeyPackScopeUncheckedCreateNestedManyWithoutApiKeyInput
   usageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutApiKeyInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutApiKeyInput
 }
 
 export type DeveloperApiKeyCreateOrConnectWithoutContextRequestsInput = {
@@ -1203,8 +1200,8 @@ export type DeveloperApiKeyUpdateWithoutContextRequestsInput = {
   user?: Prisma.UserUpdateOneWithoutDeveloperApiKeysNestedInput
   organization?: Prisma.OrganizationUpdateOneWithoutDeveloperApiKeysNestedInput
   oauthClient?: Prisma.OauthClientUpdateOneWithoutDeveloperApiKeysNestedInput
-  scopePack?: Prisma.ApiKeyPackScopeUpdateManyWithoutApiKeyNestedInput
   usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutApiKeyNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutApiKeyNestedInput
 }
 
 export type DeveloperApiKeyUncheckedUpdateWithoutContextRequestsInput = {
@@ -1223,8 +1220,8 @@ export type DeveloperApiKeyUncheckedUpdateWithoutContextRequestsInput = {
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   revokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  scopePack?: Prisma.ApiKeyPackScopeUncheckedUpdateManyWithoutApiKeyNestedInput
   usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutApiKeyNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutApiKeyNestedInput
 }
 
 export type DeveloperApiKeyCreateWithoutUsageLedgersInput = {
@@ -1243,8 +1240,8 @@ export type DeveloperApiKeyCreateWithoutUsageLedgersInput = {
   user?: Prisma.UserCreateNestedOneWithoutDeveloperApiKeysInput
   organization?: Prisma.OrganizationCreateNestedOneWithoutDeveloperApiKeysInput
   oauthClient?: Prisma.OauthClientCreateNestedOneWithoutDeveloperApiKeysInput
-  scopePack?: Prisma.ApiKeyPackScopeCreateNestedManyWithoutApiKeyInput
   contextRequests?: Prisma.ContextRequestCreateNestedManyWithoutApiKeyInput
+  accessGrants?: Prisma.AccessGrantCreateNestedManyWithoutApiKeyInput
 }
 
 export type DeveloperApiKeyUncheckedCreateWithoutUsageLedgersInput = {
@@ -1263,8 +1260,8 @@ export type DeveloperApiKeyUncheckedCreateWithoutUsageLedgersInput = {
   expiresAt?: Date | string | null
   revokedAt?: Date | string | null
   createdAt?: Date | string
-  scopePack?: Prisma.ApiKeyPackScopeUncheckedCreateNestedManyWithoutApiKeyInput
   contextRequests?: Prisma.ContextRequestUncheckedCreateNestedManyWithoutApiKeyInput
+  accessGrants?: Prisma.AccessGrantUncheckedCreateNestedManyWithoutApiKeyInput
 }
 
 export type DeveloperApiKeyCreateOrConnectWithoutUsageLedgersInput = {
@@ -1299,8 +1296,8 @@ export type DeveloperApiKeyUpdateWithoutUsageLedgersInput = {
   user?: Prisma.UserUpdateOneWithoutDeveloperApiKeysNestedInput
   organization?: Prisma.OrganizationUpdateOneWithoutDeveloperApiKeysNestedInput
   oauthClient?: Prisma.OauthClientUpdateOneWithoutDeveloperApiKeysNestedInput
-  scopePack?: Prisma.ApiKeyPackScopeUpdateManyWithoutApiKeyNestedInput
   contextRequests?: Prisma.ContextRequestUpdateManyWithoutApiKeyNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutApiKeyNestedInput
 }
 
 export type DeveloperApiKeyUncheckedUpdateWithoutUsageLedgersInput = {
@@ -1319,8 +1316,8 @@ export type DeveloperApiKeyUncheckedUpdateWithoutUsageLedgersInput = {
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   revokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  scopePack?: Prisma.ApiKeyPackScopeUncheckedUpdateManyWithoutApiKeyNestedInput
   contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutApiKeyNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutApiKeyNestedInput
 }
 
 export type DeveloperApiKeyCreateManyUserInput = {
@@ -1355,9 +1352,9 @@ export type DeveloperApiKeyUpdateWithoutUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneWithoutDeveloperApiKeysNestedInput
   oauthClient?: Prisma.OauthClientUpdateOneWithoutDeveloperApiKeysNestedInput
-  scopePack?: Prisma.ApiKeyPackScopeUpdateManyWithoutApiKeyNestedInput
   contextRequests?: Prisma.ContextRequestUpdateManyWithoutApiKeyNestedInput
   usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutApiKeyNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutApiKeyNestedInput
 }
 
 export type DeveloperApiKeyUncheckedUpdateWithoutUserInput = {
@@ -1375,9 +1372,9 @@ export type DeveloperApiKeyUncheckedUpdateWithoutUserInput = {
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   revokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  scopePack?: Prisma.ApiKeyPackScopeUncheckedUpdateManyWithoutApiKeyNestedInput
   contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutApiKeyNestedInput
   usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutApiKeyNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutApiKeyNestedInput
 }
 
 export type DeveloperApiKeyUncheckedUpdateManyWithoutUserInput = {
@@ -1429,9 +1426,9 @@ export type DeveloperApiKeyUpdateWithoutOrganizationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutDeveloperApiKeysNestedInput
   oauthClient?: Prisma.OauthClientUpdateOneWithoutDeveloperApiKeysNestedInput
-  scopePack?: Prisma.ApiKeyPackScopeUpdateManyWithoutApiKeyNestedInput
   contextRequests?: Prisma.ContextRequestUpdateManyWithoutApiKeyNestedInput
   usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutApiKeyNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutApiKeyNestedInput
 }
 
 export type DeveloperApiKeyUncheckedUpdateWithoutOrganizationInput = {
@@ -1449,9 +1446,9 @@ export type DeveloperApiKeyUncheckedUpdateWithoutOrganizationInput = {
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   revokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  scopePack?: Prisma.ApiKeyPackScopeUncheckedUpdateManyWithoutApiKeyNestedInput
   contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutApiKeyNestedInput
   usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutApiKeyNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutApiKeyNestedInput
 }
 
 export type DeveloperApiKeyUncheckedUpdateManyWithoutOrganizationInput = {
@@ -1503,9 +1500,9 @@ export type DeveloperApiKeyUpdateWithoutOauthClientInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutDeveloperApiKeysNestedInput
   organization?: Prisma.OrganizationUpdateOneWithoutDeveloperApiKeysNestedInput
-  scopePack?: Prisma.ApiKeyPackScopeUpdateManyWithoutApiKeyNestedInput
   contextRequests?: Prisma.ContextRequestUpdateManyWithoutApiKeyNestedInput
   usageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutApiKeyNestedInput
+  accessGrants?: Prisma.AccessGrantUpdateManyWithoutApiKeyNestedInput
 }
 
 export type DeveloperApiKeyUncheckedUpdateWithoutOauthClientInput = {
@@ -1523,9 +1520,9 @@ export type DeveloperApiKeyUncheckedUpdateWithoutOauthClientInput = {
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   revokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  scopePack?: Prisma.ApiKeyPackScopeUncheckedUpdateManyWithoutApiKeyNestedInput
   contextRequests?: Prisma.ContextRequestUncheckedUpdateManyWithoutApiKeyNestedInput
   usageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutApiKeyNestedInput
+  accessGrants?: Prisma.AccessGrantUncheckedUpdateManyWithoutApiKeyNestedInput
 }
 
 export type DeveloperApiKeyUncheckedUpdateManyWithoutOauthClientInput = {
@@ -1551,15 +1548,15 @@ export type DeveloperApiKeyUncheckedUpdateManyWithoutOauthClientInput = {
  */
 
 export type DeveloperApiKeyCountOutputType = {
-  scopePack: number
   contextRequests: number
   usageLedgers: number
+  accessGrants: number
 }
 
 export type DeveloperApiKeyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  scopePack?: boolean | DeveloperApiKeyCountOutputTypeCountScopePackArgs
   contextRequests?: boolean | DeveloperApiKeyCountOutputTypeCountContextRequestsArgs
   usageLedgers?: boolean | DeveloperApiKeyCountOutputTypeCountUsageLedgersArgs
+  accessGrants?: boolean | DeveloperApiKeyCountOutputTypeCountAccessGrantsArgs
 }
 
 /**
@@ -1575,13 +1572,6 @@ export type DeveloperApiKeyCountOutputTypeDefaultArgs<ExtArgs extends runtime.Ty
 /**
  * DeveloperApiKeyCountOutputType without action
  */
-export type DeveloperApiKeyCountOutputTypeCountScopePackArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ApiKeyPackScopeWhereInput
-}
-
-/**
- * DeveloperApiKeyCountOutputType without action
- */
 export type DeveloperApiKeyCountOutputTypeCountContextRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ContextRequestWhereInput
 }
@@ -1591,6 +1581,13 @@ export type DeveloperApiKeyCountOutputTypeCountContextRequestsArgs<ExtArgs exten
  */
 export type DeveloperApiKeyCountOutputTypeCountUsageLedgersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ApiUsageLedgerWhereInput
+}
+
+/**
+ * DeveloperApiKeyCountOutputType without action
+ */
+export type DeveloperApiKeyCountOutputTypeCountAccessGrantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AccessGrantWhereInput
 }
 
 
@@ -1613,9 +1610,9 @@ export type DeveloperApiKeySelect<ExtArgs extends runtime.Types.Extensions.Inter
   user?: boolean | Prisma.DeveloperApiKey$userArgs<ExtArgs>
   organization?: boolean | Prisma.DeveloperApiKey$organizationArgs<ExtArgs>
   oauthClient?: boolean | Prisma.DeveloperApiKey$oauthClientArgs<ExtArgs>
-  scopePack?: boolean | Prisma.DeveloperApiKey$scopePackArgs<ExtArgs>
   contextRequests?: boolean | Prisma.DeveloperApiKey$contextRequestsArgs<ExtArgs>
   usageLedgers?: boolean | Prisma.DeveloperApiKey$usageLedgersArgs<ExtArgs>
+  accessGrants?: boolean | Prisma.DeveloperApiKey$accessGrantsArgs<ExtArgs>
   _count?: boolean | Prisma.DeveloperApiKeyCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["developerApiKey"]>
 
@@ -1684,9 +1681,9 @@ export type DeveloperApiKeyInclude<ExtArgs extends runtime.Types.Extensions.Inte
   user?: boolean | Prisma.DeveloperApiKey$userArgs<ExtArgs>
   organization?: boolean | Prisma.DeveloperApiKey$organizationArgs<ExtArgs>
   oauthClient?: boolean | Prisma.DeveloperApiKey$oauthClientArgs<ExtArgs>
-  scopePack?: boolean | Prisma.DeveloperApiKey$scopePackArgs<ExtArgs>
   contextRequests?: boolean | Prisma.DeveloperApiKey$contextRequestsArgs<ExtArgs>
   usageLedgers?: boolean | Prisma.DeveloperApiKey$usageLedgersArgs<ExtArgs>
+  accessGrants?: boolean | Prisma.DeveloperApiKey$accessGrantsArgs<ExtArgs>
   _count?: boolean | Prisma.DeveloperApiKeyCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type DeveloperApiKeyIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1706,9 +1703,9 @@ export type $DeveloperApiKeyPayload<ExtArgs extends runtime.Types.Extensions.Int
     user: Prisma.$UserPayload<ExtArgs> | null
     organization: Prisma.$OrganizationPayload<ExtArgs> | null
     oauthClient: Prisma.$OauthClientPayload<ExtArgs> | null
-    scopePack: Prisma.$ApiKeyPackScopePayload<ExtArgs>[]
     contextRequests: Prisma.$ContextRequestPayload<ExtArgs>[]
     usageLedgers: Prisma.$ApiUsageLedgerPayload<ExtArgs>[]
+    accessGrants: Prisma.$AccessGrantPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2123,9 +2120,9 @@ export interface Prisma__DeveloperApiKeyClient<T, Null = never, ExtArgs extends 
   user<T extends Prisma.DeveloperApiKey$userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DeveloperApiKey$userArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   organization<T extends Prisma.DeveloperApiKey$organizationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DeveloperApiKey$organizationArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   oauthClient<T extends Prisma.DeveloperApiKey$oauthClientArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DeveloperApiKey$oauthClientArgs<ExtArgs>>): Prisma.Prisma__OauthClientClient<runtime.Types.Result.GetResult<Prisma.$OauthClientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  scopePack<T extends Prisma.DeveloperApiKey$scopePackArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DeveloperApiKey$scopePackArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApiKeyPackScopePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   contextRequests<T extends Prisma.DeveloperApiKey$contextRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DeveloperApiKey$contextRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContextRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   usageLedgers<T extends Prisma.DeveloperApiKey$usageLedgersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DeveloperApiKey$usageLedgersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApiUsageLedgerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  accessGrants<T extends Prisma.DeveloperApiKey$accessGrantsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DeveloperApiKey$accessGrantsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccessGrantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2628,30 +2625,6 @@ export type DeveloperApiKey$oauthClientArgs<ExtArgs extends runtime.Types.Extens
 }
 
 /**
- * DeveloperApiKey.scopePack
- */
-export type DeveloperApiKey$scopePackArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the ApiKeyPackScope
-   */
-  select?: Prisma.ApiKeyPackScopeSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the ApiKeyPackScope
-   */
-  omit?: Prisma.ApiKeyPackScopeOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ApiKeyPackScopeInclude<ExtArgs> | null
-  where?: Prisma.ApiKeyPackScopeWhereInput
-  orderBy?: Prisma.ApiKeyPackScopeOrderByWithRelationInput | Prisma.ApiKeyPackScopeOrderByWithRelationInput[]
-  cursor?: Prisma.ApiKeyPackScopeWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ApiKeyPackScopeScalarFieldEnum | Prisma.ApiKeyPackScopeScalarFieldEnum[]
-}
-
-/**
  * DeveloperApiKey.contextRequests
  */
 export type DeveloperApiKey$contextRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2697,6 +2670,30 @@ export type DeveloperApiKey$usageLedgersArgs<ExtArgs extends runtime.Types.Exten
   take?: number
   skip?: number
   distinct?: Prisma.ApiUsageLedgerScalarFieldEnum | Prisma.ApiUsageLedgerScalarFieldEnum[]
+}
+
+/**
+ * DeveloperApiKey.accessGrants
+ */
+export type DeveloperApiKey$accessGrantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AccessGrant
+   */
+  select?: Prisma.AccessGrantSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AccessGrant
+   */
+  omit?: Prisma.AccessGrantOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AccessGrantInclude<ExtArgs> | null
+  where?: Prisma.AccessGrantWhereInput
+  orderBy?: Prisma.AccessGrantOrderByWithRelationInput | Prisma.AccessGrantOrderByWithRelationInput[]
+  cursor?: Prisma.AccessGrantWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AccessGrantScalarFieldEnum | Prisma.AccessGrantScalarFieldEnum[]
 }
 
 /**

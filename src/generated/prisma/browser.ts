@@ -63,11 +63,6 @@ export type OauthClient = Prisma.OauthClientModel
  */
 export type DeveloperApiKey = Prisma.DeveloperApiKeyModel
 /**
- * Model ApiKeyPackScope
- * 
- */
-export type ApiKeyPackScope = Prisma.ApiKeyPackScopeModel
-/**
  * Model OauthResource
  * 
  */
@@ -118,26 +113,6 @@ export type Entry = Prisma.EntryModel
  */
 export type EntryRelationship = Prisma.EntryRelationshipModel
 /**
- * Model EntryTombstone
- * 
- */
-export type EntryTombstone = Prisma.EntryTombstoneModel
-/**
- * Model AppMemory
- * 
- */
-export type AppMemory = Prisma.AppMemoryModel
-/**
- * Model AppMemoryLink
- * 
- */
-export type AppMemoryLink = Prisma.AppMemoryLinkModel
-/**
- * Model AppMemoryUsageLedger
- * 
- */
-export type AppMemoryUsageLedger = Prisma.AppMemoryUsageLedgerModel
-/**
  * Model AccessGrant
  * 
  */
@@ -148,25 +123,15 @@ export type AccessGrant = Prisma.AccessGrantModel
  */
 export type AccessRequest = Prisma.AccessRequestModel
 /**
- * Model AccessRequestItem
- * 
- */
-export type AccessRequestItem = Prisma.AccessRequestItemModel
-/**
  * Model ContextRequest
  * 
  */
 export type ContextRequest = Prisma.ContextRequestModel
 /**
- * Model ContextReceipt
+ * Model ContextRequestItem
  * 
  */
-export type ContextReceipt = Prisma.ContextReceiptModel
-/**
- * Model ContextReceiptItem
- * 
- */
-export type ContextReceiptItem = Prisma.ContextReceiptItemModel
+export type ContextRequestItem = Prisma.ContextRequestItemModel
 /**
  * Model ApiUsageLedger
  * 
@@ -203,50 +168,10 @@ export type RevisionChange = Prisma.RevisionChangeModel
  */
 export type Combine = Prisma.CombineModel
 /**
- * Model CombineConflict
- * 
- */
-export type CombineConflict = Prisma.CombineConflictModel
-/**
- * Model Pack
- * 
- */
-export type Pack = Prisma.PackModel
-/**
- * Model Release
- * 
- */
-export type Release = Prisma.ReleaseModel
-/**
- * Model PackImport
- * 
- */
-export type PackImport = Prisma.PackImportModel
-/**
- * Model PackPurchase
- * 
- */
-export type PackPurchase = Prisma.PackPurchaseModel
-/**
- * Model PackDonation
- * 
- */
-export type PackDonation = Prisma.PackDonationModel
-/**
- * Model PackSponsorship
- * 
- */
-export type PackSponsorship = Prisma.PackSponsorshipModel
-/**
  * Model KnowledgeBounty
  * 
  */
 export type KnowledgeBounty = Prisma.KnowledgeBountyModel
-/**
- * Model BountySubmission
- * 
- */
-export type BountySubmission = Prisma.BountySubmissionModel
 /**
  * Model Star
  * 

@@ -297,13 +297,11 @@ export type OrganizationWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Organization"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Organization"> | Date | string
   members?: Prisma.OrganizationMemberListRelationFilter
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerListRelationFilter
   apiUsageLedgers?: Prisma.ApiUsageLedgerListRelationFilter
-  packPurchases?: Prisma.PackPurchaseListRelationFilter
-  packSponsorships?: Prisma.PackSponsorshipListRelationFilter
   knowledgeBounties?: Prisma.KnowledgeBountyListRelationFilter
   payments?: Prisma.PaymentListRelationFilter
   developerApiKeys?: Prisma.DeveloperApiKeyListRelationFilter
+  collections?: Prisma.CollectionListRelationFilter
 }
 
 export type OrganizationOrderByWithRelationInput = {
@@ -321,13 +319,11 @@ export type OrganizationOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   members?: Prisma.OrganizationMemberOrderByRelationAggregateInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerOrderByRelationAggregateInput
   apiUsageLedgers?: Prisma.ApiUsageLedgerOrderByRelationAggregateInput
-  packPurchases?: Prisma.PackPurchaseOrderByRelationAggregateInput
-  packSponsorships?: Prisma.PackSponsorshipOrderByRelationAggregateInput
   knowledgeBounties?: Prisma.KnowledgeBountyOrderByRelationAggregateInput
   payments?: Prisma.PaymentOrderByRelationAggregateInput
   developerApiKeys?: Prisma.DeveloperApiKeyOrderByRelationAggregateInput
+  collections?: Prisma.CollectionOrderByRelationAggregateInput
 }
 
 export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
@@ -348,13 +344,11 @@ export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Organization"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Organization"> | Date | string
   members?: Prisma.OrganizationMemberListRelationFilter
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerListRelationFilter
   apiUsageLedgers?: Prisma.ApiUsageLedgerListRelationFilter
-  packPurchases?: Prisma.PackPurchaseListRelationFilter
-  packSponsorships?: Prisma.PackSponsorshipListRelationFilter
   knowledgeBounties?: Prisma.KnowledgeBountyListRelationFilter
   payments?: Prisma.PaymentListRelationFilter
   developerApiKeys?: Prisma.DeveloperApiKeyListRelationFilter
+  collections?: Prisma.CollectionListRelationFilter
 }, "id" | "slug">
 
 export type OrganizationOrderByWithAggregationInput = {
@@ -412,13 +406,11 @@ export type OrganizationCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   members?: Prisma.OrganizationMemberCreateNestedManyWithoutOrganizationInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerCreateNestedManyWithoutOrganizationInput
   apiUsageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutOrganizationInput
-  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutOrganizationInput
-  packSponsorships?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorOrgInput
   knowledgeBounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorOrgInput
   payments?: Prisma.PaymentCreateNestedManyWithoutOrganizationInput
   developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutOrganizationInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateInput = {
@@ -436,13 +428,11 @@ export type OrganizationUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   members?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutOrganizationInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedCreateNestedManyWithoutOrganizationInput
   apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutOrganizationInput
-  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutOrganizationInput
-  packSponsorships?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorOrgInput
   knowledgeBounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorOrgInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutOrganizationInput
   developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUpdateInput = {
@@ -460,13 +450,11 @@ export type OrganizationUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.OrganizationMemberUpdateManyWithoutOrganizationNestedInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUpdateManyWithoutOrganizationNestedInput
   apiUsageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutOrganizationNestedInput
-  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutOrganizationNestedInput
-  packSponsorships?: Prisma.PackSponsorshipUpdateManyWithoutSponsorOrgNestedInput
   knowledgeBounties?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorOrgNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutOrganizationNestedInput
   developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutOrganizationNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateInput = {
@@ -484,13 +472,11 @@ export type OrganizationUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutOrganizationNestedInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedUpdateManyWithoutOrganizationNestedInput
   apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutOrganizationNestedInput
-  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutOrganizationNestedInput
-  packSponsorships?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorOrgNestedInput
   knowledgeBounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorOrgNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutOrganizationNestedInput
   developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateManyInput = {
@@ -645,20 +631,20 @@ export type OrganizationUpdateOneWithoutDeveloperApiKeysNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutDeveloperApiKeysInput, Prisma.OrganizationUpdateWithoutDeveloperApiKeysInput>, Prisma.OrganizationUncheckedUpdateWithoutDeveloperApiKeysInput>
 }
 
-export type OrganizationCreateNestedOneWithoutAppMemoryUsageLedgersInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutAppMemoryUsageLedgersInput, Prisma.OrganizationUncheckedCreateWithoutAppMemoryUsageLedgersInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutAppMemoryUsageLedgersInput
+export type OrganizationCreateNestedOneWithoutCollectionsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutCollectionsInput, Prisma.OrganizationUncheckedCreateWithoutCollectionsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutCollectionsInput
   connect?: Prisma.OrganizationWhereUniqueInput
 }
 
-export type OrganizationUpdateOneWithoutAppMemoryUsageLedgersNestedInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutAppMemoryUsageLedgersInput, Prisma.OrganizationUncheckedCreateWithoutAppMemoryUsageLedgersInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutAppMemoryUsageLedgersInput
-  upsert?: Prisma.OrganizationUpsertWithoutAppMemoryUsageLedgersInput
+export type OrganizationUpdateOneWithoutCollectionsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutCollectionsInput, Prisma.OrganizationUncheckedCreateWithoutCollectionsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutCollectionsInput
+  upsert?: Prisma.OrganizationUpsertWithoutCollectionsInput
   disconnect?: Prisma.OrganizationWhereInput | boolean
   delete?: Prisma.OrganizationWhereInput | boolean
   connect?: Prisma.OrganizationWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutAppMemoryUsageLedgersInput, Prisma.OrganizationUpdateWithoutAppMemoryUsageLedgersInput>, Prisma.OrganizationUncheckedUpdateWithoutAppMemoryUsageLedgersInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutCollectionsInput, Prisma.OrganizationUpdateWithoutCollectionsInput>, Prisma.OrganizationUncheckedUpdateWithoutCollectionsInput>
 }
 
 export type OrganizationCreateNestedOneWithoutApiUsageLedgersInput = {
@@ -675,38 +661,6 @@ export type OrganizationUpdateOneWithoutApiUsageLedgersNestedInput = {
   delete?: Prisma.OrganizationWhereInput | boolean
   connect?: Prisma.OrganizationWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutApiUsageLedgersInput, Prisma.OrganizationUpdateWithoutApiUsageLedgersInput>, Prisma.OrganizationUncheckedUpdateWithoutApiUsageLedgersInput>
-}
-
-export type OrganizationCreateNestedOneWithoutPackPurchasesInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutPackPurchasesInput, Prisma.OrganizationUncheckedCreateWithoutPackPurchasesInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutPackPurchasesInput
-  connect?: Prisma.OrganizationWhereUniqueInput
-}
-
-export type OrganizationUpdateOneWithoutPackPurchasesNestedInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutPackPurchasesInput, Prisma.OrganizationUncheckedCreateWithoutPackPurchasesInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutPackPurchasesInput
-  upsert?: Prisma.OrganizationUpsertWithoutPackPurchasesInput
-  disconnect?: Prisma.OrganizationWhereInput | boolean
-  delete?: Prisma.OrganizationWhereInput | boolean
-  connect?: Prisma.OrganizationWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutPackPurchasesInput, Prisma.OrganizationUpdateWithoutPackPurchasesInput>, Prisma.OrganizationUncheckedUpdateWithoutPackPurchasesInput>
-}
-
-export type OrganizationCreateNestedOneWithoutPackSponsorshipsInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutPackSponsorshipsInput, Prisma.OrganizationUncheckedCreateWithoutPackSponsorshipsInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutPackSponsorshipsInput
-  connect?: Prisma.OrganizationWhereUniqueInput
-}
-
-export type OrganizationUpdateOneWithoutPackSponsorshipsNestedInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutPackSponsorshipsInput, Prisma.OrganizationUncheckedCreateWithoutPackSponsorshipsInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutPackSponsorshipsInput
-  upsert?: Prisma.OrganizationUpsertWithoutPackSponsorshipsInput
-  disconnect?: Prisma.OrganizationWhereInput | boolean
-  delete?: Prisma.OrganizationWhereInput | boolean
-  connect?: Prisma.OrganizationWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutPackSponsorshipsInput, Prisma.OrganizationUpdateWithoutPackSponsorshipsInput>, Prisma.OrganizationUncheckedUpdateWithoutPackSponsorshipsInput>
 }
 
 export type OrganizationCreateNestedOneWithoutKnowledgeBountiesInput = {
@@ -755,13 +709,11 @@ export type OrganizationCreateWithoutMembersInput = {
   autoRechargeAmountCents?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerCreateNestedManyWithoutOrganizationInput
   apiUsageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutOrganizationInput
-  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutOrganizationInput
-  packSponsorships?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorOrgInput
   knowledgeBounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorOrgInput
   payments?: Prisma.PaymentCreateNestedManyWithoutOrganizationInput
   developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutOrganizationInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutMembersInput = {
@@ -778,13 +730,11 @@ export type OrganizationUncheckedCreateWithoutMembersInput = {
   autoRechargeAmountCents?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedCreateNestedManyWithoutOrganizationInput
   apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutOrganizationInput
-  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutOrganizationInput
-  packSponsorships?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorOrgInput
   knowledgeBounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorOrgInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutOrganizationInput
   developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutMembersInput = {
@@ -817,13 +767,11 @@ export type OrganizationUpdateWithoutMembersInput = {
   autoRechargeAmountCents?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUpdateManyWithoutOrganizationNestedInput
   apiUsageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutOrganizationNestedInput
-  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutOrganizationNestedInput
-  packSponsorships?: Prisma.PackSponsorshipUpdateManyWithoutSponsorOrgNestedInput
   knowledgeBounties?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorOrgNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutOrganizationNestedInput
   developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutOrganizationNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutMembersInput = {
@@ -840,13 +788,11 @@ export type OrganizationUncheckedUpdateWithoutMembersInput = {
   autoRechargeAmountCents?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedUpdateManyWithoutOrganizationNestedInput
   apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutOrganizationNestedInput
-  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutOrganizationNestedInput
-  packSponsorships?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorOrgNestedInput
   knowledgeBounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorOrgNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutOrganizationNestedInput
   developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutDeveloperApiKeysInput = {
@@ -864,12 +810,10 @@ export type OrganizationCreateWithoutDeveloperApiKeysInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   members?: Prisma.OrganizationMemberCreateNestedManyWithoutOrganizationInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerCreateNestedManyWithoutOrganizationInput
   apiUsageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutOrganizationInput
-  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutOrganizationInput
-  packSponsorships?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorOrgInput
   knowledgeBounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorOrgInput
   payments?: Prisma.PaymentCreateNestedManyWithoutOrganizationInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutDeveloperApiKeysInput = {
@@ -887,12 +831,10 @@ export type OrganizationUncheckedCreateWithoutDeveloperApiKeysInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   members?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutOrganizationInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedCreateNestedManyWithoutOrganizationInput
   apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutOrganizationInput
-  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutOrganizationInput
-  packSponsorships?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorOrgInput
   knowledgeBounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorOrgInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutOrganizationInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutDeveloperApiKeysInput = {
@@ -926,12 +868,10 @@ export type OrganizationUpdateWithoutDeveloperApiKeysInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.OrganizationMemberUpdateManyWithoutOrganizationNestedInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUpdateManyWithoutOrganizationNestedInput
   apiUsageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutOrganizationNestedInput
-  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutOrganizationNestedInput
-  packSponsorships?: Prisma.PackSponsorshipUpdateManyWithoutSponsorOrgNestedInput
   knowledgeBounties?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorOrgNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutOrganizationNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutDeveloperApiKeysInput = {
@@ -949,15 +889,13 @@ export type OrganizationUncheckedUpdateWithoutDeveloperApiKeysInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutOrganizationNestedInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedUpdateManyWithoutOrganizationNestedInput
   apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutOrganizationNestedInput
-  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutOrganizationNestedInput
-  packSponsorships?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorOrgNestedInput
   knowledgeBounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorOrgNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutOrganizationNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
-export type OrganizationCreateWithoutAppMemoryUsageLedgersInput = {
+export type OrganizationCreateWithoutCollectionsInput = {
   id?: string
   name: string
   slug: string
@@ -973,14 +911,12 @@ export type OrganizationCreateWithoutAppMemoryUsageLedgersInput = {
   updatedAt?: Date | string
   members?: Prisma.OrganizationMemberCreateNestedManyWithoutOrganizationInput
   apiUsageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutOrganizationInput
-  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutOrganizationInput
-  packSponsorships?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorOrgInput
   knowledgeBounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorOrgInput
   payments?: Prisma.PaymentCreateNestedManyWithoutOrganizationInput
   developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutOrganizationInput
 }
 
-export type OrganizationUncheckedCreateWithoutAppMemoryUsageLedgersInput = {
+export type OrganizationUncheckedCreateWithoutCollectionsInput = {
   id?: string
   name: string
   slug: string
@@ -996,30 +932,28 @@ export type OrganizationUncheckedCreateWithoutAppMemoryUsageLedgersInput = {
   updatedAt?: Date | string
   members?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutOrganizationInput
   apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutOrganizationInput
-  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutOrganizationInput
-  packSponsorships?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorOrgInput
   knowledgeBounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorOrgInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutOrganizationInput
   developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
-export type OrganizationCreateOrConnectWithoutAppMemoryUsageLedgersInput = {
+export type OrganizationCreateOrConnectWithoutCollectionsInput = {
   where: Prisma.OrganizationWhereUniqueInput
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutAppMemoryUsageLedgersInput, Prisma.OrganizationUncheckedCreateWithoutAppMemoryUsageLedgersInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutCollectionsInput, Prisma.OrganizationUncheckedCreateWithoutCollectionsInput>
 }
 
-export type OrganizationUpsertWithoutAppMemoryUsageLedgersInput = {
-  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutAppMemoryUsageLedgersInput, Prisma.OrganizationUncheckedUpdateWithoutAppMemoryUsageLedgersInput>
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutAppMemoryUsageLedgersInput, Prisma.OrganizationUncheckedCreateWithoutAppMemoryUsageLedgersInput>
+export type OrganizationUpsertWithoutCollectionsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutCollectionsInput, Prisma.OrganizationUncheckedUpdateWithoutCollectionsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutCollectionsInput, Prisma.OrganizationUncheckedCreateWithoutCollectionsInput>
   where?: Prisma.OrganizationWhereInput
 }
 
-export type OrganizationUpdateToOneWithWhereWithoutAppMemoryUsageLedgersInput = {
+export type OrganizationUpdateToOneWithWhereWithoutCollectionsInput = {
   where?: Prisma.OrganizationWhereInput
-  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutAppMemoryUsageLedgersInput, Prisma.OrganizationUncheckedUpdateWithoutAppMemoryUsageLedgersInput>
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutCollectionsInput, Prisma.OrganizationUncheckedUpdateWithoutCollectionsInput>
 }
 
-export type OrganizationUpdateWithoutAppMemoryUsageLedgersInput = {
+export type OrganizationUpdateWithoutCollectionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1035,14 +969,12 @@ export type OrganizationUpdateWithoutAppMemoryUsageLedgersInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.OrganizationMemberUpdateManyWithoutOrganizationNestedInput
   apiUsageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutOrganizationNestedInput
-  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutOrganizationNestedInput
-  packSponsorships?: Prisma.PackSponsorshipUpdateManyWithoutSponsorOrgNestedInput
   knowledgeBounties?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorOrgNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutOrganizationNestedInput
   developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutOrganizationNestedInput
 }
 
-export type OrganizationUncheckedUpdateWithoutAppMemoryUsageLedgersInput = {
+export type OrganizationUncheckedUpdateWithoutCollectionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1058,8 +990,6 @@ export type OrganizationUncheckedUpdateWithoutAppMemoryUsageLedgersInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutOrganizationNestedInput
   apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutOrganizationNestedInput
-  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutOrganizationNestedInput
-  packSponsorships?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorOrgNestedInput
   knowledgeBounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorOrgNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutOrganizationNestedInput
   developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1080,12 +1010,10 @@ export type OrganizationCreateWithoutApiUsageLedgersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   members?: Prisma.OrganizationMemberCreateNestedManyWithoutOrganizationInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerCreateNestedManyWithoutOrganizationInput
-  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutOrganizationInput
-  packSponsorships?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorOrgInput
   knowledgeBounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorOrgInput
   payments?: Prisma.PaymentCreateNestedManyWithoutOrganizationInput
   developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutOrganizationInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutApiUsageLedgersInput = {
@@ -1103,12 +1031,10 @@ export type OrganizationUncheckedCreateWithoutApiUsageLedgersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   members?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutOrganizationInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedCreateNestedManyWithoutOrganizationInput
-  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutOrganizationInput
-  packSponsorships?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorOrgInput
   knowledgeBounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorOrgInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutOrganizationInput
   developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutApiUsageLedgersInput = {
@@ -1142,12 +1068,10 @@ export type OrganizationUpdateWithoutApiUsageLedgersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.OrganizationMemberUpdateManyWithoutOrganizationNestedInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUpdateManyWithoutOrganizationNestedInput
-  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutOrganizationNestedInput
-  packSponsorships?: Prisma.PackSponsorshipUpdateManyWithoutSponsorOrgNestedInput
   knowledgeBounties?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorOrgNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutOrganizationNestedInput
   developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutOrganizationNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutApiUsageLedgersInput = {
@@ -1165,228 +1089,10 @@ export type OrganizationUncheckedUpdateWithoutApiUsageLedgersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutOrganizationNestedInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedUpdateManyWithoutOrganizationNestedInput
-  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutOrganizationNestedInput
-  packSponsorships?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorOrgNestedInput
   knowledgeBounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorOrgNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutOrganizationNestedInput
   developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
-}
-
-export type OrganizationCreateWithoutPackPurchasesInput = {
-  id?: string
-  name: string
-  slug: string
-  billingEmail?: string | null
-  computeQuotaBalanceCents?: number
-  prepaidWalletBalanceCents?: number
-  currentMonthSpendCents?: number
-  currentBillingCycleStart?: Date | string
-  autoRechargeEnabled?: boolean
-  autoRechargeThresholdCents?: number
-  autoRechargeAmountCents?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  members?: Prisma.OrganizationMemberCreateNestedManyWithoutOrganizationInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerCreateNestedManyWithoutOrganizationInput
-  apiUsageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutOrganizationInput
-  packSponsorships?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorOrgInput
-  knowledgeBounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorOrgInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutOrganizationInput
-  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutOrganizationInput
-}
-
-export type OrganizationUncheckedCreateWithoutPackPurchasesInput = {
-  id?: string
-  name: string
-  slug: string
-  billingEmail?: string | null
-  computeQuotaBalanceCents?: number
-  prepaidWalletBalanceCents?: number
-  currentMonthSpendCents?: number
-  currentBillingCycleStart?: Date | string
-  autoRechargeEnabled?: boolean
-  autoRechargeThresholdCents?: number
-  autoRechargeAmountCents?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  members?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutOrganizationInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedCreateNestedManyWithoutOrganizationInput
-  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutOrganizationInput
-  packSponsorships?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorOrgInput
-  knowledgeBounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorOrgInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutOrganizationInput
-  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
-}
-
-export type OrganizationCreateOrConnectWithoutPackPurchasesInput = {
-  where: Prisma.OrganizationWhereUniqueInput
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutPackPurchasesInput, Prisma.OrganizationUncheckedCreateWithoutPackPurchasesInput>
-}
-
-export type OrganizationUpsertWithoutPackPurchasesInput = {
-  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutPackPurchasesInput, Prisma.OrganizationUncheckedUpdateWithoutPackPurchasesInput>
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutPackPurchasesInput, Prisma.OrganizationUncheckedCreateWithoutPackPurchasesInput>
-  where?: Prisma.OrganizationWhereInput
-}
-
-export type OrganizationUpdateToOneWithWhereWithoutPackPurchasesInput = {
-  where?: Prisma.OrganizationWhereInput
-  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutPackPurchasesInput, Prisma.OrganizationUncheckedUpdateWithoutPackPurchasesInput>
-}
-
-export type OrganizationUpdateWithoutPackPurchasesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  billingEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  autoRechargeEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  autoRechargeThresholdCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  autoRechargeAmountCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  members?: Prisma.OrganizationMemberUpdateManyWithoutOrganizationNestedInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUpdateManyWithoutOrganizationNestedInput
-  apiUsageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutOrganizationNestedInput
-  packSponsorships?: Prisma.PackSponsorshipUpdateManyWithoutSponsorOrgNestedInput
-  knowledgeBounties?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorOrgNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutOrganizationNestedInput
-  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutOrganizationNestedInput
-}
-
-export type OrganizationUncheckedUpdateWithoutPackPurchasesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  billingEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  autoRechargeEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  autoRechargeThresholdCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  autoRechargeAmountCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  members?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutOrganizationNestedInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedUpdateManyWithoutOrganizationNestedInput
-  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutOrganizationNestedInput
-  packSponsorships?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorOrgNestedInput
-  knowledgeBounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorOrgNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutOrganizationNestedInput
-  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
-}
-
-export type OrganizationCreateWithoutPackSponsorshipsInput = {
-  id?: string
-  name: string
-  slug: string
-  billingEmail?: string | null
-  computeQuotaBalanceCents?: number
-  prepaidWalletBalanceCents?: number
-  currentMonthSpendCents?: number
-  currentBillingCycleStart?: Date | string
-  autoRechargeEnabled?: boolean
-  autoRechargeThresholdCents?: number
-  autoRechargeAmountCents?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  members?: Prisma.OrganizationMemberCreateNestedManyWithoutOrganizationInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerCreateNestedManyWithoutOrganizationInput
-  apiUsageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutOrganizationInput
-  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutOrganizationInput
-  knowledgeBounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorOrgInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutOrganizationInput
-  developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutOrganizationInput
-}
-
-export type OrganizationUncheckedCreateWithoutPackSponsorshipsInput = {
-  id?: string
-  name: string
-  slug: string
-  billingEmail?: string | null
-  computeQuotaBalanceCents?: number
-  prepaidWalletBalanceCents?: number
-  currentMonthSpendCents?: number
-  currentBillingCycleStart?: Date | string
-  autoRechargeEnabled?: boolean
-  autoRechargeThresholdCents?: number
-  autoRechargeAmountCents?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  members?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutOrganizationInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedCreateNestedManyWithoutOrganizationInput
-  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutOrganizationInput
-  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutOrganizationInput
-  knowledgeBounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorOrgInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutOrganizationInput
-  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
-}
-
-export type OrganizationCreateOrConnectWithoutPackSponsorshipsInput = {
-  where: Prisma.OrganizationWhereUniqueInput
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutPackSponsorshipsInput, Prisma.OrganizationUncheckedCreateWithoutPackSponsorshipsInput>
-}
-
-export type OrganizationUpsertWithoutPackSponsorshipsInput = {
-  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutPackSponsorshipsInput, Prisma.OrganizationUncheckedUpdateWithoutPackSponsorshipsInput>
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutPackSponsorshipsInput, Prisma.OrganizationUncheckedCreateWithoutPackSponsorshipsInput>
-  where?: Prisma.OrganizationWhereInput
-}
-
-export type OrganizationUpdateToOneWithWhereWithoutPackSponsorshipsInput = {
-  where?: Prisma.OrganizationWhereInput
-  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutPackSponsorshipsInput, Prisma.OrganizationUncheckedUpdateWithoutPackSponsorshipsInput>
-}
-
-export type OrganizationUpdateWithoutPackSponsorshipsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  billingEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  autoRechargeEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  autoRechargeThresholdCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  autoRechargeAmountCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  members?: Prisma.OrganizationMemberUpdateManyWithoutOrganizationNestedInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUpdateManyWithoutOrganizationNestedInput
-  apiUsageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutOrganizationNestedInput
-  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutOrganizationNestedInput
-  knowledgeBounties?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorOrgNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutOrganizationNestedInput
-  developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutOrganizationNestedInput
-}
-
-export type OrganizationUncheckedUpdateWithoutPackSponsorshipsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  billingEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  computeQuotaBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  prepaidWalletBalanceCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  currentMonthSpendCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  currentBillingCycleStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  autoRechargeEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  autoRechargeThresholdCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  autoRechargeAmountCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  members?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutOrganizationNestedInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedUpdateManyWithoutOrganizationNestedInput
-  apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutOrganizationNestedInput
-  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutOrganizationNestedInput
-  knowledgeBounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorOrgNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutOrganizationNestedInput
-  developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutKnowledgeBountiesInput = {
@@ -1404,12 +1110,10 @@ export type OrganizationCreateWithoutKnowledgeBountiesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   members?: Prisma.OrganizationMemberCreateNestedManyWithoutOrganizationInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerCreateNestedManyWithoutOrganizationInput
   apiUsageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutOrganizationInput
-  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutOrganizationInput
-  packSponsorships?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorOrgInput
   payments?: Prisma.PaymentCreateNestedManyWithoutOrganizationInput
   developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutOrganizationInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutKnowledgeBountiesInput = {
@@ -1427,12 +1131,10 @@ export type OrganizationUncheckedCreateWithoutKnowledgeBountiesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   members?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutOrganizationInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedCreateNestedManyWithoutOrganizationInput
   apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutOrganizationInput
-  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutOrganizationInput
-  packSponsorships?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorOrgInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutOrganizationInput
   developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutKnowledgeBountiesInput = {
@@ -1466,12 +1168,10 @@ export type OrganizationUpdateWithoutKnowledgeBountiesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.OrganizationMemberUpdateManyWithoutOrganizationNestedInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUpdateManyWithoutOrganizationNestedInput
   apiUsageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutOrganizationNestedInput
-  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutOrganizationNestedInput
-  packSponsorships?: Prisma.PackSponsorshipUpdateManyWithoutSponsorOrgNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutOrganizationNestedInput
   developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutOrganizationNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutKnowledgeBountiesInput = {
@@ -1489,12 +1189,10 @@ export type OrganizationUncheckedUpdateWithoutKnowledgeBountiesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutOrganizationNestedInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedUpdateManyWithoutOrganizationNestedInput
   apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutOrganizationNestedInput
-  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutOrganizationNestedInput
-  packSponsorships?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorOrgNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutOrganizationNestedInput
   developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutPaymentsInput = {
@@ -1512,12 +1210,10 @@ export type OrganizationCreateWithoutPaymentsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   members?: Prisma.OrganizationMemberCreateNestedManyWithoutOrganizationInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerCreateNestedManyWithoutOrganizationInput
   apiUsageLedgers?: Prisma.ApiUsageLedgerCreateNestedManyWithoutOrganizationInput
-  packPurchases?: Prisma.PackPurchaseCreateNestedManyWithoutOrganizationInput
-  packSponsorships?: Prisma.PackSponsorshipCreateNestedManyWithoutSponsorOrgInput
   knowledgeBounties?: Prisma.KnowledgeBountyCreateNestedManyWithoutCreatorOrgInput
   developerApiKeys?: Prisma.DeveloperApiKeyCreateNestedManyWithoutOrganizationInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutPaymentsInput = {
@@ -1535,12 +1231,10 @@ export type OrganizationUncheckedCreateWithoutPaymentsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   members?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutOrganizationInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedCreateNestedManyWithoutOrganizationInput
   apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedCreateNestedManyWithoutOrganizationInput
-  packPurchases?: Prisma.PackPurchaseUncheckedCreateNestedManyWithoutOrganizationInput
-  packSponsorships?: Prisma.PackSponsorshipUncheckedCreateNestedManyWithoutSponsorOrgInput
   knowledgeBounties?: Prisma.KnowledgeBountyUncheckedCreateNestedManyWithoutCreatorOrgInput
   developerApiKeys?: Prisma.DeveloperApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutPaymentsInput = {
@@ -1574,12 +1268,10 @@ export type OrganizationUpdateWithoutPaymentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.OrganizationMemberUpdateManyWithoutOrganizationNestedInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUpdateManyWithoutOrganizationNestedInput
   apiUsageLedgers?: Prisma.ApiUsageLedgerUpdateManyWithoutOrganizationNestedInput
-  packPurchases?: Prisma.PackPurchaseUpdateManyWithoutOrganizationNestedInput
-  packSponsorships?: Prisma.PackSponsorshipUpdateManyWithoutSponsorOrgNestedInput
   knowledgeBounties?: Prisma.KnowledgeBountyUpdateManyWithoutCreatorOrgNestedInput
   developerApiKeys?: Prisma.DeveloperApiKeyUpdateManyWithoutOrganizationNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutPaymentsInput = {
@@ -1597,12 +1289,10 @@ export type OrganizationUncheckedUpdateWithoutPaymentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutOrganizationNestedInput
-  appMemoryUsageLedgers?: Prisma.AppMemoryUsageLedgerUncheckedUpdateManyWithoutOrganizationNestedInput
   apiUsageLedgers?: Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutOrganizationNestedInput
-  packPurchases?: Prisma.PackPurchaseUncheckedUpdateManyWithoutOrganizationNestedInput
-  packSponsorships?: Prisma.PackSponsorshipUncheckedUpdateManyWithoutSponsorOrgNestedInput
   knowledgeBounties?: Prisma.KnowledgeBountyUncheckedUpdateManyWithoutCreatorOrgNestedInput
   developerApiKeys?: Prisma.DeveloperApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 
@@ -1612,24 +1302,20 @@ export type OrganizationUncheckedUpdateWithoutPaymentsInput = {
 
 export type OrganizationCountOutputType = {
   members: number
-  appMemoryUsageLedgers: number
   apiUsageLedgers: number
-  packPurchases: number
-  packSponsorships: number
   knowledgeBounties: number
   payments: number
   developerApiKeys: number
+  collections: number
 }
 
 export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   members?: boolean | OrganizationCountOutputTypeCountMembersArgs
-  appMemoryUsageLedgers?: boolean | OrganizationCountOutputTypeCountAppMemoryUsageLedgersArgs
   apiUsageLedgers?: boolean | OrganizationCountOutputTypeCountApiUsageLedgersArgs
-  packPurchases?: boolean | OrganizationCountOutputTypeCountPackPurchasesArgs
-  packSponsorships?: boolean | OrganizationCountOutputTypeCountPackSponsorshipsArgs
   knowledgeBounties?: boolean | OrganizationCountOutputTypeCountKnowledgeBountiesArgs
   payments?: boolean | OrganizationCountOutputTypeCountPaymentsArgs
   developerApiKeys?: boolean | OrganizationCountOutputTypeCountDeveloperApiKeysArgs
+  collections?: boolean | OrganizationCountOutputTypeCountCollectionsArgs
 }
 
 /**
@@ -1652,29 +1338,8 @@ export type OrganizationCountOutputTypeCountMembersArgs<ExtArgs extends runtime.
 /**
  * OrganizationCountOutputType without action
  */
-export type OrganizationCountOutputTypeCountAppMemoryUsageLedgersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AppMemoryUsageLedgerWhereInput
-}
-
-/**
- * OrganizationCountOutputType without action
- */
 export type OrganizationCountOutputTypeCountApiUsageLedgersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ApiUsageLedgerWhereInput
-}
-
-/**
- * OrganizationCountOutputType without action
- */
-export type OrganizationCountOutputTypeCountPackPurchasesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PackPurchaseWhereInput
-}
-
-/**
- * OrganizationCountOutputType without action
- */
-export type OrganizationCountOutputTypeCountPackSponsorshipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PackSponsorshipWhereInput
 }
 
 /**
@@ -1698,6 +1363,13 @@ export type OrganizationCountOutputTypeCountDeveloperApiKeysArgs<ExtArgs extends
   where?: Prisma.DeveloperApiKeyWhereInput
 }
 
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountCollectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CollectionWhereInput
+}
+
 
 export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1714,13 +1386,11 @@ export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   createdAt?: boolean
   updatedAt?: boolean
   members?: boolean | Prisma.Organization$membersArgs<ExtArgs>
-  appMemoryUsageLedgers?: boolean | Prisma.Organization$appMemoryUsageLedgersArgs<ExtArgs>
   apiUsageLedgers?: boolean | Prisma.Organization$apiUsageLedgersArgs<ExtArgs>
-  packPurchases?: boolean | Prisma.Organization$packPurchasesArgs<ExtArgs>
-  packSponsorships?: boolean | Prisma.Organization$packSponsorshipsArgs<ExtArgs>
   knowledgeBounties?: boolean | Prisma.Organization$knowledgeBountiesArgs<ExtArgs>
   payments?: boolean | Prisma.Organization$paymentsArgs<ExtArgs>
   developerApiKeys?: boolean | Prisma.Organization$developerApiKeysArgs<ExtArgs>
+  collections?: boolean | Prisma.Organization$collectionsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["organization"]>
 
@@ -1775,13 +1445,11 @@ export type OrganizationSelectScalar = {
 export type OrganizationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "billingEmail" | "computeQuotaBalanceCents" | "prepaidWalletBalanceCents" | "currentMonthSpendCents" | "currentBillingCycleStart" | "autoRechargeEnabled" | "autoRechargeThresholdCents" | "autoRechargeAmountCents" | "createdAt" | "updatedAt", ExtArgs["result"]["organization"]>
 export type OrganizationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   members?: boolean | Prisma.Organization$membersArgs<ExtArgs>
-  appMemoryUsageLedgers?: boolean | Prisma.Organization$appMemoryUsageLedgersArgs<ExtArgs>
   apiUsageLedgers?: boolean | Prisma.Organization$apiUsageLedgersArgs<ExtArgs>
-  packPurchases?: boolean | Prisma.Organization$packPurchasesArgs<ExtArgs>
-  packSponsorships?: boolean | Prisma.Organization$packSponsorshipsArgs<ExtArgs>
   knowledgeBounties?: boolean | Prisma.Organization$knowledgeBountiesArgs<ExtArgs>
   payments?: boolean | Prisma.Organization$paymentsArgs<ExtArgs>
   developerApiKeys?: boolean | Prisma.Organization$developerApiKeysArgs<ExtArgs>
+  collections?: boolean | Prisma.Organization$collectionsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OrganizationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1791,13 +1459,11 @@ export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.Intern
   name: "Organization"
   objects: {
     members: Prisma.$OrganizationMemberPayload<ExtArgs>[]
-    appMemoryUsageLedgers: Prisma.$AppMemoryUsageLedgerPayload<ExtArgs>[]
     apiUsageLedgers: Prisma.$ApiUsageLedgerPayload<ExtArgs>[]
-    packPurchases: Prisma.$PackPurchasePayload<ExtArgs>[]
-    packSponsorships: Prisma.$PackSponsorshipPayload<ExtArgs>[]
     knowledgeBounties: Prisma.$KnowledgeBountyPayload<ExtArgs>[]
     payments: Prisma.$PaymentPayload<ExtArgs>[]
     developerApiKeys: Prisma.$DeveloperApiKeyPayload<ExtArgs>[]
+    collections: Prisma.$CollectionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2208,13 +1874,11 @@ readonly fields: OrganizationFieldRefs;
 export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   members<T extends Prisma.Organization$membersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$membersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrganizationMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  appMemoryUsageLedgers<T extends Prisma.Organization$appMemoryUsageLedgersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$appMemoryUsageLedgersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppMemoryUsageLedgerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   apiUsageLedgers<T extends Prisma.Organization$apiUsageLedgersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$apiUsageLedgersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApiUsageLedgerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  packPurchases<T extends Prisma.Organization$packPurchasesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$packPurchasesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PackPurchasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  packSponsorships<T extends Prisma.Organization$packSponsorshipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$packSponsorshipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PackSponsorshipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   knowledgeBounties<T extends Prisma.Organization$knowledgeBountiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$knowledgeBountiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$KnowledgeBountyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   payments<T extends Prisma.Organization$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   developerApiKeys<T extends Prisma.Organization$developerApiKeysArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$developerApiKeysArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DeveloperApiKeyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  collections<T extends Prisma.Organization$collectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$collectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2674,30 +2338,6 @@ export type Organization$membersArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
- * Organization.appMemoryUsageLedgers
- */
-export type Organization$appMemoryUsageLedgersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the AppMemoryUsageLedger
-   */
-  select?: Prisma.AppMemoryUsageLedgerSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the AppMemoryUsageLedger
-   */
-  omit?: Prisma.AppMemoryUsageLedgerOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AppMemoryUsageLedgerInclude<ExtArgs> | null
-  where?: Prisma.AppMemoryUsageLedgerWhereInput
-  orderBy?: Prisma.AppMemoryUsageLedgerOrderByWithRelationInput | Prisma.AppMemoryUsageLedgerOrderByWithRelationInput[]
-  cursor?: Prisma.AppMemoryUsageLedgerWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.AppMemoryUsageLedgerScalarFieldEnum | Prisma.AppMemoryUsageLedgerScalarFieldEnum[]
-}
-
-/**
  * Organization.apiUsageLedgers
  */
 export type Organization$apiUsageLedgersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2719,54 +2359,6 @@ export type Organization$apiUsageLedgersArgs<ExtArgs extends runtime.Types.Exten
   take?: number
   skip?: number
   distinct?: Prisma.ApiUsageLedgerScalarFieldEnum | Prisma.ApiUsageLedgerScalarFieldEnum[]
-}
-
-/**
- * Organization.packPurchases
- */
-export type Organization$packPurchasesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the PackPurchase
-   */
-  select?: Prisma.PackPurchaseSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the PackPurchase
-   */
-  omit?: Prisma.PackPurchaseOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PackPurchaseInclude<ExtArgs> | null
-  where?: Prisma.PackPurchaseWhereInput
-  orderBy?: Prisma.PackPurchaseOrderByWithRelationInput | Prisma.PackPurchaseOrderByWithRelationInput[]
-  cursor?: Prisma.PackPurchaseWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PackPurchaseScalarFieldEnum | Prisma.PackPurchaseScalarFieldEnum[]
-}
-
-/**
- * Organization.packSponsorships
- */
-export type Organization$packSponsorshipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the PackSponsorship
-   */
-  select?: Prisma.PackSponsorshipSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the PackSponsorship
-   */
-  omit?: Prisma.PackSponsorshipOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PackSponsorshipInclude<ExtArgs> | null
-  where?: Prisma.PackSponsorshipWhereInput
-  orderBy?: Prisma.PackSponsorshipOrderByWithRelationInput | Prisma.PackSponsorshipOrderByWithRelationInput[]
-  cursor?: Prisma.PackSponsorshipWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PackSponsorshipScalarFieldEnum | Prisma.PackSponsorshipScalarFieldEnum[]
 }
 
 /**
@@ -2839,6 +2431,30 @@ export type Organization$developerApiKeysArgs<ExtArgs extends runtime.Types.Exte
   take?: number
   skip?: number
   distinct?: Prisma.DeveloperApiKeyScalarFieldEnum | Prisma.DeveloperApiKeyScalarFieldEnum[]
+}
+
+/**
+ * Organization.collections
+ */
+export type Organization$collectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Collection
+   */
+  select?: Prisma.CollectionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Collection
+   */
+  omit?: Prisma.CollectionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CollectionInclude<ExtArgs> | null
+  where?: Prisma.CollectionWhereInput
+  orderBy?: Prisma.CollectionOrderByWithRelationInput | Prisma.CollectionOrderByWithRelationInput[]
+  cursor?: Prisma.CollectionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CollectionScalarFieldEnum | Prisma.CollectionScalarFieldEnum[]
 }
 
 /**

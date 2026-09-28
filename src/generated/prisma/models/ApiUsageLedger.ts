@@ -31,7 +31,7 @@ export type ApiUsageLedgerAvgAggregateOutputType = {
   effectiveEntryCount: number | null
   appliedPFactor: number | null
   appliedMFactor: number | null
-  tokensUsed: number | null
+  tokensOrUnitsUsed: number | null
   computeCostCents: number | null
   royaltyCostCents: number | null
   sponsorAbsorbedCents: number | null
@@ -43,7 +43,7 @@ export type ApiUsageLedgerSumAggregateOutputType = {
   effectiveEntryCount: number | null
   appliedPFactor: number | null
   appliedMFactor: number | null
-  tokensUsed: number | null
+  tokensOrUnitsUsed: number | null
   computeCostCents: number | null
   royaltyCostCents: number | null
   sponsorAbsorbedCents: number | null
@@ -53,17 +53,17 @@ export type ApiUsageLedgerSumAggregateOutputType = {
 export type ApiUsageLedgerMinAggregateOutputType = {
   id: string | null
   clientId: string | null
+  operation: $Enums.UsageOperation | null
   contextRequestedId: string | null
   userId: string | null
   organizationId: string | null
   apiKeyId: string | null
-  packId: string | null
-  sponsorshipId: string | null
+  collectionId: string | null
   rawEntryCountN: number | null
   effectiveEntryCount: number | null
   appliedPFactor: number | null
   appliedMFactor: number | null
-  tokensUsed: number | null
+  tokensOrUnitsUsed: number | null
   computeCostCents: number | null
   royaltyCostCents: number | null
   sponsorAbsorbedCents: number | null
@@ -76,17 +76,17 @@ export type ApiUsageLedgerMinAggregateOutputType = {
 export type ApiUsageLedgerMaxAggregateOutputType = {
   id: string | null
   clientId: string | null
+  operation: $Enums.UsageOperation | null
   contextRequestedId: string | null
   userId: string | null
   organizationId: string | null
   apiKeyId: string | null
-  packId: string | null
-  sponsorshipId: string | null
+  collectionId: string | null
   rawEntryCountN: number | null
   effectiveEntryCount: number | null
   appliedPFactor: number | null
   appliedMFactor: number | null
-  tokensUsed: number | null
+  tokensOrUnitsUsed: number | null
   computeCostCents: number | null
   royaltyCostCents: number | null
   sponsorAbsorbedCents: number | null
@@ -99,17 +99,17 @@ export type ApiUsageLedgerMaxAggregateOutputType = {
 export type ApiUsageLedgerCountAggregateOutputType = {
   id: number
   clientId: number
+  operation: number
   contextRequestedId: number
   userId: number
   organizationId: number
   apiKeyId: number
-  packId: number
-  sponsorshipId: number
+  collectionId: number
   rawEntryCountN: number
   effectiveEntryCount: number
   appliedPFactor: number
   appliedMFactor: number
-  tokensUsed: number
+  tokensOrUnitsUsed: number
   computeCostCents: number
   royaltyCostCents: number
   sponsorAbsorbedCents: number
@@ -126,7 +126,7 @@ export type ApiUsageLedgerAvgAggregateInputType = {
   effectiveEntryCount?: true
   appliedPFactor?: true
   appliedMFactor?: true
-  tokensUsed?: true
+  tokensOrUnitsUsed?: true
   computeCostCents?: true
   royaltyCostCents?: true
   sponsorAbsorbedCents?: true
@@ -138,7 +138,7 @@ export type ApiUsageLedgerSumAggregateInputType = {
   effectiveEntryCount?: true
   appliedPFactor?: true
   appliedMFactor?: true
-  tokensUsed?: true
+  tokensOrUnitsUsed?: true
   computeCostCents?: true
   royaltyCostCents?: true
   sponsorAbsorbedCents?: true
@@ -148,17 +148,17 @@ export type ApiUsageLedgerSumAggregateInputType = {
 export type ApiUsageLedgerMinAggregateInputType = {
   id?: true
   clientId?: true
+  operation?: true
   contextRequestedId?: true
   userId?: true
   organizationId?: true
   apiKeyId?: true
-  packId?: true
-  sponsorshipId?: true
+  collectionId?: true
   rawEntryCountN?: true
   effectiveEntryCount?: true
   appliedPFactor?: true
   appliedMFactor?: true
-  tokensUsed?: true
+  tokensOrUnitsUsed?: true
   computeCostCents?: true
   royaltyCostCents?: true
   sponsorAbsorbedCents?: true
@@ -171,17 +171,17 @@ export type ApiUsageLedgerMinAggregateInputType = {
 export type ApiUsageLedgerMaxAggregateInputType = {
   id?: true
   clientId?: true
+  operation?: true
   contextRequestedId?: true
   userId?: true
   organizationId?: true
   apiKeyId?: true
-  packId?: true
-  sponsorshipId?: true
+  collectionId?: true
   rawEntryCountN?: true
   effectiveEntryCount?: true
   appliedPFactor?: true
   appliedMFactor?: true
-  tokensUsed?: true
+  tokensOrUnitsUsed?: true
   computeCostCents?: true
   royaltyCostCents?: true
   sponsorAbsorbedCents?: true
@@ -194,17 +194,17 @@ export type ApiUsageLedgerMaxAggregateInputType = {
 export type ApiUsageLedgerCountAggregateInputType = {
   id?: true
   clientId?: true
+  operation?: true
   contextRequestedId?: true
   userId?: true
   organizationId?: true
   apiKeyId?: true
-  packId?: true
-  sponsorshipId?: true
+  collectionId?: true
   rawEntryCountN?: true
   effectiveEntryCount?: true
   appliedPFactor?: true
   appliedMFactor?: true
-  tokensUsed?: true
+  tokensOrUnitsUsed?: true
   computeCostCents?: true
   royaltyCostCents?: true
   sponsorAbsorbedCents?: true
@@ -304,17 +304,17 @@ export type ApiUsageLedgerGroupByArgs<ExtArgs extends runtime.Types.Extensions.I
 export type ApiUsageLedgerGroupByOutputType = {
   id: string
   clientId: string | null
+  operation: $Enums.UsageOperation
   contextRequestedId: string | null
   userId: string | null
   organizationId: string | null
   apiKeyId: string | null
-  packId: string | null
-  sponsorshipId: string | null
+  collectionId: string | null
   rawEntryCountN: number
   effectiveEntryCount: number
   appliedPFactor: number
   appliedMFactor: number
-  tokensUsed: number
+  tokensOrUnitsUsed: number
   computeCostCents: number
   royaltyCostCents: number
   sponsorAbsorbedCents: number
@@ -350,17 +350,17 @@ export type ApiUsageLedgerWhereInput = {
   NOT?: Prisma.ApiUsageLedgerWhereInput | Prisma.ApiUsageLedgerWhereInput[]
   id?: Prisma.StringFilter<"ApiUsageLedger"> | string
   clientId?: Prisma.StringNullableFilter<"ApiUsageLedger"> | string | null
+  operation?: Prisma.EnumUsageOperationFilter<"ApiUsageLedger"> | $Enums.UsageOperation
   contextRequestedId?: Prisma.StringNullableFilter<"ApiUsageLedger"> | string | null
   userId?: Prisma.StringNullableFilter<"ApiUsageLedger"> | string | null
   organizationId?: Prisma.StringNullableFilter<"ApiUsageLedger"> | string | null
   apiKeyId?: Prisma.StringNullableFilter<"ApiUsageLedger"> | string | null
-  packId?: Prisma.StringNullableFilter<"ApiUsageLedger"> | string | null
-  sponsorshipId?: Prisma.StringNullableFilter<"ApiUsageLedger"> | string | null
+  collectionId?: Prisma.StringNullableFilter<"ApiUsageLedger"> | string | null
   rawEntryCountN?: Prisma.IntFilter<"ApiUsageLedger"> | number
   effectiveEntryCount?: Prisma.FloatFilter<"ApiUsageLedger"> | number
   appliedPFactor?: Prisma.FloatFilter<"ApiUsageLedger"> | number
   appliedMFactor?: Prisma.FloatFilter<"ApiUsageLedger"> | number
-  tokensUsed?: Prisma.IntFilter<"ApiUsageLedger"> | number
+  tokensOrUnitsUsed?: Prisma.IntFilter<"ApiUsageLedger"> | number
   computeCostCents?: Prisma.FloatFilter<"ApiUsageLedger"> | number
   royaltyCostCents?: Prisma.FloatFilter<"ApiUsageLedger"> | number
   sponsorAbsorbedCents?: Prisma.FloatFilter<"ApiUsageLedger"> | number
@@ -373,25 +373,24 @@ export type ApiUsageLedgerWhereInput = {
   user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   organization?: Prisma.XOR<Prisma.OrganizationNullableScalarRelationFilter, Prisma.OrganizationWhereInput> | null
   apiKey?: Prisma.XOR<Prisma.DeveloperApiKeyNullableScalarRelationFilter, Prisma.DeveloperApiKeyWhereInput> | null
-  pack?: Prisma.XOR<Prisma.PackNullableScalarRelationFilter, Prisma.PackWhereInput> | null
-  sponsorship?: Prisma.XOR<Prisma.PackSponsorshipNullableScalarRelationFilter, Prisma.PackSponsorshipWhereInput> | null
+  collection?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
   royaltiesDistributed?: Prisma.UserRoyaltyListRelationFilter
 }
 
 export type ApiUsageLedgerOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   clientId?: Prisma.SortOrderInput | Prisma.SortOrder
+  operation?: Prisma.SortOrder
   contextRequestedId?: Prisma.SortOrderInput | Prisma.SortOrder
   userId?: Prisma.SortOrderInput | Prisma.SortOrder
   organizationId?: Prisma.SortOrderInput | Prisma.SortOrder
   apiKeyId?: Prisma.SortOrderInput | Prisma.SortOrder
-  packId?: Prisma.SortOrderInput | Prisma.SortOrder
-  sponsorshipId?: Prisma.SortOrderInput | Prisma.SortOrder
+  collectionId?: Prisma.SortOrderInput | Prisma.SortOrder
   rawEntryCountN?: Prisma.SortOrder
   effectiveEntryCount?: Prisma.SortOrder
   appliedPFactor?: Prisma.SortOrder
   appliedMFactor?: Prisma.SortOrder
-  tokensUsed?: Prisma.SortOrder
+  tokensOrUnitsUsed?: Prisma.SortOrder
   computeCostCents?: Prisma.SortOrder
   royaltyCostCents?: Prisma.SortOrder
   sponsorAbsorbedCents?: Prisma.SortOrder
@@ -404,8 +403,7 @@ export type ApiUsageLedgerOrderByWithRelationInput = {
   user?: Prisma.UserOrderByWithRelationInput
   organization?: Prisma.OrganizationOrderByWithRelationInput
   apiKey?: Prisma.DeveloperApiKeyOrderByWithRelationInput
-  pack?: Prisma.PackOrderByWithRelationInput
-  sponsorship?: Prisma.PackSponsorshipOrderByWithRelationInput
+  collection?: Prisma.CollectionOrderByWithRelationInput
   royaltiesDistributed?: Prisma.UserRoyaltyOrderByRelationAggregateInput
 }
 
@@ -416,16 +414,16 @@ export type ApiUsageLedgerWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.ApiUsageLedgerWhereInput[]
   NOT?: Prisma.ApiUsageLedgerWhereInput | Prisma.ApiUsageLedgerWhereInput[]
   clientId?: Prisma.StringNullableFilter<"ApiUsageLedger"> | string | null
+  operation?: Prisma.EnumUsageOperationFilter<"ApiUsageLedger"> | $Enums.UsageOperation
   userId?: Prisma.StringNullableFilter<"ApiUsageLedger"> | string | null
   organizationId?: Prisma.StringNullableFilter<"ApiUsageLedger"> | string | null
   apiKeyId?: Prisma.StringNullableFilter<"ApiUsageLedger"> | string | null
-  packId?: Prisma.StringNullableFilter<"ApiUsageLedger"> | string | null
-  sponsorshipId?: Prisma.StringNullableFilter<"ApiUsageLedger"> | string | null
+  collectionId?: Prisma.StringNullableFilter<"ApiUsageLedger"> | string | null
   rawEntryCountN?: Prisma.IntFilter<"ApiUsageLedger"> | number
   effectiveEntryCount?: Prisma.FloatFilter<"ApiUsageLedger"> | number
   appliedPFactor?: Prisma.FloatFilter<"ApiUsageLedger"> | number
   appliedMFactor?: Prisma.FloatFilter<"ApiUsageLedger"> | number
-  tokensUsed?: Prisma.IntFilter<"ApiUsageLedger"> | number
+  tokensOrUnitsUsed?: Prisma.IntFilter<"ApiUsageLedger"> | number
   computeCostCents?: Prisma.FloatFilter<"ApiUsageLedger"> | number
   royaltyCostCents?: Prisma.FloatFilter<"ApiUsageLedger"> | number
   sponsorAbsorbedCents?: Prisma.FloatFilter<"ApiUsageLedger"> | number
@@ -438,25 +436,24 @@ export type ApiUsageLedgerWhereUniqueInput = Prisma.AtLeast<{
   user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   organization?: Prisma.XOR<Prisma.OrganizationNullableScalarRelationFilter, Prisma.OrganizationWhereInput> | null
   apiKey?: Prisma.XOR<Prisma.DeveloperApiKeyNullableScalarRelationFilter, Prisma.DeveloperApiKeyWhereInput> | null
-  pack?: Prisma.XOR<Prisma.PackNullableScalarRelationFilter, Prisma.PackWhereInput> | null
-  sponsorship?: Prisma.XOR<Prisma.PackSponsorshipNullableScalarRelationFilter, Prisma.PackSponsorshipWhereInput> | null
+  collection?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
   royaltiesDistributed?: Prisma.UserRoyaltyListRelationFilter
 }, "id" | "contextRequestedId">
 
 export type ApiUsageLedgerOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   clientId?: Prisma.SortOrderInput | Prisma.SortOrder
+  operation?: Prisma.SortOrder
   contextRequestedId?: Prisma.SortOrderInput | Prisma.SortOrder
   userId?: Prisma.SortOrderInput | Prisma.SortOrder
   organizationId?: Prisma.SortOrderInput | Prisma.SortOrder
   apiKeyId?: Prisma.SortOrderInput | Prisma.SortOrder
-  packId?: Prisma.SortOrderInput | Prisma.SortOrder
-  sponsorshipId?: Prisma.SortOrderInput | Prisma.SortOrder
+  collectionId?: Prisma.SortOrderInput | Prisma.SortOrder
   rawEntryCountN?: Prisma.SortOrder
   effectiveEntryCount?: Prisma.SortOrder
   appliedPFactor?: Prisma.SortOrder
   appliedMFactor?: Prisma.SortOrder
-  tokensUsed?: Prisma.SortOrder
+  tokensOrUnitsUsed?: Prisma.SortOrder
   computeCostCents?: Prisma.SortOrder
   royaltyCostCents?: Prisma.SortOrder
   sponsorAbsorbedCents?: Prisma.SortOrder
@@ -477,17 +474,17 @@ export type ApiUsageLedgerScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ApiUsageLedgerScalarWhereWithAggregatesInput | Prisma.ApiUsageLedgerScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"ApiUsageLedger"> | string
   clientId?: Prisma.StringNullableWithAggregatesFilter<"ApiUsageLedger"> | string | null
+  operation?: Prisma.EnumUsageOperationWithAggregatesFilter<"ApiUsageLedger"> | $Enums.UsageOperation
   contextRequestedId?: Prisma.StringNullableWithAggregatesFilter<"ApiUsageLedger"> | string | null
   userId?: Prisma.StringNullableWithAggregatesFilter<"ApiUsageLedger"> | string | null
   organizationId?: Prisma.StringNullableWithAggregatesFilter<"ApiUsageLedger"> | string | null
   apiKeyId?: Prisma.StringNullableWithAggregatesFilter<"ApiUsageLedger"> | string | null
-  packId?: Prisma.StringNullableWithAggregatesFilter<"ApiUsageLedger"> | string | null
-  sponsorshipId?: Prisma.StringNullableWithAggregatesFilter<"ApiUsageLedger"> | string | null
+  collectionId?: Prisma.StringNullableWithAggregatesFilter<"ApiUsageLedger"> | string | null
   rawEntryCountN?: Prisma.IntWithAggregatesFilter<"ApiUsageLedger"> | number
   effectiveEntryCount?: Prisma.FloatWithAggregatesFilter<"ApiUsageLedger"> | number
   appliedPFactor?: Prisma.FloatWithAggregatesFilter<"ApiUsageLedger"> | number
   appliedMFactor?: Prisma.FloatWithAggregatesFilter<"ApiUsageLedger"> | number
-  tokensUsed?: Prisma.IntWithAggregatesFilter<"ApiUsageLedger"> | number
+  tokensOrUnitsUsed?: Prisma.IntWithAggregatesFilter<"ApiUsageLedger"> | number
   computeCostCents?: Prisma.FloatWithAggregatesFilter<"ApiUsageLedger"> | number
   royaltyCostCents?: Prisma.FloatWithAggregatesFilter<"ApiUsageLedger"> | number
   sponsorAbsorbedCents?: Prisma.FloatWithAggregatesFilter<"ApiUsageLedger"> | number
@@ -499,11 +496,12 @@ export type ApiUsageLedgerScalarWhereWithAggregatesInput = {
 
 export type ApiUsageLedgerCreateInput = {
   id?: string
+  operation?: $Enums.UsageOperation
   rawEntryCountN?: number
   effectiveEntryCount?: number
   appliedPFactor?: number
   appliedMFactor?: number
-  tokensUsed?: number
+  tokensOrUnitsUsed?: number
   computeCostCents?: number
   royaltyCostCents?: number
   sponsorAbsorbedCents?: number
@@ -516,25 +514,24 @@ export type ApiUsageLedgerCreateInput = {
   user?: Prisma.UserCreateNestedOneWithoutUsageLedgersInput
   organization?: Prisma.OrganizationCreateNestedOneWithoutApiUsageLedgersInput
   apiKey?: Prisma.DeveloperApiKeyCreateNestedOneWithoutUsageLedgersInput
-  pack?: Prisma.PackCreateNestedOneWithoutUsageLedgersInput
-  sponsorship?: Prisma.PackSponsorshipCreateNestedOneWithoutUsageLedgersInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutUsageLedgersInput
   royaltiesDistributed?: Prisma.UserRoyaltyCreateNestedManyWithoutLedgerInput
 }
 
 export type ApiUsageLedgerUncheckedCreateInput = {
   id?: string
   clientId?: string | null
+  operation?: $Enums.UsageOperation
   contextRequestedId?: string | null
   userId?: string | null
   organizationId?: string | null
   apiKeyId?: string | null
-  packId?: string | null
-  sponsorshipId?: string | null
+  collectionId?: string | null
   rawEntryCountN?: number
   effectiveEntryCount?: number
   appliedPFactor?: number
   appliedMFactor?: number
-  tokensUsed?: number
+  tokensOrUnitsUsed?: number
   computeCostCents?: number
   royaltyCostCents?: number
   sponsorAbsorbedCents?: number
@@ -547,11 +544,12 @@ export type ApiUsageLedgerUncheckedCreateInput = {
 
 export type ApiUsageLedgerUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  operation?: Prisma.EnumUsageOperationFieldUpdateOperationsInput | $Enums.UsageOperation
   rawEntryCountN?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveEntryCount?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedPFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  tokensUsed?: Prisma.IntFieldUpdateOperationsInput | number
+  tokensOrUnitsUsed?: Prisma.IntFieldUpdateOperationsInput | number
   computeCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   royaltyCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sponsorAbsorbedCents?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -564,25 +562,24 @@ export type ApiUsageLedgerUpdateInput = {
   user?: Prisma.UserUpdateOneWithoutUsageLedgersNestedInput
   organization?: Prisma.OrganizationUpdateOneWithoutApiUsageLedgersNestedInput
   apiKey?: Prisma.DeveloperApiKeyUpdateOneWithoutUsageLedgersNestedInput
-  pack?: Prisma.PackUpdateOneWithoutUsageLedgersNestedInput
-  sponsorship?: Prisma.PackSponsorshipUpdateOneWithoutUsageLedgersNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutUsageLedgersNestedInput
   royaltiesDistributed?: Prisma.UserRoyaltyUpdateManyWithoutLedgerNestedInput
 }
 
 export type ApiUsageLedgerUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operation?: Prisma.EnumUsageOperationFieldUpdateOperationsInput | $Enums.UsageOperation
   contextRequestedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sponsorshipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rawEntryCountN?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveEntryCount?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedPFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  tokensUsed?: Prisma.IntFieldUpdateOperationsInput | number
+  tokensOrUnitsUsed?: Prisma.IntFieldUpdateOperationsInput | number
   computeCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   royaltyCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sponsorAbsorbedCents?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -596,17 +593,17 @@ export type ApiUsageLedgerUncheckedUpdateInput = {
 export type ApiUsageLedgerCreateManyInput = {
   id?: string
   clientId?: string | null
+  operation?: $Enums.UsageOperation
   contextRequestedId?: string | null
   userId?: string | null
   organizationId?: string | null
   apiKeyId?: string | null
-  packId?: string | null
-  sponsorshipId?: string | null
+  collectionId?: string | null
   rawEntryCountN?: number
   effectiveEntryCount?: number
   appliedPFactor?: number
   appliedMFactor?: number
-  tokensUsed?: number
+  tokensOrUnitsUsed?: number
   computeCostCents?: number
   royaltyCostCents?: number
   sponsorAbsorbedCents?: number
@@ -618,11 +615,12 @@ export type ApiUsageLedgerCreateManyInput = {
 
 export type ApiUsageLedgerUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  operation?: Prisma.EnumUsageOperationFieldUpdateOperationsInput | $Enums.UsageOperation
   rawEntryCountN?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveEntryCount?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedPFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  tokensUsed?: Prisma.IntFieldUpdateOperationsInput | number
+  tokensOrUnitsUsed?: Prisma.IntFieldUpdateOperationsInput | number
   computeCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   royaltyCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sponsorAbsorbedCents?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -635,17 +633,17 @@ export type ApiUsageLedgerUpdateManyMutationInput = {
 export type ApiUsageLedgerUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operation?: Prisma.EnumUsageOperationFieldUpdateOperationsInput | $Enums.UsageOperation
   contextRequestedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sponsorshipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rawEntryCountN?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveEntryCount?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedPFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  tokensUsed?: Prisma.IntFieldUpdateOperationsInput | number
+  tokensOrUnitsUsed?: Prisma.IntFieldUpdateOperationsInput | number
   computeCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   royaltyCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sponsorAbsorbedCents?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -673,17 +671,17 @@ export type ApiUsageLedgerNullableScalarRelationFilter = {
 export type ApiUsageLedgerCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
+  operation?: Prisma.SortOrder
   contextRequestedId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   apiKeyId?: Prisma.SortOrder
-  packId?: Prisma.SortOrder
-  sponsorshipId?: Prisma.SortOrder
+  collectionId?: Prisma.SortOrder
   rawEntryCountN?: Prisma.SortOrder
   effectiveEntryCount?: Prisma.SortOrder
   appliedPFactor?: Prisma.SortOrder
   appliedMFactor?: Prisma.SortOrder
-  tokensUsed?: Prisma.SortOrder
+  tokensOrUnitsUsed?: Prisma.SortOrder
   computeCostCents?: Prisma.SortOrder
   royaltyCostCents?: Prisma.SortOrder
   sponsorAbsorbedCents?: Prisma.SortOrder
@@ -698,7 +696,7 @@ export type ApiUsageLedgerAvgOrderByAggregateInput = {
   effectiveEntryCount?: Prisma.SortOrder
   appliedPFactor?: Prisma.SortOrder
   appliedMFactor?: Prisma.SortOrder
-  tokensUsed?: Prisma.SortOrder
+  tokensOrUnitsUsed?: Prisma.SortOrder
   computeCostCents?: Prisma.SortOrder
   royaltyCostCents?: Prisma.SortOrder
   sponsorAbsorbedCents?: Prisma.SortOrder
@@ -708,17 +706,17 @@ export type ApiUsageLedgerAvgOrderByAggregateInput = {
 export type ApiUsageLedgerMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
+  operation?: Prisma.SortOrder
   contextRequestedId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   apiKeyId?: Prisma.SortOrder
-  packId?: Prisma.SortOrder
-  sponsorshipId?: Prisma.SortOrder
+  collectionId?: Prisma.SortOrder
   rawEntryCountN?: Prisma.SortOrder
   effectiveEntryCount?: Prisma.SortOrder
   appliedPFactor?: Prisma.SortOrder
   appliedMFactor?: Prisma.SortOrder
-  tokensUsed?: Prisma.SortOrder
+  tokensOrUnitsUsed?: Prisma.SortOrder
   computeCostCents?: Prisma.SortOrder
   royaltyCostCents?: Prisma.SortOrder
   sponsorAbsorbedCents?: Prisma.SortOrder
@@ -731,17 +729,17 @@ export type ApiUsageLedgerMaxOrderByAggregateInput = {
 export type ApiUsageLedgerMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
+  operation?: Prisma.SortOrder
   contextRequestedId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   apiKeyId?: Prisma.SortOrder
-  packId?: Prisma.SortOrder
-  sponsorshipId?: Prisma.SortOrder
+  collectionId?: Prisma.SortOrder
   rawEntryCountN?: Prisma.SortOrder
   effectiveEntryCount?: Prisma.SortOrder
   appliedPFactor?: Prisma.SortOrder
   appliedMFactor?: Prisma.SortOrder
-  tokensUsed?: Prisma.SortOrder
+  tokensOrUnitsUsed?: Prisma.SortOrder
   computeCostCents?: Prisma.SortOrder
   royaltyCostCents?: Prisma.SortOrder
   sponsorAbsorbedCents?: Prisma.SortOrder
@@ -756,7 +754,7 @@ export type ApiUsageLedgerSumOrderByAggregateInput = {
   effectiveEntryCount?: Prisma.SortOrder
   appliedPFactor?: Prisma.SortOrder
   appliedMFactor?: Prisma.SortOrder
-  tokensUsed?: Prisma.SortOrder
+  tokensOrUnitsUsed?: Prisma.SortOrder
   computeCostCents?: Prisma.SortOrder
   royaltyCostCents?: Prisma.SortOrder
   sponsorAbsorbedCents?: Prisma.SortOrder
@@ -931,6 +929,48 @@ export type ApiUsageLedgerUncheckedUpdateManyWithoutApiKeyNestedInput = {
   deleteMany?: Prisma.ApiUsageLedgerScalarWhereInput | Prisma.ApiUsageLedgerScalarWhereInput[]
 }
 
+export type ApiUsageLedgerCreateNestedManyWithoutCollectionInput = {
+  create?: Prisma.XOR<Prisma.ApiUsageLedgerCreateWithoutCollectionInput, Prisma.ApiUsageLedgerUncheckedCreateWithoutCollectionInput> | Prisma.ApiUsageLedgerCreateWithoutCollectionInput[] | Prisma.ApiUsageLedgerUncheckedCreateWithoutCollectionInput[]
+  connectOrCreate?: Prisma.ApiUsageLedgerCreateOrConnectWithoutCollectionInput | Prisma.ApiUsageLedgerCreateOrConnectWithoutCollectionInput[]
+  createMany?: Prisma.ApiUsageLedgerCreateManyCollectionInputEnvelope
+  connect?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
+}
+
+export type ApiUsageLedgerUncheckedCreateNestedManyWithoutCollectionInput = {
+  create?: Prisma.XOR<Prisma.ApiUsageLedgerCreateWithoutCollectionInput, Prisma.ApiUsageLedgerUncheckedCreateWithoutCollectionInput> | Prisma.ApiUsageLedgerCreateWithoutCollectionInput[] | Prisma.ApiUsageLedgerUncheckedCreateWithoutCollectionInput[]
+  connectOrCreate?: Prisma.ApiUsageLedgerCreateOrConnectWithoutCollectionInput | Prisma.ApiUsageLedgerCreateOrConnectWithoutCollectionInput[]
+  createMany?: Prisma.ApiUsageLedgerCreateManyCollectionInputEnvelope
+  connect?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
+}
+
+export type ApiUsageLedgerUpdateManyWithoutCollectionNestedInput = {
+  create?: Prisma.XOR<Prisma.ApiUsageLedgerCreateWithoutCollectionInput, Prisma.ApiUsageLedgerUncheckedCreateWithoutCollectionInput> | Prisma.ApiUsageLedgerCreateWithoutCollectionInput[] | Prisma.ApiUsageLedgerUncheckedCreateWithoutCollectionInput[]
+  connectOrCreate?: Prisma.ApiUsageLedgerCreateOrConnectWithoutCollectionInput | Prisma.ApiUsageLedgerCreateOrConnectWithoutCollectionInput[]
+  upsert?: Prisma.ApiUsageLedgerUpsertWithWhereUniqueWithoutCollectionInput | Prisma.ApiUsageLedgerUpsertWithWhereUniqueWithoutCollectionInput[]
+  createMany?: Prisma.ApiUsageLedgerCreateManyCollectionInputEnvelope
+  set?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
+  disconnect?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
+  delete?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
+  connect?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
+  update?: Prisma.ApiUsageLedgerUpdateWithWhereUniqueWithoutCollectionInput | Prisma.ApiUsageLedgerUpdateWithWhereUniqueWithoutCollectionInput[]
+  updateMany?: Prisma.ApiUsageLedgerUpdateManyWithWhereWithoutCollectionInput | Prisma.ApiUsageLedgerUpdateManyWithWhereWithoutCollectionInput[]
+  deleteMany?: Prisma.ApiUsageLedgerScalarWhereInput | Prisma.ApiUsageLedgerScalarWhereInput[]
+}
+
+export type ApiUsageLedgerUncheckedUpdateManyWithoutCollectionNestedInput = {
+  create?: Prisma.XOR<Prisma.ApiUsageLedgerCreateWithoutCollectionInput, Prisma.ApiUsageLedgerUncheckedCreateWithoutCollectionInput> | Prisma.ApiUsageLedgerCreateWithoutCollectionInput[] | Prisma.ApiUsageLedgerUncheckedCreateWithoutCollectionInput[]
+  connectOrCreate?: Prisma.ApiUsageLedgerCreateOrConnectWithoutCollectionInput | Prisma.ApiUsageLedgerCreateOrConnectWithoutCollectionInput[]
+  upsert?: Prisma.ApiUsageLedgerUpsertWithWhereUniqueWithoutCollectionInput | Prisma.ApiUsageLedgerUpsertWithWhereUniqueWithoutCollectionInput[]
+  createMany?: Prisma.ApiUsageLedgerCreateManyCollectionInputEnvelope
+  set?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
+  disconnect?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
+  delete?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
+  connect?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
+  update?: Prisma.ApiUsageLedgerUpdateWithWhereUniqueWithoutCollectionInput | Prisma.ApiUsageLedgerUpdateWithWhereUniqueWithoutCollectionInput[]
+  updateMany?: Prisma.ApiUsageLedgerUpdateManyWithWhereWithoutCollectionInput | Prisma.ApiUsageLedgerUpdateManyWithWhereWithoutCollectionInput[]
+  deleteMany?: Prisma.ApiUsageLedgerScalarWhereInput | Prisma.ApiUsageLedgerScalarWhereInput[]
+}
+
 export type ApiUsageLedgerCreateNestedOneWithoutContextRequestInput = {
   create?: Prisma.XOR<Prisma.ApiUsageLedgerCreateWithoutContextRequestInput, Prisma.ApiUsageLedgerUncheckedCreateWithoutContextRequestInput>
   connectOrCreate?: Prisma.ApiUsageLedgerCreateOrConnectWithoutContextRequestInput
@@ -963,6 +1003,10 @@ export type ApiUsageLedgerUncheckedUpdateOneWithoutContextRequestNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ApiUsageLedgerUpdateToOneWithWhereWithoutContextRequestInput, Prisma.ApiUsageLedgerUpdateWithoutContextRequestInput>, Prisma.ApiUsageLedgerUncheckedUpdateWithoutContextRequestInput>
 }
 
+export type EnumUsageOperationFieldUpdateOperationsInput = {
+  set?: $Enums.UsageOperation
+}
+
 export type ApiUsageLedgerCreateNestedOneWithoutRoyaltiesDistributedInput = {
   create?: Prisma.XOR<Prisma.ApiUsageLedgerCreateWithoutRoyaltiesDistributedInput, Prisma.ApiUsageLedgerUncheckedCreateWithoutRoyaltiesDistributedInput>
   connectOrCreate?: Prisma.ApiUsageLedgerCreateOrConnectWithoutRoyaltiesDistributedInput
@@ -979,97 +1023,14 @@ export type ApiUsageLedgerUpdateOneWithoutRoyaltiesDistributedNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ApiUsageLedgerUpdateToOneWithWhereWithoutRoyaltiesDistributedInput, Prisma.ApiUsageLedgerUpdateWithoutRoyaltiesDistributedInput>, Prisma.ApiUsageLedgerUncheckedUpdateWithoutRoyaltiesDistributedInput>
 }
 
-export type ApiUsageLedgerCreateNestedManyWithoutPackInput = {
-  create?: Prisma.XOR<Prisma.ApiUsageLedgerCreateWithoutPackInput, Prisma.ApiUsageLedgerUncheckedCreateWithoutPackInput> | Prisma.ApiUsageLedgerCreateWithoutPackInput[] | Prisma.ApiUsageLedgerUncheckedCreateWithoutPackInput[]
-  connectOrCreate?: Prisma.ApiUsageLedgerCreateOrConnectWithoutPackInput | Prisma.ApiUsageLedgerCreateOrConnectWithoutPackInput[]
-  createMany?: Prisma.ApiUsageLedgerCreateManyPackInputEnvelope
-  connect?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
-}
-
-export type ApiUsageLedgerUncheckedCreateNestedManyWithoutPackInput = {
-  create?: Prisma.XOR<Prisma.ApiUsageLedgerCreateWithoutPackInput, Prisma.ApiUsageLedgerUncheckedCreateWithoutPackInput> | Prisma.ApiUsageLedgerCreateWithoutPackInput[] | Prisma.ApiUsageLedgerUncheckedCreateWithoutPackInput[]
-  connectOrCreate?: Prisma.ApiUsageLedgerCreateOrConnectWithoutPackInput | Prisma.ApiUsageLedgerCreateOrConnectWithoutPackInput[]
-  createMany?: Prisma.ApiUsageLedgerCreateManyPackInputEnvelope
-  connect?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
-}
-
-export type ApiUsageLedgerUpdateManyWithoutPackNestedInput = {
-  create?: Prisma.XOR<Prisma.ApiUsageLedgerCreateWithoutPackInput, Prisma.ApiUsageLedgerUncheckedCreateWithoutPackInput> | Prisma.ApiUsageLedgerCreateWithoutPackInput[] | Prisma.ApiUsageLedgerUncheckedCreateWithoutPackInput[]
-  connectOrCreate?: Prisma.ApiUsageLedgerCreateOrConnectWithoutPackInput | Prisma.ApiUsageLedgerCreateOrConnectWithoutPackInput[]
-  upsert?: Prisma.ApiUsageLedgerUpsertWithWhereUniqueWithoutPackInput | Prisma.ApiUsageLedgerUpsertWithWhereUniqueWithoutPackInput[]
-  createMany?: Prisma.ApiUsageLedgerCreateManyPackInputEnvelope
-  set?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
-  disconnect?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
-  delete?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
-  connect?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
-  update?: Prisma.ApiUsageLedgerUpdateWithWhereUniqueWithoutPackInput | Prisma.ApiUsageLedgerUpdateWithWhereUniqueWithoutPackInput[]
-  updateMany?: Prisma.ApiUsageLedgerUpdateManyWithWhereWithoutPackInput | Prisma.ApiUsageLedgerUpdateManyWithWhereWithoutPackInput[]
-  deleteMany?: Prisma.ApiUsageLedgerScalarWhereInput | Prisma.ApiUsageLedgerScalarWhereInput[]
-}
-
-export type ApiUsageLedgerUncheckedUpdateManyWithoutPackNestedInput = {
-  create?: Prisma.XOR<Prisma.ApiUsageLedgerCreateWithoutPackInput, Prisma.ApiUsageLedgerUncheckedCreateWithoutPackInput> | Prisma.ApiUsageLedgerCreateWithoutPackInput[] | Prisma.ApiUsageLedgerUncheckedCreateWithoutPackInput[]
-  connectOrCreate?: Prisma.ApiUsageLedgerCreateOrConnectWithoutPackInput | Prisma.ApiUsageLedgerCreateOrConnectWithoutPackInput[]
-  upsert?: Prisma.ApiUsageLedgerUpsertWithWhereUniqueWithoutPackInput | Prisma.ApiUsageLedgerUpsertWithWhereUniqueWithoutPackInput[]
-  createMany?: Prisma.ApiUsageLedgerCreateManyPackInputEnvelope
-  set?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
-  disconnect?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
-  delete?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
-  connect?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
-  update?: Prisma.ApiUsageLedgerUpdateWithWhereUniqueWithoutPackInput | Prisma.ApiUsageLedgerUpdateWithWhereUniqueWithoutPackInput[]
-  updateMany?: Prisma.ApiUsageLedgerUpdateManyWithWhereWithoutPackInput | Prisma.ApiUsageLedgerUpdateManyWithWhereWithoutPackInput[]
-  deleteMany?: Prisma.ApiUsageLedgerScalarWhereInput | Prisma.ApiUsageLedgerScalarWhereInput[]
-}
-
-export type ApiUsageLedgerCreateNestedManyWithoutSponsorshipInput = {
-  create?: Prisma.XOR<Prisma.ApiUsageLedgerCreateWithoutSponsorshipInput, Prisma.ApiUsageLedgerUncheckedCreateWithoutSponsorshipInput> | Prisma.ApiUsageLedgerCreateWithoutSponsorshipInput[] | Prisma.ApiUsageLedgerUncheckedCreateWithoutSponsorshipInput[]
-  connectOrCreate?: Prisma.ApiUsageLedgerCreateOrConnectWithoutSponsorshipInput | Prisma.ApiUsageLedgerCreateOrConnectWithoutSponsorshipInput[]
-  createMany?: Prisma.ApiUsageLedgerCreateManySponsorshipInputEnvelope
-  connect?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
-}
-
-export type ApiUsageLedgerUncheckedCreateNestedManyWithoutSponsorshipInput = {
-  create?: Prisma.XOR<Prisma.ApiUsageLedgerCreateWithoutSponsorshipInput, Prisma.ApiUsageLedgerUncheckedCreateWithoutSponsorshipInput> | Prisma.ApiUsageLedgerCreateWithoutSponsorshipInput[] | Prisma.ApiUsageLedgerUncheckedCreateWithoutSponsorshipInput[]
-  connectOrCreate?: Prisma.ApiUsageLedgerCreateOrConnectWithoutSponsorshipInput | Prisma.ApiUsageLedgerCreateOrConnectWithoutSponsorshipInput[]
-  createMany?: Prisma.ApiUsageLedgerCreateManySponsorshipInputEnvelope
-  connect?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
-}
-
-export type ApiUsageLedgerUpdateManyWithoutSponsorshipNestedInput = {
-  create?: Prisma.XOR<Prisma.ApiUsageLedgerCreateWithoutSponsorshipInput, Prisma.ApiUsageLedgerUncheckedCreateWithoutSponsorshipInput> | Prisma.ApiUsageLedgerCreateWithoutSponsorshipInput[] | Prisma.ApiUsageLedgerUncheckedCreateWithoutSponsorshipInput[]
-  connectOrCreate?: Prisma.ApiUsageLedgerCreateOrConnectWithoutSponsorshipInput | Prisma.ApiUsageLedgerCreateOrConnectWithoutSponsorshipInput[]
-  upsert?: Prisma.ApiUsageLedgerUpsertWithWhereUniqueWithoutSponsorshipInput | Prisma.ApiUsageLedgerUpsertWithWhereUniqueWithoutSponsorshipInput[]
-  createMany?: Prisma.ApiUsageLedgerCreateManySponsorshipInputEnvelope
-  set?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
-  disconnect?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
-  delete?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
-  connect?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
-  update?: Prisma.ApiUsageLedgerUpdateWithWhereUniqueWithoutSponsorshipInput | Prisma.ApiUsageLedgerUpdateWithWhereUniqueWithoutSponsorshipInput[]
-  updateMany?: Prisma.ApiUsageLedgerUpdateManyWithWhereWithoutSponsorshipInput | Prisma.ApiUsageLedgerUpdateManyWithWhereWithoutSponsorshipInput[]
-  deleteMany?: Prisma.ApiUsageLedgerScalarWhereInput | Prisma.ApiUsageLedgerScalarWhereInput[]
-}
-
-export type ApiUsageLedgerUncheckedUpdateManyWithoutSponsorshipNestedInput = {
-  create?: Prisma.XOR<Prisma.ApiUsageLedgerCreateWithoutSponsorshipInput, Prisma.ApiUsageLedgerUncheckedCreateWithoutSponsorshipInput> | Prisma.ApiUsageLedgerCreateWithoutSponsorshipInput[] | Prisma.ApiUsageLedgerUncheckedCreateWithoutSponsorshipInput[]
-  connectOrCreate?: Prisma.ApiUsageLedgerCreateOrConnectWithoutSponsorshipInput | Prisma.ApiUsageLedgerCreateOrConnectWithoutSponsorshipInput[]
-  upsert?: Prisma.ApiUsageLedgerUpsertWithWhereUniqueWithoutSponsorshipInput | Prisma.ApiUsageLedgerUpsertWithWhereUniqueWithoutSponsorshipInput[]
-  createMany?: Prisma.ApiUsageLedgerCreateManySponsorshipInputEnvelope
-  set?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
-  disconnect?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
-  delete?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
-  connect?: Prisma.ApiUsageLedgerWhereUniqueInput | Prisma.ApiUsageLedgerWhereUniqueInput[]
-  update?: Prisma.ApiUsageLedgerUpdateWithWhereUniqueWithoutSponsorshipInput | Prisma.ApiUsageLedgerUpdateWithWhereUniqueWithoutSponsorshipInput[]
-  updateMany?: Prisma.ApiUsageLedgerUpdateManyWithWhereWithoutSponsorshipInput | Prisma.ApiUsageLedgerUpdateManyWithWhereWithoutSponsorshipInput[]
-  deleteMany?: Prisma.ApiUsageLedgerScalarWhereInput | Prisma.ApiUsageLedgerScalarWhereInput[]
-}
-
 export type ApiUsageLedgerCreateWithoutUserInput = {
   id?: string
+  operation?: $Enums.UsageOperation
   rawEntryCountN?: number
   effectiveEntryCount?: number
   appliedPFactor?: number
   appliedMFactor?: number
-  tokensUsed?: number
+  tokensOrUnitsUsed?: number
   computeCostCents?: number
   royaltyCostCents?: number
   sponsorAbsorbedCents?: number
@@ -1081,24 +1042,23 @@ export type ApiUsageLedgerCreateWithoutUserInput = {
   contextRequest?: Prisma.ContextRequestCreateNestedOneWithoutLedgerEntryInput
   organization?: Prisma.OrganizationCreateNestedOneWithoutApiUsageLedgersInput
   apiKey?: Prisma.DeveloperApiKeyCreateNestedOneWithoutUsageLedgersInput
-  pack?: Prisma.PackCreateNestedOneWithoutUsageLedgersInput
-  sponsorship?: Prisma.PackSponsorshipCreateNestedOneWithoutUsageLedgersInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutUsageLedgersInput
   royaltiesDistributed?: Prisma.UserRoyaltyCreateNestedManyWithoutLedgerInput
 }
 
 export type ApiUsageLedgerUncheckedCreateWithoutUserInput = {
   id?: string
   clientId?: string | null
+  operation?: $Enums.UsageOperation
   contextRequestedId?: string | null
   organizationId?: string | null
   apiKeyId?: string | null
-  packId?: string | null
-  sponsorshipId?: string | null
+  collectionId?: string | null
   rawEntryCountN?: number
   effectiveEntryCount?: number
   appliedPFactor?: number
   appliedMFactor?: number
-  tokensUsed?: number
+  tokensOrUnitsUsed?: number
   computeCostCents?: number
   royaltyCostCents?: number
   sponsorAbsorbedCents?: number
@@ -1141,17 +1101,17 @@ export type ApiUsageLedgerScalarWhereInput = {
   NOT?: Prisma.ApiUsageLedgerScalarWhereInput | Prisma.ApiUsageLedgerScalarWhereInput[]
   id?: Prisma.StringFilter<"ApiUsageLedger"> | string
   clientId?: Prisma.StringNullableFilter<"ApiUsageLedger"> | string | null
+  operation?: Prisma.EnumUsageOperationFilter<"ApiUsageLedger"> | $Enums.UsageOperation
   contextRequestedId?: Prisma.StringNullableFilter<"ApiUsageLedger"> | string | null
   userId?: Prisma.StringNullableFilter<"ApiUsageLedger"> | string | null
   organizationId?: Prisma.StringNullableFilter<"ApiUsageLedger"> | string | null
   apiKeyId?: Prisma.StringNullableFilter<"ApiUsageLedger"> | string | null
-  packId?: Prisma.StringNullableFilter<"ApiUsageLedger"> | string | null
-  sponsorshipId?: Prisma.StringNullableFilter<"ApiUsageLedger"> | string | null
+  collectionId?: Prisma.StringNullableFilter<"ApiUsageLedger"> | string | null
   rawEntryCountN?: Prisma.IntFilter<"ApiUsageLedger"> | number
   effectiveEntryCount?: Prisma.FloatFilter<"ApiUsageLedger"> | number
   appliedPFactor?: Prisma.FloatFilter<"ApiUsageLedger"> | number
   appliedMFactor?: Prisma.FloatFilter<"ApiUsageLedger"> | number
-  tokensUsed?: Prisma.IntFilter<"ApiUsageLedger"> | number
+  tokensOrUnitsUsed?: Prisma.IntFilter<"ApiUsageLedger"> | number
   computeCostCents?: Prisma.FloatFilter<"ApiUsageLedger"> | number
   royaltyCostCents?: Prisma.FloatFilter<"ApiUsageLedger"> | number
   sponsorAbsorbedCents?: Prisma.FloatFilter<"ApiUsageLedger"> | number
@@ -1163,11 +1123,12 @@ export type ApiUsageLedgerScalarWhereInput = {
 
 export type ApiUsageLedgerCreateWithoutOrganizationInput = {
   id?: string
+  operation?: $Enums.UsageOperation
   rawEntryCountN?: number
   effectiveEntryCount?: number
   appliedPFactor?: number
   appliedMFactor?: number
-  tokensUsed?: number
+  tokensOrUnitsUsed?: number
   computeCostCents?: number
   royaltyCostCents?: number
   sponsorAbsorbedCents?: number
@@ -1179,24 +1140,23 @@ export type ApiUsageLedgerCreateWithoutOrganizationInput = {
   contextRequest?: Prisma.ContextRequestCreateNestedOneWithoutLedgerEntryInput
   user?: Prisma.UserCreateNestedOneWithoutUsageLedgersInput
   apiKey?: Prisma.DeveloperApiKeyCreateNestedOneWithoutUsageLedgersInput
-  pack?: Prisma.PackCreateNestedOneWithoutUsageLedgersInput
-  sponsorship?: Prisma.PackSponsorshipCreateNestedOneWithoutUsageLedgersInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutUsageLedgersInput
   royaltiesDistributed?: Prisma.UserRoyaltyCreateNestedManyWithoutLedgerInput
 }
 
 export type ApiUsageLedgerUncheckedCreateWithoutOrganizationInput = {
   id?: string
   clientId?: string | null
+  operation?: $Enums.UsageOperation
   contextRequestedId?: string | null
   userId?: string | null
   apiKeyId?: string | null
-  packId?: string | null
-  sponsorshipId?: string | null
+  collectionId?: string | null
   rawEntryCountN?: number
   effectiveEntryCount?: number
   appliedPFactor?: number
   appliedMFactor?: number
-  tokensUsed?: number
+  tokensOrUnitsUsed?: number
   computeCostCents?: number
   royaltyCostCents?: number
   sponsorAbsorbedCents?: number
@@ -1235,11 +1195,12 @@ export type ApiUsageLedgerUpdateManyWithWhereWithoutOrganizationInput = {
 
 export type ApiUsageLedgerCreateWithoutOauthClientInput = {
   id?: string
+  operation?: $Enums.UsageOperation
   rawEntryCountN?: number
   effectiveEntryCount?: number
   appliedPFactor?: number
   appliedMFactor?: number
-  tokensUsed?: number
+  tokensOrUnitsUsed?: number
   computeCostCents?: number
   royaltyCostCents?: number
   sponsorAbsorbedCents?: number
@@ -1251,24 +1212,23 @@ export type ApiUsageLedgerCreateWithoutOauthClientInput = {
   user?: Prisma.UserCreateNestedOneWithoutUsageLedgersInput
   organization?: Prisma.OrganizationCreateNestedOneWithoutApiUsageLedgersInput
   apiKey?: Prisma.DeveloperApiKeyCreateNestedOneWithoutUsageLedgersInput
-  pack?: Prisma.PackCreateNestedOneWithoutUsageLedgersInput
-  sponsorship?: Prisma.PackSponsorshipCreateNestedOneWithoutUsageLedgersInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutUsageLedgersInput
   royaltiesDistributed?: Prisma.UserRoyaltyCreateNestedManyWithoutLedgerInput
 }
 
 export type ApiUsageLedgerUncheckedCreateWithoutOauthClientInput = {
   id?: string
+  operation?: $Enums.UsageOperation
   contextRequestedId?: string | null
   userId?: string | null
   organizationId?: string | null
   apiKeyId?: string | null
-  packId?: string | null
-  sponsorshipId?: string | null
+  collectionId?: string | null
   rawEntryCountN?: number
   effectiveEntryCount?: number
   appliedPFactor?: number
   appliedMFactor?: number
-  tokensUsed?: number
+  tokensOrUnitsUsed?: number
   computeCostCents?: number
   royaltyCostCents?: number
   sponsorAbsorbedCents?: number
@@ -1307,11 +1267,12 @@ export type ApiUsageLedgerUpdateManyWithWhereWithoutOauthClientInput = {
 
 export type ApiUsageLedgerCreateWithoutApiKeyInput = {
   id?: string
+  operation?: $Enums.UsageOperation
   rawEntryCountN?: number
   effectiveEntryCount?: number
   appliedPFactor?: number
   appliedMFactor?: number
-  tokensUsed?: number
+  tokensOrUnitsUsed?: number
   computeCostCents?: number
   royaltyCostCents?: number
   sponsorAbsorbedCents?: number
@@ -1323,24 +1284,23 @@ export type ApiUsageLedgerCreateWithoutApiKeyInput = {
   contextRequest?: Prisma.ContextRequestCreateNestedOneWithoutLedgerEntryInput
   user?: Prisma.UserCreateNestedOneWithoutUsageLedgersInput
   organization?: Prisma.OrganizationCreateNestedOneWithoutApiUsageLedgersInput
-  pack?: Prisma.PackCreateNestedOneWithoutUsageLedgersInput
-  sponsorship?: Prisma.PackSponsorshipCreateNestedOneWithoutUsageLedgersInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutUsageLedgersInput
   royaltiesDistributed?: Prisma.UserRoyaltyCreateNestedManyWithoutLedgerInput
 }
 
 export type ApiUsageLedgerUncheckedCreateWithoutApiKeyInput = {
   id?: string
   clientId?: string | null
+  operation?: $Enums.UsageOperation
   contextRequestedId?: string | null
   userId?: string | null
   organizationId?: string | null
-  packId?: string | null
-  sponsorshipId?: string | null
+  collectionId?: string | null
   rawEntryCountN?: number
   effectiveEntryCount?: number
   appliedPFactor?: number
   appliedMFactor?: number
-  tokensUsed?: number
+  tokensOrUnitsUsed?: number
   computeCostCents?: number
   royaltyCostCents?: number
   sponsorAbsorbedCents?: number
@@ -1377,13 +1337,86 @@ export type ApiUsageLedgerUpdateManyWithWhereWithoutApiKeyInput = {
   data: Prisma.XOR<Prisma.ApiUsageLedgerUpdateManyMutationInput, Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutApiKeyInput>
 }
 
-export type ApiUsageLedgerCreateWithoutContextRequestInput = {
+export type ApiUsageLedgerCreateWithoutCollectionInput = {
   id?: string
+  operation?: $Enums.UsageOperation
   rawEntryCountN?: number
   effectiveEntryCount?: number
   appliedPFactor?: number
   appliedMFactor?: number
-  tokensUsed?: number
+  tokensOrUnitsUsed?: number
+  computeCostCents?: number
+  royaltyCostCents?: number
+  sponsorAbsorbedCents?: number
+  totalCostCents?: number
+  billedAt?: Date | string | null
+  createdAt?: Date | string
+  oauthClientId?: string | null
+  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutApiUsageLedgersInput
+  contextRequest?: Prisma.ContextRequestCreateNestedOneWithoutLedgerEntryInput
+  user?: Prisma.UserCreateNestedOneWithoutUsageLedgersInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutApiUsageLedgersInput
+  apiKey?: Prisma.DeveloperApiKeyCreateNestedOneWithoutUsageLedgersInput
+  royaltiesDistributed?: Prisma.UserRoyaltyCreateNestedManyWithoutLedgerInput
+}
+
+export type ApiUsageLedgerUncheckedCreateWithoutCollectionInput = {
+  id?: string
+  clientId?: string | null
+  operation?: $Enums.UsageOperation
+  contextRequestedId?: string | null
+  userId?: string | null
+  organizationId?: string | null
+  apiKeyId?: string | null
+  rawEntryCountN?: number
+  effectiveEntryCount?: number
+  appliedPFactor?: number
+  appliedMFactor?: number
+  tokensOrUnitsUsed?: number
+  computeCostCents?: number
+  royaltyCostCents?: number
+  sponsorAbsorbedCents?: number
+  totalCostCents?: number
+  billedAt?: Date | string | null
+  createdAt?: Date | string
+  oauthClientId?: string | null
+  royaltiesDistributed?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutLedgerInput
+}
+
+export type ApiUsageLedgerCreateOrConnectWithoutCollectionInput = {
+  where: Prisma.ApiUsageLedgerWhereUniqueInput
+  create: Prisma.XOR<Prisma.ApiUsageLedgerCreateWithoutCollectionInput, Prisma.ApiUsageLedgerUncheckedCreateWithoutCollectionInput>
+}
+
+export type ApiUsageLedgerCreateManyCollectionInputEnvelope = {
+  data: Prisma.ApiUsageLedgerCreateManyCollectionInput | Prisma.ApiUsageLedgerCreateManyCollectionInput[]
+  skipDuplicates?: boolean
+}
+
+export type ApiUsageLedgerUpsertWithWhereUniqueWithoutCollectionInput = {
+  where: Prisma.ApiUsageLedgerWhereUniqueInput
+  update: Prisma.XOR<Prisma.ApiUsageLedgerUpdateWithoutCollectionInput, Prisma.ApiUsageLedgerUncheckedUpdateWithoutCollectionInput>
+  create: Prisma.XOR<Prisma.ApiUsageLedgerCreateWithoutCollectionInput, Prisma.ApiUsageLedgerUncheckedCreateWithoutCollectionInput>
+}
+
+export type ApiUsageLedgerUpdateWithWhereUniqueWithoutCollectionInput = {
+  where: Prisma.ApiUsageLedgerWhereUniqueInput
+  data: Prisma.XOR<Prisma.ApiUsageLedgerUpdateWithoutCollectionInput, Prisma.ApiUsageLedgerUncheckedUpdateWithoutCollectionInput>
+}
+
+export type ApiUsageLedgerUpdateManyWithWhereWithoutCollectionInput = {
+  where: Prisma.ApiUsageLedgerScalarWhereInput
+  data: Prisma.XOR<Prisma.ApiUsageLedgerUpdateManyMutationInput, Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutCollectionInput>
+}
+
+export type ApiUsageLedgerCreateWithoutContextRequestInput = {
+  id?: string
+  operation?: $Enums.UsageOperation
+  rawEntryCountN?: number
+  effectiveEntryCount?: number
+  appliedPFactor?: number
+  appliedMFactor?: number
+  tokensOrUnitsUsed?: number
   computeCostCents?: number
   royaltyCostCents?: number
   sponsorAbsorbedCents?: number
@@ -1395,24 +1428,23 @@ export type ApiUsageLedgerCreateWithoutContextRequestInput = {
   user?: Prisma.UserCreateNestedOneWithoutUsageLedgersInput
   organization?: Prisma.OrganizationCreateNestedOneWithoutApiUsageLedgersInput
   apiKey?: Prisma.DeveloperApiKeyCreateNestedOneWithoutUsageLedgersInput
-  pack?: Prisma.PackCreateNestedOneWithoutUsageLedgersInput
-  sponsorship?: Prisma.PackSponsorshipCreateNestedOneWithoutUsageLedgersInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutUsageLedgersInput
   royaltiesDistributed?: Prisma.UserRoyaltyCreateNestedManyWithoutLedgerInput
 }
 
 export type ApiUsageLedgerUncheckedCreateWithoutContextRequestInput = {
   id?: string
   clientId?: string | null
+  operation?: $Enums.UsageOperation
   userId?: string | null
   organizationId?: string | null
   apiKeyId?: string | null
-  packId?: string | null
-  sponsorshipId?: string | null
+  collectionId?: string | null
   rawEntryCountN?: number
   effectiveEntryCount?: number
   appliedPFactor?: number
   appliedMFactor?: number
-  tokensUsed?: number
+  tokensOrUnitsUsed?: number
   computeCostCents?: number
   royaltyCostCents?: number
   sponsorAbsorbedCents?: number
@@ -1441,11 +1473,12 @@ export type ApiUsageLedgerUpdateToOneWithWhereWithoutContextRequestInput = {
 
 export type ApiUsageLedgerUpdateWithoutContextRequestInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  operation?: Prisma.EnumUsageOperationFieldUpdateOperationsInput | $Enums.UsageOperation
   rawEntryCountN?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveEntryCount?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedPFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  tokensUsed?: Prisma.IntFieldUpdateOperationsInput | number
+  tokensOrUnitsUsed?: Prisma.IntFieldUpdateOperationsInput | number
   computeCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   royaltyCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sponsorAbsorbedCents?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1457,24 +1490,23 @@ export type ApiUsageLedgerUpdateWithoutContextRequestInput = {
   user?: Prisma.UserUpdateOneWithoutUsageLedgersNestedInput
   organization?: Prisma.OrganizationUpdateOneWithoutApiUsageLedgersNestedInput
   apiKey?: Prisma.DeveloperApiKeyUpdateOneWithoutUsageLedgersNestedInput
-  pack?: Prisma.PackUpdateOneWithoutUsageLedgersNestedInput
-  sponsorship?: Prisma.PackSponsorshipUpdateOneWithoutUsageLedgersNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutUsageLedgersNestedInput
   royaltiesDistributed?: Prisma.UserRoyaltyUpdateManyWithoutLedgerNestedInput
 }
 
 export type ApiUsageLedgerUncheckedUpdateWithoutContextRequestInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operation?: Prisma.EnumUsageOperationFieldUpdateOperationsInput | $Enums.UsageOperation
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sponsorshipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rawEntryCountN?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveEntryCount?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedPFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  tokensUsed?: Prisma.IntFieldUpdateOperationsInput | number
+  tokensOrUnitsUsed?: Prisma.IntFieldUpdateOperationsInput | number
   computeCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   royaltyCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sponsorAbsorbedCents?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1487,11 +1519,12 @@ export type ApiUsageLedgerUncheckedUpdateWithoutContextRequestInput = {
 
 export type ApiUsageLedgerCreateWithoutRoyaltiesDistributedInput = {
   id?: string
+  operation?: $Enums.UsageOperation
   rawEntryCountN?: number
   effectiveEntryCount?: number
   appliedPFactor?: number
   appliedMFactor?: number
-  tokensUsed?: number
+  tokensOrUnitsUsed?: number
   computeCostCents?: number
   royaltyCostCents?: number
   sponsorAbsorbedCents?: number
@@ -1504,24 +1537,23 @@ export type ApiUsageLedgerCreateWithoutRoyaltiesDistributedInput = {
   user?: Prisma.UserCreateNestedOneWithoutUsageLedgersInput
   organization?: Prisma.OrganizationCreateNestedOneWithoutApiUsageLedgersInput
   apiKey?: Prisma.DeveloperApiKeyCreateNestedOneWithoutUsageLedgersInput
-  pack?: Prisma.PackCreateNestedOneWithoutUsageLedgersInput
-  sponsorship?: Prisma.PackSponsorshipCreateNestedOneWithoutUsageLedgersInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutUsageLedgersInput
 }
 
 export type ApiUsageLedgerUncheckedCreateWithoutRoyaltiesDistributedInput = {
   id?: string
   clientId?: string | null
+  operation?: $Enums.UsageOperation
   contextRequestedId?: string | null
   userId?: string | null
   organizationId?: string | null
   apiKeyId?: string | null
-  packId?: string | null
-  sponsorshipId?: string | null
+  collectionId?: string | null
   rawEntryCountN?: number
   effectiveEntryCount?: number
   appliedPFactor?: number
   appliedMFactor?: number
-  tokensUsed?: number
+  tokensOrUnitsUsed?: number
   computeCostCents?: number
   royaltyCostCents?: number
   sponsorAbsorbedCents?: number
@@ -1549,11 +1581,12 @@ export type ApiUsageLedgerUpdateToOneWithWhereWithoutRoyaltiesDistributedInput =
 
 export type ApiUsageLedgerUpdateWithoutRoyaltiesDistributedInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  operation?: Prisma.EnumUsageOperationFieldUpdateOperationsInput | $Enums.UsageOperation
   rawEntryCountN?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveEntryCount?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedPFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  tokensUsed?: Prisma.IntFieldUpdateOperationsInput | number
+  tokensOrUnitsUsed?: Prisma.IntFieldUpdateOperationsInput | number
   computeCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   royaltyCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sponsorAbsorbedCents?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1566,24 +1599,23 @@ export type ApiUsageLedgerUpdateWithoutRoyaltiesDistributedInput = {
   user?: Prisma.UserUpdateOneWithoutUsageLedgersNestedInput
   organization?: Prisma.OrganizationUpdateOneWithoutApiUsageLedgersNestedInput
   apiKey?: Prisma.DeveloperApiKeyUpdateOneWithoutUsageLedgersNestedInput
-  pack?: Prisma.PackUpdateOneWithoutUsageLedgersNestedInput
-  sponsorship?: Prisma.PackSponsorshipUpdateOneWithoutUsageLedgersNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutUsageLedgersNestedInput
 }
 
 export type ApiUsageLedgerUncheckedUpdateWithoutRoyaltiesDistributedInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operation?: Prisma.EnumUsageOperationFieldUpdateOperationsInput | $Enums.UsageOperation
   contextRequestedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sponsorshipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rawEntryCountN?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveEntryCount?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedPFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  tokensUsed?: Prisma.IntFieldUpdateOperationsInput | number
+  tokensOrUnitsUsed?: Prisma.IntFieldUpdateOperationsInput | number
   computeCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   royaltyCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sponsorAbsorbedCents?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1593,163 +1625,19 @@ export type ApiUsageLedgerUncheckedUpdateWithoutRoyaltiesDistributedInput = {
   oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
-export type ApiUsageLedgerCreateWithoutPackInput = {
-  id?: string
-  rawEntryCountN?: number
-  effectiveEntryCount?: number
-  appliedPFactor?: number
-  appliedMFactor?: number
-  tokensUsed?: number
-  computeCostCents?: number
-  royaltyCostCents?: number
-  sponsorAbsorbedCents?: number
-  totalCostCents?: number
-  billedAt?: Date | string | null
-  createdAt?: Date | string
-  oauthClientId?: string | null
-  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutApiUsageLedgersInput
-  contextRequest?: Prisma.ContextRequestCreateNestedOneWithoutLedgerEntryInput
-  user?: Prisma.UserCreateNestedOneWithoutUsageLedgersInput
-  organization?: Prisma.OrganizationCreateNestedOneWithoutApiUsageLedgersInput
-  apiKey?: Prisma.DeveloperApiKeyCreateNestedOneWithoutUsageLedgersInput
-  sponsorship?: Prisma.PackSponsorshipCreateNestedOneWithoutUsageLedgersInput
-  royaltiesDistributed?: Prisma.UserRoyaltyCreateNestedManyWithoutLedgerInput
-}
-
-export type ApiUsageLedgerUncheckedCreateWithoutPackInput = {
-  id?: string
-  clientId?: string | null
-  contextRequestedId?: string | null
-  userId?: string | null
-  organizationId?: string | null
-  apiKeyId?: string | null
-  sponsorshipId?: string | null
-  rawEntryCountN?: number
-  effectiveEntryCount?: number
-  appliedPFactor?: number
-  appliedMFactor?: number
-  tokensUsed?: number
-  computeCostCents?: number
-  royaltyCostCents?: number
-  sponsorAbsorbedCents?: number
-  totalCostCents?: number
-  billedAt?: Date | string | null
-  createdAt?: Date | string
-  oauthClientId?: string | null
-  royaltiesDistributed?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutLedgerInput
-}
-
-export type ApiUsageLedgerCreateOrConnectWithoutPackInput = {
-  where: Prisma.ApiUsageLedgerWhereUniqueInput
-  create: Prisma.XOR<Prisma.ApiUsageLedgerCreateWithoutPackInput, Prisma.ApiUsageLedgerUncheckedCreateWithoutPackInput>
-}
-
-export type ApiUsageLedgerCreateManyPackInputEnvelope = {
-  data: Prisma.ApiUsageLedgerCreateManyPackInput | Prisma.ApiUsageLedgerCreateManyPackInput[]
-  skipDuplicates?: boolean
-}
-
-export type ApiUsageLedgerUpsertWithWhereUniqueWithoutPackInput = {
-  where: Prisma.ApiUsageLedgerWhereUniqueInput
-  update: Prisma.XOR<Prisma.ApiUsageLedgerUpdateWithoutPackInput, Prisma.ApiUsageLedgerUncheckedUpdateWithoutPackInput>
-  create: Prisma.XOR<Prisma.ApiUsageLedgerCreateWithoutPackInput, Prisma.ApiUsageLedgerUncheckedCreateWithoutPackInput>
-}
-
-export type ApiUsageLedgerUpdateWithWhereUniqueWithoutPackInput = {
-  where: Prisma.ApiUsageLedgerWhereUniqueInput
-  data: Prisma.XOR<Prisma.ApiUsageLedgerUpdateWithoutPackInput, Prisma.ApiUsageLedgerUncheckedUpdateWithoutPackInput>
-}
-
-export type ApiUsageLedgerUpdateManyWithWhereWithoutPackInput = {
-  where: Prisma.ApiUsageLedgerScalarWhereInput
-  data: Prisma.XOR<Prisma.ApiUsageLedgerUpdateManyMutationInput, Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutPackInput>
-}
-
-export type ApiUsageLedgerCreateWithoutSponsorshipInput = {
-  id?: string
-  rawEntryCountN?: number
-  effectiveEntryCount?: number
-  appliedPFactor?: number
-  appliedMFactor?: number
-  tokensUsed?: number
-  computeCostCents?: number
-  royaltyCostCents?: number
-  sponsorAbsorbedCents?: number
-  totalCostCents?: number
-  billedAt?: Date | string | null
-  createdAt?: Date | string
-  oauthClientId?: string | null
-  oauthClient?: Prisma.OauthClientCreateNestedOneWithoutApiUsageLedgersInput
-  contextRequest?: Prisma.ContextRequestCreateNestedOneWithoutLedgerEntryInput
-  user?: Prisma.UserCreateNestedOneWithoutUsageLedgersInput
-  organization?: Prisma.OrganizationCreateNestedOneWithoutApiUsageLedgersInput
-  apiKey?: Prisma.DeveloperApiKeyCreateNestedOneWithoutUsageLedgersInput
-  pack?: Prisma.PackCreateNestedOneWithoutUsageLedgersInput
-  royaltiesDistributed?: Prisma.UserRoyaltyCreateNestedManyWithoutLedgerInput
-}
-
-export type ApiUsageLedgerUncheckedCreateWithoutSponsorshipInput = {
-  id?: string
-  clientId?: string | null
-  contextRequestedId?: string | null
-  userId?: string | null
-  organizationId?: string | null
-  apiKeyId?: string | null
-  packId?: string | null
-  rawEntryCountN?: number
-  effectiveEntryCount?: number
-  appliedPFactor?: number
-  appliedMFactor?: number
-  tokensUsed?: number
-  computeCostCents?: number
-  royaltyCostCents?: number
-  sponsorAbsorbedCents?: number
-  totalCostCents?: number
-  billedAt?: Date | string | null
-  createdAt?: Date | string
-  oauthClientId?: string | null
-  royaltiesDistributed?: Prisma.UserRoyaltyUncheckedCreateNestedManyWithoutLedgerInput
-}
-
-export type ApiUsageLedgerCreateOrConnectWithoutSponsorshipInput = {
-  where: Prisma.ApiUsageLedgerWhereUniqueInput
-  create: Prisma.XOR<Prisma.ApiUsageLedgerCreateWithoutSponsorshipInput, Prisma.ApiUsageLedgerUncheckedCreateWithoutSponsorshipInput>
-}
-
-export type ApiUsageLedgerCreateManySponsorshipInputEnvelope = {
-  data: Prisma.ApiUsageLedgerCreateManySponsorshipInput | Prisma.ApiUsageLedgerCreateManySponsorshipInput[]
-  skipDuplicates?: boolean
-}
-
-export type ApiUsageLedgerUpsertWithWhereUniqueWithoutSponsorshipInput = {
-  where: Prisma.ApiUsageLedgerWhereUniqueInput
-  update: Prisma.XOR<Prisma.ApiUsageLedgerUpdateWithoutSponsorshipInput, Prisma.ApiUsageLedgerUncheckedUpdateWithoutSponsorshipInput>
-  create: Prisma.XOR<Prisma.ApiUsageLedgerCreateWithoutSponsorshipInput, Prisma.ApiUsageLedgerUncheckedCreateWithoutSponsorshipInput>
-}
-
-export type ApiUsageLedgerUpdateWithWhereUniqueWithoutSponsorshipInput = {
-  where: Prisma.ApiUsageLedgerWhereUniqueInput
-  data: Prisma.XOR<Prisma.ApiUsageLedgerUpdateWithoutSponsorshipInput, Prisma.ApiUsageLedgerUncheckedUpdateWithoutSponsorshipInput>
-}
-
-export type ApiUsageLedgerUpdateManyWithWhereWithoutSponsorshipInput = {
-  where: Prisma.ApiUsageLedgerScalarWhereInput
-  data: Prisma.XOR<Prisma.ApiUsageLedgerUpdateManyMutationInput, Prisma.ApiUsageLedgerUncheckedUpdateManyWithoutSponsorshipInput>
-}
-
 export type ApiUsageLedgerCreateManyUserInput = {
   id?: string
   clientId?: string | null
+  operation?: $Enums.UsageOperation
   contextRequestedId?: string | null
   organizationId?: string | null
   apiKeyId?: string | null
-  packId?: string | null
-  sponsorshipId?: string | null
+  collectionId?: string | null
   rawEntryCountN?: number
   effectiveEntryCount?: number
   appliedPFactor?: number
   appliedMFactor?: number
-  tokensUsed?: number
+  tokensOrUnitsUsed?: number
   computeCostCents?: number
   royaltyCostCents?: number
   sponsorAbsorbedCents?: number
@@ -1761,11 +1649,12 @@ export type ApiUsageLedgerCreateManyUserInput = {
 
 export type ApiUsageLedgerUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  operation?: Prisma.EnumUsageOperationFieldUpdateOperationsInput | $Enums.UsageOperation
   rawEntryCountN?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveEntryCount?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedPFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  tokensUsed?: Prisma.IntFieldUpdateOperationsInput | number
+  tokensOrUnitsUsed?: Prisma.IntFieldUpdateOperationsInput | number
   computeCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   royaltyCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sponsorAbsorbedCents?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1777,24 +1666,23 @@ export type ApiUsageLedgerUpdateWithoutUserInput = {
   contextRequest?: Prisma.ContextRequestUpdateOneWithoutLedgerEntryNestedInput
   organization?: Prisma.OrganizationUpdateOneWithoutApiUsageLedgersNestedInput
   apiKey?: Prisma.DeveloperApiKeyUpdateOneWithoutUsageLedgersNestedInput
-  pack?: Prisma.PackUpdateOneWithoutUsageLedgersNestedInput
-  sponsorship?: Prisma.PackSponsorshipUpdateOneWithoutUsageLedgersNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutUsageLedgersNestedInput
   royaltiesDistributed?: Prisma.UserRoyaltyUpdateManyWithoutLedgerNestedInput
 }
 
 export type ApiUsageLedgerUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operation?: Prisma.EnumUsageOperationFieldUpdateOperationsInput | $Enums.UsageOperation
   contextRequestedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sponsorshipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rawEntryCountN?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveEntryCount?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedPFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  tokensUsed?: Prisma.IntFieldUpdateOperationsInput | number
+  tokensOrUnitsUsed?: Prisma.IntFieldUpdateOperationsInput | number
   computeCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   royaltyCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sponsorAbsorbedCents?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1808,16 +1696,16 @@ export type ApiUsageLedgerUncheckedUpdateWithoutUserInput = {
 export type ApiUsageLedgerUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operation?: Prisma.EnumUsageOperationFieldUpdateOperationsInput | $Enums.UsageOperation
   contextRequestedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sponsorshipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rawEntryCountN?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveEntryCount?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedPFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  tokensUsed?: Prisma.IntFieldUpdateOperationsInput | number
+  tokensOrUnitsUsed?: Prisma.IntFieldUpdateOperationsInput | number
   computeCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   royaltyCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sponsorAbsorbedCents?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1830,16 +1718,16 @@ export type ApiUsageLedgerUncheckedUpdateManyWithoutUserInput = {
 export type ApiUsageLedgerCreateManyOrganizationInput = {
   id?: string
   clientId?: string | null
+  operation?: $Enums.UsageOperation
   contextRequestedId?: string | null
   userId?: string | null
   apiKeyId?: string | null
-  packId?: string | null
-  sponsorshipId?: string | null
+  collectionId?: string | null
   rawEntryCountN?: number
   effectiveEntryCount?: number
   appliedPFactor?: number
   appliedMFactor?: number
-  tokensUsed?: number
+  tokensOrUnitsUsed?: number
   computeCostCents?: number
   royaltyCostCents?: number
   sponsorAbsorbedCents?: number
@@ -1851,11 +1739,12 @@ export type ApiUsageLedgerCreateManyOrganizationInput = {
 
 export type ApiUsageLedgerUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  operation?: Prisma.EnumUsageOperationFieldUpdateOperationsInput | $Enums.UsageOperation
   rawEntryCountN?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveEntryCount?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedPFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  tokensUsed?: Prisma.IntFieldUpdateOperationsInput | number
+  tokensOrUnitsUsed?: Prisma.IntFieldUpdateOperationsInput | number
   computeCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   royaltyCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sponsorAbsorbedCents?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1867,24 +1756,23 @@ export type ApiUsageLedgerUpdateWithoutOrganizationInput = {
   contextRequest?: Prisma.ContextRequestUpdateOneWithoutLedgerEntryNestedInput
   user?: Prisma.UserUpdateOneWithoutUsageLedgersNestedInput
   apiKey?: Prisma.DeveloperApiKeyUpdateOneWithoutUsageLedgersNestedInput
-  pack?: Prisma.PackUpdateOneWithoutUsageLedgersNestedInput
-  sponsorship?: Prisma.PackSponsorshipUpdateOneWithoutUsageLedgersNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutUsageLedgersNestedInput
   royaltiesDistributed?: Prisma.UserRoyaltyUpdateManyWithoutLedgerNestedInput
 }
 
 export type ApiUsageLedgerUncheckedUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operation?: Prisma.EnumUsageOperationFieldUpdateOperationsInput | $Enums.UsageOperation
   contextRequestedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sponsorshipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rawEntryCountN?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveEntryCount?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedPFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  tokensUsed?: Prisma.IntFieldUpdateOperationsInput | number
+  tokensOrUnitsUsed?: Prisma.IntFieldUpdateOperationsInput | number
   computeCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   royaltyCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sponsorAbsorbedCents?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1898,16 +1786,16 @@ export type ApiUsageLedgerUncheckedUpdateWithoutOrganizationInput = {
 export type ApiUsageLedgerUncheckedUpdateManyWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operation?: Prisma.EnumUsageOperationFieldUpdateOperationsInput | $Enums.UsageOperation
   contextRequestedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sponsorshipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rawEntryCountN?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveEntryCount?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedPFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  tokensUsed?: Prisma.IntFieldUpdateOperationsInput | number
+  tokensOrUnitsUsed?: Prisma.IntFieldUpdateOperationsInput | number
   computeCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   royaltyCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sponsorAbsorbedCents?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1919,17 +1807,17 @@ export type ApiUsageLedgerUncheckedUpdateManyWithoutOrganizationInput = {
 
 export type ApiUsageLedgerCreateManyOauthClientInput = {
   id?: string
+  operation?: $Enums.UsageOperation
   contextRequestedId?: string | null
   userId?: string | null
   organizationId?: string | null
   apiKeyId?: string | null
-  packId?: string | null
-  sponsorshipId?: string | null
+  collectionId?: string | null
   rawEntryCountN?: number
   effectiveEntryCount?: number
   appliedPFactor?: number
   appliedMFactor?: number
-  tokensUsed?: number
+  tokensOrUnitsUsed?: number
   computeCostCents?: number
   royaltyCostCents?: number
   sponsorAbsorbedCents?: number
@@ -1941,11 +1829,12 @@ export type ApiUsageLedgerCreateManyOauthClientInput = {
 
 export type ApiUsageLedgerUpdateWithoutOauthClientInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  operation?: Prisma.EnumUsageOperationFieldUpdateOperationsInput | $Enums.UsageOperation
   rawEntryCountN?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveEntryCount?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedPFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  tokensUsed?: Prisma.IntFieldUpdateOperationsInput | number
+  tokensOrUnitsUsed?: Prisma.IntFieldUpdateOperationsInput | number
   computeCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   royaltyCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sponsorAbsorbedCents?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1957,24 +1846,23 @@ export type ApiUsageLedgerUpdateWithoutOauthClientInput = {
   user?: Prisma.UserUpdateOneWithoutUsageLedgersNestedInput
   organization?: Prisma.OrganizationUpdateOneWithoutApiUsageLedgersNestedInput
   apiKey?: Prisma.DeveloperApiKeyUpdateOneWithoutUsageLedgersNestedInput
-  pack?: Prisma.PackUpdateOneWithoutUsageLedgersNestedInput
-  sponsorship?: Prisma.PackSponsorshipUpdateOneWithoutUsageLedgersNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutUsageLedgersNestedInput
   royaltiesDistributed?: Prisma.UserRoyaltyUpdateManyWithoutLedgerNestedInput
 }
 
 export type ApiUsageLedgerUncheckedUpdateWithoutOauthClientInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  operation?: Prisma.EnumUsageOperationFieldUpdateOperationsInput | $Enums.UsageOperation
   contextRequestedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sponsorshipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rawEntryCountN?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveEntryCount?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedPFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  tokensUsed?: Prisma.IntFieldUpdateOperationsInput | number
+  tokensOrUnitsUsed?: Prisma.IntFieldUpdateOperationsInput | number
   computeCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   royaltyCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sponsorAbsorbedCents?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1987,17 +1875,17 @@ export type ApiUsageLedgerUncheckedUpdateWithoutOauthClientInput = {
 
 export type ApiUsageLedgerUncheckedUpdateManyWithoutOauthClientInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  operation?: Prisma.EnumUsageOperationFieldUpdateOperationsInput | $Enums.UsageOperation
   contextRequestedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sponsorshipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rawEntryCountN?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveEntryCount?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedPFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  tokensUsed?: Prisma.IntFieldUpdateOperationsInput | number
+  tokensOrUnitsUsed?: Prisma.IntFieldUpdateOperationsInput | number
   computeCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   royaltyCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sponsorAbsorbedCents?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -2010,16 +1898,16 @@ export type ApiUsageLedgerUncheckedUpdateManyWithoutOauthClientInput = {
 export type ApiUsageLedgerCreateManyApiKeyInput = {
   id?: string
   clientId?: string | null
+  operation?: $Enums.UsageOperation
   contextRequestedId?: string | null
   userId?: string | null
   organizationId?: string | null
-  packId?: string | null
-  sponsorshipId?: string | null
+  collectionId?: string | null
   rawEntryCountN?: number
   effectiveEntryCount?: number
   appliedPFactor?: number
   appliedMFactor?: number
-  tokensUsed?: number
+  tokensOrUnitsUsed?: number
   computeCostCents?: number
   royaltyCostCents?: number
   sponsorAbsorbedCents?: number
@@ -2031,11 +1919,12 @@ export type ApiUsageLedgerCreateManyApiKeyInput = {
 
 export type ApiUsageLedgerUpdateWithoutApiKeyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  operation?: Prisma.EnumUsageOperationFieldUpdateOperationsInput | $Enums.UsageOperation
   rawEntryCountN?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveEntryCount?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedPFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  tokensUsed?: Prisma.IntFieldUpdateOperationsInput | number
+  tokensOrUnitsUsed?: Prisma.IntFieldUpdateOperationsInput | number
   computeCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   royaltyCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sponsorAbsorbedCents?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -2047,24 +1936,23 @@ export type ApiUsageLedgerUpdateWithoutApiKeyInput = {
   contextRequest?: Prisma.ContextRequestUpdateOneWithoutLedgerEntryNestedInput
   user?: Prisma.UserUpdateOneWithoutUsageLedgersNestedInput
   organization?: Prisma.OrganizationUpdateOneWithoutApiUsageLedgersNestedInput
-  pack?: Prisma.PackUpdateOneWithoutUsageLedgersNestedInput
-  sponsorship?: Prisma.PackSponsorshipUpdateOneWithoutUsageLedgersNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutUsageLedgersNestedInput
   royaltiesDistributed?: Prisma.UserRoyaltyUpdateManyWithoutLedgerNestedInput
 }
 
 export type ApiUsageLedgerUncheckedUpdateWithoutApiKeyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operation?: Prisma.EnumUsageOperationFieldUpdateOperationsInput | $Enums.UsageOperation
   contextRequestedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sponsorshipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rawEntryCountN?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveEntryCount?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedPFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  tokensUsed?: Prisma.IntFieldUpdateOperationsInput | number
+  tokensOrUnitsUsed?: Prisma.IntFieldUpdateOperationsInput | number
   computeCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   royaltyCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sponsorAbsorbedCents?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -2078,16 +1966,16 @@ export type ApiUsageLedgerUncheckedUpdateWithoutApiKeyInput = {
 export type ApiUsageLedgerUncheckedUpdateManyWithoutApiKeyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operation?: Prisma.EnumUsageOperationFieldUpdateOperationsInput | $Enums.UsageOperation
   contextRequestedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sponsorshipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rawEntryCountN?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveEntryCount?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedPFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  tokensUsed?: Prisma.IntFieldUpdateOperationsInput | number
+  tokensOrUnitsUsed?: Prisma.IntFieldUpdateOperationsInput | number
   computeCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   royaltyCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sponsorAbsorbedCents?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -2097,19 +1985,19 @@ export type ApiUsageLedgerUncheckedUpdateManyWithoutApiKeyInput = {
   oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
-export type ApiUsageLedgerCreateManyPackInput = {
+export type ApiUsageLedgerCreateManyCollectionInput = {
   id?: string
   clientId?: string | null
+  operation?: $Enums.UsageOperation
   contextRequestedId?: string | null
   userId?: string | null
   organizationId?: string | null
   apiKeyId?: string | null
-  sponsorshipId?: string | null
   rawEntryCountN?: number
   effectiveEntryCount?: number
   appliedPFactor?: number
   appliedMFactor?: number
-  tokensUsed?: number
+  tokensOrUnitsUsed?: number
   computeCostCents?: number
   royaltyCostCents?: number
   sponsorAbsorbedCents?: number
@@ -2119,13 +2007,14 @@ export type ApiUsageLedgerCreateManyPackInput = {
   oauthClientId?: string | null
 }
 
-export type ApiUsageLedgerUpdateWithoutPackInput = {
+export type ApiUsageLedgerUpdateWithoutCollectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  operation?: Prisma.EnumUsageOperationFieldUpdateOperationsInput | $Enums.UsageOperation
   rawEntryCountN?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveEntryCount?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedPFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  tokensUsed?: Prisma.IntFieldUpdateOperationsInput | number
+  tokensOrUnitsUsed?: Prisma.IntFieldUpdateOperationsInput | number
   computeCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   royaltyCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sponsorAbsorbedCents?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -2138,23 +2027,22 @@ export type ApiUsageLedgerUpdateWithoutPackInput = {
   user?: Prisma.UserUpdateOneWithoutUsageLedgersNestedInput
   organization?: Prisma.OrganizationUpdateOneWithoutApiUsageLedgersNestedInput
   apiKey?: Prisma.DeveloperApiKeyUpdateOneWithoutUsageLedgersNestedInput
-  sponsorship?: Prisma.PackSponsorshipUpdateOneWithoutUsageLedgersNestedInput
   royaltiesDistributed?: Prisma.UserRoyaltyUpdateManyWithoutLedgerNestedInput
 }
 
-export type ApiUsageLedgerUncheckedUpdateWithoutPackInput = {
+export type ApiUsageLedgerUncheckedUpdateWithoutCollectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operation?: Prisma.EnumUsageOperationFieldUpdateOperationsInput | $Enums.UsageOperation
   contextRequestedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sponsorshipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rawEntryCountN?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveEntryCount?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedPFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  tokensUsed?: Prisma.IntFieldUpdateOperationsInput | number
+  tokensOrUnitsUsed?: Prisma.IntFieldUpdateOperationsInput | number
   computeCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   royaltyCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sponsorAbsorbedCents?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -2165,109 +2053,19 @@ export type ApiUsageLedgerUncheckedUpdateWithoutPackInput = {
   royaltiesDistributed?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutLedgerNestedInput
 }
 
-export type ApiUsageLedgerUncheckedUpdateManyWithoutPackInput = {
+export type ApiUsageLedgerUncheckedUpdateManyWithoutCollectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operation?: Prisma.EnumUsageOperationFieldUpdateOperationsInput | $Enums.UsageOperation
   contextRequestedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sponsorshipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rawEntryCountN?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveEntryCount?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedPFactor?: Prisma.FloatFieldUpdateOperationsInput | number
   appliedMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  tokensUsed?: Prisma.IntFieldUpdateOperationsInput | number
-  computeCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  royaltyCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  sponsorAbsorbedCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  totalCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  billedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-}
-
-export type ApiUsageLedgerCreateManySponsorshipInput = {
-  id?: string
-  clientId?: string | null
-  contextRequestedId?: string | null
-  userId?: string | null
-  organizationId?: string | null
-  apiKeyId?: string | null
-  packId?: string | null
-  rawEntryCountN?: number
-  effectiveEntryCount?: number
-  appliedPFactor?: number
-  appliedMFactor?: number
-  tokensUsed?: number
-  computeCostCents?: number
-  royaltyCostCents?: number
-  sponsorAbsorbedCents?: number
-  totalCostCents?: number
-  billedAt?: Date | string | null
-  createdAt?: Date | string
-  oauthClientId?: string | null
-}
-
-export type ApiUsageLedgerUpdateWithoutSponsorshipInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  rawEntryCountN?: Prisma.IntFieldUpdateOperationsInput | number
-  effectiveEntryCount?: Prisma.FloatFieldUpdateOperationsInput | number
-  appliedPFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  appliedMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  tokensUsed?: Prisma.IntFieldUpdateOperationsInput | number
-  computeCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  royaltyCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  sponsorAbsorbedCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  totalCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  billedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  oauthClient?: Prisma.OauthClientUpdateOneWithoutApiUsageLedgersNestedInput
-  contextRequest?: Prisma.ContextRequestUpdateOneWithoutLedgerEntryNestedInput
-  user?: Prisma.UserUpdateOneWithoutUsageLedgersNestedInput
-  organization?: Prisma.OrganizationUpdateOneWithoutApiUsageLedgersNestedInput
-  apiKey?: Prisma.DeveloperApiKeyUpdateOneWithoutUsageLedgersNestedInput
-  pack?: Prisma.PackUpdateOneWithoutUsageLedgersNestedInput
-  royaltiesDistributed?: Prisma.UserRoyaltyUpdateManyWithoutLedgerNestedInput
-}
-
-export type ApiUsageLedgerUncheckedUpdateWithoutSponsorshipInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contextRequestedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rawEntryCountN?: Prisma.IntFieldUpdateOperationsInput | number
-  effectiveEntryCount?: Prisma.FloatFieldUpdateOperationsInput | number
-  appliedPFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  appliedMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  tokensUsed?: Prisma.IntFieldUpdateOperationsInput | number
-  computeCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  royaltyCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  sponsorAbsorbedCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  totalCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
-  billedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oauthClientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  royaltiesDistributed?: Prisma.UserRoyaltyUncheckedUpdateManyWithoutLedgerNestedInput
-}
-
-export type ApiUsageLedgerUncheckedUpdateManyWithoutSponsorshipInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contextRequestedId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  packId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rawEntryCountN?: Prisma.IntFieldUpdateOperationsInput | number
-  effectiveEntryCount?: Prisma.FloatFieldUpdateOperationsInput | number
-  appliedPFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  appliedMFactor?: Prisma.FloatFieldUpdateOperationsInput | number
-  tokensUsed?: Prisma.IntFieldUpdateOperationsInput | number
+  tokensOrUnitsUsed?: Prisma.IntFieldUpdateOperationsInput | number
   computeCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   royaltyCostCents?: Prisma.FloatFieldUpdateOperationsInput | number
   sponsorAbsorbedCents?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -2311,17 +2109,17 @@ export type ApiUsageLedgerCountOutputTypeCountRoyaltiesDistributedArgs<ExtArgs e
 export type ApiUsageLedgerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   clientId?: boolean
+  operation?: boolean
   contextRequestedId?: boolean
   userId?: boolean
   organizationId?: boolean
   apiKeyId?: boolean
-  packId?: boolean
-  sponsorshipId?: boolean
+  collectionId?: boolean
   rawEntryCountN?: boolean
   effectiveEntryCount?: boolean
   appliedPFactor?: boolean
   appliedMFactor?: boolean
-  tokensUsed?: boolean
+  tokensOrUnitsUsed?: boolean
   computeCostCents?: boolean
   royaltyCostCents?: boolean
   sponsorAbsorbedCents?: boolean
@@ -2334,8 +2132,7 @@ export type ApiUsageLedgerSelect<ExtArgs extends runtime.Types.Extensions.Intern
   user?: boolean | Prisma.ApiUsageLedger$userArgs<ExtArgs>
   organization?: boolean | Prisma.ApiUsageLedger$organizationArgs<ExtArgs>
   apiKey?: boolean | Prisma.ApiUsageLedger$apiKeyArgs<ExtArgs>
-  pack?: boolean | Prisma.ApiUsageLedger$packArgs<ExtArgs>
-  sponsorship?: boolean | Prisma.ApiUsageLedger$sponsorshipArgs<ExtArgs>
+  collection?: boolean | Prisma.ApiUsageLedger$collectionArgs<ExtArgs>
   royaltiesDistributed?: boolean | Prisma.ApiUsageLedger$royaltiesDistributedArgs<ExtArgs>
   _count?: boolean | Prisma.ApiUsageLedgerCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["apiUsageLedger"]>
@@ -2343,17 +2140,17 @@ export type ApiUsageLedgerSelect<ExtArgs extends runtime.Types.Extensions.Intern
 export type ApiUsageLedgerSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   clientId?: boolean
+  operation?: boolean
   contextRequestedId?: boolean
   userId?: boolean
   organizationId?: boolean
   apiKeyId?: boolean
-  packId?: boolean
-  sponsorshipId?: boolean
+  collectionId?: boolean
   rawEntryCountN?: boolean
   effectiveEntryCount?: boolean
   appliedPFactor?: boolean
   appliedMFactor?: boolean
-  tokensUsed?: boolean
+  tokensOrUnitsUsed?: boolean
   computeCostCents?: boolean
   royaltyCostCents?: boolean
   sponsorAbsorbedCents?: boolean
@@ -2366,24 +2163,23 @@ export type ApiUsageLedgerSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   user?: boolean | Prisma.ApiUsageLedger$userArgs<ExtArgs>
   organization?: boolean | Prisma.ApiUsageLedger$organizationArgs<ExtArgs>
   apiKey?: boolean | Prisma.ApiUsageLedger$apiKeyArgs<ExtArgs>
-  pack?: boolean | Prisma.ApiUsageLedger$packArgs<ExtArgs>
-  sponsorship?: boolean | Prisma.ApiUsageLedger$sponsorshipArgs<ExtArgs>
+  collection?: boolean | Prisma.ApiUsageLedger$collectionArgs<ExtArgs>
 }, ExtArgs["result"]["apiUsageLedger"]>
 
 export type ApiUsageLedgerSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   clientId?: boolean
+  operation?: boolean
   contextRequestedId?: boolean
   userId?: boolean
   organizationId?: boolean
   apiKeyId?: boolean
-  packId?: boolean
-  sponsorshipId?: boolean
+  collectionId?: boolean
   rawEntryCountN?: boolean
   effectiveEntryCount?: boolean
   appliedPFactor?: boolean
   appliedMFactor?: boolean
-  tokensUsed?: boolean
+  tokensOrUnitsUsed?: boolean
   computeCostCents?: boolean
   royaltyCostCents?: boolean
   sponsorAbsorbedCents?: boolean
@@ -2396,24 +2192,23 @@ export type ApiUsageLedgerSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   user?: boolean | Prisma.ApiUsageLedger$userArgs<ExtArgs>
   organization?: boolean | Prisma.ApiUsageLedger$organizationArgs<ExtArgs>
   apiKey?: boolean | Prisma.ApiUsageLedger$apiKeyArgs<ExtArgs>
-  pack?: boolean | Prisma.ApiUsageLedger$packArgs<ExtArgs>
-  sponsorship?: boolean | Prisma.ApiUsageLedger$sponsorshipArgs<ExtArgs>
+  collection?: boolean | Prisma.ApiUsageLedger$collectionArgs<ExtArgs>
 }, ExtArgs["result"]["apiUsageLedger"]>
 
 export type ApiUsageLedgerSelectScalar = {
   id?: boolean
   clientId?: boolean
+  operation?: boolean
   contextRequestedId?: boolean
   userId?: boolean
   organizationId?: boolean
   apiKeyId?: boolean
-  packId?: boolean
-  sponsorshipId?: boolean
+  collectionId?: boolean
   rawEntryCountN?: boolean
   effectiveEntryCount?: boolean
   appliedPFactor?: boolean
   appliedMFactor?: boolean
-  tokensUsed?: boolean
+  tokensOrUnitsUsed?: boolean
   computeCostCents?: boolean
   royaltyCostCents?: boolean
   sponsorAbsorbedCents?: boolean
@@ -2423,15 +2218,14 @@ export type ApiUsageLedgerSelectScalar = {
   oauthClientId?: boolean
 }
 
-export type ApiUsageLedgerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "clientId" | "contextRequestedId" | "userId" | "organizationId" | "apiKeyId" | "packId" | "sponsorshipId" | "rawEntryCountN" | "effectiveEntryCount" | "appliedPFactor" | "appliedMFactor" | "tokensUsed" | "computeCostCents" | "royaltyCostCents" | "sponsorAbsorbedCents" | "totalCostCents" | "billedAt" | "createdAt" | "oauthClientId", ExtArgs["result"]["apiUsageLedger"]>
+export type ApiUsageLedgerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "clientId" | "operation" | "contextRequestedId" | "userId" | "organizationId" | "apiKeyId" | "collectionId" | "rawEntryCountN" | "effectiveEntryCount" | "appliedPFactor" | "appliedMFactor" | "tokensOrUnitsUsed" | "computeCostCents" | "royaltyCostCents" | "sponsorAbsorbedCents" | "totalCostCents" | "billedAt" | "createdAt" | "oauthClientId", ExtArgs["result"]["apiUsageLedger"]>
 export type ApiUsageLedgerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   oauthClient?: boolean | Prisma.ApiUsageLedger$oauthClientArgs<ExtArgs>
   contextRequest?: boolean | Prisma.ApiUsageLedger$contextRequestArgs<ExtArgs>
   user?: boolean | Prisma.ApiUsageLedger$userArgs<ExtArgs>
   organization?: boolean | Prisma.ApiUsageLedger$organizationArgs<ExtArgs>
   apiKey?: boolean | Prisma.ApiUsageLedger$apiKeyArgs<ExtArgs>
-  pack?: boolean | Prisma.ApiUsageLedger$packArgs<ExtArgs>
-  sponsorship?: boolean | Prisma.ApiUsageLedger$sponsorshipArgs<ExtArgs>
+  collection?: boolean | Prisma.ApiUsageLedger$collectionArgs<ExtArgs>
   royaltiesDistributed?: boolean | Prisma.ApiUsageLedger$royaltiesDistributedArgs<ExtArgs>
   _count?: boolean | Prisma.ApiUsageLedgerCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -2441,8 +2235,7 @@ export type ApiUsageLedgerIncludeCreateManyAndReturn<ExtArgs extends runtime.Typ
   user?: boolean | Prisma.ApiUsageLedger$userArgs<ExtArgs>
   organization?: boolean | Prisma.ApiUsageLedger$organizationArgs<ExtArgs>
   apiKey?: boolean | Prisma.ApiUsageLedger$apiKeyArgs<ExtArgs>
-  pack?: boolean | Prisma.ApiUsageLedger$packArgs<ExtArgs>
-  sponsorship?: boolean | Prisma.ApiUsageLedger$sponsorshipArgs<ExtArgs>
+  collection?: boolean | Prisma.ApiUsageLedger$collectionArgs<ExtArgs>
 }
 export type ApiUsageLedgerIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   oauthClient?: boolean | Prisma.ApiUsageLedger$oauthClientArgs<ExtArgs>
@@ -2450,8 +2243,7 @@ export type ApiUsageLedgerIncludeUpdateManyAndReturn<ExtArgs extends runtime.Typ
   user?: boolean | Prisma.ApiUsageLedger$userArgs<ExtArgs>
   organization?: boolean | Prisma.ApiUsageLedger$organizationArgs<ExtArgs>
   apiKey?: boolean | Prisma.ApiUsageLedger$apiKeyArgs<ExtArgs>
-  pack?: boolean | Prisma.ApiUsageLedger$packArgs<ExtArgs>
-  sponsorship?: boolean | Prisma.ApiUsageLedger$sponsorshipArgs<ExtArgs>
+  collection?: boolean | Prisma.ApiUsageLedger$collectionArgs<ExtArgs>
 }
 
 export type $ApiUsageLedgerPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2462,24 +2254,23 @@ export type $ApiUsageLedgerPayload<ExtArgs extends runtime.Types.Extensions.Inte
     user: Prisma.$UserPayload<ExtArgs> | null
     organization: Prisma.$OrganizationPayload<ExtArgs> | null
     apiKey: Prisma.$DeveloperApiKeyPayload<ExtArgs> | null
-    pack: Prisma.$PackPayload<ExtArgs> | null
-    sponsorship: Prisma.$PackSponsorshipPayload<ExtArgs> | null
+    collection: Prisma.$CollectionPayload<ExtArgs> | null
     royaltiesDistributed: Prisma.$UserRoyaltyPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     clientId: string | null
+    operation: $Enums.UsageOperation
     contextRequestedId: string | null
     userId: string | null
     organizationId: string | null
     apiKeyId: string | null
-    packId: string | null
-    sponsorshipId: string | null
+    collectionId: string | null
     rawEntryCountN: number
     effectiveEntryCount: number
     appliedPFactor: number
     appliedMFactor: number
-    tokensUsed: number
+    tokensOrUnitsUsed: number
     computeCostCents: number
     royaltyCostCents: number
     sponsorAbsorbedCents: number
@@ -2886,8 +2677,7 @@ export interface Prisma__ApiUsageLedgerClient<T, Null = never, ExtArgs extends r
   user<T extends Prisma.ApiUsageLedger$userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ApiUsageLedger$userArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   organization<T extends Prisma.ApiUsageLedger$organizationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ApiUsageLedger$organizationArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   apiKey<T extends Prisma.ApiUsageLedger$apiKeyArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ApiUsageLedger$apiKeyArgs<ExtArgs>>): Prisma.Prisma__DeveloperApiKeyClient<runtime.Types.Result.GetResult<Prisma.$DeveloperApiKeyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  pack<T extends Prisma.ApiUsageLedger$packArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ApiUsageLedger$packArgs<ExtArgs>>): Prisma.Prisma__PackClient<runtime.Types.Result.GetResult<Prisma.$PackPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  sponsorship<T extends Prisma.ApiUsageLedger$sponsorshipArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ApiUsageLedger$sponsorshipArgs<ExtArgs>>): Prisma.Prisma__PackSponsorshipClient<runtime.Types.Result.GetResult<Prisma.$PackSponsorshipPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  collection<T extends Prisma.ApiUsageLedger$collectionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ApiUsageLedger$collectionArgs<ExtArgs>>): Prisma.Prisma__CollectionClient<runtime.Types.Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   royaltiesDistributed<T extends Prisma.ApiUsageLedger$royaltiesDistributedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ApiUsageLedger$royaltiesDistributedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserRoyaltyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2920,17 +2710,17 @@ export interface Prisma__ApiUsageLedgerClient<T, Null = never, ExtArgs extends r
 export interface ApiUsageLedgerFieldRefs {
   readonly id: Prisma.FieldRef<"ApiUsageLedger", 'String'>
   readonly clientId: Prisma.FieldRef<"ApiUsageLedger", 'String'>
+  readonly operation: Prisma.FieldRef<"ApiUsageLedger", 'UsageOperation'>
   readonly contextRequestedId: Prisma.FieldRef<"ApiUsageLedger", 'String'>
   readonly userId: Prisma.FieldRef<"ApiUsageLedger", 'String'>
   readonly organizationId: Prisma.FieldRef<"ApiUsageLedger", 'String'>
   readonly apiKeyId: Prisma.FieldRef<"ApiUsageLedger", 'String'>
-  readonly packId: Prisma.FieldRef<"ApiUsageLedger", 'String'>
-  readonly sponsorshipId: Prisma.FieldRef<"ApiUsageLedger", 'String'>
+  readonly collectionId: Prisma.FieldRef<"ApiUsageLedger", 'String'>
   readonly rawEntryCountN: Prisma.FieldRef<"ApiUsageLedger", 'Int'>
   readonly effectiveEntryCount: Prisma.FieldRef<"ApiUsageLedger", 'Float'>
   readonly appliedPFactor: Prisma.FieldRef<"ApiUsageLedger", 'Float'>
   readonly appliedMFactor: Prisma.FieldRef<"ApiUsageLedger", 'Float'>
-  readonly tokensUsed: Prisma.FieldRef<"ApiUsageLedger", 'Int'>
+  readonly tokensOrUnitsUsed: Prisma.FieldRef<"ApiUsageLedger", 'Int'>
   readonly computeCostCents: Prisma.FieldRef<"ApiUsageLedger", 'Float'>
   readonly royaltyCostCents: Prisma.FieldRef<"ApiUsageLedger", 'Float'>
   readonly sponsorAbsorbedCents: Prisma.FieldRef<"ApiUsageLedger", 'Float'>
@@ -3434,41 +3224,22 @@ export type ApiUsageLedger$apiKeyArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 /**
- * ApiUsageLedger.pack
+ * ApiUsageLedger.collection
  */
-export type ApiUsageLedger$packArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ApiUsageLedger$collectionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Pack
+   * Select specific fields to fetch from the Collection
    */
-  select?: Prisma.PackSelect<ExtArgs> | null
+  select?: Prisma.CollectionSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Pack
+   * Omit specific fields from the Collection
    */
-  omit?: Prisma.PackOmit<ExtArgs> | null
+  omit?: Prisma.CollectionOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PackInclude<ExtArgs> | null
-  where?: Prisma.PackWhereInput
-}
-
-/**
- * ApiUsageLedger.sponsorship
- */
-export type ApiUsageLedger$sponsorshipArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the PackSponsorship
-   */
-  select?: Prisma.PackSponsorshipSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the PackSponsorship
-   */
-  omit?: Prisma.PackSponsorshipOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PackSponsorshipInclude<ExtArgs> | null
-  where?: Prisma.PackSponsorshipWhereInput
+  include?: Prisma.CollectionInclude<ExtArgs> | null
+  where?: Prisma.CollectionWhereInput
 }
 
 /**

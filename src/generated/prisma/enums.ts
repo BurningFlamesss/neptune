@@ -19,15 +19,35 @@ export const Visibility = {
 export type Visibility = (typeof Visibility)[keyof typeof Visibility]
 
 
-export const PackAccessMode = {
+export const CollectionKind = {
+  PERSONAL: 'PERSONAL',
+  APP_MEMORY: 'APP_MEMORY',
+  COMMUNITY_PACK: 'COMMUNITY_PACK'
+} as const
+
+export type CollectionKind = (typeof CollectionKind)[keyof typeof CollectionKind]
+
+
+export const CollectionAccessMode = {
   OPEN: 'OPEN',
   PROTECTED: 'PROTECTED'
 } as const
 
-export type PackAccessMode = (typeof PackAccessMode)[keyof typeof PackAccessMode]
+export type CollectionAccessMode = (typeof CollectionAccessMode)[keyof typeof CollectionAccessMode]
 
 
-export const PackMonetizationType = {
+export const AccessCodeType = {
+  NONE: 'NONE',
+  FORK_COPY: 'FORK_COPY',
+  VIRTUAL_POINT: 'VIRTUAL_POINT',
+  FORK_OR_POINT: 'FORK_OR_POINT',
+  CLAIM_OWNERSHIP: 'CLAIM_OWNERSHIP'
+} as const
+
+export type AccessCodeType = (typeof AccessCodeType)[keyof typeof AccessCodeType]
+
+
+export const MonetizationType = {
   FREE: 'FREE',
   DONATION: 'DONATION',
   ONE_TIME_PURCHASE: 'ONE_TIME_PURCHASE',
@@ -36,7 +56,7 @@ export const PackMonetizationType = {
   BOUNTY: 'BOUNTY'
 } as const
 
-export type PackMonetizationType = (typeof PackMonetizationType)[keyof typeof PackMonetizationType]
+export type MonetizationType = (typeof MonetizationType)[keyof typeof MonetizationType]
 
 
 export const CouponType = {
@@ -82,8 +102,8 @@ export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]
 export const PaymentPurpose = {
   SUBSCRIPTION: 'SUBSCRIPTION',
   PREPAID_WALLET_TOPUP: 'PREPAID_WALLET_TOPUP',
-  PACK_PURCHASE: 'PACK_PURCHASE',
-  PACK_DONATION: 'PACK_DONATION',
+  COLLECTION_PURCHASE: 'COLLECTION_PURCHASE',
+  COLLECTION_DONATION: 'COLLECTION_DONATION',
   SPONSORSHIP_DEPOSIT: 'SPONSORSHIP_DEPOSIT',
   BOUNTY_ESCROW: 'BOUNTY_ESCROW'
 } as const
@@ -144,7 +164,7 @@ export type OrgRole = (typeof OrgRole)[keyof typeof OrgRole]
 export const PayoutSourceType = {
   CITATION_ROYALTY: 'CITATION_ROYALTY',
   MAINTAINER_SHARE: 'MAINTAINER_SHARE',
-  PACK_SALE: 'PACK_SALE',
+  COLLECTION_SALE: 'COLLECTION_SALE',
   DONATION: 'DONATION',
   BOUNTY_REWARD: 'BOUNTY_REWARD'
 } as const
@@ -171,27 +191,6 @@ export const BountyStatus = {
 } as const
 
 export type BountyStatus = (typeof BountyStatus)[keyof typeof BountyStatus]
-
-
-export const BountySubmissionStatus = {
-  PENDING: 'PENDING',
-  ACCEPTED: 'ACCEPTED',
-  REJECTED: 'REJECTED',
-  CHANGES_REQUIRED: 'CHANGES_REQUIRED'
-} as const
-
-export type BountySubmissionStatus = (typeof BountySubmissionStatus)[keyof typeof BountySubmissionStatus]
-
-
-export const AppMemoryOperation = {
-  READ: 'READ',
-  WRITE: 'WRITE',
-  SEARCH: 'SEARCH',
-  UPDATE: 'UPDATE',
-  DELETE: 'DELETE'
-} as const
-
-export type AppMemoryOperation = (typeof AppMemoryOperation)[keyof typeof AppMemoryOperation]
 
 
 export const AreaKind = {
@@ -226,7 +225,8 @@ export const EntryState = {
   SUGGESTED: 'SUGGESTED',
   CONFIRMED: 'CONFIRMED',
   REJECTED: 'REJECTED',
-  ARCHIVED: 'ARCHIVED'
+  ARCHIVED: 'ARCHIVED',
+  DELETED: 'DELETED'
 } as const
 
 export type EntryState = (typeof EntryState)[keyof typeof EntryState]
@@ -258,10 +258,21 @@ export const SyncMode = {
   MANUAL: 'MANUAL',
   REVIEW: 'REVIEW',
   SCHEDULED: 'SCHEDULED',
-  CONTINUOUS: 'CONTINUOUS'
+  CONTINUOUS: 'CONTINUOUS',
+  POINT: 'POINT'
 } as const
 
 export type SyncMode = (typeof SyncMode)[keyof typeof SyncMode]
+
+
+export const UsageOperation = {
+  CONTEXT_QUERY: 'CONTEXT_QUERY',
+  APP_MEMORY_READ: 'APP_MEMORY_READ',
+  APP_MEMORY_WRITE: 'APP_MEMORY_WRITE',
+  APP_MEMORY_SEARCH: 'APP_MEMORY_SEARCH'
+} as const
+
+export type UsageOperation = (typeof UsageOperation)[keyof typeof UsageOperation]
 
 
 export const AccessPermission = {
@@ -285,8 +296,7 @@ export const AccessResourceType = {
   AREA: 'AREA',
   COLLECTION: 'COLLECTION',
   ENTRY: 'ENTRY',
-  APP_MEMORY: 'APP_MEMORY',
-  PACK: 'PACK'
+  PATH: 'PATH'
 } as const
 
 export type AccessResourceType = (typeof AccessResourceType)[keyof typeof AccessResourceType]
@@ -332,13 +342,3 @@ export const CombineStatus = {
 } as const
 
 export type CombineStatus = (typeof CombineStatus)[keyof typeof CombineStatus]
-
-
-export const ConflictResolution = {
-  KEEP_TARGET: 'KEEP_TARGET',
-  USE_SOURCE: 'USE_SOURCE',
-  CUSTOM: 'CUSTOM',
-  UNRESOLVED: 'UNRESOLVED'
-} as const
-
-export type ConflictResolution = (typeof ConflictResolution)[keyof typeof ConflictResolution]

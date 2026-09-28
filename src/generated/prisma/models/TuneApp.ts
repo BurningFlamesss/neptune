@@ -54,7 +54,7 @@ export type TuneAppCountAggregateOutputType = {
   name: number
   slug: number
   description: number
-  manifesr: number
+  manifest: number
   codeRef: number
   publishedAt: number
   createdAt: number
@@ -93,7 +93,7 @@ export type TuneAppCountAggregateInputType = {
   name?: true
   slug?: true
   description?: true
-  manifesr?: true
+  manifest?: true
   codeRef?: true
   publishedAt?: true
   createdAt?: true
@@ -179,7 +179,7 @@ export type TuneAppGroupByOutputType = {
   name: string
   slug: string
   description: string | null
-  manifesr: runtime.JsonValue
+  manifest: runtime.JsonValue
   codeRef: string
   publishedAt: Date | null
   createdAt: Date
@@ -213,7 +213,7 @@ export type TuneAppWhereInput = {
   name?: Prisma.StringFilter<"TuneApp"> | string
   slug?: Prisma.StringFilter<"TuneApp"> | string
   description?: Prisma.StringNullableFilter<"TuneApp"> | string | null
-  manifesr?: Prisma.JsonFilter<"TuneApp">
+  manifest?: Prisma.JsonFilter<"TuneApp">
   codeRef?: Prisma.StringFilter<"TuneApp"> | string
   publishedAt?: Prisma.DateTimeNullableFilter<"TuneApp"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"TuneApp"> | Date | string
@@ -228,7 +228,7 @@ export type TuneAppOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  manifesr?: Prisma.SortOrder
+  manifest?: Prisma.SortOrder
   codeRef?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -246,7 +246,7 @@ export type TuneAppWhereUniqueInput = Prisma.AtLeast<{
   publisherId?: Prisma.StringFilter<"TuneApp"> | string
   name?: Prisma.StringFilter<"TuneApp"> | string
   description?: Prisma.StringNullableFilter<"TuneApp"> | string | null
-  manifesr?: Prisma.JsonFilter<"TuneApp">
+  manifest?: Prisma.JsonFilter<"TuneApp">
   codeRef?: Prisma.StringFilter<"TuneApp"> | string
   publishedAt?: Prisma.DateTimeNullableFilter<"TuneApp"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"TuneApp"> | Date | string
@@ -261,7 +261,7 @@ export type TuneAppOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  manifesr?: Prisma.SortOrder
+  manifest?: Prisma.SortOrder
   codeRef?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -280,7 +280,7 @@ export type TuneAppScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"TuneApp"> | string
   slug?: Prisma.StringWithAggregatesFilter<"TuneApp"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"TuneApp"> | string | null
-  manifesr?: Prisma.JsonWithAggregatesFilter<"TuneApp">
+  manifest?: Prisma.JsonWithAggregatesFilter<"TuneApp">
   codeRef?: Prisma.StringWithAggregatesFilter<"TuneApp"> | string
   publishedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"TuneApp"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"TuneApp"> | Date | string
@@ -292,7 +292,7 @@ export type TuneAppCreateInput = {
   name: string
   slug: string
   description?: string | null
-  manifesr: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  manifest: Prisma.JsonNullValueInput | runtime.InputJsonValue
   codeRef: string
   publishedAt?: Date | string | null
   createdAt?: Date | string
@@ -307,7 +307,7 @@ export type TuneAppUncheckedCreateInput = {
   name: string
   slug: string
   description?: string | null
-  manifesr: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  manifest: Prisma.JsonNullValueInput | runtime.InputJsonValue
   codeRef: string
   publishedAt?: Date | string | null
   createdAt?: Date | string
@@ -320,7 +320,7 @@ export type TuneAppUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  manifesr?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  manifest?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   codeRef?: Prisma.StringFieldUpdateOperationsInput | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -335,7 +335,7 @@ export type TuneAppUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  manifesr?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  manifest?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   codeRef?: Prisma.StringFieldUpdateOperationsInput | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -349,7 +349,7 @@ export type TuneAppCreateManyInput = {
   name: string
   slug: string
   description?: string | null
-  manifesr: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  manifest: Prisma.JsonNullValueInput | runtime.InputJsonValue
   codeRef: string
   publishedAt?: Date | string | null
   createdAt?: Date | string
@@ -361,7 +361,7 @@ export type TuneAppUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  manifesr?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  manifest?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   codeRef?: Prisma.StringFieldUpdateOperationsInput | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -374,7 +374,7 @@ export type TuneAppUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  manifesr?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  manifest?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   codeRef?: Prisma.StringFieldUpdateOperationsInput | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -397,7 +397,7 @@ export type TuneAppCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  manifesr?: Prisma.SortOrder
+  manifest?: Prisma.SortOrder
   codeRef?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -494,7 +494,7 @@ export type TuneAppCreateWithoutPublisherInput = {
   name: string
   slug: string
   description?: string | null
-  manifesr: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  manifest: Prisma.JsonNullValueInput | runtime.InputJsonValue
   codeRef: string
   publishedAt?: Date | string | null
   createdAt?: Date | string
@@ -507,7 +507,7 @@ export type TuneAppUncheckedCreateWithoutPublisherInput = {
   name: string
   slug: string
   description?: string | null
-  manifesr: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  manifest: Prisma.JsonNullValueInput | runtime.InputJsonValue
   codeRef: string
   publishedAt?: Date | string | null
   createdAt?: Date | string
@@ -550,7 +550,7 @@ export type TuneAppScalarWhereInput = {
   name?: Prisma.StringFilter<"TuneApp"> | string
   slug?: Prisma.StringFilter<"TuneApp"> | string
   description?: Prisma.StringNullableFilter<"TuneApp"> | string | null
-  manifesr?: Prisma.JsonFilter<"TuneApp">
+  manifest?: Prisma.JsonFilter<"TuneApp">
   codeRef?: Prisma.StringFilter<"TuneApp"> | string
   publishedAt?: Prisma.DateTimeNullableFilter<"TuneApp"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"TuneApp"> | Date | string
@@ -562,7 +562,7 @@ export type TuneAppCreateWithoutInstallationsInput = {
   name: string
   slug: string
   description?: string | null
-  manifesr: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  manifest: Prisma.JsonNullValueInput | runtime.InputJsonValue
   codeRef: string
   publishedAt?: Date | string | null
   createdAt?: Date | string
@@ -576,7 +576,7 @@ export type TuneAppUncheckedCreateWithoutInstallationsInput = {
   name: string
   slug: string
   description?: string | null
-  manifesr: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  manifest: Prisma.JsonNullValueInput | runtime.InputJsonValue
   codeRef: string
   publishedAt?: Date | string | null
   createdAt?: Date | string
@@ -604,7 +604,7 @@ export type TuneAppUpdateWithoutInstallationsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  manifesr?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  manifest?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   codeRef?: Prisma.StringFieldUpdateOperationsInput | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -618,7 +618,7 @@ export type TuneAppUncheckedUpdateWithoutInstallationsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  manifesr?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  manifest?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   codeRef?: Prisma.StringFieldUpdateOperationsInput | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -630,7 +630,7 @@ export type TuneAppCreateManyPublisherInput = {
   name: string
   slug: string
   description?: string | null
-  manifesr: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  manifest: Prisma.JsonNullValueInput | runtime.InputJsonValue
   codeRef: string
   publishedAt?: Date | string | null
   createdAt?: Date | string
@@ -642,7 +642,7 @@ export type TuneAppUpdateWithoutPublisherInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  manifesr?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  manifest?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   codeRef?: Prisma.StringFieldUpdateOperationsInput | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -655,7 +655,7 @@ export type TuneAppUncheckedUpdateWithoutPublisherInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  manifesr?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  manifest?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   codeRef?: Prisma.StringFieldUpdateOperationsInput | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -668,7 +668,7 @@ export type TuneAppUncheckedUpdateManyWithoutPublisherInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  manifesr?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  manifest?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   codeRef?: Prisma.StringFieldUpdateOperationsInput | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -712,7 +712,7 @@ export type TuneAppSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   name?: boolean
   slug?: boolean
   description?: boolean
-  manifesr?: boolean
+  manifest?: boolean
   codeRef?: boolean
   publishedAt?: boolean
   createdAt?: boolean
@@ -728,7 +728,7 @@ export type TuneAppSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   name?: boolean
   slug?: boolean
   description?: boolean
-  manifesr?: boolean
+  manifest?: boolean
   codeRef?: boolean
   publishedAt?: boolean
   createdAt?: boolean
@@ -742,7 +742,7 @@ export type TuneAppSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   name?: boolean
   slug?: boolean
   description?: boolean
-  manifesr?: boolean
+  manifest?: boolean
   codeRef?: boolean
   publishedAt?: boolean
   createdAt?: boolean
@@ -756,14 +756,14 @@ export type TuneAppSelectScalar = {
   name?: boolean
   slug?: boolean
   description?: boolean
-  manifesr?: boolean
+  manifest?: boolean
   codeRef?: boolean
   publishedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type TuneAppOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "publisherId" | "name" | "slug" | "description" | "manifesr" | "codeRef" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["tuneApp"]>
+export type TuneAppOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "publisherId" | "name" | "slug" | "description" | "manifest" | "codeRef" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["tuneApp"]>
 export type TuneAppInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   publisher?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   installations?: boolean | Prisma.TuneApp$installationsArgs<ExtArgs>
@@ -788,7 +788,7 @@ export type $TuneAppPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     name: string
     slug: string
     description: string | null
-    manifesr: runtime.JsonValue
+    manifest: runtime.JsonValue
     codeRef: string
     publishedAt: Date | null
     createdAt: Date
@@ -1223,7 +1223,7 @@ export interface TuneAppFieldRefs {
   readonly name: Prisma.FieldRef<"TuneApp", 'String'>
   readonly slug: Prisma.FieldRef<"TuneApp", 'String'>
   readonly description: Prisma.FieldRef<"TuneApp", 'String'>
-  readonly manifesr: Prisma.FieldRef<"TuneApp", 'Json'>
+  readonly manifest: Prisma.FieldRef<"TuneApp", 'Json'>
   readonly codeRef: Prisma.FieldRef<"TuneApp", 'String'>
   readonly publishedAt: Prisma.FieldRef<"TuneApp", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"TuneApp", 'DateTime'>

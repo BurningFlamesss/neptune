@@ -40,6 +40,9 @@ export type RevisionMinAggregateOutputType = {
   authorId: string | null
   number: number | null
   message: string | null
+  releaseVersion: string | null
+  releaseNotes: string | null
+  releaseAt: Date | null
   parentRevisionId: string | null
   createdAt: Date | null
 }
@@ -50,6 +53,9 @@ export type RevisionMaxAggregateOutputType = {
   authorId: string | null
   number: number | null
   message: string | null
+  releaseVersion: string | null
+  releaseNotes: string | null
+  releaseAt: Date | null
   parentRevisionId: string | null
   createdAt: Date | null
 }
@@ -60,6 +66,9 @@ export type RevisionCountAggregateOutputType = {
   authorId: number
   number: number
   message: number
+  releaseVersion: number
+  releaseNotes: number
+  releaseAt: number
   parentRevisionId: number
   createdAt: number
   _all: number
@@ -80,6 +89,9 @@ export type RevisionMinAggregateInputType = {
   authorId?: true
   number?: true
   message?: true
+  releaseVersion?: true
+  releaseNotes?: true
+  releaseAt?: true
   parentRevisionId?: true
   createdAt?: true
 }
@@ -90,6 +102,9 @@ export type RevisionMaxAggregateInputType = {
   authorId?: true
   number?: true
   message?: true
+  releaseVersion?: true
+  releaseNotes?: true
+  releaseAt?: true
   parentRevisionId?: true
   createdAt?: true
 }
@@ -100,6 +115,9 @@ export type RevisionCountAggregateInputType = {
   authorId?: true
   number?: true
   message?: true
+  releaseVersion?: true
+  releaseNotes?: true
+  releaseAt?: true
   parentRevisionId?: true
   createdAt?: true
   _all?: true
@@ -197,6 +215,9 @@ export type RevisionGroupByOutputType = {
   authorId: string | null
   number: number
   message: string
+  releaseVersion: string | null
+  releaseNotes: string | null
+  releaseAt: Date | null
   parentRevisionId: string | null
   createdAt: Date
   _count: RevisionCountAggregateOutputType | null
@@ -230,10 +251,14 @@ export type RevisionWhereInput = {
   authorId?: Prisma.StringNullableFilter<"Revision"> | string | null
   number?: Prisma.IntFilter<"Revision"> | number
   message?: Prisma.StringFilter<"Revision"> | string
+  releaseVersion?: Prisma.StringNullableFilter<"Revision"> | string | null
+  releaseNotes?: Prisma.StringNullableFilter<"Revision"> | string | null
+  releaseAt?: Prisma.DateTimeNullableFilter<"Revision"> | Date | string | null
   parentRevisionId?: Prisma.StringNullableFilter<"Revision"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Revision"> | Date | string
   path?: Prisma.XOR<Prisma.PathScalarRelationFilter, Prisma.PathWhereInput>
   author?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  mountedCollections?: Prisma.CollectionListRelationFilter
   parentRevision?: Prisma.XOR<Prisma.RevisionNullableScalarRelationFilter, Prisma.RevisionWhereInput> | null
   childRevisions?: Prisma.RevisionListRelationFilter
   forkedPaths?: Prisma.PathListRelationFilter
@@ -243,8 +268,6 @@ export type RevisionWhereInput = {
   combineSource?: Prisma.CombineListRelationFilter
   combineBase?: Prisma.CombineListRelationFilter
   combineResult?: Prisma.CombineListRelationFilter
-  releases?: Prisma.ReleaseListRelationFilter
-  bountySubmissions?: Prisma.BountySubmissionListRelationFilter
 }
 
 export type RevisionOrderByWithRelationInput = {
@@ -253,10 +276,14 @@ export type RevisionOrderByWithRelationInput = {
   authorId?: Prisma.SortOrderInput | Prisma.SortOrder
   number?: Prisma.SortOrder
   message?: Prisma.SortOrder
+  releaseVersion?: Prisma.SortOrderInput | Prisma.SortOrder
+  releaseNotes?: Prisma.SortOrderInput | Prisma.SortOrder
+  releaseAt?: Prisma.SortOrderInput | Prisma.SortOrder
   parentRevisionId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   path?: Prisma.PathOrderByWithRelationInput
   author?: Prisma.UserOrderByWithRelationInput
+  mountedCollections?: Prisma.CollectionOrderByRelationAggregateInput
   parentRevision?: Prisma.RevisionOrderByWithRelationInput
   childRevisions?: Prisma.RevisionOrderByRelationAggregateInput
   forkedPaths?: Prisma.PathOrderByRelationAggregateInput
@@ -266,8 +293,6 @@ export type RevisionOrderByWithRelationInput = {
   combineSource?: Prisma.CombineOrderByRelationAggregateInput
   combineBase?: Prisma.CombineOrderByRelationAggregateInput
   combineResult?: Prisma.CombineOrderByRelationAggregateInput
-  releases?: Prisma.ReleaseOrderByRelationAggregateInput
-  bountySubmissions?: Prisma.BountySubmissionOrderByRelationAggregateInput
 }
 
 export type RevisionWhereUniqueInput = Prisma.AtLeast<{
@@ -280,10 +305,14 @@ export type RevisionWhereUniqueInput = Prisma.AtLeast<{
   authorId?: Prisma.StringNullableFilter<"Revision"> | string | null
   number?: Prisma.IntFilter<"Revision"> | number
   message?: Prisma.StringFilter<"Revision"> | string
+  releaseVersion?: Prisma.StringNullableFilter<"Revision"> | string | null
+  releaseNotes?: Prisma.StringNullableFilter<"Revision"> | string | null
+  releaseAt?: Prisma.DateTimeNullableFilter<"Revision"> | Date | string | null
   parentRevisionId?: Prisma.StringNullableFilter<"Revision"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Revision"> | Date | string
   path?: Prisma.XOR<Prisma.PathScalarRelationFilter, Prisma.PathWhereInput>
   author?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  mountedCollections?: Prisma.CollectionListRelationFilter
   parentRevision?: Prisma.XOR<Prisma.RevisionNullableScalarRelationFilter, Prisma.RevisionWhereInput> | null
   childRevisions?: Prisma.RevisionListRelationFilter
   forkedPaths?: Prisma.PathListRelationFilter
@@ -293,8 +322,6 @@ export type RevisionWhereUniqueInput = Prisma.AtLeast<{
   combineSource?: Prisma.CombineListRelationFilter
   combineBase?: Prisma.CombineListRelationFilter
   combineResult?: Prisma.CombineListRelationFilter
-  releases?: Prisma.ReleaseListRelationFilter
-  bountySubmissions?: Prisma.BountySubmissionListRelationFilter
 }, "id" | "pathId_number">
 
 export type RevisionOrderByWithAggregationInput = {
@@ -303,6 +330,9 @@ export type RevisionOrderByWithAggregationInput = {
   authorId?: Prisma.SortOrderInput | Prisma.SortOrder
   number?: Prisma.SortOrder
   message?: Prisma.SortOrder
+  releaseVersion?: Prisma.SortOrderInput | Prisma.SortOrder
+  releaseNotes?: Prisma.SortOrderInput | Prisma.SortOrder
+  releaseAt?: Prisma.SortOrderInput | Prisma.SortOrder
   parentRevisionId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.RevisionCountOrderByAggregateInput
@@ -321,6 +351,9 @@ export type RevisionScalarWhereWithAggregatesInput = {
   authorId?: Prisma.StringNullableWithAggregatesFilter<"Revision"> | string | null
   number?: Prisma.IntWithAggregatesFilter<"Revision"> | number
   message?: Prisma.StringWithAggregatesFilter<"Revision"> | string
+  releaseVersion?: Prisma.StringNullableWithAggregatesFilter<"Revision"> | string | null
+  releaseNotes?: Prisma.StringNullableWithAggregatesFilter<"Revision"> | string | null
+  releaseAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Revision"> | Date | string | null
   parentRevisionId?: Prisma.StringNullableWithAggregatesFilter<"Revision"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Revision"> | Date | string
 }
@@ -329,9 +362,13 @@ export type RevisionCreateInput = {
   id?: string
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   createdAt?: Date | string
   path: Prisma.PathCreateNestedOneWithoutRevisionsInput
   author?: Prisma.UserCreateNestedOneWithoutAuthoredRevisionsInput
+  mountedCollections?: Prisma.CollectionCreateNestedManyWithoutInstalledRevisionInput
   parentRevision?: Prisma.RevisionCreateNestedOneWithoutChildRevisionsInput
   childRevisions?: Prisma.RevisionCreateNestedManyWithoutParentRevisionInput
   forkedPaths?: Prisma.PathCreateNestedManyWithoutForkedFromRevisionInput
@@ -341,8 +378,6 @@ export type RevisionCreateInput = {
   combineSource?: Prisma.CombineCreateNestedManyWithoutSourceRevisionInput
   combineBase?: Prisma.CombineCreateNestedManyWithoutBaseRevisionInput
   combineResult?: Prisma.CombineCreateNestedManyWithoutResultRevisionInput
-  releases?: Prisma.ReleaseCreateNestedManyWithoutSourceRevisionInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutRevisionInput
 }
 
 export type RevisionUncheckedCreateInput = {
@@ -351,8 +386,12 @@ export type RevisionUncheckedCreateInput = {
   authorId?: string | null
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   parentRevisionId?: string | null
   createdAt?: Date | string
+  mountedCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutInstalledRevisionInput
   childRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutParentRevisionInput
   forkedPaths?: Prisma.PathUncheckedCreateNestedManyWithoutForkedFromRevisionInput
   headOfPaths?: Prisma.PathUncheckedCreateNestedManyWithoutHeadRevisionInput
@@ -361,17 +400,19 @@ export type RevisionUncheckedCreateInput = {
   combineSource?: Prisma.CombineUncheckedCreateNestedManyWithoutSourceRevisionInput
   combineBase?: Prisma.CombineUncheckedCreateNestedManyWithoutBaseRevisionInput
   combineResult?: Prisma.CombineUncheckedCreateNestedManyWithoutResultRevisionInput
-  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutSourceRevisionInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutRevisionInput
 }
 
 export type RevisionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   path?: Prisma.PathUpdateOneRequiredWithoutRevisionsNestedInput
   author?: Prisma.UserUpdateOneWithoutAuthoredRevisionsNestedInput
+  mountedCollections?: Prisma.CollectionUpdateManyWithoutInstalledRevisionNestedInput
   parentRevision?: Prisma.RevisionUpdateOneWithoutChildRevisionsNestedInput
   childRevisions?: Prisma.RevisionUpdateManyWithoutParentRevisionNestedInput
   forkedPaths?: Prisma.PathUpdateManyWithoutForkedFromRevisionNestedInput
@@ -381,8 +422,6 @@ export type RevisionUpdateInput = {
   combineSource?: Prisma.CombineUpdateManyWithoutSourceRevisionNestedInput
   combineBase?: Prisma.CombineUpdateManyWithoutBaseRevisionNestedInput
   combineResult?: Prisma.CombineUpdateManyWithoutResultRevisionNestedInput
-  releases?: Prisma.ReleaseUpdateManyWithoutSourceRevisionNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutRevisionNestedInput
 }
 
 export type RevisionUncheckedUpdateInput = {
@@ -391,8 +430,12 @@ export type RevisionUncheckedUpdateInput = {
   authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   parentRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  mountedCollections?: Prisma.CollectionUncheckedUpdateManyWithoutInstalledRevisionNestedInput
   childRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutParentRevisionNestedInput
   forkedPaths?: Prisma.PathUncheckedUpdateManyWithoutForkedFromRevisionNestedInput
   headOfPaths?: Prisma.PathUncheckedUpdateManyWithoutHeadRevisionNestedInput
@@ -401,8 +444,6 @@ export type RevisionUncheckedUpdateInput = {
   combineSource?: Prisma.CombineUncheckedUpdateManyWithoutSourceRevisionNestedInput
   combineBase?: Prisma.CombineUncheckedUpdateManyWithoutBaseRevisionNestedInput
   combineResult?: Prisma.CombineUncheckedUpdateManyWithoutResultRevisionNestedInput
-  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutSourceRevisionNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutRevisionNestedInput
 }
 
 export type RevisionCreateManyInput = {
@@ -411,6 +452,9 @@ export type RevisionCreateManyInput = {
   authorId?: string | null
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   parentRevisionId?: string | null
   createdAt?: Date | string
 }
@@ -419,6 +463,9 @@ export type RevisionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -428,6 +475,9 @@ export type RevisionUncheckedUpdateManyInput = {
   authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   parentRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -458,6 +508,9 @@ export type RevisionCountOrderByAggregateInput = {
   authorId?: Prisma.SortOrder
   number?: Prisma.SortOrder
   message?: Prisma.SortOrder
+  releaseVersion?: Prisma.SortOrder
+  releaseNotes?: Prisma.SortOrder
+  releaseAt?: Prisma.SortOrder
   parentRevisionId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -472,6 +525,9 @@ export type RevisionMaxOrderByAggregateInput = {
   authorId?: Prisma.SortOrder
   number?: Prisma.SortOrder
   message?: Prisma.SortOrder
+  releaseVersion?: Prisma.SortOrder
+  releaseNotes?: Prisma.SortOrder
+  releaseAt?: Prisma.SortOrder
   parentRevisionId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -482,6 +538,9 @@ export type RevisionMinOrderByAggregateInput = {
   authorId?: Prisma.SortOrder
   number?: Prisma.SortOrder
   message?: Prisma.SortOrder
+  releaseVersion?: Prisma.SortOrder
+  releaseNotes?: Prisma.SortOrder
+  releaseAt?: Prisma.SortOrder
   parentRevisionId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -535,6 +594,22 @@ export type RevisionUncheckedUpdateManyWithoutAuthorNestedInput = {
   update?: Prisma.RevisionUpdateWithWhereUniqueWithoutAuthorInput | Prisma.RevisionUpdateWithWhereUniqueWithoutAuthorInput[]
   updateMany?: Prisma.RevisionUpdateManyWithWhereWithoutAuthorInput | Prisma.RevisionUpdateManyWithWhereWithoutAuthorInput[]
   deleteMany?: Prisma.RevisionScalarWhereInput | Prisma.RevisionScalarWhereInput[]
+}
+
+export type RevisionCreateNestedOneWithoutMountedCollectionsInput = {
+  create?: Prisma.XOR<Prisma.RevisionCreateWithoutMountedCollectionsInput, Prisma.RevisionUncheckedCreateWithoutMountedCollectionsInput>
+  connectOrCreate?: Prisma.RevisionCreateOrConnectWithoutMountedCollectionsInput
+  connect?: Prisma.RevisionWhereUniqueInput
+}
+
+export type RevisionUpdateOneWithoutMountedCollectionsNestedInput = {
+  create?: Prisma.XOR<Prisma.RevisionCreateWithoutMountedCollectionsInput, Prisma.RevisionUncheckedCreateWithoutMountedCollectionsInput>
+  connectOrCreate?: Prisma.RevisionCreateOrConnectWithoutMountedCollectionsInput
+  upsert?: Prisma.RevisionUpsertWithoutMountedCollectionsInput
+  disconnect?: Prisma.RevisionWhereInput | boolean
+  delete?: Prisma.RevisionWhereInput | boolean
+  connect?: Prisma.RevisionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.RevisionUpdateToOneWithWhereWithoutMountedCollectionsInput, Prisma.RevisionUpdateWithoutMountedCollectionsInput>, Prisma.RevisionUncheckedUpdateWithoutMountedCollectionsInput>
 }
 
 export type RevisionCreateNestedOneWithoutForkedPathsInput = {
@@ -743,44 +818,16 @@ export type RevisionUpdateOneWithoutCombineResultNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.RevisionUpdateToOneWithWhereWithoutCombineResultInput, Prisma.RevisionUpdateWithoutCombineResultInput>, Prisma.RevisionUncheckedUpdateWithoutCombineResultInput>
 }
 
-export type RevisionCreateNestedOneWithoutReleasesInput = {
-  create?: Prisma.XOR<Prisma.RevisionCreateWithoutReleasesInput, Prisma.RevisionUncheckedCreateWithoutReleasesInput>
-  connectOrCreate?: Prisma.RevisionCreateOrConnectWithoutReleasesInput
-  connect?: Prisma.RevisionWhereUniqueInput
-}
-
-export type RevisionUpdateOneWithoutReleasesNestedInput = {
-  create?: Prisma.XOR<Prisma.RevisionCreateWithoutReleasesInput, Prisma.RevisionUncheckedCreateWithoutReleasesInput>
-  connectOrCreate?: Prisma.RevisionCreateOrConnectWithoutReleasesInput
-  upsert?: Prisma.RevisionUpsertWithoutReleasesInput
-  disconnect?: Prisma.RevisionWhereInput | boolean
-  delete?: Prisma.RevisionWhereInput | boolean
-  connect?: Prisma.RevisionWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.RevisionUpdateToOneWithWhereWithoutReleasesInput, Prisma.RevisionUpdateWithoutReleasesInput>, Prisma.RevisionUncheckedUpdateWithoutReleasesInput>
-}
-
-export type RevisionCreateNestedOneWithoutBountySubmissionsInput = {
-  create?: Prisma.XOR<Prisma.RevisionCreateWithoutBountySubmissionsInput, Prisma.RevisionUncheckedCreateWithoutBountySubmissionsInput>
-  connectOrCreate?: Prisma.RevisionCreateOrConnectWithoutBountySubmissionsInput
-  connect?: Prisma.RevisionWhereUniqueInput
-}
-
-export type RevisionUpdateOneWithoutBountySubmissionsNestedInput = {
-  create?: Prisma.XOR<Prisma.RevisionCreateWithoutBountySubmissionsInput, Prisma.RevisionUncheckedCreateWithoutBountySubmissionsInput>
-  connectOrCreate?: Prisma.RevisionCreateOrConnectWithoutBountySubmissionsInput
-  upsert?: Prisma.RevisionUpsertWithoutBountySubmissionsInput
-  disconnect?: Prisma.RevisionWhereInput | boolean
-  delete?: Prisma.RevisionWhereInput | boolean
-  connect?: Prisma.RevisionWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.RevisionUpdateToOneWithWhereWithoutBountySubmissionsInput, Prisma.RevisionUpdateWithoutBountySubmissionsInput>, Prisma.RevisionUncheckedUpdateWithoutBountySubmissionsInput>
-}
-
 export type RevisionCreateWithoutAuthorInput = {
   id?: string
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   createdAt?: Date | string
   path: Prisma.PathCreateNestedOneWithoutRevisionsInput
+  mountedCollections?: Prisma.CollectionCreateNestedManyWithoutInstalledRevisionInput
   parentRevision?: Prisma.RevisionCreateNestedOneWithoutChildRevisionsInput
   childRevisions?: Prisma.RevisionCreateNestedManyWithoutParentRevisionInput
   forkedPaths?: Prisma.PathCreateNestedManyWithoutForkedFromRevisionInput
@@ -790,8 +837,6 @@ export type RevisionCreateWithoutAuthorInput = {
   combineSource?: Prisma.CombineCreateNestedManyWithoutSourceRevisionInput
   combineBase?: Prisma.CombineCreateNestedManyWithoutBaseRevisionInput
   combineResult?: Prisma.CombineCreateNestedManyWithoutResultRevisionInput
-  releases?: Prisma.ReleaseCreateNestedManyWithoutSourceRevisionInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutRevisionInput
 }
 
 export type RevisionUncheckedCreateWithoutAuthorInput = {
@@ -799,8 +844,12 @@ export type RevisionUncheckedCreateWithoutAuthorInput = {
   pathId: string
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   parentRevisionId?: string | null
   createdAt?: Date | string
+  mountedCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutInstalledRevisionInput
   childRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutParentRevisionInput
   forkedPaths?: Prisma.PathUncheckedCreateNestedManyWithoutForkedFromRevisionInput
   headOfPaths?: Prisma.PathUncheckedCreateNestedManyWithoutHeadRevisionInput
@@ -809,8 +858,6 @@ export type RevisionUncheckedCreateWithoutAuthorInput = {
   combineSource?: Prisma.CombineUncheckedCreateNestedManyWithoutSourceRevisionInput
   combineBase?: Prisma.CombineUncheckedCreateNestedManyWithoutBaseRevisionInput
   combineResult?: Prisma.CombineUncheckedCreateNestedManyWithoutResultRevisionInput
-  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutSourceRevisionInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutRevisionInput
 }
 
 export type RevisionCreateOrConnectWithoutAuthorInput = {
@@ -848,17 +895,124 @@ export type RevisionScalarWhereInput = {
   authorId?: Prisma.StringNullableFilter<"Revision"> | string | null
   number?: Prisma.IntFilter<"Revision"> | number
   message?: Prisma.StringFilter<"Revision"> | string
+  releaseVersion?: Prisma.StringNullableFilter<"Revision"> | string | null
+  releaseNotes?: Prisma.StringNullableFilter<"Revision"> | string | null
+  releaseAt?: Prisma.DateTimeNullableFilter<"Revision"> | Date | string | null
   parentRevisionId?: Prisma.StringNullableFilter<"Revision"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Revision"> | Date | string
+}
+
+export type RevisionCreateWithoutMountedCollectionsInput = {
+  id?: string
+  number: number
+  message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
+  createdAt?: Date | string
+  path: Prisma.PathCreateNestedOneWithoutRevisionsInput
+  author?: Prisma.UserCreateNestedOneWithoutAuthoredRevisionsInput
+  parentRevision?: Prisma.RevisionCreateNestedOneWithoutChildRevisionsInput
+  childRevisions?: Prisma.RevisionCreateNestedManyWithoutParentRevisionInput
+  forkedPaths?: Prisma.PathCreateNestedManyWithoutForkedFromRevisionInput
+  headOfPaths?: Prisma.PathCreateNestedManyWithoutHeadRevisionInput
+  changes?: Prisma.RevisionChangeCreateNestedManyWithoutRevisionInput
+  combineTarget?: Prisma.CombineCreateNestedManyWithoutTargetRevisionInput
+  combineSource?: Prisma.CombineCreateNestedManyWithoutSourceRevisionInput
+  combineBase?: Prisma.CombineCreateNestedManyWithoutBaseRevisionInput
+  combineResult?: Prisma.CombineCreateNestedManyWithoutResultRevisionInput
+}
+
+export type RevisionUncheckedCreateWithoutMountedCollectionsInput = {
+  id?: string
+  pathId: string
+  authorId?: string | null
+  number: number
+  message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
+  parentRevisionId?: string | null
+  createdAt?: Date | string
+  childRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutParentRevisionInput
+  forkedPaths?: Prisma.PathUncheckedCreateNestedManyWithoutForkedFromRevisionInput
+  headOfPaths?: Prisma.PathUncheckedCreateNestedManyWithoutHeadRevisionInput
+  changes?: Prisma.RevisionChangeUncheckedCreateNestedManyWithoutRevisionInput
+  combineTarget?: Prisma.CombineUncheckedCreateNestedManyWithoutTargetRevisionInput
+  combineSource?: Prisma.CombineUncheckedCreateNestedManyWithoutSourceRevisionInput
+  combineBase?: Prisma.CombineUncheckedCreateNestedManyWithoutBaseRevisionInput
+  combineResult?: Prisma.CombineUncheckedCreateNestedManyWithoutResultRevisionInput
+}
+
+export type RevisionCreateOrConnectWithoutMountedCollectionsInput = {
+  where: Prisma.RevisionWhereUniqueInput
+  create: Prisma.XOR<Prisma.RevisionCreateWithoutMountedCollectionsInput, Prisma.RevisionUncheckedCreateWithoutMountedCollectionsInput>
+}
+
+export type RevisionUpsertWithoutMountedCollectionsInput = {
+  update: Prisma.XOR<Prisma.RevisionUpdateWithoutMountedCollectionsInput, Prisma.RevisionUncheckedUpdateWithoutMountedCollectionsInput>
+  create: Prisma.XOR<Prisma.RevisionCreateWithoutMountedCollectionsInput, Prisma.RevisionUncheckedCreateWithoutMountedCollectionsInput>
+  where?: Prisma.RevisionWhereInput
+}
+
+export type RevisionUpdateToOneWithWhereWithoutMountedCollectionsInput = {
+  where?: Prisma.RevisionWhereInput
+  data: Prisma.XOR<Prisma.RevisionUpdateWithoutMountedCollectionsInput, Prisma.RevisionUncheckedUpdateWithoutMountedCollectionsInput>
+}
+
+export type RevisionUpdateWithoutMountedCollectionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  number?: Prisma.IntFieldUpdateOperationsInput | number
+  message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  path?: Prisma.PathUpdateOneRequiredWithoutRevisionsNestedInput
+  author?: Prisma.UserUpdateOneWithoutAuthoredRevisionsNestedInput
+  parentRevision?: Prisma.RevisionUpdateOneWithoutChildRevisionsNestedInput
+  childRevisions?: Prisma.RevisionUpdateManyWithoutParentRevisionNestedInput
+  forkedPaths?: Prisma.PathUpdateManyWithoutForkedFromRevisionNestedInput
+  headOfPaths?: Prisma.PathUpdateManyWithoutHeadRevisionNestedInput
+  changes?: Prisma.RevisionChangeUpdateManyWithoutRevisionNestedInput
+  combineTarget?: Prisma.CombineUpdateManyWithoutTargetRevisionNestedInput
+  combineSource?: Prisma.CombineUpdateManyWithoutSourceRevisionNestedInput
+  combineBase?: Prisma.CombineUpdateManyWithoutBaseRevisionNestedInput
+  combineResult?: Prisma.CombineUpdateManyWithoutResultRevisionNestedInput
+}
+
+export type RevisionUncheckedUpdateWithoutMountedCollectionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  pathId?: Prisma.StringFieldUpdateOperationsInput | string
+  authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  number?: Prisma.IntFieldUpdateOperationsInput | number
+  message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  parentRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  childRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutParentRevisionNestedInput
+  forkedPaths?: Prisma.PathUncheckedUpdateManyWithoutForkedFromRevisionNestedInput
+  headOfPaths?: Prisma.PathUncheckedUpdateManyWithoutHeadRevisionNestedInput
+  changes?: Prisma.RevisionChangeUncheckedUpdateManyWithoutRevisionNestedInput
+  combineTarget?: Prisma.CombineUncheckedUpdateManyWithoutTargetRevisionNestedInput
+  combineSource?: Prisma.CombineUncheckedUpdateManyWithoutSourceRevisionNestedInput
+  combineBase?: Prisma.CombineUncheckedUpdateManyWithoutBaseRevisionNestedInput
+  combineResult?: Prisma.CombineUncheckedUpdateManyWithoutResultRevisionNestedInput
 }
 
 export type RevisionCreateWithoutForkedPathsInput = {
   id?: string
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   createdAt?: Date | string
   path: Prisma.PathCreateNestedOneWithoutRevisionsInput
   author?: Prisma.UserCreateNestedOneWithoutAuthoredRevisionsInput
+  mountedCollections?: Prisma.CollectionCreateNestedManyWithoutInstalledRevisionInput
   parentRevision?: Prisma.RevisionCreateNestedOneWithoutChildRevisionsInput
   childRevisions?: Prisma.RevisionCreateNestedManyWithoutParentRevisionInput
   headOfPaths?: Prisma.PathCreateNestedManyWithoutHeadRevisionInput
@@ -867,8 +1021,6 @@ export type RevisionCreateWithoutForkedPathsInput = {
   combineSource?: Prisma.CombineCreateNestedManyWithoutSourceRevisionInput
   combineBase?: Prisma.CombineCreateNestedManyWithoutBaseRevisionInput
   combineResult?: Prisma.CombineCreateNestedManyWithoutResultRevisionInput
-  releases?: Prisma.ReleaseCreateNestedManyWithoutSourceRevisionInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutRevisionInput
 }
 
 export type RevisionUncheckedCreateWithoutForkedPathsInput = {
@@ -877,8 +1029,12 @@ export type RevisionUncheckedCreateWithoutForkedPathsInput = {
   authorId?: string | null
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   parentRevisionId?: string | null
   createdAt?: Date | string
+  mountedCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutInstalledRevisionInput
   childRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutParentRevisionInput
   headOfPaths?: Prisma.PathUncheckedCreateNestedManyWithoutHeadRevisionInput
   changes?: Prisma.RevisionChangeUncheckedCreateNestedManyWithoutRevisionInput
@@ -886,8 +1042,6 @@ export type RevisionUncheckedCreateWithoutForkedPathsInput = {
   combineSource?: Prisma.CombineUncheckedCreateNestedManyWithoutSourceRevisionInput
   combineBase?: Prisma.CombineUncheckedCreateNestedManyWithoutBaseRevisionInput
   combineResult?: Prisma.CombineUncheckedCreateNestedManyWithoutResultRevisionInput
-  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutSourceRevisionInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutRevisionInput
 }
 
 export type RevisionCreateOrConnectWithoutForkedPathsInput = {
@@ -899,8 +1053,12 @@ export type RevisionCreateWithoutPathInput = {
   id?: string
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   createdAt?: Date | string
   author?: Prisma.UserCreateNestedOneWithoutAuthoredRevisionsInput
+  mountedCollections?: Prisma.CollectionCreateNestedManyWithoutInstalledRevisionInput
   parentRevision?: Prisma.RevisionCreateNestedOneWithoutChildRevisionsInput
   childRevisions?: Prisma.RevisionCreateNestedManyWithoutParentRevisionInput
   forkedPaths?: Prisma.PathCreateNestedManyWithoutForkedFromRevisionInput
@@ -910,8 +1068,6 @@ export type RevisionCreateWithoutPathInput = {
   combineSource?: Prisma.CombineCreateNestedManyWithoutSourceRevisionInput
   combineBase?: Prisma.CombineCreateNestedManyWithoutBaseRevisionInput
   combineResult?: Prisma.CombineCreateNestedManyWithoutResultRevisionInput
-  releases?: Prisma.ReleaseCreateNestedManyWithoutSourceRevisionInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutRevisionInput
 }
 
 export type RevisionUncheckedCreateWithoutPathInput = {
@@ -919,8 +1075,12 @@ export type RevisionUncheckedCreateWithoutPathInput = {
   authorId?: string | null
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   parentRevisionId?: string | null
   createdAt?: Date | string
+  mountedCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutInstalledRevisionInput
   childRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutParentRevisionInput
   forkedPaths?: Prisma.PathUncheckedCreateNestedManyWithoutForkedFromRevisionInput
   headOfPaths?: Prisma.PathUncheckedCreateNestedManyWithoutHeadRevisionInput
@@ -929,8 +1089,6 @@ export type RevisionUncheckedCreateWithoutPathInput = {
   combineSource?: Prisma.CombineUncheckedCreateNestedManyWithoutSourceRevisionInput
   combineBase?: Prisma.CombineUncheckedCreateNestedManyWithoutBaseRevisionInput
   combineResult?: Prisma.CombineUncheckedCreateNestedManyWithoutResultRevisionInput
-  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutSourceRevisionInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutRevisionInput
 }
 
 export type RevisionCreateOrConnectWithoutPathInput = {
@@ -947,9 +1105,13 @@ export type RevisionCreateWithoutHeadOfPathsInput = {
   id?: string
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   createdAt?: Date | string
   path: Prisma.PathCreateNestedOneWithoutRevisionsInput
   author?: Prisma.UserCreateNestedOneWithoutAuthoredRevisionsInput
+  mountedCollections?: Prisma.CollectionCreateNestedManyWithoutInstalledRevisionInput
   parentRevision?: Prisma.RevisionCreateNestedOneWithoutChildRevisionsInput
   childRevisions?: Prisma.RevisionCreateNestedManyWithoutParentRevisionInput
   forkedPaths?: Prisma.PathCreateNestedManyWithoutForkedFromRevisionInput
@@ -958,8 +1120,6 @@ export type RevisionCreateWithoutHeadOfPathsInput = {
   combineSource?: Prisma.CombineCreateNestedManyWithoutSourceRevisionInput
   combineBase?: Prisma.CombineCreateNestedManyWithoutBaseRevisionInput
   combineResult?: Prisma.CombineCreateNestedManyWithoutResultRevisionInput
-  releases?: Prisma.ReleaseCreateNestedManyWithoutSourceRevisionInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutRevisionInput
 }
 
 export type RevisionUncheckedCreateWithoutHeadOfPathsInput = {
@@ -968,8 +1128,12 @@ export type RevisionUncheckedCreateWithoutHeadOfPathsInput = {
   authorId?: string | null
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   parentRevisionId?: string | null
   createdAt?: Date | string
+  mountedCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutInstalledRevisionInput
   childRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutParentRevisionInput
   forkedPaths?: Prisma.PathUncheckedCreateNestedManyWithoutForkedFromRevisionInput
   changes?: Prisma.RevisionChangeUncheckedCreateNestedManyWithoutRevisionInput
@@ -977,8 +1141,6 @@ export type RevisionUncheckedCreateWithoutHeadOfPathsInput = {
   combineSource?: Prisma.CombineUncheckedCreateNestedManyWithoutSourceRevisionInput
   combineBase?: Prisma.CombineUncheckedCreateNestedManyWithoutBaseRevisionInput
   combineResult?: Prisma.CombineUncheckedCreateNestedManyWithoutResultRevisionInput
-  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutSourceRevisionInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutRevisionInput
 }
 
 export type RevisionCreateOrConnectWithoutHeadOfPathsInput = {
@@ -1001,9 +1163,13 @@ export type RevisionUpdateWithoutForkedPathsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   path?: Prisma.PathUpdateOneRequiredWithoutRevisionsNestedInput
   author?: Prisma.UserUpdateOneWithoutAuthoredRevisionsNestedInput
+  mountedCollections?: Prisma.CollectionUpdateManyWithoutInstalledRevisionNestedInput
   parentRevision?: Prisma.RevisionUpdateOneWithoutChildRevisionsNestedInput
   childRevisions?: Prisma.RevisionUpdateManyWithoutParentRevisionNestedInput
   headOfPaths?: Prisma.PathUpdateManyWithoutHeadRevisionNestedInput
@@ -1012,8 +1178,6 @@ export type RevisionUpdateWithoutForkedPathsInput = {
   combineSource?: Prisma.CombineUpdateManyWithoutSourceRevisionNestedInput
   combineBase?: Prisma.CombineUpdateManyWithoutBaseRevisionNestedInput
   combineResult?: Prisma.CombineUpdateManyWithoutResultRevisionNestedInput
-  releases?: Prisma.ReleaseUpdateManyWithoutSourceRevisionNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutRevisionNestedInput
 }
 
 export type RevisionUncheckedUpdateWithoutForkedPathsInput = {
@@ -1022,8 +1186,12 @@ export type RevisionUncheckedUpdateWithoutForkedPathsInput = {
   authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   parentRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  mountedCollections?: Prisma.CollectionUncheckedUpdateManyWithoutInstalledRevisionNestedInput
   childRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutParentRevisionNestedInput
   headOfPaths?: Prisma.PathUncheckedUpdateManyWithoutHeadRevisionNestedInput
   changes?: Prisma.RevisionChangeUncheckedUpdateManyWithoutRevisionNestedInput
@@ -1031,8 +1199,6 @@ export type RevisionUncheckedUpdateWithoutForkedPathsInput = {
   combineSource?: Prisma.CombineUncheckedUpdateManyWithoutSourceRevisionNestedInput
   combineBase?: Prisma.CombineUncheckedUpdateManyWithoutBaseRevisionNestedInput
   combineResult?: Prisma.CombineUncheckedUpdateManyWithoutResultRevisionNestedInput
-  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutSourceRevisionNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutRevisionNestedInput
 }
 
 export type RevisionUpsertWithWhereUniqueWithoutPathInput = {
@@ -1066,9 +1232,13 @@ export type RevisionUpdateWithoutHeadOfPathsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   path?: Prisma.PathUpdateOneRequiredWithoutRevisionsNestedInput
   author?: Prisma.UserUpdateOneWithoutAuthoredRevisionsNestedInput
+  mountedCollections?: Prisma.CollectionUpdateManyWithoutInstalledRevisionNestedInput
   parentRevision?: Prisma.RevisionUpdateOneWithoutChildRevisionsNestedInput
   childRevisions?: Prisma.RevisionUpdateManyWithoutParentRevisionNestedInput
   forkedPaths?: Prisma.PathUpdateManyWithoutForkedFromRevisionNestedInput
@@ -1077,8 +1247,6 @@ export type RevisionUpdateWithoutHeadOfPathsInput = {
   combineSource?: Prisma.CombineUpdateManyWithoutSourceRevisionNestedInput
   combineBase?: Prisma.CombineUpdateManyWithoutBaseRevisionNestedInput
   combineResult?: Prisma.CombineUpdateManyWithoutResultRevisionNestedInput
-  releases?: Prisma.ReleaseUpdateManyWithoutSourceRevisionNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutRevisionNestedInput
 }
 
 export type RevisionUncheckedUpdateWithoutHeadOfPathsInput = {
@@ -1087,8 +1255,12 @@ export type RevisionUncheckedUpdateWithoutHeadOfPathsInput = {
   authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   parentRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  mountedCollections?: Prisma.CollectionUncheckedUpdateManyWithoutInstalledRevisionNestedInput
   childRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutParentRevisionNestedInput
   forkedPaths?: Prisma.PathUncheckedUpdateManyWithoutForkedFromRevisionNestedInput
   changes?: Prisma.RevisionChangeUncheckedUpdateManyWithoutRevisionNestedInput
@@ -1096,17 +1268,19 @@ export type RevisionUncheckedUpdateWithoutHeadOfPathsInput = {
   combineSource?: Prisma.CombineUncheckedUpdateManyWithoutSourceRevisionNestedInput
   combineBase?: Prisma.CombineUncheckedUpdateManyWithoutBaseRevisionNestedInput
   combineResult?: Prisma.CombineUncheckedUpdateManyWithoutResultRevisionNestedInput
-  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutSourceRevisionNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutRevisionNestedInput
 }
 
 export type RevisionCreateWithoutChildRevisionsInput = {
   id?: string
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   createdAt?: Date | string
   path: Prisma.PathCreateNestedOneWithoutRevisionsInput
   author?: Prisma.UserCreateNestedOneWithoutAuthoredRevisionsInput
+  mountedCollections?: Prisma.CollectionCreateNestedManyWithoutInstalledRevisionInput
   parentRevision?: Prisma.RevisionCreateNestedOneWithoutChildRevisionsInput
   forkedPaths?: Prisma.PathCreateNestedManyWithoutForkedFromRevisionInput
   headOfPaths?: Prisma.PathCreateNestedManyWithoutHeadRevisionInput
@@ -1115,8 +1289,6 @@ export type RevisionCreateWithoutChildRevisionsInput = {
   combineSource?: Prisma.CombineCreateNestedManyWithoutSourceRevisionInput
   combineBase?: Prisma.CombineCreateNestedManyWithoutBaseRevisionInput
   combineResult?: Prisma.CombineCreateNestedManyWithoutResultRevisionInput
-  releases?: Prisma.ReleaseCreateNestedManyWithoutSourceRevisionInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutRevisionInput
 }
 
 export type RevisionUncheckedCreateWithoutChildRevisionsInput = {
@@ -1125,8 +1297,12 @@ export type RevisionUncheckedCreateWithoutChildRevisionsInput = {
   authorId?: string | null
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   parentRevisionId?: string | null
   createdAt?: Date | string
+  mountedCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutInstalledRevisionInput
   forkedPaths?: Prisma.PathUncheckedCreateNestedManyWithoutForkedFromRevisionInput
   headOfPaths?: Prisma.PathUncheckedCreateNestedManyWithoutHeadRevisionInput
   changes?: Prisma.RevisionChangeUncheckedCreateNestedManyWithoutRevisionInput
@@ -1134,8 +1310,6 @@ export type RevisionUncheckedCreateWithoutChildRevisionsInput = {
   combineSource?: Prisma.CombineUncheckedCreateNestedManyWithoutSourceRevisionInput
   combineBase?: Prisma.CombineUncheckedCreateNestedManyWithoutBaseRevisionInput
   combineResult?: Prisma.CombineUncheckedCreateNestedManyWithoutResultRevisionInput
-  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutSourceRevisionInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutRevisionInput
 }
 
 export type RevisionCreateOrConnectWithoutChildRevisionsInput = {
@@ -1147,9 +1321,13 @@ export type RevisionCreateWithoutParentRevisionInput = {
   id?: string
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   createdAt?: Date | string
   path: Prisma.PathCreateNestedOneWithoutRevisionsInput
   author?: Prisma.UserCreateNestedOneWithoutAuthoredRevisionsInput
+  mountedCollections?: Prisma.CollectionCreateNestedManyWithoutInstalledRevisionInput
   childRevisions?: Prisma.RevisionCreateNestedManyWithoutParentRevisionInput
   forkedPaths?: Prisma.PathCreateNestedManyWithoutForkedFromRevisionInput
   headOfPaths?: Prisma.PathCreateNestedManyWithoutHeadRevisionInput
@@ -1158,8 +1336,6 @@ export type RevisionCreateWithoutParentRevisionInput = {
   combineSource?: Prisma.CombineCreateNestedManyWithoutSourceRevisionInput
   combineBase?: Prisma.CombineCreateNestedManyWithoutBaseRevisionInput
   combineResult?: Prisma.CombineCreateNestedManyWithoutResultRevisionInput
-  releases?: Prisma.ReleaseCreateNestedManyWithoutSourceRevisionInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutRevisionInput
 }
 
 export type RevisionUncheckedCreateWithoutParentRevisionInput = {
@@ -1168,7 +1344,11 @@ export type RevisionUncheckedCreateWithoutParentRevisionInput = {
   authorId?: string | null
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   createdAt?: Date | string
+  mountedCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutInstalledRevisionInput
   childRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutParentRevisionInput
   forkedPaths?: Prisma.PathUncheckedCreateNestedManyWithoutForkedFromRevisionInput
   headOfPaths?: Prisma.PathUncheckedCreateNestedManyWithoutHeadRevisionInput
@@ -1177,8 +1357,6 @@ export type RevisionUncheckedCreateWithoutParentRevisionInput = {
   combineSource?: Prisma.CombineUncheckedCreateNestedManyWithoutSourceRevisionInput
   combineBase?: Prisma.CombineUncheckedCreateNestedManyWithoutBaseRevisionInput
   combineResult?: Prisma.CombineUncheckedCreateNestedManyWithoutResultRevisionInput
-  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutSourceRevisionInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutRevisionInput
 }
 
 export type RevisionCreateOrConnectWithoutParentRevisionInput = {
@@ -1206,9 +1384,13 @@ export type RevisionUpdateWithoutChildRevisionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   path?: Prisma.PathUpdateOneRequiredWithoutRevisionsNestedInput
   author?: Prisma.UserUpdateOneWithoutAuthoredRevisionsNestedInput
+  mountedCollections?: Prisma.CollectionUpdateManyWithoutInstalledRevisionNestedInput
   parentRevision?: Prisma.RevisionUpdateOneWithoutChildRevisionsNestedInput
   forkedPaths?: Prisma.PathUpdateManyWithoutForkedFromRevisionNestedInput
   headOfPaths?: Prisma.PathUpdateManyWithoutHeadRevisionNestedInput
@@ -1217,8 +1399,6 @@ export type RevisionUpdateWithoutChildRevisionsInput = {
   combineSource?: Prisma.CombineUpdateManyWithoutSourceRevisionNestedInput
   combineBase?: Prisma.CombineUpdateManyWithoutBaseRevisionNestedInput
   combineResult?: Prisma.CombineUpdateManyWithoutResultRevisionNestedInput
-  releases?: Prisma.ReleaseUpdateManyWithoutSourceRevisionNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutRevisionNestedInput
 }
 
 export type RevisionUncheckedUpdateWithoutChildRevisionsInput = {
@@ -1227,8 +1407,12 @@ export type RevisionUncheckedUpdateWithoutChildRevisionsInput = {
   authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   parentRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  mountedCollections?: Prisma.CollectionUncheckedUpdateManyWithoutInstalledRevisionNestedInput
   forkedPaths?: Prisma.PathUncheckedUpdateManyWithoutForkedFromRevisionNestedInput
   headOfPaths?: Prisma.PathUncheckedUpdateManyWithoutHeadRevisionNestedInput
   changes?: Prisma.RevisionChangeUncheckedUpdateManyWithoutRevisionNestedInput
@@ -1236,8 +1420,6 @@ export type RevisionUncheckedUpdateWithoutChildRevisionsInput = {
   combineSource?: Prisma.CombineUncheckedUpdateManyWithoutSourceRevisionNestedInput
   combineBase?: Prisma.CombineUncheckedUpdateManyWithoutBaseRevisionNestedInput
   combineResult?: Prisma.CombineUncheckedUpdateManyWithoutResultRevisionNestedInput
-  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutSourceRevisionNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutRevisionNestedInput
 }
 
 export type RevisionUpsertWithWhereUniqueWithoutParentRevisionInput = {
@@ -1260,9 +1442,13 @@ export type RevisionCreateWithoutChangesInput = {
   id?: string
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   createdAt?: Date | string
   path: Prisma.PathCreateNestedOneWithoutRevisionsInput
   author?: Prisma.UserCreateNestedOneWithoutAuthoredRevisionsInput
+  mountedCollections?: Prisma.CollectionCreateNestedManyWithoutInstalledRevisionInput
   parentRevision?: Prisma.RevisionCreateNestedOneWithoutChildRevisionsInput
   childRevisions?: Prisma.RevisionCreateNestedManyWithoutParentRevisionInput
   forkedPaths?: Prisma.PathCreateNestedManyWithoutForkedFromRevisionInput
@@ -1271,8 +1457,6 @@ export type RevisionCreateWithoutChangesInput = {
   combineSource?: Prisma.CombineCreateNestedManyWithoutSourceRevisionInput
   combineBase?: Prisma.CombineCreateNestedManyWithoutBaseRevisionInput
   combineResult?: Prisma.CombineCreateNestedManyWithoutResultRevisionInput
-  releases?: Prisma.ReleaseCreateNestedManyWithoutSourceRevisionInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutRevisionInput
 }
 
 export type RevisionUncheckedCreateWithoutChangesInput = {
@@ -1281,8 +1465,12 @@ export type RevisionUncheckedCreateWithoutChangesInput = {
   authorId?: string | null
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   parentRevisionId?: string | null
   createdAt?: Date | string
+  mountedCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutInstalledRevisionInput
   childRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutParentRevisionInput
   forkedPaths?: Prisma.PathUncheckedCreateNestedManyWithoutForkedFromRevisionInput
   headOfPaths?: Prisma.PathUncheckedCreateNestedManyWithoutHeadRevisionInput
@@ -1290,8 +1478,6 @@ export type RevisionUncheckedCreateWithoutChangesInput = {
   combineSource?: Prisma.CombineUncheckedCreateNestedManyWithoutSourceRevisionInput
   combineBase?: Prisma.CombineUncheckedCreateNestedManyWithoutBaseRevisionInput
   combineResult?: Prisma.CombineUncheckedCreateNestedManyWithoutResultRevisionInput
-  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutSourceRevisionInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutRevisionInput
 }
 
 export type RevisionCreateOrConnectWithoutChangesInput = {
@@ -1314,9 +1500,13 @@ export type RevisionUpdateWithoutChangesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   path?: Prisma.PathUpdateOneRequiredWithoutRevisionsNestedInput
   author?: Prisma.UserUpdateOneWithoutAuthoredRevisionsNestedInput
+  mountedCollections?: Prisma.CollectionUpdateManyWithoutInstalledRevisionNestedInput
   parentRevision?: Prisma.RevisionUpdateOneWithoutChildRevisionsNestedInput
   childRevisions?: Prisma.RevisionUpdateManyWithoutParentRevisionNestedInput
   forkedPaths?: Prisma.PathUpdateManyWithoutForkedFromRevisionNestedInput
@@ -1325,8 +1515,6 @@ export type RevisionUpdateWithoutChangesInput = {
   combineSource?: Prisma.CombineUpdateManyWithoutSourceRevisionNestedInput
   combineBase?: Prisma.CombineUpdateManyWithoutBaseRevisionNestedInput
   combineResult?: Prisma.CombineUpdateManyWithoutResultRevisionNestedInput
-  releases?: Prisma.ReleaseUpdateManyWithoutSourceRevisionNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutRevisionNestedInput
 }
 
 export type RevisionUncheckedUpdateWithoutChangesInput = {
@@ -1335,8 +1523,12 @@ export type RevisionUncheckedUpdateWithoutChangesInput = {
   authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   parentRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  mountedCollections?: Prisma.CollectionUncheckedUpdateManyWithoutInstalledRevisionNestedInput
   childRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutParentRevisionNestedInput
   forkedPaths?: Prisma.PathUncheckedUpdateManyWithoutForkedFromRevisionNestedInput
   headOfPaths?: Prisma.PathUncheckedUpdateManyWithoutHeadRevisionNestedInput
@@ -1344,17 +1536,19 @@ export type RevisionUncheckedUpdateWithoutChangesInput = {
   combineSource?: Prisma.CombineUncheckedUpdateManyWithoutSourceRevisionNestedInput
   combineBase?: Prisma.CombineUncheckedUpdateManyWithoutBaseRevisionNestedInput
   combineResult?: Prisma.CombineUncheckedUpdateManyWithoutResultRevisionNestedInput
-  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutSourceRevisionNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutRevisionNestedInput
 }
 
 export type RevisionCreateWithoutCombineTargetInput = {
   id?: string
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   createdAt?: Date | string
   path: Prisma.PathCreateNestedOneWithoutRevisionsInput
   author?: Prisma.UserCreateNestedOneWithoutAuthoredRevisionsInput
+  mountedCollections?: Prisma.CollectionCreateNestedManyWithoutInstalledRevisionInput
   parentRevision?: Prisma.RevisionCreateNestedOneWithoutChildRevisionsInput
   childRevisions?: Prisma.RevisionCreateNestedManyWithoutParentRevisionInput
   forkedPaths?: Prisma.PathCreateNestedManyWithoutForkedFromRevisionInput
@@ -1363,8 +1557,6 @@ export type RevisionCreateWithoutCombineTargetInput = {
   combineSource?: Prisma.CombineCreateNestedManyWithoutSourceRevisionInput
   combineBase?: Prisma.CombineCreateNestedManyWithoutBaseRevisionInput
   combineResult?: Prisma.CombineCreateNestedManyWithoutResultRevisionInput
-  releases?: Prisma.ReleaseCreateNestedManyWithoutSourceRevisionInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutRevisionInput
 }
 
 export type RevisionUncheckedCreateWithoutCombineTargetInput = {
@@ -1373,8 +1565,12 @@ export type RevisionUncheckedCreateWithoutCombineTargetInput = {
   authorId?: string | null
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   parentRevisionId?: string | null
   createdAt?: Date | string
+  mountedCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutInstalledRevisionInput
   childRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutParentRevisionInput
   forkedPaths?: Prisma.PathUncheckedCreateNestedManyWithoutForkedFromRevisionInput
   headOfPaths?: Prisma.PathUncheckedCreateNestedManyWithoutHeadRevisionInput
@@ -1382,8 +1578,6 @@ export type RevisionUncheckedCreateWithoutCombineTargetInput = {
   combineSource?: Prisma.CombineUncheckedCreateNestedManyWithoutSourceRevisionInput
   combineBase?: Prisma.CombineUncheckedCreateNestedManyWithoutBaseRevisionInput
   combineResult?: Prisma.CombineUncheckedCreateNestedManyWithoutResultRevisionInput
-  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutSourceRevisionInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutRevisionInput
 }
 
 export type RevisionCreateOrConnectWithoutCombineTargetInput = {
@@ -1395,9 +1589,13 @@ export type RevisionCreateWithoutCombineSourceInput = {
   id?: string
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   createdAt?: Date | string
   path: Prisma.PathCreateNestedOneWithoutRevisionsInput
   author?: Prisma.UserCreateNestedOneWithoutAuthoredRevisionsInput
+  mountedCollections?: Prisma.CollectionCreateNestedManyWithoutInstalledRevisionInput
   parentRevision?: Prisma.RevisionCreateNestedOneWithoutChildRevisionsInput
   childRevisions?: Prisma.RevisionCreateNestedManyWithoutParentRevisionInput
   forkedPaths?: Prisma.PathCreateNestedManyWithoutForkedFromRevisionInput
@@ -1406,8 +1604,6 @@ export type RevisionCreateWithoutCombineSourceInput = {
   combineTarget?: Prisma.CombineCreateNestedManyWithoutTargetRevisionInput
   combineBase?: Prisma.CombineCreateNestedManyWithoutBaseRevisionInput
   combineResult?: Prisma.CombineCreateNestedManyWithoutResultRevisionInput
-  releases?: Prisma.ReleaseCreateNestedManyWithoutSourceRevisionInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutRevisionInput
 }
 
 export type RevisionUncheckedCreateWithoutCombineSourceInput = {
@@ -1416,8 +1612,12 @@ export type RevisionUncheckedCreateWithoutCombineSourceInput = {
   authorId?: string | null
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   parentRevisionId?: string | null
   createdAt?: Date | string
+  mountedCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutInstalledRevisionInput
   childRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutParentRevisionInput
   forkedPaths?: Prisma.PathUncheckedCreateNestedManyWithoutForkedFromRevisionInput
   headOfPaths?: Prisma.PathUncheckedCreateNestedManyWithoutHeadRevisionInput
@@ -1425,8 +1625,6 @@ export type RevisionUncheckedCreateWithoutCombineSourceInput = {
   combineTarget?: Prisma.CombineUncheckedCreateNestedManyWithoutTargetRevisionInput
   combineBase?: Prisma.CombineUncheckedCreateNestedManyWithoutBaseRevisionInput
   combineResult?: Prisma.CombineUncheckedCreateNestedManyWithoutResultRevisionInput
-  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutSourceRevisionInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutRevisionInput
 }
 
 export type RevisionCreateOrConnectWithoutCombineSourceInput = {
@@ -1438,9 +1636,13 @@ export type RevisionCreateWithoutCombineBaseInput = {
   id?: string
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   createdAt?: Date | string
   path: Prisma.PathCreateNestedOneWithoutRevisionsInput
   author?: Prisma.UserCreateNestedOneWithoutAuthoredRevisionsInput
+  mountedCollections?: Prisma.CollectionCreateNestedManyWithoutInstalledRevisionInput
   parentRevision?: Prisma.RevisionCreateNestedOneWithoutChildRevisionsInput
   childRevisions?: Prisma.RevisionCreateNestedManyWithoutParentRevisionInput
   forkedPaths?: Prisma.PathCreateNestedManyWithoutForkedFromRevisionInput
@@ -1449,8 +1651,6 @@ export type RevisionCreateWithoutCombineBaseInput = {
   combineTarget?: Prisma.CombineCreateNestedManyWithoutTargetRevisionInput
   combineSource?: Prisma.CombineCreateNestedManyWithoutSourceRevisionInput
   combineResult?: Prisma.CombineCreateNestedManyWithoutResultRevisionInput
-  releases?: Prisma.ReleaseCreateNestedManyWithoutSourceRevisionInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutRevisionInput
 }
 
 export type RevisionUncheckedCreateWithoutCombineBaseInput = {
@@ -1459,8 +1659,12 @@ export type RevisionUncheckedCreateWithoutCombineBaseInput = {
   authorId?: string | null
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   parentRevisionId?: string | null
   createdAt?: Date | string
+  mountedCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutInstalledRevisionInput
   childRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutParentRevisionInput
   forkedPaths?: Prisma.PathUncheckedCreateNestedManyWithoutForkedFromRevisionInput
   headOfPaths?: Prisma.PathUncheckedCreateNestedManyWithoutHeadRevisionInput
@@ -1468,8 +1672,6 @@ export type RevisionUncheckedCreateWithoutCombineBaseInput = {
   combineTarget?: Prisma.CombineUncheckedCreateNestedManyWithoutTargetRevisionInput
   combineSource?: Prisma.CombineUncheckedCreateNestedManyWithoutSourceRevisionInput
   combineResult?: Prisma.CombineUncheckedCreateNestedManyWithoutResultRevisionInput
-  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutSourceRevisionInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutRevisionInput
 }
 
 export type RevisionCreateOrConnectWithoutCombineBaseInput = {
@@ -1481,9 +1683,13 @@ export type RevisionCreateWithoutCombineResultInput = {
   id?: string
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   createdAt?: Date | string
   path: Prisma.PathCreateNestedOneWithoutRevisionsInput
   author?: Prisma.UserCreateNestedOneWithoutAuthoredRevisionsInput
+  mountedCollections?: Prisma.CollectionCreateNestedManyWithoutInstalledRevisionInput
   parentRevision?: Prisma.RevisionCreateNestedOneWithoutChildRevisionsInput
   childRevisions?: Prisma.RevisionCreateNestedManyWithoutParentRevisionInput
   forkedPaths?: Prisma.PathCreateNestedManyWithoutForkedFromRevisionInput
@@ -1492,8 +1698,6 @@ export type RevisionCreateWithoutCombineResultInput = {
   combineTarget?: Prisma.CombineCreateNestedManyWithoutTargetRevisionInput
   combineSource?: Prisma.CombineCreateNestedManyWithoutSourceRevisionInput
   combineBase?: Prisma.CombineCreateNestedManyWithoutBaseRevisionInput
-  releases?: Prisma.ReleaseCreateNestedManyWithoutSourceRevisionInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutRevisionInput
 }
 
 export type RevisionUncheckedCreateWithoutCombineResultInput = {
@@ -1502,8 +1706,12 @@ export type RevisionUncheckedCreateWithoutCombineResultInput = {
   authorId?: string | null
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   parentRevisionId?: string | null
   createdAt?: Date | string
+  mountedCollections?: Prisma.CollectionUncheckedCreateNestedManyWithoutInstalledRevisionInput
   childRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutParentRevisionInput
   forkedPaths?: Prisma.PathUncheckedCreateNestedManyWithoutForkedFromRevisionInput
   headOfPaths?: Prisma.PathUncheckedCreateNestedManyWithoutHeadRevisionInput
@@ -1511,8 +1719,6 @@ export type RevisionUncheckedCreateWithoutCombineResultInput = {
   combineTarget?: Prisma.CombineUncheckedCreateNestedManyWithoutTargetRevisionInput
   combineSource?: Prisma.CombineUncheckedCreateNestedManyWithoutSourceRevisionInput
   combineBase?: Prisma.CombineUncheckedCreateNestedManyWithoutBaseRevisionInput
-  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutSourceRevisionInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutRevisionInput
 }
 
 export type RevisionCreateOrConnectWithoutCombineResultInput = {
@@ -1535,9 +1741,13 @@ export type RevisionUpdateWithoutCombineTargetInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   path?: Prisma.PathUpdateOneRequiredWithoutRevisionsNestedInput
   author?: Prisma.UserUpdateOneWithoutAuthoredRevisionsNestedInput
+  mountedCollections?: Prisma.CollectionUpdateManyWithoutInstalledRevisionNestedInput
   parentRevision?: Prisma.RevisionUpdateOneWithoutChildRevisionsNestedInput
   childRevisions?: Prisma.RevisionUpdateManyWithoutParentRevisionNestedInput
   forkedPaths?: Prisma.PathUpdateManyWithoutForkedFromRevisionNestedInput
@@ -1546,8 +1756,6 @@ export type RevisionUpdateWithoutCombineTargetInput = {
   combineSource?: Prisma.CombineUpdateManyWithoutSourceRevisionNestedInput
   combineBase?: Prisma.CombineUpdateManyWithoutBaseRevisionNestedInput
   combineResult?: Prisma.CombineUpdateManyWithoutResultRevisionNestedInput
-  releases?: Prisma.ReleaseUpdateManyWithoutSourceRevisionNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutRevisionNestedInput
 }
 
 export type RevisionUncheckedUpdateWithoutCombineTargetInput = {
@@ -1556,8 +1764,12 @@ export type RevisionUncheckedUpdateWithoutCombineTargetInput = {
   authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   parentRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  mountedCollections?: Prisma.CollectionUncheckedUpdateManyWithoutInstalledRevisionNestedInput
   childRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutParentRevisionNestedInput
   forkedPaths?: Prisma.PathUncheckedUpdateManyWithoutForkedFromRevisionNestedInput
   headOfPaths?: Prisma.PathUncheckedUpdateManyWithoutHeadRevisionNestedInput
@@ -1565,8 +1777,6 @@ export type RevisionUncheckedUpdateWithoutCombineTargetInput = {
   combineSource?: Prisma.CombineUncheckedUpdateManyWithoutSourceRevisionNestedInput
   combineBase?: Prisma.CombineUncheckedUpdateManyWithoutBaseRevisionNestedInput
   combineResult?: Prisma.CombineUncheckedUpdateManyWithoutResultRevisionNestedInput
-  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutSourceRevisionNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutRevisionNestedInput
 }
 
 export type RevisionUpsertWithoutCombineSourceInput = {
@@ -1584,9 +1794,13 @@ export type RevisionUpdateWithoutCombineSourceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   path?: Prisma.PathUpdateOneRequiredWithoutRevisionsNestedInput
   author?: Prisma.UserUpdateOneWithoutAuthoredRevisionsNestedInput
+  mountedCollections?: Prisma.CollectionUpdateManyWithoutInstalledRevisionNestedInput
   parentRevision?: Prisma.RevisionUpdateOneWithoutChildRevisionsNestedInput
   childRevisions?: Prisma.RevisionUpdateManyWithoutParentRevisionNestedInput
   forkedPaths?: Prisma.PathUpdateManyWithoutForkedFromRevisionNestedInput
@@ -1595,8 +1809,6 @@ export type RevisionUpdateWithoutCombineSourceInput = {
   combineTarget?: Prisma.CombineUpdateManyWithoutTargetRevisionNestedInput
   combineBase?: Prisma.CombineUpdateManyWithoutBaseRevisionNestedInput
   combineResult?: Prisma.CombineUpdateManyWithoutResultRevisionNestedInput
-  releases?: Prisma.ReleaseUpdateManyWithoutSourceRevisionNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutRevisionNestedInput
 }
 
 export type RevisionUncheckedUpdateWithoutCombineSourceInput = {
@@ -1605,8 +1817,12 @@ export type RevisionUncheckedUpdateWithoutCombineSourceInput = {
   authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   parentRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  mountedCollections?: Prisma.CollectionUncheckedUpdateManyWithoutInstalledRevisionNestedInput
   childRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutParentRevisionNestedInput
   forkedPaths?: Prisma.PathUncheckedUpdateManyWithoutForkedFromRevisionNestedInput
   headOfPaths?: Prisma.PathUncheckedUpdateManyWithoutHeadRevisionNestedInput
@@ -1614,8 +1830,6 @@ export type RevisionUncheckedUpdateWithoutCombineSourceInput = {
   combineTarget?: Prisma.CombineUncheckedUpdateManyWithoutTargetRevisionNestedInput
   combineBase?: Prisma.CombineUncheckedUpdateManyWithoutBaseRevisionNestedInput
   combineResult?: Prisma.CombineUncheckedUpdateManyWithoutResultRevisionNestedInput
-  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutSourceRevisionNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutRevisionNestedInput
 }
 
 export type RevisionUpsertWithoutCombineBaseInput = {
@@ -1633,9 +1847,13 @@ export type RevisionUpdateWithoutCombineBaseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   path?: Prisma.PathUpdateOneRequiredWithoutRevisionsNestedInput
   author?: Prisma.UserUpdateOneWithoutAuthoredRevisionsNestedInput
+  mountedCollections?: Prisma.CollectionUpdateManyWithoutInstalledRevisionNestedInput
   parentRevision?: Prisma.RevisionUpdateOneWithoutChildRevisionsNestedInput
   childRevisions?: Prisma.RevisionUpdateManyWithoutParentRevisionNestedInput
   forkedPaths?: Prisma.PathUpdateManyWithoutForkedFromRevisionNestedInput
@@ -1644,8 +1862,6 @@ export type RevisionUpdateWithoutCombineBaseInput = {
   combineTarget?: Prisma.CombineUpdateManyWithoutTargetRevisionNestedInput
   combineSource?: Prisma.CombineUpdateManyWithoutSourceRevisionNestedInput
   combineResult?: Prisma.CombineUpdateManyWithoutResultRevisionNestedInput
-  releases?: Prisma.ReleaseUpdateManyWithoutSourceRevisionNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutRevisionNestedInput
 }
 
 export type RevisionUncheckedUpdateWithoutCombineBaseInput = {
@@ -1654,8 +1870,12 @@ export type RevisionUncheckedUpdateWithoutCombineBaseInput = {
   authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   parentRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  mountedCollections?: Prisma.CollectionUncheckedUpdateManyWithoutInstalledRevisionNestedInput
   childRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutParentRevisionNestedInput
   forkedPaths?: Prisma.PathUncheckedUpdateManyWithoutForkedFromRevisionNestedInput
   headOfPaths?: Prisma.PathUncheckedUpdateManyWithoutHeadRevisionNestedInput
@@ -1663,8 +1883,6 @@ export type RevisionUncheckedUpdateWithoutCombineBaseInput = {
   combineTarget?: Prisma.CombineUncheckedUpdateManyWithoutTargetRevisionNestedInput
   combineSource?: Prisma.CombineUncheckedUpdateManyWithoutSourceRevisionNestedInput
   combineResult?: Prisma.CombineUncheckedUpdateManyWithoutResultRevisionNestedInput
-  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutSourceRevisionNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutRevisionNestedInput
 }
 
 export type RevisionUpsertWithoutCombineResultInput = {
@@ -1682,9 +1900,13 @@ export type RevisionUpdateWithoutCombineResultInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   path?: Prisma.PathUpdateOneRequiredWithoutRevisionsNestedInput
   author?: Prisma.UserUpdateOneWithoutAuthoredRevisionsNestedInput
+  mountedCollections?: Prisma.CollectionUpdateManyWithoutInstalledRevisionNestedInput
   parentRevision?: Prisma.RevisionUpdateOneWithoutChildRevisionsNestedInput
   childRevisions?: Prisma.RevisionUpdateManyWithoutParentRevisionNestedInput
   forkedPaths?: Prisma.PathUpdateManyWithoutForkedFromRevisionNestedInput
@@ -1693,8 +1915,6 @@ export type RevisionUpdateWithoutCombineResultInput = {
   combineTarget?: Prisma.CombineUpdateManyWithoutTargetRevisionNestedInput
   combineSource?: Prisma.CombineUpdateManyWithoutSourceRevisionNestedInput
   combineBase?: Prisma.CombineUpdateManyWithoutBaseRevisionNestedInput
-  releases?: Prisma.ReleaseUpdateManyWithoutSourceRevisionNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutRevisionNestedInput
 }
 
 export type RevisionUncheckedUpdateWithoutCombineResultInput = {
@@ -1703,8 +1923,12 @@ export type RevisionUncheckedUpdateWithoutCombineResultInput = {
   authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   parentRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  mountedCollections?: Prisma.CollectionUncheckedUpdateManyWithoutInstalledRevisionNestedInput
   childRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutParentRevisionNestedInput
   forkedPaths?: Prisma.PathUncheckedUpdateManyWithoutForkedFromRevisionNestedInput
   headOfPaths?: Prisma.PathUncheckedUpdateManyWithoutHeadRevisionNestedInput
@@ -1712,192 +1936,6 @@ export type RevisionUncheckedUpdateWithoutCombineResultInput = {
   combineTarget?: Prisma.CombineUncheckedUpdateManyWithoutTargetRevisionNestedInput
   combineSource?: Prisma.CombineUncheckedUpdateManyWithoutSourceRevisionNestedInput
   combineBase?: Prisma.CombineUncheckedUpdateManyWithoutBaseRevisionNestedInput
-  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutSourceRevisionNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutRevisionNestedInput
-}
-
-export type RevisionCreateWithoutReleasesInput = {
-  id?: string
-  number: number
-  message: string
-  createdAt?: Date | string
-  path: Prisma.PathCreateNestedOneWithoutRevisionsInput
-  author?: Prisma.UserCreateNestedOneWithoutAuthoredRevisionsInput
-  parentRevision?: Prisma.RevisionCreateNestedOneWithoutChildRevisionsInput
-  childRevisions?: Prisma.RevisionCreateNestedManyWithoutParentRevisionInput
-  forkedPaths?: Prisma.PathCreateNestedManyWithoutForkedFromRevisionInput
-  headOfPaths?: Prisma.PathCreateNestedManyWithoutHeadRevisionInput
-  changes?: Prisma.RevisionChangeCreateNestedManyWithoutRevisionInput
-  combineTarget?: Prisma.CombineCreateNestedManyWithoutTargetRevisionInput
-  combineSource?: Prisma.CombineCreateNestedManyWithoutSourceRevisionInput
-  combineBase?: Prisma.CombineCreateNestedManyWithoutBaseRevisionInput
-  combineResult?: Prisma.CombineCreateNestedManyWithoutResultRevisionInput
-  bountySubmissions?: Prisma.BountySubmissionCreateNestedManyWithoutRevisionInput
-}
-
-export type RevisionUncheckedCreateWithoutReleasesInput = {
-  id?: string
-  pathId: string
-  authorId?: string | null
-  number: number
-  message: string
-  parentRevisionId?: string | null
-  createdAt?: Date | string
-  childRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutParentRevisionInput
-  forkedPaths?: Prisma.PathUncheckedCreateNestedManyWithoutForkedFromRevisionInput
-  headOfPaths?: Prisma.PathUncheckedCreateNestedManyWithoutHeadRevisionInput
-  changes?: Prisma.RevisionChangeUncheckedCreateNestedManyWithoutRevisionInput
-  combineTarget?: Prisma.CombineUncheckedCreateNestedManyWithoutTargetRevisionInput
-  combineSource?: Prisma.CombineUncheckedCreateNestedManyWithoutSourceRevisionInput
-  combineBase?: Prisma.CombineUncheckedCreateNestedManyWithoutBaseRevisionInput
-  combineResult?: Prisma.CombineUncheckedCreateNestedManyWithoutResultRevisionInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedCreateNestedManyWithoutRevisionInput
-}
-
-export type RevisionCreateOrConnectWithoutReleasesInput = {
-  where: Prisma.RevisionWhereUniqueInput
-  create: Prisma.XOR<Prisma.RevisionCreateWithoutReleasesInput, Prisma.RevisionUncheckedCreateWithoutReleasesInput>
-}
-
-export type RevisionUpsertWithoutReleasesInput = {
-  update: Prisma.XOR<Prisma.RevisionUpdateWithoutReleasesInput, Prisma.RevisionUncheckedUpdateWithoutReleasesInput>
-  create: Prisma.XOR<Prisma.RevisionCreateWithoutReleasesInput, Prisma.RevisionUncheckedCreateWithoutReleasesInput>
-  where?: Prisma.RevisionWhereInput
-}
-
-export type RevisionUpdateToOneWithWhereWithoutReleasesInput = {
-  where?: Prisma.RevisionWhereInput
-  data: Prisma.XOR<Prisma.RevisionUpdateWithoutReleasesInput, Prisma.RevisionUncheckedUpdateWithoutReleasesInput>
-}
-
-export type RevisionUpdateWithoutReleasesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  number?: Prisma.IntFieldUpdateOperationsInput | number
-  message?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  path?: Prisma.PathUpdateOneRequiredWithoutRevisionsNestedInput
-  author?: Prisma.UserUpdateOneWithoutAuthoredRevisionsNestedInput
-  parentRevision?: Prisma.RevisionUpdateOneWithoutChildRevisionsNestedInput
-  childRevisions?: Prisma.RevisionUpdateManyWithoutParentRevisionNestedInput
-  forkedPaths?: Prisma.PathUpdateManyWithoutForkedFromRevisionNestedInput
-  headOfPaths?: Prisma.PathUpdateManyWithoutHeadRevisionNestedInput
-  changes?: Prisma.RevisionChangeUpdateManyWithoutRevisionNestedInput
-  combineTarget?: Prisma.CombineUpdateManyWithoutTargetRevisionNestedInput
-  combineSource?: Prisma.CombineUpdateManyWithoutSourceRevisionNestedInput
-  combineBase?: Prisma.CombineUpdateManyWithoutBaseRevisionNestedInput
-  combineResult?: Prisma.CombineUpdateManyWithoutResultRevisionNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutRevisionNestedInput
-}
-
-export type RevisionUncheckedUpdateWithoutReleasesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  pathId?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  number?: Prisma.IntFieldUpdateOperationsInput | number
-  message?: Prisma.StringFieldUpdateOperationsInput | string
-  parentRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  childRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutParentRevisionNestedInput
-  forkedPaths?: Prisma.PathUncheckedUpdateManyWithoutForkedFromRevisionNestedInput
-  headOfPaths?: Prisma.PathUncheckedUpdateManyWithoutHeadRevisionNestedInput
-  changes?: Prisma.RevisionChangeUncheckedUpdateManyWithoutRevisionNestedInput
-  combineTarget?: Prisma.CombineUncheckedUpdateManyWithoutTargetRevisionNestedInput
-  combineSource?: Prisma.CombineUncheckedUpdateManyWithoutSourceRevisionNestedInput
-  combineBase?: Prisma.CombineUncheckedUpdateManyWithoutBaseRevisionNestedInput
-  combineResult?: Prisma.CombineUncheckedUpdateManyWithoutResultRevisionNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutRevisionNestedInput
-}
-
-export type RevisionCreateWithoutBountySubmissionsInput = {
-  id?: string
-  number: number
-  message: string
-  createdAt?: Date | string
-  path: Prisma.PathCreateNestedOneWithoutRevisionsInput
-  author?: Prisma.UserCreateNestedOneWithoutAuthoredRevisionsInput
-  parentRevision?: Prisma.RevisionCreateNestedOneWithoutChildRevisionsInput
-  childRevisions?: Prisma.RevisionCreateNestedManyWithoutParentRevisionInput
-  forkedPaths?: Prisma.PathCreateNestedManyWithoutForkedFromRevisionInput
-  headOfPaths?: Prisma.PathCreateNestedManyWithoutHeadRevisionInput
-  changes?: Prisma.RevisionChangeCreateNestedManyWithoutRevisionInput
-  combineTarget?: Prisma.CombineCreateNestedManyWithoutTargetRevisionInput
-  combineSource?: Prisma.CombineCreateNestedManyWithoutSourceRevisionInput
-  combineBase?: Prisma.CombineCreateNestedManyWithoutBaseRevisionInput
-  combineResult?: Prisma.CombineCreateNestedManyWithoutResultRevisionInput
-  releases?: Prisma.ReleaseCreateNestedManyWithoutSourceRevisionInput
-}
-
-export type RevisionUncheckedCreateWithoutBountySubmissionsInput = {
-  id?: string
-  pathId: string
-  authorId?: string | null
-  number: number
-  message: string
-  parentRevisionId?: string | null
-  createdAt?: Date | string
-  childRevisions?: Prisma.RevisionUncheckedCreateNestedManyWithoutParentRevisionInput
-  forkedPaths?: Prisma.PathUncheckedCreateNestedManyWithoutForkedFromRevisionInput
-  headOfPaths?: Prisma.PathUncheckedCreateNestedManyWithoutHeadRevisionInput
-  changes?: Prisma.RevisionChangeUncheckedCreateNestedManyWithoutRevisionInput
-  combineTarget?: Prisma.CombineUncheckedCreateNestedManyWithoutTargetRevisionInput
-  combineSource?: Prisma.CombineUncheckedCreateNestedManyWithoutSourceRevisionInput
-  combineBase?: Prisma.CombineUncheckedCreateNestedManyWithoutBaseRevisionInput
-  combineResult?: Prisma.CombineUncheckedCreateNestedManyWithoutResultRevisionInput
-  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutSourceRevisionInput
-}
-
-export type RevisionCreateOrConnectWithoutBountySubmissionsInput = {
-  where: Prisma.RevisionWhereUniqueInput
-  create: Prisma.XOR<Prisma.RevisionCreateWithoutBountySubmissionsInput, Prisma.RevisionUncheckedCreateWithoutBountySubmissionsInput>
-}
-
-export type RevisionUpsertWithoutBountySubmissionsInput = {
-  update: Prisma.XOR<Prisma.RevisionUpdateWithoutBountySubmissionsInput, Prisma.RevisionUncheckedUpdateWithoutBountySubmissionsInput>
-  create: Prisma.XOR<Prisma.RevisionCreateWithoutBountySubmissionsInput, Prisma.RevisionUncheckedCreateWithoutBountySubmissionsInput>
-  where?: Prisma.RevisionWhereInput
-}
-
-export type RevisionUpdateToOneWithWhereWithoutBountySubmissionsInput = {
-  where?: Prisma.RevisionWhereInput
-  data: Prisma.XOR<Prisma.RevisionUpdateWithoutBountySubmissionsInput, Prisma.RevisionUncheckedUpdateWithoutBountySubmissionsInput>
-}
-
-export type RevisionUpdateWithoutBountySubmissionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  number?: Prisma.IntFieldUpdateOperationsInput | number
-  message?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  path?: Prisma.PathUpdateOneRequiredWithoutRevisionsNestedInput
-  author?: Prisma.UserUpdateOneWithoutAuthoredRevisionsNestedInput
-  parentRevision?: Prisma.RevisionUpdateOneWithoutChildRevisionsNestedInput
-  childRevisions?: Prisma.RevisionUpdateManyWithoutParentRevisionNestedInput
-  forkedPaths?: Prisma.PathUpdateManyWithoutForkedFromRevisionNestedInput
-  headOfPaths?: Prisma.PathUpdateManyWithoutHeadRevisionNestedInput
-  changes?: Prisma.RevisionChangeUpdateManyWithoutRevisionNestedInput
-  combineTarget?: Prisma.CombineUpdateManyWithoutTargetRevisionNestedInput
-  combineSource?: Prisma.CombineUpdateManyWithoutSourceRevisionNestedInput
-  combineBase?: Prisma.CombineUpdateManyWithoutBaseRevisionNestedInput
-  combineResult?: Prisma.CombineUpdateManyWithoutResultRevisionNestedInput
-  releases?: Prisma.ReleaseUpdateManyWithoutSourceRevisionNestedInput
-}
-
-export type RevisionUncheckedUpdateWithoutBountySubmissionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  pathId?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  number?: Prisma.IntFieldUpdateOperationsInput | number
-  message?: Prisma.StringFieldUpdateOperationsInput | string
-  parentRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  childRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutParentRevisionNestedInput
-  forkedPaths?: Prisma.PathUncheckedUpdateManyWithoutForkedFromRevisionNestedInput
-  headOfPaths?: Prisma.PathUncheckedUpdateManyWithoutHeadRevisionNestedInput
-  changes?: Prisma.RevisionChangeUncheckedUpdateManyWithoutRevisionNestedInput
-  combineTarget?: Prisma.CombineUncheckedUpdateManyWithoutTargetRevisionNestedInput
-  combineSource?: Prisma.CombineUncheckedUpdateManyWithoutSourceRevisionNestedInput
-  combineBase?: Prisma.CombineUncheckedUpdateManyWithoutBaseRevisionNestedInput
-  combineResult?: Prisma.CombineUncheckedUpdateManyWithoutResultRevisionNestedInput
-  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutSourceRevisionNestedInput
 }
 
 export type RevisionCreateManyAuthorInput = {
@@ -1905,6 +1943,9 @@ export type RevisionCreateManyAuthorInput = {
   pathId: string
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   parentRevisionId?: string | null
   createdAt?: Date | string
 }
@@ -1913,8 +1954,12 @@ export type RevisionUpdateWithoutAuthorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   path?: Prisma.PathUpdateOneRequiredWithoutRevisionsNestedInput
+  mountedCollections?: Prisma.CollectionUpdateManyWithoutInstalledRevisionNestedInput
   parentRevision?: Prisma.RevisionUpdateOneWithoutChildRevisionsNestedInput
   childRevisions?: Prisma.RevisionUpdateManyWithoutParentRevisionNestedInput
   forkedPaths?: Prisma.PathUpdateManyWithoutForkedFromRevisionNestedInput
@@ -1924,8 +1969,6 @@ export type RevisionUpdateWithoutAuthorInput = {
   combineSource?: Prisma.CombineUpdateManyWithoutSourceRevisionNestedInput
   combineBase?: Prisma.CombineUpdateManyWithoutBaseRevisionNestedInput
   combineResult?: Prisma.CombineUpdateManyWithoutResultRevisionNestedInput
-  releases?: Prisma.ReleaseUpdateManyWithoutSourceRevisionNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutRevisionNestedInput
 }
 
 export type RevisionUncheckedUpdateWithoutAuthorInput = {
@@ -1933,8 +1976,12 @@ export type RevisionUncheckedUpdateWithoutAuthorInput = {
   pathId?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   parentRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  mountedCollections?: Prisma.CollectionUncheckedUpdateManyWithoutInstalledRevisionNestedInput
   childRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutParentRevisionNestedInput
   forkedPaths?: Prisma.PathUncheckedUpdateManyWithoutForkedFromRevisionNestedInput
   headOfPaths?: Prisma.PathUncheckedUpdateManyWithoutHeadRevisionNestedInput
@@ -1943,8 +1990,6 @@ export type RevisionUncheckedUpdateWithoutAuthorInput = {
   combineSource?: Prisma.CombineUncheckedUpdateManyWithoutSourceRevisionNestedInput
   combineBase?: Prisma.CombineUncheckedUpdateManyWithoutBaseRevisionNestedInput
   combineResult?: Prisma.CombineUncheckedUpdateManyWithoutResultRevisionNestedInput
-  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutSourceRevisionNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutRevisionNestedInput
 }
 
 export type RevisionUncheckedUpdateManyWithoutAuthorInput = {
@@ -1952,6 +1997,9 @@ export type RevisionUncheckedUpdateManyWithoutAuthorInput = {
   pathId?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   parentRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1961,6 +2009,9 @@ export type RevisionCreateManyPathInput = {
   authorId?: string | null
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   parentRevisionId?: string | null
   createdAt?: Date | string
 }
@@ -1969,8 +2020,12 @@ export type RevisionUpdateWithoutPathInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   author?: Prisma.UserUpdateOneWithoutAuthoredRevisionsNestedInput
+  mountedCollections?: Prisma.CollectionUpdateManyWithoutInstalledRevisionNestedInput
   parentRevision?: Prisma.RevisionUpdateOneWithoutChildRevisionsNestedInput
   childRevisions?: Prisma.RevisionUpdateManyWithoutParentRevisionNestedInput
   forkedPaths?: Prisma.PathUpdateManyWithoutForkedFromRevisionNestedInput
@@ -1980,8 +2035,6 @@ export type RevisionUpdateWithoutPathInput = {
   combineSource?: Prisma.CombineUpdateManyWithoutSourceRevisionNestedInput
   combineBase?: Prisma.CombineUpdateManyWithoutBaseRevisionNestedInput
   combineResult?: Prisma.CombineUpdateManyWithoutResultRevisionNestedInput
-  releases?: Prisma.ReleaseUpdateManyWithoutSourceRevisionNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutRevisionNestedInput
 }
 
 export type RevisionUncheckedUpdateWithoutPathInput = {
@@ -1989,8 +2042,12 @@ export type RevisionUncheckedUpdateWithoutPathInput = {
   authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   parentRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  mountedCollections?: Prisma.CollectionUncheckedUpdateManyWithoutInstalledRevisionNestedInput
   childRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutParentRevisionNestedInput
   forkedPaths?: Prisma.PathUncheckedUpdateManyWithoutForkedFromRevisionNestedInput
   headOfPaths?: Prisma.PathUncheckedUpdateManyWithoutHeadRevisionNestedInput
@@ -1999,8 +2056,6 @@ export type RevisionUncheckedUpdateWithoutPathInput = {
   combineSource?: Prisma.CombineUncheckedUpdateManyWithoutSourceRevisionNestedInput
   combineBase?: Prisma.CombineUncheckedUpdateManyWithoutBaseRevisionNestedInput
   combineResult?: Prisma.CombineUncheckedUpdateManyWithoutResultRevisionNestedInput
-  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutSourceRevisionNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutRevisionNestedInput
 }
 
 export type RevisionUncheckedUpdateManyWithoutPathInput = {
@@ -2008,6 +2063,9 @@ export type RevisionUncheckedUpdateManyWithoutPathInput = {
   authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   parentRevisionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -2018,6 +2076,9 @@ export type RevisionCreateManyParentRevisionInput = {
   authorId?: string | null
   number: number
   message: string
+  releaseVersion?: string | null
+  releaseNotes?: string | null
+  releaseAt?: Date | string | null
   createdAt?: Date | string
 }
 
@@ -2025,9 +2086,13 @@ export type RevisionUpdateWithoutParentRevisionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   path?: Prisma.PathUpdateOneRequiredWithoutRevisionsNestedInput
   author?: Prisma.UserUpdateOneWithoutAuthoredRevisionsNestedInput
+  mountedCollections?: Prisma.CollectionUpdateManyWithoutInstalledRevisionNestedInput
   childRevisions?: Prisma.RevisionUpdateManyWithoutParentRevisionNestedInput
   forkedPaths?: Prisma.PathUpdateManyWithoutForkedFromRevisionNestedInput
   headOfPaths?: Prisma.PathUpdateManyWithoutHeadRevisionNestedInput
@@ -2036,8 +2101,6 @@ export type RevisionUpdateWithoutParentRevisionInput = {
   combineSource?: Prisma.CombineUpdateManyWithoutSourceRevisionNestedInput
   combineBase?: Prisma.CombineUpdateManyWithoutBaseRevisionNestedInput
   combineResult?: Prisma.CombineUpdateManyWithoutResultRevisionNestedInput
-  releases?: Prisma.ReleaseUpdateManyWithoutSourceRevisionNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUpdateManyWithoutRevisionNestedInput
 }
 
 export type RevisionUncheckedUpdateWithoutParentRevisionInput = {
@@ -2046,7 +2109,11 @@ export type RevisionUncheckedUpdateWithoutParentRevisionInput = {
   authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  mountedCollections?: Prisma.CollectionUncheckedUpdateManyWithoutInstalledRevisionNestedInput
   childRevisions?: Prisma.RevisionUncheckedUpdateManyWithoutParentRevisionNestedInput
   forkedPaths?: Prisma.PathUncheckedUpdateManyWithoutForkedFromRevisionNestedInput
   headOfPaths?: Prisma.PathUncheckedUpdateManyWithoutHeadRevisionNestedInput
@@ -2055,8 +2122,6 @@ export type RevisionUncheckedUpdateWithoutParentRevisionInput = {
   combineSource?: Prisma.CombineUncheckedUpdateManyWithoutSourceRevisionNestedInput
   combineBase?: Prisma.CombineUncheckedUpdateManyWithoutBaseRevisionNestedInput
   combineResult?: Prisma.CombineUncheckedUpdateManyWithoutResultRevisionNestedInput
-  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutSourceRevisionNestedInput
-  bountySubmissions?: Prisma.BountySubmissionUncheckedUpdateManyWithoutRevisionNestedInput
 }
 
 export type RevisionUncheckedUpdateManyWithoutParentRevisionInput = {
@@ -2065,6 +2130,9 @@ export type RevisionUncheckedUpdateManyWithoutParentRevisionInput = {
   authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   number?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  releaseAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -2074,6 +2142,7 @@ export type RevisionUncheckedUpdateManyWithoutParentRevisionInput = {
  */
 
 export type RevisionCountOutputType = {
+  mountedCollections: number
   childRevisions: number
   forkedPaths: number
   headOfPaths: number
@@ -2082,11 +2151,10 @@ export type RevisionCountOutputType = {
   combineSource: number
   combineBase: number
   combineResult: number
-  releases: number
-  bountySubmissions: number
 }
 
 export type RevisionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  mountedCollections?: boolean | RevisionCountOutputTypeCountMountedCollectionsArgs
   childRevisions?: boolean | RevisionCountOutputTypeCountChildRevisionsArgs
   forkedPaths?: boolean | RevisionCountOutputTypeCountForkedPathsArgs
   headOfPaths?: boolean | RevisionCountOutputTypeCountHeadOfPathsArgs
@@ -2095,8 +2163,6 @@ export type RevisionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensio
   combineSource?: boolean | RevisionCountOutputTypeCountCombineSourceArgs
   combineBase?: boolean | RevisionCountOutputTypeCountCombineBaseArgs
   combineResult?: boolean | RevisionCountOutputTypeCountCombineResultArgs
-  releases?: boolean | RevisionCountOutputTypeCountReleasesArgs
-  bountySubmissions?: boolean | RevisionCountOutputTypeCountBountySubmissionsArgs
 }
 
 /**
@@ -2107,6 +2173,13 @@ export type RevisionCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ext
    * Select specific fields to fetch from the RevisionCountOutputType
    */
   select?: Prisma.RevisionCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * RevisionCountOutputType without action
+ */
+export type RevisionCountOutputTypeCountMountedCollectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CollectionWhereInput
 }
 
 /**
@@ -2165,20 +2238,6 @@ export type RevisionCountOutputTypeCountCombineResultArgs<ExtArgs extends runtim
   where?: Prisma.CombineWhereInput
 }
 
-/**
- * RevisionCountOutputType without action
- */
-export type RevisionCountOutputTypeCountReleasesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ReleaseWhereInput
-}
-
-/**
- * RevisionCountOutputType without action
- */
-export type RevisionCountOutputTypeCountBountySubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.BountySubmissionWhereInput
-}
-
 
 export type RevisionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2186,10 +2245,14 @@ export type RevisionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   authorId?: boolean
   number?: boolean
   message?: boolean
+  releaseVersion?: boolean
+  releaseNotes?: boolean
+  releaseAt?: boolean
   parentRevisionId?: boolean
   createdAt?: boolean
   path?: boolean | Prisma.PathDefaultArgs<ExtArgs>
   author?: boolean | Prisma.Revision$authorArgs<ExtArgs>
+  mountedCollections?: boolean | Prisma.Revision$mountedCollectionsArgs<ExtArgs>
   parentRevision?: boolean | Prisma.Revision$parentRevisionArgs<ExtArgs>
   childRevisions?: boolean | Prisma.Revision$childRevisionsArgs<ExtArgs>
   forkedPaths?: boolean | Prisma.Revision$forkedPathsArgs<ExtArgs>
@@ -2199,8 +2262,6 @@ export type RevisionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   combineSource?: boolean | Prisma.Revision$combineSourceArgs<ExtArgs>
   combineBase?: boolean | Prisma.Revision$combineBaseArgs<ExtArgs>
   combineResult?: boolean | Prisma.Revision$combineResultArgs<ExtArgs>
-  releases?: boolean | Prisma.Revision$releasesArgs<ExtArgs>
-  bountySubmissions?: boolean | Prisma.Revision$bountySubmissionsArgs<ExtArgs>
   _count?: boolean | Prisma.RevisionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["revision"]>
 
@@ -2210,6 +2271,9 @@ export type RevisionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   authorId?: boolean
   number?: boolean
   message?: boolean
+  releaseVersion?: boolean
+  releaseNotes?: boolean
+  releaseAt?: boolean
   parentRevisionId?: boolean
   createdAt?: boolean
   path?: boolean | Prisma.PathDefaultArgs<ExtArgs>
@@ -2223,6 +2287,9 @@ export type RevisionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   authorId?: boolean
   number?: boolean
   message?: boolean
+  releaseVersion?: boolean
+  releaseNotes?: boolean
+  releaseAt?: boolean
   parentRevisionId?: boolean
   createdAt?: boolean
   path?: boolean | Prisma.PathDefaultArgs<ExtArgs>
@@ -2236,14 +2303,18 @@ export type RevisionSelectScalar = {
   authorId?: boolean
   number?: boolean
   message?: boolean
+  releaseVersion?: boolean
+  releaseNotes?: boolean
+  releaseAt?: boolean
   parentRevisionId?: boolean
   createdAt?: boolean
 }
 
-export type RevisionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "pathId" | "authorId" | "number" | "message" | "parentRevisionId" | "createdAt", ExtArgs["result"]["revision"]>
+export type RevisionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "pathId" | "authorId" | "number" | "message" | "releaseVersion" | "releaseNotes" | "releaseAt" | "parentRevisionId" | "createdAt", ExtArgs["result"]["revision"]>
 export type RevisionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   path?: boolean | Prisma.PathDefaultArgs<ExtArgs>
   author?: boolean | Prisma.Revision$authorArgs<ExtArgs>
+  mountedCollections?: boolean | Prisma.Revision$mountedCollectionsArgs<ExtArgs>
   parentRevision?: boolean | Prisma.Revision$parentRevisionArgs<ExtArgs>
   childRevisions?: boolean | Prisma.Revision$childRevisionsArgs<ExtArgs>
   forkedPaths?: boolean | Prisma.Revision$forkedPathsArgs<ExtArgs>
@@ -2253,8 +2324,6 @@ export type RevisionInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   combineSource?: boolean | Prisma.Revision$combineSourceArgs<ExtArgs>
   combineBase?: boolean | Prisma.Revision$combineBaseArgs<ExtArgs>
   combineResult?: boolean | Prisma.Revision$combineResultArgs<ExtArgs>
-  releases?: boolean | Prisma.Revision$releasesArgs<ExtArgs>
-  bountySubmissions?: boolean | Prisma.Revision$bountySubmissionsArgs<ExtArgs>
   _count?: boolean | Prisma.RevisionCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type RevisionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2273,6 +2342,7 @@ export type $RevisionPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   objects: {
     path: Prisma.$PathPayload<ExtArgs>
     author: Prisma.$UserPayload<ExtArgs> | null
+    mountedCollections: Prisma.$CollectionPayload<ExtArgs>[]
     parentRevision: Prisma.$RevisionPayload<ExtArgs> | null
     childRevisions: Prisma.$RevisionPayload<ExtArgs>[]
     forkedPaths: Prisma.$PathPayload<ExtArgs>[]
@@ -2282,8 +2352,6 @@ export type $RevisionPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     combineSource: Prisma.$CombinePayload<ExtArgs>[]
     combineBase: Prisma.$CombinePayload<ExtArgs>[]
     combineResult: Prisma.$CombinePayload<ExtArgs>[]
-    releases: Prisma.$ReleasePayload<ExtArgs>[]
-    bountySubmissions: Prisma.$BountySubmissionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2291,6 +2359,9 @@ export type $RevisionPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     authorId: string | null
     number: number
     message: string
+    releaseVersion: string | null
+    releaseNotes: string | null
+    releaseAt: Date | null
     parentRevisionId: string | null
     createdAt: Date
   }, ExtArgs["result"]["revision"]>
@@ -2689,6 +2760,7 @@ export interface Prisma__RevisionClient<T, Null = never, ExtArgs extends runtime
   readonly [Symbol.toStringTag]: "PrismaPromise"
   path<T extends Prisma.PathDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PathDefaultArgs<ExtArgs>>): Prisma.Prisma__PathClient<runtime.Types.Result.GetResult<Prisma.$PathPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   author<T extends Prisma.Revision$authorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Revision$authorArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  mountedCollections<T extends Prisma.Revision$mountedCollectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Revision$mountedCollectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   parentRevision<T extends Prisma.Revision$parentRevisionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Revision$parentRevisionArgs<ExtArgs>>): Prisma.Prisma__RevisionClient<runtime.Types.Result.GetResult<Prisma.$RevisionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   childRevisions<T extends Prisma.Revision$childRevisionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Revision$childRevisionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RevisionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   forkedPaths<T extends Prisma.Revision$forkedPathsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Revision$forkedPathsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PathPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -2698,8 +2770,6 @@ export interface Prisma__RevisionClient<T, Null = never, ExtArgs extends runtime
   combineSource<T extends Prisma.Revision$combineSourceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Revision$combineSourceArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CombinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   combineBase<T extends Prisma.Revision$combineBaseArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Revision$combineBaseArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CombinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   combineResult<T extends Prisma.Revision$combineResultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Revision$combineResultArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CombinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  releases<T extends Prisma.Revision$releasesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Revision$releasesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReleasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  bountySubmissions<T extends Prisma.Revision$bountySubmissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Revision$bountySubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BountySubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2734,6 +2804,9 @@ export interface RevisionFieldRefs {
   readonly authorId: Prisma.FieldRef<"Revision", 'String'>
   readonly number: Prisma.FieldRef<"Revision", 'Int'>
   readonly message: Prisma.FieldRef<"Revision", 'String'>
+  readonly releaseVersion: Prisma.FieldRef<"Revision", 'String'>
+  readonly releaseNotes: Prisma.FieldRef<"Revision", 'String'>
+  readonly releaseAt: Prisma.FieldRef<"Revision", 'DateTime'>
   readonly parentRevisionId: Prisma.FieldRef<"Revision", 'String'>
   readonly createdAt: Prisma.FieldRef<"Revision", 'DateTime'>
 }
@@ -3156,6 +3229,30 @@ export type Revision$authorArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
+ * Revision.mountedCollections
+ */
+export type Revision$mountedCollectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Collection
+   */
+  select?: Prisma.CollectionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Collection
+   */
+  omit?: Prisma.CollectionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CollectionInclude<ExtArgs> | null
+  where?: Prisma.CollectionWhereInput
+  orderBy?: Prisma.CollectionOrderByWithRelationInput | Prisma.CollectionOrderByWithRelationInput[]
+  cursor?: Prisma.CollectionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CollectionScalarFieldEnum | Prisma.CollectionScalarFieldEnum[]
+}
+
+/**
  * Revision.parentRevision
  */
 export type Revision$parentRevisionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3364,54 +3461,6 @@ export type Revision$combineResultArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.CombineScalarFieldEnum | Prisma.CombineScalarFieldEnum[]
-}
-
-/**
- * Revision.releases
- */
-export type Revision$releasesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Release
-   */
-  select?: Prisma.ReleaseSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Release
-   */
-  omit?: Prisma.ReleaseOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ReleaseInclude<ExtArgs> | null
-  where?: Prisma.ReleaseWhereInput
-  orderBy?: Prisma.ReleaseOrderByWithRelationInput | Prisma.ReleaseOrderByWithRelationInput[]
-  cursor?: Prisma.ReleaseWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ReleaseScalarFieldEnum | Prisma.ReleaseScalarFieldEnum[]
-}
-
-/**
- * Revision.bountySubmissions
- */
-export type Revision$bountySubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the BountySubmission
-   */
-  select?: Prisma.BountySubmissionSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the BountySubmission
-   */
-  omit?: Prisma.BountySubmissionOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.BountySubmissionInclude<ExtArgs> | null
-  where?: Prisma.BountySubmissionWhereInput
-  orderBy?: Prisma.BountySubmissionOrderByWithRelationInput | Prisma.BountySubmissionOrderByWithRelationInput[]
-  cursor?: Prisma.BountySubmissionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.BountySubmissionScalarFieldEnum | Prisma.BountySubmissionScalarFieldEnum[]
 }
 
 /**

@@ -60,7 +60,6 @@ export const ModelName = {
   Jwks: 'Jwks',
   OauthClient: 'OauthClient',
   DeveloperApiKey: 'DeveloperApiKey',
-  ApiKeyPackScope: 'ApiKeyPackScope',
   OauthResource: 'OauthResource',
   OauthClientResource: 'OauthClientResource',
   OauthRefreshToken: 'OauthRefreshToken',
@@ -71,16 +70,10 @@ export const ModelName = {
   Collection: 'Collection',
   Entry: 'Entry',
   EntryRelationship: 'EntryRelationship',
-  EntryTombstone: 'EntryTombstone',
-  AppMemory: 'AppMemory',
-  AppMemoryLink: 'AppMemoryLink',
-  AppMemoryUsageLedger: 'AppMemoryUsageLedger',
   AccessGrant: 'AccessGrant',
   AccessRequest: 'AccessRequest',
-  AccessRequestItem: 'AccessRequestItem',
   ContextRequest: 'ContextRequest',
-  ContextReceipt: 'ContextReceipt',
-  ContextReceiptItem: 'ContextReceiptItem',
+  ContextRequestItem: 'ContextRequestItem',
   ApiUsageLedger: 'ApiUsageLedger',
   UserRoyalty: 'UserRoyalty',
   CreatorPayout: 'CreatorPayout',
@@ -88,15 +81,7 @@ export const ModelName = {
   Revision: 'Revision',
   RevisionChange: 'RevisionChange',
   Combine: 'Combine',
-  CombineConflict: 'CombineConflict',
-  Pack: 'Pack',
-  Release: 'Release',
-  PackImport: 'PackImport',
-  PackPurchase: 'PackPurchase',
-  PackDonation: 'PackDonation',
-  PackSponsorship: 'PackSponsorship',
   KnowledgeBounty: 'KnowledgeBounty',
-  BountySubmission: 'BountySubmission',
   Star: 'Star',
   TuneApp: 'TuneApp',
   TuneAppInstallation: 'TuneAppInstallation',
@@ -297,16 +282,6 @@ export const DeveloperApiKeyScalarFieldEnum = {
 export type DeveloperApiKeyScalarFieldEnum = (typeof DeveloperApiKeyScalarFieldEnum)[keyof typeof DeveloperApiKeyScalarFieldEnum]
 
 
-export const ApiKeyPackScopeScalarFieldEnum = {
-  id: 'id',
-  apiKeyId: 'apiKeyId',
-  packId: 'packId',
-  createdAt: 'createdAt'
-} as const
-
-export type ApiKeyPackScopeScalarFieldEnum = (typeof ApiKeyPackScopeScalarFieldEnum)[keyof typeof ApiKeyPackScopeScalarFieldEnum]
-
-
 export const OauthResourceScalarFieldEnum = {
   id: 'id',
   identifier: 'identifier',
@@ -425,16 +400,33 @@ export const CollectionScalarFieldEnum = {
   name: 'name',
   slug: 'slug',
   description: 'description',
+  kind: 'kind',
   visibility: 'visibility',
   version: 'version',
   entryCount: 'entryCount',
   userId: 'userId',
+  organizationId: 'organizationId',
+  oauthClientId: 'oauthClientId',
   areaId: 'areaId',
   parentId: 'parentId',
-  isVirtualMount: 'isVirtualMount',
+  externalSubjectKey: 'externalSubjectKey',
+  accessCode: 'accessCode',
+  accessCodeType: 'accessCodeType',
+  accessCodeExpiresAt: 'accessCodeExpiresAt',
   syncMode: 'syncMode',
-  copiedFromCollectionId: 'copiedFromCollectionId',
-  sourceReleaseId: 'sourceReleaseId',
+  upstreamCollectionId: 'upstreamCollectionId',
+  upstreamPathId: 'upstreamPathId',
+  installedRevisionId: 'installedRevisionId',
+  accessMode: 'accessMode',
+  monetizationType: 'monetizationType',
+  mFactor: 'mFactor',
+  oneTimePriceCents: 'oneTimePriceCents',
+  platformFeePercent: 'platformFeePercent',
+  maintainerFeePercent: 'maintainerFeePercent',
+  contributorPoolPercent: 'contributorPoolPercent',
+  isVerifiedOfficial: 'isVerifiedOfficial',
+  sponsorBudgetRemainingCents: 'sponsorBudgetRemainingCents',
+  sponsoredMFactor: 'sponsoredMFactor',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -450,19 +442,23 @@ export const EntryScalarFieldEnum = {
   type: 'type',
   version: 'version',
   tags: 'tags',
+  externalSubjectKey: 'externalSubjectKey',
   state: 'state',
   recallPolicy: 'recallPolicy',
   origin: 'origin',
   confidenceScore: 'confidenceScore',
   expiresAt: 'expiresAt',
   archivedAt: 'archivedAt',
+  deletedAt: 'deletedAt',
+  deletionReason: 'deletionReason',
+  publishedAt: 'publishedAt',
   metadata: 'metadata',
   collectionId: 'collectionId',
-  appMemoryId: 'appMemoryId',
   userId: 'userId',
   authorId: 'authorId',
-  sourcePackId: 'sourcePackId',
+  sourceCollectionId: 'sourceCollectionId',
   upstreamEntryId: 'upstreamEntryId',
+  syncMode: 'syncMode',
   citationCount: 'citationCount',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -483,64 +479,11 @@ export const EntryRelationshipScalarFieldEnum = {
 export type EntryRelationshipScalarFieldEnum = (typeof EntryRelationshipScalarFieldEnum)[keyof typeof EntryRelationshipScalarFieldEnum]
 
 
-export const EntryTombstoneScalarFieldEnum = {
-  id: 'id',
-  originalEntryId: 'originalEntryId',
-  deletedByUserId: 'deletedByUserId',
-  reason: 'reason',
-  cascaded: 'cascaded',
-  createdAt: 'createdAt'
-} as const
-
-export type EntryTombstoneScalarFieldEnum = (typeof EntryTombstoneScalarFieldEnum)[keyof typeof EntryTombstoneScalarFieldEnum]
-
-
-export const AppMemoryScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  clientId: 'clientId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type AppMemoryScalarFieldEnum = (typeof AppMemoryScalarFieldEnum)[keyof typeof AppMemoryScalarFieldEnum]
-
-
-export const AppMemoryLinkScalarFieldEnum = {
-  id: 'id',
-  appEntryId: 'appEntryId',
-  tuneEntryId: 'tuneEntryId',
-  syncMode: 'syncMode',
-  active: 'active',
-  lastAppRevision: 'lastAppRevision',
-  lastTuneRevision: 'lastTuneRevision',
-  createdAt: 'createdAt',
-  lastSyncedAt: 'lastSyncedAt'
-} as const
-
-export type AppMemoryLinkScalarFieldEnum = (typeof AppMemoryLinkScalarFieldEnum)[keyof typeof AppMemoryLinkScalarFieldEnum]
-
-
-export const AppMemoryUsageLedgerScalarFieldEnum = {
-  id: 'id',
-  appMemoryId: 'appMemoryId',
-  clientId: 'clientId',
-  organizationId: 'organizationId',
-  operation: 'operation',
-  unitsProcessed: 'unitsProcessed',
-  costInCents: 'costInCents',
-  billedAt: 'billedAt',
-  createdAt: 'createdAt',
-  oauthClientId: 'oauthClientId'
-} as const
-
-export type AppMemoryUsageLedgerScalarFieldEnum = (typeof AppMemoryUsageLedgerScalarFieldEnum)[keyof typeof AppMemoryUsageLedgerScalarFieldEnum]
-
-
 export const AccessGrantScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   clientId: 'clientId',
+  apiKeyId: 'apiKeyId',
   resourceType: 'resourceType',
   resourceKey: 'resourceKey',
   effect: 'effect',
@@ -548,12 +491,10 @@ export const AccessGrantScalarFieldEnum = {
   inherits: 'inherits',
   areaId: 'areaId',
   collectionId: 'collectionId',
+  pathId: 'pathId',
   entryId: 'entryId',
-  appMemoryId: 'appMemoryId',
-  packId: 'packId',
   expiresAt: 'expiresAt',
-  grantedAt: 'grantedAt',
-  oauthClientId: 'oauthClientId'
+  grantedAt: 'grantedAt'
 } as const
 
 export type AccessGrantScalarFieldEnum = (typeof AccessGrantScalarFieldEnum)[keyof typeof AccessGrantScalarFieldEnum]
@@ -563,8 +504,13 @@ export const AccessRequestScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   clientId: 'clientId',
+  resourceType: 'resourceType',
+  resourceKey: 'resourceKey',
+  collectionId: 'collectionId',
+  permissions: 'permissions',
   purpose: 'purpose',
   status: 'status',
+  requestItems: 'requestItems',
   createdAt: 'createdAt',
   decidedAt: 'decidedAt',
   expiresAt: 'expiresAt'
@@ -573,48 +519,25 @@ export const AccessRequestScalarFieldEnum = {
 export type AccessRequestScalarFieldEnum = (typeof AccessRequestScalarFieldEnum)[keyof typeof AccessRequestScalarFieldEnum]
 
 
-export const AccessRequestItemScalarFieldEnum = {
-  id: 'id',
-  requestId: 'requestId',
-  resourceType: 'resourceType',
-  resourceKey: 'resourceKey',
-  permissions: 'permissions',
-  reason: 'reason'
-} as const
-
-export type AccessRequestItemScalarFieldEnum = (typeof AccessRequestItemScalarFieldEnum)[keyof typeof AccessRequestItemScalarFieldEnum]
-
-
 export const ContextRequestScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   clientId: 'clientId',
   apiKeyId: 'apiKeyId',
-  packId: 'packId',
+  collectionId: 'collectionId',
   purpose: 'purpose',
   query: 'query',
   status: 'status',
   requestedAt: 'requestedAt',
-  completedAt: 'completedAt',
-  oauthClientId: 'oauthClientId'
+  completedAt: 'completedAt'
 } as const
 
 export type ContextRequestScalarFieldEnum = (typeof ContextRequestScalarFieldEnum)[keyof typeof ContextRequestScalarFieldEnum]
 
 
-export const ContextReceiptScalarFieldEnum = {
+export const ContextRequestItemScalarFieldEnum = {
   id: 'id',
   contextRequestId: 'contextRequestId',
-  itemCount: 'itemCount',
-  createdAt: 'createdAt'
-} as const
-
-export type ContextReceiptScalarFieldEnum = (typeof ContextReceiptScalarFieldEnum)[keyof typeof ContextReceiptScalarFieldEnum]
-
-
-export const ContextReceiptItemScalarFieldEnum = {
-  id: 'id',
-  receiptId: 'receiptId',
   entryId: 'entryId',
   resourceKey: 'resourceKey',
   excerpt: 'excerpt',
@@ -622,23 +545,23 @@ export const ContextReceiptItemScalarFieldEnum = {
   createdAt: 'createdAt'
 } as const
 
-export type ContextReceiptItemScalarFieldEnum = (typeof ContextReceiptItemScalarFieldEnum)[keyof typeof ContextReceiptItemScalarFieldEnum]
+export type ContextRequestItemScalarFieldEnum = (typeof ContextRequestItemScalarFieldEnum)[keyof typeof ContextRequestItemScalarFieldEnum]
 
 
 export const ApiUsageLedgerScalarFieldEnum = {
   id: 'id',
   clientId: 'clientId',
+  operation: 'operation',
   contextRequestedId: 'contextRequestedId',
   userId: 'userId',
   organizationId: 'organizationId',
   apiKeyId: 'apiKeyId',
-  packId: 'packId',
-  sponsorshipId: 'sponsorshipId',
+  collectionId: 'collectionId',
   rawEntryCountN: 'rawEntryCountN',
   effectiveEntryCount: 'effectiveEntryCount',
   appliedPFactor: 'appliedPFactor',
   appliedMFactor: 'appliedMFactor',
-  tokensUsed: 'tokensUsed',
+  tokensOrUnitsUsed: 'tokensOrUnitsUsed',
   computeCostCents: 'computeCostCents',
   royaltyCostCents: 'royaltyCostCents',
   sponsorAbsorbedCents: 'sponsorAbsorbedCents',
@@ -656,9 +579,10 @@ export const UserRoyaltyScalarFieldEnum = {
   userId: 'userId',
   sourceType: 'sourceType',
   entryId: 'entryId',
-  packId: 'packId',
+  collectionId: 'collectionId',
   ledgerId: 'ledgerId',
   bountyId: 'bountyId',
+  paymentId: 'paymentId',
   amountInCents: 'amountInCents',
   sourceClientId: 'sourceClientId',
   payoutId: 'payoutId',
@@ -689,6 +613,10 @@ export const PathScalarFieldEnum = {
   name: 'name',
   isDefault: 'isDefault',
   isBlindContribution: 'isBlindContribution',
+  externalSubjectKey: 'externalSubjectKey',
+  accessCode: 'accessCode',
+  accessCodeType: 'accessCodeType',
+  accessCodeExpiresAt: 'accessCodeExpiresAt',
   forkedFromRevisionId: 'forkedFromRevisionId',
   headRevisionId: 'headRevisionId',
   createdAt: 'createdAt',
@@ -705,6 +633,9 @@ export const RevisionScalarFieldEnum = {
   authorId: 'authorId',
   number: 'number',
   message: 'message',
+  releaseVersion: 'releaseVersion',
+  releaseNotes: 'releaseNotes',
+  releaseAt: 'releaseAt',
   parentRevisionId: 'parentRevisionId',
   createdAt: 'createdAt'
 } as const
@@ -736,126 +667,16 @@ export const CombineScalarFieldEnum = {
   sourceRevisionId: 'sourceRevisionId',
   baseRevisionId: 'baseRevisionId',
   status: 'status',
+  conflicts: 'conflicts',
   resultRevisionId: 'resultRevisionId',
+  bountyId: 'bountyId',
+  bountyRewardCents: 'bountyRewardCents',
+  bountyReviewNotes: 'bountyReviewNotes',
   createdAt: 'createdAt',
   completedAt: 'completedAt'
 } as const
 
 export type CombineScalarFieldEnum = (typeof CombineScalarFieldEnum)[keyof typeof CombineScalarFieldEnum]
-
-
-export const CombineConflictScalarFieldEnum = {
-  id: 'id',
-  combineId: 'combineId',
-  entryId: 'entryId',
-  baseValue: 'baseValue',
-  targetValue: 'targetValue',
-  sourceValue: 'sourceValue',
-  resolution: 'resolution',
-  resolvedValue: 'resolvedValue',
-  resolvedAt: 'resolvedAt'
-} as const
-
-export type CombineConflictScalarFieldEnum = (typeof CombineConflictScalarFieldEnum)[keyof typeof CombineConflictScalarFieldEnum]
-
-
-export const PackScalarFieldEnum = {
-  id: 'id',
-  ownerId: 'ownerId',
-  name: 'name',
-  slug: 'slug',
-  description: 'description',
-  visibility: 'visibility',
-  accessMode: 'accessMode',
-  monetizationType: 'monetizationType',
-  entryCount: 'entryCount',
-  mFactor: 'mFactor',
-  oneTimePriceCents: 'oneTimePriceCents',
-  platformFeePercent: 'platformFeePercent',
-  maintainerFeePercent: 'maintainerFeePercent',
-  contributorPoolPercent: 'contributorPoolPercent',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  collectionId: 'collectionId'
-} as const
-
-export type PackScalarFieldEnum = (typeof PackScalarFieldEnum)[keyof typeof PackScalarFieldEnum]
-
-
-export const ReleaseScalarFieldEnum = {
-  id: 'id',
-  packId: 'packId',
-  version: 'version',
-  sourceRevisionId: 'sourceRevisionId',
-  notes: 'notes',
-  manifest: 'manifest',
-  entryCount: 'entryCount',
-  publishedAt: 'publishedAt'
-} as const
-
-export type ReleaseScalarFieldEnum = (typeof ReleaseScalarFieldEnum)[keyof typeof ReleaseScalarFieldEnum]
-
-
-export const PackImportScalarFieldEnum = {
-  id: 'id',
-  packId: 'packId',
-  releaseId: 'releaseId',
-  targetCollectionId: 'targetCollectionId',
-  syncMode: 'syncMode',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type PackImportScalarFieldEnum = (typeof PackImportScalarFieldEnum)[keyof typeof PackImportScalarFieldEnum]
-
-
-export const PackPurchaseScalarFieldEnum = {
-  id: 'id',
-  packId: 'packId',
-  userId: 'userId',
-  organizationId: 'organizationId',
-  pricePaidCents: 'pricePaidCents',
-  platformFeeCents: 'platformFeeCents',
-  creatorNetCents: 'creatorNetCents',
-  paidViaCreditsCents: 'paidViaCreditsCents',
-  paymentId: 'paymentId',
-  purchasedComputeM: 'purchasedComputeM',
-  purchasedAt: 'purchasedAt'
-} as const
-
-export type PackPurchaseScalarFieldEnum = (typeof PackPurchaseScalarFieldEnum)[keyof typeof PackPurchaseScalarFieldEnum]
-
-
-export const PackDonationScalarFieldEnum = {
-  id: 'id',
-  packId: 'packId',
-  donorUserId: 'donorUserId',
-  amountCents: 'amountCents',
-  platformFeeCents: 'platformFeeCents',
-  message: 'message',
-  paymentId: 'paymentId',
-  createdAt: 'createdAt'
-} as const
-
-export type PackDonationScalarFieldEnum = (typeof PackDonationScalarFieldEnum)[keyof typeof PackDonationScalarFieldEnum]
-
-
-export const PackSponsorshipScalarFieldEnum = {
-  id: 'id',
-  packId: 'packId',
-  sponsorOrgId: 'sponsorOrgId',
-  sponsorUserId: 'sponsorUserId',
-  totalBudgetCents: 'totalBudgetCents',
-  remainingBudgetCents: 'remainingBudgetCents',
-  sponsoredMFactor: 'sponsoredMFactor',
-  isActive: 'isActive',
-  isVerifiedOfficial: 'isVerifiedOfficial',
-  startsAt: 'startsAt',
-  endsAt: 'endsAt',
-  createdAt: 'createdAt'
-} as const
-
-export type PackSponsorshipScalarFieldEnum = (typeof PackSponsorshipScalarFieldEnum)[keyof typeof PackSponsorshipScalarFieldEnum]
 
 
 export const KnowledgeBountyScalarFieldEnum = {
@@ -865,7 +686,7 @@ export const KnowledgeBountyScalarFieldEnum = {
   requirements: 'requirements',
   creatorOrgId: 'creatorOrgId',
   creatorUserId: 'creatorUserId',
-  targetPackId: 'targetPackId',
+  targetCollectionId: 'targetCollectionId',
   escrowAmountCents: 'escrowAmountCents',
   platformFeeCent: 'platformFeeCent',
   maintainerSharePercent: 'maintainerSharePercent',
@@ -882,27 +703,10 @@ export const KnowledgeBountyScalarFieldEnum = {
 export type KnowledgeBountyScalarFieldEnum = (typeof KnowledgeBountyScalarFieldEnum)[keyof typeof KnowledgeBountyScalarFieldEnum]
 
 
-export const BountySubmissionScalarFieldEnum = {
-  id: 'id',
-  bountyId: 'bountyId',
-  contributorId: 'contributorId',
-  pathId: 'pathId',
-  revisionId: 'revisionId',
-  combineId: 'combineId',
-  status: 'status',
-  rewardAllocatedCents: 'rewardAllocatedCents',
-  reviewNotes: 'reviewNotes',
-  submittedAt: 'submittedAt',
-  decidedAt: 'decidedAt'
-} as const
-
-export type BountySubmissionScalarFieldEnum = (typeof BountySubmissionScalarFieldEnum)[keyof typeof BountySubmissionScalarFieldEnum]
-
-
 export const StarScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  packId: 'packId',
+  collectionId: 'collectionId',
   entryId: 'entryId',
   createdAt: 'createdAt'
 } as const
@@ -916,7 +720,7 @@ export const TuneAppScalarFieldEnum = {
   name: 'name',
   slug: 'slug',
   description: 'description',
-  manifesr: 'manifesr',
+  manifest: 'manifest',
   codeRef: 'codeRef',
   publishedAt: 'publishedAt',
   createdAt: 'createdAt',
@@ -1021,6 +825,11 @@ export const PaymentScalarFieldEnum = {
   subTotal: 'subTotal',
   discount: 'discount',
   total: 'total',
+  collectionId: 'collectionId',
+  platformFeeCents: 'platformFeeCents',
+  creatorNetCents: 'creatorNetCents',
+  paidViaCreditsCents: 'paidViaCreditsCents',
+  message: 'message',
   couponUsageId: 'couponUsageId',
   metadata: 'metadata',
   paidAt: 'paidAt',
