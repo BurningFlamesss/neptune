@@ -763,12 +763,12 @@ model Entry {
   origin             EntryOrigin  @default(USER)
   confidenceScore    Float        @default(1.0)
 
-  expiresAt   DateTime? // Temporal obsolescence
-  archivedAt  DateTime?
-  deletedAt DateTime?
+  expiresAt      DateTime? // Temporal obsolescence
+  archivedAt     DateTime?
+  deletedAt      DateTime?
   deletionReason String?
-  publishedAt DateTime?
-  metadata    Json?
+  publishedAt    DateTime?
+  metadata       Json?
 
   embedding Unsupported("vector")?
 
@@ -783,9 +783,9 @@ model Entry {
   sourceCollectionId String?
   sourceCollection   Collection? @relation("EntrySourceCollection", fields: [sourceCollectionId], references: [id], onDelete: SetNull)
   upstreamEntryId    String?
-  upstreamEntry Entry? @relation("EntrySyncLineage", fields: [upstreamEntryId], references: [id], onDelete: SetNull)
-  downstreamEntries Entry[] @relation("EntrySyncLineage")
-  syncMode SyncMode @default(MANUAL)
+  upstreamEntry      Entry?      @relation("EntrySyncLineage", fields: [upstreamEntryId], references: [id], onDelete: SetNull)
+  downstreamEntries  Entry[]     @relation("EntrySyncLineage")
+  syncMode           SyncMode    @default(MANUAL)
   citationCount      Int         @default(0)
 
   sourceRelationships EntryRelationship[]  @relation("SourceRelationship")
@@ -794,7 +794,7 @@ model Entry {
   accessGrants        AccessGrant[]
   receiptItems        ContextReceiptItem[]
   royaltiesGenerated  UserRoyalty[]
-  stars     Star[]
+  stars               Star[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -903,9 +903,12 @@ model AccessGrant {
   userId String
   user   User   @relation("UserAccessGrants", fields: [userId], references: [id], onDelete: Cascade)
 
-  clientId String
+  clientId String?
 
   oauthClient OauthClient @relation("GrantedToApp", fields: [clientId], references: [id], onDelete: Cascade)
+
+  apiKeyId String?
+  apiKey   DeveloperApiKey? @relation("GrantedToApiKey", fields: [apiKeyId], references: [id], onDelete: Cascade)
 
   resourceType AccessResourceType
   resourceKey  String
@@ -921,21 +924,17 @@ model AccessGrant {
   collectionId String?
   collection   Collection? @relation(fields: [collectionId], references: [id], onDelete: Cascade)
 
+  pathId String?
+  path   Path?   @relation(fields: [pathId], references: [id], onDelete: Cascade)
+
   entryId String?
   entry   Entry?  @relation(fields: [entryId], references: [id], onDelete: Cascade)
 
-  appMemoryId String?
-  appMemory   AppMemory? @relation(fields: [appMemoryId], references: [id], onDelete: Cascade)
+  expiresAt DateTime?
+  grantedAt DateTime  @default(now())
 
-  collectionId String?
-  collection   Collection? @relation(fields: [collectionId], references: [id], onDelete: Cascade)
-
-  expiresAt     DateTime?
-  grantedAt     DateTime  @default(now())
-  oauthClientId String?
-
-  @@unique([userId, clientId, resourceKey])
-  @@index([userId, clientId, resourceType])
+  @@unique([userId, clientId, resourceType])
+  @@index([apiKeyId, collectionId])
   @@map("access_grants")
 }
 
@@ -946,9 +945,15 @@ model AccessRequest {
   clientId    String
   oauthClient OauthClient @relation("AppRequestsAccess", fields: [clientId], references: [id], onDelete: Cascade)
 
+  resourceType AccessResourceType
+  resourceKey  String
+
+  collectionId String?
+  collection   Collection?        @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  permissions  AccessPermission[]
+
   purpose String
   status  AccessRequestStatus @default(PENDING)
-  items   AccessRequestItem[]
 
   createdAt DateTime  @default(now())
   decidedAt DateTime?
@@ -975,7 +980,7 @@ model ContextRequest {
   userId String?
   user   User?   @relation("UserContextRequests", fields: [userId], references: [id], onDelete: Cascade)
 
-  clientId String
+  clientId String?
 
   oauthClient  OauthClient      @relation("AppRequestsContext", fields: [clientId], references: [id], onDelete: Cascade)
   apiKeyId     String?
@@ -987,12 +992,11 @@ model ContextRequest {
 
   status ContextRequestStatus @default(PENDING)
 
-  receipt     ContextReceipt?
+  items       ContextReceiptItem[]
   ledgerEntry ApiUsageLedger?
 
-  requestedAt   DateTime  @default(now())
-  completedAt   DateTime?
-  oauthClientId String?
+  requestedAt DateTime  @default(now())
+  completedAt DateTime?
 
   @@index([clientId, status, requestedAt])
   @@index([userId, requestedAt])
@@ -1015,11 +1019,11 @@ model ContextReceipt {
 }
 
 model ContextReceiptItem {
-  id        String         @id @default(cuid())
-  receiptId String
-  receipt   ContextReceipt @relation(fields: [receiptId], references: [id], onDelete: Cascade)
-  entryId   String?
-  entry     Entry?         @relation(fields: [entryId], references: [id], onDelete: Cascade)
+  id               String         @id @default(cuid())
+  contextRequestId String
+  contextRequest   ContextRequest @relation(fields: [contextRequestId], references: [id], onDelete: Cascade)
+  entryId          String?
+  entry            Entry?         @relation(fields: [entryId], references: [id], onDelete: Cascade)
 
   resourceKey    String?
   excerpt        String? @db.Text
@@ -1027,7 +1031,7 @@ model ContextReceiptItem {
 
   createdAt DateTime @default(now())
 
-  @@index([receiptId])
+  @@index([contextRequestId])
   @@index([entryId])
   @@map("context_receipt_items")
 }
@@ -1130,39 +1134,51 @@ model Path {
   collectionId String
   collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
 
-  name                 String
-  isDefault            Boolean   @default(false)
-  isBlindContribution  Boolean   @default(false) // true for protected collection
+  name                String
+  isDefault           Boolean @default(false)
+  isBlindContribution Boolean @default(false) // true for protected collection
+
+  externalSubjectKey  String?
+  accessCode          String?
+  accessCodeType      AccessCodeType @default(NONE)
+  accessCodeExpiresAt DateTime?
+
   forkedFromRevisionId String?
   forkedFromRevision   Revision? @relation("PathFork", fields: [forkedFromRevisionId], references: [id], onDelete: SetNull)
+  forkedPaths          Path[]    @relation("PathFork")
 
   revisions      Revision[] @relation("PathRevisions")
   headRevisionId String?
   headRevision   Revision?  @relation("PathHead", fields: [headRevisionId], onDelete: SetNull, references: [id])
 
-  targetCombines    Combine[]          @relation("CombineTargetPath")
-  sourceCombines    Combine[]          @relation("CombineSourcePath")
-  bountySubmissions BountySubmission[]
+  mountedCollections Collection[]  @relation("PathMountedCollections")
+  accessGrants       AccessGrant[]
+  targetCombines     Combine[]     @relation("CombineTargetPath")
+  sourceCombines     Combine[]     @relation("CombineSourcePath")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  path      Path?    @relation("PathChildren", fields: [pathId], references: [id])
-  pathId    String?
-  paths     Path[]   @relation("PathChildren")
 
   @@unique([collectionId, name])
+  @@index([collectionId, externalSubjectKey])
   @@map("paths")
 }
 
 model Revision {
   id String @id @default(cuid())
 
-  pathId           String
-  path             Path       @relation("PathRevisions", fields: [pathId], references: [id], onDelete: Cascade)
-  authorId         String?
-  author           User?      @relation("RevisionAuthor", fields: [authorId], references: [id], onDelete: SetNull)
-  number           Int
-  message          String
+  pathId   String
+  path     Path    @relation("PathRevisions", fields: [pathId], references: [id], onDelete: Cascade)
+  authorId String?
+  author   User?   @relation("RevisionAuthor", fields: [authorId], references: [id], onDelete: SetNull)
+  number   Int
+  message  String
+
+  releaseVersion     String?
+  releaseNotes       String?      @db.Text
+  releaseAt          DateTime?
+  mountedCollections Collection[] @relation("RevisionMountedCollections")
+
   parentRevisionId String?
   parentRevision   Revision?  @relation("RevisionParent", fields: [parentRevisionId], references: [id], onDelete: SetNull)
   childRevisions   Revision[] @relation("RevisionParent")
@@ -1171,17 +1187,15 @@ model Revision {
   headOfPaths Path[]           @relation("PathHead")
   changes     RevisionChange[]
 
-  combineTarget     Combine[]          @relation("CombineTargetRevision")
-  combineSource     Combine[]          @relation("CombineSourceRevision")
-  combineBase       Combine[]          @relation("CombineBaseRevision")
-  combineResult     Combine[]          @relation("CombineResultRevision")
-  releases          Release[]
-  bountySubmissions BountySubmission[]
+  combineTarget Combine[] @relation("CombineTargetRevision")
+  combineSource Combine[] @relation("CombineSourceRevision")
+  combineBase   Combine[] @relation("CombineBaseRevision")
+  combineResult Combine[] @relation("CombineResultRevision")
 
   createdAt DateTime @default(now())
 
   @@unique([pathId, number])
-  @@index([pathId, createdAt])
+  @@index([pathId, releaseVersion])
   @@map("revisions")
 }
 
@@ -1212,27 +1226,31 @@ model Combine {
   authorId    String?
   author      User?   @relation("CombineAuthor", fields: [authorId], references: [id], onDelete: SetNull)
 
-  targetPathId      String
-  targetPath        Path               @relation("CombineTargetPath", fields: [targetPathId], references: [id], onDelete: Cascade)
-  sourcePathId      String
-  sourcePath        Path               @relation("CombineSourcePath", fields: [sourcePathId], references: [id], onDelete: Cascade)
-  targetRevisionId  String
-  targetRevision    Revision           @relation("CombineTargetRevision", fields: [targetRevisionId], references: [id], onDelete: Cascade)
-  sourceRevisionId  String
-  sourceRevision    Revision           @relation("CombineSourceRevision", fields: [sourceRevisionId], references: [id], onDelete: Cascade)
-  baseRevisionId    String?
-  baseRevision      Revision?          @relation("CombineBaseRevision", fields: [baseRevisionId], references: [id], onDelete: SetNull)
-  status            CombineStatus      @default(PENDING)
-  conflicts         CombineConflict[]
-  resultRevisionId  String?
-  resultRevision    Revision?          @relation("CombineResultRevision", fields: [resultRevisionId], references: [id], onDelete: SetNull)
-  bountySubmissions BountySubmission[]
+  targetPathId     String
+  targetPath       Path              @relation("CombineTargetPath", fields: [targetPathId], references: [id], onDelete: Cascade)
+  sourcePathId     String
+  sourcePath       Path              @relation("CombineSourcePath", fields: [sourcePathId], references: [id], onDelete: Cascade)
+  targetRevisionId String
+  targetRevision   Revision          @relation("CombineTargetRevision", fields: [targetRevisionId], references: [id], onDelete: Cascade)
+  sourceRevisionId String
+  sourceRevision   Revision          @relation("CombineSourceRevision", fields: [sourceRevisionId], references: [id], onDelete: Cascade)
+  baseRevisionId   String?
+  baseRevision     Revision?         @relation("CombineBaseRevision", fields: [baseRevisionId], references: [id], onDelete: SetNull)
+  status           CombineStatus     @default(PENDING)
+  conflicts        CombineConflict[]
+  resultRevisionId String?
+  resultRevision   Revision?         @relation("CombineResultRevision", fields: [resultRevisionId], references: [id], onDelete: SetNull)
+
+  bountyId          String?
+  bounty            KnowledgeBounty? @relation(fields: [bountyId], references: [id], onDelete: SetNull)
+  bountyRewardCents Float            @default(0.0)
+  bountyReviewNotes String?
 
   createdAt   DateTime? @default(now())
   completedAt DateTime?
 
   @@index([targetPathId, status])
-  @@index([sourcePathId])
+  @@index([bountyId, status])
   @@map("combines")
 }
 
