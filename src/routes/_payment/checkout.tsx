@@ -148,7 +148,7 @@ function RouteComponent() {
 					</h1>
 					<p className="text-lg flex flex-row gap-1">
 						<span className="line-through">
-							{isCouponValid ? formatPrice(plan.comparedAtPrice ?? plan.price, plan.currency) : plan.comparedAtPrice && plan.comparedAtPrice > plan.price ? formatPrice(plan.comparedAtPrice, plan.currency) : null}
+							{isCouponValid ? formatPrice(plan.comparedAtPrice ?? plan.price, plan.currency) : plan.comparedAtPrice > plan.price ? formatPrice(plan.comparedAtPrice, plan.currency) : null}
 						</span>
 						<span>{formatPrice(finalPrice, plan.currency)}</span>
 					</p>
@@ -156,7 +156,7 @@ function RouteComponent() {
 					<ul className="flex flex-col items-start justify-center mt-4">
 						{((plan.displayFeaturesIncluded as Array<string>) ?? [])?.map(
 							(feature, index) => (
-								<li key={`${index}-${feature}`}><CheckCheck className="text-cyan" />{feature}</li>
+								<li key={`${index}-${feature}`} className="flex flex-row gap-1"><CheckCheck className="text-cyan" />{feature}</li>
 							),
 						)}
 						<li>Monthly Compute Quota: <span className="text-ink-deep font-semibold">{formatPrice(plan.monthlyComputeQuotaCents, plan.currency)}</span></li>
@@ -166,7 +166,7 @@ function RouteComponent() {
 						<li>Storage: <span className="text-ink-deep font-semibold">{formatStorageBytes(plan.storageLimitBytes)}</span></li>
 						{((plan.displayFeaturesNotIncluded as Array<string>) ?? [])?.map(
 							(feature, index) => (
-								<li key={`${index}-${feature}`}><X className="text-destructive" />{feature}</li>
+								<li key={`${index}-${feature}`} className="flex flex-row gap-1"><X className="text-destructive" />{feature}</li>
 							),
 						)}
 					</ul>
